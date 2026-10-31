@@ -1,0 +1,54 @@
+{
+  "academy-guide": [
+    true,
+    "Skill is valid!"
+  ],
+  "algorithmic-art": [
+    true,
+    "Skill is valid!"
+  ],
+  "brand-guidelines": [
+    true,
+    "Skill is valid!"
+  ],
+  "canvas-design": [
+    true,
+    "Skill is valid!"
+  ],
+  "discernment-nudge": [
+    true,
+    "Skill is valid!"
+  ],
+  "frontend-design": [
+    true,
+    "Skill is valid!"
+  ],
+  "internal-comms": [
+    true,
+    "Skill is valid!"
+  ],
+  "mcp-builder": [
+    true,
+    "Skill is valid!"
+  ],
+  "skill-creator": [
+    true,
+    "Skill is valid!"
+  ],
+  "slack-gif-creator": [
+    true,
+    "Skill is valid!"
+  ],
+  "theme-factory": [
+    true,
+    "Skill is valid!"
+  ],
+  "web-artifacts-builder": [
+    true,
+    "Skill is valid!"
+  ],
+  "webapp-testing": [
+    true,
+    "Skill is valid!"
+  ]
+}

@@ -35,3 +35,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 - claude-api: Claude API 개발 전용으로 현재 요청 범위에서 제외
 
 이 저장소는 Claude 내부의 비공개 스킬 전체를 복제한 것이 아닙니다. 잘못 설치했던 Claude Code 의존성과 미완성 미리보기 앱은 제거했습니다.
+
+## 실제 실행 검증
+
+[검증 결과와 호환성 보정](validation/RESULTS.md)을 확인하세요. 웹 제작·빌드·번들·브라우저 상호작용, GIF 생성, 스킬 패키징을 실행 검증했습니다. 원본 웹 제작 스크립트는 최신 의존성과의 호환 보정이 필요했고, skill-creator의 일부 자동 평가 기능은 Claude CLI에 의존합니다.
