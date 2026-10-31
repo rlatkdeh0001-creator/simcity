@@ -39,3 +39,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## 실제 실행 검증
 
 [검증 결과와 호환성 보정](validation/RESULTS.md)을 확인하세요. 웹 제작·빌드·번들·브라우저 상호작용, GIF 생성, 스킬 패키징을 실행 검증했습니다. 원본 웹 제작 스크립트는 최신 의존성과의 호환 보정이 필요했고, skill-creator의 일부 자동 평가 기능은 Claude CLI에 의존합니다.
+
+## CITIES_DO 건설 스킬
+
+`cities-do-construction` 스킬과 Godot MVP를 추가했습니다. [실행·조작·검증](cities_do/README.md)을 참고하세요.
