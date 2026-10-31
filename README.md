@@ -43,3 +43,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## CITIES_DO 건설 스킬
 
 `cities-do-construction` 스킬과 Godot MVP를 추가했습니다. [실행·조작·검증](cities_do/README.md)을 참고하세요.
+
+## 건물 애셋 제작 스킬 조사
+
+[CITIES_DO 건물 애셋 후보와 출처 추적](docs/asset-skills/RESEARCH_KO.md)에 Blender·픽셀 아트 제작 스킬, 라이선스·환경 조건과 원본 커밋을 정리했습니다. `python3 tools/track_asset_skills.py --check-heads`로 원본 변경을 확인할 수 있습니다. 새 후보를 설치하거나 정기 모니터링을 설정한 것은 아닙니다.

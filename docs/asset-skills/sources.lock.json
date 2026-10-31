@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-31",
+  "timezone": "Asia/Seoul",
+  "purpose": "CITIES_DO 2x2, 4x4, 8x8 isometric building asset production",
+  "verification_scope": "Read-only source and license inspection. No third-party candidate installed or executed. No ongoing scheduled monitoring.",
+  "sources": [
+    {
+      "id": "game-art",
+      "repository": "sickn33/antigravity-awesome-skills",
+      "commit": "6844ad2b0e3724caad0c50fa974fbaf475cf80a3",
+      "kind": "skill",
+      "primary_path": "skills/game-development/game-art/SKILL.md",
+      "license_observation": "MIT",
+      "status": "guidance-only",
+      "files": [
+        {
+          "path": "skills/game-development/game-art/SKILL.md",
+          "sha256": "dd819f941e09495be03dd2efd310397e7e5b359e29e269e69de0a702a561c585",
+          "bytes": 5703,
+          "source_url": "https://github.com/sickn33/antigravity-awesome-skills/blob/6844ad2b0e3724caad0c50fa974fbaf475cf80a3/skills/game-development/game-art/SKILL.md"
+        },
+        {
+          "path": "README.md",
+          "sha256": "955128e2fab5d4a6b344072a587b700b54da60dcb70a03940b5a4063de06d624",
+          "bytes": 123783,
+          "source_url": "https://github.com/sickn33/antigravity-awesome-skills/blob/6844ad2b0e3724caad0c50fa974fbaf475cf80a3/README.md"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "af98370a7edc0f00ec46979d049517833c9a7fa2ba74e3cf8cc42f7db557299d",
+          "bytes": 1073,
+          "source_url": "https://github.com/sickn33/antigravity-awesome-skills/blob/6844ad2b0e3724caad0c50fa974fbaf475cf80a3/LICENSE"
+        }
+      ]
+    },
+    {
+      "id": "kiln",
+      "repository": "elithril/blender-kiln",
+      "commit": "4e8a1c942804f2a6b1a27ea16169b3ec30249a0a",
+      "kind": "skill",
+      "primary_path": "plugin/SKILL.md",
+      "license_observation": "MIT",
+      "status": "requires-port-and-blender-upgrade",
+      "files": [
+        {
+          "path": "plugin/SKILL.md",
+          "sha256": "97eb5c258ae76b36e0b78e36fd6220d065fbfa9107c577f6bd4f517254e33257",
+          "bytes": 29730,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/plugin/SKILL.md"
+        },
+        {
+          "path": "README.md",
+          "sha256": "83dee7273bc5f3d3ec9544cb1817146e3356f313dcaecb6dafbb4dd7fed03f8c",
+          "bytes": 62283,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/README.md"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "541535ce34cf663d31aad4b93b07ff25a3e92d7ee4576e23dd16e709f302f877",
+          "bytes": 1073,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/LICENSE"
+        },
+        {
+          "path": "plugin/references/setup-install.md",
+          "sha256": "5bea6658ebc3d5e5122f7cc06c35d38ef4d1528b3f8784924a0869c84ebb193d",
+          "bytes": 2843,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/plugin/references/setup-install.md"
+        },
+        {
+          "path": "plugin/references/batch-mode.md",
+          "sha256": "97c83884414db0a946267cd7c009a2d1d663d8321a130dc569b7f4f01e7951a6",
+          "bytes": 19942,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/plugin/references/batch-mode.md"
+        },
+        {
+          "path": "plugin/references/export-targets.md",
+          "sha256": "baba88700fc5ba9495a684a4eb2a49661e2ab0d5765cd40d67aa546b7227849f",
+          "bytes": 14650,
+          "source_url": "https://github.com/elithril/blender-kiln/blob/4e8a1c942804f2a6b1a27ea16169b3ec30249a0a/plugin/references/export-targets.md"
+        }
+      ]
+    },
+    {
+      "id": "fal-gamedev",
+      "repository": "fal-ai-community/skills",
+      "commit": "9ca850412943251fc9a466c4c29fdaf7a303a3d8",
+      "kind": "skill",
+      "primary_path": "skills/fal-gamedev/SKILL.md",
+      "license_observation": "README declares MIT; no root or skill-specific LICENSE found",
+      "status": "requires-external-api",
+      "files": [
+        {
+          "path": "skills/fal-gamedev/SKILL.md",
+          "sha256": "5b78fd483bd46b0783ad1decfd60617c4000cd7b52610455bfd4d4bf396758c2",
+          "bytes": 27534,
+          "source_url": "https://github.com/fal-ai-community/skills/blob/9ca850412943251fc9a466c4c29fdaf7a303a3d8/skills/fal-gamedev/SKILL.md"
+        },
+        {
+          "path": "README.md",
+          "sha256": "5fd965e6fce5b781443bb74783b2ab071fa03317d55e2a6aacab2b104c813914",
+          "bytes": 4613,
+          "source_url": "https://github.com/fal-ai-community/skills/blob/9ca850412943251fc9a466c4c29fdaf7a303a3d8/README.md"
+        }
+      ]
+    },
+    {
+      "id": "aseprite-mcp",
+      "repository": "diivi/aseprite-mcp",
+      "commit": "a89b205bed31930ee141edf319e78c71ef16bba6",
+      "kind": "mcp-tool",
+      "primary_path": "README.md",
+      "license_observation": "MIT",
+      "status": "requires-aseprite-and-mcp-setup",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "65f9cce85cc00a4f07b26e08d1d8ad0aaec47ba93b369b3a206ec802ca1b7e03",
+          "bytes": 21580,
+          "source_url": "https://github.com/diivi/aseprite-mcp/blob/a89b205bed31930ee141edf319e78c71ef16bba6/README.md"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "3e79238e7c405bcdf55f5f4b1bc8998e68cd4612fcfabf45a7b85e856e5b9ab8",
+          "bytes": 1071,
+          "source_url": "https://github.com/diivi/aseprite-mcp/blob/a89b205bed31930ee141edf319e78c71ef16bba6/LICENSE"
+        }
+      ]
+    },
+    {
+      "id": "blender-mcp",
+      "repository": "ahujasid/blender-mcp",
+      "commit": "992233bb258975a05eec8b5691465c50c2831e34",
+      "kind": "mcp-tool",
+      "primary_path": "README.md",
+      "license_observation": "MIT",
+      "status": "requires-blender-addon-and-mcp-setup",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "f0c11f3e33c0b29c0ce4dd4cfd69524b97e0173726854d4d84c25bc9ac3ace91",
+          "bytes": 37453,
+          "source_url": "https://github.com/ahujasid/blender-mcp/blob/992233bb258975a05eec8b5691465c50c2831e34/README.md"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "049501fd54d27852507853a5b88094ca1c6ff97404418a5032f3310eecc9cde6",
+          "bytes": 1071,
+          "source_url": "https://github.com/ahujasid/blender-mcp/blob/992233bb258975a05eec8b5691465c50c2831e34/LICENSE"
+        }
+      ]
+    },
+    {
+      "id": "canvas-design",
+      "repository": "anthropics/skills",
+      "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+      "kind": "installed-skill",
+      "primary_path": "skills/canvas-design/SKILL.md",
+      "license_observation": "Apache-2.0",
+      "status": "installed-not-building-specific",
+      "files": [
+        {
+          "path": "skills/canvas-design/SKILL.md",
+          "sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+          "bytes": 11939,
+          "source_url": "https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/canvas-design/SKILL.md"
+        },
+        {
+          "path": "skills/canvas-design/LICENSE.txt",
+          "sha256": "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362",
+          "bytes": 11345,
+          "source_url": "https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/canvas-design/LICENSE.txt"
+        }
+      ]
+    },
+    {
+      "id": "algorithmic-art",
+      "repository": "anthropics/skills",
+      "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+      "kind": "installed-skill",
+      "primary_path": "skills/algorithmic-art/SKILL.md",
+      "license_observation": "Apache-2.0",
+      "status": "installed-not-building-specific",
+      "files": [
+        {
+          "path": "skills/algorithmic-art/SKILL.md",
+          "sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+          "bytes": 19769,
+          "source_url": "https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/algorithmic-art/SKILL.md"
+        },
+        {
+          "path": "skills/algorithmic-art/LICENSE.txt",
+          "sha256": "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362",
+          "bytes": 11345,
+          "source_url": "https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/algorithmic-art/LICENSE.txt"
+        }
+      ]
+    }
+  ]
+}
