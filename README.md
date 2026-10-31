@@ -51,3 +51,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## 4층 맨션 시안
 
 [벽돌형 / 모던형 비교 이미지](assets/mansion-study/comparison.png)와 [Blender 원본·재생성 방법](assets/mansion-study/README.md)을 추가했습니다. 두 시안 모두 4×4 부지의 4층 공동주택이며 외부 생성 API 없이 로컬 제작했습니다.
+
+## 타일·도로 시안과 100×100 예시 맵
+
+[왕복 2차로·4차로·잔디 타일 비교](assets/road-tile-study/comparison.png)를 제작했습니다. 1칸=4m, 2차로=2칸, 4차로=4칸(보도 포함) 제안입니다. 게임은 빈 100×100 맵에서 시작해 도로 주변 구획만 표시합니다. [범위와 재생성 방법](assets/road-tile-study/README.md)을 확인하세요.

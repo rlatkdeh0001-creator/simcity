@@ -1,4 +1,6 @@
 extends RefCounted
+const ZoningGrid = preload("res://core/zoning_grid.gd")
+var zoning_grid = ZoningGrid.new()
 const Catalog = preload("res://core/building_catalog.gd")
 var catalog = Catalog.new()
 var appearance_rng := RandomNumberGenerator.new()
@@ -54,7 +56,7 @@ func placement_error(x: int, y: int, size: int, ignore_id: int = -1) -> String:
 	var access := false
 	for road in roads:
 		var distance := _road_distance(rect, road)
-		if distance <= 0.0:
+		if distance < -0.00001:
 			return "도로와 충돌합니다"
 		if road.kind == "local" and distance <= config.road_access_distance:
 			access = true
@@ -71,8 +73,8 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	buildings.append(b)
 	return {"ok": true, "building": b}
 
-func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true) -> Dictionary:
-	if kind not in ["local", "highway"] or points.size() < 2:
+func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2) -> Dictionary:
+	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in [2, 4]:
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
 	var total := 0.0
 	for i in range(points.size()):
@@ -83,12 +85,13 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	var road := {"points": points.duplicate(), "kind": kind, "width": config.road_width}
+	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0}
 	for b in buildings:
-		if _road_distance(_rect(b), road) <= 0.0:
+		if _road_distance(_rect(b), road) < -0.00001:
 			return {"ok": false, "reason": "건물과 충돌합니다"}
 	if commit:
 		roads.append(road)
+		_update_zoning_for_road(road)
 	return {"ok": true}
 
 func find_building(id: int) -> Dictionary:
@@ -172,3 +175,29 @@ func upgrade_chain(id: int) -> Dictionary:
 				if rng.randf() < config.neighbor_chance:
 					queue.append(other)
 	return {"ok": not events.is_empty(), "events": events, "reason": "" if not events.is_empty() else "성장 가능한 공간이 없습니다"}
+
+
+func _update_zoning_for_road(road: Dictionary):
+	var candidates := {}
+	var radius := int(ceil(road.width / 2.0 + config.zoning_depth + 1.5))
+	# Sample along the stroke instead of scanning a diagonal segment's huge bounding box.
+	for i in range(road.points.size()-1):
+		var a: Vector2 = road.points[i]
+		var b: Vector2 = road.points[i+1]
+		var steps := maxi(1, int(ceil(a.distance_to(b) / 2.0)))
+		for step in range(steps+1):
+			var center := a.lerp(b, float(step)/steps)
+			for x in range(maxi(0,int(floor(center.x))-radius),mini(width,int(floor(center.x))+radius+1)):
+				for y in range(maxi(0,int(floor(center.y))-radius),mini(height,int(floor(center.y))+radius+1)):
+					candidates[Vector2i(x,y)] = true
+	for cell in candidates:
+		var rect := Rect2(Vector2(cell),Vector2.ONE)
+		var access := false
+		var blocked := false
+		for existing in roads:
+			var distance := _road_distance(rect,existing)
+			if distance < -0.00001:
+				blocked = true
+				break
+			if existing.kind == "local" and distance <= config.zoning_depth: access = true
+		zoning_grid.set_cell(cell,access and not blocked)

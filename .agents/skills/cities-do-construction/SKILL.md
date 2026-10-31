@@ -32,7 +32,7 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 6. Use `core/building_catalog.gd` and `assets/buildings/catalog.json` for approved
    medium residential variants. Keep facade selection separate from growth RNG;
    rematch on lot size changes. Do not stretch 4x4 mansions over 2x2 or 8x8 lots.
-7. Run all three meaningful Godot tests below. Check log errors as well as exit status:
+7. Run all four meaningful Godot tests below. Check log errors as well as exit status:
    Godot can exit zero after a script parse failure. Do not present a headless
    startup check as visual inspection or claim a full city simulator exists.
 
@@ -43,6 +43,7 @@ godot --path cities_do
 godot --headless --path cities_do --script tests/test_city.gd
 godot --headless --path cities_do --script tests/test_ui.gd
 godot --headless --path cities_do --script tests/test_building_assets.gd
+godot --headless --path cities_do --script tests/test_roads_zoning.gd
 ```
 
 In restricted cloud machines, prefix these commands with writable XDG paths:
@@ -57,3 +58,9 @@ In restricted cloud machines, prefix these commands with writable XDG paths:
 - Set cascade probability to 1 and a low event cap. Confirm an adjacent low-score
   building upgrades, corner-only buildings do not, cycles terminate and each ID
   appears at most once per transaction. At probability 0 only the root upgrades.
+
+
+Use `maps/example_100.json` for the example map dimensions and seed. Empty terrain
+has no grid; `core/zoning_grid.gd` stores revealed roadside cells in sparse chunks.
+Use `core/road_geometry.gd` for world-space road widths (2/4 cells including sidewalks).
+The current zoning remains aligned to world axes: do not claim road-rotated parcels.

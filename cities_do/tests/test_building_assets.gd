@@ -53,6 +53,7 @@ func run():
 	verify(baseline.rng.state == with_assets.rng.state, "appearance choice does not consume growth RNG")
 	var scene = load("res://main.tscn").instantiate()
 	root.add_child(scene)
+	scene.map_zoom = 1.0
 	await process_frame
 	for asset in city.catalog.entries:
 		verify(asset.category == "medium_residential" and asset.storeys == 4 and asset.footprint == [4,4], asset.id + " classified as 4-floor medium residential")

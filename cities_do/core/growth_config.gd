@@ -5,4 +5,5 @@ var score_threshold := 100.0
 var neighbor_chance := 0.55
 var max_chain := 8
 var road_access_distance := 2.5
-var road_width := 0.7
+var road_width := 2.0
+var zoning_depth := 8.0

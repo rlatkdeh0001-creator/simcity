@@ -17,7 +17,13 @@ func run():
 	var scene = load("res://main.tscn").instantiate()
 	root.add_child(scene)
 	await process_frame
-	verify(scene.city.buildings.size() == 3, "scene initializes seed city")
+	verify(scene.city.width == 100 and scene.city.height == 100 and scene.city.buildings.is_empty() and scene.city.roads.is_empty() and scene.city.zoning_grid.count() == 0, "100x100 scene starts empty with no zoning grid")
+	scene.map_zoom = 1.0
+	scene.city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
+	scene.city.add_building(10,17,"residential",120)
+	scene.city.add_building(12,17,"commercial",10)
+	scene.city.add_building(14,17,"industrial",5)
+	scene.refresh()
 	verify(scene.pick_rendered_building(scene.screen(Vector2(11,18)) - Vector2(0,12)).get("id",-1) == 1, "elevated roof can be selected")
 	scene.mode = "select"
 	click(scene, Vector2(10.5,17.5))

@@ -1,0 +1,18 @@
+{
+  "lanes_total": 2,
+  "directional_lanes": [
+    1,
+    1
+  ],
+  "cell_meters": 4,
+  "width_cells": 2.0,
+  "total_width_m": 8,
+  "carriageway_m": 6,
+  "sidewalk_each_m": 1.0,
+  "length_cells": 8,
+  "length_m": 32,
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 44,
+  "source": "original Blender geometry, no external models/textures/API",
+  "scope": "straight road art concept; runtime uses vector ribbons for free curves"
+}

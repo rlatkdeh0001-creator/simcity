@@ -1,6 +1,11 @@
 extends Node2D
+const RoadGeometry = preload("res://core/road_geometry.gd")
+var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
 const Model = preload("res://core/city_model.gd")
-var city = Model.new()
+var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed))
+var road_lanes := 2
+var map_zoom := 0.65
+var panning := false
 var building_textures := {}
 var building_images := {}
 var mode := "build"
@@ -9,17 +14,17 @@ var selected := -1
 var stroke := PackedVector2Array()
 var drawing := false
 var pointer := Vector2.ZERO
-var message := "도로 옆 빈 땅을 클릭해 2×2 건물을 지으세요."
+var message := "빈 지도입니다. 도로를 그리면 주변 건설 격자가 표시됩니다."
 var hud: Label
 var info: Label
 var origin := Vector2(650, 130)
 var tile := Vector2(14, 7)
 
 func screen(p: Vector2) -> Vector2:
-	return origin + Vector2((p.x - p.y) * tile.x, (p.x + p.y) * tile.y)
+	return origin + Vector2((p.x - p.y) * tile.x, (p.x + p.y) * tile.y) * map_zoom
 
 func world(p: Vector2) -> Vector2:
-	var d := p - origin
+	var d := (p - origin) / map_zoom
 	return Vector2((d.x / tile.x + d.y / tile.y) / 2.0, (d.y / tile.y - d.x / tile.x) / 2.0)
 
 func _ready():
@@ -30,10 +35,6 @@ func _ready():
 			building_textures[asset.id] = texture
 			building_images[asset.id] = texture.get_image()
 
-	city.add_road(PackedVector2Array([Vector2(1, 20), Vector2(39, 20)]))
-	city.add_building(10, 17, "residential", 120)
-	city.add_building(12, 17, "commercial", 10)
-	city.add_building(14, 17, "industrial", 5)
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var panel := PanelContainer.new()
@@ -53,6 +54,11 @@ func _ready():
 		var tool: String = item[0]
 		button.pressed.connect(func(): mode = tool; drawing = false; stroke.clear(); refresh())
 		box.add_child(button)
+	var lanes_choice := OptionButton.new()
+	lanes_choice.add_item("왕복 2차로 · 1+1 · 폭 2칸")
+	lanes_choice.add_item("왕복 4차로 · 2+2 · 폭 4칸")
+	lanes_choice.item_selected.connect(func(index): road_lanes = 2 if index == 0 else 4; queue_redraw())
+	box.add_child(lanes_choice)
 	var zones := OptionButton.new()
 	for name_text in ["주거", "상업", "공업"]:
 		zones.add_item(name_text)
@@ -76,7 +82,7 @@ func _ready():
 	box.add_child(info)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
-	reset.pressed.connect(func(): city = Model.new(); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
+	reset.pressed.connect(func(): city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
 	box.add_child(reset)
 	hud = Label.new()
 	hud.position = Vector2(22, 730)
@@ -90,7 +96,7 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	for b in ordered:
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
 		if not asset.is_empty() and building_images.has(asset.id):
-			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2)
+			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
 			if rect.has_point(position):
 				var uv := (position - rect.position) / rect.size
 				var image: Image = building_images[asset.id]
@@ -113,9 +119,24 @@ func refresh():
 		if not asset.is_empty():
 			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
 	hud.text = "도구: %s · 건물 %d개 · 도로 %d개\n%s\n8×8 45%% / 4×4 30%% / 2×2 25%% · 인접 연쇄 55%% (최대 8개)" % [mode, city.buildings.size(), city.roads.size(), message]
+	hud.text += "\n%d×%d · 1칸=4m · 휠 확대/축소 · 가운데 버튼 드래그 이동" % [city.width, city.height]
 	queue_redraw()
 
 func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			panning = event.pressed
+			return
+		if event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
+			var anchor := world(event.position)
+			map_zoom = clampf(map_zoom * (1.15 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.0/1.15),0.15,3.0)
+			origin = event.position - Vector2((anchor.x-anchor.y)*tile.x,(anchor.x+anchor.y)*tile.y)*map_zoom
+			queue_redraw()
+			return
+	if event is InputEventMouseMotion and panning:
+		origin += event.relative
+		queue_redraw()
+		return
 	if event is InputEventMouseMotion:
 		pointer = world(event.position)
 		if drawing and (stroke.is_empty() or stroke[-1].distance_to(pointer) > 0.2):
@@ -140,13 +161,15 @@ func _unhandled_input(event):
 
 func _input(event):
 	# Release above the HUD must also finish/cancel a captured map stroke.
-	if event is InputEventMouseButton and not event.pressed and drawing:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE and not event.pressed:
+		panning = false
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and drawing:
 		call_deferred("finish_road")
 
 func finish_road():
 	if not drawing: return
 	drawing = false
-	var result: Dictionary = city.add_road(stroke)
+	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes)
 	message = "자유 도로 건설 완료" if result.ok else result.reason
 	stroke.clear()
 	refresh()
@@ -154,25 +177,49 @@ func finish_road():
 func polygon(x: float, y: float, size: float, lift: float = 0.0) -> PackedVector2Array:
 	var points := PackedVector2Array()
 	for p in [Vector2(x, y), Vector2(x + size, y), Vector2(x + size, y + size), Vector2(x, y + size)]:
-		points.append(screen(p) - Vector2(0, lift))
+		points.append(screen(p) - Vector2(0, lift * map_zoom))
 	return points
 
+func visible_world_bounds() -> Rect2i:
+	var viewport_size := get_viewport_rect().size
+	var low := Vector2(INF,INF)
+	var high := Vector2(-INF,-INF)
+	for p in [Vector2.ZERO,Vector2(viewport_size.x,0),viewport_size,Vector2(0,viewport_size.y)]:
+		low = low.min(world(p))
+		high = high.max(world(p))
+	var first := Vector2i(maxi(0,floori(low.x)-1),maxi(0,floori(low.y)-1))
+	var last := Vector2i(mini(city.width,ceili(high.x)+1),mini(city.height,ceili(high.y)+1))
+	return Rect2i(first,Vector2i(maxi(0,last.x-first.x),maxi(0,last.y-first.y)))
+
+func draw_ribbon(points: PackedVector2Array, width: float, color: Color):
+	for shape in RoadGeometry.ribbons(points,width):
+		var projected := PackedVector2Array()
+		for point in shape: projected.append(screen(point))
+		draw_colored_polygon(projected,color)
+
 func _draw():
-	for i in range(city.width + 1):
-		draw_line(screen(Vector2(i, 0)), screen(Vector2(i, city.height)), Color("29404a"))
-	for i in range(city.height + 1):
-		draw_line(screen(Vector2(0, i)), screen(Vector2(city.width, i)), Color("29404a"))
+	# One terrain polygon, no full-map cell array or always-on grid.
+	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
+	draw_colored_polygon(terrain,Color("7e9275"))
+	for cell in city.zoning_grid.cells_in(visible_world_bounds()):
+		var outline := polygon(cell.x,cell.y,1)
+		draw_colored_polygon(outline,Color(0.82,0.89,0.72,0.22))
+		outline.append(outline[0])
+		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
 	for road in city.roads:
+		draw_ribbon(road.points,road.width,Color("c8cbc3"))
+		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"))
 		var points := PackedVector2Array()
 		for p in road.points: points.append(screen(p))
-		draw_polyline(points, Color("70818b"), 9, true)
-		draw_polyline(points, Color("d5c58b"), 1, true)
+		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
+		for dash in RoadGeometry.lane_marks(road):
+			draw_line(screen(dash[0]),screen(dash[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
 	var sorted: Array = city.buildings.duplicate()
 	sorted.sort_custom(func(a, b): return a.x + a.y + a.size * 2 < b.x + b.y + b.size * 2)
 	for b in sorted:
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
 		if not asset.is_empty() and building_textures.has(asset.id):
-			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2)
+			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
 			draw_texture_rect(building_textures[asset.id], rect, false)
 			if b.id == selected:
 				var outline := polygon(b.x, b.y, b.size)
@@ -189,7 +236,7 @@ func _draw():
 			var outline := top.duplicate()
 			outline.append(top[0])
 			draw_polyline(outline, Color.WHITE, 2)
-	if mode == "build" and pointer.x >= 0 and pointer.y >= 0 and pointer.x < city.width and pointer.y < city.height:
+	if mode == "build" and city.zoning_grid.has_cell(Vector2i(floori(pointer.x),floori(pointer.y))) and pointer.x >= 0 and pointer.y >= 0 and pointer.x < city.width and pointer.y < city.height:
 		var x := int(floor(pointer.x))
 		var y := int(floor(pointer.y))
 		var valid: bool = city.placement_error(x, y, 2) == ""
@@ -197,5 +244,5 @@ func _draw():
 	if stroke.size() > 1:
 		var points := PackedVector2Array()
 		for p in stroke: points.append(screen(p))
-		var valid: bool = city.add_road(stroke, "local", false).ok
-		draw_polyline(points, Color("75dc99") if valid else Color("ee706b"), 6, true)
+		var valid: bool = city.add_road(stroke, "local", false, road_lanes).ok
+		draw_ribbon(stroke, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
