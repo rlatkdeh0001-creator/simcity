@@ -7,3 +7,7 @@ var max_chain := 8
 var road_access_distance := 2.5
 var road_width := 2.0
 var zoning_depth := 8.0
+
+var parcel_block_length := 8.0
+var parcel_turn_degrees := 10.0
+var parcel_max_deviation := 0.25

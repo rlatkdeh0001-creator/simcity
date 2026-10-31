@@ -90,11 +90,19 @@ func _ready():
 	info = Label.new()
 	box.add_child(info)
 	var showcase_button := Button.new()
+	showcase_button.visible = not showcase_view
 	showcase_button.text = "주거 건물 10종 전시"
 	showcase_button.pressed.connect(func():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://residential_showcase.tscn"))
 	box.add_child(showcase_button)
+	var parcel_demo := Button.new()
+	parcel_demo.text = "도로 직각 구획 예시"
+	parcel_demo.visible = not showcase_view
+	parcel_demo.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://road_parcel_demo.tscn"))
+	box.add_child(parcel_demo)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
 	reset.pressed.connect(func(): city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
@@ -107,10 +115,10 @@ func _ready():
 
 func pick_rendered_building(position: Vector2) -> Dictionary:
 	var ordered: Array = city.buildings.duplicate()
-	ordered.sort_custom(func(a, b): return a.x + a.y + a.size * 2 > b.x + b.y + b.size * 2)
+	ordered.sort_custom(func(a, b): return building_depth(a) > building_depth(b))
 	for b in ordered:
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
-		if not asset.is_empty() and building_images.has(asset.id):
+		if not asset.is_empty() and building_images.has(asset.id) and city.supports_static_sprite(b):
 			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
 			if rect.has_point(position):
 				var uv := (position - rect.position) / rect.size
@@ -119,9 +127,13 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 				if image.get_pixelv(pixel).a > 0.1:
 					return b
 			continue
-		var base := polygon(b.x, b.y, b.size)
-		var top := polygon(b.x, b.y, b.size, 5 + b.level * 7)
-		for face in [top, PackedVector2Array([base[1], base[2], top[2], top[1]]), PackedVector2Array([base[2], base[3], top[3], top[2]])]:
+		var base := projected_footprint(b)
+		var top := lifted_footprint(b,visual_lift(b))
+		var faces: Array[PackedVector2Array]=[top]
+		for edge in range(4):
+			var next: int=(edge+1)%4
+			faces.append(PackedVector2Array([base[edge],base[next],top[next],top[edge]]))
+		for face in faces:
 			if Geometry2D.is_point_in_polygon(position, face):
 				return b
 	return city.building_at(world(position))
@@ -133,6 +145,9 @@ func refresh():
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
 		if not asset.is_empty():
 			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
+		if b.has("frame"):
+			info.text += "\n도로 직각 구획 · 방향 %.1f°" % rad_to_deg(Vector2(b.frame.along).angle())
+			if not city.supports_static_sprite(b):info.text += "\n방향에 맞춘 임시 입체 건물"
 	hud.text = "도구: %s · 건물 %d개 · 도로 %d개\n%s\n8×8 45%% / 4×4 30%% / 2×2 25%% · 인접 연쇄 55%% (최대 8개)" % [mode, city.buildings.size(), city.roads.size(), message]
 	hud.text += "\n%d×%d · 1칸=4m · 휠 확대/축소 · 가운데 버튼 드래그 이동" % [city.width, city.height]
 	queue_redraw()
@@ -164,7 +179,7 @@ func _unhandled_input(event):
 				drawing = true
 				stroke = PackedVector2Array([pointer])
 			elif mode == "build":
-				var result: Dictionary = city.add_building(int(floor(pointer.x)), int(floor(pointer.y)), zone)
+				var result: Dictionary = city.add_building_at(pointer, zone)
 				message = "2×2 건설 완료" if result.ok else result.reason
 				if result.ok: selected = result.building.id
 			else:
@@ -195,6 +210,26 @@ func polygon(x: float, y: float, size: float, lift: float = 0.0) -> PackedVector
 		points.append(screen(p) - Vector2(0, lift * map_zoom))
 	return points
 
+func building_depth(building: Dictionary) -> float:
+	var depth: float=-INF
+	for point in city.footprint(building):depth=maxf(depth,point.x+point.y)
+	return depth
+
+func visual_lift(building: Dictionary) -> float:
+	var asset: Dictionary=city.catalog.get_asset(building.get("asset_id",""))
+	if not asset.is_empty():return asset.storeys*3.05*tile.x*sqrt(3.0)/sqrt(2.0)/4.0
+	return 5+building.level*7
+
+func projected_footprint(building: Dictionary) -> PackedVector2Array:
+	var result:=PackedVector2Array()
+	for point in city.footprint(building):result.append(screen(point))
+	return result
+
+func lifted_footprint(building: Dictionary,lift: float) -> PackedVector2Array:
+	var result:=projected_footprint(building)
+	for i in range(result.size()):result[i]-=Vector2(0,lift*map_zoom)
+	return result
+
 func visible_world_bounds() -> Rect2i:
 	var viewport_size := get_viewport_rect().size
 	var low := Vector2(INF,INF)
@@ -216,8 +251,9 @@ func _draw():
 	# One terrain polygon, no full-map cell array or always-on grid.
 	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
 	draw_colored_polygon(terrain,Color("7e9275"))
-	for cell in city.zoning_grid.cells_in(visible_world_bounds()):
-		var outline := polygon(cell.x,cell.y,1)
+	for parcel in city.zoning_grid.parcels_in(visible_world_bounds()):
+		var outline := PackedVector2Array()
+		for point in parcel.polygon:outline.append(screen(point))
 		draw_colored_polygon(outline,Color(0.82,0.89,0.72,0.22))
 		outline.append(outline[0])
 		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
@@ -230,10 +266,10 @@ func _draw():
 		for dash in RoadGeometry.lane_marks(road):
 			draw_line(screen(dash[0]),screen(dash[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
 	var sorted: Array = city.buildings.duplicate()
-	sorted.sort_custom(func(a, b): return a.x + a.y + a.size * 2 < b.x + b.y + b.size * 2)
+	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))
 	for b in sorted:
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
-		if not asset.is_empty() and building_textures.has(asset.id):
+		if not asset.is_empty() and building_textures.has(asset.id) and city.supports_static_sprite(b):
 			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
 			draw_texture_rect(building_textures[asset.id], rect, false)
 			if b.id == selected:
@@ -241,20 +277,26 @@ func _draw():
 				draw_polyline(PackedVector2Array([outline[1],outline[2],outline[3]]), Color.WHITE, 2)
 			continue
 		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
-		var base := polygon(b.x, b.y, b.size)
-		var top := polygon(b.x, b.y, b.size, 5 + b.level * 7)
-		draw_colored_polygon(PackedVector2Array([base[1], base[2], top[2], top[1]]), color.darkened(0.35))
-		draw_colored_polygon(PackedVector2Array([base[2], base[3], top[3], top[2]]), color.darkened(0.15))
+		var base := projected_footprint(b)
+		var top := lifted_footprint(b,visual_lift(b))
+		var faces: Array[Dictionary]=[]
+		for edge in range(4):
+			var next: int=(edge+1)%4
+			faces.append({"depth":(base[edge].y+base[next].y)/2,"points":PackedVector2Array([base[edge],base[next],top[next],top[edge]]),"shade":0.15 if edge%2 else 0.35})
+		faces.sort_custom(func(a,c):return a.depth<c.depth)
+		for face in faces:draw_colored_polygon(face.points,color.darkened(face.shade))
 		draw_colored_polygon(top, color)
 		if b.id == selected:
 			var outline := top.duplicate()
 			outline.append(top[0])
 			draw_polyline(outline, Color.WHITE, 2)
-	if mode == "build" and city.zoning_grid.has_cell(Vector2i(floori(pointer.x),floori(pointer.y))) and pointer.x >= 0 and pointer.y >= 0 and pointer.x < city.width and pointer.y < city.height:
-		var x := int(floor(pointer.x))
-		var y := int(floor(pointer.y))
-		var valid: bool = city.placement_error(x, y, 2) == ""
-		draw_colored_polygon(polygon(x, y, 2), Color(0.3, 1, 0.5, 0.5) if valid else Color(1, 0.25, 0.2, 0.5))
+	if mode == "build":
+		var parcel: Dictionary=city.zoning_grid.parcel_at(pointer)
+		if not parcel.is_empty():
+			var valid: bool=city.parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)==""
+			var preview:=PackedVector2Array()
+			for point in city.Parcels.polygon(parcel.frame,parcel.u,parcel.v,2):preview.append(screen(point))
+			draw_colored_polygon(preview,Color(0.3,1,0.5,0.5) if valid else Color(1,0.25,0.2,0.5))
 	if stroke.size() > 1:
 		var points := PackedVector2Array()
 		for p in stroke: points.append(screen(p))

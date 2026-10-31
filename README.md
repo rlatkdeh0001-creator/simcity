@@ -63,3 +63,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## 실제 게임에서 주거 10종 보기
 
 [Godot 실제 게임 화면](docs/screenshots/residential-showcase.png)에서 소형 4종·중형 맨션 2종·대형 4종을 같은 축척으로 나란히 볼 수 있습니다. 건설 화면의 **주거 건물 10종 전시** 버튼 또는 `godot --path cities_do residential_showcase.tscn`으로 실행합니다. [소형·중형 확대](docs/screenshots/residential-showcase-small-medium.png) / [대형 확대](docs/screenshots/residential-showcase-large.png)도 제공합니다.
+
+## 도로 직각 구획
+
+[실제 게임의 직선·사선·꺾임·곡선 구획](docs/screenshots/road-perpendicular-parcels.png)을 추가했습니다. 도로별 직각 좌표계에서 건설·성장을 처리하고, 곡선은 짧은 반듯한 블록으로 나눕니다. **도로 직각 구획 예시** 버튼 또는 `godot --path cities_do road_parcel_demo.tscn`으로 확인할 수 있습니다. 회전 부지는 현재 임시 입체 건물로 표시합니다.

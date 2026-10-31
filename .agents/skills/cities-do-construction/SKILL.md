@@ -1,6 +1,6 @@
 ---
 name: cities-do-construction
-description: Implement and extend CITIES_DO city-building mechanics in Godot, including integer-grid 2x2 construction, weighted 2x2/4x4/8x8 redevelopment, freehand roads, footprint validation, and bounded neighbor upgrade cascades. Use for requests about CITIES_DO construction, zoning growth, free roads, or adjacent building upgrades.
+description: Implement and extend CITIES_DO city-building mechanics in Godot, including road-local integer-grid 2x2 construction, weighted 2x2/4x4/8x8 redevelopment, freehand roads, footprint validation, and bounded neighbor upgrade cascades. Use for requests about CITIES_DO construction, zoning growth, free roads, or adjacent building upgrades.
 compatibility: Godot 4.6; GDScript; no Claude CLI or API required.
 ---
 
@@ -15,10 +15,10 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 ## Work procedure
 
 1. Read `core/city_model.gd` and `core/growth_config.gd`. Keep simulation independent
-   of the Godot scene. Keep logical building coordinates integer and roads floating
-   point. Do not snap road points to building cells.
-2. Use `add_building` for initial 2x2 placement. Use `placement_error` for footprint
-   preview. Require local road access; highways cannot provide zoning frontage.
+   of the Godot scene. Keep building u/v coordinates integer in a road-local orthonormal frame;
+   world origins/corners and road points remain floating point. Do not snap road points to building cells.
+2. Use `add_building_at` for UI 2x2 placement and `parcel_placement_error` for its
+   preview. Keep legacy `add_building`/world-axis placement only for authored scenarios. Require local road access; highways cannot provide zoning frontage.
 3. Validate the entire road polyline and its width, not only endpoints. Use
    `add_road(points, kind, false)` for non-mutating preview and commit only on release.
    Keep rendering projection separate from world-space geometry.
@@ -32,7 +32,7 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 6. Use `core/building_catalog.gd` and `assets/buildings/catalog.json` for residential visual assets. New concepts may be
    registered for display only (`growth_enabled: false`). Keep facade selection separate from growth RNG;
    rematch on lot size changes. Do not stretch 4x4 mansions over 2x2 or 8x8 lots.
-7. Run all five meaningful Godot tests below. Check log errors as well as exit status:
+7. Run all six meaningful Godot tests below. Check log errors as well as exit status:
    Godot can exit zero after a script parse failure. Do not present a headless
    startup check as visual inspection or claim a full city simulator exists.
 
@@ -45,6 +45,7 @@ godot --headless --path cities_do --script tests/test_ui.gd
 godot --headless --path cities_do --script tests/test_building_assets.gd
 godot --headless --path cities_do --script tests/test_roads_zoning.gd
 godot --headless --path cities_do --script tests/test_showcase.gd
+godot --headless --path cities_do --script tests/test_road_parcels.gd
 ```
 
 In restricted cloud machines, prefix these commands with writable XDG paths:
@@ -64,7 +65,10 @@ In restricted cloud machines, prefix these commands with writable XDG paths:
 Use `maps/example_100.json` for the example map dimensions and seed. Empty terrain
 has no grid; `core/zoning_grid.gd` stores revealed roadside cells in sparse chunks.
 Use `core/road_geometry.gd` for world-space road widths (2/4 cells including sidewalks).
-The current zoning remains aligned to world axes: do not claim road-rotated parcels.
+Use `core/road_parcels.gd` for road-local blocks. Curves use short straight blocks,
+not warped cells. Read the precise thresholds and gaps policy in RULES_KO.md.
+Do not warp fixed-camera PNGs to fake rotated architecture: use the current
+procedural massing fallback or proper direction-specific/3D assets.
 
 
 `residential_showcase.tscn` uses the real game renderer and catalog to display all
