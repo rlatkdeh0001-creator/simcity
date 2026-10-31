@@ -1,0 +1,58 @@
+[
+  {
+    "id": "small-2x2-a",
+    "saved_floor_markers": 1,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 29.999996056588525,
+    "source_readback": "passed"
+  },
+  {
+    "id": "small-2x2-b",
+    "saved_floor_markers": 2,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 29.999996056588525,
+    "source_readback": "passed"
+  },
+  {
+    "id": "small-4x4-a",
+    "saved_floor_markers": 2,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 29.999996056588525,
+    "source_readback": "passed"
+  },
+  {
+    "id": "small-4x4-b",
+    "saved_floor_markers": 3,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 29.999996056588525,
+    "source_readback": "passed"
+  },
+  {
+    "id": "large-4x4-a",
+    "saved_floor_markers": 8,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 30.000000000000004,
+    "source_readback": "passed"
+  },
+  {
+    "id": "large-4x4-b",
+    "saved_floor_markers": 10,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 30.000000000000004,
+    "source_readback": "passed"
+  },
+  {
+    "id": "large-8x8-a",
+    "saved_floor_markers": 14,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 29.999996056588525,
+    "source_readback": "passed"
+  },
+  {
+    "id": "large-8x8-b",
+    "saved_floor_markers": 18,
+    "lot_bounds_valid": true,
+    "saved_camera_elevation_degrees": 30.000000000000004,
+    "source_readback": "passed"
+  }
+]

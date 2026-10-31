@@ -1,0 +1,74 @@
+[
+  {
+    "id": "small-2x2-a",
+    "name": "단층 전원주택",
+    "category": "small_residential",
+    "size": 2,
+    "floors": 1,
+    "style": "cottage",
+    "frame": 15
+  },
+  {
+    "id": "small-2x2-b",
+    "name": "2층 타운하우스",
+    "category": "small_residential",
+    "size": 2,
+    "floors": 2,
+    "style": "townhouse",
+    "frame": 15
+  },
+  {
+    "id": "small-4x4-a",
+    "name": "정원형 단독주택",
+    "category": "small_residential",
+    "size": 4,
+    "floors": 2,
+    "style": "garden",
+    "frame": 32
+  },
+  {
+    "id": "small-4x4-b",
+    "name": "안뜰형 연립주택",
+    "category": "small_residential",
+    "size": 4,
+    "floors": 3,
+    "style": "courtyard",
+    "frame": 32
+  },
+  {
+    "id": "large-4x4-a",
+    "name": "발코니 아파트",
+    "category": "large_residential",
+    "size": 4,
+    "floors": 8,
+    "style": "balcony",
+    "frame": 46
+  },
+  {
+    "id": "large-4x4-b",
+    "name": "코너 주거타워",
+    "category": "large_residential",
+    "size": 4,
+    "floors": 10,
+    "style": "corner",
+    "frame": 46
+  },
+  {
+    "id": "large-8x8-a",
+    "name": "L자형 주거 아파트",
+    "category": "large_residential",
+    "size": 8,
+    "floors": 14,
+    "style": "slab",
+    "frame": 84
+  },
+  {
+    "id": "large-8x8-b",
+    "name": "계단형 주거타워",
+    "category": "large_residential",
+    "size": 8,
+    "floors": 18,
+    "style": "terrace",
+    "frame": 84
+  }
+]

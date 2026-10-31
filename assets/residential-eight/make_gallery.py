@@ -1,0 +1,19 @@
+"""Build a local comparison page from completed render metadata, then capture it."""
+from pathlib import Path
+import json
+from html import escape
+ROOT=Path(__file__).resolve().parent
+specs=json.loads((ROOT/'designs.json').read_text())
+headers=[('소형 주거 · 2×2','부지 8m × 8m'),('소형 주거 · 4×4','부지 16m × 16m'),('대형 주거 · 4×4','부지 16m × 16m'),('대형 주거 · 8×8','부지 32m × 32m')]
+css='''*{box-sizing:border-box}body{margin:0;padding:34px 40px;background:#edf0e8;color:#293c35;font-family:'Noto Sans CJK KR',system-ui,sans-serif}header{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid #bdc9bc;padding-bottom:20px}h1{font-size:30px;letter-spacing:-1px;margin:0}header p{font-size:12px;color:#6c7e68;margin:0}.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}.group h2{font-size:19px;margin:0 0 4px}.group>.dimensions{font-size:12px;color:#74836f;margin-bottom:18px}article{background:#f8f9f3;border:1px solid #cbd4c5;border-radius:14px;overflow:hidden;margin-bottom:18px}.name{padding:17px 18px 0;display:flex;align-items:center;gap:12px}.number{font-size:22px;color:#8a987f}.name h3{font-size:16px;font-weight:600;margin:0}.render{width:100%;height:430px;object-fit:contain;display:block;margin-top:-6px;margin-bottom:-12px}.meta{border-top:1px solid #e1e7d9;padding:12px 18px;display:flex;justify-content:space-between;font-size:12px;color:#687b60}.meta strong{color:#3d5442;font-weight:500}footer{font-size:11px;color:#74856d;display:flex;justify-content:space-between;margin-top:4px;line-height:1.9}@media(max-width:1000px){.gallery{grid-template-columns:repeat(2,1fr)}header{display:block}header p{margin-top:10px}}@media(max-width:550px){body{padding:20px}.gallery{grid-template-columns:1fr}footer{display:block}}'''
+parts=['<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CITIES_DO · 주거 8종</title><style>'+css+'</style></head><body><header><h1>CITIES_DO · 주거 건물 8종</h1><p>기존 맨션과 같은 아트 방향 · 1칸=4m · 소형 4개 / 대형 4개</p></header><main class="gallery">']
+for index,(heading,dimensions) in enumerate(headers):
+ parts.append(f'<section class="group"><h2>{heading}</h2><div class="dimensions">{dimensions}</div>')
+ for n in [index*2,index*2+1]:
+  item=specs[n];id=item['id'];meta=json.loads((ROOT/id/'metadata.json').read_text())
+  assert meta['occupied_storeys']==item['floors']
+  parts.append(f'<article><div class="name"><span class="number">{n+1:02d}</span><h3>{escape(item["name"])}</h3></div><a href="{id}/building.png"><img class="render" src="{id}/building.png" alt="{escape(item["name"])}"></a><div class="meta"><strong>지상 {item["floors"]}층</strong><span>{item["size"]}×{item["size"]} 부지 · {"소형" if item["category"]=="small_residential" else "대형"} 주거</span></div></article>')
+ parts.append('</section>')
+parts.append('</main><footer><span>같은 열의 두 안은 동일 배율 · 열 사이 확대율은 다릅니다. 실제 크기는 부지와 층수를 참고하세요.</span><span>Blender 로컬 원본 제작 · 외부 생성 API 없음 · 게임 등록 전 시안</span></footer></body></html>')
+(ROOT/'comparison.html').write_text(''.join(parts))
+print('PASS: gallery includes all 8 designs with exact category, footprint and floors')

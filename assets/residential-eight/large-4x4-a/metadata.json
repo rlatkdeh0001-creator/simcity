@@ -1,0 +1,65 @@
+{
+  "id": "large-4x4-a",
+  "name": "발코니 아파트",
+  "category": "large_residential",
+  "size": 4,
+  "floors": 8,
+  "style": "balcony",
+  "frame": 46,
+  "zone": "residential",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 8,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9999,
+    912.5366
+  ],
+  "lot_corners_px": [
+    [
+      179.4547,
+      777.2639
+    ],
+    [
+      449.9999,
+      912.5366
+    ],
+    [
+      720.5451,
+      777.264
+    ],
+    [
+      449.9999,
+      641.9914
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 46,
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      25.799999237060547
+    ]
+  ],
+  "mesh_objects": 418,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}

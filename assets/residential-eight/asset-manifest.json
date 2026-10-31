@@ -1,0 +1,138 @@
+[
+  {
+    "id": "small-2x2-a",
+    "name": "단층 전원주택",
+    "category": "small_residential",
+    "footprint": [
+      2,
+      2
+    ],
+    "storeys": 1,
+    "source": "small-2x2-a/building.blend",
+    "texture": "small-2x2-a/building.png",
+    "sha256": {
+      "building.png": "db35a9c3c50e5c615441a9f5934d3521ae333fb5a556e611f995ffe1aef20613",
+      "reverse-review.png": "eb26e1810fad648455a540487b4422af00c759d53509f90f30e2896373139975"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "small-2x2-b",
+    "name": "2층 타운하우스",
+    "category": "small_residential",
+    "footprint": [
+      2,
+      2
+    ],
+    "storeys": 2,
+    "source": "small-2x2-b/building.blend",
+    "texture": "small-2x2-b/building.png",
+    "sha256": {
+      "building.png": "ec48817297b27b16fcc902a02216b1a5bdbd7b03434eb9765b04a4c68fbfaec7",
+      "reverse-review.png": "74bdeb62adcaf5c44de809eaa9fdf90bfa3fc1a668214b7002fa67d4dbf46a78"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "small-4x4-a",
+    "name": "정원형 단독주택",
+    "category": "small_residential",
+    "footprint": [
+      4,
+      4
+    ],
+    "storeys": 2,
+    "source": "small-4x4-a/building.blend",
+    "texture": "small-4x4-a/building.png",
+    "sha256": {
+      "building.png": "3632561566bbb6aa80ef256adb5520972cbc5cf8c499f86768d1235492e56e2c",
+      "reverse-review.png": "11c75594075ffcd000094e55fcadd09357c79bb3a1348e12dabdef363db1bf04"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "small-4x4-b",
+    "name": "안뜰형 연립주택",
+    "category": "small_residential",
+    "footprint": [
+      4,
+      4
+    ],
+    "storeys": 3,
+    "source": "small-4x4-b/building.blend",
+    "texture": "small-4x4-b/building.png",
+    "sha256": {
+      "building.png": "8656441be99eb38427b907d299764f5f475c098cb7e9dcec74d1fcf4352def2a",
+      "reverse-review.png": "705af19dac96d15a386637349b5975b2353b9325dff072ab168154dcbfe2ea56"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "large-4x4-a",
+    "name": "발코니 아파트",
+    "category": "large_residential",
+    "footprint": [
+      4,
+      4
+    ],
+    "storeys": 8,
+    "source": "large-4x4-a/building.blend",
+    "texture": "large-4x4-a/building.png",
+    "sha256": {
+      "building.png": "0327f1bed38ed20a10573bdf79643f0643f39da384930d974aaf8efba41521a3",
+      "reverse-review.png": "36b3d03e2112b0c7c37fca5a4f8db9165666919d1c67f6c79d46daa7b45c2da0"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "large-4x4-b",
+    "name": "코너 주거타워",
+    "category": "large_residential",
+    "footprint": [
+      4,
+      4
+    ],
+    "storeys": 10,
+    "source": "large-4x4-b/building.blend",
+    "texture": "large-4x4-b/building.png",
+    "sha256": {
+      "building.png": "65611ae89f2ee7b78c52c0531b6019bd38d21761f0e42ed43fb02ec86c5e2667",
+      "reverse-review.png": "6de8910e87a0d05cc67ec2be5f4a2fddc71f4ff9cf3bf174ad20bd5674668510"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "large-8x8-a",
+    "name": "L자형 주거 아파트",
+    "category": "large_residential",
+    "footprint": [
+      8,
+      8
+    ],
+    "storeys": 14,
+    "source": "large-8x8-a/building.blend",
+    "texture": "large-8x8-a/building.png",
+    "sha256": {
+      "building.png": "b1188196d50f4d1dd731ef682775f5f225b8aec00db40d11d75c0eb4ddb298c3",
+      "reverse-review.png": "ceb6d8002b735cd4746becc007a849f705f9169b18b425793460cd2ec58b9e33"
+    },
+    "status": "concept-not-registered"
+  },
+  {
+    "id": "large-8x8-b",
+    "name": "계단형 주거타워",
+    "category": "large_residential",
+    "footprint": [
+      8,
+      8
+    ],
+    "storeys": 18,
+    "source": "large-8x8-b/building.blend",
+    "texture": "large-8x8-b/building.png",
+    "sha256": {
+      "building.png": "79ae076d877d19ffe1723e0164313841952988d5cbda6503cbdc98a914e753f6",
+      "reverse-review.png": "1701d165ffcfc225813c9e295cdfdb465c45315ba111e95d9548e81f7da6a3d5"
+    },
+    "status": "concept-not-registered"
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "id": "small-2x2-a",
+  "name": "단층 전원주택",
+  "category": "small_residential",
+  "size": 2,
+  "floors": 1,
+  "style": "cottage",
+  "frame": 15,
+  "zone": "residential",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "occupied_storeys": 1,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    891.8023
+  ],
+  "lot_corners_px": [
+    [
+      35.164,
+      684.3843
+    ],
+    [
+      450.0,
+      891.8023
+    ],
+    [
+      864.836,
+      684.3843
+    ],
+    [
+      450.0,
+      476.9664
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 15,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      5.199999809265137
+    ]
+  ],
+  "mesh_objects": 46,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}

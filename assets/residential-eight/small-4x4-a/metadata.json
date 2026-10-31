@@ -1,0 +1,65 @@
+{
+  "id": "small-4x4-a",
+  "name": "정원형 단독주택",
+  "category": "small_residential",
+  "size": 4,
+  "floors": 2,
+  "style": "garden",
+  "frame": 32,
+  "zone": "residential",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 2,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    844.5697
+  ],
+  "lot_corners_px": [
+    [
+      61.0912,
+      650.1153
+    ],
+    [
+      450.0,
+      844.5697
+    ],
+    [
+      838.9087,
+      650.1154
+    ],
+    [
+      450.0,
+      455.661
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 32,
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      8.100000381469727
+    ]
+  ],
+  "mesh_objects": 114,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}

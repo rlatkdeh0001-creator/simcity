@@ -1,0 +1,65 @@
+{
+  "id": "small-2x2-b",
+  "name": "2층 타운하우스",
+  "category": "small_residential",
+  "size": 2,
+  "floors": 2,
+  "style": "townhouse",
+  "frame": 15,
+  "zone": "residential",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "occupied_storeys": 2,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    941.6406
+  ],
+  "lot_corners_px": [
+    [
+      35.164,
+      734.2225
+    ],
+    [
+      450.0,
+      941.6406
+    ],
+    [
+      864.836,
+      734.2226
+    ],
+    [
+      450.0,
+      526.8046
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 15,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      7.025000095367432
+    ]
+  ],
+  "mesh_objects": 67,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}

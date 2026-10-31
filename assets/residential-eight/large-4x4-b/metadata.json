@@ -1,0 +1,65 @@
+{
+  "id": "large-4x4-b",
+  "name": "코너 주거타워",
+  "category": "large_residential",
+  "size": 4,
+  "floors": 10,
+  "style": "corner",
+  "frame": 46,
+  "zone": "residential",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 10,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0001,
+    957.9521
+  ],
+  "lot_corners_px": [
+    [
+      179.4549,
+      822.6795
+    ],
+    [
+      450.0001,
+      957.9521
+    ],
+    [
+      720.5453,
+      822.6796
+    ],
+    [
+      450.0001,
+      687.4069
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 46,
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      30.899999618530273
+    ]
+  ],
+  "mesh_objects": 404,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}

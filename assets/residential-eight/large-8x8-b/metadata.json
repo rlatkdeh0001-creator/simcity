@@ -1,0 +1,65 @@
+{
+  "id": "large-8x8-b",
+  "name": "계단형 주거타워",
+  "category": "large_residential",
+  "size": 8,
+  "floors": 18,
+  "style": "terrace",
+  "frame": 84,
+  "zone": "residential",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "occupied_storeys": 18,
+  "storey_height_m": 3.05,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9999,
+    972.3198
+  ],
+  "lot_corners_px": [
+    [
+      153.6885,
+      824.1641
+    ],
+    [
+      449.9999,
+      972.3198
+    ],
+    [
+      746.3113,
+      824.1641
+    ],
+    [
+      449.9999,
+      676.0084
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "projection": "2:1 dimetric",
+  "orthographic_scale": 84,
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      56.5
+    ]
+  ],
+  "mesh_objects": 1366,
+  "source": "original scripted Blender geometry, no downloaded assets or external generation APIs",
+  "scope": "concept only; not registered in gameplay catalog; interior/LOD/game integration not provided"
+}
