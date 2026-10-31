@@ -93,3 +93,41 @@ godot --headless --path cities_do --script tests/test_roads_zoning.gd
 1024×1024 빈 지도와 짧은 도로 생성은 검사했으나, 많은 도로·시민·건물을 채운
 지도와 프레임 성능은 검증하지 않았습니다. 대규모 도로 인덱스·렌더링 캐시·구획 계산
 분할 작업은 후속 최적화 항목입니다.
+
+## 실제 게임 주거 10종 전시
+
+건설 화면의 **주거 건물 10종 전시** 버튼을 누르거나 다음 장면을 직접 실행합니다.
+
+```sh
+godot --path cities_do residential_showcase.tscn
+```
+
+소형 4종·중형 맨션 2종·대형 4종을 같은 100×100 지도와 같은 축척으로,
+왕복 4차로 도로를 따라 나란히 배치합니다. 전시 배치는 일반 건설과 별개의 완성
+건물 배치 함수지만, 경계·겹침·도로 접근 검사는 동일한 모델을 사용합니다.
+화면의 01~10 번호는 왼쪽 건물 목록과 대응합니다.
+
+- 건물 클릭: 이름·분류·부지·층수 표시.
+- 전체 건물 한눈에 보기 / 소형·중형 확대 / 대형 주거 확대.
+- 휠 확대·축소, 가운데 버튼 드래그 이동.
+- 건설 화면으로 돌아가기: 들어오기 전 도시 데이터와 카메라 위치 복원.
+- 일반 건설 화면은 계속 빈 지도로 시작합니다.
+
+새 8종은 현재 전시용 카탈로그(`growth_enabled: false`)로 연결했습니다.
+기존 중형 2종의 성장 조건을 유지하며, 소형/중형/대형이 같은 4×4 부지에
+등장하는 성장·밀도 조건은 별도 밸런스 작업으로 남겨 두었습니다.
+
+실제 게임 화면은 ../docs/screenshots/residential-showcase.png,
+residential-showcase-small-medium.png, residential-showcase-large.png에 있습니다.
+Blender 비교판 합성이 아닌 Godot GL Compatibility 뷰포트의 직접 캡처입니다.
+
+그래픽 환경에서 뷰포트를 저장하는 명령(절대 출력 경로를 사용):
+
+```sh
+godot --path cities_do --resolution 2560x1100 residential_showcase.tscn -- \
+  --capture-showcase=/absolute/path/showcase.png
+```
+
+`--showcase-focus=small` 또는 `--showcase-focus=large`를 사용자 인자로 추가하면
+해당 구간으로 확대해서 저장합니다. 캡처 후 프로세스가 종료됩니다.
+headless dummy 렌더러는 이미지 캡처에 사용할 수 없으므로 실제 그래픽 디스플레이가 필요합니다.

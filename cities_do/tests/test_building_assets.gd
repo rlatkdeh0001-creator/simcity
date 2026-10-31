@@ -18,7 +18,7 @@ func make_city(seed_value: int = 42):
 	return city
 func run():
 	var city = make_city()
-	verify(city.catalog.entries.size() == 2, "both mansion designs registered")
+	verify(not city.catalog.get_asset("mansion-a-4x4-4f").is_empty() and not city.catalog.get_asset("mansion-b-4x4-4f").is_empty(), "both mansion designs registered")
 	verify(city.buildings[0].asset_id == "", "2x2 new construction does not use medium asset")
 	city.upgrade_chain(1)
 	var b: Dictionary = city.buildings[0]
@@ -55,7 +55,7 @@ func run():
 	root.add_child(scene)
 	scene.map_zoom = 1.0
 	await process_frame
-	for asset in city.catalog.entries:
+	for asset in city.catalog.entries.filter(func(entry): return entry.category == "medium_residential"):
 		verify(asset.category == "medium_residential" and asset.storeys == 4 and asset.footprint == [4,4], asset.id + " classified as 4-floor medium residential")
 		verify(scene.building_textures.has(asset.id), asset.id + " Godot texture imported")
 		scene.city = make_city()

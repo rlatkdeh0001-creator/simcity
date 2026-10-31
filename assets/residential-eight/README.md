@@ -46,3 +46,10 @@ large-4x4-b, large-8x8-a, large-8x8-b. 한 명령은 한 건물만 생성합니�
 Blender 4.3.2 CPU Cycles를 사용합니다. 비교판 캡처는 Playwright/Chromium입니다.
 실내 평면, 구조·소방 검토, 충돌 메시, LOD, 최종 저해상도 픽셀 정리, Godot 통합은
 포함하지 않는 외관 시안입니다. 유리 재질은 게임 가독성을 위한 불투명 스타일입니다.
+
+## 이후 게임 전시 연결
+
+이 8종은 현재 Godot의 `residential_showcase.tscn` 전시 장면에서 기존 맨션 2종과
+함께 볼 수 있습니다. 실제 런타임 카탈로그와 PNG 사본을 연결했으며 자동 성장에
+등장시키는 밸런스는 아직 적용하지 않았습니다(`growth_enabled: false`). 이 폴더의
+생성 시점 메타데이터/manifest 상태는 제작 이력으로 보존했습니다.

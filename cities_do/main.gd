@@ -6,6 +6,8 @@ var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cell
 var road_lanes := 2
 var map_zoom := 0.65
 var panning := false
+var showcase_view := false
+var controls_panel: PanelContainer
 var building_textures := {}
 var building_images := {}
 var mode := "build"
@@ -28,6 +30,12 @@ func world(p: Vector2) -> Vector2:
 	return Vector2((d.x / tile.x + d.y / tile.y) / 2.0, (d.y / tile.y - d.x / tile.x) / 2.0)
 
 func _ready():
+	if not showcase_view and get_tree().has_meta("construction_session"):
+		var session: Dictionary = get_tree().get_meta("construction_session")
+		city = session.city
+		map_zoom = session.map_zoom
+		origin = session.origin
+		get_tree().remove_meta("construction_session")
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for asset in city.catalog.entries:
 		var texture: Texture2D = load(asset.texture)
@@ -38,6 +46,7 @@ func _ready():
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var panel := PanelContainer.new()
+	controls_panel = panel
 	panel.position = Vector2(18, 18)
 	panel.custom_minimum_size = Vector2(320, 0)
 	layer.add_child(panel)
@@ -80,6 +89,12 @@ func _ready():
 	box.add_child(upgrade)
 	info = Label.new()
 	box.add_child(info)
+	var showcase_button := Button.new()
+	showcase_button.text = "주거 건물 10종 전시"
+	showcase_button.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://residential_showcase.tscn"))
+	box.add_child(showcase_button)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
 	reset.pressed.connect(func(): city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
@@ -223,8 +238,7 @@ func _draw():
 			draw_texture_rect(building_textures[asset.id], rect, false)
 			if b.id == selected:
 				var outline := polygon(b.x, b.y, b.size)
-				outline.append(outline[0])
-				draw_polyline(outline, Color.WHITE, 2)
+				draw_polyline(PackedVector2Array([outline[1],outline[2],outline[3]]), Color.WHITE, 2)
 			continue
 		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
 		var base := polygon(b.x, b.y, b.size)

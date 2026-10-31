@@ -1,0 +1,24 @@
+{
+  "asset_ids": [
+    "small-2x2-a",
+    "small-2x2-b",
+    "small-4x4-a",
+    "small-4x4-b",
+    "mansion-a-4x4-4f",
+    "mansion-b-4x4-4f",
+    "large-4x4-a",
+    "large-4x4-b",
+    "large-8x8-a",
+    "large-8x8-b"
+  ],
+  "building_count": 10,
+  "engine": "4.6.3-stable (official)",
+  "focus_group": "",
+  "pixels_per_cell_width": 39.5217801473508,
+  "renderer": "gl_compatibility",
+  "source": "Actual Godot viewport including terrain, road, zoning, buildings and interface; no compositing",
+  "viewport_px": [
+    2560,
+    1100
+  ]
+}

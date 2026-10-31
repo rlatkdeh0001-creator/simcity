@@ -48,6 +48,206 @@
       ],
       "lot_width_px": 727.31,
       "source": "assets/mansion-study/b-modern/mansion.blend"
+    },
+    {
+      "id": "small-2x2-a",
+      "name": "단층 전원주택",
+      "zone": "residential",
+      "category": "small_residential",
+      "category_name": "소형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/small-2x2-a.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        891.8023
+      ],
+      "lot_width_px": 829.672,
+      "source": "assets/residential-eight/small-2x2-a/building.blend"
+    },
+    {
+      "id": "small-2x2-b",
+      "name": "2층 타운하우스",
+      "zone": "residential",
+      "category": "small_residential",
+      "category_name": "소형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 2,
+      "min_level": 1,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/small-2x2-b.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        941.6406
+      ],
+      "lot_width_px": 829.672,
+      "source": "assets/residential-eight/small-2x2-b/building.blend"
+    },
+    {
+      "id": "small-4x4-a",
+      "name": "정원형 단독주택",
+      "zone": "residential",
+      "category": "small_residential",
+      "category_name": "소형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 2,
+      "min_level": 1,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/small-4x4-a.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        844.5697
+      ],
+      "lot_width_px": 777.8175,
+      "source": "assets/residential-eight/small-4x4-a/building.blend"
+    },
+    {
+      "id": "small-4x4-b",
+      "name": "안뜰형 연립주택",
+      "zone": "residential",
+      "category": "small_residential",
+      "category_name": "소형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 3,
+      "min_level": 1,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/small-4x4-b.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        863.6431
+      ],
+      "lot_width_px": 777.8175,
+      "source": "assets/residential-eight/small-4x4-b/building.blend"
+    },
+    {
+      "id": "large-4x4-a",
+      "name": "발코니 아파트",
+      "zone": "residential",
+      "category": "large_residential",
+      "category_name": "대형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 8,
+      "min_level": 3,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/large-4x4-a.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        449.9999,
+        912.5366
+      ],
+      "lot_width_px": 541.0904,
+      "source": "assets/residential-eight/large-4x4-a/building.blend"
+    },
+    {
+      "id": "large-4x4-b",
+      "name": "코너 주거타워",
+      "zone": "residential",
+      "category": "large_residential",
+      "category_name": "대형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 10,
+      "min_level": 3,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/large-4x4-b.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0001,
+        957.9521
+      ],
+      "lot_width_px": 541.0904,
+      "source": "assets/residential-eight/large-4x4-b/building.blend"
+    },
+    {
+      "id": "large-8x8-a",
+      "name": "L자형 주거 아파트",
+      "zone": "residential",
+      "category": "large_residential",
+      "category_name": "대형 주거",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 14,
+      "min_level": 3,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/large-8x8-a.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        912.8259
+      ],
+      "lot_width_px": 592.6228000000001,
+      "source": "assets/residential-eight/large-8x8-a/building.blend"
+    },
+    {
+      "id": "large-8x8-b",
+      "name": "계단형 주거타워",
+      "zone": "residential",
+      "category": "large_residential",
+      "category_name": "대형 주거",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 18,
+      "min_level": 3,
+      "growth_enabled": false,
+      "texture": "res://assets/buildings/large-8x8-b.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        449.9999,
+        972.3198
+      ],
+      "lot_width_px": 592.6228,
+      "source": "assets/residential-eight/large-8x8-b/building.blend"
     }
   ]
 }

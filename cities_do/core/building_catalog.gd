@@ -22,7 +22,7 @@ func get_asset(id: String) -> Dictionary:
 func eligible(building: Dictionary) -> Array[String]:
 	var ids: Array[String] = []
 	for entry in entries:
-		if entry.zone == building.zone and entry.footprint == [building.size, building.size] and building.level >= entry.min_level:
+		if entry.get("growth_enabled", true) and entry.zone == building.zone and entry.footprint == [building.size, building.size] and building.level >= entry.min_level:
 			ids.append(entry.id)
 	return ids
 

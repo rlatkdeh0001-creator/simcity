@@ -59,3 +59,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## 소형·대형 주거 8종 시안
 
 [8개 건물 비교](assets/residential-eight/comparison.png): 소형 2×2/4×4 각각 2개, 대형 4×4/8×8 각각 2개입니다. [개별 PNG·Blender 원본·재생성 방법](assets/residential-eight/README.md)을 제공합니다. 현재는 게임 등록 전 외관 시안입니다.
+
+## 실제 게임에서 주거 10종 보기
+
+[Godot 실제 게임 화면](docs/screenshots/residential-showcase.png)에서 소형 4종·중형 맨션 2종·대형 4종을 같은 축척으로 나란히 볼 수 있습니다. 건설 화면의 **주거 건물 10종 전시** 버튼 또는 `godot --path cities_do residential_showcase.tscn`으로 실행합니다. [소형·중형 확대](docs/screenshots/residential-showcase-small-medium.png) / [대형 확대](docs/screenshots/residential-showcase-large.png)도 제공합니다.

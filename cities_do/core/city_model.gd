@@ -201,3 +201,16 @@ func _update_zoning_for_road(road: Dictionary):
 				break
 			if existing.kind == "local" and distance <= config.zoning_depth: access = true
 		zoning_grid.set_cell(cell,access and not blocked)
+
+
+func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
+	# Authored scenario placement of a completed building; normal construction stays 2x2.
+	var asset: Dictionary = catalog.get_asset(asset_id)
+	if asset.is_empty(): return {"ok":false,"reason":"등록되지 않은 건물입니다"}
+	var size: int = asset.footprint[0]
+	var error := placement_error(x,y,size)
+	if error != "": return {"ok":false,"reason":error}
+	var building := {"id":next_id,"x":x,"y":y,"size":size,"level":asset.min_level,"zone":asset.zone,"score":0.0,"asset_id":asset_id}
+	next_id += 1
+	buildings.append(building)
+	return {"ok":true,"building":building}
