@@ -1,6 +1,8 @@
 extends Node2D
 const Model = preload("res://core/city_model.gd")
 var city = Model.new()
+var building_textures := {}
+var building_images := {}
 var mode := "build"
 var zone := "residential"
 var selected := -1
@@ -21,6 +23,13 @@ func world(p: Vector2) -> Vector2:
 	return Vector2((d.x / tile.x + d.y / tile.y) / 2.0, (d.y / tile.y - d.x / tile.x) / 2.0)
 
 func _ready():
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	for asset in city.catalog.entries:
+		var texture: Texture2D = load(asset.texture)
+		if texture != null:
+			building_textures[asset.id] = texture
+			building_images[asset.id] = texture.get_image()
+
 	city.add_road(PackedVector2Array([Vector2(1, 20), Vector2(39, 20)]))
 	city.add_building(10, 17, "residential", 120)
 	city.add_building(12, 17, "commercial", 10)
@@ -77,8 +86,18 @@ func _ready():
 
 func pick_rendered_building(position: Vector2) -> Dictionary:
 	var ordered: Array = city.buildings.duplicate()
-	ordered.sort_custom(func(a, b): return a.x + a.y > b.x + b.y)
+	ordered.sort_custom(func(a, b): return a.x + a.y + a.size * 2 > b.x + b.y + b.size * 2)
 	for b in ordered:
+		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
+		if not asset.is_empty() and building_images.has(asset.id):
+			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2)
+			if rect.has_point(position):
+				var uv := (position - rect.position) / rect.size
+				var image: Image = building_images[asset.id]
+				var pixel := Vector2i(uv * Vector2(image.get_size()))
+				if image.get_pixelv(pixel).a > 0.1:
+					return b
+			continue
 		var base := polygon(b.x, b.y, b.size)
 		var top := polygon(b.x, b.y, b.size, 5 + b.level * 7)
 		for face in [top, PackedVector2Array([base[1], base[2], top[2], top[1]]), PackedVector2Array([base[2], base[3], top[3], top[2]])]:
@@ -89,6 +108,10 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 func refresh():
 	var b: Dictionary = city.find_building(selected)
 	info.text = "선택 없음" if b.is_empty() else "#%d · %d×%d · 레벨 %d\n성장 수치 %.0f / %.0f" % [b.id, b.size, b.size, b.level, b.score, city.config.score_threshold]
+	if not b.is_empty():
+		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
+		if not asset.is_empty():
+			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
 	hud.text = "도구: %s · 건물 %d개 · 도로 %d개\n%s\n8×8 45%% / 4×4 30%% / 2×2 25%% · 인접 연쇄 55%% (최대 8개)" % [mode, city.buildings.size(), city.roads.size(), message]
 	queue_redraw()
 
@@ -145,8 +168,17 @@ func _draw():
 		draw_polyline(points, Color("70818b"), 9, true)
 		draw_polyline(points, Color("d5c58b"), 1, true)
 	var sorted: Array = city.buildings.duplicate()
-	sorted.sort_custom(func(a, b): return a.x + a.y < b.x + b.y)
+	sorted.sort_custom(func(a, b): return a.x + a.y + a.size * 2 < b.x + b.y + b.size * 2)
 	for b in sorted:
+		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
+		if not asset.is_empty() and building_textures.has(asset.id):
+			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2)
+			draw_texture_rect(building_textures[asset.id], rect, false)
+			if b.id == selected:
+				var outline := polygon(b.x, b.y, b.size)
+				outline.append(outline[0])
+				draw_polyline(outline, Color.WHITE, 2)
+			continue
 		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
 		var base := polygon(b.x, b.y, b.size)
 		var top := polygon(b.x, b.y, b.size, 5 + b.level * 7)

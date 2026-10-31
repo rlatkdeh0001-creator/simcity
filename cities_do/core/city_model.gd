@@ -1,4 +1,7 @@
 extends RefCounted
+const Catalog = preload("res://core/building_catalog.gd")
+var catalog = Catalog.new()
+var appearance_rng := RandomNumberGenerator.new()
 const Config = preload("res://core/growth_config.gd")
 var config = Config.new()
 var width: int
@@ -12,6 +15,7 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	width = w
 	height = h
 	rng.seed = seed_value
+	appearance_rng.seed = seed_value ^ 0x5f3759df
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -62,7 +66,7 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	var error := placement_error(x, y, 2)
 	if error != "":
 		return {"ok": false, "reason": error}
-	var b := {"id": next_id, "x": x, "y": y, "size": 2, "level": 1, "zone": zone, "score": score}
+	var b := {"id": next_id, "x": x, "y": y, "size": 2, "level": 1, "zone": zone, "score": score, "asset_id": ""}
 	next_id += 1
 	buildings.append(b)
 	return {"ok": true, "building": b}
@@ -135,6 +139,7 @@ func _upgrade(b: Dictionary) -> bool:
 				b.y = pos.y
 				b.size = size
 				b.level += 1
+				catalog.assign(b, appearance_rng)
 				return true
 	return false
 

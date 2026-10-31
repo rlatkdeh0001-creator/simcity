@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "buildings": [
+    {
+      "id": "mansion-a-4x4-4f",
+      "name": "벽돌형 맨션",
+      "zone": "residential",
+      "category": "medium_residential",
+      "category_name": "중형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 4,
+      "min_level": 2,
+      "texture": "res://assets/buildings/mansion-a-4x4-4f.png",
+      "image_size": [
+        900,
+        900
+      ],
+      "anchor_px": [
+        450.0,
+        761.963
+      ],
+      "lot_width_px": 727.31,
+      "source": "assets/mansion-study/a-brick/mansion.blend"
+    },
+    {
+      "id": "mansion-b-4x4-4f",
+      "name": "모던형 맨션",
+      "zone": "residential",
+      "category": "medium_residential",
+      "category_name": "중형 주거",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 4,
+      "min_level": 2,
+      "texture": "res://assets/buildings/mansion-b-4x4-4f.png",
+      "image_size": [
+        900,
+        900
+      ],
+      "anchor_px": [
+        450.0,
+        761.963
+      ],
+      "lot_width_px": 727.31,
+      "source": "assets/mansion-study/b-modern/mansion.blend"
+    }
+  ]
+}

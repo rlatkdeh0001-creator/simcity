@@ -29,7 +29,10 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
    visited IDs plus a maximum event count. Do not bypass spatial constraints.
 5. Tune all probabilities and limits through `growth_config.gd`. Pass a seed to
    the model for reproducible tests; do not use frame rate as a growth chance.
-6. Run both meaningful Godot tests below. Check log errors as well as exit status:
+6. Use `core/building_catalog.gd` and `assets/buildings/catalog.json` for approved
+   medium residential variants. Keep facade selection separate from growth RNG;
+   rematch on lot size changes. Do not stretch 4x4 mansions over 2x2 or 8x8 lots.
+7. Run all three meaningful Godot tests below. Check log errors as well as exit status:
    Godot can exit zero after a script parse failure. Do not present a headless
    startup check as visual inspection or claim a full city simulator exists.
 
@@ -39,6 +42,7 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 godot --path cities_do
 godot --headless --path cities_do --script tests/test_city.gd
 godot --headless --path cities_do --script tests/test_ui.gd
+godot --headless --path cities_do --script tests/test_building_assets.gd
 ```
 
 In restricted cloud machines, prefix these commands with writable XDG paths:
