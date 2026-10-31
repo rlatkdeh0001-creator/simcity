@@ -1,0 +1,16 @@
+{
+  "name": "simcity",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Development workspace with the official Claude Code CLI",
+  "scripts": {
+    "claude": "claude",
+    "check:claude": "claude --version"
+  },
+  "devDependencies": {
+    "@anthropic-ai/claude-code": "2.1.316"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
