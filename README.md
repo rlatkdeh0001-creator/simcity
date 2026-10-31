@@ -47,3 +47,7 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 ## 건물 애셋 제작 스킬 조사
 
 [CITIES_DO 건물 애셋 후보와 출처 추적](docs/asset-skills/RESEARCH_KO.md)에 Blender·픽셀 아트 제작 스킬, 라이선스·환경 조건과 원본 커밋을 정리했습니다. `python3 tools/track_asset_skills.py --check-heads`로 원본 변경을 확인할 수 있습니다. 새 후보를 설치하거나 정기 모니터링을 설정한 것은 아닙니다.
+
+## 4층 맨션 시안
+
+[벽돌형 / 모던형 비교 이미지](assets/mansion-study/comparison.png)와 [Blender 원본·재생성 방법](assets/mansion-study/README.md)을 추가했습니다. 두 시안 모두 4×4 부지의 4층 공동주택이며 외부 생성 API 없이 로컬 제작했습니다.

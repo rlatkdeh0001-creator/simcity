@@ -1,0 +1,66 @@
+{
+  "asset_id": "mansion-b-4x4-4f",
+  "zone": "residential",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "occupied_storeys": 4,
+  "storey_height_m": 3.05,
+  "image_px": [
+    900,
+    900
+  ],
+  "pivot_px": [
+    450.0,
+    761.963
+  ],
+  "pivot_world_m": [
+    8,
+    -8,
+    0.125
+  ],
+  "lot_corners_px": [
+    [
+      86.345,
+      580.136
+    ],
+    [
+      450.0,
+      761.963
+    ],
+    [
+      813.655,
+      580.136
+    ],
+    [
+      450.0,
+      398.308
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 28,
+  "source": "original scripted geometry; no downloaded textures or meshes",
+  "blender_version": "4.3.2",
+  "mesh_objects": 296,
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.125
+    ],
+    [
+      8.0,
+      8.0,
+      14.484999656677246
+    ]
+  ],
+  "limitations": [
+    "concept render, not integrated into Godot",
+    "no interior rooms",
+    "no finished collision meshes or LOD",
+    "transparent render, with modeled lot plinth"
+  ]
+}
