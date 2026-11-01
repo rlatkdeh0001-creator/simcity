@@ -1,0 +1,138 @@
+[
+  {
+    "skill": "academy-guide",
+    "skill_sha256": "f27992510c051355dfe68c92394d509af730da5298094ec86834ee40bbd31376",
+    "license_files": [
+      ".agents/skills/academy-guide/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "algorithmic-art",
+    "skill_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef",
+    "license_files": [
+      ".agents/skills/algorithmic-art/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "brand-guidelines",
+    "skill_sha256": "1120b3769e2985cefb3d25be981b1f914abeba57ae079b83c20c666c164fa9fe",
+    "license_files": [
+      ".agents/skills/brand-guidelines/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "canvas-design",
+    "skill_sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b",
+    "license_files": [
+      ".agents/skills/canvas-design/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "cities-do-construction",
+    "skill_sha256": "162d0e514f7dd78dfb60c59c2018140a49b1b03594c961cd543e43858ed93d95",
+    "license_files": [],
+    "license_sha256": []
+  },
+  {
+    "skill": "discernment-nudge",
+    "skill_sha256": "9191177c4a8ef11a20dace786d708506b22d43e748c71287bb823de0dc812dad",
+    "license_files": [
+      ".agents/skills/discernment-nudge/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "frontend-design",
+    "skill_sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+    "license_files": [
+      ".agents/skills/frontend-design/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    ]
+  },
+  {
+    "skill": "internal-comms",
+    "skill_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475",
+    "license_files": [
+      ".agents/skills/internal-comms/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "mcp-builder",
+    "skill_sha256": "b483b56d6673134497e45489c317f26ae0f1429c194db0297e43073e17e6748c",
+    "license_files": [
+      ".agents/skills/mcp-builder/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "skill-creator",
+    "skill_sha256": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+    "license_files": [
+      ".agents/skills/skill-creator/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "slack-gif-creator",
+    "skill_sha256": "2efca615ce55a3edd8fc05c779068a8085816617991987e446606403cd3abb22",
+    "license_files": [
+      ".agents/skills/slack-gif-creator/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "theme-factory",
+    "skill_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552",
+    "license_files": [
+      ".agents/skills/theme-factory/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "web-artifacts-builder",
+    "skill_sha256": "81c5002c6643b0de7b8710b00e7a9038daa6fb9b68d59870ee6adb12da8d10f8",
+    "license_files": [
+      ".agents/skills/web-artifacts-builder/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  },
+  {
+    "skill": "webapp-testing",
+    "skill_sha256": "51b7349e77ec63b7744a6f63647e7566a0b4d2e301121cc10e8c2113af6556a2",
+    "license_files": [
+      ".agents/skills/webapp-testing/LICENSE.txt"
+    ],
+    "license_sha256": [
+      "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    ]
+  }
+]

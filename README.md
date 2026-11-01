@@ -1,5 +1,11 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+## 2026-11-01 복구 조사
+
+[현재 확보된 파일·누락 범위·새 검증 결과](docs/recovery/RECOVERY_KO.md)를 확인하세요.
+현재 저장 범위에는 인계문에 기록된 차량 20종과 Road Generator가 없습니다.
+`python3 tools/verify_vehicle_fleet.py`로 예상 차량 파일의 누락·구조를 검사할 수 있습니다.
+
 Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확인된 스킬을 Codex 프로젝트 경로 `.agents/skills/`에 설치했습니다. Claude 로그인이나 Claude Code가 필요하지 않습니다.
 
 출처: https://github.com/anthropics/skills

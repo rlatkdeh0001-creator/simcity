@@ -1,0 +1,32 @@
+[
+  {
+    "test": "test_building_assets.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "test": "test_city.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "test": "test_road_parcels.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "test": "test_roads_zoning.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "test": "test_showcase.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
+    "test": "test_ui.gd",
+    "exit_code": 0,
+    "passed": true
+  }
+]

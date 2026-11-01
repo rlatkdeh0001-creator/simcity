@@ -1,0 +1,16 @@
+{
+  "tools/build_vehicle_fleet.py": false,
+  "assets/vehicle-fleet/production_log.md": false,
+  "cities_do/assets/vehicles/catalog.json": false,
+  "cities_do/assets/vehicles/render_manifest.json": false,
+  "cities_do/vehicle_showcase.tscn": false,
+  "cities_do/vehicle_showcase.gd": false,
+  "cities_do/tests/test_vehicles.gd": false,
+  "docs/screenshots/vehicle-fleet-20.png": false,
+  "cities_do/addons/road-generator": false,
+  ".agents/skills/vehicle": false,
+  ".agents/skills/cities-do-vehicles": false,
+  "docs/design/VEHICLE_SKILL_RESEARCH_KO.md": false,
+  "docs/VEHICLE_FLEET_20_KO.md": false,
+  "assets/vehicle-fleet/README.md": false
+}
