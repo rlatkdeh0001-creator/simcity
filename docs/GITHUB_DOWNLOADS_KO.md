@@ -21,19 +21,19 @@
 
 ## 전체 파일과 백업
 
-[GitHub 릴리스 다운로드 페이지](https://github.com/rlatkdeh0001-creator/simcity/releases/tag/cities-do-traffic-ai-2026-11-01)
+[GitHub 다운로드 폴더](https://github.com/rlatkdeh0001-creator/simcity/tree/main/downloads)
 
 | 파일 | 내용 |
 |---|---|
-| [cities-do-traffic-ai.zip](https://github.com/rlatkdeh0001-creator/simcity/releases/download/cities-do-traffic-ai-2026-11-01/cities-do-traffic-ai.zip) | **최신 권장 다운로드**. 게임·주행 AI·차량·Blender 원본·스킬·라이선스·참고 소스·검증 기록 |
-| cities-do-vehicles-20.zip | 도로 주행 AI 연결 전 차량 20종 제작 완료 시점의 프로젝트 |
-| cities-do-recovered-checkout.zip | 차량 재제작 전 최초 확보한 체크아웃과 복구 조사 |
-| simcity-before-recovery.tar.gz | 복구 작업을 시작하기 전의 파일 백업. .git과 .godot 제외 |
-| simcity-history.bundle | 최초 복구 조사 시점의 Git 참조·이력 백업 |
-| SHA256SUMS.txt | 첨부한 모든 아카이브의 SHA-256 |
-| ARCHIVES.json | 첨부 파일 크기·해시와 최신 패키지의 소스 커밋 |
+| [cities-do-traffic-ai.zip](https://raw.githubusercontent.com/rlatkdeh0001-creator/simcity/main/downloads/cities-do-traffic-ai.zip) | **최신 권장 다운로드**. 게임·주행 AI·차량·Blender 원본·스킬·라이선스·참고 소스·검증 기록 |
+| [cities-do-vehicles-20.zip](../downloads/cities-do-vehicles-20.zip) | 도로 주행 AI 연결 전 차량 20종 제작 완료 시점의 프로젝트 |
+| [cities-do-recovered-checkout.zip](../downloads/cities-do-recovered-checkout.zip) | 차량 재제작 전 최초 확보한 체크아웃과 복구 조사 |
+| [simcity-before-recovery.tar.gz](../downloads/simcity-before-recovery.tar.gz) | 복구 작업을 시작하기 전의 파일 백업. .git과 .godot 제외 |
+| [simcity-history.bundle](../downloads/simcity-history.bundle) | 최초 복구 조사 시점의 Git 참조·이력 백업 |
+| [SHA256SUMS.txt](../downloads/SHA256SUMS.txt) | 全 아카이브의 SHA-256 |
+| [ARCHIVES.json](../downloads/ARCHIVES.json) | 파일 크기·해시와 최신 패키지의 소스 커밋 |
 
-나머지 첨부 파일도 릴리스 페이지의 Assets에서 받을 수 있다.
+나머지 첨부 파일도 downloads 폴더에서 받을 수 있다.
 ZIP은 Godot 프로젝트 원본이며 운영체제별 독립 실행 바이너리는 아니다.
 Git 이력이 필요한 경우 저장소를 clone한다. 과거 최초 백업의 Git 이력은 bundle에도 있다.
 이전 환경에서 미커밋됐고 현재 회수하지 못한 파일은 백업에 포함됐다고 간주하지 않는다.
@@ -49,4 +49,4 @@ godot --path cities_do traffic_demo.tscn
 ```
 
 문서 속 `/workspace`와 `/tmp`는 제작 당시 실행 환경의 경로다.
-완료된 결과물을 받는 데 해당 경로에 접근할 필요는 없다. 위 GitHub 파일과 릴리스 첨부를 사용한다.
+완료된 결과물을 받는 데 해당 경로에 접근할 필요는 없다. 위 GitHub 파일과 다운로드 폴더를 사용한다.
