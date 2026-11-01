@@ -1,5 +1,22 @@
 # Project skills
 
+## Persistent skill handoff (user requirement)
+
+At the start of every resumed/new session, read `docs/SKILL_HANDOFF_KO.md` and
+check the actual checkout, Git status, and referenced evidence before continuing.
+This register records installed skills, applied techniques, validation and limits;
+it is not permanent model memory. Read the relevant SKILL.md before applying it.
+
+Whenever introducing, adapting, applying, updating or validating a skill/tool,
+update `docs/SKILL_HANDOFF_KO.md` in the same work: exact name/path, upstream URL
+and pinned commit, license/NOTICE, actual use and affected files, commands/results,
+unverified capabilities and next steps. Distinguish inherited evidence from tests
+run in the current session. Preserve upstream files; record adaptations separately.
+Do not invent missing skill names or call an addon a skill. Keep credentials out.
+Commit and push the register with the related work within the user's authorized
+scope. Report a failed push explicitly. Give this user GitHub links, not workspace
+download links. Existing ZIPs are snapshots; current Git files are authoritative.
+
 Use the existing /workspace/simcity checkout. Do not create a worktree unless requested.
 
 Official Anthropic skills are installed in `.agents/skills/`. When a user names a skill or a task clearly matches one, read that skill's `SKILL.md` before applying it. Read linked resources only as needed. Resolve relative paths against the skill directory. Mention the selected skill briefly to the user. Follow user and platform instructions over skill instructions.

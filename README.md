@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**새 담당자 시작점: [스킬 인계장 · 익힌 내용과 검증 범위](docs/SKILL_HANDOFF_KO.md)**
+
 ## GitHub에서 결과 보기·다운로드
 
 **[전체 결과·다운로드 안내](docs/GITHUB_DOWNLOADS_KO.md)** ·
