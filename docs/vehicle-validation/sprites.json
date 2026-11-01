@@ -1,0 +1,3046 @@
+{
+  "count": 160,
+  "passed": true,
+  "files": [
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        179,
+        17,
+        250,
+        216
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        27,
+        336,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        74,
+        68,
+        355,
+        172
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        27,
+        336,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        180,
+        16,
+        251,
+        214
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        27,
+        336,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        75,
+        68,
+        356,
+        173
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        27,
+        336,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        154,
+        54,
+        275,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        51,
+        340,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        84,
+        64,
+        346,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        56,
+        339,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        155,
+        54,
+        276,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        56,
+        340,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        84,
+        64,
+        346,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        91,
+        52,
+        340,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        149,
+        51,
+        281,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        52,
+        348,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        77,
+        66,
+        353,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        52,
+        348,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        149,
+        51,
+        281,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        52,
+        348,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        77,
+        67,
+        353,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        52,
+        348,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        36,
+        274,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        95,
+        35,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        61,
+        340,
+        186
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        58,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        56,
+        274,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        58,
+        335,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        61,
+        340,
+        186
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        36,
+        335,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        155,
+        51,
+        275,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        87,
+        47,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        81,
+        66,
+        349,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        88,
+        55,
+        342,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        155,
+        52,
+        275,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        88,
+        55,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        81,
+        66,
+        349,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        88,
+        47,
+        342,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        153,
+        37,
+        277,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        36,
+        332,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        59,
+        335,
+        188
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        59,
+        332,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        153,
+        58,
+        277,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        98,
+        59,
+        333,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        59,
+        336,
+        188
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        98,
+        35,
+        333,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        160,
+        32,
+        270,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        34,
+        333,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        62,
+        341,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        45,
+        333,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        160,
+        48,
+        270,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        45,
+        333,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        62,
+        341,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        97,
+        34,
+        333,
+        208
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        161,
+        44,
+        269,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        47,
+        339,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        85,
+        64,
+        346,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        94,
+        50,
+        340,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        161,
+        54,
+        269,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        91,
+        50,
+        336,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        84,
+        64,
+        345,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        91,
+        47,
+        336,
+        206
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        52,
+        274,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        87,
+        52,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        80,
+        66,
+        350,
+        181
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        88,
+        55,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        52,
+        274,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        55,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        80,
+        66,
+        350,
+        181
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        88,
+        52,
+        342,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        159,
+        31,
+        271,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        32,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        62,
+        341,
+        185
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        56,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        159,
+        55,
+        271,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        55,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        62,
+        341,
+        185
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        33,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        157,
+        36,
+        273,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        37,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        65,
+        348,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        56,
+        339,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        157,
+        52,
+        273,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        56,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        65,
+        348,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        37,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        53,
+        274,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        51,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        65,
+        347,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        56,
+        339,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        156,
+        53,
+        274,
+        209
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        55,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        82,
+        65,
+        347,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        90,
+        52,
+        340,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        188,
+        17,
+        242,
+        218
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        95,
+        30,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        67,
+        77,
+        362,
+        166
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        95,
+        47,
+        334,
+        203
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        189,
+        33,
+        241,
+        218
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        47,
+        335,
+        202
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        67,
+        77,
+        363,
+        166
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        30,
+        335,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        187,
+        19,
+        243,
+        218
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        95,
+        38,
+        334,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        68,
+        84,
+        362,
+        166
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        95,
+        44,
+        334,
+        203
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        187,
+        30,
+        243,
+        218
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        44,
+        336,
+        203
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        68,
+        83,
+        362,
+        167
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        96,
+        38,
+        335,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        172,
+        19,
+        258,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        111,
+        22,
+        317,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        102,
+        54,
+        327,
+        188
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        111,
+        33,
+        317,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        171,
+        28,
+        259,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        113,
+        33,
+        319,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        103,
+        54,
+        328,
+        188
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        113,
+        23,
+        319,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        171,
+        18,
+        259,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        103,
+        22,
+        327,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        93,
+        57,
+        337,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        103,
+        33,
+        327,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        171,
+        28,
+        259,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        103,
+        33,
+        327,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        93,
+        57,
+        337,
+        184
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        103,
+        22,
+        327,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        171,
+        58,
+        259,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        101,
+        63,
+        329,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        70,
+        340,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        101,
+        33,
+        329,
+        202
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        171,
+        27,
+        258,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        101,
+        33,
+        330,
+        202
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        89,
+        70,
+        341,
+        182
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        101,
+        63,
+        329,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        173,
+        19,
+        257,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        110,
+        23,
+        319,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        100,
+        55,
+        329,
+        186
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        109,
+        36,
+        319,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        173,
+        31,
+        257,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        111,
+        36,
+        321,
+        204
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        101,
+        55,
+        330,
+        186
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        111,
+        23,
+        321,
+        211
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        173,
+        18,
+        258,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        102,
+        23,
+        328,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        91,
+        59,
+        339,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        102,
+        42,
+        328,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        173,
+        35,
+        257,
+        212
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        102,
+        42,
+        328,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        91,
+        59,
+        339,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        102,
+        23,
+        328,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/000.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        175,
+        50,
+        255,
+        213
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/045.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        105,
+        63,
+        322,
+        210
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/090.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        93,
+        74,
+        338,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/135.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        105,
+        39,
+        322,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/180.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        175,
+        32,
+        255,
+        213
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/225.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        108,
+        39,
+        325,
+        207
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/270.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        92,
+        74,
+        337,
+        183
+      ],
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/315.png",
+      "size": [
+        430,
+        245
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "bounds": [
+        108,
+        62,
+        324,
+        210
+      ],
+      "passed": true
+    }
+  ]
+}

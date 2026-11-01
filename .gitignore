@@ -7,3 +7,9 @@ node_modules/
 # Godot generated files
 .godot/
 *.tmp
+
+# Python bytecode and Blender autosave copies
+__pycache__/
+*.pyc
+*.blend1
+*.blend2

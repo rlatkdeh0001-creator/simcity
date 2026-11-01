@@ -1,0 +1,290 @@
+{
+  "resolution": [
+    430,
+    245
+  ],
+  "camera_elevation_deg": 30,
+  "angle_zero": "nose view; positive camera azimuth towards left (+X Blender)",
+  "vehicles": [
+    {
+      "id": "bus-city-01",
+      "pixels_per_metre": 25.536798858656837,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "taxi-sedan-01",
+      "pixels_per_metre": 55.64309796013543,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-hatch-01",
+      "pixels_per_metre": 64.17524233968062,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-compact-02",
+      "pixels_per_metre": 58.9196642598108,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-sedan-03",
+      "pixels_per_metre": 54.42509672668579,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-wagon-04",
+      "pixels_per_metre": 54.695810985812486,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-crossover-05",
+      "pixels_per_metre": 55.77752706688043,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-suv-06",
+      "pixels_per_metre": 48.621598780943735,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-coupe-07",
+      "pixels_per_metre": 60.6812773159005,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-minivan-08",
+      "pixels_per_metre": 49.65880309212417,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-electric-09",
+      "pixels_per_metre": 55.830078759832595,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "car-pickup-10",
+      "pixels_per_metre": 48.26104361444741,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-box-01",
+      "pixels_per_metre": 35.94887163781363,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-flatbed-02",
+      "pixels_per_metre": 33.25993277606978,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-fridge-03",
+      "pixels_per_metre": 32.03469191183988,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-mixer-04",
+      "pixels_per_metre": 29.047408998887096,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "trailer-container-05",
+      "pixels_per_metre": 18.811469794604346,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "trailer-tanker-06",
+      "pixels_per_metre": 19.90555968776069,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-dump-07",
+      "pixels_per_metre": 32.916427731939216,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "truck-heavy-dump-08",
+      "pixels_per_metre": 26.45369830929906,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    }
+  ]
+}

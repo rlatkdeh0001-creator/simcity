@@ -1,0 +1,30 @@
+{
+  "id": "car-electric-09",
+  "name": "전기 세단",
+  "category": "civilian",
+  "style": "electric",
+  "length_m": 4.7,
+  "width_m": 1.86,
+  "height_m": 1.45,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 1768,
+  "driver_side": "left",
+  "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "traffic AI",
+    "large-fleet performance"
+  ]
+}

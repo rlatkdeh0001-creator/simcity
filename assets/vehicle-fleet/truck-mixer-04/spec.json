@@ -1,0 +1,30 @@
+{
+  "id": "truck-mixer-04",
+  "name": "콘크리트 믹서",
+  "category": "industrial",
+  "style": "mixer",
+  "length_m": 8.2,
+  "width_m": 2.48,
+  "height_m": 3.45,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 2560,
+  "driver_side": "left",
+  "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "traffic AI",
+    "large-fleet performance"
+  ]
+}

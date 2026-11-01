@@ -1,0 +1,625 @@
+{
+  "schema_version": 1,
+  "vehicles": [
+    {
+      "id": "bus-city-01",
+      "name": "시내버스",
+      "category": "bus",
+      "style": "bus",
+      "length_m": 10.8,
+      "width_m": 2.5,
+      "height_m": 3.15,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2340,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/bus-city-01.glb"
+    },
+    {
+      "id": "taxi-sedan-01",
+      "name": "택시",
+      "category": "taxi",
+      "style": "taxi",
+      "length_m": 4.65,
+      "width_m": 1.82,
+      "height_m": 1.5,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2384,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/taxi-sedan-01.glb"
+    },
+    {
+      "id": "car-hatch-01",
+      "name": "소형 해치백",
+      "category": "civilian",
+      "style": "hatch",
+      "length_m": 3.65,
+      "width_m": 1.64,
+      "height_m": 1.49,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1724,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-hatch-01.glb"
+    },
+    {
+      "id": "car-compact-02",
+      "name": "준중형 세단",
+      "category": "civilian",
+      "style": "sedan",
+      "length_m": 4.35,
+      "width_m": 1.76,
+      "height_m": 1.43,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1724,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-compact-02.glb"
+    },
+    {
+      "id": "car-sedan-03",
+      "name": "중형 세단",
+      "category": "civilian",
+      "style": "sedan",
+      "length_m": 4.85,
+      "width_m": 1.87,
+      "height_m": 1.48,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1724,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-sedan-03.glb"
+    },
+    {
+      "id": "car-wagon-04",
+      "name": "스테이션왜건",
+      "category": "civilian",
+      "style": "wagon",
+      "length_m": 4.75,
+      "width_m": 1.83,
+      "height_m": 1.52,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1812,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-wagon-04.glb"
+    },
+    {
+      "id": "car-crossover-05",
+      "name": "크로스오버",
+      "category": "civilian",
+      "style": "crossover",
+      "length_m": 4.35,
+      "width_m": 1.82,
+      "height_m": 1.65,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1812,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-crossover-05.glb"
+    },
+    {
+      "id": "car-suv-06",
+      "name": "대형 SUV",
+      "category": "civilian",
+      "style": "suv",
+      "length_m": 5.05,
+      "width_m": 2.0,
+      "height_m": 1.88,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1812,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-suv-06.glb"
+    },
+    {
+      "id": "car-coupe-07",
+      "name": "스포츠쿠페",
+      "category": "civilian",
+      "style": "coupe",
+      "length_m": 4.45,
+      "width_m": 1.88,
+      "height_m": 1.23,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1724,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-coupe-07.glb"
+    },
+    {
+      "id": "car-minivan-08",
+      "name": "패밀리 미니밴",
+      "category": "civilian",
+      "style": "minivan",
+      "length_m": 4.95,
+      "width_m": 1.9,
+      "height_m": 1.85,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1724,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-minivan-08.glb"
+    },
+    {
+      "id": "car-electric-09",
+      "name": "전기 세단",
+      "category": "civilian",
+      "style": "electric",
+      "length_m": 4.7,
+      "width_m": 1.86,
+      "height_m": 1.45,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1768,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-electric-09.glb"
+    },
+    {
+      "id": "car-pickup-10",
+      "name": "레저 픽업",
+      "category": "civilian",
+      "style": "pickup",
+      "length_m": 5.25,
+      "width_m": 1.95,
+      "height_m": 1.82,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1900,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/car-pickup-10.glb"
+    },
+    {
+      "id": "truck-box-01",
+      "name": "소형 탑차",
+      "category": "industrial",
+      "style": "box",
+      "length_m": 6.1,
+      "width_m": 2.15,
+      "height_m": 3.05,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1812,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-box-01.glb"
+    },
+    {
+      "id": "truck-flatbed-02",
+      "name": "평판트럭",
+      "category": "industrial",
+      "style": "flatbed",
+      "length_m": 7.4,
+      "width_m": 2.35,
+      "height_m": 2.85,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2340,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-flatbed-02.glb"
+    },
+    {
+      "id": "truck-fridge-03",
+      "name": "냉동트럭",
+      "category": "industrial",
+      "style": "fridge",
+      "length_m": 7.0,
+      "width_m": 2.35,
+      "height_m": 3.35,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 1944,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-fridge-03.glb"
+    },
+    {
+      "id": "truck-mixer-04",
+      "name": "콘크리트 믹서",
+      "category": "industrial",
+      "style": "mixer",
+      "length_m": 8.2,
+      "width_m": 2.48,
+      "height_m": 3.45,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2560,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-mixer-04.glb"
+    },
+    {
+      "id": "trailer-container-05",
+      "name": "컨테이너 트레일러",
+      "category": "industrial",
+      "style": "container",
+      "length_m": 15.5,
+      "width_m": 2.5,
+      "height_m": 3.9,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 7144,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/trailer-container-05.glb"
+    },
+    {
+      "id": "trailer-tanker-06",
+      "name": "탱크 트레일러",
+      "category": "industrial",
+      "style": "tanker",
+      "length_m": 14.6,
+      "width_m": 2.5,
+      "height_m": 3.7,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 3140,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/trailer-tanker-06.glb"
+    },
+    {
+      "id": "truck-dump-07",
+      "name": "중형 덤프트럭",
+      "category": "industrial",
+      "style": "dump",
+      "length_m": 7.25,
+      "width_m": 2.4,
+      "height_m": 3.0,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2828,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-dump-07.glb"
+    },
+    {
+      "id": "truck-heavy-dump-08",
+      "name": "대형 덤프트럭",
+      "category": "industrial",
+      "style": "heavy_dump",
+      "length_m": 9.2,
+      "width_m": 2.9,
+      "height_m": 3.65,
+      "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "triangles": 2828,
+      "driver_side": "left",
+      "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+      "not_validated": [
+        "reference IoU",
+        "door opening",
+        "crash deformation",
+        "traffic AI",
+        "large-fleet performance"
+      ],
+      "model": "res://assets/vehicles/truck-heavy-dump-08.glb"
+    }
+  ]
+}

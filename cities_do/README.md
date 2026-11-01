@@ -2,6 +2,19 @@
 
 Godot 4.6 / GDScript. Claude 로그인과 외부 패키지가 필요하지 않습니다.
 
+## 차량 20종 전시
+
+건설 화면의 **차량 20종 전시** 버튼 또는
+`godot --path cities_do vehicle_showcase.tscn`으로 실제 GLB 모델을 볼 수 있습니다.
+자동 확대·같은 축척 비교·차체 회전·바퀴 회전을 지원하며, 돌아오면 기존 도시와 카메라를 복원합니다.
+차량은 2026-11-01에 새로 제작했으며 도로 주행 AI는 아직 연결하지 않았습니다.
+[제작·출처·검증 결과](../docs/VEHICLE_FLEET_20_KO.md)를 참고하세요.
+
+```sh
+godot --headless --editor --import --path cities_do --quit
+godot --headless --path cities_do --script tests/test_vehicles.gd
+```
+
 ```sh
 godot --path cities_do
 ```

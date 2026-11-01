@@ -1,0 +1,30 @@
+{
+  "id": "truck-box-01",
+  "name": "소형 탑차",
+  "category": "industrial",
+  "style": "box",
+  "length_m": 6.1,
+  "width_m": 2.15,
+  "height_m": 3.05,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 1812,
+  "driver_side": "left",
+  "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "traffic AI",
+    "large-fleet performance"
+  ]
+}

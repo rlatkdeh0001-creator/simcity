@@ -1,0 +1,15 @@
+{
+  "valid_files": {
+    "blend": 20,
+    "glb": 20,
+    "sprites": 160
+  },
+  "expected": {
+    "blend": 20,
+    "glb": 20,
+    "sprites": 160
+  },
+  "passed": true,
+  "failures": [],
+  "scope": "Structural audit only; does not validate pivots, scale, visual design, mesh integrity or Godot import."
+}

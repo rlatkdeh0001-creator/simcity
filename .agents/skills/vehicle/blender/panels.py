@@ -1,0 +1,719 @@
+"""zstack/vehicle - turn the lofted solid into a thin-walled, panelled body.
+
+Input: the closed BodyShell from body.py and the run's parts.json. Steps:
+
+  1. shell()      solidify inward to a sheet-metal wall (inner face gets the Interior material)
+  2. openings()   cut windows / windscreen / hatch glass; each removed piece of wall becomes
+                  the glass pane, so glass sits exactly flush in its aperture
+  3. recesses()   lamps and intakes: cut the aperture, keep the removed wall as the lens
+                  (lamps) or drop it (intakes), and build a housing that recedes into the body
+  4. cut_panels() shut lines: a gap-wide ribbon cutter along each panel outline separates
+                  doors / hood / engine cover as their own islands, with a real gap
+
+Every polygon is 2D in a named plane ('YZ' side, 'XZ' front/rear, 'XY' top) and is
+extruded over `range` along the third axis. `mirror: true` also builds the car's other
+side (+X is LEFT; names ending in _L / FL / RL become _R / FR / RR).
+"""
+import bmesh
+import bpy
+from mathutils import Vector
+from mathutils.bvhtree import BVHTree
+
+import common as C
+
+SIDE_SWAP = (('_FL', '_FR'), ('_RL', '_RR'), ('_L', '_R'))
+
+
+def mirrored(part):
+    """Right-side copy of a left-side part definition."""
+    q = dict(part)
+    name = part['name']
+    for a, b in SIDE_SWAP:
+        if name.endswith(a) or (a + '_') in name:
+            name = name.replace(a, b)
+            break
+    q['name'] = name
+    if 'parent' in part:
+        p = part['parent']
+        for a, b in SIDE_SWAP:
+            if p.endswith(a):
+                p = p[: -len(a)] + b
+                break
+        q['parent'] = p
+    if part['plane'] == 'YZ':
+        lo, hi = part['range']
+        q['range'] = [-hi, -lo]
+    elif not part.get('auto'):
+        q['poly'] = [(-u, v) for u, v in part['poly']]
+    if part.get('auto'):
+        q.pop('poly', None)
+    if part.get('photoShell'):
+        q['photoShell'] = {k: [(-x, y, z) for x, y, z in v] for k, v in part['photoShell'].items()}
+    q['mirror'] = False
+    q['side'] = -1
+    return q
+
+
+def expand(parts):
+    out = []
+    for p in parts:
+        p = dict(p)
+        p.setdefault('side', 1 if p.get('mirror') else 0)
+        out.append(p)
+        if p.get('mirror'):
+            out.append(mirrored(p))
+    return out
+
+
+AUTO = None     # body.BodySpec of the current run; set by use_body()
+
+
+def use_body(bodyspec):
+    global AUTO
+    AUTO = bodyspec
+
+
+def _auto(part):
+    """Outlines derived from the body's own feature curves, so cuts follow the real lines:
+    greenhouse  side glass between belt+insetBottom and rail-insetTop, over y
+    windscreen  top-view glass inside the A-pillars (rail width - inset), over y
+    belt        a door/panel: sill z up to belt+topOffset, over y
+    """
+    bs = AUTO
+    kind = part['auto']
+    y0, y1 = part['y']
+    n = 14
+    ys = [y0 + (y1 - y0) * i / n for i in range(n + 1)]
+    if kind == 'greenhouse':
+        ib, it = part.get('inset', [0.015, 0.025])
+        top = [(y, bs.keys(y)[6][1] - it) for y in ys]
+        bot = [(y, bs.keys(y)[5][1] + ib) for y in ys]
+        # keep a minimum height; where the greenhouse pinches out, the outline closes to a point
+        pts = [(y, max(z, b + 0.004)) for (y, z), (_, b) in zip(top, bot)]
+        return pts + list(reversed(bot))
+    if kind == 'windscreen':
+        inset = part.get('inset', 0.035)
+        right = [(bs.keys(y)[6][0] - inset, y) for y in ys]
+        return right + [(-x, y) for x, y in reversed(right)]
+    if kind == 'belt':
+        # Top edge: inside the side-window opening it rides above the belt (the cut passes through
+        # glass that is already gone); ahead of the window it runs just BELOW the belt, on the steep
+        # flank, because a cut band that grazes a near-flat surface never severs the wall.
+        sill = part['sill']
+        off = part.get('topOffset', 0.03)
+        drop = part.get('frontDrop', -0.015)
+        wy = part.get('windowFrom', y0)
+        ramp = part.get('ramp', 0.03)
+        yy = sorted(set(ys + [wy - ramp, wy]))
+        top = []
+        for y in yy:
+            k = 0.0 if y <= wy - ramp else (1.0 if y >= wy else (y - (wy - ramp)) / ramp)
+            top.append((y, bs.keys(y)[5][1] + drop + (off - drop) * k))
+        return [(y0, sill)] + top + [(y1, sill)]
+    raise ValueError('unknown auto outline ' + kind)
+
+
+def resolve_photo_parts(parts, run, body):
+    """Outlines traced on a reference photo instead of drawn in a plane: a part with
+    "photo": {"view": <solved camera in checks/cameras.json>, "px": [[u, v], ...], "flipX": bool}
+    gets its "poly" (and, unless given, its "range") here. Each pixel is ray-cast through the solved
+    camera onto the body shell; the hits, projected on the part's plane, are the outline, so a lamp
+    or intake lands where the photo shows it. A ray that misses the body (the shell is not the car
+    yet) meets the plane through the median hit instead. flipX mirrors the traced side, so a part
+    traced on the car's right side can be defined as the left part with "mirror": true.
+    Mutates `parts` (every section of parts.json); returns {part: {'hits', 'misses'}}."""
+    import json
+    import os
+    path = os.path.join(run, 'checks', 'cameras.json')
+    todo = [q for sec in parts.values() if isinstance(sec, list) for q in sec if isinstance(q, dict) and q.get('photo')]
+    if not todo:
+        return {}
+    if not os.path.exists(path):
+        raise RuntimeError('photo-traced parts need checks/cameras.json (critique.py fit)')
+    cams = json.load(open(path))
+    src = C.duplicate(body, '_bvh_photo')
+    bvh = BVHTree.FromObject(src, bpy.context.evaluated_depsgraph_get())
+    bpy.data.objects.remove(src, do_unlink=True)
+    report = {}
+    for q in todo:
+        ph = q['photo']
+        cam = cams[ph['view']]
+        fx, fy, cx, cy = cam['K']
+        R = [Vector(r) for r in cam['R']]
+        Rt = [Vector((R[0][i], R[1][i], R[2][i])) for i in range(3)]
+        t = Vector(cam['t'])
+        eye = -Vector((Rt[0].dot(t), Rt[1].dot(t), Rt[2].dot(t)))
+        rays, hits = [], []
+        for u, v in ph['px']:
+            dc = Vector(((u - cx) / fx, (v - cy) / fy, 1.0))
+            d = Vector((Rt[0].dot(dc), Rt[1].dot(dc), Rt[2].dot(dc))).normalized()
+            loc = bvh.ray_cast(eye, d, 50.0)[0]
+            rays.append(d)
+            hits.append(loc)
+        a, b, c = C.AXES[q['plane']]
+        found = [h for h in hits if h is not None]
+        if len(found) < 3:
+            raise RuntimeError(f"{q['name']}: fewer than 3 traced pixels hit the body")
+        mid = sorted(h[c] for h in found)[len(found) // 2]
+        pts, near, far = [], [], []
+        before, behind = ph.get('depth', [0.15, 0.25])       # metres along the ray, in front of / behind the hit
+        flip = (lambda w: Vector((-w.x, w.y, w.z))) if ph.get('flipX') else (lambda w: w)   # noqa: E731
+        for h, d in zip(hits, rays):
+            if h is None and abs(d[c]) > 1e-6:
+                h = eye + d * ((mid - eye[c]) / d[c])
+            if h is not None:
+                # stop the shell just short of where this ray leaves the body again, so a ray
+                # through a fender bump does not carry the cut into the next surface behind it
+                back = behind
+                exit_ = bvh.ray_cast(h + d * 0.003, d, behind)[0]
+                if exit_ is not None:
+                    back = max(0.02, (exit_ - h).length - 0.01)
+                pts.append(flip(h))
+                near.append(tuple(round(x, 4) for x in flip(h - d * before)))
+                far.append(tuple(round(x, 4) for x in flip(h + d * back)))
+        q['poly'] = [[round(p[a], 4), round(p[b], 4)] for p in pts]
+        # the cut itself is a thin shell along the view rays around the traced surface: a planar
+        # prism through a sloped lamp would also slice whatever lies behind it at the same height
+        q['photoShell'] = {'near': near, 'far': far}
+        if 'range' not in q:
+            m = ph.get('margin', 0.08)
+            q['range'] = [round(min(p[c] for p in pts) - m, 4), round(max(p[c] for p in pts) + m, 4)]
+        report[q['name']] = {'hits': len(found), 'misses': len(hits) - len(found)}
+    return report
+
+
+def poly_of(part):
+    pts = _auto(part) if part.get('auto') else part['poly']
+    r = part.get('round', 0.0)
+    return C.rounded(pts, r) if r > 0 else [tuple(p) for p in pts]
+
+
+def shell(body, mats, wall=0.004):
+    """Solid loft -> two nested surfaces `wall` apart. Outer keeps slot 0 (Paint), inner slot 1."""
+    me = body.data
+    me.materials.clear()
+    me.materials.append(mats['Paint'])
+    me.materials.append(mats['Interior'])
+    md = body.modifiers.new('wall', 'SOLIDIFY')
+    md.thickness = wall
+    md.offset = -1.0
+    md.use_even_offset = False      # even offset explodes at the pinched end-cap centres
+    md.material_offset = 1
+    md.use_rim = True
+    C.apply_modifiers(body)
+    return body
+
+
+def _cutter(part, gap=None):
+    if part.get('photoShell') and not gap:
+        return C.shell_between(part['name'] + '_cut', part['photoShell']['near'], part['photoShell']['far'])
+    lo, hi = part['range']
+    poly = poly_of(part)
+    if gap:
+        return C.ribbon(part['name'] + '_cut', poly, part['plane'], lo, hi, gap=gap)
+    return C.prism(part['name'] + '_cut', poly, part['plane'], lo, hi)
+
+
+def take(body, part, material=None):
+    """Cut `part` out of `body`; return the removed piece of wall as its own object."""
+    cut = _cutter(part)
+    piece = C.duplicate(body, part['name'])
+    C.boolean(piece, cut, 'INTERSECT', keep_cutter=True)
+    C.boolean(body, cut, 'DIFFERENCE')
+    if material is not None:
+        C.set_material(piece, material)
+    return piece if len(piece.data.polygons) else None
+
+
+def seal(part, bvh, mats, coll=None):
+    """A black rubber/frit surround following an opening's outline on the body surface."""
+    pts = [p for p, _ in _surface_hits(bvh, part, _densify(poly_of(part), 0.02), inset=-0.002)]
+    if len(pts) < 4:
+        return None
+    t = C.tube(part['name'] + '_Seal', pts, part.get('sealRadius', 0.007), 8, coll, closed=True)
+    t['sealRadius'] = part.get('sealRadius', 0.007)
+    C.set_material(t, mats['Trim_Black'])
+    t['zstack'] = 'exterior'
+    return t
+
+
+def trim_seals(objs, movers, clearance=0.004):
+    """Cut each seal back where it runs within its radius + clearance of anything that moves
+    with a panel it does not ride on (skin, glass, mirror, door card): a real surround stops at
+    the shut line, and a tube lying across one is swept into when the panel opens.
+    movers: {panel name: [objects moving with it]}. Returns {seal: faces removed}."""
+    dg = bpy.context.evaluated_depsgraph_get()
+    trees = [(n, BVHTree.FromObject(o, dg)) for n, obs in movers.items() for o in obs
+             if o.type == 'MESH' and not o.name.endswith('_Seal')]
+    out = {}
+    for ob in list(objs.values()):
+        if not ob.name.endswith('_Seal'):
+            continue
+        own = ob.get('parentPanel', '')
+        reach = ob.get('sealRadius', 0.007) + clearance
+        bm = bmesh.new()
+        bm.from_mesh(ob.data)
+        mw = ob.matrix_world
+        bad = [v for v in bm.verts
+               if any(n != own and t.find_nearest(mw @ v.co, reach)[0] is not None for n, t in trees)]
+        if bad:
+            n0 = len(bm.faces)
+            bmesh.ops.delete(bm, geom=bad, context='VERTS')
+            out[ob.name] = n0 - len(bm.faces)
+            bm.to_mesh(ob.data)
+        bm.free()
+        if not ob.data.polygons:
+            objs.pop(ob.name, None)
+            bpy.data.objects.remove(ob, do_unlink=True)
+    return out
+
+
+def _densify(poly, step):
+    out = []
+    n = len(poly)
+    for i in range(n):
+        (u0, v0), (u1, v1) = poly[i], poly[(i + 1) % n]
+        k = max(1, int(((u1 - u0) ** 2 + (v1 - v0) ** 2) ** 0.5 / step))
+        out += [(u0 + (u1 - u0) * j / k, v0 + (v1 - v0) * j / k) for j in range(k)]
+    return out
+
+
+def openings(body, parts, mats):
+    out = {}
+    src = C.duplicate(body, '_bvh_open')
+    bvh = BVHTree.FromObject(src, bpy.context.evaluated_depsgraph_get())
+    bpy.data.objects.remove(src, do_unlink=True)
+    for part in expand(parts):
+        # fixed glass gets a rubber surround; glass that rides a door is frameless unless asked
+        # for, since a surround on a moving edge sweeps into the fixed glass beside it
+        if part.get('seal', not part.get('parent')):
+            sl = seal(part, bvh, mats)
+            if sl is not None:
+                sl['parentPanel'] = part.get('parent', '')
+                out[sl.name] = sl
+        glass = take(body, part, mats[part.get('glass', 'Glass')])
+        if glass is None:
+            print('opening cut nothing:', part['name'])
+            continue
+        glass['zstack'] = 'glass'
+        glass['parentPanel'] = part.get('parent', '')
+        out[glass.name] = glass
+    return out
+
+
+# ---------------------------------------------------------------- recesses (lamps, intakes)
+
+def _layer(ob, inner):
+    """Faces of one wall layer: inner (slot 1) or outer (slot 0)."""
+    return [p for p in ob.data.polygons if (p.material_index == 1) == inner]
+
+
+def _faces_front(part):
+    """Whether an XZ-plane part faces forward (recedes toward +Y). Inferred from its position
+    (front half faces front), or set with "facing": "front" | "rear", e.g. a forward-facing side
+    intake in front of a rear wheel."""
+    if part.get('facing') in ('front', 'rear'):
+        return part['facing'] == 'front'
+    lo, hi = part['range']
+    return (lo + hi) / 2 < 0
+
+
+def housing(piece, part, mats, depth):
+    """Open box behind an aperture: copy the aperture's inner wall and push it `depth` into the car."""
+    bm = bmesh.new()
+    bm.from_mesh(piece.data)
+    keep = {p.index for p in _layer(piece, inner=True)}
+    bm.faces.ensure_lookup_table()
+    if not keep:       # boolean lost the slot split: fall back to faces facing the car centre
+        keep = {f.index for f in bm.faces if f.normal.dot(-f.calc_center_median()) > 0}
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.index not in keep], context='FACES')
+    # push straight into the car along the cut axis. (The mean face normal of an aperture that wraps
+    # a corner points diagonally; a deep duct pushed along it exits through the neighbouring panel.)
+    lo, hi = part['range']
+    if part['plane'] == 'YZ':
+        n = Vector((-1.0, 0.0, 0.0)) if part.get('side', 0) >= 0 else Vector((1.0, 0.0, 0.0))
+    elif part['plane'] == 'XZ':
+        n = Vector((0.0, 1.0, 0.0)) if _faces_front(part) else Vector((0.0, -1.0, 0.0))
+    else:
+        n = Vector((0.0, 0.0, -1.0))
+    ext = bmesh.ops.extrude_face_region(bm, geom=list(bm.faces))
+    moved = [g for g in ext['geom'] if isinstance(g, bmesh.types.BMVert)]
+    bmesh.ops.translate(bm, vec=n * depth, verts=moved)
+    # back plate slightly smaller so the walls taper like a moulded housing
+    ctr = sum((v.co for v in moved), Vector()) / max(1, len(moved))
+    for v in moved:
+        v.co = ctr + (v.co - ctr) * part.get('taper', 0.9)
+    if part.get('openBack'):     # walls only: see-through, so only for openings nothing looks through
+        # (an open-backed intake punches a hole in the car's silhouette; prefer a deep closed duct
+        #  with the fan inside it, see parts.json 'depth')
+        back = {f for f in bm.faces if all(v in set(moved) for v in f.verts)}
+        bmesh.ops.delete(bm, geom=list(back), context='FACES')
+    bmesh.ops.reverse_faces(bm, faces=bm.faces)
+    ob = C.mesh_object(part['name'] + '_Housing', bm, [mats[part.get('housing', 'Trim_Black')]], smooth=False)
+    return ob, n
+
+
+def _surface_hits(bvh, part, pts2d, inset=0.0):
+    """Raycast 2D polygon points onto the wall along the extrude axis (from outside inward)."""
+    lo, hi = part['range']
+    plane = part['plane']
+    a, b, c = C.AXES[plane]
+    side = part.get('side', 0)
+    out = []
+    for u, v in pts2d:
+        start = [0.0, 0.0, 0.0]
+        start[a], start[b] = u, v
+        d = [0.0, 0.0, 0.0]
+        if plane == 'YZ':                       # side part: shoot from outside toward the centre
+            start[c] = hi + 0.5 if side >= 0 else lo - 0.5
+            d[c] = -1.0 if side >= 0 else 1.0
+        elif plane == 'XZ':                     # front/rear part: shoot along Y toward the centre
+            front = _faces_front(part)
+            # start at the edge of the part's own range: the cut only exists there, and a start
+            # further out can sit inside another panel (a side intake just behind a door)
+            start[c] = lo - 0.02 if front else hi + 0.02
+            d[c] = 1.0 if front else -1.0
+        else:                                   # top part: shoot down
+            start[c] = hi + 0.5
+            d[c] = -1.0
+        hit = bvh.ray_cast(Vector(start), Vector(d), 3.0)
+        if hit[0] is not None:
+            out.append((hit[0] + Vector(d) * inset, hit[1]))
+    return out
+
+
+def _inset_poly(poly, f):
+    cx = sum(p[0] for p in poly) / len(poly)
+    cy = sum(p[1] for p in poly) / len(poly)
+    return [(cx + (x - cx) * f, cy + (y - cy) * f) for x, y in poly]
+
+
+def lamp_insides(part, bvh, mats, coll):
+    """Emitters and reflectors behind a lens: a light-guide strip following the lens outline,
+    and chrome reflector bowls with emissive cores (projector units)."""
+    objs = []
+    poly = poly_of(part)
+    emit = mats[part.get('emissive', 'Lamp_Head')]
+    for k, f in enumerate(part.get('strips', [0.78])):
+        pts = [p for p, _ in _surface_hits(bvh, part, _inset_poly(poly, f), inset=part.get('stripDepth', 0.018))]
+        if len(pts) > 3:
+            t = C.tube(f"{part['name']}_Strip{k}", pts, part.get('stripRadius', 0.0045), 8, coll, closed=True)
+            C.set_material(t, emit)
+            objs.append(t)
+    units = part.get('units', 0)
+    if units:
+        us = [p[0] for p in poly]
+        vs = [p[1] for p in poly]
+        cu, cv = sum(us) / len(us), sum(vs) / len(vs)
+        span = part.get('unitSpan', 0.5)
+        umin, umax = min(us), max(us)
+        centres = [(cu + (umin + (umax - umin) * (0.5 + span * (i / max(1, units - 1) - 0.5)) - cu), cv)
+                   for i in range(units)]
+        r = part.get('unitRadius', 0.028)
+        for i, (hit, nrm) in enumerate(_surface_hits(bvh, part, centres, inset=0.0)):
+            back = hit - nrm * (r * 1.35)
+            bowl = C.revolve(f"{part['name']}_Reflector{i}", [(0.004, 0.0), (r * 0.55, r * 0.25), (r * 0.9, r * 0.75), (r, r * 1.05)],
+                             segments=32, axis='Z', coll=coll)
+            C.set_material(bowl, mats['Reflector'])
+            core = C.revolve(f"{part['name']}_Core{i}", [(0.0, r * 0.62), (r * 0.42, r * 0.62), (r * 0.46, r * 0.5)],
+                             segments=24, axis='Z', coll=coll)
+            C.set_material(core, emit)
+            q = Vector((0, 0, 1)).rotation_difference(nrm)
+            for o in (bowl, core):
+                o.rotation_mode = 'QUATERNION'
+                o.rotation_quaternion = q
+                o.location = back
+                C.apply_transform(o)
+            objs += [bowl, core]
+    return objs
+
+
+def grille(part, bvh, mats, coll):
+    """Fins or a lattice spanning an intake, set back behind the surface."""
+    kind = part.get('grille')
+    if not kind:
+        return []
+    poly = poly_of(part)
+    plane = part['plane']
+    a, b, c = C.AXES[plane]
+    pitch = part.get('pitch', 0.028)
+    setback = part.get('grilleDepth', 0.035)
+    vs = [p[1] for p in poly]
+    bars = []
+    angles = {'fins': [0.0], 'lattice': [0.6, -0.6]}.get(kind, [0.0])
+    import math
+    for ang in angles:
+        ca, sa = math.cos(ang), math.sin(ang)
+        # rotate polygon so the bars run along the rotated u axis
+        rp = [(u * ca + v * sa, -u * sa + v * ca) for u, v in poly]
+        rv = [p[1] for p in rp]
+        w = min(rv) + pitch / 2
+        while w < max(rv):
+            xs = []
+            for i in range(len(rp)):
+                (u1, v1), (u2, v2) = rp[i], rp[(i + 1) % len(rp)]
+                if (v1 > w) != (v2 > w):
+                    xs.append(u1 + (u2 - u1) * (w - v1) / (v2 - v1))
+            xs.sort()
+            for i in range(0, len(xs) - 1, 2):
+                seg = [(xs[i] + 0.004, w), (xs[i + 1] - 0.004, w)]
+                pts2 = [(u * ca - v * sa, u * sa + v * ca) for u, v in seg]
+                mid = ((pts2[0][0] + pts2[1][0]) / 2, (pts2[0][1] + pts2[1][1]) / 2)
+                hits = _surface_hits(bvh, part, [pts2[0], mid, pts2[1]], inset=setback)
+                if len(hits) != 3:
+                    continue
+                # a bar whose end ray slipped past the aperture edge onto a deeper surface bends:
+                # its midpoint no longer sits halfway between its ends in depth. Drop it, and any
+                # bar outside the part's own range (a sloped intake may still span a lot of depth)
+                d0, dm, d1 = (h[c] for h, _ in hits)
+                lo, hi = part['range']
+                if abs(dm - (d0 + d1) / 2) <= part.get('barBend', 0.04) and all(lo - 0.05 <= z <= hi + 0.05 for z in (d0, dm, d1)):
+                    bars.append([h for h, _ in hits])
+            w += pitch
+    if not bars:
+        return []
+    bm = bmesh.new()
+    t = part.get('barThickness', 0.004)
+    for pts in bars:
+        d = (pts[-1] - pts[0]).normalized()
+        nrm = Vector((0, 0, 0))
+        nrm[c] = 1.0
+        up = d.cross(nrm).normalized() * t
+        deep = nrm * part.get('barDepth', 0.02)
+        for p, q in zip(pts, pts[1:]):
+            vs_ = [bm.verts.new(x) for x in (p - up, q - up, q + up, p + up)]
+            vb_ = [bm.verts.new(x.co + deep) for x in vs_]
+            bm.faces.new(vs_)
+            bm.faces.new(list(reversed(vb_)))
+            for i in range(4):
+                j = (i + 1) % 4
+                bm.faces.new((vs_[i], vb_[i], vb_[j], vs_[j]))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    ob = C.mesh_object(part['name'] + '_Grille', bm, [mats[part.get('grilleMaterial', 'Trim_Satin')]], coll, smooth=False)
+    return [ob]
+
+
+def recesses(body, parts, mats, coll=None):
+    """Lamps and intakes. Returns {name: [objects]}; objects carry 'zstack' role tags."""
+    src = C.duplicate(body, '_bvh_src')
+    dg = bpy.context.evaluated_depsgraph_get()
+    bvh = BVHTree.FromObject(src, dg)
+    out = {}
+    for part in expand(parts):
+        piece = take(body, part)
+        if piece is None:
+            print('recess cut nothing:', part['name'])
+            continue
+        objs = []
+        hs, _ = housing(piece, part, mats, part.get('depth', 0.06))
+        hs['zstack'] = 'housing'
+        objs.append(hs)
+        if part.get('lens'):
+            C.set_material(piece, mats[part['lens']])
+            piece.name = part['name']
+            piece['zstack'] = 'lens'
+            objs.append(piece)
+            objs += lamp_insides(part, bvh, mats, coll)
+        else:
+            bpy.data.objects.remove(piece, do_unlink=True)
+        objs += grille(part, bvh, mats, coll)
+        for o in objs:
+            o['recess'] = part['name']
+        out[part['name']] = objs
+    bpy.data.objects.remove(src, do_unlink=True)
+    return out
+
+
+# ---------------------------------------------------------------- shut lines
+
+def _inside(part, co):
+    a, b, c = C.AXES[part['plane']]
+    lo, hi = part['range']
+    return lo - 0.05 <= co[c] <= hi + 0.05 and C.point_in_poly((co[a], co[b]), poly_of(part))
+
+
+def cut_panels(body, parts, gap=0.004, sliver=60):
+    """Ribbon-cut each panel free. Returns (body, {panel name: skin object})."""
+    exp = expand(parts)
+    for part in exp:
+        C.boolean(body, _cutter(part, gap=gap), 'DIFFERENCE')
+    islands = C.split_islands(body)
+    main, rest = islands[0], islands[1:]
+    main.name = 'Body'
+    main.data.name = 'Body'
+    skins, strays = {}, []
+    for isl in rest:
+        ctr = C.world_centroid(isl)
+        owner = next((p for p in exp if _inside(p, ctr)), None)
+        if owner is None or len(isl.data.polygons) < sliver:
+            strays.append(isl)
+            continue
+        if owner['name'] in skins:          # a panel cut into several islands: merge
+            _join(skins[owner['name']], isl)
+        else:
+            isl.name = owner['name'] + '_Skin'
+            isl.data.name = isl.name
+            skins[owner['name']] = isl
+    for s in strays:
+        _join(main, s)
+    missing = [p['name'] for p in exp if p['name'] not in skins]
+    if missing:
+        print('WARNING: panels that did not separate (outline not closed on the wall?):', missing)
+    main['panelsMissing'] = missing
+    return main, skins
+
+
+def paint_zones(objs, zones, mats):
+    """Two-tone paint: faces of the painted skin (material slot 0) whose centre lies inside a
+    zone's prism (plane, poly, range and mirror as for any part) take the zone's "material", e.g.
+    a contrast roof or pillars in Paint_Accent. Returns {zone: faces changed}."""
+    out = {}
+    for z in expand(zones):
+        mat = mats[z.get('material', 'Paint_Accent')]
+        a, b, c = C.AXES[z['plane']]
+        lo, hi = z['range']
+        poly = poly_of(z)
+        n = 0
+        # the zone's outline, as world-space cutting planes (each polygon edge swept along the
+        # zone's axis): the faces near the zone are split on them first, so the colour boundary is
+        # a straight line and not the staircase of whole faces
+        planes = []
+        for i in range(len(poly)):
+            (u0, v0), (u1, v1) = poly[i], poly[(i + 1) % len(poly)]
+            p0 = Vector((0.0, 0.0, 0.0))
+            p0[a], p0[b] = u0, v0
+            d = Vector((0.0, 0.0, 0.0))
+            d[a], d[b] = u1 - u0, v1 - v0
+            ax = Vector((0.0, 0.0, 0.0))
+            ax[c] = 1.0
+            nrm = d.cross(ax)
+            if nrm.length > 1e-9:
+                planes.append((p0, nrm.normalized()))
+        us, vs = [q[0] for q in poly], [q[1] for q in poly]
+        for ob in objs:
+            me = ob.data
+            names = [m.name if m else None for m in me.materials]
+            if mat.name not in names:
+                me.materials.append(mat)
+                names.append(mat.name)
+            slot = names.index(mat.name)
+            mw = ob.matrix_world
+            bm = bmesh.new()
+            bm.from_mesh(me)
+            bm.transform(mw)
+            for p0, nrm in planes:
+                near = [f for f in bm.faces if f.material_index == 0 and
+                        lo - 0.05 <= f.calc_center_median()[c] <= hi + 0.05 and
+                        min(us) - 0.05 <= f.calc_center_median()[a] <= max(us) + 0.05 and
+                        min(vs) - 0.05 <= f.calc_center_median()[b] <= max(vs) + 0.05]
+                if near:
+                    geom = list({e for f in near for e in f.edges}) + near + list({v for f in near for v in f.verts})
+                    bmesh.ops.bisect_plane(bm, geom=geom, plane_co=p0, plane_no=nrm)
+            bm.transform(mw.inverted())
+            bm.to_mesh(me)
+            bm.free()
+            for f in me.polygons:
+                if f.material_index != 0:
+                    continue
+                co = mw @ f.center
+                if lo <= co[c] <= hi and C.point_in_poly((co[a], co[b]), poly):
+                    f.material_index = slot
+                    n += 1
+        out[z['name']] = n
+    return out
+
+
+def _join(dst, src):
+    bm = bmesh.new()
+    bm.from_mesh(dst.data)
+    tmp = src.data.copy()
+    tmp.transform(dst.matrix_world.inverted() @ src.matrix_world)
+    # remap material slots by name
+    slot = {m.name: i for i, m in enumerate(dst.data.materials) if m}
+    for p in tmp.polygons:
+        m = src.data.materials[p.material_index] if p.material_index < len(src.data.materials) else None
+        p.material_index = slot.get(m.name, 0) if m else 0
+    bm.from_mesh(tmp)
+    bm.to_mesh(dst.data)
+    bm.free()
+    bpy.data.meshes.remove(tmp)
+    me = src.data
+    bpy.data.objects.remove(src, do_unlink=True)
+    if me.users == 0:
+        bpy.data.meshes.remove(me)
+
+
+# ---------------------------------------------------------------- wheel wells
+
+def arches(body, defs, mats, coll=None):
+    """Cut a wheel well per corner (a cylinder across the tyre's X band only) and line it."""
+    import math
+    out = []
+    for d in defs:
+        for side in ((1, -1) if d.get('mirror', True) else (1,)):
+            x0, x1 = d['x']
+            # the liner stops just inside the body's own flank at this axle
+            skin = AUTO.keys(d['y'])[3][0] - 0.006 if AUTO else x1
+            lo, hi = (x0, x1) if side > 0 else (-x1, -x0)
+            llo, lhi = (x0, min(x1, skin)) if side > 0 else (-min(x1, skin), -x0)
+            r, yc, zc = d['r'], d['y'], d['z']
+            cyl = C.revolve('_arch', [(0.0, lo), (r, lo), (r, hi), (0.0, hi)], 64, 'X')
+            cyl.location = (0, yc, zc)
+            C.apply_transform(cyl)
+            C.boolean(body, cyl, 'DIFFERENCE')
+            # liner: the upper part of the well as an open half-cylinder, slightly outside the cut
+            bm = bmesh.new()
+            rl = r + 0.003
+            a0 = math.asin(max(-1.0, min(1.0, (d.get('linerFloor', 0.12) - zc) / rl)))
+            seg = 40
+            rows = []
+            for k in range(seg + 1):
+                a = a0 + (math.pi - 2 * a0) * k / seg
+                y, z = yc - rl * math.cos(a), zc + rl * math.sin(a)
+                rows.append([bm.verts.new((x, y, z)) for x in (llo, lhi)])
+            for ra, rb in zip(rows, rows[1:]):
+                bm.faces.new((ra[0], ra[1], rb[1], rb[0]))
+            name = d.get('name', 'Arch') + ('_L' if side > 0 else '_R')
+            ob = C.mesh_object(name + '_Liner', bm, [mats['Underbody']], coll, smooth=True)
+            ob['zstack'] = 'exterior'
+            out.append(ob)
+    return out
+
+
+def leak_report(body, part, gap=0.004, limit=12):
+    """Why did a panel not separate? Cut it alone on a copy and flood-fill from inside its outline;
+    returns the places where the fill escapes the outline (where the shut line fails to sever the
+    wall, usually because the cut band runs along a surface instead of across it)."""
+    import bmesh
+    from mathutils import Vector
+    tmp = C.duplicate(body, '_leak')
+    C.boolean(tmp, _cutter(part, gap=gap), 'DIFFERENCE')
+    bm = bmesh.new()
+    bm.from_mesh(tmp.data)
+    poly = poly_of(part)
+    a, b, c = C.AXES[part['plane']]
+    lo, hi = part['range']
+    inside = lambda co: lo <= co[c] <= hi and C.point_in_poly((co[a], co[b]), poly)
+    ins = [f for f in bm.faces if f.material_index == 0 and inside(f.calc_center_median())]
+    leaks = []
+    if ins:
+        cen = sum((Vector(p) for p in poly), Vector((0, 0))) / len(poly)
+        start = min(ins, key=lambda f: (Vector((f.calc_center_median()[a], f.calc_center_median()[b])) - cen).length)
+        seen, st = {start}, [start]
+        while st and len(leaks) < 400:
+            g = st.pop()
+            for e in g.edges:
+                for h in e.link_faces:
+                    if h in seen:
+                        continue
+                    seen.add(h)
+                    co = h.calc_center_median()
+                    if inside(co):
+                        st.append(h)
+                    else:
+                        leaks.append(tuple(round(x, 3) for x in co))
+    bm.free()
+    me = tmp.data
+    bpy.data.objects.remove(tmp, do_unlink=True)
+    bpy.data.meshes.remove(me)
+    return leaks[:limit]

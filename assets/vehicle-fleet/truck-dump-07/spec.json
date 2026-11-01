@@ -1,0 +1,30 @@
+{
+  "id": "truck-dump-07",
+  "name": "중형 덤프트럭",
+  "category": "industrial",
+  "style": "dump",
+  "length_m": 7.25,
+  "width_m": 2.4,
+  "height_m": 3.0,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 2828,
+  "driver_side": "left",
+  "reconstruction": "new 2026-11-01 implementation; not recovered previous model",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "traffic AI",
+    "large-fleet performance"
+  ]
+}
