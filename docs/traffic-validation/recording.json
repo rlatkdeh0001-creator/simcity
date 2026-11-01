@@ -1,0 +1,12 @@
+{
+  "frames": 49,
+  "resolution": [
+    960,
+    600
+  ],
+  "frame_duration_ms": 500,
+  "bytes": 5791565,
+  "render": "real Godot OpenGL capture",
+  "road_region_changed": true,
+  "gif_decode": "PASS"
+}

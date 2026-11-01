@@ -1,0 +1,22 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS empty map allocates no zoning cells
+PASS preview does not reveal zoning
+PASS 1+1 road occupies 2 cells / 8m
+PASS road reveals adjacent zoning on both sides
+PASS road surface has no zoning grid
+PASS distant terrain remains grid-free
+PASS chunk query returns only visible world bounds
+PASS 2+2 road occupies 4 cells / 16m
+PASS new road removes grid under its corridor
+PASS wide road corridor blocks building placement
+PASS highway reveals no zoning
+PASS fractional curved stroke reveals local grid only
+PASS 1024x1024 empty map remains sparse
+PASS 1024 map short road allocates bounded local chunks
+1024-map short-stroke zoning update ms: 27
+PASS road ribbons and 4-lane dividers generated
+PASS zoom keeps cursor world position anchored
+PASS zoomed projection inverse matches input
+PASS UI commits chosen width and reveals zoning
+RESULT 18/18 road/zoning checks passed

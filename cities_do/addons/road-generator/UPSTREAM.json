@@ -1,0 +1,990 @@
+{
+  "repository": "TheDuckCow/godot-road-generator",
+  "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+  "version": "0.9.5",
+  "license": "MIT",
+  "files": [
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/LICENSE",
+      "local": "cities_do/addons/road-generator/LICENSE",
+      "sha256": "bab713e2d8ed8fc148bf6ed21418d818d55414d8cb55139ffe95a40c975117cc"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/README.md",
+      "local": "cities_do/addons/road-generator/README.md",
+      "sha256": "ad50e5cda7c75d2eb2f9e1543f48b2b571e2865b913060ddc4173fc9c01429f6"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/connectors/terrain3d_road_connector.gd",
+      "local": "cities_do/addons/road-generator/connectors/terrain3d_road_connector.gd",
+      "sha256": "78b1ce0b7bce60a0fbc21e9133760c20cb2303e04106bbb2803c23a343c2684b"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/connectors/terrain3d_road_connector.gd.uid",
+      "local": "cities_do/addons/road-generator/connectors/terrain3d_road_connector.gd.uid",
+      "sha256": "00754b50c8a940721c4f42e11eec967286d4fd3b08c6b9471fa75a267a2df7bb"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_1x1.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_1x1.glb",
+      "sha256": "dcc3f74dc20ba4c465568b090420ef1f9e5f88c72b23d92fdb85394ad91be309"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_1x1.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_1x1.glb.import",
+      "sha256": "fd50e407c6c7e7339bf1a27243cd8d2e260b32d633fc9cb7b5be77350c5ec438"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_1x1.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_1x1.tscn",
+      "sha256": "32c666e81ec039fa34398f23278321328cabc4ed6c994357d67b5c2b148b7c76"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_2x2.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_2x2.glb",
+      "sha256": "4943fff88d5e95d9ad2e1e6670ed791facaa7556642be87e070f45a8282bd42e"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_2x2.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_2x2.glb.import",
+      "sha256": "e336986fe5bf9d6c34c61d5747695c098b60f4af127b5a0885b92b0864a759e2"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/3way_2x2.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/3way_2x2.tscn",
+      "sha256": "79877bd87b90b8001d646905ab43e1d863d8e379598561bd96b68bcf2c48b7ac"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_1x1.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_1x1.glb",
+      "sha256": "3f6907ae1224e3a7a0b60a5282350ff3069b53d0cdbd6711705d97badf80b9d1"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_1x1.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_1x1.glb.import",
+      "sha256": "de1ae4e1cacd29cbc55cac464fc20a85b1693ebf4779d444ddbb8284e3272e9c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_1x1.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_1x1.tscn",
+      "sha256": "22d67834cc39d05f44c4da8c21707f9c7e329f20661f4c8743756e42978bb5d0"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_2x2.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_2x2.glb",
+      "sha256": "b20e56837b23023b188ba8c784a817e278c355e2ccd326d9f2b723a51a1fb02a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_2x2.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_2x2.glb.import",
+      "sha256": "3a3f5ee4d18590cfb2074c4307663921f49599dc64bdaa8e8d02c25b25c8fcde"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/4way_2x2.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/4way_2x2.tscn",
+      "sha256": "ec88bedfd181ae437e0705e966429e5cdd6cd8a0f05606a7c14f88759ef926ba"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_offramp.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_offramp.glb",
+      "sha256": "f94699ccc5978f5fcda10a72d7ebc4d47fa252261bd7edd8c0163bf7b74c15dc"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_offramp.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_offramp.glb.import",
+      "sha256": "e8be4d47b2c39dde62e84b88bfb90750ad9c6db3151353b6810deab35f7ed4d6"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_offramp.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_offramp.tscn",
+      "sha256": "4be5b72198331e1e66585baafc12ddc3abb8c9245c163f6b6d3f420c8292310e"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_onramp.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_onramp.glb",
+      "sha256": "adccd8dec31020a65502ee43f2eba517bf45234b35367c2ead75c79d1ea90e2a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_onramp.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_onramp.glb.import",
+      "sha256": "6ea4ae4bb3c25d5cab8c244d1638fb99d8b91fd1bc43daae2dc4d41c16bc45f9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/highway_onramp.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/highway_onramp.tscn",
+      "sha256": "8f7dcbb2a85f9de755f418d71caeffa9eb444539153de0ee7f5e8f3b359321a9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_1x1.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_1x1.glb",
+      "sha256": "32bc26776d8ec1d3956f12864aa2286a2be443a7b12da0dd786c1197605686e2"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_1x1.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_1x1.glb.import",
+      "sha256": "340129fa9ec502604779dd5b5bd6b5e5c5b08988e5efc35e2655bf0571003615"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_1x1.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_1x1.tscn",
+      "sha256": "ef4833c7317c03d2c4f84e818ac30089decd03b829a4b822e8b3b30040b5bde1"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_2x2.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_2x2.glb",
+      "sha256": "31d3f9abdbb6f796eb7b46853ce301e0fb53b4a0437d3986c9c7b18936665e69"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_2x2.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_2x2.glb.import",
+      "sha256": "6f3eed7ab8fa92bd8a8898ecdce853e4ab5c73e46bf5f060bd5df578df67dbf1"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/roundabout_2x2.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_2x2.tscn",
+      "sha256": "e39eed9827d6566c3132966460c1f7009fdfeffd8e92bcc1448917faae44e34d"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_1x1.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_1x1.glb",
+      "sha256": "bc7b0a3a7e050b7ac1af74d6d8de87833944e27feb636ee30747c4a2a05c0d7c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_1x1.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_1x1.glb.import",
+      "sha256": "71e86af34a5f68d2620de1049b04ec992ed6d4d1d19cb712d73272268227c0f4"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_1x1.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_1x1.tscn",
+      "sha256": "3a66d2bc72c15b401c6b6d3517d7cb166e4faa0b302fdd25f05984315149552e"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_2x2.glb",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_2x2.glb",
+      "sha256": "d9f0026cf72798cc3916aa7ccafb6b8176790b4cbe90e22ec6e8f57635318b82"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_2x2.glb.import",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_2x2.glb.import",
+      "sha256": "f5591aeb58a25e2aba376fd139071ad5417443124d438f99c366b4d489bef3f2"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/splitter_2x2.tscn",
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_2x2.tscn",
+      "sha256": "82f6623a30d8efa9e35b404e3f0bb7e8d3a70c9d141c7554231399e3cc4a8b74"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/src/.gdignore",
+      "local": "cities_do/addons/road-generator/custom_containers/src/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/src/README.md",
+      "local": "cities_do/addons/road-generator/custom_containers/src/README.md",
+      "sha256": "af4a0c1158ebe9bf0634cf3c5142a19f91f2ca45ba845331687301ff99dc4131"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/custom_containers/src/intersections_source.blend",
+      "local": "cities_do/addons/road-generator/custom_containers/src/intersections_source.blend",
+      "sha256": "0e8fdf60b26f7ea2c2150f73b0f3b5f87ef9dc41b13ab051c8a5d3692b9c37e7"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/gizmo-designs.afdesign",
+      "local": "cities_do/addons/road-generator/gizmo-designs.afdesign",
+      "sha256": "d23e5b9930bd83fe49548c6397deb48e3a2920d6c1a25b72b9e62095a3a56fe9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_container.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_container.gd",
+      "sha256": "26d88fe67a8ec0d37fe92249c12650b1dfd1d103fb3261dbf92cd3957f889ea3"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_container.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_container.gd.uid",
+      "sha256": "960e8ac9e6256368d50a324a58f86a3632fc238bc4446ac6be025595d6dde1c0"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_graph_node.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_graph_node.gd",
+      "sha256": "758cb1f62ca80ffcda3537229b80d58e8238cf83da1ab7cba342f65024fc489e"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_graph_node.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_graph_node.gd.uid",
+      "sha256": "4e2acd15e5d8b8d84f1491c8a4acf51113667ac2806f891c262c5aba4d8eb53a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_intersection.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_intersection.gd",
+      "sha256": "930b0d366d9e0200d6a08d2951bd340cb526830daefbe8f2c9d42afc25c88a48"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_intersection.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_intersection.gd.uid",
+      "sha256": "2505b013122fad0623a5ee76a600cef4a13a2a1c0a949d57e37c5a4d6ec83c98"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_lane.gd",
+      "sha256": "3361d3e3a4690b4df725f2de616cdf33a4997bfe4d10e4a29347c74fbc295dbe"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_lane.gd.uid",
+      "sha256": "ed459d38579215525c2312e6bf048f0b32ab5f43f90e71f2b8dcf0448b77285e"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane_agent.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_lane_agent.gd",
+      "sha256": "48eec3fb6d591bfd9de6c24cfdd2b9870131e407291480367a5eeac6ea1a922b"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane_agent.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_lane_agent.gd.uid",
+      "sha256": "c180909209e1e59589e208e20afcf5a60b796be06be28545408c18a5059a149f"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_manager.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_manager.gd",
+      "sha256": "1d26630bea9bf7d0a6e11360f54827bc74e36a8a2396af5855e136141e977809"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_manager.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_manager.gd.uid",
+      "sha256": "7cc3b0d3be320b11b3ddbaee06afc74581f2f3693cda91c7449b27c2cf548209"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_point.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_point.gd",
+      "sha256": "026845aa8166307a36fc019c236b3fe2df46be538b026da9f2213886a2c61a33"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_point.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_point.gd.uid",
+      "sha256": "a856e538d758ca24f12f65c1d44ae22f6b462ef0fecf3e2d1cadaa21d9d88c14"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_segment.gd",
+      "local": "cities_do/addons/road-generator/nodes/road_segment.gd",
+      "sha256": "3fb1df69a872ef48b47c2085699f4a688b4ddfb7ca1938f157509065704d45c7"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_segment.gd.uid",
+      "local": "cities_do/addons/road-generator/nodes/road_segment.gd.uid",
+      "sha256": "d748c93c4ad9b29952bf9e614c38107365b74f162a9e53961193a75ea9bd5671"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/plugin.cfg",
+      "local": "cities_do/addons/road-generator/plugin.cfg",
+      "sha256": "126159d4a09c13d0abe85ec1a38e4770b411e445b80a9edb90e198c7084edbfe"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/plugin.gd",
+      "local": "cities_do/addons/road-generator/plugin.gd",
+      "sha256": "a3c61e7047101a4506ff3cc95d99f5959e1b9c5a9f3ce7bb956b815abb3506a9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/plugin.gd.uid",
+      "local": "cities_do/addons/road-generator/plugin.gd.uid",
+      "sha256": "3ef1af239c5eae010fb227d34e4f2cbdb454e3128d36a6cd0724d17015e5b3b5"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/intersection_ngon.gd",
+      "local": "cities_do/addons/road-generator/procgen/intersection_ngon.gd",
+      "sha256": "170c6ac91986c1ff11da8c775397e45d86902d4d772707d8ead8d57f9c7c3ca0"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/intersection_ngon.gd.uid",
+      "local": "cities_do/addons/road-generator/procgen/intersection_ngon.gd.uid",
+      "sha256": "47df9d934f70999a4ff4789b5d17fb54bafe7fff21a664edab011015cf0d5b30"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/intersection_settings.gd",
+      "local": "cities_do/addons/road-generator/procgen/intersection_settings.gd",
+      "sha256": "25978677039179a472172a55e8d669a55a2dfb1b5a862f573ff34743b983426c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/intersection_settings.gd.uid",
+      "local": "cities_do/addons/road-generator/procgen/intersection_settings.gd.uid",
+      "sha256": "7be28fa017894462e9354d1e1a6257d77b0ad38a7de8e409d5dfee69cab9911c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/segment_geo.gd",
+      "local": "cities_do/addons/road-generator/procgen/segment_geo.gd",
+      "sha256": "9db7af648893dff431cfabc661705998d3a77b209dca06a217d671a7bd9d2c73"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/procgen/segment_geo.gd.uid",
+      "local": "cities_do/addons/road-generator/procgen/segment_geo.gd.uid",
+      "sha256": "2be5f932e87c8bd49466292ea5f104e1664c86c3e96a8bb6c89d7cf26ca80db5"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/gizmo/.gdignore",
+      "local": "cities_do/addons/road-generator/resources/gizmo/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/gizmo/README.md",
+      "local": "cities_do/addons/road-generator/resources/gizmo/README.md",
+      "sha256": "e29595a5f0377ba78f576e5222ac802ef29a111297695381bc4b27727a3b1136"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/gizmo/roadpoint_gizmo_source.blend",
+      "local": "cities_do/addons/road-generator/resources/gizmo/roadpoint_gizmo_source.blend",
+      "sha256": "272879a2e8470addfabb4ff289648b2d556f116cd53f81a0eb5b7fb58112be32"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_container.png",
+      "local": "cities_do/addons/road-generator/resources/road_container.png",
+      "sha256": "4c608309c50ad97a0892823f2d6b4787622148fa27353600dc5408db47e1facc"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_container.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_container.png.import",
+      "sha256": "d2b614d9874d7c0cfb5dc869fbd9861d39224dbe4ae8f6e4e221f27d1c8b78fa"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_intersection.png",
+      "local": "cities_do/addons/road-generator/resources/road_intersection.png",
+      "sha256": "5a2a58a41bce5825814b3b18c98f40343861d61cb725facaeb6ad2fa5323d850"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_intersection.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_intersection.png.import",
+      "sha256": "81c42da506fc7506709b5fa93f397b5ff9c5788958e79560756147626d300532"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_lane.png",
+      "local": "cities_do/addons/road-generator/resources/road_lane.png",
+      "sha256": "94a5d04965eabb4fd47b95f3dae62cbc261f0c157589d948a8ebb400dcca6dbf"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_lane.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_lane.png.import",
+      "sha256": "7695cb0e36b8dd920e762b9d07f2612ab70a6d8281e393aaac9d42cfbc1a929f"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_lane_agent.png",
+      "local": "cities_do/addons/road-generator/resources/road_lane_agent.png",
+      "sha256": "10bff1218af02cc0bbbae487789f1fcd1102e6ae8cb6d8841449eebdfd011dcb"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_lane_agent.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_lane_agent.png.import",
+      "sha256": "0079f8a509d63f91b00ca52f242ff7ec07cd8b269c86522a17fa01f11bdb1595"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_lane_pointer_mesh.res",
+      "local": "cities_do/addons/road-generator/resources/road_lane_pointer_mesh.res",
+      "sha256": "24b9923b9a6cbcb94737a73ffc70b94d8f69f3791da3eb938a4e8656498268d6"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_manager.png",
+      "local": "cities_do/addons/road-generator/resources/road_manager.png",
+      "sha256": "6f018200ab447befe3e12299ed0df173aa74aa9ab862115dcce25bd8cef6f621"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_manager.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_manager.png.import",
+      "sha256": "346e7c033ebeb4b485e1ea333f3b77a08cd651ec74dc2fcd337119372099e345"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_point.png",
+      "local": "cities_do/addons/road-generator/resources/road_point.png",
+      "sha256": "61e7ec98dd78196a8880748571de347ae24f5868e3d5c1d0463b2ec11064283a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_point.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_point.png.import",
+      "sha256": "79a1fe95567f90d8256cb2757df1d11b5d260529b2955fa941582f0e03b1339b"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_segment.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_segment.png.import",
+      "sha256": "2cf47157946ef0325e969b31572087ff025983e5c50872027aa974be9c260239"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture.material",
+      "local": "cities_do/addons/road-generator/resources/road_texture.material",
+      "sha256": "cc09605f11737a604b68a22a47f2e2907f3fd0436ecd966dcaa1f945fd4ac5f3"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture.png",
+      "local": "cities_do/addons/road-generator/resources/road_texture.png",
+      "sha256": "9d2e84dd19ff9660495b09d72c561a901b05b167f2a9a70f76d97c7f0e0435c6"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_texture.png.import",
+      "sha256": "ded178e9aae9fc1a543e2e07031fe0c481dea95c68a329783b5a2ad8530dd7de"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@1x.png",
+      "local": "cities_do/addons/road-generator/resources/road_texture@1x.png",
+      "sha256": "e34d25f010188fedebe2f5c9b25c3ae060ce1b8faad597c81639e13edbdde546"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@1x.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_texture@1x.png.import",
+      "sha256": "c25357c46ec9f9cc7050227998c448a29fd1b224d6bcbaf534a04b78f8f10c33"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@2x.png",
+      "local": "cities_do/addons/road-generator/resources/road_texture@2x.png",
+      "sha256": "77c70d9c016f25f17b7585021f2341f0d1b8c381e752f051094f29204f458b55"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@2x.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_texture@2x.png.import",
+      "sha256": "4976d0d31345cf9832ea524c3ad593c8d1f532f1aae224956e2a2cba8626c6a8"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@4x.png",
+      "local": "cities_do/addons/road-generator/resources/road_texture@4x.png",
+      "sha256": "db57ea2abe6798b68122410fcc90ad42b500530b02882225b7e6af066849432d"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture@4x.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_texture@4x.png.import",
+      "sha256": "63b90a0c55be8f8f2ff5c9bc7d00eed020a7ab3e6f11bb51f2cdd837cc64c54f"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_texture_template.afdesign",
+      "local": "cities_do/addons/road-generator/resources/road_texture_template.afdesign",
+      "sha256": "c90c6a497a7d0ec28736c5ec0756f20fa848e1315c7d3395d9cec5a609dcb592"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_uv.material",
+      "local": "cities_do/addons/road-generator/resources/road_uv.material",
+      "sha256": "067ea967b0c735a406ceb5de677337752779a6e334b70260ecc7eb2006f3669b"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_uv_grid.png",
+      "local": "cities_do/addons/road-generator/resources/road_uv_grid.png",
+      "sha256": "f4a9b6b4754929a48af458758613c07349dc714af3bc7ed94c7c4da0af6c398b"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/road_uv_grid.png.import",
+      "local": "cities_do/addons/road-generator/resources/road_uv_grid.png.import",
+      "sha256": "2aa2d9e0af5b8966950e2131f6a9fd0e04b27321cf039dbfd9ccddcb1965b8f0"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/rp_gizmo_edgenext.tres",
+      "local": "cities_do/addons/road-generator/resources/rp_gizmo_edgenext.tres",
+      "sha256": "c22b5d8b0abc0e3ce98e1a7bfe23bf4982bfe2e4022ca08de6bb249a725b3796"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/rp_gizmo_edgeprior.tres",
+      "local": "cities_do/addons/road-generator/resources/rp_gizmo_edgeprior.tres",
+      "sha256": "129d3464d5d6d58a2f07b7d851b7b01b1a0523257d93db9701f8dbbff597f200"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/resources/rp_gizmo_fullpiece.tres",
+      "local": "cities_do/addons/road-generator/resources/rp_gizmo_fullpiece.tres",
+      "sha256": "da740b046268d04484b37c7b6343f01e5f11ff527b79513180f8f95cee0a01a3"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/scene/GizmoLaneIndicator.tscn",
+      "local": "cities_do/addons/road-generator/scene/GizmoLaneIndicator.tscn",
+      "sha256": "58cf7be4fa72682977796995c3cfa1f8b69f182c282bd6e53575b99d32109e35"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/connection_tool.gd",
+      "local": "cities_do/addons/road-generator/ui/connection_tool.gd",
+      "sha256": "4d0e609daa14fe08e5443f7db603d7263bb556019a56bed5cd7e67f6bec06ca9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/connection_tool.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/connection_tool.gd.uid",
+      "sha256": "e6b6641592870a4873211cab276b614edd174df9734d0cf996eeadafe1ab5f38"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/hidden_gizmo.gdshader",
+      "local": "cities_do/addons/road-generator/ui/hidden_gizmo.gdshader",
+      "sha256": "068e493ffaa5545eba56b59b3ea7080720da645849febae18b9c3d4820236826"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/hidden_gizmo.gdshader.uid",
+      "local": "cities_do/addons/road-generator/ui/hidden_gizmo.gdshader.uid",
+      "sha256": "657482ee40f8f70365a00622545746293c4f7819254f6d7165e2c80bd4e1d8a7"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/hidden_gizmo_mat.tres",
+      "local": "cities_do/addons/road-generator/ui/hidden_gizmo_mat.tres",
+      "sha256": "3db2160c9ece910ab1bbec61b776f7be30cee7a3dbcef7529673f8d8511d2886"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/rc_submenu.gd",
+      "local": "cities_do/addons/road-generator/ui/rc_submenu.gd",
+      "sha256": "a630334d08490c75cccd0d58d86bb9a6654c7caaf536bcb64cf4bf726955d6b7"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/rc_submenu.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/rc_submenu.gd.uid",
+      "sha256": "2bfe136a5db7e2ac4e53ac3df883ca108777f4dc7262e3fad0a36d23020ad72c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_container_edit.gd",
+      "local": "cities_do/addons/road-generator/ui/road_container_edit.gd",
+      "sha256": "f4b91f26e524e7761802554ffb4215d5d32071a0e910faddd230be38311e1bab"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_container_edit.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_container_edit.gd.uid",
+      "sha256": "1e1eb68b59b2b3403ffb69b312b05d7fe3ffe976a0238f319975e2f84a33c114"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_container_panel.gd",
+      "local": "cities_do/addons/road-generator/ui/road_container_panel.gd",
+      "sha256": "0f1c0204e59afc8db2ff2db3082efa696e571adea59e7c3b549e09650e9b1818"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_container_panel.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_container_panel.gd.uid",
+      "sha256": "43602564d3e06e9636a92b170054fd42253367e81db2cbdb51fe554d71dec595"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_container_panel.tscn",
+      "local": "cities_do/addons/road-generator/ui/road_container_panel.tscn",
+      "sha256": "bce3e416207e99fb800c0ffd3e459edf56c6590ea03877a6b2722a16a088190a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_intersection_gizmo.gd",
+      "local": "cities_do/addons/road-generator/ui/road_intersection_gizmo.gd",
+      "sha256": "b9c756aa405edaa614ec3dc303eb0d11c7bf266762d8a46b827fad7d6f50ea52"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_intersection_gizmo.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_intersection_gizmo.gd.uid",
+      "sha256": "b6c197c34fc817ca4f53cebec83cc38cc1c2d6ab099e2967421f60c90a43276c"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_edit.gd",
+      "local": "cities_do/addons/road-generator/ui/road_point_edit.gd",
+      "sha256": "9f455d43e030c228f7860a9f65d35d1c9475b2bc0fc201f48eb792caa37f22f5"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_edit.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_point_edit.gd.uid",
+      "sha256": "2cf7955f9bb1fbcb031b475e9796f1e30cbdbae9b5140351ac97ee23813aa3cb"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_gizmo.gd",
+      "local": "cities_do/addons/road-generator/ui/road_point_gizmo.gd",
+      "sha256": "7e418553ce28c2027fa3e3631b5e5d895160229488613bf53cde3de2c846555f"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_gizmo.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_point_gizmo.gd.uid",
+      "sha256": "8d6d694a490bc162da97a1cb08917d8dab23a92ff9aeaf94a7c6b1a30be22bb6"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_panel.gd",
+      "local": "cities_do/addons/road-generator/ui/road_point_panel.gd",
+      "sha256": "321cff659cf291bf2908e469010374b5f31ea32a7dda3d136897660074a8bc3a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_panel.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_point_panel.gd.uid",
+      "sha256": "ca89ed0cc0690b4e2c8b279c9b40a6b81549dcdc66a4e1d0db244745eda9e155"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_point_panel.tscn",
+      "local": "cities_do/addons/road-generator/ui/road_point_panel.tscn",
+      "sha256": "1328fcf69395716205e5a628f3caa2488355d272ff106b1d5157a901ea2cecf1"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar.gd",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar.gd",
+      "sha256": "8640ec5b5d458566445beac1f6aee637ac31c6c3db06c6b2240ba9ac7156ac12"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar.gd.uid",
+      "sha256": "b77ee20d82aa983511f588b4da52b9d85f87377e1238ac0c5b0f89817909cd4a"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar.tscn",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar.tscn",
+      "sha256": "563cb9ee0f36363443234dad03271155fb7f9a37acd62b7c7fb1c8f86c193cde"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar_create_menu.gd",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar_create_menu.gd",
+      "sha256": "96dd9db6dc36cdece31d77bbbf414d592bdd3ce9f88451e861b92875130937d9"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar_create_menu.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar_create_menu.gd.uid",
+      "sha256": "1e6afdad006b75f6d60aff2808ee2e996f11e04760bcfc7abe78892d29e5caa0"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar_settings_menu.gd",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar_settings_menu.gd",
+      "sha256": "3ef627a1476d1be64255a2a4ee970f52ad61f9747b624edc98cbd1b2a49de3e1"
+    },
+    {
+      "repository": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/ui/road_toolbar_settings_menu.gd.uid",
+      "local": "cities_do/addons/road-generator/ui/road_toolbar_settings_menu.gd.uid",
+      "sha256": "074f8ef7c75337a37f8a4d05a2f09caeb269a1b7585a69656197620361ff9a99"
+    }
+  ],
+  "local_changes": [
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/3way_1x1.glb.import",
+      "sha256": "2857e660465b4b62ddf7908264f7ba3a6c19d6387e4dc062ecdaf3a9d7af38e7",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/3way_2x2.glb.import",
+      "sha256": "b0dbcc9991b1334fccc615f2ea8e395568f608d58d1ea29699b7489f26bbdebd",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/4way_1x1.glb.import",
+      "sha256": "b66607b1e9c7b197df416fd830611103b4111700a86a1cd7d2806364df65044d",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/4way_2x2.glb.import",
+      "sha256": "205a071386d0310763462a47dcba021beb9ed1f1330fe0fa4161ec289e274317",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/highway_offramp.glb.import",
+      "sha256": "0e78e4e51ebe7093865c24bc5babbfdcf8d4db02a5f3f65943d6ef9cfe90bfd2",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/highway_onramp.glb.import",
+      "sha256": "357d4859bcb37d5a6df487ae2731866ed746abc466f601981e3c213054a9bf47",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_1x1.glb.import",
+      "sha256": "45be689107b551157e0ad73f76a8d16ff5f8e4244285d91857514316a591b7ad",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/roundabout_2x2.glb.import",
+      "sha256": "70e89d35973fa62bf3b5483b2313d85a84e75be9ecafd2a0502140b1c5151993",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_1x1.glb.import",
+      "sha256": "bce4e944bfb305817cbf3f7e77e6fad13f5db7d179eb1fa7119ad77712b5ef77",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/custom_containers/splitter_2x2.glb.import",
+      "sha256": "65648b7e45659f4401fd6435c801a43fd93c04352f2e238ff70e8adf8ebe1351",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_container.png.import",
+      "sha256": "cca59dc010405872d8d443be4922d27b374c4978b2fbc36659d97b3832e612d8",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_intersection.png.import",
+      "sha256": "ac0edeb8aaf12868d66a7199ce50590e404cd4ed398040141c1ade83013909b9",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_lane.png.import",
+      "sha256": "a0c464295974167dce43b178de10f1e0519bf4d53c59e7d5c7968e7afe8c0562",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_lane_agent.png.import",
+      "sha256": "336b09fe7a2f75f58618b1807c69b8e04cd0b26c0042eae65c3022ba42b2f16f",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_manager.png.import",
+      "sha256": "37c7ce2fc7a2e6d277648175b1a6a79ed12557d5391f1766870901d2764cbfda",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_point.png.import",
+      "sha256": "94a135cd548bf126fa2ac743d1374d35ae3a9bcd03983036358ca020dc61906e",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_texture.png.import",
+      "sha256": "b239a0068052f9cbf11dbe95f26529c8c8265dc6cc90b4aaf06e8135550cd857",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_texture@1x.png.import",
+      "sha256": "5ec4e9a49ce0b6e7293b00f56bbd566dc92f46a7c9f044dbc9b1cf7128865009",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_texture@2x.png.import",
+      "sha256": "4ad5b372a6c97c62a4ce1be5e4d29bf19ed89219247b8eaa112ceb916cabfb62",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_texture@4x.png.import",
+      "sha256": "9708693d4f7998078a4389d0c681fcdbb9711a971ea736f458badc153dda88e2",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    },
+    {
+      "local": "cities_do/addons/road-generator/resources/road_uv_grid.png.import",
+      "sha256": "31525e6271c3a965259d9cb5f9e8b379bc4d269104cffe46207378adbe0c4255",
+      "reason": "Godot 4.6.3 regenerated import settings/cache destinations for this project"
+    }
+  ]
+}

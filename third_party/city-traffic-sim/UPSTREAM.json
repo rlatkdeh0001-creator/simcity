@@ -1,0 +1,6 @@
+{
+  "repository": "kristofsw/city-traffic-sim",
+  "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+  "license": "MIT",
+  "usage": "Reference source; ACC formula adapted in traffic_simulation.gd. Not loaded as a Godot project."
+}

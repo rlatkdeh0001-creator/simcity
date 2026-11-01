@@ -1,0 +1,26 @@
+[
+  {
+    "manifest": "cities_do/addons/road-generator/UPSTREAM.json",
+    "checked_files": 125,
+    "recorded_import_changes": 21,
+    "passed": true
+  },
+  {
+    "manifest": ".agents/skills/game-ai/UPSTREAM.json",
+    "checked_files": 3,
+    "recorded_import_changes": 0,
+    "passed": true
+  },
+  {
+    "manifest": ".agents/skills/godot-gdscript/UPSTREAM.json",
+    "checked_files": 2,
+    "recorded_import_changes": 0,
+    "passed": true
+  },
+  {
+    "manifest": ".agents/skills/godot-gdscript-headless-testing/UPSTREAM.json",
+    "checked_files": 1,
+    "recorded_import_changes": 0,
+    "passed": true
+  }
+]

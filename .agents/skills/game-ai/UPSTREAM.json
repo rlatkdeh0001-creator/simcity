@@ -1,0 +1,30 @@
+{
+  "repository": "gamedev-skills/awesome-gamedev-agent-skills",
+  "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "repository": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/disciplines/game-ai/SKILL.md",
+      "local": ".agents/skills/game-ai/SKILL.md",
+      "sha256": "5c193ac1debc8ec9ed8f44be7a05d12d817ac390e1fa82018bcae4f2ff53fbd8"
+    },
+    {
+      "repository": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/disciplines/game-ai/references/behavior-trees.md",
+      "local": ".agents/skills/game-ai/references/behavior-trees.md",
+      "sha256": "eed3fdb943801a7696f2ca03a54d60fc9111a63c5c817e567516b5e2df2c04a9"
+    },
+    {
+      "repository": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/disciplines/game-ai/references/pathfinding.md",
+      "local": ".agents/skills/game-ai/references/pathfinding.md",
+      "sha256": "75d6c8397fc5ff2fb8ac3dd74e7b4f881331f2531f40b6f8db451f14adb6534d"
+    }
+  ],
+  "license_sha256": "6f82dcfeb95a1c0a0452180a3b16f21bf82111780018fed59d95a052b5b75f6c",
+  "notice_sha256": "2dcb65b1c5be24e5ba11e937f3996100f4e980d8cf8ac5b30ba1d70dae6c40f8"
+}

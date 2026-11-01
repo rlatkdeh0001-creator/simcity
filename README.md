@@ -4,7 +4,8 @@
 
 [최초 조사 시 확보된 파일·누락 범위](docs/recovery/RECOVERY_KO.md)를 기록했습니다.
 이후 vehicle 스킬을 고정 커밋에서 재설치하고 [차량 20종을 새로 제작](docs/VEHICLE_FLEET_20_KO.md)했습니다.
-Road Generator와 이전 환경의 후속 건물 애셋은 아직 회수되지 않았습니다.
+Road Generator 0.9.5는 고정 원본에서 재설치해 [도로 주행 AI를 연결·검증](docs/TRAFFIC_AI_KO.md)했습니다.
+이전 환경의 후속 건물 애셋과 도로 수정 어댑터는 아직 회수되지 않았습니다.
 `python3 tools/verify_vehicle_fleet.py`로 차량 파일의 존재·구조를 검사할 수 있습니다.
 
 Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확인된 스킬을 Codex 프로젝트 경로 `.agents/skills/`에 설치했습니다. Claude 로그인이나 Claude Code가 필요하지 않습니다.
@@ -18,6 +19,8 @@ Claude 자체 대신, 공식 Anthropic 스킬 중 Apache-2.0 라이선스가 확
 Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-construction`,
 `cities-do-vehicles`와 MIT 원본 `vehicle`이 있습니다.
 차량 원본의 고정 출처와 해시는 `.agents/skills/vehicle/UPSTREAM.json`에 있습니다.
+도로 주행 개발용 `game-ai`, `godot-gdscript`, `godot-gdscript-headless-testing`도
+원본·참고자료·Apache-2.0 라이선스·고정 출처와 함께 설치했습니다.
 
 - `academy-guide`
 - `algorithmic-art`

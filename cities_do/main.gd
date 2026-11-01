@@ -1,5 +1,8 @@
 extends Node2D
 const RoadGeometry = preload("res://core/road_geometry.gd")
+const Traffic = preload("res://core/traffic_controller.gd")
+var traffic
+var traffic_button: Button
 var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
 const Model = preload("res://core/city_model.gd")
 var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed))
@@ -45,6 +48,8 @@ func _ready():
 
 	var layer := CanvasLayer.new()
 	add_child(layer)
+	traffic = Traffic.new()
+	add_child(traffic)
 	var panel := PanelContainer.new()
 	controls_panel = panel
 	panel.position = Vector2(18, 18)
@@ -104,6 +109,21 @@ func _ready():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://vehicle_showcase.tscn"))
 	box.add_child(vehicle_button)
+	var traffic_row := HBoxContainer.new()
+	traffic_row.visible = not showcase_view
+	box.add_child(traffic_row)
+	traffic_button = Button.new()
+	traffic_button.name = "TrafficToggleButton"
+	traffic_button.text = "도로 주행 시작"
+	traffic_button.pressed.connect(toggle_traffic)
+	traffic_row.add_child(traffic_button)
+	var traffic_demo := Button.new()
+	traffic_demo.name = "TrafficDemoButton"
+	traffic_demo.text = "주행 AI 시험장"
+	traffic_demo.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://traffic_demo.tscn"))
+	traffic_row.add_child(traffic_demo)
 	var parcel_demo := Button.new()
 	parcel_demo.text = "도로 직각 구획 예시"
 	parcel_demo.visible = not showcase_view
@@ -113,13 +133,47 @@ func _ready():
 	box.add_child(parcel_demo)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
-	reset.pressed.connect(func(): city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
+	reset.pressed.connect(func(): stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
 	box.add_child(reset)
 	hud = Label.new()
 	hud.position = Vector2(22, 730)
 	hud.add_theme_font_size_override("font_size", 16)
 	layer.add_child(hud)
 	refresh()
+
+func toggle_traffic():
+	if traffic.running:
+		stop_traffic()
+		message = "도로 주행을 종료했습니다"
+	else:
+		if traffic.rebuild(city.roads):
+			traffic.seed_traffic()
+			traffic_button.text = "도로 주행 종료"
+		message = traffic.status
+	refresh()
+
+func stop_traffic():
+	if traffic != null: traffic.stop()
+	if traffic_button != null: traffic_button.text = "도로 주행 시작"
+
+func _process(delta: float):
+	if traffic != null and traffic.running:
+		traffic.update(delta)
+		queue_redraw()
+
+func draw_traffic():
+	if traffic == null or not traffic.running: return
+	var ordered: Array = traffic.simulation.vehicles.duplicate()
+	ordered.sort_custom(func(a,b):
+		var pa: Vector2 = traffic.simulation.position(a)
+		var pb: Vector2 = traffic.simulation.position(b)
+		return pa.x+pa.y < pb.x+pb.y)
+	for vehicle in ordered:
+		var position_m: Vector2 = traffic.simulation.position(vehicle)
+		var heading: Vector2 = traffic.simulation.heading(vehicle)
+		var texture: Texture2D = traffic.texture_for(vehicle.asset_id, heading)
+		var rect: Rect2 = traffic.sprite_rect(vehicle.asset_id, screen(position_m/4.0), tile.x/4.0*sqrt(2.0)*map_zoom)
+		draw_texture_rect(texture, rect, false)
 
 func pick_rendered_building(position: Vector2) -> Dictionary:
 	var ordered: Array = city.buildings.duplicate()
@@ -208,6 +262,7 @@ func finish_road():
 	if not drawing: return
 	drawing = false
 	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes)
+	if result.ok: stop_traffic()
 	message = "자유 도로 건설 완료" if result.ok else result.reason
 	stroke.clear()
 	refresh()
@@ -273,6 +328,7 @@ func _draw():
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
 		for dash in RoadGeometry.lane_marks(road):
 			draw_line(screen(dash[0]),screen(dash[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
+	draw_traffic()
 	var sorted: Array = city.buildings.duplicate()
 	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))
 	for b in sorted:
