@@ -1,5 +1,15 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+## GitHub에서 결과 보기·다운로드
+
+**[전체 결과·다운로드 안내](docs/GITHUB_DOWNLOADS_KO.md)** ·
+[최신 프로젝트 ZIP](https://github.com/rlatkdeh0001-creator/simcity/releases/download/cities-do-traffic-ai-2026-11-01/cities-do-traffic-ai.zip) ·
+[도로 주행 GIF](docs/screenshots/traffic-ai-running.gif) ·
+[검증 보고서](docs/TRAFFIC_AI_KO.md)
+
+소스·애셋·제작 원본·스킬·라이선스·검증 기록은 이 저장소에 있습니다.
+최신 전체 ZIP과 최초 복구 백업은 [GitHub 릴리스](https://github.com/rlatkdeh0001-creator/simcity/releases/tag/cities-do-traffic-ai-2026-11-01)에서도 받을 수 있습니다.
+
 ## 2026-11-01 복구 조사
 
 [최초 조사 시 확보된 파일·누락 범위](docs/recovery/RECOVERY_KO.md)를 기록했습니다.

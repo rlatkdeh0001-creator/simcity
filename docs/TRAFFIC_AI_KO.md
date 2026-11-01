@@ -1,5 +1,7 @@
 # 도로 주행 AI 도입·검증 · 2026-11-01
 
+[최신 전체 ZIP과 백업 다운로드](GITHUB_DOWNLOADS_KO.md)
+
 [실제 게임 화면](screenshots/traffic-ai-demo.png) ·
 [주행·정지·재출발 GIF](screenshots/traffic-ai-running.gif) ·
 [건설 화면에서 주행](screenshots/traffic-main-ui.png) ·
