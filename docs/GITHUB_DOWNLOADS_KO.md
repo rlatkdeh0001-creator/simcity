@@ -30,7 +30,7 @@
 | [cities-do-recovered-checkout.zip](../downloads/cities-do-recovered-checkout.zip) | 차량 재제작 전 최초 확보한 체크아웃과 복구 조사 |
 | [simcity-before-recovery.tar.gz](../downloads/simcity-before-recovery.tar.gz) | 복구 작업을 시작하기 전의 파일 백업. .git과 .godot 제외 |
 | [simcity-history.bundle](../downloads/simcity-history.bundle) | 최초 복구 조사 시점의 Git 참조·이력 백업 |
-| [SHA256SUMS.txt](../downloads/SHA256SUMS.txt) | 全 아카이브의 SHA-256 |
+| [SHA256SUMS.txt](../downloads/SHA256SUMS.txt) | 모든 아카이브의 SHA-256 |
 | [ARCHIVES.json](../downloads/ARCHIVES.json) | 파일 크기·해시와 최신 패키지의 소스 커밋 |
 
 나머지 첨부 파일도 downloads 폴더에서 받을 수 있다.
