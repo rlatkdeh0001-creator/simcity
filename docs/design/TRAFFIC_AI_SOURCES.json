@@ -1,0 +1,191 @@
+{
+  "checked_date": "2026-11-01",
+  "timezone": "Asia/Seoul",
+  "scope": "Read-only source/license review; no candidate installed or executed",
+  "files": [
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/README.md",
+      "sha256": "413b826525352a479beaa4ebf1c483ce5ff0648d2cf9dd2c42c9f902ad4b3b26",
+      "bytes": 9704
+    },
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/LICENSE",
+      "sha256": "b37310d8916b4cc7d3161ec4bb693d3ac4ae1885b607aee6904aa8ee6df6abe8",
+      "bytes": 1077
+    },
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/plugin.cfg",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/addons/road-generator/plugin.cfg",
+      "sha256": "126159d4a09c13d0abe85ec1a38e4770b411e445b80a9edb90e198c7084edbfe",
+      "bytes": 192
+    },
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane_agent.gd",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/addons/road-generator/nodes/road_lane_agent.gd",
+      "sha256": "48eec3fb6d591bfd9de6c24cfdd2b9870131e407291480367a5eeac6ea1a922b",
+      "bytes": 13972
+    },
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "addons/road-generator/nodes/road_lane.gd",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/addons/road-generator/nodes/road_lane.gd",
+      "sha256": "3361d3e3a4690b4df725f2de616cdf33a4997bfe4d10e4a29347c74fbc295dbe",
+      "bytes": 10163
+    },
+    {
+      "repo": "TheDuckCow/godot-road-generator",
+      "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+      "path": "road_demos/navigation/astar_lane_graph.gd",
+      "url": "https://raw.githubusercontent.com/TheDuckCow/godot-road-generator/7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0/road_demos/navigation/astar_lane_graph.gd",
+      "sha256": "049dc9fda906e72b95aa353d03a9a52fceeaeeb7c6f1435f45333f750decb6f9",
+      "bytes": 8688
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/README.md",
+      "sha256": "6accab63914fa2af719d8b5779119c4450767dc254c1081a455d6b92260a70a5",
+      "bytes": 21108
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/LICENSE",
+      "sha256": "6f82dcfeb95a1c0a0452180a3b16f21bf82111780018fed59d95a052b5b75f6c",
+      "bytes": 11395
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/disciplines/game-ai/SKILL.md",
+      "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/game-ai/SKILL.md",
+      "sha256": "5c193ac1debc8ec9ed8f44be7a05d12d817ac390e1fa82018bcae4f2ff53fbd8",
+      "bytes": 8315
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/godot/godot-gdscript/SKILL.md",
+      "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/godot/godot-gdscript/SKILL.md",
+      "sha256": "9039fb6de0980495fbc77fb87aae22256d92e7b5cca558b9e318b53dbf557459",
+      "bytes": 5723
+    },
+    {
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9",
+      "path": "skills/godot/godot-gdscript-headless-testing/SKILL.md",
+      "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/godot/godot-gdscript-headless-testing/SKILL.md",
+      "sha256": "980ecf1815cb179bc92749e419e3d5c87cc998413c57ed87035e34dc45e87034",
+      "bytes": 9866
+    },
+    {
+      "repo": "kristofsw/city-traffic-sim",
+      "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/kristofsw/city-traffic-sim/cd0e2b82f74851821d33d93e17b05b8d9754c84b/README.md",
+      "sha256": "89c41b24e17d540d586b5ee5bc56c3f74a6ac53d4fe74854ae981d1dca39dac5",
+      "bytes": 19161
+    },
+    {
+      "repo": "kristofsw/city-traffic-sim",
+      "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/kristofsw/city-traffic-sim/cd0e2b82f74851821d33d93e17b05b8d9754c84b/LICENSE",
+      "sha256": "368ed9ab029d7a966500e80882da08616611d8c25372fa955d641c851bf9e3b7",
+      "bytes": 1071
+    },
+    {
+      "repo": "kristofsw/city-traffic-sim",
+      "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+      "path": "project.godot",
+      "url": "https://raw.githubusercontent.com/kristofsw/city-traffic-sim/cd0e2b82f74851821d33d93e17b05b8d9754c84b/project.godot",
+      "sha256": "085c567469e664956aa2f728de13c00d4ee4c99e50236a0a840a3c3223f0cbdd",
+      "bytes": 1553
+    },
+    {
+      "repo": "kristofsw/city-traffic-sim",
+      "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+      "path": "scripts/traffic_system.gd",
+      "url": "https://raw.githubusercontent.com/kristofsw/city-traffic-sim/cd0e2b82f74851821d33d93e17b05b8d9754c84b/scripts/traffic_system.gd",
+      "sha256": "3d8d2727a2af8428849863622ab167348a440c424a5df3e7fb6057616dcc4381",
+      "bytes": 9641
+    },
+    {
+      "repo": "kristofsw/city-traffic-sim",
+      "commit": "cd0e2b82f74851821d33d93e17b05b8d9754c84b",
+      "path": "scripts/vehicle_mover.gd",
+      "url": "https://raw.githubusercontent.com/kristofsw/city-traffic-sim/cd0e2b82f74851821d33d93e17b05b8d9754c84b/scripts/vehicle_mover.gd",
+      "sha256": "dd14b797d3cfc31dbf0cb3281a6528c3d7f66e7549b3b8be7641205e715142bf",
+      "bytes": 15625
+    },
+    {
+      "repo": "RichtersFinger/DuckTraffic",
+      "commit": "c26a82c635233b31de934c4ec19edba637d25dea",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/RichtersFinger/DuckTraffic/c26a82c635233b31de934c4ec19edba637d25dea/README.md",
+      "sha256": "eaa6dd239b53237005b937004a24e27170b8e5ac5cc249063f7589faff4397d1",
+      "bytes": 1342
+    },
+    {
+      "repo": "RichtersFinger/DuckTraffic",
+      "commit": "c26a82c635233b31de934c4ec19edba637d25dea",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/RichtersFinger/DuckTraffic/c26a82c635233b31de934c4ec19edba637d25dea/LICENSE",
+      "sha256": "b56255772a3cb00f72f436d15aab8ab0a0a644848f8ad98cb95a2266fb2d2cce",
+      "bytes": 1079
+    },
+    {
+      "repo": "eclipse-sumo/sumo",
+      "commit": "ed53a811e23e328441fa67b84bb722bad6d8d0b0",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/ed53a811e23e328441fa67b84bb722bad6d8d0b0/README.md",
+      "sha256": "8fbdff07ea0fe5327371dd1d7c993a42885fe2be7690454b49e199d9bb4b3fd8",
+      "bytes": 5612
+    },
+    {
+      "repo": "eclipse-sumo/sumo",
+      "commit": "ed53a811e23e328441fa67b84bb722bad6d8d0b0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/ed53a811e23e328441fa67b84bb722bad6d8d0b0/LICENSE",
+      "sha256": "8c349f80764d0648e645f41ef23772a70c995a0924b5235f735f4a3d09df127c",
+      "bytes": 14197
+    },
+    {
+      "repo": "eclipse-sumo/sumo",
+      "commit": "ed53a811e23e328441fa67b84bb722bad6d8d0b0",
+      "path": "docs/web/docs/TraCI/index.md",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/ed53a811e23e328441fa67b84bb722bad6d8d0b0/docs/web/docs/TraCI/index.md",
+      "sha256": "677a5f79ed38a32840104ed8e8fcf8f615e689440cab4e25cda1ef5ba5b30fed",
+      "bytes": 16308
+    },
+    {
+      "repo": "eclipse-sumo/sumo",
+      "commit": "ed53a811e23e328441fa67b84bb722bad6d8d0b0",
+      "path": "docs/web/docs/TraCI/Interfacing_TraCI_from_Python.md",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/ed53a811e23e328441fa67b84bb722bad6d8d0b0/docs/web/docs/TraCI/Interfacing_TraCI_from_Python.md",
+      "sha256": "3387548cfca95ec205125897b490dfaf357ac96538a74ef5311a72357de77446",
+      "bytes": 18469
+    },
+    {
+      "repo": "eclipse-sumo/sumo",
+      "commit": "ed53a811e23e328441fa67b84bb722bad6d8d0b0",
+      "path": "docs/web/docs/Car-Following-Models/index.md",
+      "url": "https://raw.githubusercontent.com/eclipse-sumo/sumo/ed53a811e23e328441fa67b84bb722bad6d8d0b0/docs/web/docs/Car-Following-Models/index.md",
+      "sha256": "f5a3f3bb633e6a786185ca9b183cb7f15056c52a59c210a1f2412b006fbcf0ab",
+      "bytes": 5088
+    }
+  ]
+}
