@@ -1,0 +1,8 @@
+{
+  "skill": "cities-do-modular-facilities",
+  "metadata_validator": "skill-creator/scripts/quick_validate.py",
+  "metadata_passed": true,
+  "python_component_checks": true,
+  "claude_cli_evaluation": false,
+  "model_comparison_benchmark": false
+}

@@ -1,0 +1,21 @@
+{
+  "skill_name": "cities-do-modular-facilities",
+  "scope": "Implementation acceptance fixtures; no model comparison benchmark",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "소형 중형 대형 평면 주차장을 변끼리 붙여 한 단지로 만들어줘",
+      "expected_output": "한 연결 그룹, 내부 경계 제거, 합산 28면"
+    },
+    {
+      "id": 2,
+      "prompt": "L자 주차장의 연결 부분을 철거해줘",
+      "expected_output": "모서리 접촉만 남으면 두 단지로 분리"
+    },
+    {
+      "id": 3,
+      "prompt": "옆 주차타워와 구멍 있는 모양도 합쳐봐",
+      "expected_output": "타워는 제외하고 구멍은 채우지 않음"
+    }
+  ]
+}

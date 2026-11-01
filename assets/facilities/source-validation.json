@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "id": "park-garden-2x2",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "park-play-4x4",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "park-plaza-4x4",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "park-pocket-2x2",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "parking-large-4x8",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "parking-medium-4x4",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "parking-small-2x4",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "flat_ground_axis": true,
+        "four_decks_only": true,
+        "no_external_images": true
+      },
+      "passed": true
+    }
+  ]
+}

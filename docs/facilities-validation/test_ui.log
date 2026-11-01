@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS 100x100 scene starts empty with no zoning grid
+PASS elevated roof can be selected
+PASS isometric click selects building and displays score
+PASS upgrade button calls simulation
+PASS map input creates 2x2 building
+PASS blocked construction reports reason
+PASS free road pointer stroke retains fractional geometry

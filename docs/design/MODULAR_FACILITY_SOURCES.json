@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/disciplines/procedural-gen/SKILL.md",
+    "sha256": "4bd422eff2c28dbb12e0edf7ef68f3e98bcbbdf4d430815ba6da2d0692630cc4"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/gamedev-skills/awesome-gamedev-agent-skills/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9/skills/godot/godot-tilemap/SKILL.md",
+    "sha256": "c92a7103c764963a4d065a637941bb537f2409e54277d05aa05ea2bf8fc75971"
+  }
+]

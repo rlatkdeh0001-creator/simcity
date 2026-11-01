@@ -6,7 +6,7 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 현재 설치 목록: 로컬 19종
+## 현재 설치 목록: 로컬 20종
 
 아래 경로는 모두 `.agents/skills/<이름>/SKILL.md`다.
 설치만 한 스킬을 실제 제작에 적용했다고 간주하지 않는다.
@@ -27,6 +27,7 @@
 | web-artifacts-builder | 웹 초기화·빌드·단일 HTML | 이전 작업에서 Vite/TypeScript/Parcel 실행 기록. 최신 의존성 보정 필요 |
 | webapp-testing | Playwright 웹 테스트 | 이전 작업에서 데스크톱/모바일 조작·번들 검사 성공 |
 | cities-do-construction | 이 게임의 건설·성장·구획 | 로컬 프로젝트 지침. 기존 Godot 도시·UI·애셋·도로·구획·전시 검사에 적용 |
+| cities-do-modular-facilities | 공원·직사각형 주차 시설·연결 단지 | 자체 작성. 평면 주차장 결합/내부 경계 제거/철거 분리/한 결합 메시를 69개 검사로 검증 |
 | vehicle | Blender 차량 모델링·리그 | 원본 재설치. common.py의 도형·피벗 헬퍼를 차량 20종 생성기에 실제 사용 |
 | cities-do-vehicles | 차량 원본 스킬의 게임용 적응 | 이번 대화에서 새로 작성. 미터 단위·좌표계·우측통행·출력·출처·검증 규약 적용 |
 | game-ai | 상태·경로·이동 분리, A* | 차선 그래프/교통 상태/렌더 어댑터 분리와 경로 재사용에 적용 |
@@ -51,7 +52,7 @@ Parcel 리소스 처리 등 보정 기록은 validation/RESULTS.md에 있다.
 Claude 로그인 없는 문서 읽기·로컬 실행 경로와 Claude CLI 전용 자동 평가를 구분한다.
 docx/pdf/pptx/xlsx 같은 별도 라이선스 스킬은 설치 목록에 없다.
 
-### CITIES_DO 프로젝트 스킬 2종
+### CITIES_DO 프로젝트 스킬 3종
 
 - [cities-do-construction](../.agents/skills/cities-do-construction/SKILL.md): 기존 저장소의 자체 지침.
   건설/성장 로직과 렌더 분리, 회전 부지, 난수 분리, 기존 검사 보존을 다룬다.
@@ -59,6 +60,8 @@ docx/pdf/pptx/xlsx 같은 별도 라이선스 스킬은 설치 목록에 없다.
   오래된 기획·임시 수치보다 최신 사용자 합의와 실제 코드 상태를 우선한다.
 - [cities-do-vehicles](../.agents/skills/cities-do-vehicles/SKILL.md): 2026-11-01 재작성본.
   이전 환경의 수정본을 회수한 것이 아니다. 새 스킬을 작성했다는 사실과 원본 재설치를 구분한다.
+
+- [cities-do-modular-facilities](../.agents/skills/cities-do-modular-facilities/SKILL.md): 이번 요청으로 자체 작성. procedural-gen/godot-tilemap은 검토한 참고 지침이며 설치하지 않았다. [제작·69개 시설 검사·한계](PARKS_PARKING_KO.md), [검색 출처](design/MODULAR_FACILITY_RESEARCH_KO.md)를 따른다. skill-creator는 작성 원칙만 참고했고 자동 에이전트 평가를 실행하지 않았다.
 
 ### vehicle: 로컬 Blender로 차량 20종
 
@@ -95,9 +98,13 @@ Apache-2.0. 각 설치 폴더의 SKILL.md·하위 참고자료·LICENSE·NOTICE�
 | 건물 애셋 제작 | `assets/mansion-study/build_mansions.py`, `assets/residential-eight/build_residentials.py` | 로컬 Blender Python 경로가 확인됨. 외부 건물 전용 스킬을 도입했다고 지어내지 말 것. 후보 조사는 docs/asset-skills/RESEARCH_KO.md |
 
 cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setup은 플랫폼에서
-제공되는 환경 스킬이다. Git의 로컬 19종에 포함하지 않는다. 이번 대화에서는 runtime의
+제공되는 환경 스킬이다. Git의 로컬 20종에 포함하지 않는다. 이번 대화에서는 runtime의
 네트워크·연결 진단 지침을 사용했다. setup의 과거 사용 기록이 있지만 이번에 환경 설정을
 저장/게시한 것은 아니다. 새 채팅에서 제공 여부를 다시 확인하고 읽는다.
+
+## 공원·주차 시설 후속 작업
+
+공원 4종과 주차 시설 4종, 평면 주차장 결합 로직·전시를 새로 제작했다. Blender/GLB/PNG/생성기/시설 검사를 Git에 보존했다. 일반 도시의 시설 배치·도로 접면·주차 수요·차량 입출고 AI는 아직 연결하지 않았다. 기존 ZIP은 과거 스냅샷이며 새 제작 묶음과 최신 main을 확인한다.
 
 ## 검증 상태와 다음 작업
 

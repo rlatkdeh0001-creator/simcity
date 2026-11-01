@@ -109,6 +109,14 @@ func _ready():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://vehicle_showcase.tscn"))
 	box.add_child(vehicle_button)
+	var facility_button := Button.new()
+	facility_button.name = "FacilitiesShowcaseButton"
+	facility_button.text = "공원·주차 시설 전시"
+	facility_button.visible = not showcase_view
+	facility_button.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://facilities_showcase.tscn"))
+	box.add_child(facility_button)
 	var traffic_row := HBoxContainer.new()
 	traffic_row.visible = not showcase_view
 	box.add_child(traffic_row)

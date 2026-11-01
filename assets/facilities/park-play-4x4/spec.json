@@ -1,0 +1,25 @@
+{
+  "id": "park-play-4x4",
+  "name": "놀이터 공원",
+  "kind": "park",
+  "width": 4,
+  "depth": 4,
+  "storeys": 0,
+  "style": "play",
+  "capacity": 0,
+  "metres": [
+    16,
+    16
+  ],
+  "model": "res://assets/facilities/park-play-4x4.glb",
+  "preview": "res://assets/facilities/park-play-4x4.png",
+  "source": "assets/facilities/park-play-4x4/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 30.483344755885643,
+    "camera_elevation_deg": 30
+  }
+}

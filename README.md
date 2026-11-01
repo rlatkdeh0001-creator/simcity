@@ -2,6 +2,12 @@
 
 **새 담당자 시작점: [스킬 인계장 · 익힌 내용과 검증 범위](docs/SKILL_HANDOFF_KO.md)**
 
+## 공원·주차 시설
+
+[공원 4종·주차 시설 4종과 평면 주차장 결합](docs/PARKS_PARKING_KO.md) · [실제 게임 화면](docs/screenshots/facilities-8.png) · [결합 예시](docs/screenshots/parking-merged.png)
+
+전용 `cities-do-modular-facilities` 지침을 추가했습니다. 건설 화면의 **공원·주차 시설 전시**에서 확인할 수 있습니다.
+
 ## GitHub에서 결과 보기·다운로드
 
 **[전체 결과·다운로드 안내](docs/GITHUB_DOWNLOADS_KO.md)** ·

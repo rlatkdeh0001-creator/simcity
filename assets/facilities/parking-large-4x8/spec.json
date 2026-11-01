@@ -1,0 +1,24 @@
+{
+  "id": "parking-large-4x8",
+  "name": "대형 주차장",
+  "kind": "surface_parking",
+  "width": 4,
+  "depth": 8,
+  "storeys": 0,
+  "capacity": 16,
+  "metres": [
+    16,
+    32
+  ],
+  "model": "res://assets/facilities/parking-large-4x8.glb",
+  "preview": "res://assets/facilities/parking-large-4x8.png",
+  "source": "assets/facilities/parking-large-4x8/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 20.32222885260504,
+    "camera_elevation_deg": 30
+  }
+}

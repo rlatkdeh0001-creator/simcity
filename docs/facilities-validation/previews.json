@@ -1,0 +1,82 @@
+[
+  {
+    "id": "park-pocket-2x2",
+    "passed": true,
+    "bounds": [
+      55,
+      75,
+      745,
+      571
+    ]
+  },
+  {
+    "id": "park-garden-2x2",
+    "passed": true,
+    "bounds": [
+      55,
+      171,
+      745,
+      571
+    ]
+  },
+  {
+    "id": "park-plaza-4x4",
+    "passed": true,
+    "bounds": [
+      55,
+      113,
+      745,
+      542
+    ]
+  },
+  {
+    "id": "park-play-4x4",
+    "passed": true,
+    "bounds": [
+      55,
+      177,
+      745,
+      542
+    ]
+  },
+  {
+    "id": "parking-small-2x4",
+    "passed": true,
+    "bounds": [
+      54,
+      193,
+      746,
+      552
+    ]
+  },
+  {
+    "id": "parking-medium-4x4",
+    "passed": true,
+    "bounds": [
+      54,
+      187,
+      746,
+      543
+    ]
+  },
+  {
+    "id": "parking-large-4x8",
+    "passed": true,
+    "bounds": [
+      54,
+      180,
+      746,
+      533
+    ]
+  },
+  {
+    "id": "parking-tower-4x4-4f",
+    "passed": true,
+    "bounds": [
+      106,
+      47,
+      694,
+      633
+    ]
+  }
+]

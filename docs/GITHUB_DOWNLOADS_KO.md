@@ -4,6 +4,12 @@
 라이선스, 조사 보고서, 테스트 로그와 화면 자료는 모두 Git에 저장돼 있다.
 클라우드 작업 공간을 열지 않아도 아래 링크로 볼 수 있다.
 
+## 공원·주차 시설 추가
+
+[8종 제작·결합 보고서](PARKS_PARKING_KO.md) · [8종 화면](screenshots/facilities-8.png) · [결합 화면](screenshots/parking-merged.png)
+
+[새 시설 제작 묶음](../downloads/cities-do-parks-parking-8.zip)은 원본·애셋·결합 코드·전용 스킬을 담습니다. 게임 실행은 저장소 최신 main을 사용하세요. 아래 전체 프로젝트 ZIP은 주행 AI 완료 시점의 스냅샷이며 새 공원·주차 시설은 포함하지 않습니다.
+
 ## 최신 작업
 
 - [도로 주행 AI 도입·테스트 결과](TRAFFIC_AI_KO.md)

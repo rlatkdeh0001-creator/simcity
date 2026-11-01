@@ -1,0 +1,200 @@
+{
+  "facilities": [
+    {
+      "id": "park-pocket-2x2",
+      "name": "쉼터 공원",
+      "kind": "park",
+      "width": 2,
+      "depth": 2,
+      "storeys": 0,
+      "style": "pocket",
+      "capacity": 0,
+      "metres": [
+        8,
+        8
+      ],
+      "model": "res://assets/facilities/park-pocket-2x2.glb",
+      "preview": "res://assets/facilities/park-pocket-2x2.png",
+      "source": "assets/facilities/park-pocket-2x2/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 60.966689511771285,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "park-garden-2x2",
+      "name": "꽃정원 공원",
+      "kind": "park",
+      "width": 2,
+      "depth": 2,
+      "storeys": 0,
+      "style": "garden",
+      "capacity": 0,
+      "metres": [
+        8,
+        8
+      ],
+      "model": "res://assets/facilities/park-garden-2x2.glb",
+      "preview": "res://assets/facilities/park-garden-2x2.png",
+      "source": "assets/facilities/park-garden-2x2/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 60.966689511771285,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "park-plaza-4x4",
+      "name": "분수 광장 공원",
+      "kind": "park",
+      "width": 4,
+      "depth": 4,
+      "storeys": 0,
+      "style": "plaza",
+      "capacity": 0,
+      "metres": [
+        16,
+        16
+      ],
+      "model": "res://assets/facilities/park-plaza-4x4.glb",
+      "preview": "res://assets/facilities/park-plaza-4x4.png",
+      "source": "assets/facilities/park-plaza-4x4/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 30.483344755885643,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "park-play-4x4",
+      "name": "놀이터 공원",
+      "kind": "park",
+      "width": 4,
+      "depth": 4,
+      "storeys": 0,
+      "style": "play",
+      "capacity": 0,
+      "metres": [
+        16,
+        16
+      ],
+      "model": "res://assets/facilities/park-play-4x4.glb",
+      "preview": "res://assets/facilities/park-play-4x4.png",
+      "source": "assets/facilities/park-play-4x4/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 30.483344755885643,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "parking-small-2x4",
+      "name": "소형 주차장",
+      "kind": "surface_parking",
+      "width": 2,
+      "depth": 4,
+      "storeys": 0,
+      "capacity": 4,
+      "metres": [
+        8,
+        16
+      ],
+      "model": "res://assets/facilities/parking-small-2x4.glb",
+      "preview": "res://assets/facilities/parking-small-2x4.png",
+      "source": "assets/facilities/parking-small-2x4/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 40.64445770521008,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "parking-medium-4x4",
+      "name": "중형 주차장",
+      "kind": "surface_parking",
+      "width": 4,
+      "depth": 4,
+      "storeys": 0,
+      "capacity": 8,
+      "metres": [
+        16,
+        16
+      ],
+      "model": "res://assets/facilities/parking-medium-4x4.glb",
+      "preview": "res://assets/facilities/parking-medium-4x4.png",
+      "source": "assets/facilities/parking-medium-4x4/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 30.483344755885643,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "parking-large-4x8",
+      "name": "대형 주차장",
+      "kind": "surface_parking",
+      "width": 4,
+      "depth": 8,
+      "storeys": 0,
+      "capacity": 16,
+      "metres": [
+        16,
+        32
+      ],
+      "model": "res://assets/facilities/parking-large-4x8.glb",
+      "preview": "res://assets/facilities/parking-large-4x8.png",
+      "source": "assets/facilities/parking-large-4x8/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 20.32222885260504,
+        "camera_elevation_deg": 30
+      }
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "name": "4층 주차타워",
+      "kind": "parking_tower",
+      "width": 4,
+      "depth": 4,
+      "storeys": 4,
+      "capacity": 16,
+      "metres": [
+        16,
+        16
+      ],
+      "model": "res://assets/facilities/parking-tower-4x4-4f.glb",
+      "preview": "res://assets/facilities/parking-tower-4x4-4f.png",
+      "source": "assets/facilities/parking-tower-4x4-4f/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 25.95443550750022,
+        "camera_elevation_deg": 30
+      }
+    }
+  ]
+}

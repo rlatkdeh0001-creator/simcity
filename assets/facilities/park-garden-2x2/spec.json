@@ -1,0 +1,25 @@
+{
+  "id": "park-garden-2x2",
+  "name": "꽃정원 공원",
+  "kind": "park",
+  "width": 2,
+  "depth": 2,
+  "storeys": 0,
+  "style": "garden",
+  "capacity": 0,
+  "metres": [
+    8,
+    8
+  ],
+  "model": "res://assets/facilities/park-garden-2x2.glb",
+  "preview": "res://assets/facilities/park-garden-2x2.png",
+  "source": "assets/facilities/park-garden-2x2/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 60.966689511771285,
+    "camera_elevation_deg": 30
+  }
+}

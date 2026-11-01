@@ -1,0 +1,24 @@
+{
+  "id": "parking-tower-4x4-4f",
+  "name": "4층 주차타워",
+  "kind": "parking_tower",
+  "width": 4,
+  "depth": 4,
+  "storeys": 4,
+  "capacity": 16,
+  "metres": [
+    16,
+    16
+  ],
+  "model": "res://assets/facilities/parking-tower-4x4-4f.glb",
+  "preview": "res://assets/facilities/parking-tower-4x4-4f.png",
+  "source": "assets/facilities/parking-tower-4x4-4f/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 25.95443550750022,
+    "camera_elevation_deg": 30
+  }
+}
