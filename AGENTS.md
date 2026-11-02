@@ -44,6 +44,17 @@ values. Preserve units, approval/application status and source locations. It is
 currently a management sheet, not a runtime loader; synchronize live code/JSON
 when applying approved edits. Blank undecided values are not zero.
 
+## Building frontage (user rule, 2026-11-02)
+
+A building's main entrance/front must face its accessible local road, not a fixed
+screen compass direction. Read `docs/BUILDING_FRONTAGE_KO.md`. Store the frontage
+road's stable ID and world front direction. Apply the same direction to placement,
+growth, rendering and picking; preserve square lots and physical scale. At corners,
+keep a valid existing frontage. Rebind when it disappears; highways do not provide
+frontage. Use original-direction sprites only when they match; use real rotated
+3D/directional assets for other views, never warp a fixed-camera image. Future
+assets and eventual save-game serialization must honor this rule too.
+
 ## Shared asset scale
 
 Keep 1 city cell = 4 metres. Vehicle and building rendering must share a physical

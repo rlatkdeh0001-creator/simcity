@@ -30,7 +30,7 @@ func run():
 	scene.mode = "select"
 	click(scene, Vector2(10.5,17.5))
 	verify(scene.selected == 1 and "120" in scene.info.text, "isometric click selects building and displays score")
-	var panel = scene.get_child(0).get_child(0).get_child(0)
+	var panel = scene.controls_panel.get_child(0)
 	for child in panel.get_children():
 		if child is Button and child.text == "선택 건물 업그레이드": child.emit_signal("pressed")
 	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")

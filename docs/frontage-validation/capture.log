@@ -1,0 +1,11 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+FRONTAGE_CAPTURE 1 facing=(0.0, 1.0) road=0
+FRONTAGE_CAPTURE 2 facing=(0.0, -1.0) road=1
+FRONTAGE_CAPTURE 3 facing=(-1.0, 0.0) road=2
+FRONTAGE_CAPTURE 4 facing=(1.0, 0.0) road=3
+FRONTAGE_CAPTURE 5 facing=(-0.529999, 0.847998) road=4
+FRONTAGE_CAPTURE 6 facing=(0.529999, -0.847998) road=4

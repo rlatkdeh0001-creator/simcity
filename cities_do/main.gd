@@ -19,6 +19,8 @@ var showcase_view := false
 var controls_panel: PanelContainer
 var building_textures := {}
 var building_images := {}
+const BuildingViews = preload("res://core/building_views.gd")
+var building_views
 var mode := "select"
 var demolition_hover := {}
 var zone := "residential"
@@ -53,6 +55,10 @@ func _ready():
 		if texture != null:
 			building_textures[asset.id] = texture
 			building_images[asset.id] = texture.get_image()
+
+	building_views = BuildingViews.new()
+	add_child(building_views)
+	building_views.changed.connect(queue_redraw)
 
 	var layer := CanvasLayer.new()
 	add_child(layer)
@@ -242,19 +248,34 @@ func draw_traffic():
 		var rect: Rect2 = traffic.sprite_rect(vehicle.asset_id, screen(position_m/4.0), tile.x/4.0*sqrt(2.0)*map_zoom)
 		draw_texture_rect(texture, rect, false)
 
+func building_visual(b: Dictionary) -> Dictionary:
+	var asset: Dictionary=city.catalog.get_asset(b.get("asset_id",""))
+	if asset.is_empty():return {}
+	if city.supports_static_sprite(b) and building_textures.has(asset.id):
+		var bounds: Rect2=city.Parcels.bounds(city.footprint(b))
+		return {"texture":building_textures[asset.id],"image":building_images[asset.id],
+			"rect":city.catalog.sprite_rect(asset,screen(bounds.end),tile.x*2*map_zoom)}
+	var view: Dictionary=building_views.view(asset,city.front_direction(b))
+	if view.is_empty():return {}
+	var center:=Vector2.ZERO
+	for point in city.footprint(b):center+=point
+	center/=4
+	var scale_factor: float=tile.x/4*sqrt(2.0)*map_zoom/view.ppm
+	return {"texture":view.texture,"image":view.image,
+		"rect":Rect2(screen(center)-view.anchor*scale_factor,Vector2(view.image.get_size())*scale_factor)}
+
 func pick_rendered_building(position: Vector2) -> Dictionary:
 	var ordered: Array = city.buildings.duplicate()
 	ordered.sort_custom(func(a, b): return building_depth(a) > building_depth(b))
 	for b in ordered:
-		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
-		if not asset.is_empty() and building_images.has(asset.id) and city.supports_static_sprite(b):
-			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
+		var visual:=building_visual(b)
+		if not visual.is_empty():
+			var rect: Rect2=visual.rect
 			if rect.has_point(position):
-				var uv := (position - rect.position) / rect.size
-				var image: Image = building_images[asset.id]
-				var pixel := Vector2i(uv * Vector2(image.get_size()))
-				if image.get_pixelv(pixel).a > 0.1:
-					return b
+				var uv := (position-rect.position)/rect.size
+				var image: Image=visual.image
+				var pixel:=Vector2i(uv*Vector2(image.get_size()))
+				if image.get_pixelv(pixel).a>.1:return b
 			continue
 		var base := projected_footprint(b)
 		var top := lifted_footprint(b,visual_lift(b))
@@ -446,6 +467,21 @@ func demolition_target(position: Vector2) -> Dictionary:
 				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":road}
 	return {}
 
+func draw_front_door(b: Dictionary):
+	var footprint: PackedVector2Array=city.footprint(b)
+	var center:=Vector2.ZERO
+	for point in footprint:center+=point
+	center/=4
+	var front: Vector2=city.front_direction(b)
+	var middle:=center+front*float(b.size)/2
+	var side:=Vector2(-front.y,front.x)*.15
+	var lift:=Vector2(0,minf(visual_lift(b)*map_zoom*.8,2.2*tile.x/4*sqrt(1.5)*map_zoom))
+	var left:=screen(middle-side)
+	var right:=screen(middle+side)
+	# A back-facing door is hidden by the roof/body, as on the 3D asset.
+	if screen(middle).y<screen(center).y-.001:return
+	draw_colored_polygon(PackedVector2Array([left,right,right-lift,left-lift]),Color("293c46"))
+
 func _draw():
 	# One terrain polygon, no full-map cell array or always-on grid.
 	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
@@ -487,13 +523,13 @@ func _draw():
 	var sorted: Array = city.buildings.duplicate()
 	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))
 	for b in sorted:
-		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
-		if not asset.is_empty() and building_textures.has(asset.id) and city.supports_static_sprite(b):
-			var rect: Rect2 = city.catalog.sprite_rect(asset, screen(Vector2(b.x + b.size, b.y + b.size)), tile.x * 2 * map_zoom)
-			draw_texture_rect(building_textures[asset.id], rect, false)
-			if b.id == selected:
-				var outline := polygon(b.x, b.y, b.size)
-				draw_polyline(PackedVector2Array([outline[1],outline[2],outline[3]]), Color.WHITE, 2)
+		var visual:=building_visual(b)
+		if not visual.is_empty():
+			draw_texture_rect(visual.texture,visual.rect,false)
+			if b.id==selected:
+				var outline:=projected_footprint(b)
+				outline.append(outline[0])
+				draw_polyline(outline,Color.WHITE,2)
 			continue
 		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
 		var base := projected_footprint(b)
@@ -505,6 +541,7 @@ func _draw():
 		faces.sort_custom(func(a,c):return a.depth<c.depth)
 		for face in faces:draw_colored_polygon(face.points,color.darkened(face.shade))
 		draw_colored_polygon(top, color)
+		draw_front_door(b)
 		if b.id == selected:
 			var outline := top.duplicate()
 			outline.append(top[0])

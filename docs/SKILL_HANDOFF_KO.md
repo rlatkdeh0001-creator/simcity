@@ -6,6 +6,31 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 건물 정면을 출입 도로로 향하게 연결 (2026-11-02)
+
+사용자 확정: 모든 건물의 정면·주출입구는 그 건물에 접근 가능한 일반도로 쪽이다.
+AGENTS.md와 construction 스킬/참조 규칙에 보존했다. 최신 구현과 남은 범위는
+[건물 정면 규칙](BUILDING_FRONTAGE_KO.md)에 있다.
+
+기존 `.agents/skills/cities-do-construction/SKILL.md`, `godot-gdscript/SKILL.md`,
+`godot-gdscript-headless-testing/SKILL.md`를 적용했다. 새 외부 스킬·애셋 설치는 없다.
+자체 구현은 `core/building_frontage.gd`, `core/building_views.gd`, city_model/main 연결,
+`tools/export_building_models.py`, `tools/capture_building_frontage.gd`다.
+기존 자체 제작 .blend 10개를 GLB로 내보냈으며 원본은 수정하지 않았다.
+Blender 절차형 벽돌은 GLB 복사본에서 원래 기본색으로 근사하며 원본 PNG·셰이더는 보존한다.
+외부 다운로드나 새 모델 유형이 아니므로 새 가격·수용량·경제 항목을 만들지 않았다.
+
+이번 검사: [정면 138/138](frontage-validation/test_building_frontage.log),
+[전체 16개 스크립트 통과](frontage-validation/results.json). UI 검사에서 새 helper 노드로
+드러난 자식 순서 의존 접근을 명시적 controls_panel 참조로 고친 뒤 UI도 재검사했다.
+[실제 화면](frontage-validation/road-facing.png)은 4방향+대각선 양쪽, GLB 알파 영역 선택을
+확인했다. headless 검사와 실제 그래픽 캡처를 구분한다. 명령·로그·제한은 해당 문서에 있다.
+
+주거 카탈로그와 프로토타입 블록에 적용했다. 별도 공원/주차 전시·절차형 utility 임시
+시설까지 같은 렌더러로 바꾼 것은 아니다. 보행자·차량 출입 경로와 대도시·모바일 성능은
+미검증이며 새 저장 시스템도 만들지 않았다. 향후 저장에는 front_direction/front_road_id를
+포함한다. 관련 코드·GLB·규칙·검증 자료를 함께 Git main에 커밋·푸시한다.
+
 ## 최신 작업: 자동차 대비 건물 비율 실측 (2026-11-02)
 
 사용자가 횡단보도 배치 규칙의 지속 보존을 재확인했다. 교차 도로의 가장자리 기준으로

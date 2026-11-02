@@ -2,6 +2,7 @@ extends RefCounted
 const Economy = preload("res://core/economy_config.gd")
 var difficulty := Economy.DEFAULT_DIFFICULTY
 var funds: int = Economy.NORMAL_STARTING_FUNDS
+const Frontage = preload("res://core/building_frontage.gd")
 const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
 var zoning_grid = ZoningGrid.new()
@@ -100,11 +101,21 @@ func add_building_at(point: Vector2,zone: String="residential",score: float=0.0)
 	if error!="":return {"ok":false,"reason":error}
 	var origin: Vector2=parcel.polygon[0]
 	var building:={"id":next_id,"x":origin.x,"y":origin.y,"u":parcel.u,"v":parcel.v,"frame":parcel.frame.duplicate(),"size":2,"level":1,"zone":zone,"score":score,"asset_id":""}
+	orient_building(building)
 	next_id+=1;buildings.append(building)
 	return {"ok":true,"building":building}
 
+func orient_building(b: Dictionary) -> void:
+	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
+
+func front_direction(b: Dictionary) -> Vector2:
+	return Frontage.direction(b)
+
 func supports_static_sprite(b: Dictionary) -> bool:
-	return not b.has("frame") or (Vector2(b.frame.along).distance_to(Vector2.RIGHT)<0.00001 and Vector2(b.frame.outward).distance_to(Vector2.DOWN)<0.00001)
+	if front_direction(b).distance_to(Vector2.DOWN)>.00001:return false
+	var polygon_value:=footprint(b)
+	var bounds:=Parcels.bounds(polygon_value)
+	return absf(bounds.size.x-b.size)<.00001 and absf(bounds.size.y-b.size)<.00001
 
 func add_building(x: int, y: int, zone: String = "residential", score: float = 0.0) -> Dictionary:
 	if zone not in ["residential", "commercial", "industrial"]:
@@ -113,6 +124,7 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	if error != "":
 		return {"ok": false, "reason": error}
 	var b := {"id": next_id, "x": x, "y": y, "size": 2, "level": 1, "zone": zone, "score": score, "asset_id": ""}
+	orient_building(b)
 	next_id += 1
 	buildings.append(b)
 	return {"ok": true, "building": b}
@@ -152,6 +164,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 		next_road_id+=1
 		roads.append(road)
 		_update_zoning_for_road(road)
+		for building in buildings:orient_building(building)
 	return {"ok": true}
 
 func demolish(kind: String, id: int) -> Dictionary:
@@ -168,6 +181,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 				if int(roads[i].get("parcel_id",i))==id:
 					roads.remove_at(i)
 					_update_zoning_for_road({})
+					for building in buildings:orient_building(building)
 					removed=true
 					break
 		"power_plant": removed=power.remove_plant(id)
@@ -382,6 +396,7 @@ func _upgrade(b: Dictionary) -> bool:
 				b.y = pos.y
 				b.size = size
 				b.level += 1
+				orient_building(b)
 				catalog.assign(b, appearance_rng)
 				return true
 	return false
@@ -439,6 +454,7 @@ func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
 	var error := placement_error(x,y,size)
 	if error != "": return {"ok":false,"reason":error}
 	var building := {"id":next_id,"x":x,"y":y,"size":size,"level":asset.min_level,"zone":asset.zone,"score":0.0,"asset_id":asset_id}
+	orient_building(building)
 	next_id += 1
 	buildings.append(building)
 	return {"ok":true,"building":building}
@@ -457,6 +473,7 @@ func _upgrade_parcel_building(b: Dictionary,preferred: int) -> bool:
 			b.u=candidate.x;b.v=candidate.y;b.size=size;b.level+=1
 			var origin: Vector2=Parcels.polygon(b.frame,b.u,b.v)[0]
 			b.x=origin.x;b.y=origin.y
+			orient_building(b)
 			catalog.assign(b,appearance_rng)
 			return true
 	return false

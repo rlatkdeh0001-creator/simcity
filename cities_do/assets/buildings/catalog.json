@@ -23,7 +23,13 @@
         761.963
       ],
       "lot_width_px": 727.31,
-      "source": "assets/mansion-study/a-brick/mansion.blend"
+      "source": "assets/mansion-study/a-brick/mansion.blend",
+      "model": "res://assets/buildings/models/mansion-a-4x4-4f.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 14.245
     },
     {
       "id": "mansion-b-4x4-4f",
@@ -47,7 +53,13 @@
         761.963
       ],
       "lot_width_px": 727.31,
-      "source": "assets/mansion-study/b-modern/mansion.blend"
+      "source": "assets/mansion-study/b-modern/mansion.blend",
+      "model": "res://assets/buildings/models/mansion-b-4x4-4f.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 14.485
     },
     {
       "id": "small-2x2-a",
@@ -72,7 +84,13 @@
         891.8023
       ],
       "lot_width_px": 829.672,
-      "source": "assets/residential-eight/small-2x2-a/building.blend"
+      "source": "assets/residential-eight/small-2x2-a/building.blend",
+      "model": "res://assets/buildings/models/small-2x2-a.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 5.2
     },
     {
       "id": "small-2x2-b",
@@ -97,7 +115,13 @@
         941.6406
       ],
       "lot_width_px": 829.672,
-      "source": "assets/residential-eight/small-2x2-b/building.blend"
+      "source": "assets/residential-eight/small-2x2-b/building.blend",
+      "model": "res://assets/buildings/models/small-2x2-b.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 7.025
     },
     {
       "id": "small-4x4-a",
@@ -122,7 +146,13 @@
         844.5697
       ],
       "lot_width_px": 777.8175,
-      "source": "assets/residential-eight/small-4x4-a/building.blend"
+      "source": "assets/residential-eight/small-4x4-a/building.blend",
+      "model": "res://assets/buildings/models/small-4x4-a.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 8.1
     },
     {
       "id": "small-4x4-b",
@@ -147,7 +177,13 @@
         863.6431
       ],
       "lot_width_px": 777.8175,
-      "source": "assets/residential-eight/small-4x4-b/building.blend"
+      "source": "assets/residential-eight/small-4x4-b/building.blend",
+      "model": "res://assets/buildings/models/small-4x4-b.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 9.59
     },
     {
       "id": "large-4x4-a",
@@ -172,7 +208,13 @@
         912.5366
       ],
       "lot_width_px": 541.0904,
-      "source": "assets/residential-eight/large-4x4-a/building.blend"
+      "source": "assets/residential-eight/large-4x4-a/building.blend",
+      "model": "res://assets/buildings/models/large-4x4-a.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 25.8
     },
     {
       "id": "large-4x4-b",
@@ -197,7 +239,13 @@
         957.9521
       ],
       "lot_width_px": 541.0904,
-      "source": "assets/residential-eight/large-4x4-b/building.blend"
+      "source": "assets/residential-eight/large-4x4-b/building.blend",
+      "model": "res://assets/buildings/models/large-4x4-b.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 30.9
     },
     {
       "id": "large-8x8-a",
@@ -222,7 +270,13 @@
         912.8259
       ],
       "lot_width_px": 592.6228000000001,
-      "source": "assets/residential-eight/large-8x8-a/building.blend"
+      "source": "assets/residential-eight/large-8x8-a/building.blend",
+      "model": "res://assets/buildings/models/large-8x8-a.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 44.3
     },
     {
       "id": "large-8x8-b",
@@ -247,7 +301,13 @@
         972.3198
       ],
       "lot_width_px": 592.6228,
-      "source": "assets/residential-eight/large-8x8-b/building.blend"
+      "source": "assets/residential-eight/large-8x8-b/building.blend",
+      "model": "res://assets/buildings/models/large-8x8-b.glb",
+      "front_axis": [
+        0,
+        1
+      ],
+      "height_m": 56.5
     }
   ]
 }

@@ -31,6 +31,13 @@ crossed-road width per approach; do not reuse the shared traffic-control radius.
 Traffic now supports reserved turn connectors; do not restore the old blanket
 crossing rejection or remove duplicate-collinear-road validation.
 
+Building fronts must face their accessible local road. Read repository-root
+`docs/BUILDING_FRONTAGE_KO.md`; use `city.orient_building()` / `front_direction()`
+and `main.building_visual()` for consistent simulation, rendering and picking.
+Keep valid frontage IDs at corners and recompute after growth/road changes.
+Do not turn square lot geometry to fix a facade. Other directions use real GLB
+views; retain a fixed PNG only when its source orientation matches the road.
+
 For player UI copy, keep names, live values and actionable feedback concise.
 Do not add network-radius/node-spacing tutorials or implementation/development
 notes to HUDs; keep design explanations in docs. The current compact bottom UI
@@ -107,8 +114,7 @@ has no grid; `core/zoning_grid.gd` stores revealed roadside cells in sparse chun
 Use `core/road_geometry.gd` for world-space road widths (2/4 cells including sidewalks).
 Use `core/road_parcels.gd` for road-local blocks. Curves use short straight blocks,
 not warped cells. Read the precise thresholds and gaps policy in RULES_KO.md.
-Do not warp fixed-camera PNGs to fake rotated architecture: use the current
-procedural massing fallback or proper direction-specific/3D assets.
+Do not warp fixed-camera PNGs to fake rotated architecture: use the real GLB direction view or the entrance-aware procedural fallback.
 
 
 `residential_showcase.tscn` uses the real game renderer and catalog to display all
