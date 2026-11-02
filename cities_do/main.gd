@@ -121,7 +121,7 @@ func _ready():
 	box.add_child(showcase_button)
 	var vehicle_button := Button.new()
 	vehicle_button.name = "VehicleShowcaseButton"
-	vehicle_button.text = "차량 20종 전시"
+	vehicle_button.text = "차량 23종 전시"
 	vehicle_button.visible = not showcase_view
 	vehicle_button.pressed.connect(func():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})

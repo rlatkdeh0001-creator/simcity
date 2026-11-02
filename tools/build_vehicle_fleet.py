@@ -40,6 +40,9 @@ FLEET = [
  ('trailer-tanker-06','탱크 트레일러','industrial',14.6,2.5,3.7,'9daeb5','tanker'),
  ('truck-dump-07','중형 덤프트럭','industrial',7.25,2.4,3.0,'cda254','dump'),
  ('truck-heavy-dump-08','대형 덤프트럭','industrial',9.2,2.9,3.65,'c18948','heavy_dump'),
+ ('fire-engine-01','소방차','service',7.6,2.35,2.95,'b94d43','fire'),
+ ('police-car-01','경찰차','service',4.85,1.87,1.48,'e4e8df','police'),
+ ('hearse-01','운구차','service',5.5,1.95,1.85,'39464c','hearse'),
 ]
 
 
@@ -165,6 +168,42 @@ def passenger(root,L,W,H,style,mats):
     driver(root,W,front+.85,base-.25,mats)
     lamps(root,L,W,base-.16,mats)
     box('FrontGrille',(W*.4,.035,.13),(0,-L/2-.015,base-.16),mats['Dark'],root,.015)
+
+
+def service(root,L,W,H,style,mats):
+    if style=='fire':
+        industrial(root,L,W,H,'box',mats)
+        # Cream equipment body with silver roller shutters, matching the fleet palette.
+        for side in [-1,1]:
+            for y in [-.1,1.05,2.2]:
+                box('EquipmentShutter',(.04,.92,1.20),(side*W*.493,y,1.85),mats['Metal'],root)
+                for z in [1.4,1.65,1.9,2.15,2.4]:
+                    box('ShutterSlat',(.05,.87,.025),(side*W*.50,y,z),mats['Dark'],root,.003)
+            box('ReflectiveBand',(.055,L*.85,.13),(side*W*.50,0,1.10),mats['Head'],root)
+        for x in [-.55,.55]:
+            box('LadderRail',(.07,4.5,.10),(x,.85,H+.13),mats['Metal'],root)
+        for y in [i*.35-1.2 for i in range(13)]:
+            box('LadderRung',(1.1,.045,.045),(0,y,H+.13),mats['Metal'],root)
+        cylinder('HoseReel',.36,.55,(-.7,2.7,H+.22),mats['Dark'],root,axis='X')
+        light_y=-L*.32;light_z=H*.9+.13
+    else:
+        passenger(root,L,W,H,'wagon' if style=='hearse' else 'sedan',mats)
+        if style=='hearse':
+            # Extended covered rear compartment, curtains, discreet silver trim.
+            box('RearCompartment',(W*.84,L*.46,.69),(0,L*.18,H-.44),mats['Paint'],root,.08)
+            for side in [-1,1]:
+                box('CurtainWindow',(.025,L*.38,.40),(side*W*.427,L*.18,H-.39),mats['Glass'],root)
+                for i in range(10):
+                    box('CurtainFold',(.03,.045,.32),(side*W*.433,-.06+i*.20,H-.39),mats['Cream'],root,.005)
+                box('ChromeTrim',(.04,L*.82,.045),(side*W*.50,0,H*.54),mats['Metal'],root)
+            return
+        for side in [-1,1]:
+            box('PoliceBlueBand',(.025,L*.87,.23),(side*W*.504,0,H*.46),mats['Blue'],root,.01)
+            box('PoliceShield',(.035,.30,.32),(side*W*.515,0,H*.56),mats['Head'],root,.04)
+        light_y=0;light_z=H+.13
+    box('LightbarBase',(W*.67,.28,.09),(0,light_y,light_z),mats['Dark'],root)
+    for x,mat in [(-W*.22,mats['Blue']),(W*.22,mats['Tail'])]:
+        box('EmergencyLight',(.40,.25,.15),(x,light_y,light_z+.10),mat,root,.035)
 
 
 def bus(root,L,W,H,mats):
@@ -295,13 +334,14 @@ def main():
         if args.only and ident!=args.only:continue
         C.reset_scene();scene=bpy.context.scene;scene.unit_settings.system='METRIC';scene.unit_settings.scale_length=1
         root=C.empty('VehicleRoot');root['asset_id']=ident;root['forwardGltf']=[0.,0.,1.];root['units']='metres'
-        mats={k:material(k,c, .25 if k=='Metal' else 0) for k,c in {'Paint':color,'Glass':'294453','Dark':'30383b','Tyre':'242a2c','Metal':'a6b4b7','Cream':'e3ded0','Head':'f3e9bb','Tail':'c95343'}.items()}
-        if kind in ['civilian','taxi']:passenger(root,L,W,H,style,mats)
+        mats={k:material(k,c, .25 if k=='Metal' else 0) for k,c in {'Paint':color,'Glass':'294453','Dark':'30383b','Tyre':'242a2c','Metal':'a6b4b7','Cream':'e3ded0','Head':'f3e9bb','Tail':'c95343','Blue':'387cb8'}.items()}
+        if kind=='service':service(root,L,W,H,style,mats)
+        elif kind in ['civilian','taxi']:passenger(root,L,W,H,style,mats)
         elif kind=='bus':bus(root,L,W,H,mats)
         else:industrial(root,L,W,H,style,mats)
         C.update()
         triangles=C.tri_count(list(scene.objects))
-        spec={'id':ident,'name':name,'category':kind,'style':style,'length_m':L,'width_m':W,'height_m':H,'dimensions_source':'fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories','frame_blender':{'forward':'-Y','left':'+X','up':'+Z'},'frame_gltf':{'forward':'+Z','left':'+X','up':'+Y'},'triangles':triangles,'driver_side':'left','reconstruction':'new 2026-11-01 implementation; not recovered previous model','not_validated':['reference IoU','door opening','crash deformation','traffic AI','large-fleet performance']}
+        spec={'id':ident,'name':name,'category':kind,'style':style,'length_m':L,'width_m':W,'height_m':H,'dimensions_source':'fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories','frame_blender':{'forward':'-Y','left':'+X','up':'+Z'},'frame_gltf':{'forward':'+Z','left':'+X','up':'+Y'},'triangles':triangles,'driver_side':'left','reconstruction':('new 2026-11-03 service asset; reused fleet geometry helpers' if kind=='service' else 'new 2026-11-01 implementation; not recovered previous model'),'not_validated':['reference IoU','door opening','crash deformation','traffic AI','large-fleet performance']}
         source=ROOT/'assets/vehicle-fleet'/ident;source.mkdir(parents=True,exist_ok=True)
         write_json(source/'spec.json',spec)
         bpy.ops.wm.save_as_mainfile(filepath=str(source/'vehicle.blend'),compress=False)
@@ -313,6 +353,15 @@ def main():
             ppm=render_views(game/'sprites'/ident,L,W,H)
             rendered.append({'id':ident,'pixels_per_metre':ppm,'angles_deg':list(range(0,360,45))})
         print('FLEET_BUILT',ident,triangles,flush=True)
+    if args.only:
+        for filename, key, additions in [('catalog.json','vehicles',entries),('render_manifest.json','vehicles',rendered)]:
+            path=ROOT/'cities_do/assets/vehicles'/filename
+            if additions and path.exists():
+                doc=json.loads(path.read_text())
+                replacements={e['id']:e for e in additions}
+                original_ids={e['id'] for e in doc[key]}
+                doc[key]=[replacements.get(e['id'],e) for e in doc[key]]+[e for e in additions if e['id'] not in original_ids]
+                write_json(path,doc)
     if not args.only:
         write_json(ROOT/'cities_do/assets/vehicles/catalog.json',{'schema_version':1,'vehicles':entries})
         if args.render:write_json(ROOT/'cities_do/assets/vehicles/render_manifest.json',{'resolution':[430,245],'camera_elevation_deg':30,'angle_zero':'nose view; positive camera azimuth towards left (+X Blender)','vehicles':rendered})

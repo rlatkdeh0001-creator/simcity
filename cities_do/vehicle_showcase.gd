@@ -1,5 +1,6 @@
 extends Control
 
+@export var service_only := false
 var entries: Array = []
 var rigs: Array[Node3D] = []
 var cameras: Array[Camera3D] = []
@@ -11,6 +12,11 @@ var grid: GridContainer
 func _ready():
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
 	entries = doc.vehicles
+	if service_only:
+		entries=entries.filter(func(e):return e.category=="service")
+		var facility: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities[0].duplicate()
+		facility.merge({"length_m":16,"width_m":16,"triangles":0})
+		entries.append(facility)
 	var background := ColorRect.new()
 	background.color = Color("142830")
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -24,11 +30,12 @@ func _ready():
 	column.add_theme_constant_override("separation", 16)
 	margin.add_child(column)
 	var title := Label.new()
-	title.text = "CITIES_DO   /   차량 20종"
+	title.text = "CITIES_DO   /   공공차량 · 화장터" if service_only else "CITIES_DO   /   차량 %d종" % entries.size()
 	title.add_theme_font_size_override("font_size", 32)
 	column.add_child(title)
 	var subtitle := Label.new()
-	subtitle.text = "시내버스 1 · 택시 1 · 시민차 10 · 산업차 8    |    실제 GLB · 미터 단위 · 우측통행"
+	subtitle.text = "시내버스 1 · 택시 1 · 시민차 10 · 산업차 8 · 공공차 3    |    실제 GLB · 미터 단위 · 우측통행"
+	if service_only: subtitle.text="소방차 · 경찰차 · 운구차 · 화장터    |    애셋"
 	subtitle.add_theme_color_override("font_color", Color("b3c8c8"))
 	subtitle.add_theme_font_size_override("font_size", 18)
 	column.add_child(subtitle)
@@ -72,7 +79,7 @@ func _ready():
 
 func update_columns():
 	if grid == null: return
-	grid.columns = clampi(int((size.x - 48.0) / 350.0), 1, 5)
+	grid.columns = clampi(int((size.x - 48.0) / 350.0), 1, 4 if service_only else 5)
 
 func add_vehicle(entry: Dictionary, index: int):
 	var panel := PanelContainer.new()
@@ -130,6 +137,7 @@ func add_vehicle(entry: Dictionary, index: int):
 	cameras.append(camera)
 	var specs := Label.new()
 	specs.text = "%.2f × %.2f × %.2f m   ·   %d tris" % [entry.length_m, entry.width_m, entry.height_m, entry.triangles]
+	if entry.get("status","")=="asset_preview_only": specs.text="16 × 16m · 4×4칸"
 	box.add_child(specs)
 	var id_label := Label.new()
 	id_label.text = entry.id
@@ -145,7 +153,7 @@ func update_scale():
 		var entry: Dictionary = entries[index]
 		# Camera3D size is vertical when KEEP_HEIGHT; accommodate any yaw.
 		var diagonal := Vector2(float(entry.length_m), float(entry.width_m)).length()
-		cameras[index].size = 12.0 if same_scale else (diagonal * 0.5 + float(entry.height_m) * 0.87) * 1.2
+		cameras[index].size = (30.0 if service_only else 12.0) if same_scale else (diagonal * 0.5 + float(entry.height_m) * 0.87) * 1.2
 
 func _process(delta: float):
 	for rig in rigs:

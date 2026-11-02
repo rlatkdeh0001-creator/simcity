@@ -15,7 +15,7 @@ var elapsed := 0.0
 var capture_pending := false
 var last_funds := -1
 var last_count := -1
-const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","other":"기타"}
+const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
 
@@ -92,7 +92,9 @@ func icon(kind: String) -> Texture2D:
   "environment": body='<path d="m8 3 4-2 5 7-4 2-2-4-2 4-5-2zm13 9 2 5-8 5-2-4 5-2-4-1 1-5zM9 22H3L1 13l5-1 1 5 2-4 4 3z"/>'
   "park": body='<path d="M10 23v-5H5a4 4 0 0 1-2-7 5 5 0 0 1 3-7 6 6 0 0 1 12 0 5 5 0 0 1 3 7 4 4 0 0 1-2 7h-5v5z"/>'
   "transport": body='<rect x="4" y="1" width="16" height="20" rx="4"/><path d="M7 20v3m10-3v3" stroke="white" stroke-width="2"/><path d="M7 5h10v8H7z" fill="#152d3b"/><circle cx="8" cy="17" r="1.3" fill="#152d3b"/><circle cx="16" cy="17" r="1.3" fill="#152d3b"/>'
-  "other":
+  "health": body='<path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6z"/>'
+  "education": body='<path d="m1 7 11-5 11 5-11 5zM5 11v7q7 7 14 0v-7l-7 4z"/>'
+  "settings":
    var path := ""
    for i in range(32):
     var a := TAU*i/32.0
@@ -151,7 +153,7 @@ func build_bottom_hud():
  dock.name="BottomDock"
  root.add_child(dock)
  dock.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
- dock.offset_top=-156
+ dock.offset_top=-180
  dock.add_theme_stylebox_override("panel",style(Color("102633"),Color("38515e")))
  var box := VBoxContainer.new()
  box.add_theme_constant_override("separation",6)
@@ -182,7 +184,7 @@ func build_bottom_hud():
   speed.text="%d×" % int(simulation_speed))
  status.add_child(speed)
  status.add_child(small_button("map","도시 전체 보기",fit_preview))
- status.add_child(small_button("other","설정",func():select_category("other")))
+
  status.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))
  box.add_child(HSeparator.new())
  var scroll := ScrollContainer.new()
@@ -231,14 +233,14 @@ func build_bottom_hud():
  box.move_child(navigation,0)
  box.move_child(status_scroll,2)
  for i in range(categories.size()):
-  categories[i].focus_neighbor_left=categories[(i+7)%8].get_path()
-  categories[i].focus_neighbor_right=categories[(i+1)%8].get_path()
+  categories[i].focus_neighbor_left=categories[(i+categories.size()-1)%categories.size()].get_path()
+  categories[i].focus_neighbor_right=categories[(i+1)%categories.size()].get_path()
  drawer=PanelContainer.new()
  drawer.name="BottomDrawer"
  root.add_child(drawer)
  drawer.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
- drawer.offset_bottom=-170
- drawer.offset_top=-290
+ drawer.offset_bottom=-194
+ drawer.offset_top=-314
  drawer.add_theme_stylebox_override("panel",style(Color("142e3c"),Color("38515e")))
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
@@ -271,6 +273,8 @@ func select_category(key: String):
   "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"]]
   "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"]]
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"]]
+  "health": choices=[["병원","hospital"],["진료소","clinic"],["화장터","crematorium"]]
+  "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
   _:
    pass
@@ -287,7 +291,7 @@ func select_category(key: String):
   content.mouse_filter=Control.MOUSE_FILTER_IGNORE
   var image := TextureRect.new()
   var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select"}
-  image.texture=icon(tool_icons.get(choice[1],"other"))
+  image.texture=icon(tool_icons.get(choice[1],key))
   image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
   image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
   image.custom_minimum_size=Vector2(38,38)
@@ -298,7 +302,20 @@ func select_category(key: String):
   caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(caption)
   var tool: String=choice[1]
+  if key in ["health","education"]:
+   button.disabled=tool!="crematorium"
+   button.tooltip_text=choice[0]+(" · 준비 중" if button.disabled else " · 애셋 보기")
+   if button.disabled:
+    caption.text=choice[0]+" · 준비 중"
+    content.modulate=Color(1,1,1,.5)
   button.pressed.connect(func():
+   if tool=="crematorium":
+    var entry: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities[0]
+    var preview=preload("res://service_asset_preview.gd").new()
+    preview.name="ServiceAssetPreview"
+    add_child(preview)
+    preview.show_asset(entry)
+    return
    zone="commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential")
    mode="build" if tool.begins_with("build") else tool)
   drawer_box.add_child(button)
@@ -333,7 +350,7 @@ func toggle_demolition():
 func fit_preview():
  if dock==null: return
  var viewport_size := get_viewport_rect().size
- var available := Rect2(60,40,maxf(280,viewport_size.x-120),maxf(200,viewport_size.y-360))
+ var available := Rect2(60,40,maxf(280,viewport_size.x-120),maxf(200,viewport_size.y-384))
  var bounds := Rect2()
  var first := true
  for building in city.buildings:

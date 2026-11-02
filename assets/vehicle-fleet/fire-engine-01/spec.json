@@ -1,0 +1,30 @@
+{
+  "id": "fire-engine-01",
+  "name": "소방차",
+  "category": "service",
+  "style": "fire",
+  "length_m": 7.6,
+  "width_m": 2.35,
+  "height_m": 2.95,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 4336,
+  "driver_side": "left",
+  "reconstruction": "new 2026-11-03 service asset; reused fleet geometry helpers",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "traffic AI",
+    "large-fleet performance"
+  ]
+}

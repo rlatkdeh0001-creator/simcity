@@ -1,0 +1,18 @@
+{
+  "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+  "renderer": "GL Compatibility, Mesa llvmpipe; real Xvfb display :99",
+  "scope": "Actual Godot viewport captures, no generated image or compositing",
+  "images": {
+    "education-tab.png": {
+      "sha256": "50611abe9c9bd7c6e099fb832c60d66669bbd97e9c354f2f206d466afa13d592"
+    },
+    "health-tab.png": {
+      "sha256": "23e250ed5676c11875ca4af4c006f8c44405b9f89ed713d4db2ca72110ee0925"
+    },
+    "service-assets.png": {
+      "sha256": "0b58c9eaf6f5b6d9727e3ceb9d38fc35a4e55eb1f2bdd0f4ce9a337a66e03604"
+    }
+  },
+  "scripts_passed": 18,
+  "upstream_vehicle_hashes": "all match UPSTREAM.json"
+}

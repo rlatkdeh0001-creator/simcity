@@ -140,3 +140,32 @@
 주민 사용료,billing.power.domestic,주민·사업장 전기 사용료,,doth/kWh,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
 계약 한도,power.contract.import,수입 계약한도,500,kW/이웃,보류,이웃 마을별,docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md,이전 제안 기록만 보존. 사용자 요청으로 현재 미적용; 게임에 이 상한을 적용하지 않음.
 계약 한도,power.contract.export,수출 계약한도,200,kW/이웃,보류,이웃 마을별,docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md,이전 제안 기록만 보존. 사용자 요청으로 현재 미적용; 게임에 이 상한을 적용하지 않음.
+공공서비스 제안,service.fire-engine-01.purchase,소방차 purchase,3200,doth/대,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.fire-engine-01.upkeep,소방차 upkeep,45,doth/게임월,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.fire-engine-01.crew,소방차 crew,4,명/대,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.fire-engine-01.simultaneous_incidents,소방차 simultaneous_incidents,0.5,건/대; 화재당 2대,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.fire-engine-01.average_incidents,소방차 average_incidents,0.5,건/게임일/대,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.fire-engine-01.fuel,소방차 fuel,12,L/게임일/대; 운행일 가정,제안·미적용,소방차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.purchase,경찰차 purchase,1200,doth/대,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.upkeep,경찰차 upkeep,20,doth/게임월,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.crew,경찰차 crew,2,명/대,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.simultaneous_incidents,경찰차 simultaneous_incidents,1,건/대,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.average_incidents,경찰차 average_incidents,4,건/게임일/대,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.police-car-01.fuel,경찰차 fuel,6,L/게임일/대; 운행일 가정,제안·미적용,경찰차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.purchase,운구차 purchase,1800,doth/대,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.upkeep,운구차 upkeep,25,doth/게임월,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.capacity,운구차 capacity,1,구/대,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.rated_throughput,운구차 rated_throughput,6,구/게임일/대,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.average_throughput,운구차 average_throughput,3,구/게임일/대,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.hearse-01.fuel,운구차 fuel,8,L/게임일/대; 운행일 가정,제안·미적용,운구차,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.purchase,화장터 purchase,12000,doth/시설,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.upkeep,화장터 upkeep,180,doth/게임월,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.storage,화장터 storage,20,구,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.rated_throughput,화장터 rated_throughput,12,구/게임일,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.average_throughput,화장터 average_throughput,6,구/게임일,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.vehicle_bays,화장터 vehicle_bays,2,대; 차량 별도 구매,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.power,화장터 power,35,kW; 정격 자체 소비,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.water,화장터 water,3,m³/게임일; 정격 자체 소비,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.sewage,화장터 sewage,2.4,m³/게임일,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.fuel,화장터 fuel,600,kWh-열/게임일; 연료 종류 미정,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+공공서비스 제안,service.crematorium-4x4.residue,화장터 residue,36,kg/게임일; 정격 유골 수거량,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음

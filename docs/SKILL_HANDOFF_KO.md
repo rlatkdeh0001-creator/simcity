@@ -6,6 +6,59 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 공공차량 3종·화장터와 보건·교육 (2026-11-03 KST)
+
+실제 `/workspace/simcity`, 로컬 `work`의 깨끗한 상태에서 시작했다. fetch 후 origin/main은
+사용자 기준 cdca2de와 동일했다. [작업 보고서·재현](SERVICE_ASSETS_KO.md),
+[이번 환경 증거](service-assets-validation/), [코드 대조 개발 백로그](DEVELOPMENT_STATUS_BACKLOG_KO.md)를 참고한다.
+‘기타’는 실제로 빈 탭이었다. 병원·진료소·학교는 제안 문서에만 있어 애셋/엔진 부재를 확인했다.
+
+읽고 적용한 로컬 지침: `.agents/skills/cities-do-vehicles/SKILL.md`,
+`vehicle/SKILL.md`와 `vehicle/reference/rig-contract.md`, `cities-do-construction/SKILL.md`,
+`godot-gdscript/SKILL.md`, `godot-gdscript-headless-testing/SKILL.md`.
+`cities-do-modular-facilities/SKILL.md`의 미터/독립 부지 치수·원본/GLB/PNG/spec 보존 규약도
+적용했다. 이는 주차 결합 파이프라인을 재실행했다는 뜻이 아니다.
+플랫폼 `cloud-environment:cloud-environment-runtime`의 상태/네트워크 지침도 적용했다.
+이 환경은 연결됨·정책 unrestricted/enforced, 설정된 secrets/outbound identities 없음이었다.
+
+vehicle 원본 https://github.com/duolahypercho/zstack 의
+74f7786e9931b9ced858a0e2df880f23e4c2430e, MIT와 UPSTREAM/LICENSE를 그대로 유지한다.
+새 외부 스킬 설치나 원본 수정은 없다. `tools/build_vehicle_fleet.py`에 서비스 형상을 추가해
+실제 common.py empty/parent_keep/rounded_box/revolve/tri_count 등을 호출했다.
+원본 참조 이미지·cage·IoU·문 개폐·충돌 변형은 실행하지 않았다.
+
+변경/제작: 위 차량 생성기·verify_vehicle_fleet/sources, 새 `tools/build_service_facility.py`,
+`assets/vehicle-fleet/{fire-engine-01,police-car-01,hearse-01}`의 blend/spec,
+`cities_do/assets/vehicles`의 GLB·8방향 PNG·catalog/manifest,
+`assets/service-facilities/crematorium-4x4`의 blend/spec와 `cities_do/assets/services`의 GLB/PNG/catalog.
+기존 20종 모델은 재제작하지 않았다. 차량 --only 병합은 ID 순서를 유지하며 순차 실행한다.
+`build_facilities.py`/facility_layout/export_building_models는 읽어 비교했으나 전체 재생성하지 않았다.
+
+`bottom_ui_preview.gd`의 빈 기타 탭과 가짜 설정 진입을 제거하고 보건·교육 9분류와
+키보드 순환/좁은 화면 높이를 수정했다. 병원·진료소/교육 4종은 준비 중·비활성,
+화장터는 `service_asset_preview.gd`의 실제 GLB 창이다. `service_assets_showcase.tscn`에서
+신규 네 모델을 함께 보며 차량 전시는 23종이다. 서비스 출동·진료·화장 처리·시설 도시 배치·
+주거 성장/공급 소비 등록과 메인 하단 UI 통합은 미구현이다. 기존 1.5m 접도·축척·도시를 유지했다.
+
+가격/유지비/용량/자체 소비는 SERVICE_ASSETS_KO와 PRICE/CAPACITY 문서 및 경제 CSV에
+제안·미적용으로 기록했다. 승인된 과금으로 전환하지 않았다.
+이번 Godot 4.6.3 신규 임포트·Blender 4.3.2 제작/원본 열기·미터 검사·PNG 구조 검사·
+실제 GL Compatibility/llvmpipe 캡처를 실행했다. Xvfb를 Debian 패키지에서 `/tmp`에 풀어
+사용했고 시스템 설정은 바꾸지 않았다. XDG 3경로는 /tmp/cities-do-{data,config,cache}다.
+
+이번 결과: 전체 18개 스크립트 통과, 차량 177/177, 하단 UI 36/36, 신규 서비스 애셋 9/9.
+원본 23개 열기·파일 구조 blend23/GLB23/PNG184 통과. 이전 환경 17개 통과를 재사용한 수치가 아니다.
+초기 하단 UI 34/36에서 960px 높이와 검사 창 식별을 수정했다. 초기 시설 정면 검사는
+GLB 노드 원점을 측정해 실패했으므로 실제 메시 AABB 중심이 +Z에 있는지 검사하도록 고쳤다.
+각 초기 실패 로그/results-initial도 남겼고 수정된 검사와 영향을 받은 차량/UI를 재검사했다.
+전체 회귀를 무조건 반복하지 않았으며 최종 results.json은 같은 작업의 검사/선택 재검사 합본이다.
+첫 그래픽 실행의 ALSA 오류는 음성 장치 부재였고 --audio-driver Dummy로 다시 캡처했다.
+VSync 미지원 및 기존 Road Generator UID 경고는 남아 있지만 최종 SCRIPT ERROR/ERROR는 없다.
+
+재현 명령은 보고서와 tools/validate_service_assets.py에 있다. 대규모 도시/모바일/배포·
+차량 출동·실차 IoU·실내/건축 법규는 미검증이다. 새 애셋·경제 제안·백로그·이 인계장을
+같은 작업으로 커밋하고 origin/main에 푸시하며 실제 성공 여부는 원격 SHA로 확인한다.
+
 ## 최신 작업: 도로 바로 옆 격자·최대 1.5m 적용 (2026-11-02)
 
 사용자가 도로 바로 옆 격자 배치와 최대 1.5m를 확정했다.

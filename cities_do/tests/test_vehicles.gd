@@ -15,7 +15,7 @@ func verify(condition: bool, detail: String):
 
 func run():
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
-	verify(doc is Dictionary and doc.vehicles.size() == 20, "catalog contains 20 vehicles")
+	verify(doc is Dictionary and doc.vehicles.size() == 23, "catalog contains 23 vehicles")
 	var categories := {}
 	var ids := {}
 	for entry in doc.vehicles:
@@ -62,7 +62,7 @@ func run():
 		if entry.style == "mixer":
 			verify(model.find_children("MixerSpin", "Node3D", true, false).size() == 1, "mixer drum spin pivot")
 		model.free()
-	verify(categories == {"bus":1, "taxi":1, "civilian":10, "industrial":8}, "required category counts")
+	verify(categories == {"bus":1, "taxi":1, "civilian":10, "industrial":8, "service":3}, "required category counts")
 	var main: Node2D = load("res://main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
@@ -76,7 +76,7 @@ func run():
 	await process_frame
 	var showcase = current_scene
 	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "button opens actual vehicle showcase scene")
-	verify(showcase.rigs.size() == 20 and showcase.cameras.size() == 20, "showcase creates twenty real model viewports")
+	verify(showcase.rigs.size() == 23 and showcase.cameras.size() == 23, "showcase creates twenty-three real model viewports")
 	showcase.same_scale = true
 	showcase.update_scale()
 	verify(is_equal_approx(showcase.cameras[0].size, showcase.cameras[19].size), "same-scale mode uses identical camera scale")

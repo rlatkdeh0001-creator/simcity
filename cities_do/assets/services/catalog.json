@@ -1,0 +1,33 @@
+{
+  "facilities": [
+    {
+      "id": "crematorium-4x4",
+      "name": "화장터",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "height_m": 7.215,
+      "storeys": 1,
+      "model": "res://assets/services/crematorium-4x4.glb",
+      "preview": "res://assets/services/crematorium-4x4.png",
+      "source": "assets/service-facilities/crematorium-4x4/facility.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 28.571428571428573,
+        "camera_elevation_deg": 30
+      },
+      "status": "asset_preview_only",
+      "simulation_enabled": false
+    }
+  ]
+}

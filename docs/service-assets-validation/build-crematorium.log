@@ -1,0 +1,159 @@
+Info: Saved "facility.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+21:40:45 | INFO: Starting glTF 2.0 export
+21:40:45 | INFO: Extracting primitive: BenchLeg
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: BenchLeg.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: BenchLeg.002
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: BenchLeg.003
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: CanopyPost
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: CanopyPost.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: CeremonyRoof
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: CeremonyWing
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: EntranceDoor
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: EntryCanopy
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueCap
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueLouver
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueLouver.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueLouver.002
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueLouver.003
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FlueLouver.004
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FrontPath
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FrontWindow
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FrontWindow.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FrontWindow.002
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FrontWindow.003
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: FurnaceWing
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: Hall
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: HallRoof
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: Icosphere
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: Icosphere.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: Icosphere.002
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: Lot
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: MemorialBench
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: MemorialBench.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: RearServiceApron
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: ScreenedFlue
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: ServiceDoor
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: TreeTrunk
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: TreeTrunk.001
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Extracting primitive: TreeTrunk.002
+21:40:45 | INFO: Primitives created: 1
+21:40:45 | INFO: Finished glTF 2.0 export in 0.12061572074890137 s
+Blender 4.3.2
+Fra:1 Mem:13.60M (Peak 13.60M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lot
+Fra:1 Mem:13.61M (Peak 13.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FrontPath
+Fra:1 Mem:13.61M (Peak 13.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hall
+Fra:1 Mem:13.61M (Peak 13.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HallRoof
+Fra:1 Mem:13.61M (Peak 13.61M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CeremonyWing
+Fra:1 Mem:13.62M (Peak 13.62M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CeremonyRoof
+Fra:1 Mem:13.62M (Peak 13.62M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EntranceDoor
+Fra:1 Mem:13.62M (Peak 13.62M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EntryCanopy
+Fra:1 Mem:13.62M (Peak 13.62M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CanopyPost
+Fra:1 Mem:13.63M (Peak 13.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CanopyPost.001
+Fra:1 Mem:13.63M (Peak 13.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FrontWindow
+Fra:1 Mem:13.63M (Peak 13.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FrontWindow.001
+Fra:1 Mem:13.63M (Peak 13.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FrontWindow.002
+Fra:1 Mem:13.64M (Peak 13.64M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FrontWindow.003
+Fra:1 Mem:13.64M (Peak 13.64M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ServiceDoor
+Fra:1 Mem:13.64M (Peak 13.64M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RearServiceApron
+Fra:1 Mem:13.65M (Peak 13.65M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FurnaceWing
+Fra:1 Mem:13.65M (Peak 13.65M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ScreenedFlue
+Fra:1 Mem:13.65M (Peak 13.65M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueCap
+Fra:1 Mem:13.65M (Peak 13.65M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueLouver
+Fra:1 Mem:13.66M (Peak 13.66M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueLouver.001
+Fra:1 Mem:13.66M (Peak 13.66M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueLouver.002
+Fra:1 Mem:13.66M (Peak 13.66M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueLouver.003
+Fra:1 Mem:13.66M (Peak 13.66M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FlueLouver.004
+Fra:1 Mem:13.67M (Peak 13.67M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TreeTrunk
+Fra:1 Mem:13.67M (Peak 13.67M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Icosphere
+Fra:1 Mem:13.67M (Peak 13.67M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TreeTrunk.001
+Fra:1 Mem:13.68M (Peak 13.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Icosphere.001
+Fra:1 Mem:13.68M (Peak 13.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TreeTrunk.002
+Fra:1 Mem:13.68M (Peak 13.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Icosphere.002
+Fra:1 Mem:13.68M (Peak 13.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | MemorialBench
+Fra:1 Mem:13.68M (Peak 13.68M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BenchLeg
+Fra:1 Mem:13.69M (Peak 13.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BenchLeg.003
+Fra:1 Mem:13.69M (Peak 13.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BenchLeg.001
+Fra:1 Mem:13.69M (Peak 13.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | MemorialBench.001
+Fra:1 Mem:13.69M (Peak 13.69M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BenchLeg.002
+Fra:1 Mem:13.70M (Peak 13.70M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:12.13M (Peak 13.70M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:12.13M (Peak 13.70M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:12.13M (Peak 13.70M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:12.13M (Peak 13.70M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:12.22M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:12.25M (Peak 13.70M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:12.27M (Peak 13.70M) | Time:00:00.01 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:12.26M (Peak 13.70M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:12.26M (Peak 13.70M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:12.26M (Peak 13.70M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:12.26M (Peak 13.70M) | Time:00:00.01 | Mem:0.13M, Peak:0.18M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:12.26M (Peak 13.70M) | Time:00:00.01 | Mem:0.13M, Peak:0.18M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.13M, Peak:0.18M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.27M, Peak:0.27M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.27M, Peak:0.27M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.27M, Peak:0.27M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.27M, Peak:0.27M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.19M, Peak:0.27M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.28M, Peak:0.28M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.28M, Peak:0.28M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:12.32M (Peak 13.70M) | Time:00:00.01 | Mem:0.28M, Peak:0.28M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:31.01M (Peak 31.01M) | Time:00:00.42 | Remaining:00:09.55 | Mem:18.95M, Peak:18.95M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:39.31M (Peak 55.91M) | Time:00:09.02 | Mem:18.95M, Peak:18.95M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:39.31M (Peak 55.91M) | Time:00:09.02 | Mem:18.95M, Peak:18.95M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/services/crematorium-4x4.png'
+Time: 00:09.12 (Saving: 00:00.10)
+
+
+SERVICE_FACILITY_BUILT crematorium-4x4
+
+Blender quit

@@ -1,0 +1,1209 @@
+Info: Saved "vehicle.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+21:40:44 | INFO: Starting glTF 2.0 export
+21:40:44 | INFO: Extracting primitive: Cab
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CabStep
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CabStep.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CabWindow
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CabWindow.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CargoBox
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CargoDoorBar
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: CargoDoorBar.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Chassis
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EmergencyLight
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EmergencyLight.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter.002
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter.003
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter.004
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: EquipmentShutter.005
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Glass_Windscreen
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Grille
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: HoseReel
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRail
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRail.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.002
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.003
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.004
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.005
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.006
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.007
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.008
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.009
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.010
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.011
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LadderRung.012
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Lamp_Head
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Lamp_Head.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Lamp_Tail
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Lamp_Tail.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: LightbarBase
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Mirror
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Mirror.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ReflectiveBand
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ReflectiveBand.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: DriverSeat
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.001
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.002
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.003
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.004
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.005
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.006
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.007
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.008
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.009
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.010
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.011
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.012
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.013
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.014
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.015
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.016
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.017
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.018
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.019
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.020
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.021
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.022
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.023
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.024
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.025
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.026
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.027
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.028
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: ShutterSlat.029
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: SteeringWheel
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Hub_FL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Rim_FL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Tyre_FL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Hub_FR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Rim_FR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Tyre_FR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Hub_RL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Rim_RL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Tyre_RL
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Hub_RR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Rim_RR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Extracting primitive: Tyre_RR
+21:40:44 | INFO: Primitives created: 1
+21:40:44 | INFO: Finished glTF 2.0 export in 0.17405939102172852 s
+Blender 4.3.2
+Fra:1 Mem:17.87M (Peak 17.87M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.89M (Peak 17.89M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.90M (Peak 17.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.90M (Peak 17.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.90M (Peak 17.90M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.91M (Peak 17.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.91M (Peak 17.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.91M (Peak 17.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.91M (Peak 17.91M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.92M (Peak 17.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.92M (Peak 17.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.92M (Peak 17.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:17.92M (Peak 17.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:17.93M (Peak 17.93M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:17.93M (Peak 17.93M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:17.93M (Peak 17.93M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.08 | Remaining:00:01.04 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:00.90 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:00.90 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/000.png'
+Time: 00:00.96 (Saving: 00:00.05)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.04 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.04 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.04 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.04 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.04 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.04 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.04 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.04 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.05 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.05 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.05 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.05 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.17 | Remaining:00:02.86 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.46 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.46 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/045.png'
+Time: 00:01.48 (Saving: 00:00.02)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.08 | Remaining:00:01.53 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.34 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.34 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/090.png'
+Time: 00:01.37 (Saving: 00:00.02)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.03 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.03 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.03 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.03 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.09 | Remaining:00:01.44 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.47 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.47 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/135.png'
+Time: 00:01.52 (Saving: 00:00.04)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.11M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.07 | Remaining:00:01.09 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.15 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.15 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/180.png'
+Time: 00:01.34 (Saving: 00:00.16)
+
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.02 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.09 | Remaining:00:01.65 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.45 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.45 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/225.png'
+Time: 00:01.47 (Saving: 00:00.01)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.005
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.006
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.02 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.02 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.08 | Remaining:00:01.35 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.34 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.34 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/270.png'
+Time: 00:01.37 (Saving: 00:00.01)
+
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Chassis
+Fra:1 Mem:17.94M (Peak 17.94M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cab
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Glass_Windscreen
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror
+Fra:1 Mem:17.95M (Peak 17.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabWindow.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Mirror.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CabStep.001
+Fra:1 Mem:17.96M (Peak 17.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DriverSeat
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SteeringWheel
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoBox
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CargoDoorBar.001
+Fra:1 Mem:17.97M (Peak 17.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FL
+Fra:1 Mem:17.98M (Peak 17.98M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FL
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_FR
+Fra:1 Mem:17.99M (Peak 17.99M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_FR
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RL
+Fra:1 Mem:18.00M (Peak 18.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RL
+Fra:1 Mem:18.01M (Peak 18.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Tyre_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Rim_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Hub_RR
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail
+Fra:1 Mem:18.02M (Peak 18.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Head.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lamp_Tail.001
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grille
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter
+Fra:1 Mem:18.03M (Peak 18.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.001
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.002
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.003
+Fra:1 Mem:18.04M (Peak 18.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.004
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.001
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.005
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.006
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.007
+Fra:1 Mem:18.05M (Peak 18.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.008
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.009
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.002
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.010
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.011
+Fra:1 Mem:18.06M (Peak 18.06M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.012
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.013
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.014
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.003
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.015
+Fra:1 Mem:18.07M (Peak 18.07M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.016
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.017
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.018
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.019
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.004
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.020
+Fra:1 Mem:18.08M (Peak 18.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.021
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.022
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.023
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.024
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EquipmentShutter.005
+Fra:1 Mem:18.09M (Peak 18.09M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.025
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.026
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.027
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.028
+Fra:1 Mem:18.10M (Peak 18.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ShutterSlat.029
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ReflectiveBand.001
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight.001
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EmergencyLight
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LightbarBase
+Fra:1 Mem:18.11M (Peak 18.11M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | HoseReel
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.012
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.011
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.010
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.009
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRail.001
+Fra:1 Mem:18.12M (Peak 18.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.008
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.007
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.001
+Fra:1 Mem:18.13M (Peak 18.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.002
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.003
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LadderRung.004
+Fra:1 Mem:18.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.77M (Peak 18.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.86M (Peak 18.14M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.88M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.94M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.99M (Peak 18.14M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.98M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.35M, Peak:0.49M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.13M (Peak 18.14M) | Time:00:00.01 | Mem:0.59M, Peak:0.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.51M, Peak:0.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.14M (Peak 18.14M) | Time:00:00.01 | Mem:0.60M, Peak:0.60M | Scene, ViewLayer | Sample 0/24
+Fra:1 Mem:18.76M (Peak 18.76M) | Time:00:00.04 | Remaining:00:00.75 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 1/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.82 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Sample 24/24
+Fra:1 Mem:20.37M (Peak 23.59M) | Time:00:01.82 | Mem:4.21M, Peak:4.21M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/cities_do/assets/vehicles/sprites/fire-engine-01/315.png'
+Time: 00:01.84 (Saving: 00:00.02)
+
+
+FLEET_BUILT fire-engine-01 4336
+
+Blender quit

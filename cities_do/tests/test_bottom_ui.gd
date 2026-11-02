@@ -18,7 +18,7 @@ func run():
  verify(preview.city.buildings.all(func(b):return not b.asset_id.is_empty()),"every preview building comes from actual game catalog")
  verify(preview.city.roads.size()==6,"preview uses six actual model roads")
  verify(preview.city.power.plants.size()==1 and preview.city.water.facilities.size()==2,"preview contains actual utility sources")
- verify(preview.categories.size()==8,"eight real category buttons created")
+ verify(preview.categories.size()==9,"nine real category buttons created")
  var no_instructions := true
  for node in preview.find_children("*","Label",true,false):
   for phrase in ["64m","32m","도착과 무관","1실제초","시험용","배치 검토용"]:
@@ -34,6 +34,28 @@ func run():
   verify(absf(bottom-root.get_visible_rect().size.y)<2,"dock stays anchored to bottom at "+str(size_value))
   verify(preview.drawer.get_global_rect().position.x>=0 and preview.drawer.get_global_rect().end.x<=root.get_visible_rect().size.x+1,"context tray remains within screen at "+str(size_value))
  verify(preview.categories.all(func(b):return b.get_global_rect().position.y>root.get_visible_rect().size.y*.65),"all primary category icons remain in bottom region")
+ verify(not preview.NAMES.has("other"),"unused other category removed")
+ var saved_city=preview.city
+ for key in ["health","education"]:
+  preview.select_category(key)
+  verify(not preview.show_zoning_tiles(),key+" hides placement grid")
+  verify(not preview.power_overlay.tab_open and not preview.water_overlay.tab_open,key+" disables utility overlays")
+  var tools := []
+  for child in preview.drawer_box.get_children():
+   if child is Button and child.name.begins_with("Tool_"): tools.append(child)
+  verify(tools.size()==(3 if key=="health" else 4),key+" has expected facility entries")
+  verify(tools.all(func(b):return b.disabled or b.name=="Tool_crematorium"),"unavailable services stay disabled")
+  if key=="health":
+   tools[2].pressed.emit()
+   await process_frame
+   var windows=preview.find_children("ServiceAssetPreview","Window",true,false)
+   verify(windows.size()==1,"crematorium opens actual model inspector")
+   if not windows.is_empty(): windows[0].close_requested.emit()
+   await process_frame
+   verify(preview.city==saved_city and preview.city.buildings.size()==34,"inspector preserves city")
+ preview.select_category("education")
+ preview.categories[-1].grab_focus()
+ verify(preview.categories[-1].focus_neighbor_right==preview.categories[0].get_path(),"keyboard navigation wraps across new category count")
  preview.categories[3].pressed.emit()
  verify(preview.chosen=="water" and preview.water_overlay.tab_open and not preview.power_overlay.tab_open,"category switch enables actual water overlay")
  verify(not preview.water_overlay.panel.visible,"water side panel stays hidden with bottom controls")

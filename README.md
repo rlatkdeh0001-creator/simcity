@@ -1,5 +1,9 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[공공차량 3종·화장터 / 보건·교육 탭](docs/SERVICE_ASSETS_KO.md)** · [실제 Godot 화면](docs/service-assets-validation/service-assets.png) · [개발 현황·백로그](docs/DEVELOPMENT_STATUS_BACKLOG_KO.md)
+
+보건의 병원·진료소와 교육시설은 애셋 부재로 준비 중입니다. 화장터는 애셋 보기 연결이며 도시 배치·서비스 운영은 미구현입니다.
+
 **[X자·T자 실제 교차로 연결·차량 회전](docs/ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](docs/screenshots/junctions-running.gif) · [교차로 확대](docs/screenshots/junctions-closeup.gif)
 
 **[구획·도로에서만 타일 표시 / 우측 통합 불도저](docs/concepts/bottom-ui/DEMOLITION_ZONING_KO.md)** · [구획 선택 화면](docs/concepts/bottom-ui/actual-game-zoning.png)

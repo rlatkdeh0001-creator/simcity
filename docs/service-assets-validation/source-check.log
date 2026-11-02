@@ -1,0 +1,27 @@
+SOURCE_CHECK 23 True
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/vehicle-fleet/bus-city-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-compact-02/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-coupe-07/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-crossover-05/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-electric-09/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-hatch-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-minivan-08/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-pickup-10/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-sedan-03/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-suv-06/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/car-wagon-04/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/fire-engine-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/hearse-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/police-car-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/taxi-sedan-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/trailer-container-05/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/trailer-tanker-06/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-box-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-dump-07/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-flatbed-02/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-fridge-03/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-heavy-dump-08/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/truck-mixer-04/vehicle.blend"
+
+Blender quit

@@ -1,5 +1,5 @@
 {
-  "expected": 20,
+  "expected": 23,
   "passed": true,
   "vehicles": [
     {
@@ -144,6 +144,45 @@
       },
       "passed": true,
       "triangles": 1812
+    },
+    {
+      "id": "fire-engine-01",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "triangle_count_matches": true,
+        "wheel_pivots": true,
+        "left_hand_drive": true,
+        "no_external_images": true
+      },
+      "passed": true,
+      "triangles": 4336
+    },
+    {
+      "id": "hearse-01",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "triangle_count_matches": true,
+        "wheel_pivots": true,
+        "left_hand_drive": true,
+        "no_external_images": true
+      },
+      "passed": true,
+      "triangles": 2912
+    },
+    {
+      "id": "police-car-01",
+      "checks": {
+        "opens": true,
+        "finite_vertices": true,
+        "triangle_count_matches": true,
+        "wheel_pivots": true,
+        "left_hand_drive": true,
+        "no_external_images": true
+      },
+      "passed": true,
+      "triangles": 2032
     },
     {
       "id": "taxi-sedan-01",

@@ -25,7 +25,7 @@ for source in sorted((ROOT/'assets/vehicle-fleet').glob('*/vehicle.blend')):
     }
     results.append({'id':spec['id'],'checks':checks,'passed':all(checks.values()),'triangles':triangles})
 output=ROOT/'assets/vehicle-fleet/source-validation.json'
-output.write_text(json.dumps({'expected':20,'passed':len(results)==20 and all(r['passed'] for r in results),'vehicles':results},indent=2)+'\n')
+output.write_text(json.dumps({'expected':23,'passed':len(results)==23 and all(r['passed'] for r in results),'vehicles':results},indent=2)+'\n')
 print('SOURCE_CHECK',len(results),all(r['passed'] for r in results),flush=True)
-if len(results)!=20 or not all(r['passed'] for r in results):
+if len(results)!=23 or not all(r['passed'] for r in results):
     raise RuntimeError('Source validation failed; see '+str(output))

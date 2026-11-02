@@ -1,4 +1,4 @@
-# CITIES_DO 차량 20종 · 재제작 원본
+# CITIES_DO 차량 23종 · 재제작 원본
 
 2026-11-01에 새로 제작한 가상 로우폴리 차량이다. 이전 환경의 모델을 회수한 것이 아니다.
 버스 1, 택시 1, 시민차 10, 산업차 8을 포함한다. 각 폴더의 `vehicle.blend`는
@@ -27,7 +27,7 @@ Blender에는 OpenImageDenoise가 없어 디노이즈를 사용하지 않는다.
 ## 출력과 규약
 
 - `cities_do/assets/vehicles/<id>.glb`: 게임 모델과 바퀴 피벗 계층.
-- `cities_do/assets/vehicles/catalog.json`: 20종 카탈로그.
+- `cities_do/assets/vehicles/catalog.json`: 23종 카탈로그.
 - `cities_do/assets/vehicles/sprites/<id>/000.png` ~ `315.png`: 45도 간격 8장.
 - `render_manifest.json`: 430×245 RGBA, 카메라 고도 30도, 차종별 pixels_per_metre.
 - 000도는 정면이며 카메라가 차량 왼쪽으로 이동하면서 각도가 증가한다.
@@ -46,3 +46,7 @@ revolve, tube, tri_count 등을 실제로 사용한다. 고정 SHA와 파일 해
 이는 원본의 실사 차량 전체 파이프라인 통과 결과가 아니다.
 실사 레퍼런스 IoU, 문 개폐, 충돌 변형, 도로 주행 AI, LOD, 대량 차량 성능은 미검증이다.
 이전 환경의 90/90 검사는 이번 결과에 적용하지 않는다.
+
+## 2026-11-03 서비스 차량 추가
+
+기존 20종을 보존하고 소방차·경찰차·운구차 3종을 추가했다. [출처·재현·실제 검증](../../docs/SERVICE_ASSETS_KO.md)을 참고한다. 기존 ZIP은 과거 20종 스냅샷이다.
