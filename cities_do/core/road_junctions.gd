@@ -1,6 +1,8 @@
 extends RefCounted
 ## Shared centreline topology in city cells. Curves retain their authored geometry.
 const EPS := .0001
+const CROSSWALK_HALF_LENGTH := .22
+const CROSSWALK_EDGE_GAP := .03
 static func key(point: Vector2) -> Vector2i:
  return Vector2i(roundi(point.x/EPS),roundi(point.y/EPS))
 static func merged_key(point: Vector2, nodes: Dictionary) -> Vector2i:
@@ -93,6 +95,19 @@ static func analyze(roads: Array) -> Dictionary:
   junction.asphalt=patch(junction,true)
   junctions.append(junction)
  return {"nodes":nodes,"sections":sections,"junctions":junctions,"errors":errors}
+
+static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
+ # Measure the far edge of the crossing road, not a shared maximum road radius.
+ var direction: Vector2=arm.direction
+ var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
+ var edge := 0.0
+ for other in junction.arms:
+  var crossing: float=absf(direction.cross(other.direction))
+  if crossing<.001:continue
+  # Project the whole zebra width beyond the intersecting strip at oblique angles.
+  var skew: float=absf(direction.dot(other.direction))
+  edge=maxf(edge,(other.width/2+half*skew)/crossing)
+ return edge+CROSSWALK_HALF_LENGTH+CROSSWALK_EDGE_GAP
 
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:
  var cache_key := "asphalt" if asphalt else "footprint"

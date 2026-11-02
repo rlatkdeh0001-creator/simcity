@@ -20,15 +20,15 @@
   "files": [
     {
       "name": "junctions-running.gif",
-      "sha256": "46fac19416cf065473ce46237fc836c521803d7aac390fb967aa6f75b69a7248"
+      "sha256": "f0723b55dee8a092c159defd594a292d9f96723028bc3603b3cc49202641038f"
     },
     {
       "name": "junctions-closeup.gif",
-      "sha256": "8ce9b715a4ba431caad6d8d1082684776cc62d0cee2336e2b78d5289c6783f9b"
+      "sha256": "79a4799985fcee4f1ddb518c1cab94ea99c82233716591fd0a3ae8f4422d0393"
     },
     {
       "name": "junctions-game.png",
-      "sha256": "710833f43a4e9545d4cfb76730a1fd38bbaca9954245bfa4356fa3b28df653bd"
+      "sha256": "6603636039722cac68f0393dca06ef66f0ac1ce57ae26758ed29dd5e2b2e724d"
     }
   ]
 }

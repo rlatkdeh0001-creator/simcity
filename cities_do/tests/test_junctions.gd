@@ -32,7 +32,7 @@ func edge_lane(network, endpoint: Vector2, incoming: bool) -> int:
 func path(network, first: Vector2, last: Vector2) -> Array:
  return network.route(edge_lane(network,first,true),edge_lane(network,last,false))
 func run():
- for method in ["test_topology","test_footprints","test_routes","test_reservations","test_long_vehicle","test_exit_and_queue","test_timing"]:
+ for method in ["test_topology","test_crosswalks","test_footprints","test_routes","test_reservations","test_long_vehicle","test_exit_and_queue","test_timing"]:
   if call(method)!=true:verify(false,method+" finishes")
  if await test_bridge()!=true:verify(false,"bridge finishes")
  print("RESULT %d/%d junction checks passed" % [checks-failed,checks])
@@ -62,6 +62,28 @@ func test_topology() -> bool:
  verify(city.junctions.size()==1 and city.roads.size()==2,"city caches real junctions while retaining two selectable road objects")
  city.demolish("road",city.roads[1].parcel_id)
  verify(city.junctions.is_empty() and city.roads.size()==1,"removing crossing road removes the junction")
+ return true
+func test_crosswalks() -> bool:
+ var mixed := [road([Vector2(10,50),Vector2(90,50)],4),road([Vector2(50,10),Vector2(50,90)])]
+ var junction: Dictionary=Topology.analyze(mixed).junctions[0]
+ var wide := true
+ var narrow := true
+ var edge_clear := true
+ for arm in junction.arms:
+  var distance: float=Topology.crosswalk_distance(junction,arm)
+  if arm.lanes==4:wide=wide and is_equal_approx(distance,1.25)
+  else:narrow=narrow and is_equal_approx(distance,2.25)
+  var boundary: float=1 if arm.lanes==4 else 2
+  edge_clear=edge_clear and is_equal_approx(distance-Topology.CROSSWALK_HALF_LENGTH-boundary,Topology.CROSSWALK_EDGE_GAP)
+ verify(wide,"four-lane zebra sits just beyond the two-lane road edge instead of shared radius")
+ verify(narrow,"two-lane zebra follows the actual wider crossed-road edge")
+ verify(edge_clear,"both zebra near edges use the same small pavement-edge gap")
+ var tee: Dictionary=Topology.analyze([mixed[0],road([Vector2(50,10),Vector2(50,50)])]).junctions[0]
+ verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),1.25 if arm.lanes==4 else 2.25)),"T junction zebra placement uses each crossing width too")
+ var reordered: Dictionary=Topology.analyze([mixed[1],mixed[0]]).junctions[0]
+ verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),1.25 if arm.lanes==4 else 2.25)),"zebra placement does not depend on road construction order")
+ var diagonal: Dictionary=Topology.analyze([road([Vector2(10,10),Vector2(90,90)],4),road([Vector2(90,10),Vector2(10,90)])]).junctions[0]
+ verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),1.25 if arm.lanes==4 else 2.25)),"rotated right-angle crossing keeps the same compact zebra layout")
  return true
 func test_footprints() -> bool:
  var city := City.new(100,100)

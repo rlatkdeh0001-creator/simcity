@@ -27,6 +27,8 @@ entry, keep reservations through rear clearance, and do not enter blocked exits.
 Junction pavement must be excluded from building/utility/parcel footprints.
 Keep corners square at right-angle crossings: use the union of road-width strips,
 not a flared convex hull that cuts into adjacent zoning. Keep turn paths on pavement.
+Place crosswalks per approach using the intersecting road edge/width; never use
+the shared maximum junction control radius to space all crosswalks equally.
 No explanatory mechanics text in player HUDs; keep limits in docs.
 
 Placement-grid rule (user, 2026-11-02): hide roadside placement tiles by default.

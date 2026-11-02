@@ -473,11 +473,12 @@ func _draw():
 			var direction: Vector2=arm.direction
 			var normal := Vector2(-direction.y,direction.x)
 			var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
-			var centre: Vector2=junction.position+direction*(junction.radius-.35)
+			var centre: Vector2=junction.position+direction*city.RoadJunctions.crosswalk_distance(junction,arm)
+			var stripe_half: float=city.RoadJunctions.CROSSWALK_HALF_LENGTH
 			var offset := -half+.12
 			while offset<half-.12:
 				var p: Vector2=centre+normal*offset
-				var corners := PackedVector2Array([p-direction*.22,p+direction*.22,p+direction*.22+normal*.14,p-direction*.22+normal*.14])
+				var corners := PackedVector2Array([p-direction*stripe_half,p+direction*stripe_half,p+direction*stripe_half+normal*.14,p-direction*stripe_half+normal*.14])
 				var projected := PackedVector2Array()
 				for corner in corners:projected.append(screen(corner))
 				draw_colored_polygon(projected,Color("e8e7dc"))

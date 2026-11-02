@@ -26,6 +26,8 @@ road splitting is derived for traffic, not destructive replacement. Validate
 junction pavement against buildings and exclude it from placement cells. Use
 road-width rectangular-strip unions instead of convex corner flares; preserve
 road-local corner lots and keep turn centre paths on the remaining asphalt.
+For crosswalk placement use RoadJunctions.crosswalk_distance() based on the
+crossed-road width per approach; do not reuse the shared traffic-control radius.
 Traffic now supports reserved turn connectors; do not restore the old blanket
 crossing rejection or remove duplicate-collinear-road validation.
 
