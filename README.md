@@ -2,6 +2,8 @@
 
 **새 담당자 시작점: [스킬 인계장 · 익힌 내용과 검증 범위](docs/SKILL_HANDOFF_KO.md)**
 
+**새 게임 규칙: [네 이웃 마을과 도로·철도·전력·지하철·상하수도 교류](docs/REGIONAL_EXCHANGE_RULES_KO.md)**
+
 ## 공원·주차 시설
 
 [공원 4종·주차 시설 4종과 평면 주차장 결합](docs/PARKS_PARKING_KO.md) · [실제 게임 화면](docs/screenshots/facilities-8.png) · [결합 예시](docs/screenshots/parking-merged.png)

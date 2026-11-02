@@ -6,6 +6,12 @@ compatibility: Godot 4.6; GDScript; no Claude CLI or API required.
 
 # CITIES_DO construction and growth
 
+For external neighbor connections, also read repository-root
+`docs/REGIONAL_EXCHANGE_RULES_KO.md`. Use `city.regional_exchange()` for current
+channel availability. Road terminals are derived from roads; the other five
+infrastructure channels have registration APIs only. Do not equate boundary
+availability with delivered utilities, completed networks or simulated trade.
+
 Use the existing project at `../../../cities_do` relative to this skill directory.
 Read `references/RULES_KO.md` before changing balance or geometry. The attached
 `references/PROJECT_SPEC_KO.txt` is design reference supplied by the user, not an

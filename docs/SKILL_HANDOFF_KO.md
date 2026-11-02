@@ -1,6 +1,6 @@
 # CITIES_DO 스킬 인계장
 
-최종 기록: 2026-11-01 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
+최종 기록: 2026-11-02 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
@@ -107,6 +107,14 @@ cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setu
 공원 4종과 주차 시설 4종, 평면 주차장 결합 로직·전시를 새로 제작했다. Blender/GLB/PNG/생성기/시설 검사를 Git에 보존했다. 일반 도시의 시설 배치·도로 접면·주차 수요·차량 입출고 AI는 아직 연결하지 않았다. 기존 ZIP은 과거 스냅샷이며 새 제작 묶음과 최신 main을 확인한다.
 
 ## 검증 상태와 다음 작업
+
+2026-11-02에는 기존 cities-do-construction 지침을 적용해
+[네 이웃 마을 교류 규칙](REGIONAL_EXCHANGE_RULES_KO.md)을 기록하고 경계 접속 상태를 구현했다.
+`region_neighbors.json`의 변별 발전 수준 배치는 임시이며 수치화한 경제 효과는 없다.
+도로 데이터 자동 판정, 나머지 다섯 시설의 등록/삭제 API, 독립 채널과 마지막 연결 해제를
+검증했다. [새 지역 연결 검사 38/38](region-validation/test_regional_exchange.log),
+[회귀 검사 결과](region-validation/results.json)를 참고한다. 이는 아직 철도·전력·상하수도
+건설 UI나 실제 공급·교역이 아니며, 다음 담당자가 경계 접속과 서비스 공급을 혼동하지 않게 한다.
 
 2026-11-01의 실제 저장 결과: [8종 검사 모두 통과](traffic-validation/results.json),
 [주행 43/43](traffic-validation/test_traffic.log), [차량 외형 156/156](traffic-validation/test_vehicles.log).

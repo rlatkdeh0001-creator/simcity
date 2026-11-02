@@ -13,6 +13,9 @@ var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
 var rng := RandomNumberGenerator.new()
 var next_id := 1
+const RegionalExchange = preload("res://core/regional_exchange.gd")
+var external_infrastructure: Array[Dictionary] = []
+var next_external_link_id := 1
 
 func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	width = w
@@ -121,6 +124,28 @@ func find_building(id: int) -> Dictionary:
 		if b.id == id:
 			return b
 	return {}
+
+func regional_exchange() -> Dictionary:
+	# Re-evaluate current paths: removing the last terminal closes its channel.
+	return RegionalExchange.evaluate(width,height,roads,external_infrastructure)
+
+func add_external_link(kind: String, points: PackedVector2Array, commit: bool = true) -> Dictionary:
+	if kind not in ["rail","power","metro","water","sewage"]:
+		return {"ok":false,"reason":"지원하지 않는 기반 시설입니다. 도로는 add_road를 사용하세요"}
+	var error := RegionalExchange.path_error(points,width,height)
+	if error != "": return {"ok":false,"reason":error}
+	var link := {"id":next_external_link_id,"kind":kind,"points":points.duplicate()}
+	if commit:
+		external_infrastructure.append(link)
+		next_external_link_id += 1
+	return {"ok":true,"link":link}
+
+func remove_external_link(id: int) -> bool:
+	for i in range(external_infrastructure.size()):
+		if external_infrastructure[i].id == id:
+			external_infrastructure.remove_at(i)
+			return true
+	return false
 
 func building_at(point: Vector2) -> Dictionary:
 	for b in buildings:

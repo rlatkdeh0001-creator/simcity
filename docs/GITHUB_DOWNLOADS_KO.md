@@ -12,6 +12,8 @@
 
 ## 최신 작업
 
+- [새 규칙: 네 이웃 마을과 외부 교류](REGIONAL_EXCHANGE_RULES_KO.md)
+
 - [도로 주행 AI 도입·테스트 결과](TRAFFIC_AI_KO.md)
 - [주행 GIF](screenshots/traffic-ai-running.gif)
 - [주행 시험장 화면](screenshots/traffic-ai-demo.png)
