@@ -60,7 +60,7 @@ func run():
  preview._process(1)
  verify(is_equal_approx(preview.city.water.supplied_m3-before,rate*3/86400),"3x control advances the actual model three game seconds")
  verify("50,000 doth" in preview.money.text and "34" in preview.counts.text,"status uses actual funds and building count")
- var added: Dictionary=preview.city.add_building(28,66)
+ var added: Dictionary=preview.city.add_building(28,67)
  preview.fit_preview()
  verify(added.ok and is_finite(preview.map_zoom),"camera fitting supports newly built procedural lots too")
  preview.queue_free()

@@ -12,12 +12,12 @@ func verify(value: bool, name_value: String):
 func fixture() -> RefCounted:
  var city := City.new(100,100)
  city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]))
- city.add_building(24,26)
- city.add_power_plant(Vector2(16,26),300)
- city.add_water_facility(Vector2(40,26),"water",1000)
- city.add_water_facility(Vector2(70,26),"sewage",2400)
- city.power.add_wire(PackedVector2Array([Vector2(68,108),Vector2(284,108)]))
- city.water.add_pipe(PackedVector2Array([Vector2(164,108),Vector2(284,108)]))
+ city.add_building(24,27)
+ city.add_power_plant(Vector2(16,27),300)
+ city.add_water_facility(Vector2(40,27),"water",1000)
+ city.add_water_facility(Vector2(70,27),"sewage",2400)
+ city.power.add_wire(PackedVector2Array([Vector2(68,112),Vector2(284,112)]))
+ city.water.add_pipe(PackedVector2Array([Vector2(164,112),Vector2(284,112)]))
  return city
 func sizes(city) -> Dictionary:
  return {"building":city.buildings.size(),"road":city.roads.size(),"power_plant":city.power.plants.size(),"power_wire":city.power.wires.size(),"water_facility":city.water.facilities.size(),"water_pipe":city.water.geometry.wires.size()}

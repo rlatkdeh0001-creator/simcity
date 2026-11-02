@@ -31,6 +31,12 @@ crossed-road width per approach; do not reuse the shared traffic-control radius.
 Traffic now supports reserved turn connectors; do not restore the old blanket
 crossing rejection or remove duplicate-collinear-road validation.
 
+Road-adjacent lots must satisfy a maximum 1.5m (0.375 cell) road-to-front gap,
+measured outside the sidewalk-inclusive road width. Read repository-root
+`docs/BUILDING_ROAD_ADJACENCY_KO.md`; this replaces the former 2.5-cell allowance.
+Use shared frontage candidates in placement, growth and direction. Keep internal
+yards and square footprints; do not force a deep click onto an occupied front lot.
+
 Building fronts must face their accessible local road. Read repository-root
 `docs/BUILDING_FRONTAGE_KO.md`; use `city.orient_building()` / `front_direction()`
 and `main.building_visual()` for consistent simulation, rendering and picking.

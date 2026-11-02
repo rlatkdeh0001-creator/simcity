@@ -1,0 +1,275 @@
+{
+	"access_limit_m": 1.5,
+	"frontage_capture": [
+		{
+			"front_direction": [
+				0.0,
+				1.0
+			],
+			"id": 1,
+			"lot_gap_m": 0.0
+		},
+		{
+			"front_direction": [
+				0.0,
+				-1.0
+			],
+			"id": 2,
+			"lot_gap_m": 0.0
+		},
+		{
+			"front_direction": [
+				-1.0,
+				0.0
+			],
+			"id": 3,
+			"lot_gap_m": 0.0
+		},
+		{
+			"front_direction": [
+				1.0,
+				0.0
+			],
+			"id": 4,
+			"lot_gap_m": 0.0
+		}
+	],
+	"metres_per_cell": 4,
+	"parcel_samples": [
+		{
+			"angle_radians": 0.0,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": 0.0,
+			"reason": "",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 4.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 8.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 12.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": 0.0,
+			"reason": "",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 4.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 8.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.0,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 12.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": 0.000000476837158203125,
+			"reason": "",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 3.99999856948853,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 7.99999904632568,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 11.9999971389771,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": -0.00000214576721191406,
+			"reason": "",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 3.99998140335083,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 7.99998569488525,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 0.37,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 11.9999971389771,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": 0.0,
+			"reason": "",
+			"side": -1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 4.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 8.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 12.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": -1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": true,
+			"depth_cells": 0,
+			"lot_gap_m": 0.0,
+			"reason": "",
+			"side": 1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 1,
+			"lot_gap_m": 4.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 2,
+			"lot_gap_m": 8.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		},
+		{
+			"angle_radians": 1.5707963267949,
+			"built": false,
+			"depth_cells": 3,
+			"lot_gap_m": 12.0,
+			"reason": "도로 바로 옆 구획이 필요합니다",
+			"side": 1
+		}
+	],
+	"showcase": [
+		{
+			"id": "small-2x2-a",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "small-2x2-b",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "small-4x4-a",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "small-4x4-b",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "mansion-a-4x4-4f",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "mansion-b-4x4-4f",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "large-4x4-a",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "large-4x4-b",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "large-8x8-a",
+			"lot_gap_m": 0.0
+		},
+		{
+			"id": "large-8x8-b",
+			"lot_gap_m": 0.0
+		}
+	],
+	"unit": "metres"
+}

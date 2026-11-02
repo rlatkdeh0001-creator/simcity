@@ -44,6 +44,15 @@ values. Preserve units, approval/application status and source locations. It is
 currently a management sheet, not a runtime loader; synchronize live code/JSON
 when applying approved edits. Blank undecided values are not zero.
 
+## Road-adjacent lots (user rule, 2026-11-02)
+
+Read `docs/BUILDING_ROAD_ADJACENCY_KO.md`. Place building lots in the road-adjacent
+row. Maximum road-to-lot-front gap is 1.5 metres = 0.375 city cells, measured from
+the sidewalk-inclusive road edge. The previous 10m proximity allowance is obsolete.
+Use the shared frontage candidate validation for placement, growth and direction;
+a nearby corner alone is insufficient. Keep internal yards and physical scale.
+Do not force deep clicks onto occupied front lots or move existing buildings en masse.
+
 ## Building frontage (user rule, 2026-11-02)
 
 A building's main entrance/front must face its accessible local road, not a fixed

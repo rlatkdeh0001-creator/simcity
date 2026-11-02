@@ -13,7 +13,7 @@ func _initialize():
 func make_city(seed_value: int = 42):
 	var city = Model.new(40, 40, seed_value)
 	city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
-	city.add_building(8,16,"residential",100)
+	city.add_building(8,17,"residential",100)
 	city.config.size_weights = {8:0.0,4:1.0,2:0.0}
 	return city
 func run():

@@ -25,7 +25,7 @@ func run():
 		var asset: Dictionary = city.catalog.get_asset(building.asset_id)
 		groups[asset.category] = groups.get(asset.category,0)+1
 		ids[asset.id] = true
-		var front_sum: int = building.x+building.y+building.size*2
+		var front_sum: int = building.y+building.size
 		if baseline_sum == -1: baseline_sum = front_sum
 		check(front_sum == baseline_sum and city.placement_error(building.x,building.y,building.size,building.id) == "",asset.id+" on shared baseline, valid lot and road access")
 	check(ids.size()==10 and groups=={"small_residential":4,"medium_residential":2,"large_residential":4},"all ten unique assets and exact categories")

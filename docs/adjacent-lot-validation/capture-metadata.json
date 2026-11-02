@@ -1,0 +1,16 @@
+{
+  "engine": "Godot 4.6.3",
+  "renderer": "Compatibility / llvmpipe",
+  "resolution": [
+    1800,
+    1100
+  ],
+  "map_zoom": 1.8,
+  "origin": [
+    560,
+    130
+  ],
+  "road_to_lot_limit_m": 1.5,
+  "source": "actual main.tscn viewport, no compositing",
+  "sha256": "a12d680da6d622bcb708d2e633ec0efcc6ad4ccc993ad17f24d89f7d913b78dd"
+}

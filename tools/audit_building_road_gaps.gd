@@ -1,5 +1,5 @@
 extends SceneTree
-## Read-only diagnosis of existing rules and authored scenarios; no product rule changes.
+## Read-only measurement of current placement rules and authored scenarios.
 const Model=preload("res://core/city_model.gd")
 const Showcase=preload("res://core/residential_showcase.gd")
 func _initialize():run.call_deferred()
@@ -24,11 +24,11 @@ func run():
 				var polygon: PackedVector2Array=city.Parcels.polygon(selected,0,depth,2)
 				var gap: float=city._polygon_road_distance(polygon,city.roads[0])*4.0
 				report.parcel_samples.append({"angle_radians":angle,"side":side,"depth_cells":depth,"lot_gap_m":gap,"built":result.ok,"reason":result.get("reason","")})
-				assert(result.ok==(depth<=2),"Existing rule accepts detached v=1,2 lots")
+				assert(result.ok==(depth==0),"Current rule rejects detached v=1,2,3 lots")
 	var city=Model.new(70,70)
 	for points in [PackedVector2Array([Vector2(7,16),Vector2(18,16)]),PackedVector2Array([Vector2(21,8),Vector2(32,8)]),PackedVector2Array([Vector2(8,21),Vector2(8,32)]),PackedVector2Array([Vector2(30,21),Vector2(30,32)])]:
 		assert(city.add_road(points).ok)
-	for p in [Vector2i(10,10),Vector2i(24,10),Vector2i(10,24),Vector2i(24,24)]:
+	for p in [Vector2i(10,11),Vector2i(24,9),Vector2i(9,24),Vector2i(25,24)]:
 		var result: Dictionary=city.place_catalog_building("mansion-a-4x4-4f",p.x,p.y)
 		assert(result.ok)
 		report.frontage_capture.append({"id":result.building.id,"lot_gap_m":gap_m(city,result.building),"front_direction":[city.front_direction(result.building).x,city.front_direction(result.building).y]})

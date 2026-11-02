@@ -144,7 +144,7 @@ func test_ui() -> bool:
  root.add_child(main)
  current_scene=main
  main.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
- var plant: Dictionary=main.city.add_power_plant(Vector2(20,40),300)
+ var plant: Dictionary=main.city.add_power_plant(Vector2(20,41),300)
  verify(plant.ok,"player can place prototype generator beside road")
  main.find_children("PowerTabButton","Button",true,false)[0].pressed.emit()
  verify(main.power_overlay.tab_open and main.power_overlay.panel.visible,"power tab opens actual game controls")

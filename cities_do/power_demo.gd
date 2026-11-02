@@ -20,15 +20,15 @@ func _ready():
  city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
  city.add_road(PackedVector2Array([Vector2(38,50),Vector2(38,80)]))
  for x in [32,42,62,76]:
-  var result: Dictionary=city.add_building(x,40,"residential")
+  var result: Dictionary=city.add_building(x,41,"residential")
   if result.ok: result.building.power_demand_kw=40.0
  for y in [60,72]:
-  var result: Dictionary=city.add_building(34,y,"residential")
+  var result: Dictionary=city.add_building(35,y,"residential")
   if result.ok: result.building.power_demand_kw=40.0
- var plant: Dictionary=city.add_power_plant(Vector2(20,40),240)
+ var plant: Dictionary=city.add_power_plant(Vector2(20,41),240)
  plant_id=plant.id
- city.power.add_wire(PackedVector2Array([Vector2(84,164),Vector2(340,164)]))
- city.power.add_wire(PackedVector2Array([Vector2(148,164),Vector2(148,280)]))
+ city.power.add_wire(PackedVector2Array([Vector2(84,168),Vector2(340,168)]))
+ city.power.add_wire(PackedVector2Array([Vector2(148,168),Vector2(148,280)]))
  power_overlay.selected_plant=plant_id
  power_overlay.toggle()
  power_overlay.output.value=240
@@ -84,7 +84,7 @@ func set_scenario(which: String):
  city.power.set_output(plant_id,output_kw)
  power_overlay.output.value=output_kw
  if which in ["export","import"]:
-  var added: Dictionary=city.power.add_wire(PackedVector2Array([Vector2(340,164),Vector2(400,164),Vector2(400,200)]))
+  var added: Dictionary=city.power.add_wire(PackedVector2Array([Vector2(340,168),Vector2(400,168),Vector2(400,200)]))
   if added.ok:external_wire=added.wire.id
  power_overlay.visual_time=0
  power_overlay.refresh()

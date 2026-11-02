@@ -6,6 +6,31 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 도로 바로 옆 격자·최대 1.5m 적용 (2026-11-02)
+
+사용자가 도로 바로 옆 격자 배치와 최대 1.5m를 확정했다.
+[최신 규칙과 화면](BUILDING_ROAD_ADJACENCY_KO.md)을 따른다. 이전 2.5셀=10m 허용은 폐기됐다.
+거리 기준은 보도를 포함한 도로 바깥 경계→부지 앞면이며 모델 안 앞마당은 유지한다.
+
+기존 construction / godot-gdscript / godot-gdscript-headless-testing 지침을 적용했다.
+새 스킬·외부 애셋·라이선스 도입은 없다. growth_config 한도를 0.375셀로 바꾸고
+building_frontage의 면별 후보(양 끝·중간) 판정을 city_model의 신축·성장·방향에 공유했다.
+같은 면은 방향 벡터도 재사용해 성장 후 부동소수점 방향 흔들림을 막는다.
+
+실제 예시도 수정했다: 주거 10종 전시, 34건물 bottom UI, power/water demo,
+방향/수도 캡처 배치와 해당 공급원 전선·배관 시작점. 모형 크기·경제·수요량은 유지했다.
+기존 검사 예시의 4m 이상 간격과 UI 뒤쪽 클릭을 새 규칙에 맞췄고 한도를 완화하지 않았다.
+[전체 17개 스크립트](adjacent-lot-validation/results.json),
+[신규 간격 49/49](adjacent-lot-validation/test_road_setback.log),
+[정면 138/138](adjacent-lot-validation/test_building_frontage.log) 통과.
+실제 네 방향+대각선 양쪽 화면에서 부지 간격은 사실상 0m이며 알파 영역 클릭도 확인했다.
+
+`tools/audit_building_road_gaps.gd`는 이제 현재 규칙과 현재 예시를 측정한다.
+기존 road-gap-validation 결과는 과거 진단으로 남기고 최신 결과는 adjacent-lot-validation이다.
+`tools/capture_asset_scale.gd`의 주차 기준도 변경된 수평 전시 도로에 맞췄다.
+기존 도시 일괄 이동·저장 마이그레이션·모바일/대형 도시 성능 검증은 하지 않았다.
+규칙·스킬 적응 지침·코드·검사·실제 이미지를 같은 작업으로 Git main에 커밋·푸시한다.
+
 ## 최신 작업: 도로와 건물 사이 빈 공간 원인 조사 (2026-11-02)
 
 사용자는 건물이 도로에서 떨어진 이유를 요청했다. 기존 construction 지침·기하/접근

@@ -36,9 +36,9 @@ func run():
 	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")
 	scene.mode = "build"
 	var before: int = scene.city.buildings.size()
-	click(scene, Vector2(28.5,17.5))
+	click(scene, Vector2(28.5,18.5))
 	verify(scene.city.buildings.size() == before + 1, "map input creates 2x2 building")
-	click(scene, Vector2(28.5,17.5))
+	click(scene, Vector2(28.5,18.5))
 	verify(scene.city.buildings.size() == before + 1 and "건물" in scene.message, "blocked construction reports reason")
 	scene.mode = "road"
 	click(scene, Vector2(2.3,3.7))

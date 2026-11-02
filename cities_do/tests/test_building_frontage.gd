@@ -30,9 +30,9 @@ func run():
 			check(sides.size()==2,"both sides support road-facing construction")
 	var city=Model.new(60,60)
 	city.add_road(PackedVector2Array([Vector2(2,20),Vector2(50,20)]))
-	var b: Dictionary=city.place_catalog_building("mansion-a-4x4-4f",10,14).building
+	var b: Dictionary=city.place_catalog_building("mansion-a-4x4-4f",10,15).building
 	check(city.front_direction(b)==Vector2.DOWN and city.supports_static_sprite(b),"original front image faces southern road")
-	city.add_road(PackedVector2Array([Vector2(2,12),Vector2(50,12)]))
+	city.add_road(PackedVector2Array([Vector2(2,14),Vector2(50,14)]))
 	check(city.front_direction(b)==Vector2.DOWN and b.front_road_id==0,"corner/second road does not flip an existing frontage")
 	city.demolish("road",0)
 	check(city.front_direction(b)==Vector2.UP and b.front_road_id==1,"removed frontage rebinds to surviving local road")
@@ -43,7 +43,7 @@ func run():
 	var other=Model.new(50,50)
 	other.add_road(PackedVector2Array([Vector2(2,22),Vector2(48,22)]),"highway")
 	other.add_road(PackedVector2Array([Vector2(2,14),Vector2(48,14)]))
-	var house: Dictionary=other.place_catalog_building("mansion-a-4x4-4f",10,17).building
+	var house: Dictionary=other.place_catalog_building("mansion-a-4x4-4f",10,15).building
 	check(house.front_road_id==1 and other.front_direction(house)==Vector2.UP,"highways cannot become entrance roads")
 	for asset in city.catalog.entries:
 		check(Vector2(asset.front_axis[0],asset.front_axis[1])==Vector2.DOWN and ResourceLoader.exists(asset.model),asset.id+" has a metre-based real directional model")

@@ -6,11 +6,11 @@ func run():
  root.add_child(scene)
  current_scene=scene
  scene.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
- scene.city.add_building(32,40)
- scene.city.add_building(50,40)
- scene.city.add_water_facility(Vector2(20,40),"water",1000)
- scene.city.add_water_facility(Vector2(70,40),"sewage",2400)
- scene.city.water.add_pipe(PackedVector2Array([Vector2(84,164),Vector2(284,164)]))
+ scene.city.add_building(32,41)
+ scene.city.add_building(50,41)
+ scene.city.add_water_facility(Vector2(20,41),"water",1000)
+ scene.city.add_water_facility(Vector2(70,41),"sewage",2400)
+ scene.city.water.add_pipe(PackedVector2Array([Vector2(84,168),Vector2(284,168)]))
  scene.origin=Vector2(660,100)
  scene.map_zoom=.5
  scene.water_overlay.toggle()

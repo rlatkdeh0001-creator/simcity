@@ -36,7 +36,7 @@ func run():
 		assert(scene.traffic.rebuild(scene.city.roads))
 		var lane: Dictionary = scene.traffic.network.lanes[0]
 		for b in scene.city.buildings:
-			var front := Vector2(b.x+b.size+2,b.y+b.size+2)*4.0
+			var front := Vector2(b.x+b.size/2.0,b.y+b.size+2)*4.0
 			var direction: Vector2 = scene.traffic.network.tangent(lane.id,0.0)
 			var lane_start_3d: Vector3 = lane.curve.get_point_position(0)
 			var lane_start := Vector2(lane_start_3d.x,lane_start_3d.z)
@@ -48,7 +48,7 @@ func run():
 		var bus_lane: Dictionary = scene.traffic.network.lanes[2]
 		var bus: Dictionary = scene.traffic.catalog.filter(func(a): return a.id=="bus-city-01")[0].duplicate()
 		var centre_front := Vector2.ZERO
-		for b in scene.city.buildings: centre_front += Vector2(b.x+b.size+2,b.y+b.size+2)*4.0
+		for b in scene.city.buildings: centre_front += Vector2(b.x+b.size/2.0,b.y+b.size+2)*4.0
 		centre_front /= scene.city.buildings.size()
 		var bus_direction: Vector2 = scene.traffic.network.tangent(bus_lane.id,0.0)
 		var bus_start_3d: Vector3 = bus_lane.curve.get_point_position(0)

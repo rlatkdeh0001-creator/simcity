@@ -21,17 +21,17 @@ func _ready():
  city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
  city.add_road(PackedVector2Array([Vector2(38,50),Vector2(38,80)]))
  for x in [32,42,62,76]:
-  var result: Dictionary=city.add_building(x,40,"residential")
+  var result: Dictionary=city.add_building(x,41,"residential")
   if result.ok: result.building.water_demand_m3_day=40.0
  for y in [60,72]:
-  var result: Dictionary=city.add_building(34,y,"residential")
+  var result: Dictionary=city.add_building(35,y,"residential")
   if result.ok: result.building.water_demand_m3_day=40.0
- var plant: Dictionary=city.add_water_facility(Vector2(20,40),"water",240)
- var treatment: Dictionary=city.add_water_facility(Vector2(34,76),"sewage",192)
+ var plant: Dictionary=city.add_water_facility(Vector2(20,41),"water",240)
+ var treatment: Dictionary=city.add_water_facility(Vector2(35,76),"sewage",192)
  treatment_id=treatment.id
  supply_id=plant.id
- city.water.add_pipe(PackedVector2Array([Vector2(84,164),Vector2(340,164)]))
- city.water.add_pipe(PackedVector2Array([Vector2(148,164),Vector2(148,280),Vector2(140,308)]))
+ city.water.add_pipe(PackedVector2Array([Vector2(84,168),Vector2(340,168)]))
+ city.water.add_pipe(PackedVector2Array([Vector2(148,168),Vector2(148,280),Vector2(144,308)]))
  water_overlay.selected_facility=supply_id
  water_overlay.toggle()
  water_overlay.output.value=240
@@ -86,14 +86,14 @@ func set_scenario(which: String):
  if which=="off":
   for pipe in city.water.geometry.wires.duplicate(): city.water.remove_pipe(pipe.id)
  elif city.water.geometry.wires.is_empty():
-  city.water.add_pipe(PackedVector2Array([Vector2(84,164),Vector2(340,164)]))
-  city.water.add_pipe(PackedVector2Array([Vector2(148,164),Vector2(148,280),Vector2(140,308)]))
+  city.water.add_pipe(PackedVector2Array([Vector2(84,168),Vector2(340,168)]))
+  city.water.add_pipe(PackedVector2Array([Vector2(148,168),Vector2(148,280),Vector2(144,308)]))
  var capacity: float={"domestic":240.0,"export":300.0,"import":100.0,"off":0.0}[which]
  city.water.set_capacity(supply_id,capacity)
  city.water.set_capacity(treatment_id,64 if which=="import" else (0 if which=="off" else 192))
  water_overlay.output.value=capacity
  if which in ["export","import"]:
-  var added: Dictionary=city.water.add_pipe(PackedVector2Array([Vector2(340,164),Vector2(400,164),Vector2(400,200)]))
+  var added: Dictionary=city.water.add_pipe(PackedVector2Array([Vector2(340,168),Vector2(400,168),Vector2(400,200)]))
   if added.ok:external_pipe=added.wire.id
  water_overlay.visual_time=0
  water_overlay.refresh()

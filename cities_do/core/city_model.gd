@@ -73,14 +73,12 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
 	for junction in junctions:
 		if Parcels.overlap(polygon_value,RoadJunctions.patch(junction)):return "교차로와 충돌합니다"
-	var access:=false
 	for road in roads:
 		var distance:=_polygon_road_distance(polygon_value,road)
 		if distance< -0.0005:return "도로와 충돌합니다"
-		if road.kind=="local" and distance<=config.road_access_distance:access=true
 	# Revealed cells may extend deeper than building frontage range.
 	if not check_buildings:return ""
-	return "" if access else "일반도로 접근이 필요합니다"
+	return "" if not Frontage.candidates(polygon_value,roads,config.road_access_distance).is_empty() else "도로 바로 옆 구획이 필요합니다"
 
 func placement_error(x: int,y: int,size: int,ignore_id: int=-1) -> String:
 	if size not in [2,4,8]:return "크기는 2·4·8만 가능합니다"

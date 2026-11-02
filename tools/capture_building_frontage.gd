@@ -10,7 +10,7 @@ func run():
 	scene.city=scene.Model.new(70,70)
 	for points in [PackedVector2Array([Vector2(7,16),Vector2(18,16)]),PackedVector2Array([Vector2(21,8),Vector2(32,8)]),PackedVector2Array([Vector2(8,21),Vector2(8,32)]),PackedVector2Array([Vector2(30,21),Vector2(30,32)]),PackedVector2Array([Vector2(38,12),Vector2(54,22)])]:
 		assert(scene.city.add_road(points).ok)
-	for p in [Vector2i(10,10),Vector2i(24,10),Vector2i(10,24),Vector2i(24,24)]:
+	for p in [Vector2i(10,11),Vector2i(24,9),Vector2i(9,24),Vector2i(25,24)]:
 		assert(scene.city.place_catalog_building("mansion-a-4x4-4f",p.x,p.y).ok)
 	var sides:={}
 	for frame in scene.city.zoning_grid.frames.values():
@@ -41,7 +41,11 @@ func run():
 				if scene.pick_rendered_building(point).get("id",-1)==b.id:picked=true;break
 			if picked:break
 		assert(picked,"Directional visible facade must accept selection")
-		print("FRONTAGE_CAPTURE ",b.id," facing=",scene.city.front_direction(b)," road=",b.front_road_id)
+		var gap: float=INF
+		for road in scene.city.roads:
+			if road.kind=="local":gap=minf(gap,scene.city._polygon_road_distance(scene.city.footprint(b),road)*4.0)
+		assert(gap<=1.502 and b.front_road_id>=0)
+		print("FRONTAGE_CAPTURE gap_m=",gap," ",b.id," facing=",scene.city.front_direction(b)," road=",b.front_road_id)
 	scene.queue_redraw()
 	await process_frame
 	await RenderingServer.frame_post_draw
