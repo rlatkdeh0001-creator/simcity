@@ -1,5 +1,7 @@
 # 도로 주행 AI 도입·검증 · 2026-11-01
 
+**후속 교차로 업데이트:** [현재 X/T 교차·회전·통행 제어](ROAD_JUNCTIONS_KO.md). 아래 미지원 교차로/초기 검사 설명은 최초 도입 당시의 기록이다. 현재는 실제 교차로를 지원한다.
+
 [최신 전체 ZIP과 백업 다운로드](GITHUB_DOWNLOADS_KO.md)
 
 [실제 게임 화면](screenshots/traffic-ai-demo.png) ·

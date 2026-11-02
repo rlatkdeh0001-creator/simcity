@@ -51,7 +51,7 @@ func test_network() -> bool:
 	verify(network.route(0,1).is_empty(), "routing cannot turn into oncoming lane")
 	network.build([road([Vector2(10,20),Vector2(40,20)]),road([Vector2(50,20),Vector2(90,20)])])
 	verify(network.route(0,2).is_empty(), "disconnected roads have no fabricated route")
-	verify(not network.build([road([Vector2(10,50),Vector2(90,50)]),road([Vector2(50,10),Vector2(50,90)])]), "uncontrolled crossing fails closed")
+	verify(network.build([road([Vector2(10,50),Vector2(90,50)]),road([Vector2(50,10),Vector2(50,90)])]) and network.junctions.size()==1, "crossing roads form a controlled junction")
 	verify(not network.build([road([Vector2(10,20),Vector2(90,20)]),road([Vector2(20,20),Vector2(50,20)])]), "overlapping duplicate roads rejected")
 	network.build([road([Vector2(10,20),Vector2(90,20)],4,"highway")])
 	verify(network.lanes.size() == 4, "four lanes generated")

@@ -464,6 +464,24 @@ func _draw():
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
 		for dash in RoadGeometry.lane_marks(road):
 			draw_line(screen(dash[0]),screen(dash[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
+	for junction in city.junctions:
+		for asphalt in [false,true]:
+			var outline := PackedVector2Array()
+			for point in city.RoadJunctions.patch(junction,asphalt): outline.append(screen(point))
+			if outline.size()>=3: draw_colored_polygon(outline,Color("4c5659") if asphalt else Color("c8cbc3"))
+		for arm in junction.arms:
+			var direction: Vector2=arm.direction
+			var normal := Vector2(-direction.y,direction.x)
+			var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
+			var centre: Vector2=junction.position+direction*(junction.radius-.35)
+			var offset := -half+.12
+			while offset<half-.12:
+				var p: Vector2=centre+normal*offset
+				var corners := PackedVector2Array([p-direction*.22,p+direction*.22,p+direction*.22+normal*.14,p-direction*.22+normal*.14])
+				var projected := PackedVector2Array()
+				for corner in corners:projected.append(screen(corner))
+				draw_colored_polygon(projected,Color("e8e7dc"))
+				offset+=.28
 	draw_traffic()
 	var sorted: Array = city.buildings.duplicate()
 	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))

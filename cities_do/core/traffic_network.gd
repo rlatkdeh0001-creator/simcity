@@ -1,6 +1,8 @@
 extends RefCounted
 ## Directed, metre-based lane graph derived from the existing city road data.
-## Crossing roads require a future junction controller; fail closed for now.
+## At-grade crossings use turn connectors and simulation reservations.
+const Junctions = preload("res://core/road_junctions.gd")
+var junctions: Array = []
 const METRES_PER_CELL := 4.0
 var lanes: Array[Dictionary] = []
 var errors: Array[String] = []
@@ -18,51 +20,76 @@ var search := LaneSearch.new()
 func build(roads: Array) -> bool:
 	lanes.clear()
 	errors.clear()
+	junctions.clear()
 	search.clear()
 	search.lengths.clear()
-	_check_crossings(roads)
+	var topology: Dictionary=Junctions.analyze(roads)
+	errors.assign(topology.errors)
 	if not errors.is_empty(): return false
-	for road_id in range(roads.size()):
-		var road: Dictionary = roads[road_id]
+	junctions=topology.junctions
+	for section in topology.sections:
+		var road_id: int=section.road
+		var road: Dictionary=roads[road_id]
+		var original: PackedVector2Array=section.points
+		var length: float=Junctions.length_of(original)
+		var first: Dictionary=topology.nodes[section.start_node]
+		var last: Dictionary=topology.nodes[section.end_node]
+		var trim_start: float=minf(length*.4,junctions[first.junction].radius) if first.junction>=0 else 0.0
+		var trim_end: float=minf(length*.4,junctions[last.junction].radius) if last.junction>=0 else 0.0
+		var cells: PackedVector2Array=Junctions.slice(original,trim_start,length-trim_end)
 		var points := PackedVector2Array()
-		for point in road.points:
-			var metres: Vector2 = point * METRES_PER_CELL
-			if points.is_empty() or points[-1].distance_to(metres) > 0.01:
-				points.append(metres)
-		if points.size() < 2: continue
-		var closed := points[0].distance_to(points[-1]) < 0.01
-		var count := int(road.lanes) / 2
-		var lane_width := minf(3.5, (float(road.width) * METRES_PER_CELL - 2.0) / int(road.lanes))
-		for direction in [1, -1]:
+		for point in cells:points.append(point*METRES_PER_CELL)
+		if points.size()<2:continue
+		var closed: bool=first.junction<0 and last.junction<0 and points[0].distance_to(points[-1])<.01
+		var count := int(road.lanes)/2
+		var lane_width := minf(3.5,(float(road.width)*METRES_PER_CELL-2)/int(road.lanes))
+		for direction in [1,-1]:
 			var ordered := points.duplicate()
-			if direction == -1: ordered.reverse()
+			if direction==-1:ordered.reverse()
 			for index in range(count):
-				var shifted := _offset(ordered, (index + 0.5) * lane_width, closed)
-				var lane := _add_lane(shifted)
-				lane.merge({"road":road_id, "direction":direction, "index":index, "closed":closed,
-					"start":ordered[0], "end":ordered[-1], "speed_limit":(160.0 if road.kind == "highway" else 80.0) / 3.6})
-				if closed: lane.next.append(lane.id)
+				var lane := _add_lane(_offset(ordered,(index+.5)*lane_width,closed))
+				lane.merge({"road":road_id,"section":section.id,"direction":direction,"index":index,"closed":closed,"junction":-1,
+					"start":original[0 if direction==1 else -1]*METRES_PER_CELL,"end":original[-1 if direction==1 else 0]*METRES_PER_CELL,
+					"start_node":section.start_node if direction==1 else section.end_node,"end_node":section.end_node if direction==1 else section.start_node,
+					"speed_limit":(160.0 if road.kind=="highway" else 80.0)/3.6})
+				if closed:lane.next.append(lane.id)
 	var base_count := lanes.size()
 	for i in range(base_count):
-		var a: Dictionary = lanes[i]
-		if a.closed: continue
+		var a: Dictionary=lanes[i]
+		if a.closed:continue
+		var node: Dictionary=topology.nodes[a.end_node]
 		for j in range(base_count):
-			var b: Dictionary = lanes[j]
-			if a.road == b.road or b.closed or a.index != b.index: continue
-			if a.end.distance_to(b.start) > 0.05: continue
-			# Only unambiguous near-straight continuations in this first integration.
-			# Crossing/turning junctions need reservations rather than implicit links.
-			if tangent(i, a.length).dot(tangent(j, 0.0)) < 0.95: continue
-			var end_point := sample(i, a.length)
-			var start_point := sample(j, 0.0)
-			if end_point.distance_to(start_point) > 0.1: continue
-			a.next.append(j)
+			var b: Dictionary=lanes[j]
+			if i==j or b.closed or a.end_node!=b.start_node:continue
+			var incoming := tangent(i,a.length)
+			var outgoing := tangent(j,0)
+			if node.junction<0:
+				if a.road==b.road or a.index!=b.index or incoming.dot(outgoing)<.95:continue
+				if sample(i,a.length).distance_to(sample(j,0))<.1:a.next.append(j)
+				continue
+			if incoming.dot(outgoing)<-.95:continue # No U-turn into the incoming carriageway.
+			var outgoing_count: int=int(roads[b.road].lanes)/2
+			if b.index!=mini(a.index,outgoing_count-1):continue
+			var points := PackedVector2Array()
+			var start := sample(i,a.length)
+			var finish := sample(j,0)
+			var handle := minf(start.distance_to(finish)*.5,float(junctions[node.junction].radius)*METRES_PER_CELL*.8)
+			var c1 := start+incoming*handle
+			var c2 := finish-outgoing*handle
+			for step in range(25):
+				var t := step/24.0
+				var u := 1-t
+				points.append(start*u*u*u+c1*3*u*u*t+c2*3*u*t*t+finish*t*t*t)
+			var connector := _add_lane(points)
+			connector.merge({"road":-1,"section":-1,"direction":0,"index":a.index,"closed":false,"junction":node.junction,"from":i,"to":j,"speed_limit":30.0/3.6})
+			a.next.append(connector.id)
+			connector.next.append(j)
 	for lane in lanes:
-		search.add_point(lane.id, sample(lane.id, 0.0))
-		search.lengths[lane.id] = lane.length
+		search.add_point(lane.id,sample(lane.id,0))
+		search.lengths[lane.id]=lane.length
 	for lane in lanes:
 		for next_id in lane.next:
-			if next_id != lane.id: search.connect_points(lane.id, next_id, false)
+			if next_id!=lane.id:search.connect_points(lane.id,next_id,false)
 	return errors.is_empty()
 
 func _add_lane(points: PackedVector2Array) -> Dictionary:
@@ -105,31 +132,3 @@ func tangent(lane_id: int, progress: float) -> Vector2:
 func route(start: int, goal: int) -> Array:
 	if start < 0 or goal < 0 or start >= lanes.size() or goal >= lanes.size(): return []
 	return Array(search.get_id_path(start, goal))
-
-func _check_crossings(roads: Array):
-	for a in range(roads.size()):
-		for b in range(a, roads.size()):
-			var pa: PackedVector2Array = roads[a].points
-			var pb: PackedVector2Array = roads[b].points
-			for i in range(pa.size()-1):
-				for j in range(pb.size()-1):
-					if a == b and abs(i-j) <= 1: continue
-					if a == b and i == 0 and j == pb.size()-2 and pa[0].is_equal_approx(pa[-1]): continue
-					if a == b and j == 0 and i == pa.size()-2 and pa[0].is_equal_approx(pa[-1]): continue
-					var edge := pa[i+1]-pa[i]
-					if edge.length() > 0.0001 and absf(edge.cross(pb[j]-pa[i]))/edge.length() < 0.001 and absf(edge.cross(pb[j+1]-pa[i]))/edge.length() < 0.001:
-						var t0 := (pb[j]-pa[i]).dot(edge)/edge.length_squared()
-						var t1 := (pb[j+1]-pa[i]).dot(edge)/edge.length_squared()
-						if minf(1,maxf(t0,t1))-maxf(0,minf(t0,t1)) > 0.001:
-							errors.append("겹치는 도로는 주행할 수 없습니다")
-							return
-					var hit = Geometry2D.segment_intersects_segment(pa[i], pa[i+1], pb[j], pb[j+1])
-					if hit == null: continue
-					var terminal_a: bool = hit.distance_to(pa[0]) < 0.01 or hit.distance_to(pa[-1]) < 0.01
-					var terminal_b: bool = hit.distance_to(pb[0]) < 0.01 or hit.distance_to(pb[-1]) < 0.01
-					if a != b and terminal_a and terminal_b:
-						var da := (pa[i+1]-pa[i]).normalized()
-						var db := (pb[j+1]-pb[j]).normalized()
-						if absf(da.dot(db)) > 0.95: continue
-					errors.append("교차·분기 도로는 교차로 제어 연결 후 주행할 수 있습니다")
-					return

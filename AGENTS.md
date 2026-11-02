@@ -20,6 +20,13 @@ in player-facing HUDs. Keep those in docs. Tool labels, meaningful live values a
 short action/error feedback remain appropriate. Do not change simulation rules
 when removing explanatory text. Current layout review is bottom_ui_preview.tscn.
 
+Road intersections: read `docs/ROAD_JUNCTIONS_KO.md`. Same-level centreline
+crossings form actual junctions with derived lane sections/turn connectors.
+Keep original road/parcel IDs and demolition semantics. Reserve junctions before
+entry, keep reservations through rear clearance, and do not enter blocked exits.
+Junction pavement must be excluded from building/utility/parcel footprints.
+No explanatory mechanics text in player HUDs; keep limits in docs.
+
 Placement-grid rule (user, 2026-11-02): hide roadside placement tiles by default.
 Show them only for the zoning (구획, previously 건설) or road tab, never in
 bulldozer/utility/other views. Hide rendering, not the underlying parcel data.

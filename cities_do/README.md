@@ -1,5 +1,7 @@
 # CITIES_DO · 건설·성장 MVP
 
+**[X자·T자 실제 교차로 연결·차량 회전](../docs/ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](../docs/screenshots/junctions-running.gif) · [교차로 확대](../docs/screenshots/junctions-closeup.gif)
+
 **[수도 거래요금 적용·단가 수정 방법](../docs/WATER_TARIFFS_KO.md)** — 상수 수입·수출/하수 위탁의 m³ 요금과 소수 doth 정산.
 
 **[상하수도망 실제 도입·조작·가격/용량 제안](../docs/WATER_SEWAGE_KO.md)** · [게임 GIF](../docs/screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](../docs/screenshots/water-flow-closeup.gif)

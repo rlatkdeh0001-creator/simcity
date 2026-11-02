@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[X자·T자 실제 교차로 연결·차량 회전](docs/ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](docs/screenshots/junctions-running.gif) · [교차로 확대](docs/screenshots/junctions-closeup.gif)
+
 **[구획·도로에서만 타일 표시 / 우측 통합 불도저](docs/concepts/bottom-ui/DEMOLITION_ZONING_KO.md)** · [구획 선택 화면](docs/concepts/bottom-ui/actual-game-zoning.png)
 
 **[우리 게임에서 실행한 하단 UI](docs/concepts/bottom-ui/actual-game-power.png)** · [상하수도 화면](docs/concepts/bottom-ui/actual-game-water.png) · [별도 검토 장면 실행법](docs/concepts/bottom-ui/ACTUAL_GAME_KO.md)

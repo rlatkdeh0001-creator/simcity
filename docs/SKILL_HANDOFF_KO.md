@@ -6,6 +6,31 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 실제 도로 교차로·회전 경로·통행 제어 (2026-11-02 KST)
+
+사용자가 가로지르는 도로에 실제 교차로를 요구했다.
+[현재 동작/제한/실제 영상](ROAD_JUNCTIONS_KO.md)이 기준이다.
+`core/road_junctions.gd`에서 중심선 교차를 파생 구간/공유 노드로 만들고,
+CityModel의 교차로 캐시·노면 충돌/구획 제외, main의 노면/횡단보도를 연결했다.
+traffic_network는 직진/좌·우회전 곡선을 A*에 연결하고, traffic_simulation은
+앞차 대기 순서/출구 공간/차체 후미를 고려한 교차로 단독 예약을 구현했다.
+모든 도로가 현재 같은 지면이며 입체교차/신호 주기/동시 비충돌 통행은 후속이다.
+
+기존 game-ai/GDScript/headless-testing/construction 지침을 읽어 적용했다.
+경로 탐색·의사결정·이동·렌더를 분리했고 캐시된 경로와 30Hz 상태를 유지했다.
+추가 외부 스킬/애드온 설치나 원본 코드 수정은 없다. 기존 원본 RoadLane/RoadLaneAgent
+어댑터에 실제 회전 곡선을 연결하고 좌표 일치를 검사했다. 출처/SHA/라이선스는 아래 기록과 같다.
+기존 교통 검사의 교차로 거부 항목만 새 연결 요구에 맞춰 바꾸고, 중복 도로 거부는 보존했다.
+
+이번 실행: Godot 4.6.3 교차로 **41/41**, 교통 **43/43**, 전체 **15개 스크립트 통과**.
+[최신 검사 로그](junction-validation/), [실제 주행 GIF](screenshots/junctions-running.gif),
+[확대 GIF](screenshots/junctions-closeup.gif), [증거 메타데이터](screenshots/junctions-evidence.json).
+`junction_demo.gd/.tscn`, `tools/build_junction_evidence.py`,
+`tools/validate_junction_update.py`로 재현한다.
+이미지 생성 없이 실제 뷰포트 약 18초를 기록하고 Pillow로 GIF를 만들었다.
+교차로 추가 요금/경제 수치 변경은 없다. 짧은 수용 차로·무한 수요·대규모 성능·
+차종별 물리 회전 반경은 검증 범위 밖이며 문서에 구체적 한계를 적었다.
+
 ## 최신 작업: 통합 불도저·구획 탭·타일 표시 조건 (2026-11-02 KST)
 
 사용자는 건설을 구획으로 바꾸고 맨 우측 불도저 하나로 철거하며,

@@ -36,7 +36,7 @@ func rebuild(roads: Array) -> bool:
 
 func seed_traffic():
 	for lane in network.lanes:
-		if lane.length < 24: continue
+		if lane.length < 24 or lane.get("junction",-1)>=0: continue
 		var route := [lane.id]
 		var cursor: int = lane.id
 		while not network.lanes[cursor].next.is_empty():
@@ -44,6 +44,7 @@ func seed_traffic():
 			if next in route: break
 			route.append(next)
 			cursor = next
+		while route.size()>1 and network.lanes[route[-1]].get("junction",-1)>=0:route.pop_back()
 		var loop: bool = route[0] in network.lanes[route[-1]].next
 		var count := mini(4, int(lane.length/35.0))
 		for i in range(count):

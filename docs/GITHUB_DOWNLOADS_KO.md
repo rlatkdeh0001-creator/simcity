@@ -1,5 +1,7 @@
 # GitHub에서 보기·다운로드
 
+**[X자·T자 실제 교차로 연결·차량 회전](ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](screenshots/junctions-running.gif) · [교차로 확대](screenshots/junctions-closeup.gif)
+
 [실제 게임 배경의 하단 UI](concepts/bottom-ui/actual-game-power.png) · [수도 탭](concepts/bottom-ui/actual-game-water.png) · [동작/실행법](concepts/bottom-ui/ACTUAL_GAME_KO.md). 생성형 그림이 아닌 실제 Godot 캡처.
 
 [하단 통합 UI 시안](concepts/bottom-ui/concept.png) · [배치/스킬 조사 기록](concepts/bottom-ui/DESIGN_KO.md) — 게임 미적용.

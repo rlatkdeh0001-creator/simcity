@@ -20,6 +20,13 @@ Water trade tariffs are now authorized: read `docs/WATER_TARIFFS_KO.md`, edit
 city.utility_balance() budget with electricity. Construction/upkeep remain proposed. Rail/metro still have registration APIs only. Do not equate boundary
 availability with delivered utilities, completed networks or simulated trade.
 
+For at-grade crossings read `docs/ROAD_JUNCTIONS_KO.md` and use the shared
+`core/road_junctions.gd` topology/footprint. Preserve original road/parcel IDs;
+road splitting is derived for traffic, not destructive replacement. Validate
+junction corner pavement against buildings and exclude it from placement cells.
+Traffic now supports reserved turn connectors; do not restore the old blanket
+crossing rejection or remove duplicate-collinear-road validation.
+
 For player UI copy, keep names, live values and actionable feedback concise.
 Do not add network-radius/node-spacing tutorials or implementation/development
 notes to HUDs; keep design explanations in docs. The current compact bottom UI
