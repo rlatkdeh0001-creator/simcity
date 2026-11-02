@@ -12,9 +12,12 @@ func make_town():
   if not result.ok:push_error("Invalid junction demo lot: "+str(entry))
 func _ready():
  super._ready()
- select_category("transport")
- categories[6].grab_focus.call_deferred()
- drawer.hide()
+ var tab_choice := "transport"
+ for argument in OS.get_cmdline_user_args():
+  if argument.begins_with("--bottom-tab="):tab_choice=argument.trim_prefix("--bottom-tab=")
+ select_category(tab_choice)
+ categories[NAMES.keys().find(chosen)].grab_focus.call_deferred()
+ if chosen=="transport":drawer.hide()
  if traffic.rebuild(city.roads):traffic.seed_traffic()
  for argument in OS.get_cmdline_user_args():
   if argument.begins_with("--record-junction="):

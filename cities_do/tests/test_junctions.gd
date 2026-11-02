@@ -2,6 +2,7 @@ extends SceneTree
 const Topology = preload("res://core/road_junctions.gd")
 const Network = preload("res://core/traffic_network.gd")
 const Simulation = preload("res://core/traffic_simulation.gd")
+const RoadGeometry = preload("res://core/road_geometry.gd")
 const City = preload("res://core/city_model.gd")
 const Bridge = preload("res://core/road_generator_traffic.gd")
 var checks := 0
@@ -66,20 +67,32 @@ func test_footprints() -> bool:
  var city := City.new(100,100)
  city.add_road(roads()[0].points)
  city.add_road(roads()[1].points)
- verify(not city.add_building(51,47).ok,"building cannot occupy filled junction corner outside old straight ribbons")
- verify(not city.add_power_plant(Vector2(51,47)).ok,"utility footprint also respects junction pavement")
+ var outline: PackedVector2Array=Topology.patch(city.junctions[0])
+ var square := true
+ for i in range(outline.size()):
+  var edge: Vector2=outline[(i+1)%outline.size()]-outline[i]
+  square=square and (absf(edge.x)<.001 or absf(edge.y)<.001)
+ verify(square,"right-angle junction keeps straight square corners instead of diagonal flares")
+ verify(is_equal_approx(city.Parcels.area(outline),12.0),"two-lane crossing uses only the 12 square cells inside road-width strips")
+ var restored := true
+ for point in [Vector2(47.5,48.5),Vector2(51.5,48.5),Vector2(47.5,51.5),Vector2(51.5,51.5)]:
+  restored=restored and city.add_building_at(point).ok
+ verify(restored,"all four formerly clipped road-local 2x2 corner lots remain buildable")
+ verify(not city.add_building(50,47).ok,"building still cannot occupy the actual road")
+ verify(not city.add_power_plant(Vector2(50,47)).ok,"utility footprint still respects the rectangular pavement")
  var corner_clear := true
  for parcel in city.zoning_grid.parcels.values():
   for junction in city.junctions:
    corner_clear=corner_clear and not city.Parcels.overlap(parcel.polygon,Topology.patch(junction))
- verify(corner_clear,"placement tiles exclude the actual junction footprint")
+ verify(corner_clear,"placement tiles exclude actual pavement without diagonal corner loss")
  var occupied := City.new(100,100)
  occupied.add_road(roads()[0].points)
  var house: Dictionary=occupied.add_building(51,47)
- verify(house.ok,"corner lot was valid before crossing road existed")
+ verify(house.ok,"corner lot exists before a crossing road is added")
  var before: int=occupied.roads.size()
  var preview: Dictionary=occupied.add_road(roads()[1].points,"local",false)
- verify(not preview.ok and occupied.roads.size()==before and occupied.junctions.is_empty(),"new intersection cannot pave over an existing corner building even in preview")
+ verify(preview.ok and occupied.roads.size()==before and occupied.junctions.is_empty(),"square crossing preview preserves the adjacent house and does not mutate city")
+ verify(occupied.add_road(roads()[1].points).ok and occupied.buildings.size()==1,"crossing can be built beside the corner house without clipping or demolition")
  return true
 func test_routes() -> bool:
  var network=cross_network()
@@ -104,6 +117,16 @@ func test_routes() -> bool:
  var mixed := Network.new()
  verify(mixed.build([road([Vector2(10,50),Vector2(90,50)],4),road([Vector2(50,10),Vector2(50,90)])]),"four-lane and two-lane intersection builds")
  verify(path(mixed,Vector2(10,50),Vector2(50,90)).size()==3,"mixed-width intersection routes into narrower receiving road")
+ var inside := true
+ for pair in [[network,roads()],[mixed,[road([Vector2(10,50),Vector2(90,50)],4),road([Vector2(50,10),Vector2(50,90)])]]]:
+  var shapes := []
+  for entry in pair[1]:shapes.append_array(RoadGeometry.ribbons(entry.points,entry.width*(.75 if entry.lanes==2 else .8125)))
+  for lane in pair[0].lanes:
+   if lane.junction<0:continue
+   for step in range(61):
+    var point: Vector2=pair[0].sample(lane.id,lane.length*step/60)/4.0
+    inside=inside and shapes.any(func(shape):return Geometry2D.is_point_in_polygon(point,shape))
+ verify(inside,"all mixed-width turn centre paths stay on actual asphalt after square-corner change")
  var tee := Network.new()
  tee.build([roads()[0],road([Vector2(50,10),Vector2(50,50)])])
  verify(path(tee,Vector2(50,10),Vector2(90,50)).size()==3,"T junction routes from branch onto through road")

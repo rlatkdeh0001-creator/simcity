@@ -88,15 +88,29 @@ static func analyze(roads: Array) -> Dictionary:
   node.junction=junctions.size()
   var radius := 0.0
   for arm in node.arms:radius=maxf(radius,arm.width/2+1.0)
-  junctions.append({"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius})
+  var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
+  junction.footprint=patch(junction)
+  junction.asphalt=patch(junction,true)
+  junctions.append(junction)
  return {"nodes":nodes,"sections":sections,"junctions":junctions,"errors":errors}
 
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:
- var points := PackedVector2Array()
+ var cache_key := "asphalt" if asphalt else "footprint"
+ if junction.has(cache_key):return junction[cache_key]
+ # Union of road-width strips, preserving square block corners. A convex hull
+ # would fill the diagonal wedges outside the roads and consume valid parcels.
+ var result := PackedVector2Array()
  for arm in junction.arms:
   var direction: Vector2=arm.direction
   var normal := Vector2(-direction.y,direction.x)
   var factor := (.75 if arm.lanes==2 else .8125) if asphalt else 1.0
   var distance: float=junction.radius+(.02 if asphalt else 0)
-  for sign_value in [-1,1]:points.append(junction.position+direction*distance+normal*arm.width/2*factor*sign_value)
- return Geometry2D.convex_hull(points)
+  var side: Vector2=normal*arm.width/2*factor
+  var start: Vector2=junction.position-direction*EPS*2
+  var finish: Vector2=junction.position+direction*distance
+  var strip := PackedVector2Array([start-side,finish-side,finish+side,start+side])
+  if result.is_empty():result=strip
+  else:
+   var merged := Geometry2D.merge_polygons(result,strip)
+   if not merged.is_empty():result=merged[0]
+ return result

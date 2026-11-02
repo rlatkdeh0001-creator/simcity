@@ -25,6 +25,8 @@ crossings form actual junctions with derived lane sections/turn connectors.
 Keep original road/parcel IDs and demolition semantics. Reserve junctions before
 entry, keep reservations through rear clearance, and do not enter blocked exits.
 Junction pavement must be excluded from building/utility/parcel footprints.
+Keep corners square at right-angle crossings: use the union of road-width strips,
+not a flared convex hull that cuts into adjacent zoning. Keep turn paths on pavement.
 No explanatory mechanics text in player HUDs; keep limits in docs.
 
 Placement-grid rule (user, 2026-11-02): hide roadside placement tiles by default.

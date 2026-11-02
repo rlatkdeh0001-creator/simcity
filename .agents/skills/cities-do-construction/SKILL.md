@@ -23,7 +23,9 @@ availability with delivered utilities, completed networks or simulated trade.
 For at-grade crossings read `docs/ROAD_JUNCTIONS_KO.md` and use the shared
 `core/road_junctions.gd` topology/footprint. Preserve original road/parcel IDs;
 road splitting is derived for traffic, not destructive replacement. Validate
-junction corner pavement against buildings and exclude it from placement cells.
+junction pavement against buildings and exclude it from placement cells. Use
+road-width rectangular-strip unions instead of convex corner flares; preserve
+road-local corner lots and keep turn centre paths on the remaining asphalt.
 Traffic now supports reserved turn connectors; do not restore the old blanket
 crossing rejection or remove duplicate-collinear-road validation.
 

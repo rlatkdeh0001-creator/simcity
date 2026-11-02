@@ -14,7 +14,7 @@ PASS highway reveals no zoning
 PASS fractional curved stroke reveals local grid only
 PASS 1024x1024 empty map remains sparse
 PASS 1024 map short road allocates bounded local chunks
-1024-map short-stroke zoning update ms: 23
+1024-map short-stroke zoning update ms: 24
 PASS road ribbons and 4-lane dividers generated
 PASS zoom keeps cursor world position anchored
 PASS zoomed projection inverse matches input

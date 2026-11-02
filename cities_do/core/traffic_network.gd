@@ -76,6 +76,17 @@ func build(roads: Array) -> bool:
 			var handle := minf(start.distance_to(finish)*.5,float(junctions[node.junction].radius)*METRES_PER_CELL*.8)
 			var c1 := start+incoming*handle
 			var c2 := finish-outgoing*handle
+			# Keep turns inside the rectangular road union instead of cutting
+			# across the formerly flared junction corners.
+			var denominator := incoming.cross(outgoing)
+			if absf(denominator)>.001:
+				var delta := finish-start
+				var along_in := delta.cross(outgoing)/denominator
+				var along_out := incoming.cross(delta)/denominator
+				if along_in>=0 and along_out>=0:
+					var corner := start+incoming*along_in
+					c1=corner
+					c2=corner
 			for step in range(25):
 				var t := step/24.0
 				var u := 1-t

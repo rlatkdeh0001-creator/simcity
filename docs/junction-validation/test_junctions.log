@@ -11,11 +11,15 @@ PASS self crossing polyline forms a junction without splitting its construction 
 PASS collinear duplicate overlap stays rejected
 PASS city caches real junctions while retaining two selectable road objects
 PASS removing crossing road removes the junction
-PASS building cannot occupy filled junction corner outside old straight ribbons
-PASS utility footprint also respects junction pavement
-PASS placement tiles exclude the actual junction footprint
-PASS corner lot was valid before crossing road existed
-PASS new intersection cannot pave over an existing corner building even in preview
+PASS right-angle junction keeps straight square corners instead of diagonal flares
+PASS two-lane crossing uses only the 12 square cells inside road-width strips
+PASS all four formerly clipped road-local 2x2 corner lots remain buildable
+PASS building still cannot occupy the actual road
+PASS utility footprint still respects the rectangular pavement
+PASS placement tiles exclude actual pavement without diagonal corner loss
+PASS corner lot exists before a crossing road is added
+PASS square crossing preview preserves the adjacent house and does not mutate city
+PASS crossing can be built beside the corner house without clipping or demolition
 PASS two-lane X has 12 directed straight left and right connectors
 PASS west approach routes through junction to (90.0, 50.0)
 PASS west approach routes through junction to (50.0, 10.0)
@@ -26,6 +30,7 @@ PASS connector graph never links an oncoming U-turn
 PASS all baked junction curve positions are finite
 PASS four-lane and two-lane intersection builds
 PASS mixed-width intersection routes into narrower receiving road
+PASS all mixed-width turn centre paths stay on actual asphalt after square-corner change
 PASS T junction routes from branch onto through road
 PASS invalid route index rejected before lane access
 PASS vehicles cannot spawn already inside an unreserved junction
@@ -41,4 +46,4 @@ PASS front vehicle is admitted before lower-ID follower behind it
 PASS manual red stop does not reserve and block the junction
 PASS 30/60 rendering rates produce identical junction movement
 PASS actual RoadLaneAgent follows selected junction turn curve
-RESULT 41/41 junction checks passed
+RESULT 46/46 junction checks passed

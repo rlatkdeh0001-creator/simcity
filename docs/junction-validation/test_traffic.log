@@ -30,7 +30,7 @@ PASS pause does not accumulate hidden movement
 PASS long frame advances deterministic substeps
 PASS closed curved road produces valid lanes
 PASS 100 vehicle fixture spawns with valid spacing
-BENCHMARK 100 vehicles / 300 fixed ticks: 468.70 ms total, 1.562 ms per tick
+BENCHMARK 100 vehicles / 300 fixed ticks: 463.79 ms total, 1.546 ms per tick
 PASS 100 vehicle fixture preserves gaps and finite states
 PASS closed curved road produces valid lanes
 PASS actual upstream RoadLaneAgent and RoadLane instantiated
