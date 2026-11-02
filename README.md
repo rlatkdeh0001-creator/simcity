@@ -13,6 +13,8 @@
 **[지중 전력망 흐름 GIF · 반경 64m/간격 32m](docs/concepts/underground-power-v2/flow-demo.gif)** ·
 **[전기 수출입 kWh 단가 제안](docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md)** — 시각 검토용이며 게임 미적용입니다.
 
+**[전력 공급 원칙](docs/ELECTRICITY_RULES_KO.md)** — 충분한 전력은 연결 대상에 동시에 공급하며 하얀 원의 도착과 무관합니다.
+
 ## 공원·주차 시설
 
 [공원 4종·주차 시설 4종과 평면 주차장 결합](docs/PARKS_PARKING_KO.md) · [실제 게임 화면](docs/screenshots/facilities-8.png) · [결합 예시](docs/screenshots/parking-merged.png)

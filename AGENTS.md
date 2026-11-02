@@ -1,5 +1,10 @@
 # Project skills
 
+Power rule: read `docs/ELECTRICITY_RULES_KO.md` before implementing electricity.
+Connected eligible consumers receive power simultaneously when supply suffices.
+White traveling circles are display-only: their arrival, disappearance, speed,
+count or visibility must never gate supply or change power/trade billing.
+
 ## Asset pricing proposals (user requirement, 2026-11-02)
 
 For every newly created asset, propose a construction price and recurring upkeep
