@@ -1,5 +1,7 @@
 # GitHub에서 보기·다운로드
 
+[실제 게임 배경의 하단 UI](concepts/bottom-ui/actual-game-power.png) · [수도 탭](concepts/bottom-ui/actual-game-water.png) · [동작/실행법](concepts/bottom-ui/ACTUAL_GAME_KO.md). 생성형 그림이 아닌 실제 Godot 캡처.
+
 [하단 통합 UI 시안](concepts/bottom-ui/concept.png) · [배치/스킬 조사 기록](concepts/bottom-ui/DESIGN_KO.md) — 게임 미적용.
 
 **[수도 거래요금 적용·단가 수정 방법](WATER_TARIFFS_KO.md)** — 상수 수입·수출/하수 위탁의 m³ 요금과 소수 doth 정산.
