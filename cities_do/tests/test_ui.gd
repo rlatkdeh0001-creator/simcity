@@ -17,6 +17,8 @@ func run():
 	var scene = load("res://main.tscn").instantiate()
 	root.add_child(scene)
 	await process_frame
+	verify(scene.city.difficulty == "normal" and scene.city.funds == 50000, "normal difficulty starts with 50000 doth")
+	verify(scene.treasury_label.text == "자금: 50,000 doth", "treasury displays confirmed currency and starting amount")
 	verify(scene.city.width == 100 and scene.city.height == 100 and scene.city.buildings.is_empty() and scene.city.roads.is_empty() and scene.city.zoning_grid.count() == 0, "100x100 scene starts empty with no zoning grid")
 	scene.map_zoom = 1.0
 	scene.city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
@@ -46,6 +48,12 @@ func run():
 		scene._unhandled_input(motion)
 	scene.finish_road()
 	verify(scene.city.roads.size() == 2 and scene.city.roads[1].points.size() == 4, "free road pointer stroke retains fractional geometry")
+	scene.city.funds = 12345
+	scene.refresh()
+	verify(scene.treasury_label.text == "자금: 12,345 doth", "treasury reflects current city balance")
+	for child in panel.get_children():
+		if child is Button and child.text == "도시 초기화": child.emit_signal("pressed")
+	verify(scene.city.funds == 50000 and scene.treasury_label.text == "자금: 50,000 doth", "city reset restores normal starting funds")
 	await process_frame
 	scene.queue_free()
 	await process_frame

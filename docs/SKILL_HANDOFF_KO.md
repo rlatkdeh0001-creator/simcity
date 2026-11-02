@@ -108,6 +108,11 @@ cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setu
 
 ## 검증 상태와 다음 작업
 
+2026-11-02 재화 규칙: **doth(도쓰)**, 기본 난이도 시작 자금 **50,000 doth**.
+`core/economy_config.gd`와 도시 자금 상태·화면 표시·초기화에 적용했다.
+[확정 범위](CURRENCY_RULES_KO.md)와 [이번 검사 결과](currency-validation/results.json)를 확인한다.
+건설비·유지비·세금·무역 가격은 아직 미정이며 임의로 차감/지급하지 않는다.
+
 2026-11-02에는 기존 cities-do-construction 지침을 적용해
 [네 이웃 마을 교류 규칙](REGIONAL_EXCHANGE_RULES_KO.md)을 기록하고 경계 접속 상태를 구현했다.
 `region_neighbors.json`의 변별 발전 수준 배치는 임시이며 수치화한 경제 효과는 없다.

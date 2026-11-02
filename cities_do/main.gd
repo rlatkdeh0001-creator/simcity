@@ -22,6 +22,7 @@ var pointer := Vector2.ZERO
 var message := "빈 지도입니다. 도로를 그리면 주변 건설 격자가 표시됩니다."
 var hud: Label
 var info: Label
+var treasury_label: Label
 var origin := Vector2(650, 130)
 var tile := Vector2(14, 7)
 
@@ -62,6 +63,10 @@ func _ready():
 	title.text = "CITIES_DO · 건설 실험실"
 	title.add_theme_font_size_override("font_size", 22)
 	box.add_child(title)
+	treasury_label = Label.new()
+	treasury_label.name = "TreasuryLabel"
+	treasury_label.add_theme_font_size_override("font_size", 18)
+	box.add_child(treasury_label)
 	for item in [["build", "2×2 건설"], ["road", "자유 도로 · 드래그"], ["select", "건물 선택"]]:
 		var button := Button.new()
 		button.text = item[1]
@@ -209,6 +214,8 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if treasury_label != null:
+		treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	var b: Dictionary = city.find_building(selected)
 	info.text = "선택 없음" if b.is_empty() else "#%d · %d×%d · 레벨 %d\n성장 수치 %.0f / %.0f" % [b.id, b.size, b.size, b.level, b.score, city.config.score_threshold]
 	if not b.is_empty():

@@ -1,4 +1,7 @@
 extends RefCounted
+const Economy = preload("res://core/economy_config.gd")
+var difficulty := Economy.DEFAULT_DIFFICULTY
+var funds: int = Economy.NORMAL_STARTING_FUNDS
 const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
 var zoning_grid = ZoningGrid.new()

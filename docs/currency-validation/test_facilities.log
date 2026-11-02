@@ -1,0 +1,72 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS all three requested surface lot sizes accepted
+PASS shared edges produce one complex preserving all lot IDs
+PASS merged capacity equals 4+8+16 spaces
+PASS one combined mesh with asphalt/curb/paint surfaces
+PASS interior boundaries removed from merged L shape
+PASS overlap rejected without mutation
+PASS unaligned module placement rejected
+PASS out-of-bounds placement rejected
+PASS unsupported footprint rejected
+PASS removing the connecting lot splits corner-only contact
+PASS removing unknown/already removed ID has no effect
+PASS adjacent tower is excluded from surface merging
+PASS layout is independent of insertion order
+PASS Python/Godot capacity and edges agree: rectangle
+PASS Python/Godot mesh recipe agrees: rectangle
+PASS Python/Godot capacity and edges agree: L
+PASS Python/Godot mesh recipe agrees: L
+PASS Python/Godot capacity and edges agree: hole
+PASS Python/Godot mesh recipe agrees: hole
+PASS hole retains its inner curb and has no asphalt fill
+PASS catalog contains exactly 8 requested facilities
+PASS park-pocket-2x2 GLB imports
+PASS park-pocket-2x2 exported as one combined mesh
+PASS park-pocket-2x2 preserves rectangular metre footprint
+PASS park-pocket-2x2 ground/height axes remain correct
+PASS park-pocket-2x2 preview has expected RGBA resolution
+PASS park-garden-2x2 GLB imports
+PASS park-garden-2x2 exported as one combined mesh
+PASS park-garden-2x2 preserves rectangular metre footprint
+PASS park-garden-2x2 ground/height axes remain correct
+PASS park-garden-2x2 preview has expected RGBA resolution
+PASS park-plaza-4x4 GLB imports
+PASS park-plaza-4x4 exported as one combined mesh
+PASS park-plaza-4x4 preserves rectangular metre footprint
+PASS park-plaza-4x4 ground/height axes remain correct
+PASS park-plaza-4x4 preview has expected RGBA resolution
+PASS park-play-4x4 GLB imports
+PASS park-play-4x4 exported as one combined mesh
+PASS park-play-4x4 preserves rectangular metre footprint
+PASS park-play-4x4 ground/height axes remain correct
+PASS park-play-4x4 preview has expected RGBA resolution
+PASS parking-small-2x4 GLB imports
+PASS parking-small-2x4 exported as one combined mesh
+PASS parking-small-2x4 preserves rectangular metre footprint
+PASS parking-small-2x4 ground/height axes remain correct
+PASS parking-small-2x4 preview has expected RGBA resolution
+PASS parking-medium-4x4 GLB imports
+PASS parking-medium-4x4 exported as one combined mesh
+PASS parking-medium-4x4 preserves rectangular metre footprint
+PASS parking-medium-4x4 ground/height axes remain correct
+PASS parking-medium-4x4 preview has expected RGBA resolution
+PASS parking-large-4x8 GLB imports
+PASS parking-large-4x8 exported as one combined mesh
+PASS parking-large-4x8 preserves rectangular metre footprint
+PASS parking-large-4x8 ground/height axes remain correct
+PASS parking-large-4x8 preview has expected RGBA resolution
+PASS parking-tower-4x4-4f GLB imports
+PASS parking-tower-4x4-4f exported as one combined mesh
+PASS parking-tower-4x4-4f preserves rectangular metre footprint
+PASS parking-tower-4x4-4f ground/height axes remain correct
+PASS parking-tower-4x4-4f preview has expected RGBA resolution
+PASS requested category counts
+PASS construction button opens facilities scene
+PASS runtime starts with merged L shape
+PASS merge mode shows runtime geometry
+PASS bridge removal rebuilds two meshes plus independent tower
+PASS bridge restoration recombines to one mesh plus tower
+PASS new adjacent small lot joins same complex
+PASS return preserves original city/camera
+RESULT 69/69 facility checks passed

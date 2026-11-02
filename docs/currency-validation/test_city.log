@@ -1,0 +1,27 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road access required
+PASS continuous non-grid road
+PASS new buildings start 2x2
+PASS overlap rejected
+PASS map boundary rejected
+PASS road width collision rejected
+PASS road cannot cut existing building
+PASS free polyline supports curved strokes
+PASS root score threshold enforced
+PASS 8x8 expansion searches valid free footprint
+PASS cascade cap terminates propagation
+PASS neighbor bypasses score threshold
+PASS cap leaves remaining buildings unchanged
+PASS root grows only once despite neighbor cycles
+PASS zero cascade chance respected
+PASS corner contact is not adjacency
+PASS highway does not grant zoning access
+PASS seeded weighted distribution prefers 8x8
+PASS seeded replay deterministic
+PASS post-growth spatial invariants
+PASS blocked large footprint falls back to 2x2 without demolition
+PASS 8x8 falls back to valid 4x4 before 2x2
+PASS road preview does not mutate city
+PASS 100 seeded upgrades preserve boundaries, access, road and building separation
+RESULT 24/24 passed
