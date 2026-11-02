@@ -1,0 +1,61 @@
+{
+  "source": "docs/scale-validation/source-measurements.json (prior original Blender audit; sources unchanged this session)",
+  "front_axis_blender": [
+    0,
+    -1,
+    0
+  ],
+  "method": "lot_depth/2 + minimum body Y; excludes entrance canopies and other props",
+  "buildings": [
+    {
+      "id": "mansion-a-4x4-4f",
+      "name": "벽돌형 맨션",
+      "lot_front_to_body_m": 3.35
+    },
+    {
+      "id": "mansion-b-4x4-4f",
+      "name": "모던형 맨션",
+      "lot_front_to_body_m": 3.35
+    },
+    {
+      "id": "small-2x2-a",
+      "name": "단층 전원주택",
+      "lot_front_to_body_m": 2.15
+    },
+    {
+      "id": "small-2x2-b",
+      "name": "2층 타운하우스",
+      "lot_front_to_body_m": 1.9
+    },
+    {
+      "id": "small-4x4-a",
+      "name": "정원형 단독주택",
+      "lot_front_to_body_m": 4.7
+    },
+    {
+      "id": "small-4x4-b",
+      "name": "안뜰형 연립주택",
+      "lot_front_to_body_m": 4.05
+    },
+    {
+      "id": "large-4x4-a",
+      "name": "발코니 아파트",
+      "lot_front_to_body_m": 4.2
+    },
+    {
+      "id": "large-4x4-b",
+      "name": "코너 주거타워",
+      "lot_front_to_body_m": 4.1
+    },
+    {
+      "id": "large-8x8-a",
+      "name": "L자형 주거 아파트",
+      "lot_front_to_body_m": 5.5
+    },
+    {
+      "id": "large-8x8-b",
+      "name": "계단형 주거타워",
+      "lot_front_to_body_m": 5.75
+    }
+  ]
+}
