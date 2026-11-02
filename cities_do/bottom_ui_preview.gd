@@ -4,6 +4,7 @@ var dock: PanelContainer
 var drawer: PanelContainer
 var drawer_box: HBoxContainer
 var categories: Array[Button] = []
+var bulldozer: Button
 var money: Label
 var counts: Label
 var chosen := "power"
@@ -14,7 +15,7 @@ var elapsed := 0.0
 var capture_pending := false
 var last_funds := -1
 var last_count := -1
-const NAMES := {"build":"건설","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","other":"기타"}
+const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","other":"기타"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
 
@@ -99,6 +100,7 @@ func icon(kind: String) -> Texture2D:
     var p := Vector2(12,12)+Vector2(cos(a),sin(a))*radius
     path+=("M" if i==0 else "L")+str(p.x)+" "+str(p.y)+" "
    body='<path d="'+path+'z M16 12a4 4 0 1 0-8 0a4 4 0 1 0 8 0z" fill-rule="evenodd"/>'
+  "bulldozer": body='<path d="M5 4h8l3 10H4zm3 3v5h5l-2-5z" fill-rule="evenodd"/><rect x="1" y="15" width="16" height="7" rx="3"/><path d="m18 10 5-3v16l-5-2zm-4 5 5-2 1 3-6 2z"/><circle cx="5" cy="18.5" r="1.5" fill="#152d3b"/><circle cx="12" cy="18.5" r="1.5" fill="#152d3b"/>'
   "wire": body='<path d="m5 17 14-10" fill="none" stroke="#e4eef1" stroke-width="2"/><circle cx="5" cy="17" r="4"/><circle cx="19" cy="7" r="4"/>'
   "pipes": body='<path d="M2 6h20v4H2zm0 9h20v4H2z"/><path d="M6 4h3v8H6zm9 9h3v8h-3z"/>'
   "factory": body='<path d="M2 22V11l6-4v5l6-4v5h3V2h4v20z"/><path d="M5 17h3v3H5zm6 0h3v3h-3z" fill="#152d3b"/>'
@@ -186,7 +188,17 @@ func build_bottom_hud():
  var scroll := ScrollContainer.new()
  scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
  scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
- box.add_child(scroll)
+ var navigation := HBoxContainer.new()
+ box.add_child(navigation)
+ scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+ navigation.add_child(scroll)
+ bulldozer=small_button("bulldozer","철거",toggle_demolition)
+ bulldozer.name="BulldozerButton"
+ bulldozer.custom_minimum_size=Vector2(72,72)
+ bulldozer.add_theme_constant_override("icon_max_width",42)
+ bulldozer.toggle_mode=true
+ bulldozer.add_theme_stylebox_override("pressed",style(Color("614328"),Color("f3b34f")))
+ navigation.add_child(bulldozer)
  var row := HBoxContainer.new()
  row.size_flags_horizontal=Control.SIZE_EXPAND_FILL
  row.add_theme_constant_override("separation",8)
@@ -216,7 +228,7 @@ func build_bottom_hud():
   caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(caption)
   categories.append(button)
- box.move_child(scroll,0)
+ box.move_child(navigation,0)
  box.move_child(status_scroll,2)
  for i in range(categories.size()):
   categories[i].focus_neighbor_left=categories[(i+7)%8].get_path()
@@ -256,8 +268,8 @@ func select_category(key: String):
  drawer_box.add_child(heading)
  var choices := []
  match key:
-  "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"],["철거","power_erase_wire"]]
-  "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"],["철거","water_erase_pipe"]]
+  "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"]]
+  "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"]]
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
   _:
@@ -291,6 +303,8 @@ func select_category(key: String):
    mode="build" if tool.begins_with("build") else tool)
   drawer_box.add_child(button)
  mode="power_wire" if key=="power" else ("water_pipe" if key=="water" else "select")
+ bulldozer.set_pressed_no_signal(false)
+ demolition_hover.clear()
  var close := Button.new()
  close.text="⌄"
  close.custom_minimum_size.x=42
@@ -298,6 +312,22 @@ func select_category(key: String):
  drawer_box.add_child(close)
  drawer.show()
  fit_preview()
+ queue_redraw()
+
+func show_zoning_tiles() -> bool:
+ return chosen in ["build","road"] and mode!="demolish"
+
+func toggle_demolition():
+ mode="select" if mode=="demolish" else "demolish"
+ drawing=false
+ stroke.clear()
+ power_overlay.drawing=false
+ power_overlay.stroke.clear()
+ water_overlay.drawing=false
+ water_overlay.stroke.clear()
+ demolition_hover.clear()
+ drawer.hide()
+ bulldozer.set_pressed_no_signal(mode=="demolish")
  queue_redraw()
 
 func fit_preview():
@@ -322,6 +352,8 @@ func fit_preview():
    rect=city.catalog.sprite_rect(asset,anchor,tile.x*2)
   bounds=rect if first else bounds.merge(rect)
   first=false
+ if first:
+  bounds=Rect2(Vector2(-city.height*tile.x,0),Vector2((city.width+city.height)*tile.x,(city.width+city.height)*tile.y))
  map_zoom=minf(available.size.x/bounds.size.x,available.size.y/bounds.size.y)
  origin=available.position+(available.size-bounds.size*map_zoom)/2-bounds.position*map_zoom
  var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),viewport_size.x-32)
@@ -331,6 +363,7 @@ func fit_preview():
 
 func _process(delta: float):
  if dock==null: return
+ bulldozer.set_pressed_no_signal(mode=="demolish")
  var simulated_delta := 0.0 if paused else delta*simulation_speed
  super._process(simulated_delta)
  if city.funds!=last_funds:
@@ -351,4 +384,5 @@ func capture():
 
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  if mode=="demolish": toggle_demolition()
   drawer.hide()

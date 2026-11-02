@@ -32,7 +32,7 @@ func setup(owner_view, layer: CanvasLayer):
  title.text="전력"
  title.add_theme_font_size_override("font_size",20)
  box.add_child(title)
- for pair in [["발전소 배치","plant"],["지중 전력선 · 드래그","wire"],["발전소 선택","select"],["전력선 철거","erase_wire"],["발전소 철거","erase_plant"]]:
+ for pair in [["발전소 배치","plant"],["지중 전력선 · 드래그","wire"],["발전소 선택","select"]]:
   var button := Button.new()
   button.name="Power_"+pair[1]
   button.text=pair[0]

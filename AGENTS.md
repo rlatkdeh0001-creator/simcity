@@ -20,6 +20,13 @@ in player-facing HUDs. Keep those in docs. Tool labels, meaningful live values a
 short action/error feedback remain appropriate. Do not change simulation rules
 when removing explanatory text. Current layout review is bottom_ui_preview.tscn.
 
+Placement-grid rule (user, 2026-11-02): hide roadside placement tiles by default.
+Show them only for the zoning (구획, previously 건설) or road tab, never in
+bulldozer/utility/other views. Hide rendering, not the underlying parcel data.
+Use one rightmost bulldozer for visible buildings/roads/utilities; no duplicate
+per-utility demolition buttons. Keep surviving road parcel IDs stable on deletion.
+Read `docs/concepts/bottom-ui/DEMOLITION_ZONING_KO.md` for current scope.
+
 Economic values register: `docs/economy-balance/ECONOMY_BALANCE.csv` is the single
 editable overview requested by the user. Keep it in sync when changing economic
 values. Preserve units, approval/application status and source locations. It is

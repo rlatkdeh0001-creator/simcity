@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[구획·도로에서만 타일 표시 / 우측 통합 불도저](docs/concepts/bottom-ui/DEMOLITION_ZONING_KO.md)** · [구획 선택 화면](docs/concepts/bottom-ui/actual-game-zoning.png)
+
 **[우리 게임에서 실행한 하단 UI](docs/concepts/bottom-ui/actual-game-power.png)** · [상하수도 화면](docs/concepts/bottom-ui/actual-game-water.png) · [별도 검토 장면 실행법](docs/concepts/bottom-ui/ACTUAL_GAME_KO.md)
 
 **[아이콘을 모두 하단으로 옮긴 UI 시안](docs/concepts/bottom-ui/concept.png)** · [배치 설명·도입 스킬](docs/concepts/bottom-ui/DESIGN_KO.md) — 검토용 그림, 현재 게임 UI 미변경.

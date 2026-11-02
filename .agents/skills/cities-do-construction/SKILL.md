@@ -25,6 +25,11 @@ Do not add network-radius/node-spacing tutorials or implementation/development
 notes to HUDs; keep design explanations in docs. The current compact bottom UI
 review follows `docs/concepts/bottom-ui/SKYLINES_REFERENCE_KO.md`.
 
+Only render placement tiles in the zoning (구획) or road tab. Preserve sparse
+parcel data while hidden. Use the shared rightmost bulldozer for visible targets;
+keep road parcel IDs stable across deletion and do not erase hidden utility layers.
+Read `docs/concepts/bottom-ui/DEMOLITION_ZONING_KO.md` for limits and tests.
+
 For economy edits, update `docs/economy-balance/ECONOMY_BALANCE.csv` first and
 synchronize approved runtime values with their listed code/JSON source. This CSV
 is an editable register, not loaded by the current game. Keep proposed and

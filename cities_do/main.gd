@@ -19,7 +19,8 @@ var showcase_view := false
 var controls_panel: PanelContainer
 var building_textures := {}
 var building_images := {}
-var mode := "build"
+var mode := "select"
+var demolition_hover := {}
 var zone := "residential"
 var selected := -1
 var stroke := PackedVector2Array()
@@ -73,7 +74,7 @@ func _ready():
 	treasury_label.name = "TreasuryLabel"
 	treasury_label.add_theme_font_size_override("font_size", 18)
 	box.add_child(treasury_label)
-	for item in [["build", "2×2 건설"], ["road", "자유 도로 · 드래그"], ["select", "건물 선택"]]:
+	for item in [["build", "구획"], ["road", "자유 도로 · 드래그"], ["select", "건물 선택"], ["demolish", "철거"]]:
 		var button := Button.new()
 		button.text = item[1]
 		var tool: String = item[0]
@@ -279,6 +280,28 @@ func refresh():
 	queue_redraw()
 
 func _unhandled_input(event):
+	if mode=="demolish":
+		if event is InputEventMouseMotion:
+			demolition_hover=demolition_target(event.position)
+			queue_redraw()
+		elif event is InputEventMouseButton:
+			if event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
+				mode="select"
+				demolition_hover.clear()
+				refresh()
+				return
+			if event.button_index==MOUSE_BUTTON_LEFT:
+				if event.pressed:
+					var target := demolition_target(event.position)
+					if not target.is_empty():
+						var result: Dictionary=city.demolish(target.kind,target.id)
+						message=result.reason
+						if result.ok:
+							if target.kind=="road": stop_traffic()
+							if target.kind=="building" and selected==target.id: selected=-1
+							demolition_hover.clear()
+						refresh()
+				return
 	if water_overlay != null and water_overlay.handle_input(event): return
 	if power_overlay != null and power_overlay.handle_input(event): return
 	if event is InputEventMouseButton:
@@ -378,11 +401,56 @@ func draw_ribbon(points: PackedVector2Array, width: float, color: Color):
 		for point in shape: projected.append(screen(point))
 		draw_colored_polygon(projected,color)
 
+func show_zoning_tiles() -> bool:
+	return mode in ["build","road"]
+
+func visible_zoning_parcels() -> Array[Dictionary]:
+	if show_zoning_tiles(): return city.zoning_grid.parcels_in(visible_world_bounds())
+	var empty: Array[Dictionary]=[]
+	return empty
+
+func demolition_target(position: Vector2) -> Dictionary:
+	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
+	for kind in ["power_plant","water_facility"]:
+		var facilities: Array=city.power.plants if kind=="power_plant" else city.water.facilities
+		for facility in facilities:
+			var point: Vector2=facility.position/4-Vector2.ONE
+			var top := polygon(point.x,point.y,2,22)
+			var base := polygon(point.x,point.y,2)
+			if Geometry2D.is_point_in_polygon(position,top) or Geometry2D.is_point_in_polygon(position,base):
+				return {"kind":kind,"id":facility.id,"polygon":top}
+	for kind in ["power_wire","water_pipe"]:
+		var visible_layer: bool=power_overlay.tab_open if kind=="power_wire" else water_overlay.tab_open
+		if not visible_layer: continue
+		var wires: Array=city.power.wires if kind=="power_wire" else city.water.geometry.wires
+		var nearest := 8.0
+		var result := {}
+		for wire in wires:
+			for i in range(wire.points.size()-1):
+				var a := screen(wire.points[i]/4)
+				var b := screen(wire.points[i+1]/4)
+				var distance: float=position.distance_to(Geometry2D.get_closest_point_to_segment(position,a,b))
+				if distance<nearest:
+					nearest=distance
+					var points := PackedVector2Array()
+					for point in wire.points: points.append(screen(point/4))
+					result={"kind":kind,"id":wire.id,"line":points}
+		if not result.is_empty(): return result
+	var building: Dictionary=pick_rendered_building(position)
+	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
+	var point := world(position)
+	for i in range(city.roads.size()):
+		var road: Dictionary=city.roads[i]
+		for j in range(road.points.size()-1):
+			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
+				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":road}
+	return {}
+
 func _draw():
 	# One terrain polygon, no full-map cell array or always-on grid.
 	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
 	draw_colored_polygon(terrain,Color("7e9275"))
-	for parcel in city.zoning_grid.parcels_in(visible_world_bounds()):
+	for parcel in visible_zoning_parcels():
 		var outline := PackedVector2Array()
 		for point in parcel.polygon:outline.append(screen(point))
 		draw_colored_polygon(outline,Color(0.82,0.89,0.72,0.22))
@@ -434,3 +502,12 @@ func _draw():
 		for p in stroke: points.append(screen(p))
 		var valid: bool = city.add_road(stroke, "local", false, road_lanes).ok
 		draw_ribbon(stroke, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
+
+	if mode=="demolish" and not demolition_hover.is_empty():
+		var tint := Color(1,.35,.20,.65)
+		if demolition_hover.has("polygon"):
+			draw_colored_polygon(demolition_hover.polygon,tint)
+		elif demolition_hover.has("line"):
+			draw_polyline(demolition_hover.line,tint,10,true)
+		elif demolition_hover.has("road"):
+			draw_ribbon(demolition_hover.road.points,demolition_hover.road.width,tint)

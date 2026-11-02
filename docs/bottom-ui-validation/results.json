@@ -15,6 +15,11 @@
     "passed": true
   },
   {
+    "test": "test_demolition.gd",
+    "exit_code": 0,
+    "passed": true
+  },
+  {
     "test": "test_facilities.gd",
     "exit_code": 0,
     "passed": true

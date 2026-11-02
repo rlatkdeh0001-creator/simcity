@@ -16,6 +16,7 @@ var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
 var rng := RandomNumberGenerator.new()
 var next_id := 1
+var next_road_id := 0
 const RegionalExchange = preload("res://core/regional_exchange.gd")
 var external_infrastructure: Array[Dictionary] = []
 var next_external_link_id := 1
@@ -135,9 +136,36 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 		if _polygon_road_distance(power_plant_footprint(facility),road)<-0.0005:
 			return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
 	if commit:
+		road.parcel_id=next_road_id
+		next_road_id+=1
 		roads.append(road)
 		_update_zoning_for_road(road)
 	return {"ok": true}
+
+func demolish(kind: String, id: int) -> Dictionary:
+	var removed := false
+	match kind:
+		"building":
+			for i in range(buildings.size()):
+				if buildings[i].id==id:
+					buildings.remove_at(i)
+					removed=true
+					break
+		"road":
+			for i in range(roads.size()):
+				if int(roads[i].get("parcel_id",i))==id:
+					roads.remove_at(i)
+					_update_zoning_for_road({})
+					removed=true
+					break
+		"power_plant": removed=power.remove_plant(id)
+		"power_wire": removed=power.remove_wire(id)
+		"water_facility": removed=water.remove_facility(id)
+		"water_pipe": removed=water.remove_pipe(id)
+	if removed:
+		power_state()
+		water_state()
+	return {"ok":removed,"reason":"철거 완료" if removed else "철거할 대상을 선택하세요"}
 
 func find_building(id: int) -> Dictionary:
 	for b in buildings:
@@ -383,7 +411,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	for road_index in range(roads.size()):
 		var road: Dictionary=roads[road_index]
 		if road.kind!="local":continue
-		for frame in Parcels.blocks(road.points,road.width/2,road_index,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation):
+		for frame in Parcels.blocks(road.points,road.width/2,int(road.get("parcel_id",road_index)),config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation):
 			for u in range(frame.columns):
 				for v in range(int(config.zoning_depth)):
 					var polygon_value:=Parcels.polygon(frame,u,v)
