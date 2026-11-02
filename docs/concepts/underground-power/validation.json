@@ -1,0 +1,12 @@
+{
+  "scope": "Proposal arithmetic and concept image decode only; no gameplay test",
+  "image_size": [
+    1499,
+    1049
+  ],
+  "monthly_energy_kwh": "72000",
+  "tariff_examples": "PASS",
+  "cross_town_arbitrage_spread": "PASS",
+  "initial_export_bound": "PASS",
+  "runtime_changed": false
+}
