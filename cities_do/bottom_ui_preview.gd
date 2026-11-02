@@ -248,6 +248,7 @@ func build_bottom_hud():
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ cancel_zoning_drag()
  chosen=key
  for button in categories:
   button.add_theme_stylebox_override("normal",style(Color("163f58") if button.name=="Bottom_"+key else Color("152d3b"),BLUE if button.name=="Bottom_"+key else Color.TRANSPARENT))
@@ -272,7 +273,7 @@ func select_category(key: String):
  match key:
   "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"]]
   "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"]]
-  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"]]
+  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
@@ -309,6 +310,7 @@ func select_category(key: String):
     caption.text=choice[0]+" · 준비 중"
     content.modulate=Color(1,1,1,.5)
   button.pressed.connect(func():
+   cancel_zoning_drag()
    if tool=="crematorium":
     var entry: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities[0]
     var preview=preload("res://service_asset_preview.gd").new()
@@ -316,7 +318,7 @@ func select_category(key: String):
     add_child(preview)
     preview.show_asset(entry)
     return
-   zone="commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential")
+   zone="" if tool=="build_erase" else ("commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential"))
    mode="build" if tool.begins_with("build") else tool)
   drawer_box.add_child(button)
  mode="power_wire" if key=="power" else ("water_pipe" if key=="water" else "select")
@@ -335,6 +337,7 @@ func show_zoning_tiles() -> bool:
  return chosen in ["build","road"] and mode!="demolish"
 
 func toggle_demolition():
+ cancel_zoning_drag()
  mode="select" if mode=="demolish" else "demolish"
  drawing=false
  stroke.clear()
@@ -401,5 +404,6 @@ func capture():
 
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
   drawer.hide()

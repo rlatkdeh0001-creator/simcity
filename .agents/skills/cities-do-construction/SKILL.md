@@ -70,8 +70,9 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 1. Read `core/city_model.gd` and `core/growth_config.gd`. Keep simulation independent
    of the Godot scene. Keep building u/v coordinates integer in a road-local orthonormal frame;
    world origins/corners and road points remain floating point. Do not snap road points to building cells.
-2. Use `add_building_at` for UI 2x2 placement and `parcel_placement_error` for its
-   preview. Keep legacy `add_building`/world-axis placement only for authored scenarios. Require local road access; highways cannot provide zoning frontage.
+2. For player construction read `docs/ZONING_DEVELOPMENT_KO.md` at repository root.
+   Use `paint_zones` for drag designation/erasure and `advance_development` for timed
+   2x2 spawning. `add_building_at` remains the internal shared placement API. Keep legacy `add_building`/world-axis placement only for authored scenarios. Require local road access; highways cannot provide zoning frontage.
 3. Validate the entire road polyline and its width, not only endpoints. Use
    `add_road(points, kind, false)` for non-mutating preview and commit only on release.
    Keep rendering projection separate from world-space geometry.

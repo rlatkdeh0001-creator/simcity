@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[드래그 구획·자동 신축](docs/ZONING_DEVELOPMENT_KO.md)** · [색칠 화면](docs/zoning-validation/zones-painted.png) · [신축 후](docs/zoning-validation/zones-developed.png) — 임시 시간 기반이며 주민/수요 엔진은 다음 단계.
+
 **[공공차량 3종·화장터 / 보건·교육 탭](docs/SERVICE_ASSETS_KO.md)** · [실제 Godot 화면](docs/service-assets-validation/service-assets.png) · [개발 현황·백로그](docs/DEVELOPMENT_STATUS_BACKLOG_KO.md)
 
 보건의 병원·진료소와 교육시설은 애셋 부재로 준비 중입니다. 화장터는 애셋 보기 연결이며 도시 배치·서비스 운영은 미구현입니다.

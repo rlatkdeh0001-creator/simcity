@@ -4,12 +4,12 @@
 기본설정,currency.name_ko,재화 한국어 발음,도쓰,문자,적용중,도시,cities_do/core/economy_config.gd,
 기본설정,difficulty.default,기본 난이도,normal,문자,적용중,도시,cities_do/core/economy_config.gd,
 기본설정,funds.normal,기본 난이도 시작 자금,50000,doth,적용중,도시,cities_do/core/economy_config.gd,소수 거래액은 이월하고 도시 자금에는 정수 doth 정산
-구획·민간건물,zoning.residential.cost,주거 구획 지정 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
-구획·민간건물,private_building.residential.cost,주거 민간 건물 자동 신축 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
-구획·민간건물,zoning.commercial.cost,상업 구획 지정 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
-구획·민간건물,private_building.commercial.cost,상업 민간 건물 자동 신축 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
-구획·민간건물,zoning.industrial.cost,공업 구획 지정 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
-구획·민간건물,private_building.industrial.cost,공업 민간 건물 자동 신축 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,zoning.residential.cost,주거 구획 지정 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
+구획·민간건물,private_building.residential.cost,주거 민간 건물 자동 신축 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
+구획·민간건물,zoning.commercial.cost,상업 구획 지정 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
+구획·민간건물,private_building.commercial.cost,상업 민간 건물 자동 신축 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
+구획·민간건물,zoning.industrial.cost,공업 구획 지정 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
+구획·민간건물,private_building.industrial.cost,공업 민간 건물 자동 신축 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 드래그 구획·임시 시간 기반 자동 신축 적용; 실제 주민·수요·입주 엔진은 미구현. core/city_model.gd paint_zones/advance_development 참조.
 건설비,road.local.2.construction,일반 2차로 건설비,80,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 유지비,road.local.2.upkeep,일반 2차로 월 유지비,1,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 건설비,road.local.3.construction,일반 3차로 건설비,120,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.

@@ -1,10 +1,51 @@
 # CITIES_DO 스킬 인계장
 
-최종 기록: 2026-11-02 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
+최종 기록: 2026-11-03 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
+
+## 최신 작업: 드래그 구획 지정·해제와 자동 신축 (2026-11-03 KST)
+
+사용자가 주거/상업/공업 드래그 지정 후 자동 신축을 승인했다. `/workspace/simcity`,
+main 60dd5aa, 깨끗한 Git 상태에서 시작했다. [규칙·구현·한계·명령](ZONING_DEVELOPMENT_KO.md),
+[이번 검사/실제 화면](zoning-validation/)을 확인한다. 앞선 차량·화장터 애셋은 수정/재생성하지 않았다.
+
+기존 `.agents/skills/cities-do-construction/SKILL.md`와 `references/RULES_KO.md`,
+`godot-gdscript/SKILL.md`, `godot-gdscript-headless-testing/SKILL.md` 지침을 적용했다.
+construction은 프로젝트 자체 작성 지침이므로 이번 API/조작 규칙으로 갱신했다.
+외부 GDScript 스킬 원본·고정 출처·Apache-2.0 라이선스는 그대로이며 새 스킬 설치는 없다.
+플랫폼 환경 지침은 같은 세션 앞선 작업에서 읽은 것을 재사용했고 새 환경 설정은 하지 않았다.
+
+변경: `city_model.gd`의 zone_designations/paint_zones/advance_development 및 자동 신축
+건물의 성장 부지 용도 검사, `growth_config.gd`의 임시 2초/8틱/256검사 상한,
+`main.gd`의 드래그 입력·미리보기·시뮬레이션·용도 색, `bottom_ui_preview.gd`의 구획 해제와
+취소 연계, 신규 test_zoning_development 및 변경된 test_ui, tools/validate_zoning.py와
+capture_zoning.gd. AGENTS/로컬 construction 지침/경제 CSV/README/개발 현황을 동기화했다.
+
+기존 1.5m 공통 접도·정면·충돌 검사로 같은 용도 2×2를 신축한다. 덧칠/해제는 기존
+건물을 변경하지 않고 도로 재생성은 살아 있는 안정 격자 ID의 지정만 유지한다.
+시간 누적 신축은 실제 수요/주민/일자리/입주/자동 밀도 성장이 아니다. 저장은 메모리뿐이며
+파일 저장/불러오기는 만들지 않았다. 2×2 주거 시안 growth_enabled:false를 그대로 유지하고
+실제 신축은 기존 용도별 임시 입체 외형을 사용한다. 새로운 애셋·가격 제안은 없다.
+구획/민간 신축 무료 수치를 바꾸지 않고 CSV의 적용 범위 설명만 갱신했다.
+
+Godot 4.6.3 재임포트 후 전체 19개 스크립트 통과, 신규 구획 37/37,
+도로 간격 49/49·정면 138/138을 이번 실행으로 확인했다. 실제 캡처 204칸 지정·
+주거/상업/공업 각 4동 신축·50,000 doth 유지. 결과/캡처 해시는 zoning-validation/evidence.json.
+전체 검사 후 입력 취소 검사를 보강해 신규 구획만 선택 재실행했으며 results.json은 그 합본이다.
+`python3 tools/validate_zoning.py`는 각 종료 코드와 SCRIPT ERROR/ERROR/FAIL을 함께 검사한다.
+실제 그래픽은 같은 세션의 Xvfb :99/Mesa llvmpipe로 실행하며 생성형 이미지를 사용하지 않았다.
+`DISPLAY=:99 godot --path cities_do --audio-driver Dummy --rendering-method gl_compatibility --script /workspace/simcity/tools/capture_zoning.gd`
+는 실제 지도 드래그로 색칠한 뒤 같은 도시의 신축 시간을 진행해 전/후를 캡처한다.
+XDG 경로는 /tmp/cities-do-{data,config,cache}다. 이전 service-assets/adjacent-lot 검사와 구분한다.
+
+초기 검사에서 화면 사각형과 월드 대각선 선택을 혼동한 입력 fixture를 고쳤다. 주거 2×2
+시안의 growth_enabled:false도 실제 카탈로그로 확인해 강제 등록하지 않았다.
+캡처 전용 임시 도시로 바꾼 후 utility 자식의 이전 draw cache를 명시적으로 갱신했다.
+대형 도시/모바일/오프라인 신축·수요 기반 경제 운영은 미검증이다. 관련 코드·화면·
+이 인계장을 함께 main에 커밋·푸시하고 원격 SHA를 확인한다.
 
 ## 최신 작업: 공공차량 3종·화장터와 보건·교육 (2026-11-03 KST)
 

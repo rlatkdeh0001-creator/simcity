@@ -1,5 +1,8 @@
 # CITIES_DO 개발 현황·백로그
 
+2026-11-03 후속 갱신: [드래그 구획·임시 시간 기반 자동 신축](ZONING_DEVELOPMENT_KO.md)은 구현했다.
+주민·수요·입주는 여전히 다음 단계다. 아래 우선순위 2의 드래그/기초 신축 부분은 완료됐다.
+
 2026-11-03 KST. 환경 장애로 저장하지 못한 이전 비교 대화의 원문은 복구되지 않았다.
 아래 우선순위는 이번 사용자 인계와 실제 코드를 대조해 재구성한 **제안**이며,
 사용자가 과거에 이 순서를 확정했다는 뜻은 아니다. 이번 작업을 전체 시뮬레이션 개발로 확대하지 않았다.
@@ -8,7 +11,7 @@
 |---|---|---|
 | 도로·교차로 | core/road_geometry, road_junctions, traffic_network | 원형 내부 아스팔트 표시 문제의 재확인, 복잡한 차선 변경/합류·규모 검증 |
 | 차량 주행 | traffic_simulation, traffic_controller, traffic_demo | 주민·일자리·소비에서 발생하는 통근·물류 수요와 노선 운영 |
-| 건물·접도 | city_model, building_frontage, building_views; 최대 0.375셀 | 드래그 구획, 수요 기반 자동 신축, 비주거 애셋/시설 배치 통합 |
+| 건물·접도 | city_model, building_frontage, building_views; 최대 0.375셀 | 임시 시간 기반 드래그/신축 구현; 실제 수요 연결, 비주거 애셋/시설 배치 통합 |
 | 전력 | power_grid, power_flow, power_overlay | 생산/소비의 실물 도시 수요 연결·전체 예산 연계 |
 | 상하수도 | water_grid, water_flow, water_tariffs.json | 실제 가구/사업장 수요 및 운영 확장 |
 | 재화·거래 | economy_config, city_model.funds, 전력/수도 계량·요금 | 세금·급여·유지비·공공시설 구매·종합 예산 |

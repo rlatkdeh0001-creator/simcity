@@ -16,6 +16,9 @@ var height: int
 var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
 var rng := RandomNumberGenerator.new()
+var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
+var development_elapsed := 0.0
+var development_cursor := 0
 var next_id := 1
 var next_road_id := 0
 const RoadJunctions = preload("res://core/road_junctions.gd")
@@ -102,6 +105,56 @@ func add_building_at(point: Vector2,zone: String="residential",score: float=0.0)
 	orient_building(building)
 	next_id+=1;buildings.append(building)
 	return {"ok":true,"building":building}
+
+func paint_zones(selection: PackedVector2Array, zone_type: String) -> Dictionary:
+	if zone_type not in ["residential","commercial","industrial",""] or selection.size()<3:
+		return {"ok":false,"changed":0,"reason":"구획을 선택하세요"}
+	var bounds := Parcels.bounds(selection)
+	var changed := 0
+	for parcel in zoning_grid.parcels_in(Rect2i(Vector2i(bounds.position.floor())-Vector2i.ONE,Vector2i(bounds.size.ceil())+Vector2i(3,3))):
+		if not Geometry2D.is_point_in_polygon(parcel.center,selection):continue
+		if zone_designations.get(parcel.id,"")==zone_type:continue
+		if zone_type.is_empty():zone_designations.erase(parcel.id)
+		else:zone_designations[parcel.id]=zone_type
+		changed+=1
+	return {"ok":true,"changed":changed,"reason":"%d칸 %s" % [changed,"해제" if zone_type.is_empty() else "지정"]}
+
+func zoned_lot_matches(frame: Dictionary,u: int,v: int,size: int,zone_type: String) -> bool:
+	for x in range(u,u+size):
+		for y in range(v,v+size):
+			if zone_designations.get(zoning_grid.key(frame.id,x,y),"")!=zone_type:return false
+	return true
+
+func advance_development(seconds: float) -> Array[Dictionary]:
+	var created: Array[Dictionary]=[]
+	if seconds<=0 or not is_finite(seconds) or config.development_interval_seconds<=0:return created
+	if zone_designations.is_empty():
+		development_elapsed=0
+		return created
+	development_elapsed+=seconds
+	var steps := 0
+	while development_elapsed>=config.development_interval_seconds and steps<config.development_max_steps:
+		development_elapsed-=config.development_interval_seconds
+		steps+=1
+		var ids: Array=zone_designations.keys()
+		ids.sort()
+		for attempt in range(mini(ids.size(),config.development_checks_per_step)):
+			development_cursor%=ids.size()
+			var id: String=ids[development_cursor]
+			development_cursor+=1
+			var parcel: Dictionary=zoning_grid.parcels.get(id,{})
+			if parcel.is_empty():continue
+			var zone_type: String=zone_designations[id]
+			if not zoned_lot_matches(parcel.frame,parcel.u,parcel.v,2,zone_type):continue
+			if parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)!="":continue
+			var result := add_building_at(parcel.center,zone_type)
+			if result.ok:
+				var building: Dictionary=result.building
+				building.automatically_developed=true
+				catalog.assign(building,appearance_rng)
+				created.append(building)
+				break
+	return created
 
 func orient_building(b: Dictionary) -> void:
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
@@ -444,6 +497,10 @@ func _update_zoning_for_road(_road: Dictionary):
 					if _polygon_error(polygon_value,-1,false)=="":zoning_grid.add_parcel(frame,u,v)
 
 
+	# Keep designations only on surviving stable road-local cells.
+	for id in zone_designations.keys():
+		if not zoning_grid.parcels.has(id):zone_designations.erase(id)
+
 func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
 	# Authored scenario placement of a completed building; normal construction stays 2x2.
 	var asset: Dictionary = catalog.get_asset(asset_id)
@@ -468,6 +525,7 @@ func _upgrade_parcel_building(b: Dictionary,preferred: int) -> bool:
 		candidates.sort_custom(func(a,c):return Vector2(a).distance_squared_to(Vector2(b.u,b.v))<Vector2(c).distance_squared_to(Vector2(b.u,b.v)))
 		for candidate in candidates:
 			if parcel_placement_error(b.frame,candidate.x,candidate.y,size,b.id)!="":continue
+			if b.get("automatically_developed",false) and not zoned_lot_matches(b.frame,candidate.x,candidate.y,size,b.zone):continue
 			b.u=candidate.x;b.v=candidate.y;b.size=size;b.level+=1
 			var origin: Vector2=Parcels.polygon(b.frame,b.u,b.v)[0]
 			b.x=origin.x;b.y=origin.y

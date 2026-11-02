@@ -1,0 +1,23 @@
+{
+  "building_counts": {
+    "commercial": 4,
+    "industrial": 4,
+    "residential": 4
+  },
+  "engine": "4.6.3-stable (official)",
+  "funds": 50000,
+  "game_seconds_advanced": 96,
+  "renderer": "gl_compatibility",
+  "source": "Actual Godot bottom_ui_preview renderer; input-driven rectangle designation and model development; no generated image or compositing",
+  "temporary_interval_seconds": 2.0,
+  "zone_cells": 204,
+  "sha256": {
+    "zones-developed.png": "1efce9629016708699b588a9b6b5e3fabba616112502878408c38769d68f3702",
+    "zones-painted.png": "9ab0206b236a3a5acf1e74fc602007db81956e78e5ea9916ab8f1e7667e19e0f"
+  },
+  "tests": {
+    "scripts": 19,
+    "passed": 19,
+    "zoning_checks": 37
+  }
+}

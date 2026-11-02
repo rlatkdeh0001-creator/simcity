@@ -27,6 +27,11 @@ var zone := "residential"
 var selected := -1
 var stroke := PackedVector2Array()
 var drawing := false
+var zoning_drag := false
+var zoning_start := Vector2.ZERO
+var zoning_end := Vector2.ZERO
+var zoning_brush := "residential"
+const ZONE_COLORS := {"residential":Color("65b77a"),"commercial":Color("629dce"),"industrial":Color("dfb552")}
 var pointer := Vector2.ZERO
 var message := ""
 var hud: Label
@@ -84,7 +89,7 @@ func _ready():
 		var button := Button.new()
 		button.text = item[1]
 		var tool: String = item[0]
-		button.pressed.connect(func(): mode = tool; drawing = false; stroke.clear(); refresh())
+		button.pressed.connect(func(): cancel_zoning_drag(); mode = tool; drawing = false; stroke.clear(); refresh())
 		box.add_child(button)
 	var lanes_choice := OptionButton.new()
 	lanes_choice.add_item("왕복 2차로 · 1+1 · 폭 2칸")
@@ -92,9 +97,9 @@ func _ready():
 	lanes_choice.item_selected.connect(func(index): road_lanes = 2 if index == 0 else 4; queue_redraw())
 	box.add_child(lanes_choice)
 	var zones := OptionButton.new()
-	for name_text in ["주거", "상업", "공업"]:
+	for name_text in ["주거", "상업", "공업", "구획 해제"]:
 		zones.add_item(name_text)
-	zones.item_selected.connect(func(index): zone = ["residential", "commercial", "industrial"][index])
+	zones.item_selected.connect(func(index): cancel_zoning_drag(); zone = ["residential", "commercial", "industrial", ""][index])
 	box.add_child(zones)
 	var score_button := Button.new()
 	score_button.text = "선택 건물 성장 수치 +100"
@@ -192,7 +197,7 @@ func _ready():
 	box.add_child(parcel_demo)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
-	reset.pressed.connect(func(): stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = ""; refresh())
+	reset.pressed.connect(func(): cancel_zoning_drag(); stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = ""; refresh())
 	box.add_child(reset)
 	hud = Label.new()
 	hud.position = Vector2(360, get_viewport_rect().size.y-100)
@@ -224,6 +229,7 @@ func stop_traffic():
 	if traffic_button != null: traffic_button.text = "도로 주행 시작"
 
 func _process(delta: float):
+	if not city.advance_development(delta).is_empty(): refresh()
 	# Simulation/billing runs regardless of the power tab or visual pause.
 	power_snapshot = city.advance_power(delta/3600.0)
 	water_snapshot = city.advance_water(delta/86400.0)
@@ -300,7 +306,35 @@ func refresh():
 	hud.text = message
 	queue_redraw()
 
+func cancel_zoning_drag() -> void:
+	zoning_drag=false
+	queue_redraw()
+
+func zoning_selection() -> PackedVector2Array:
+	if zoning_start.distance_to(zoning_end)<4:
+		var parcel: Dictionary=city.zoning_grid.parcel_at(world(zoning_end))
+		return parcel.get("polygon",PackedVector2Array())
+	var rect := Rect2(zoning_start,zoning_end-zoning_start).abs()
+	return PackedVector2Array([world(rect.position),world(Vector2(rect.end.x,rect.position.y)),world(rect.end),world(Vector2(rect.position.x,rect.end.y))])
+
+func finish_zoning(position: Vector2,over_hud: bool=false) -> void:
+	if not zoning_drag:return
+	zoning_end=position
+	if mode!="build" or over_hud:
+		cancel_zoning_drag()
+		return
+	var result: Dictionary=city.paint_zones(zoning_selection(),zoning_brush)
+	message=result.reason
+	cancel_zoning_drag()
+	refresh()
+
+func _unhandled_key_input(event):
+	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_zoning_drag()
+
 func _unhandled_input(event):
+	if zoning_drag and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
+		cancel_zoning_drag()
+		return
 	if mode=="demolish":
 		if event is InputEventMouseMotion:
 			demolition_hover=demolition_target(event.position)
@@ -327,9 +361,11 @@ func _unhandled_input(event):
 	if power_overlay != null and power_overlay.handle_input(event): return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			cancel_zoning_drag()
 			panning = event.pressed
 			return
 		if event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
+			cancel_zoning_drag()
 			var anchor := world(event.position)
 			map_zoom = clampf(map_zoom * (1.15 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.0/1.15),0.15,3.0)
 			origin = event.position - Vector2((anchor.x-anchor.y)*tile.x,(anchor.x+anchor.y)*tile.y)*map_zoom
@@ -351,17 +387,26 @@ func _unhandled_input(event):
 				drawing = true
 				stroke = PackedVector2Array([pointer])
 			elif mode == "build":
-				var result: Dictionary = city.add_building_at(pointer, zone)
-				message = "2×2 건설 완료" if result.ok else result.reason
-				if result.ok: selected = result.building.id
+				zoning_start=event.position
+				zoning_end=event.position
+				zoning_brush=zone
+				zoning_drag=true
 			else:
 				var b: Dictionary = pick_rendered_building(event.position)
 				selected = b.get("id", -1)
 			refresh()
+		elif zoning_drag:
+			finish_zoning(event.position)
 		elif drawing:
 			finish_road()
 
 func _input(event):
+	if zoning_drag:
+		if event is InputEventMouseMotion:
+			zoning_end=event.position
+			queue_redraw()
+		if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+			finish_zoning(event.position,get_viewport().gui_get_hovered_control()!=null)
 	if water_overlay != null: water_overlay.finish_capture(event)
 	if power_overlay != null: power_overlay.finish_capture(event)
 	# Release above the HUD must also finish/cancel a captured map stroke.
@@ -489,7 +534,10 @@ func _draw():
 	for parcel in visible_zoning_parcels():
 		var outline := PackedVector2Array()
 		for point in parcel.polygon:outline.append(screen(point))
-		draw_colored_polygon(outline,Color(0.82,0.89,0.72,0.22))
+		var designated: String=city.zone_designations.get(parcel.id,"")
+		var tint: Color=ZONE_COLORS.get(designated,Color(0.82,0.89,0.72))
+		tint.a=.50 if not designated.is_empty() else .22
+		draw_colored_polygon(outline,tint)
 		outline.append(outline[0])
 		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
 	for road in city.roads:
@@ -546,13 +594,14 @@ func _draw():
 			var outline := top.duplicate()
 			outline.append(top[0])
 			draw_polyline(outline, Color.WHITE, 2)
-	if mode == "build":
-		var parcel: Dictionary=city.zoning_grid.parcel_at(pointer)
-		if not parcel.is_empty():
-			var valid: bool=city.parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)==""
-			var preview:=PackedVector2Array()
-			for point in city.Parcels.polygon(parcel.frame,parcel.u,parcel.v,2):preview.append(screen(point))
-			draw_colored_polygon(preview,Color(0.3,1,0.5,0.5) if valid else Color(1,0.25,0.2,0.5))
+	if zoning_drag:
+		var selection := zoning_selection()
+		if selection.size()>=3:
+			var preview := PackedVector2Array()
+			for point in selection:preview.append(screen(point))
+			var tint: Color=ZONE_COLORS.get(zoning_brush,Color("e4eef1"))
+			tint.a=.3
+			draw_colored_polygon(preview,tint)
 	if stroke.size() > 1:
 		var points := PackedVector2Array()
 		for p in stroke: points.append(screen(p))

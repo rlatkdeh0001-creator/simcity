@@ -111,3 +111,14 @@ Official Anthropic skills are installed in `.agents/skills/`. When a user names 
 The skill catalog is in README.md. These are instructions for this agent, not a Claude CLI integration. Claude login is not required. Do not automatically run bundled scripts, install every skill dependency, enable external services, or spawn agents merely because files are present. Install only task-required dependencies and validate their operations. Some skill references mention Claude-specific tools; use available equivalent tools and explain unsupported capabilities.
 
 Do not claim proprietary document skills are installed or that every skill runtime has been tested.
+
+## Drag zoning and automatic construction (user, 2026-11-03)
+
+Read `docs/ZONING_DEVELOPMENT_KO.md`. Zoning is a drag designation tool, not immediate
+click construction. Use city.paint_zones and zone_designations keyed by stable road-local
+parcel IDs. Develop only uniformly zoned 2x2 lots via the shared frontage/collision path.
+Repainting/erasing preserves existing buildings and their uses; the common bulldozer is
+separate. Prune only removed parcels after road changes. Keep zoning free and new private
+construction free. The temporary 2-game-second development clock is not real demand or
+resident/job simulation. Pause/speed affect it, tab visibility does not. Keep original
+2x2 display-only asset flags; procedural fallback is intentional until models are enabled.

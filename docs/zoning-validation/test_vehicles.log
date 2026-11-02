@@ -1,0 +1,180 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS catalog contains 23 vehicles
+PASS bus-city-01 unique ID
+PASS bus-city-01 imports as PackedScene
+PASS bus-city-01 has at least four wheel spin pivots
+PASS bus-city-01 spin hierarchy; +X left and +Z nose
+PASS bus-city-01 left-hand driver anchor
+PASS bus-city-01 tyres meet ground at y=0
+PASS bus-city-01 length remains metres after GLB import
+PASS bus has front and middle right-side double doors
+PASS taxi-sedan-01 unique ID
+PASS taxi-sedan-01 imports as PackedScene
+PASS taxi-sedan-01 has at least four wheel spin pivots
+PASS taxi-sedan-01 spin hierarchy; +X left and +Z nose
+PASS taxi-sedan-01 left-hand driver anchor
+PASS taxi-sedan-01 tyres meet ground at y=0
+PASS taxi-sedan-01 length remains metres after GLB import
+PASS car-hatch-01 unique ID
+PASS car-hatch-01 imports as PackedScene
+PASS car-hatch-01 has at least four wheel spin pivots
+PASS car-hatch-01 spin hierarchy; +X left and +Z nose
+PASS car-hatch-01 left-hand driver anchor
+PASS car-hatch-01 tyres meet ground at y=0
+PASS car-hatch-01 length remains metres after GLB import
+PASS car-compact-02 unique ID
+PASS car-compact-02 imports as PackedScene
+PASS car-compact-02 has at least four wheel spin pivots
+PASS car-compact-02 spin hierarchy; +X left and +Z nose
+PASS car-compact-02 left-hand driver anchor
+PASS car-compact-02 tyres meet ground at y=0
+PASS car-compact-02 length remains metres after GLB import
+PASS car-sedan-03 unique ID
+PASS car-sedan-03 imports as PackedScene
+PASS car-sedan-03 has at least four wheel spin pivots
+PASS car-sedan-03 spin hierarchy; +X left and +Z nose
+PASS car-sedan-03 left-hand driver anchor
+PASS car-sedan-03 tyres meet ground at y=0
+PASS car-sedan-03 length remains metres after GLB import
+PASS car-wagon-04 unique ID
+PASS car-wagon-04 imports as PackedScene
+PASS car-wagon-04 has at least four wheel spin pivots
+PASS car-wagon-04 spin hierarchy; +X left and +Z nose
+PASS car-wagon-04 left-hand driver anchor
+PASS car-wagon-04 tyres meet ground at y=0
+PASS car-wagon-04 length remains metres after GLB import
+PASS car-crossover-05 unique ID
+PASS car-crossover-05 imports as PackedScene
+PASS car-crossover-05 has at least four wheel spin pivots
+PASS car-crossover-05 spin hierarchy; +X left and +Z nose
+PASS car-crossover-05 left-hand driver anchor
+PASS car-crossover-05 tyres meet ground at y=0
+PASS car-crossover-05 length remains metres after GLB import
+PASS car-suv-06 unique ID
+PASS car-suv-06 imports as PackedScene
+PASS car-suv-06 has at least four wheel spin pivots
+PASS car-suv-06 spin hierarchy; +X left and +Z nose
+PASS car-suv-06 left-hand driver anchor
+PASS car-suv-06 tyres meet ground at y=0
+PASS car-suv-06 length remains metres after GLB import
+PASS car-coupe-07 unique ID
+PASS car-coupe-07 imports as PackedScene
+PASS car-coupe-07 has at least four wheel spin pivots
+PASS car-coupe-07 spin hierarchy; +X left and +Z nose
+PASS car-coupe-07 left-hand driver anchor
+PASS car-coupe-07 tyres meet ground at y=0
+PASS car-coupe-07 length remains metres after GLB import
+PASS car-minivan-08 unique ID
+PASS car-minivan-08 imports as PackedScene
+PASS car-minivan-08 has at least four wheel spin pivots
+PASS car-minivan-08 spin hierarchy; +X left and +Z nose
+PASS car-minivan-08 left-hand driver anchor
+PASS car-minivan-08 tyres meet ground at y=0
+PASS car-minivan-08 length remains metres after GLB import
+PASS car-electric-09 unique ID
+PASS car-electric-09 imports as PackedScene
+PASS car-electric-09 has at least four wheel spin pivots
+PASS car-electric-09 spin hierarchy; +X left and +Z nose
+PASS car-electric-09 left-hand driver anchor
+PASS car-electric-09 tyres meet ground at y=0
+PASS car-electric-09 length remains metres after GLB import
+PASS car-pickup-10 unique ID
+PASS car-pickup-10 imports as PackedScene
+PASS car-pickup-10 has at least four wheel spin pivots
+PASS car-pickup-10 spin hierarchy; +X left and +Z nose
+PASS car-pickup-10 left-hand driver anchor
+PASS car-pickup-10 tyres meet ground at y=0
+PASS car-pickup-10 length remains metres after GLB import
+PASS truck-box-01 unique ID
+PASS truck-box-01 imports as PackedScene
+PASS truck-box-01 has at least four wheel spin pivots
+PASS truck-box-01 spin hierarchy; +X left and +Z nose
+PASS truck-box-01 left-hand driver anchor
+PASS truck-box-01 tyres meet ground at y=0
+PASS truck-box-01 length remains metres after GLB import
+PASS truck-flatbed-02 unique ID
+PASS truck-flatbed-02 imports as PackedScene
+PASS truck-flatbed-02 has at least four wheel spin pivots
+PASS truck-flatbed-02 spin hierarchy; +X left and +Z nose
+PASS truck-flatbed-02 left-hand driver anchor
+PASS truck-flatbed-02 tyres meet ground at y=0
+PASS truck-flatbed-02 length remains metres after GLB import
+PASS truck-fridge-03 unique ID
+PASS truck-fridge-03 imports as PackedScene
+PASS truck-fridge-03 has at least four wheel spin pivots
+PASS truck-fridge-03 spin hierarchy; +X left and +Z nose
+PASS truck-fridge-03 left-hand driver anchor
+PASS truck-fridge-03 tyres meet ground at y=0
+PASS truck-fridge-03 length remains metres after GLB import
+PASS truck-mixer-04 unique ID
+PASS truck-mixer-04 imports as PackedScene
+PASS truck-mixer-04 has at least four wheel spin pivots
+PASS truck-mixer-04 spin hierarchy; +X left and +Z nose
+PASS truck-mixer-04 left-hand driver anchor
+PASS truck-mixer-04 tyres meet ground at y=0
+PASS truck-mixer-04 length remains metres after GLB import
+PASS mixer drum spin pivot
+PASS trailer-container-05 unique ID
+PASS trailer-container-05 imports as PackedScene
+PASS trailer-container-05 has at least four wheel spin pivots
+PASS trailer-container-05 spin hierarchy; +X left and +Z nose
+PASS trailer-container-05 left-hand driver anchor
+PASS trailer-container-05 tyres meet ground at y=0
+PASS trailer-container-05 length remains metres after GLB import
+PASS trailer-container-05 articulation pivot
+PASS trailer-tanker-06 unique ID
+PASS trailer-tanker-06 imports as PackedScene
+PASS trailer-tanker-06 has at least four wheel spin pivots
+PASS trailer-tanker-06 spin hierarchy; +X left and +Z nose
+PASS trailer-tanker-06 left-hand driver anchor
+PASS trailer-tanker-06 tyres meet ground at y=0
+PASS trailer-tanker-06 length remains metres after GLB import
+PASS trailer-tanker-06 articulation pivot
+PASS truck-dump-07 unique ID
+PASS truck-dump-07 imports as PackedScene
+PASS truck-dump-07 has at least four wheel spin pivots
+PASS truck-dump-07 spin hierarchy; +X left and +Z nose
+PASS truck-dump-07 left-hand driver anchor
+PASS truck-dump-07 tyres meet ground at y=0
+PASS truck-dump-07 length remains metres after GLB import
+PASS truck-dump-07 dump bed hinge
+PASS truck-heavy-dump-08 unique ID
+PASS truck-heavy-dump-08 imports as PackedScene
+PASS truck-heavy-dump-08 has at least four wheel spin pivots
+PASS truck-heavy-dump-08 spin hierarchy; +X left and +Z nose
+PASS truck-heavy-dump-08 left-hand driver anchor
+PASS truck-heavy-dump-08 tyres meet ground at y=0
+PASS truck-heavy-dump-08 length remains metres after GLB import
+PASS truck-heavy-dump-08 dump bed hinge
+PASS fire-engine-01 unique ID
+PASS fire-engine-01 imports as PackedScene
+PASS fire-engine-01 has at least four wheel spin pivots
+PASS fire-engine-01 spin hierarchy; +X left and +Z nose
+PASS fire-engine-01 left-hand driver anchor
+PASS fire-engine-01 tyres meet ground at y=0
+PASS fire-engine-01 length remains metres after GLB import
+PASS police-car-01 unique ID
+PASS police-car-01 imports as PackedScene
+PASS police-car-01 has at least four wheel spin pivots
+PASS police-car-01 spin hierarchy; +X left and +Z nose
+PASS police-car-01 left-hand driver anchor
+PASS police-car-01 tyres meet ground at y=0
+PASS police-car-01 length remains metres after GLB import
+PASS hearse-01 unique ID
+PASS hearse-01 imports as PackedScene
+PASS hearse-01 has at least four wheel spin pivots
+PASS hearse-01 spin hierarchy; +X left and +Z nose
+PASS hearse-01 left-hand driver anchor
+PASS hearse-01 tyres meet ground at y=0
+PASS hearse-01 length remains metres after GLB import
+PASS required category counts
+PASS main screen offers vehicle showcase button
+PASS button opens actual vehicle showcase scene
+PASS showcase creates twenty-three real model viewports
+PASS same-scale mode uses identical camera scale
+PASS auto-fit respects bus and hatchback size
+PASS turntable rotates models
+PASS wheel toggle rotates spin pivot
+PASS return restores original city and camera
+RESULT 177/177 vehicle checks passed

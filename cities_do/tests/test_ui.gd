@@ -36,10 +36,13 @@ func run():
 	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")
 	scene.mode = "build"
 	var before: int = scene.city.buildings.size()
-	click(scene, Vector2(28.5,18.5))
-	verify(scene.city.buildings.size() == before + 1, "map input creates 2x2 building")
-	click(scene, Vector2(28.5,18.5))
-	verify(scene.city.buildings.size() == before + 1 and "건물" in scene.message, "blocked construction reports reason")
+	click(scene, Vector2(27,18))
+	verify(scene.city.buildings.size() == before and scene.zoning_drag, "press begins zoning without instant construction")
+	scene.finish_zoning(scene.screen(Vector2(31,18)))
+	verify(not scene.city.zone_designations.is_empty(), "drag release designates road-local cells")
+	scene.city.advance_development(2)
+	verify(scene.city.buildings.size() == before + 1, "painted lot develops on simulation tick")
+
 	scene.mode = "road"
 	click(scene, Vector2(2.3,3.7))
 	for point in [Vector2(4.2,5.1),Vector2(7.8,4.2),Vector2(10.6,7.4)]:

@@ -1,0 +1,14 @@
+{
+  "building_counts": {
+    "commercial": 4,
+    "industrial": 4,
+    "residential": 4
+  },
+  "engine": "4.6.3-stable (official)",
+  "funds": 50000,
+  "game_seconds_advanced": 96,
+  "renderer": "gl_compatibility",
+  "source": "Actual Godot bottom_ui_preview renderer; input-driven rectangle designation and model development; no generated image or compositing",
+  "temporary_interval_seconds": 2.0,
+  "zone_cells": 204
+}
