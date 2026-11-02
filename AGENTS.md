@@ -10,6 +10,10 @@ a proposal into live charges without approval. Residential/commercial/industrial
 zoning and automatic building construction have no municipal construction fee.
 The confirmed design is drag-painted zones with automatic development; distinguish
 this rule from the current click-placement/manual-growth prototype.
+Also propose capacity/production/throughput, explicit time units, rated versus
+average output, own resource demand, bottlenecks and residual outputs; consult
+`docs/CAPACITY_PROPOSALS_KO.md`. Storage is not production. Do not count serial
+network segment capacities additively or treat all proposed balance values as approved.
 
 ## Persistent skill handoff (user requirement)
 
