@@ -20,6 +20,11 @@ Water trade tariffs are now authorized: read `docs/WATER_TARIFFS_KO.md`, edit
 city.utility_balance() budget with electricity. Construction/upkeep remain proposed. Rail/metro still have registration APIs only. Do not equate boundary
 availability with delivered utilities, completed networks or simulated trade.
 
+For economy edits, update `docs/economy-balance/ECONOMY_BALANCE.csv` first and
+synchronize approved runtime values with their listed code/JSON source. This CSV
+is an editable register, not loaded by the current game. Keep proposed and
+undecided entries distinct from applied fees; blank values do not mean free.
+
 Use the existing project at `../../../cities_do` relative to this skill directory.
 Read `references/RULES_KO.md` before changing balance or geometry. The attached
 `references/PROJECT_SPEC_KO.txt` is design reference supplied by the user, not an

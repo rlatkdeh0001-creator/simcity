@@ -1,0 +1,142 @@
+﻿분류,항목ID,항목명,값,단위,상태,대상,현재근거,메모
+관리정보,sheet.purpose,경제 수치 통합 관리대장,편집·보관용,설명,참고,전체,docs/SKILL_HANDOFF_KO.md,현재 게임은 이 CSV를 직접 읽지 않음. 적용 중 수치를 바꾸면 현재근거의 코드/JSON에도 반영하고 검사할 것. 가격 제안 수정은 승인/적용과 별개.
+기본설정,currency.code,재화 영문명,doth,문자,적용중,도시,cities_do/core/economy_config.gd,
+기본설정,currency.name_ko,재화 한국어 발음,도쓰,문자,적용중,도시,cities_do/core/economy_config.gd,
+기본설정,difficulty.default,기본 난이도,normal,문자,적용중,도시,cities_do/core/economy_config.gd,
+기본설정,funds.normal,기본 난이도 시작 자금,50000,doth,적용중,도시,cities_do/core/economy_config.gd,소수 거래액은 이월하고 도시 자금에는 정수 doth 정산
+구획·민간건물,zoning.residential.cost,주거 구획 지정 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,private_building.residential.cost,주거 민간 건물 자동 신축 비용,0,doth,확정,주거,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,zoning.commercial.cost,상업 구획 지정 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,private_building.commercial.cost,상업 민간 건물 자동 신축 비용,0,doth,확정,상업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,zoning.industrial.cost,공업 구획 지정 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+구획·민간건물,private_building.industrial.cost,공업 민간 건물 자동 신축 비용,0,doth,확정,공업,docs/PRICE_PROPOSALS_KO.md,시정부 구매비 없음. 무료 규칙 확정; 현재 클릭 배치/수동 성장 프로토타입과 드래그 구획·자동 입주 완성은 구분.
+건설비,road.local.2.construction,일반 2차로 건설비,80,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.local.2.upkeep,일반 2차로 월 유지비,1,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.local.3.construction,일반 3차로 건설비,120,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.local.3.upkeep,일반 3차로 월 유지비,2,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.local.4.construction,일반 4차로 건설비,160,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.local.4.upkeep,일반 4차로 월 유지비,2,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.local.5.construction,일반 5차로 건설비,220,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.local.5.upkeep,일반 5차로 월 유지비,3,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.local.8.construction,일반 8차로 건설비,400,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.local.8.upkeep,일반 8차로 월 유지비,5,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.highway.2.construction,고속도로 2차로 건설비,240,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.highway.2.upkeep,고속도로 2차로 월 유지비,3,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.highway.3.construction,고속도로 3차로 건설비,360,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.highway.3.upkeep,고속도로 3차로 월 유지비,4,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.highway.4.construction,고속도로 4차로 건설비,480,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.highway.4.upkeep,고속도로 4차로 월 유지비,6,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,road.highway.5.construction,고속도로 5차로 건설비,600,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,road.highway.5.upkeep,고속도로 5차로 월 유지비,8,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,rail.track.construction,철도 선로 건설비,200,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,rail.track.upkeep,철도 선로 월 유지비,2,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,metro.track.construction,지하철 선로 건설비,600,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,metro.track.upkeep,지하철 선로 월 유지비,6,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.line.construction,전선 건설비,20,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.line.upkeep,전선 월 유지비,1,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,water.pipe.construction,상수도관 건설비,16,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,water.pipe.upkeep,상수도관 월 유지비,1,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,sewage.pipe.construction,하수도관 건설비,20,doth/8m,제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,sewage.pipe.upkeep,하수도관 월 유지비,1,doth/(8m·게임월),제안,8m,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,park-pocket-2x2.construction,쉼터 공원 건설비,300,doth/시설,제안,2×2칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,park-pocket-2x2.upkeep,쉼터 공원 월 유지비,5,doth/게임월,제안,2×2칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,park-garden-2x2.construction,꽃정원 공원 건설비,450,doth/시설,제안,2×2칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,park-garden-2x2.upkeep,꽃정원 공원 월 유지비,8,doth/게임월,제안,2×2칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,park-plaza-4x4.construction,분수 광장 공원 건설비,1500,doth/시설,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,park-plaza-4x4.upkeep,분수 광장 공원 월 유지비,25,doth/게임월,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,park-play-4x4.construction,놀이터 공원 건설비,1200,doth/시설,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,park-play-4x4.upkeep,놀이터 공원 월 유지비,20,doth/게임월,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,parking-small-2x4.construction,소형 주차장 건설비,800,doth/시설,제안,2×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+유지비,parking-small-2x4.upkeep,소형 주차장 월 유지비,8,doth/게임월,제안,2×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+건설비,parking-medium-4x4.construction,중형 주차장 건설비,1600,doth/시설,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+유지비,parking-medium-4x4.upkeep,중형 주차장 월 유지비,16,doth/게임월,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+건설비,parking-large-4x8.construction,대형 주차장 건설비,3200,doth/시설,제안,4×8칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+유지비,parking-large-4x8.upkeep,대형 주차장 월 유지비,32,doth/게임월,제안,4×8칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+건설비,parking-tower-4x4-4f.construction,4층 주차타워 건설비,16000,doth/시설,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+유지비,parking-tower-4x4-4f.upkeep,4층 주차타워 월 유지비,160,doth/게임월,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
+건설비,power.wind.construction,풍력 발전기 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.wind.upkeep,풍력 발전기 월 유지비,80,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.solar.construction,태양광 발전소 건설비,12000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.solar.upkeep,태양광 발전소 월 유지비,50,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.coal.construction,석탄 발전소 건설비,35000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.coal.upkeep,석탄 발전소 월 유지비,600,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.oil.construction,석유 발전소 건설비,60000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.oil.upkeep,석유 발전소 월 유지비,1000,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.nuclear.construction,원자력 발전소 건설비,200000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.nuclear.upkeep,원자력 발전소 월 유지비,2500,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.hydro.construction.base,수력 댐 본체 건설비,30000,doth/본체,제안,가변 길이 댐,docs/PRICE_PROPOSALS_KO.md,본체 고정비와 길이별 추가비를 합산; 아직 실제 차감하지 않음.
+건설비,power.hydro.construction.segment,수력 댐 연장 건설비,2000,doth/8m,제안,가변 길이 댐,docs/PRICE_PROPOSALS_KO.md,본체 고정비와 길이별 추가비를 합산; 아직 실제 차감하지 않음.
+유지비,power.hydro.upkeep.base,수력 댐 기본 유지비,300,doth/게임월,제안,가변 길이 댐,docs/PRICE_PROPOSALS_KO.md,본체 고정비와 길이별 추가비를 합산; 아직 실제 차감하지 않음.
+유지비,power.hydro.upkeep.segment,수력 댐 연장 유지비,20,doth/(8m·게임월),제안,가변 길이 댐,docs/PRICE_PROPOSALS_KO.md,본체 고정비와 길이별 추가비를 합산; 아직 실제 차감하지 않음.
+건설비,water.intake.construction,취수장 건설비,8000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,water.intake.upkeep,취수장 월 유지비,120,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,water.tower.construction,급수탑 건설비,4000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,water.tower.upkeep,급수탑 월 유지비,40,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,sewage.outfall.construction,하수장 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,sewage.outfall.upkeep,하수장 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,sewage.treatment.construction,하수처리장 건설비,18000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,sewage.treatment.upkeep,하수처리장 월 유지비,250,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,waste.recycling.construction,재활용센터 건설비,12000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,waste.recycling.upkeep,재활용센터 월 유지비,150,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,waste.incinerator.construction,소각장 건설비,25000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,waste.incinerator.upkeep,소각장 월 유지비,350,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,fire.small.construction,소형소방서 건설비,8000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,fire.small.upkeep,소형소방서 월 유지비,120,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,fire.standard.construction,소방서 건설비,20000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,fire.standard.upkeep,소방서 월 유지비,300,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,fire.regional.construction,광역소방서 건설비,50000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,fire.regional.upkeep,광역소방서 월 유지비,700,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,police.small.construction,파출소 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,police.small.upkeep,파출소 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,police.standard.construction,경찰서 건설비,18000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,police.standard.upkeep,경찰서 월 유지비,250,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,police.headquarters.construction,경찰본부 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,police.headquarters.upkeep,경찰본부 월 유지비,600,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,police.prison.construction,교도소 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,police.prison.upkeep,교도소 월 유지비,500,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,health.clinic.construction,진료소 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,health.clinic.upkeep,진료소 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,health.hospital.construction,병원 건설비,25000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,health.hospital.upkeep,병원 월 유지비,400,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,health.regional.construction,대형병원 건설비,65000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,health.regional.upkeep,대형병원 월 유지비,900,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,education.primary.construction,초등학교 건설비,5000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,education.primary.upkeep,초등학교 월 유지비,80,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,education.high.construction,고등학교 건설비,9000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,education.high.upkeep,고등학교 월 유지비,140,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,education.college.construction,전문대 건설비,25000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,education.college.upkeep,전문대 월 유지비,350,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,education.university.construction,대학교 건설비,60000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,education.university.upkeep,대학교 월 유지비,800,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,rail.station.construction,철도역 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,rail.station.upkeep,철도역 월 유지비,80,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,metro.station.construction,지하철역 건설비,10000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,metro.station.upkeep,지하철역 월 유지비,120,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,water_sewage.pair.construction,상하수관 한 쌍 건설비,36,doth/8m,제안,상수관+하수관 함께 8m,docs/WATER_SEWAGE_KO.md,상수관 16+하수관 20 합산 건설비; 유지비 각 1 합산. 개별 관 항목과 중복 청구하지 않음. 미승인·미차감.
+유지비,water_sewage.pair.upkeep,상하수관 한 쌍 월 유지비,2,doth/(8m·게임월),제안,상수관+하수관 함께 8m,docs/WATER_SEWAGE_KO.md,상수관 16+하수관 20 합산 건설비; 유지비 각 1 합산. 개별 관 항목과 중복 청구하지 않음. 미승인·미차감.
+전기 거래요금,power.highly_developed.import,전력 수입,0.0024,doth/kWh,적용중,엄청 발전한 마을,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+전기 거래요금,power.highly_developed.export,전력 수출,0.001,doth/kWh,적용중,엄청 발전한 마을,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+수도 거래요금,water.highly_developed.water_import,상수 수입,0.04,doth/m³,적용중,엄청 발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.highly_developed.water_export,상수 수출,0.015,doth/m³,적용중,엄청 발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.highly_developed.sewage_disposal,하수 외부 처리,0.03,doth/m³,적용중,엄청 발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+전기 거래요금,power.developed.import,전력 수입,0.0027,doth/kWh,적용중,발전한 마을,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+전기 거래요금,power.developed.export,전력 수출,0.0012,doth/kWh,적용중,발전한 마을,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+수도 거래요금,water.developed.water_import,상수 수입,0.045,doth/m³,적용중,발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.developed.water_export,상수 수출,0.018,doth/m³,적용중,발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.developed.sewage_disposal,하수 외부 처리,0.035,doth/m³,적용중,발전한 마을,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+전기 거래요금,power.peer.import,전력 수입,0.003,doth/kWh,적용중,비슷한 마을 A/B,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+전기 거래요금,power.peer.export,전력 수출,0.0015,doth/kWh,적용중,비슷한 마을 A/B,cities_do/core/power_grid.gd,내부 소비 우선. 실제 거래 kWh로 계산; 계약한도 미적용. 주민 전기 사용료와 별개.
+수도 거래요금,water.peer.water_import,상수 수입,0.05,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.peer.water_export,상수 수출,0.025,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+수도 거래요금,water.peer.sewage_disposal,하수 외부 처리,0.04,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
+세금,tax.residential.rate,주거 세금/세율,,미정,미정,주거,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
+세금,tax.commercial.rate,상업 세금/세율,,미정,미정,상업,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
+세금,tax.industrial.rate,공업 세금/세율,,미정,미정,공업,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
+세금,tax.assessment_basis,세금 과세 기준,,과세 대상,미정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
+세금,tax.period,세금 징수 주기,,시간,미정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
+세금,tax.currency,세금 화폐 단위,doth,문자,확정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
+주민 사용료,billing.water.domestic,주민·사업장 상수 사용료,,doth/m³,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
+주민 사용료,billing.sewage.domestic,주민·사업장 하수 사용료,,doth/m³,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
+주민 사용료,billing.power.domestic,주민·사업장 전기 사용료,,doth/kWh,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
+계약 한도,power.contract.import,수입 계약한도,500,kW/이웃,보류,이웃 마을별,docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md,이전 제안 기록만 보존. 사용자 요청으로 현재 미적용; 게임에 이 상한을 적용하지 않음.
+계약 한도,power.contract.export,수출 계약한도,200,kW/이웃,보류,이웃 마을별,docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md,이전 제안 기록만 보존. 사용자 요청으로 현재 미적용; 게임에 이 상한을 적용하지 않음.

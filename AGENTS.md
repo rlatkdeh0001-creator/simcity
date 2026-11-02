@@ -13,6 +13,12 @@ Water trade tariffs were delegated and applied: read `docs/WATER_TARIFFS_KO.md`.
 Edit `cities_do/core/water_tariffs.json`; include both utilities' fractional balances
 in the available funds calculation. Construction/upkeep proposals remain separate.
 
+Economic values register: `docs/economy-balance/ECONOMY_BALANCE.csv` is the single
+editable overview requested by the user. Keep it in sync when changing economic
+values. Preserve units, approval/application status and source locations. It is
+currently a management sheet, not a runtime loader; synchronize live code/JSON
+when applying approved edits. Blank undecided values are not zero.
+
 ## Asset pricing proposals (user requirement, 2026-11-02)
 
 For every newly created asset, propose a construction price and recurring upkeep
