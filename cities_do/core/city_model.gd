@@ -19,12 +19,16 @@ var next_id := 1
 const RegionalExchange = preload("res://core/regional_exchange.gd")
 var external_infrastructure: Array[Dictionary] = []
 var next_external_link_id := 1
+const PowerGrid = preload("res://core/power_grid.gd")
+var power
+const PROTOTYPE_POWER_LOADS := {"residential":1.6,"commercial":1.5,"industrial":3.0}
 
 func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	width = w
 	height = h
 	rng.seed = seed_value
 	appearance_rng.seed = seed_value ^ 0x5f3759df
+	power = PowerGrid.new(Vector2(w,h)*4.0)
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -56,6 +60,8 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 	if check_buildings:
 		for b in buildings:
 			if b.id!=ignore_id and Parcels.overlap(polygon_value,footprint(b)):return "다른 건물이 있습니다"
+		for plant in power.plants:
+			if Parcels.overlap(polygon_value,power_plant_footprint(plant)):return "발전소가 있습니다"
 	var access:=false
 	for road in roads:
 		var distance:=_polygon_road_distance(polygon_value,road)
@@ -117,6 +123,9 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for b in buildings:
 		if _polygon_road_distance(footprint(b), road) < -0.0005:
 			return {"ok": false, "reason": "건물과 충돌합니다"}
+	for plant in power.plants:
+		if _polygon_road_distance(power_plant_footprint(plant),road)<-0.0005:
+			return {"ok":false,"reason":"발전소와 충돌합니다"}
 	if commit:
 		roads.append(road)
 		_update_zoning_for_road(road)
@@ -130,7 +139,63 @@ func find_building(id: int) -> Dictionary:
 
 func regional_exchange() -> Dictionary:
 	# Re-evaluate current paths: removing the last terminal closes its channel.
-	return RegionalExchange.evaluate(width,height,roads,external_infrastructure)
+	var links: Array = external_infrastructure.duplicate()
+	for wire in power.wires:
+		var points := PackedVector2Array()
+		for point in wire.points: points.append(point/4.0)
+		links.append({"kind":"power","points":points})
+	return RegionalExchange.evaluate(width,height,roads,links)
+
+func power_plant_footprint(plant: Dictionary) -> PackedVector2Array:
+	var p: Vector2 = plant.position/4.0-Vector2.ONE
+	return footprint({"x":p.x,"y":p.y,"size":2})
+
+func add_power_plant(point: Vector2, output_kw: float = 300.0) -> Dictionary:
+	var center := Vector2(floorf(point.x)+1,floorf(point.y)+1)
+	var polygon_value := footprint({"x":center.x-1,"y":center.y-1,"size":2})
+	var error := _polygon_error(polygon_value)
+	if error != "": return {"ok":false,"reason":error}
+	var id: int = power.add_plant(center*4.0,output_kw)
+	return {"ok":id!=-1,"id":id,"reason":"발전소를 설치했습니다" if id!=-1 else "발전소 위치/출력을 확인하세요"}
+
+func power_consumers() -> Array:
+	var result := []
+	for building in buildings:
+		var corners := footprint(building)
+		var center := Vector2.ZERO
+		for corner in corners: center += corner
+		center /= corners.size()
+		var provisional: float = PROTOTYPE_POWER_LOADS[building.zone]*building.size*building.size/4.0*maxi(1,building.level)
+		result.append({"id":building.id,"position":center*4.0,"demand_kw":float(building.get("power_demand_kw",provisional))})
+	return result
+
+func power_state() -> Dictionary:
+	var state: Dictionary = power.solve(power_consumers(),maxf(0,float(funds)+power.pending_doth))
+	_apply_power_state(state)
+	return state
+
+func _apply_power_state(state: Dictionary):
+	for building in buildings:
+		var supply: Dictionary = state.consumers[building.id]
+		building.has_power = supply.powered
+		building.power_ratio = supply.ratio
+
+func advance_power(hours: float) -> Dictionary:
+	if not is_finite(hours) or hours<=0: return power_state()
+	var state: Dictionary = power.solve(power_consumers(),maxf(0,float(funds)+power.pending_doth),hours)
+	power.imported_kwh += state.import_kw*hours
+	power.exported_kwh += state.export_kw*hours
+	power.pending_doth += state.revenue_doth-state.cost_doth
+	# Normalize floating-point noise only at an integer boundary; preserve real
+	# fractional charges instead of rounding each frame's transaction.
+	var nearest_integer := roundf(power.pending_doth)
+	if absf(power.pending_doth-nearest_integer)<0.000000001:
+		power.pending_doth=nearest_integer
+	var settled := int(power.pending_doth)
+	funds += settled
+	power.pending_doth -= settled
+	_apply_power_state(state)
+	return state
 
 func add_external_link(kind: String, points: PackedVector2Array, commit: bool = true) -> Dictionary:
 	if kind not in ["rail","power","metro","water","sewage"]:

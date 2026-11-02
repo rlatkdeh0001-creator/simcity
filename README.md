@@ -10,8 +10,8 @@
 
 **[가격에 대응하는 수용량·발전량·처리량 제안](docs/CAPACITY_PROPOSALS_KO.md)** — 단위·기본 수요·초반 500명 예시 포함, 검토 대기입니다.
 
-**[지중 전력망 흐름 GIF · 반경 64m/간격 32m](docs/concepts/underground-power-v2/flow-demo.gif)** ·
-**[전기 수출입 kWh 단가 제안](docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md)** — 시각 검토용이며 게임 미적용입니다.
+**[지중 전력 실제 도입·거래단가·검사](docs/UNDERGROUND_POWER_KO.md)** ·
+**[실제 게임 GIF](docs/screenshots/power-game-running.gif)** — 반경 64m/점 32m, 자동 수출입·kWh 정산 적용. 계약한도는 미적용입니다.
 
 **[전력 공급 원칙](docs/ELECTRICITY_RULES_KO.md)** — 충분한 전력은 연결 대상에 동시에 공급하며 하얀 원의 도착과 무관합니다.
 
@@ -24,12 +24,12 @@
 ## GitHub에서 결과 보기·다운로드
 
 **[전체 결과·다운로드 안내](docs/GITHUB_DOWNLOADS_KO.md)** ·
-[최신 프로젝트 ZIP](https://raw.githubusercontent.com/rlatkdeh0001-creator/simcity/main/downloads/cities-do-traffic-ai.zip) ·
+[주행 AI 시점 프로젝트 ZIP](https://raw.githubusercontent.com/rlatkdeh0001-creator/simcity/main/downloads/cities-do-traffic-ai.zip) ·
 [도로 주행 GIF](docs/screenshots/traffic-ai-running.gif) ·
 [검증 보고서](docs/TRAFFIC_AI_KO.md)
 
 소스·애셋·제작 원본·스킬·라이선스·검증 기록은 이 저장소에 있습니다.
-최신 전체 ZIP과 최초 복구 백업은 [GitHub 다운로드 폴더](https://github.com/rlatkdeh0001-creator/simcity/tree/main/downloads)에서도 받을 수 있습니다.
+과거 시점 전체 ZIP과 최초 복구 백업은 [GitHub 다운로드 폴더](https://github.com/rlatkdeh0001-creator/simcity/tree/main/downloads)에서도 받을 수 있습니다.
 
 ## 2026-11-01 복구 조사
 

@@ -1,5 +1,7 @@
 # GitHub에서 보기·다운로드
 
+**최신 전력 업데이트:** [실제 건설·동시 공급·자동 수출입·거래단가·실행 안내](UNDERGROUND_POWER_KO.md). 계약한도 미적용. 최신 코드는 main 기준이며 기존 ZIP은 이전 스냅샷입니다.
+
 이 저장소의 게임 소스, 건물·차량 애셋, Blender 제작 원본, 생성기, 설치한 스킬,
 라이선스, 조사 보고서, 테스트 로그와 화면 자료는 모두 Git에 저장돼 있다.
 클라우드 작업 공간을 열지 않아도 아래 링크로 볼 수 있다.
@@ -11,6 +13,10 @@
 [새 시설 제작 묶음](../downloads/cities-do-parks-parking-8.zip)은 원본·애셋·결합 코드·전용 스킬을 담습니다. 게임 실행은 저장소 최신 main을 사용하세요. 아래 전체 프로젝트 ZIP은 주행 AI 완료 시점의 스냅샷이며 새 공원·주차 시설은 포함하지 않습니다.
 
 ## 최신 작업
+
+- [실제 지중 전력 도입 보고서](UNDERGROUND_POWER_KO.md) · [게임 실행 GIF](screenshots/power-game-running.gif) · [실제 수출 화면](screenshots/power-game-export.png) · [검사 결과](power-validation/results.json)
+
+아래 전력 시안 링크는 도입 전 기록이다. 현재는 위 실제 구현을 기준으로 확인한다.
 
 - [64m 반경·32m 간격·하얀 원 흐름 GIF](concepts/underground-power-v2/flow-demo.gif) · [시안 설명](concepts/underground-power-v2/DESIGN_KO.md) — 게임 미적용
 

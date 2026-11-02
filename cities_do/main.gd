@@ -1,6 +1,9 @@
 extends Node2D
 const RoadGeometry = preload("res://core/road_geometry.gd")
 const Traffic = preload("res://core/traffic_controller.gd")
+const PowerOverlay = preload("res://core/power_overlay.gd")
+var power_overlay
+var power_snapshot := {}
 var traffic
 var traffic_button: Button
 var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
@@ -137,6 +140,22 @@ func _ready():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://traffic_demo.tscn"))
 	traffic_row.add_child(traffic_demo)
+	var power_button := Button.new()
+	power_button.name = "PowerTabButton"
+	power_button.text = "전력"
+	power_button.visible = not showcase_view
+	power_button.pressed.connect(func(): power_overlay.toggle())
+	var power_row := HBoxContainer.new()
+	power_row.visible = not showcase_view
+	box.add_child(power_row)
+	power_row.add_child(power_button)
+	var power_demo := Button.new()
+	power_demo.name = "PowerDemoButton"
+	power_demo.text = "전력 실습 도시"
+	power_demo.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://power_demo.tscn"))
+	power_row.add_child(power_demo)
 	var parcel_demo := Button.new()
 	parcel_demo.text = "도로 직각 구획 예시"
 	parcel_demo.visible = not showcase_view
@@ -149,9 +168,13 @@ func _ready():
 	reset.pressed.connect(func(): stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
 	box.add_child(reset)
 	hud = Label.new()
-	hud.position = Vector2(22, 730)
+	hud.position = Vector2(360, get_viewport_rect().size.y-100)
 	hud.add_theme_font_size_override("font_size", 16)
 	layer.add_child(hud)
+	power_snapshot = city.power_state()
+	power_overlay = PowerOverlay.new()
+	add_child(power_overlay)
+	power_overlay.setup(self,layer)
 	refresh()
 
 func toggle_traffic():
@@ -170,6 +193,10 @@ func stop_traffic():
 	if traffic_button != null: traffic_button.text = "도로 주행 시작"
 
 func _process(delta: float):
+	# Simulation/billing runs regardless of the power tab or visual pause.
+	power_snapshot = city.advance_power(delta/3600.0)
+	if treasury_label != null: treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
+	if power_overlay != null: power_overlay.update_state(delta)
 	if traffic != null and traffic.running:
 		traffic.update(delta)
 		queue_redraw()
@@ -230,6 +257,7 @@ func refresh():
 	queue_redraw()
 
 func _unhandled_input(event):
+	if power_overlay != null and power_overlay.handle_input(event): return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
 			panning = event.pressed
@@ -267,6 +295,7 @@ func _unhandled_input(event):
 			finish_road()
 
 func _input(event):
+	if power_overlay != null: power_overlay.finish_capture(event)
 	# Release above the HUD must also finish/cancel a captured map stroke.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE and not event.pressed:
 		panning = false

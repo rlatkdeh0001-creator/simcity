@@ -6,6 +6,30 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 지중 전력 실제 통합 (2026-11-02)
+
+[현재 동작·임시 수치·한계·실행법](UNDERGROUND_POWER_KO.md)을 먼저 읽는다.
+64m/32m 전력망, 동시 공급, 순수 표시 흐름, 자동 수출입과 발전도별 kWh 단가를 실제 도입했다.
+최신 사용자 요청으로 **거래단가 승인/적용, 계약한도 보류/미적용**이다.
+발전소 외관·출력과 건물 수요는 시험값, 공사비/유지비는 승인 전이므로 미차감이다.
+
+적용한 스킬은 `.agents/skills/cities-do-construction/SKILL.md`,
+`godot-gdscript/SKILL.md`, `godot-gdscript-headless-testing/SKILL.md`다.
+기존 원본 URL·고정 SHA·LICENSE/NOTICE는 아래 출처 항목과 각 폴더 그대로 보존했다.
+새 외부 스킬을 추가하지 않았다. 프로젝트 construction 지침에 전력 API와 구분을 갱신했다.
+공급/시간 정산/렌더 분리와 명시적 실패 집계를 실제 코드에 적용했다.
+변경: `cities_do/core/power_{grid,flow,overlay}.gd`, `core/city_model.gd`,
+`main.gd`, `power_demo.gd/.tscn`, `tests/test_power.gd`.
+
+이번 실행 근거: Godot 4.6.3에서 전력 41/41, 전체 테스트 스크립트 11/11 통과.
+`godot --headless --path cities_do --script tests/test_power.gd` 및 모든 tests/test_*.gd를
+개별 실행했고 종료 코드와 SCRIPT ERROR/ERROR/FAIL 로그를 검사했다.
+[결과/원본 로그](power-validation/results.json), [실제 GPU 화면](screenshots/power-game-export.png),
+[실행 GIF](screenshots/power-game-running.gif) 보존. GIF는 실제 Godot 뷰포트→Pillow이며
+slack-gif-creator 파이프라인을 이번에 재검증했다는 뜻이 아니다.
+클라우드 runtime 스킬의 환경상태/네트워크 지침도 확인했다. 별도 온보딩/컨테이너 설치 작업은 하지 않았다.
+인구 기반 수요, 발전소 종류별 애셋/연료, 최적 계통 배분, 장기 경제 밸런스는 후속 작업이다.
+
 ## 현재 설치 목록: 로컬 20종
 
 아래 경로는 모두 `.agents/skills/<이름>/SKILL.md`다.
