@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[아이콘을 모두 하단으로 옮긴 UI 시안](docs/concepts/bottom-ui/concept.png)** · [배치 설명·도입 스킬](docs/concepts/bottom-ui/DESIGN_KO.md) — 검토용 그림, 현재 게임 UI 미변경.
+
 **경제 수치 보관:** [통합 CSV](docs/economy-balance/ECONOMY_BALANCE.csv) · [단위·상태·수정 시 주의점](docs/economy-balance/README_KO.md)
 
 **[수도 거래요금 적용·단가 수정 방법](docs/WATER_TARIFFS_KO.md)** — 상수 수입·수출/하수 위탁의 m³ 요금과 소수 doth 정산.

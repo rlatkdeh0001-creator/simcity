@@ -1,5 +1,7 @@
 # GitHub에서 보기·다운로드
 
+[하단 통합 UI 시안](concepts/bottom-ui/concept.png) · [배치/스킬 조사 기록](concepts/bottom-ui/DESIGN_KO.md) — 게임 미적용.
+
 **[수도 거래요금 적용·단가 수정 방법](WATER_TARIFFS_KO.md)** — 상수 수입·수출/하수 위탁의 m³ 요금과 소수 doth 정산.
 
 **[상하수도망 실제 도입·조작·가격/용량 제안](WATER_SEWAGE_KO.md)** · [게임 GIF](screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](screenshots/water-flow-closeup.gif)

@@ -6,6 +6,26 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 하단 통합 UI 시안·game-ui-ux 도입 (2026-11-02 KST)
+
+사용자는 기존 실루엣 아이콘을 좋아하며 모든 아이콘을 하단에 배치한 UI 시안과
+적합한 스킬 검색·도입을 요청했다. [시안/배치 계획](concepts/bottom-ui/DESIGN_KO.md),
+[그림](concepts/bottom-ui/concept.png), [검색 범위·도입 기록](concepts/bottom-ui/SKILL_RESEARCH_KO.md)을 보존했다.
+도시 지도는 위로 넓게 두고 8개 카테고리, 상태·자금·인구, 시간·지도·설정을 모두 하단에 모았다.
+전력 도구는 선택한 메뉴 위에 얕게 펼친 상태를 그렸다. 실제 Godot UI를 바꾼 것은 아니다.
+
+신규 `.agents/skills/game-ui-ux/SKILL.md`와 references/layout-and-flow.md를 읽어
+하단 고정·가변 배치·안전 여백·포커스 및 상태별 도구 흐름의 설계 원칙을 적용했다.
+원본 URL/고정 SHA/Apache-2.0/NOTICE는 아래 게임 개발 스킬 출처와 같고
+새 폴더의 UPSTREAM.json에 원본 경로와 SHA-256을 저장했다.
+원본 파일 4개 해시 일치 확인. frontend-design의 기존 시각 설계 지침도 참고했고,
+이미지는 image_gen으로 편집 생성했다. 그림 생성 도구를 로컬 스킬로 세지 않는다.
+도시 건설 전용 그림 생성 스킬을 확인했다고 주장하지 않는다. 설치한 것은 범용 게임 HUD 설계 지침이다.
+
+1672×941 PNG를 열어 아이콘/상태의 하단 배치, 도시 지도 영역 확보, 옛 거리 표기 제거를 확인했다.
+정적 시안이므로 반응형/게임패드/키보드·실제 버튼 동작은 아직 미구현/미검증이며
+게임 변경이 없어 회귀 검사는 재실행하지 않았다. 이후 Godot 구현 시 현재 4.6.3에서 검증한다.
+
 ## 최신 작업: 경제 수치 통합 CSV 보관 (2026-11-02 KST)
 
 사용자는 파일을 지금 전달할 필요 없이 저장해두라고 명확히 했다.
@@ -94,7 +114,7 @@ slack-gif-creator 파이프라인을 이번에 재검증했다는 뜻이 아니�
 클라우드 runtime 스킬의 환경상태/네트워크 지침도 확인했다. 별도 온보딩/컨테이너 설치 작업은 하지 않았다.
 인구 기반 수요, 발전소 종류별 애셋/연료, 최적 계통 배분, 장기 경제 밸런스는 후속 작업이다.
 
-## 현재 설치 목록: 로컬 20종
+## 현재 설치 목록: 로컬 21종
 
 아래 경로는 모두 `.agents/skills/<이름>/SKILL.md`다.
 설치만 한 스킬을 실제 제작에 적용했다고 간주하지 않는다.
@@ -118,6 +138,7 @@ slack-gif-creator 파이프라인을 이번에 재검증했다는 뜻이 아니�
 | cities-do-modular-facilities | 공원·직사각형 주차 시설·연결 단지 | 자체 작성. 평면 주차장 결합/내부 경계 제거/철거 분리/한 결합 메시를 69개 검사로 검증 |
 | vehicle | Blender 차량 모델링·리그 | 원본 재설치. common.py의 도형·피벗 헬퍼를 차량 20종 생성기에 실제 사용 |
 | cities-do-vehicles | 차량 원본 스킬의 게임용 적응 | 이번 대화에서 새로 작성. 미터 단위·좌표계·우측통행·출력·출처·검증 규약 적용 |
+| game-ui-ux | 게임 HUD·메뉴·안전 영역·포커스 설계 | 이번 하단 통합 UI 시안에 배치 원칙 적용. 정적 그림이며 Godot 반응형/입력 동작은 미검증 |
 | game-ai | 상태·경로·이동 분리, A* | 차선 그래프/교통 상태/렌더 어댑터 분리와 경로 재사용에 적용 |
 | godot-gdscript | GDScript 구현 지침 | 교통 모듈·장면·버튼 구현에 적용. 원본 4.7 예시를 현재 4.6.3에서 검증 |
 | godot-gdscript-headless-testing | 명시적 종료 코드·헤드리스 검사 | 주행 검사에서 실패 집계·비정상 종료·로그 확인·시간 제한을 적용 |
@@ -168,7 +189,7 @@ Blender -Y 전방/+X 왼쪽/+Z 위 → GLB +Z 전방/+X 왼쪽/+Y 위.
 가상 로우폴리 설계이며 실사 레퍼런스 IoU·문 개폐·충돌 변형 전체 검증은 하지 않았다.
 원본의 모든 기능을 배웠거나 통과했다고 주장하지 않는다.
 
-### 게임 AI/GDScript/검사 스킬 3종
+### 게임 AI/GDScript/검사/UI 스킬 4종
 
 출처: https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9
 
@@ -186,7 +207,7 @@ Apache-2.0. 각 설치 폴더의 SKILL.md·하위 참고자료·LICENSE·NOTICE�
 | 건물 애셋 제작 | `assets/mansion-study/build_mansions.py`, `assets/residential-eight/build_residentials.py` | 로컬 Blender Python 경로가 확인됨. 외부 건물 전용 스킬을 도입했다고 지어내지 말 것. 후보 조사는 docs/asset-skills/RESEARCH_KO.md |
 
 cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setup은 플랫폼에서
-제공되는 환경 스킬이다. Git의 로컬 20종에 포함하지 않는다. 이번 대화에서는 runtime의
+제공되는 환경 스킬이다. Git의 로컬 21종에 포함하지 않는다. 이번 대화에서는 runtime의
 네트워크·연결 진단 지침을 사용했다. setup의 과거 사용 기록이 있지만 이번에 환경 설정을
 저장/게시한 것은 아니다. 새 채팅에서 제공 여부를 다시 확인하고 읽는다.
 
