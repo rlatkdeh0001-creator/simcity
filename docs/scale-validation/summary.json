@@ -1,0 +1,11 @@
+{
+  "buildings": 10,
+  "vehicles": 20,
+  "facilities": 8,
+  "vehicle_pngs": 160,
+  "ground_pixels_per_metre_zoom1": 3.913118960624632,
+  "vertical_pixels_per_metre_zoom1": 4.286607049870562,
+  "max_ground_error_percent": 0.00012786647975993048,
+  "max_vertical_error_percent": 0.0001301699797950917,
+  "max_png_bounds_edge_difference_px": 1.9540150165557861
+}

@@ -30,3 +30,12 @@ revolve, tri_count를 실제 호출하고 아래 게임 규약으로 별도 제�
 새 차량 애셋에도 doth 가격/유지비 제안과 근거를 함께 제시한다. 민간 소유인지 공공
 구매인지 미정이면 그 전제를 먼저 명시하고 가격을 승인된 차감 규칙으로 취급하지 않는다.
 `docs/PRICE_PROPOSALS_KO.md`와 AGENTS.md의 가격 제안 지침을 따른다.
+
+## 건물과의 공통 축척 확인
+
+1칸=4m를 유지하고 PNG 캔버스 크기 대신 실제 미터와 카메라 ppm으로 비교한다.
+`docs/ASSET_SCALE_REVIEW_KO.md`와 `tools/audit_asset_scale_blender.py`,
+`tools/analyze_asset_scale.py`, `tools/capture_asset_scale.gd`에 읽기 전용 검토 방법을 보존했다.
+차체 명목 치수와 사이드미러·지붕 부속물을 포함한 메시 경계를 구분한다.
+건물의 부지 크기와 본체 크기, 지붕 포함 높이와 층 높이도 구분한다.
+글로벌 배율 조정 전에 같은 줌의 실제 화면에서 문·차고·주차면 여유를 확인한다.

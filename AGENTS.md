@@ -44,6 +44,14 @@ values. Preserve units, approval/application status and source locations. It is
 currently a management sheet, not a runtime loader; synchronize live code/JSON
 when applying approved edits. Blank undecided values are not zero.
 
+## Shared asset scale
+
+Keep 1 city cell = 4 metres. Vehicle and building rendering must share a physical
+metre scale; normalize by camera calibration/lot width, not PNG canvas dimensions.
+Before changing global scale, read `docs/ASSET_SCALE_REVIEW_KO.md`. The current
+2x2 houses have small measured bodies; do not infer a renderer error
+from their size alone. Compare doors, floor height and vehicle clearance as well.
+
 ## Asset pricing proposals (user requirement, 2026-11-02)
 
 For every newly created asset, propose a construction price and recurring upkeep

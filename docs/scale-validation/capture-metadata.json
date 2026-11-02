@@ -1,0 +1,34 @@
+{
+  "scene": "cities_do/main.tscn",
+  "renderer": "Godot 4.6.3 Compatibility llvmpipe",
+  "reference_vehicles": [
+    "car-sedan-03",
+    "bus-city-01"
+  ],
+  "captures": {
+    "small": {
+      "resolution": [
+        1920,
+        1000
+      ],
+      "zoom": 2.2,
+      "sha256": "f436565e7248f5cd7d5b89ef670370e45b06cd09a158e7154a1160a37d02a31d"
+    },
+    "medium": {
+      "resolution": [
+        1920,
+        1000
+      ],
+      "zoom": 2.2,
+      "sha256": "862f1e3b9ae87104d8d478830a26b3fd008e6422efb0d13074d2705e6d0488d5"
+    },
+    "large": {
+      "resolution": [
+        1920,
+        1000
+      ],
+      "zoom": 2.2,
+      "sha256": "41024715ef0ae4f692b1f24a895db006e510debde7de496592cc7424061d8232"
+    }
+  }
+}
