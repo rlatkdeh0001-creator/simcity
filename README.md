@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[수도 거래요금 적용·단가 수정 방법](docs/WATER_TARIFFS_KO.md)** — 상수 수입·수출/하수 위탁의 m³ 요금과 소수 doth 정산.
+
 **[상하수도망 실제 도입·조작·가격/용량 제안](docs/WATER_SEWAGE_KO.md)** · [게임 GIF](docs/screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](docs/screenshots/water-flow-closeup.gif)
 
 **새 담당자 시작점: [스킬 인계장 · 익힌 내용과 검증 범위](docs/SKILL_HANDOFF_KO.md)**

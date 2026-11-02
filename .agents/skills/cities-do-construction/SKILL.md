@@ -15,7 +15,9 @@ Legacy external power links alone do not deliver power. Water/sewage now have
 a paired pipe network: read `docs/WATER_SEWAGE_KO.md`, use city.water.add_pipe(),
 city.water_state() and city.advance_water(days). Blue/brown fluid markers and
 their wobble are display-only; never gate supply/treatment/metering on arrival.
-Water prices remain unapproved. Rail/metro still have registration APIs only. Do not equate boundary
+Water trade tariffs are now authorized: read `docs/WATER_TARIFFS_KO.md`, edit
+`core/water_tariffs.json`, bill actual m³, carry fractions and share the
+city.utility_balance() budget with electricity. Construction/upkeep remain proposed. Rail/metro still have registration APIs only. Do not equate boundary
 availability with delivered utilities, completed networks or simulated trade.
 
 Use the existing project at `../../../cities_do` relative to this skill directory.

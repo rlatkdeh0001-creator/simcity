@@ -9,6 +9,9 @@ Water/sewage rule: read `docs/WATER_SEWAGE_KO.md`. Install/remove both pipes
 atomically. Blue supply flows source-to-consumer; brown sewage flows consumer-to-sink.
 Fluid circles, wobble, visibility and visual pause never affect actual services
 or metering. Use m³/game day for rates and m³ for volume; do not reuse electric tariffs.
+Water trade tariffs were delegated and applied: read `docs/WATER_TARIFFS_KO.md`.
+Edit `cities_do/core/water_tariffs.json`; include both utilities' fractional balances
+in the available funds calculation. Construction/upkeep proposals remain separate.
 
 ## Asset pricing proposals (user requirement, 2026-11-02)
 

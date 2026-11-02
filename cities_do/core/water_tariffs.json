@@ -1,0 +1,20 @@
+{
+  "unit": "doth/m3",
+  "neighbors": {
+    "highly_developed": {
+      "water_import": 0.04,
+      "water_export": 0.015,
+      "sewage_disposal": 0.03
+    },
+    "developed": {
+      "water_import": 0.045,
+      "water_export": 0.018,
+      "sewage_disposal": 0.035
+    },
+    "peer": {
+      "water_import": 0.05,
+      "water_export": 0.025,
+      "sewage_disposal": 0.04
+    }
+  }
+}

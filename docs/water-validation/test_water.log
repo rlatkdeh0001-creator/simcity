@@ -35,6 +35,26 @@ PASS rates times game days meter actual m3
 PASS negative time cannot reverse volume meters
 PASS 30 and 60 updates produce same supply and treatment volumes
 PASS metering does not change network capacities
+PASS peer tariffs charge imported m3 and disposed sewage m3 separately
+PASS one day peer water and sewage totals 8.2 doth
+PASS advanced neighbor gives cheaper water and treatment
+PASS each import and disposal selects cheapest connected neighbor
+PASS surplus water uses highest export price peer 0.025 per m3
+PASS water import and export may choose different neighbors
+PASS current water export revenue can pay disposal even with zero opening cash
+PASS tariff configuration accepts editable nonnegative rates
+PASS negative tariff rejected before it can generate money
+PASS zero water price is free but unpaid sewage treatment still stops
+PASS 100 m3 per day and 80 sewage for 30 days costs exactly 246 doth
+PASS billed volume equals actual metered trade
+PASS small water and sewage charges carry fractional doth
+PASS 30 and 60 updates settle equal money and water volume
+PASS insufficient cash cannot create water debt
+PASS cash shortage prioritizes drinking water then reports untreated sewage
+PASS water cannot spend money already owed to electricity
+PASS electricity cannot spend money already owed to water
+PASS queries and fluid animation cannot charge twice
+PASS disconnected network cannot bill phantom water or sewage
 PASS blue flow travels from water source toward consumers
 PASS brown flow travels from consumers toward treatment sink
 PASS flow speed and calls never mutate supply treatment trade or volume
@@ -48,7 +68,7 @@ PASS water facility blocks overlapping generator
 PASS water facility blocks overlapping housing
 PASS roads cannot cut through water facilities
 PASS city exposes independent building water and sewage flags
-PASS unapproved water prices are not charged or sent through electricity billing
+PASS water trade settles its own tariff without electricity billing
 PASS paired boundary pipe registers both regional channels
 PASS removing paired terminal closes both regional channels
 PASS water tab opens paired tools and closes power overlay
@@ -60,4 +80,4 @@ PASS demo domestic button provides actual water and treatment
 PASS demo import button enables real two-way neighbor exchange
 PASS demo cut scenario actually removes pipes
 PASS reconnecting demo restores supply
-RESULT 60/60 water checks passed
+RESULT 80/80 water checks passed

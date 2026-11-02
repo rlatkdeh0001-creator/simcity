@@ -22,7 +22,7 @@ func fixture() -> RefCounted:
  pipe(g,[Vector2(64,128),Vector2(256,128)])
  return g
 func run():
- for method in ["test_geometry","test_service","test_exchange","test_metering","test_flow","test_city"]:
+ for method in ["test_geometry","test_service","test_exchange","test_metering","test_tariffs","test_flow","test_city"]:
   if call(method)!=true: verify(false,method+" completes")
  if await test_ui()!=true: verify(false,"UI completes")
  if await test_demo()!=true: verify(false,"demo completes")
@@ -115,6 +115,82 @@ func test_metering() -> bool:
  verify(is_equal_approx(a.supplied_m3,b.supplied_m3) and is_equal_approx(a.treated_m3,b.treated_m3),"30 and 60 updates produce same supply and treatment volumes")
  verify(before.water_supplied_m3_day==g.solve(consumers()).water_supplied_m3_day,"metering does not change network capacities")
  return true
+func billing_city() -> RefCounted:
+ var c := City.new()
+ c.water.add_pipe(PackedVector2Array([Vector2(0,80),Vector2(144,80)]))
+ c.buildings.append({"id":1,"x":18,"y":18,"size":2,"zone":"residential","level":1,"water_demand_m3_day":100.0})
+ return c
+func test_tariffs() -> bool:
+ var g := Grid.new()
+ pipe(g,[Vector2(0,200),Vector2(256,200)])
+ var demand := [{"id":1,"position":Vector2(160,200),"demand_m3_day":100.0}]
+ var quote: Dictionary=g.solve(demand,INF,1)
+ verify(is_equal_approx(quote.water_purchase_doth,5) and is_equal_approx(quote.sewage_disposal_doth,3.2),"peer tariffs charge imported m3 and disposed sewage m3 separately")
+ verify(is_equal_approx(quote.cost_doth,8.2) and quote.revenue_doth==0,"one day peer water and sewage totals 8.2 doth")
+ pipe(g,[Vector2(192,200),Vector2(200,200),Vector2(200,0)])
+ quote=g.solve(demand,INF,1)
+ verify(is_equal_approx(quote.water_purchase_doth,4) and is_equal_approx(quote.sewage_disposal_doth,2.4),"advanced neighbor gives cheaper water and treatment")
+ var active: Dictionary=quote.groups.filter(func(group):return group.water_import>0)[0]
+ verify(active.water_import_port.development=="highly_developed" and active.sewage_export_port.development=="highly_developed","each import and disposal selects cheapest connected neighbor")
+ var plant: int=g.add_facility(Vector2(160,200),"water",300)
+ quote=g.solve(demand,INF,1)
+ verify(quote.water_import_m3_day==0 and is_equal_approx(quote.water_sales_doth,5),"surplus water uses highest export price peer 0.025 per m3")
+ verify(quote.groups.filter(func(group):return group.water_export>0)[0].water_export_port.development=="peer","water import and export may choose different neighbors")
+ var sales=billing_city()
+ sales.funds=0
+ sales.water.add_facility(Vector2(64,80),"water",300)
+ sales.advance_water(1)
+ verify(sales.funds==1 and is_equal_approx(sales.water.pending_doth,.8),"current water export revenue can pay disposal even with zero opening cash")
+ var fresh: Dictionary=g.tariffs.duplicate(true)
+ fresh.peer.water_import=.06
+ verify(Grid.valid_tariffs(fresh),"tariff configuration accepts editable nonnegative rates")
+ fresh.peer.water_import=-1
+ verify(not Grid.valid_tariffs(fresh),"negative tariff rejected before it can generate money")
+ g.set_capacity(plant,0)
+ g.tariffs.peer.water_import=0
+ quote=g.solve(demand,0,1)
+ verify(quote.water_import_m3_day==100 and quote.sewage_export_m3_day==0,"zero water price is free but unpaid sewage treatment still stops")
+ var c=billing_city()
+ c.advance_water(30)
+ verify(c.funds==49754 and absf(c.water.pending_doth)<.000001,"100 m3 per day and 80 sewage for 30 days costs exactly 246 doth")
+ verify(is_equal_approx(c.water.imported_water_m3,3000) and is_equal_approx(c.water.exported_sewage_m3,2400),"billed volume equals actual metered trade")
+ var small=billing_city()
+ small.advance_water(.001)
+ verify(small.funds==50000 and is_equal_approx(small.water.pending_doth,-.0082),"small water and sewage charges carry fractional doth")
+ var a=billing_city()
+ var b=billing_city()
+ for i in range(30): a.advance_water(1.0/30)
+ for i in range(60): b.advance_water(1.0/60)
+ verify(a.funds==b.funds and is_equal_approx(a.water.pending_doth,b.water.pending_doth) and is_equal_approx(a.water.imported_water_m3,b.water.imported_water_m3),"30 and 60 updates settle equal money and water volume")
+ var poor=billing_city()
+ poor.funds=1
+ var state: Dictionary=poor.advance_water(1)
+ verify(poor.funds==0 and absf(poor.water.pending_doth)<.000001 and state.cost_doth<=1.000001,"insufficient cash cannot create water debt")
+ verify(is_equal_approx(state.water_supplied_m3_day,20) and state.sewage_export_m3_day==0,"cash shortage prioritizes drinking water then reports untreated sewage")
+ var shared=billing_city()
+ shared.funds=1
+ shared.power.pending_doth=-.8
+ state=shared.advance_water(1)
+ verify(state.cost_doth<=.200001 and shared.utility_balance()<.000001,"water cannot spend money already owed to electricity")
+ var electricity=billing_city()
+ electricity.funds=1
+ electricity.water.pending_doth=-.9
+ electricity.power.add_wire(PackedVector2Array([Vector2(0,80),Vector2(144,80)]))
+ electricity.buildings[0].power_demand_kw=100.0
+ var power_state: Dictionary=electricity.advance_power(1)
+ verify(power_state.cost_doth<=.100001 and electricity.utility_balance()<.000001,"electricity cannot spend money already owed to water")
+ var display=billing_city()
+ var prior_funds: int=display.funds
+ var prior: Dictionary=display.water_state()
+ Flow.markers(prior,100,1000,.1)
+ display.water_state()
+ verify(display.funds==prior_funds and display.water.pending_doth==0,"queries and fluid animation cannot charge twice")
+ var disconnection=billing_city()
+ var pipe_id: int=disconnection.water.geometry.wires[0].id
+ disconnection.water.remove_pipe(pipe_id)
+ disconnection.advance_water(30)
+ verify(disconnection.funds==50000 and disconnection.water.pending_doth==0,"disconnected network cannot bill phantom water or sewage")
+ return true
 func test_flow() -> bool:
  var g=fixture()
  var state: Dictionary=g.solve(consumers())
@@ -150,7 +226,7 @@ func test_city() -> bool:
  var funds: int=c.funds
  c.advance_water(1)
  verify(c.buildings[0].has_water and c.buildings[0].has_sewage,"city exposes independent building water and sewage flags")
- verify(c.funds==funds and c.power.imported_kwh==0,"unapproved water prices are not charged or sent through electricity billing")
+ verify(c.funds==funds+17 and is_equal_approx(c.water.pending_doth,.9264) and c.power.imported_kwh==0,"water trade settles its own tariff without electricity billing")
  var exchange: Dictionary=c.regional_exchange()
  verify(exchange.neighbors.any(func(n):return n.channels.water.connected and n.channels.sewage.connected),"paired boundary pipe registers both regional channels")
  c.water.remove_pipe(c.water.geometry.wires[0].id)

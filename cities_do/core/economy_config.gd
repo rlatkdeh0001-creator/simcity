@@ -1,5 +1,5 @@
 extends RefCounted
-## Confirmed economy rules. Prices, taxes and trade rates remain unspecified.
+## Confirmed economy rules. Construction/upkeep and taxes remain proposed; trade rates live in utility configs.
 const CURRENCY_CODE := "doth"
 const CURRENCY_NAME_KO := "도쓰"
 const DEFAULT_DIFFICULTY := "normal"

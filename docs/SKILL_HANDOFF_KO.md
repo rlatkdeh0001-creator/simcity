@@ -6,13 +6,32 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 수도 거래단가 책정·적용 (2026-11-02 KST)
+
+사용자가 요금 책정·적용을 위임했다. [요금표/수정법](WATER_TARIFFS_KO.md),
+`cities_do/core/water_tariffs.json`을 먼저 확인한다. 상수 수입/수출·하수 외부 처리의
+발전도별 doth/m³ 단가를 적용했으며 주민 청구 요금·시설 공사비/유지비는 별도 미적용이다.
+물량×단가, 소수 이월, 정수 자금 정산, 최적 이웃 선택과 실제 흐름 방향을 연결했다.
+`city.utility_balance()`가 전기/수도 미정산액을 합산해 중복 지출을 막는다.
+흐름 원의 도착과 가격/공급은 계속 독립이다.
+
+적용 지침은 기존 construction/GDScript/headless-testing 스킬이며 새 스킬/외부 코드를 설치하지 않았다.
+원본 URL·SHA·라이선스는 아래 항목과 설치 폴더를 그대로 따른다.
+변경: `core/water_tariffs.json`, `core/water_grid.gd`, `core/city_model.gd`,
+`core/water_overlay.gd`, `tests/test_water.gd`. 건설 스킬의 수도 단가 상태도 갱신했다.
+이번 실행: `python tools/validate_water_update.py`, Godot 4.6.3에서 전용 **80/80**,
+전체 **12/12 스크립트 통과**. [현재 로그](water-validation/)와 [실제 요금 화면](screenshots/water-tariffs-ui.png).
+기존 GIF는 요금 도입 전 캡처이며 흐름 시연용이다. 현재 가격 상태는 새 요금 화면/문서를 따른다.
+단가 JSON 수정은 게임 재시작 후 새 모델에 적용된다. 큰 시간 도약/분리 계통의 유한 예산
+배분은 전 도시 최적화가 아닌 시험 정책이며 상세 한계는 요금 문서에 있다.
+
 ## 최신 작업: 상하수도망 통합 (2026-11-02 KST)
 
 [상하수도 동작·가격/용량 제안·한계](WATER_SEWAGE_KO.md)를 읽는다.
 한 번에 푸른 상수관·갈색 하수관 설치/철거, 64m/32m, 독립 공급·처리 상태,
 푸른/갈색 원의 반대 흐름과 꿀렁이는 윤곽 효과를 구현했다.
 원 도착·변형·표시 토글은 실제 물량과 무관하다. 부족 상수 수입, 잉여 상수 수출,
-초과 하수 외부 위탁을 연결 이웃에서 처리한다. 수도 단가/건설비/유지비는 미승인·미적용이다.
+초과 하수 외부 위탁을 연결 이웃에서 처리한다. 당시 수도 단가/건설비/유지비는 미적용이었다. 이후 위 수도 요금 작업에서 거래단가를 적용했다.
 
 이번에도 `.agents/skills/cities-do-construction/SKILL.md`,
 `godot-gdscript/SKILL.md`, `godot-gdscript-headless-testing/SKILL.md`를 읽어 적용했다.

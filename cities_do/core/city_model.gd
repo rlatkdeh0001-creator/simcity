@@ -192,8 +192,11 @@ func power_consumers() -> Array:
 		result.append({"id":building.id,"position":center*4.0,"demand_kw":float(building.get("power_demand_kw",provisional))})
 	return result
 
+func utility_balance() -> float:
+	return maxf(0,float(funds)+power.pending_doth+water.pending_doth)
+
 func power_state() -> Dictionary:
-	var state: Dictionary = power.solve(power_consumers(),maxf(0,float(funds)+power.pending_doth))
+	var state: Dictionary = power.solve(power_consumers(),utility_balance())
 	_apply_power_state(state)
 	return state
 
@@ -205,7 +208,7 @@ func _apply_power_state(state: Dictionary):
 
 func advance_power(hours: float) -> Dictionary:
 	if not is_finite(hours) or hours<=0: return power_state()
-	var state: Dictionary = power.solve(power_consumers(),maxf(0,float(funds)+power.pending_doth),hours)
+	var state: Dictionary = power.solve(power_consumers(),utility_balance(),hours)
 	power.imported_kwh += state.import_kw*hours
 	power.exported_kwh += state.export_kw*hours
 	power.pending_doth += state.revenue_doth-state.cost_doth
@@ -249,12 +252,18 @@ func _apply_water_state(state: Dictionary):
 		building.sewage_ratio=service.sewage_ratio
 
 func water_state() -> Dictionary:
-	var state: Dictionary=water.solve(water_consumers())
+	var state: Dictionary=water.solve(water_consumers(),utility_balance())
 	_apply_water_state(state)
 	return state
 
 func advance_water(days: float) -> Dictionary:
-	var state: Dictionary=water.advance(water_consumers(),days)
+	var state: Dictionary=water.advance(water_consumers(),days,utility_balance())
+	water.pending_doth+=state.revenue_doth-state.cost_doth
+	var nearest_integer := roundf(water.pending_doth)
+	if absf(water.pending_doth-nearest_integer)<.000000001: water.pending_doth=nearest_integer
+	var settled := int(water.pending_doth)
+	funds+=settled
+	water.pending_doth-=settled
 	_apply_water_state(state)
 	return state
 
