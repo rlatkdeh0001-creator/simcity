@@ -10,7 +10,7 @@
 
 **[가격에 대응하는 수용량·발전량·처리량 제안](docs/CAPACITY_PROPOSALS_KO.md)** — 단위·기본 수요·초반 500명 예시 포함, 검토 대기입니다.
 
-**[지중 전력망 시안](docs/concepts/underground-power/concept.png)** ·
+**[지중 전력망 흐름 GIF · 반경 64m/간격 32m](docs/concepts/underground-power-v2/flow-demo.gif)** ·
 **[전기 수출입 kWh 단가 제안](docs/ELECTRICITY_TARIFF_PROPOSAL_KO.md)** — 시각 검토용이며 게임 미적용입니다.
 
 ## 공원·주차 시설

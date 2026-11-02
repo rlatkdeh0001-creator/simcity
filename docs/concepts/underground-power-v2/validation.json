@@ -1,0 +1,84 @@
+{
+  "scope": "standalone animated design only; no gameplay/power simulation",
+  "checks": [
+    {
+      "check": "concept loads with expected title",
+      "passed": true
+    },
+    {
+      "check": "64m radius and 32m node spacing",
+      "passed": true
+    },
+    {
+      "check": "all permanent nodes lie on 32m metre coordinates",
+      "passed": true
+    },
+    {
+      "check": "all expected 32m supply points are present",
+      "passed": true
+    },
+    {
+      "check": "export marker disappears at neighbor boundary",
+      "passed": true
+    },
+    {
+      "check": "domestic mode has only internal destinations",
+      "passed": true
+    },
+    {
+      "check": "white circle fades and is removed at terminal",
+      "passed": true
+    },
+    {
+      "check": "surplus marker travels toward neighbor",
+      "passed": true
+    },
+    {
+      "check": "import marker travels from neighbor inward",
+      "passed": true
+    },
+    {
+      "check": "markers exist only during their travel lifetime",
+      "passed": true
+    },
+    {
+      "check": "export button selects export mode",
+      "passed": true
+    },
+    {
+      "check": "import button selects import mode",
+      "passed": true
+    },
+    {
+      "check": "pause control works",
+      "passed": true
+    },
+    {
+      "check": "range overlay toggle works",
+      "passed": true
+    },
+    {
+      "check": "64-frame animated GIF decodes",
+      "passed": true
+    },
+    {
+      "check": "captured flow frames change",
+      "passed": true
+    },
+    {
+      "check": "390px mobile layout has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "reduced-motion starts paused",
+      "passed": true
+    },
+    {
+      "check": "no JavaScript page errors",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "gif_frames": 64,
+  "runtime_changed": false
+}

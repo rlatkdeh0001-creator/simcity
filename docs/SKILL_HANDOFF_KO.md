@@ -18,14 +18,14 @@
 | brand-guidelines | 브랜드 스타일 지침 | 설치 확인. 개별 적용 품질 미검증 |
 | canvas-design | 정적 시각 디자인 | 2026-11-02 디자인 원칙을 지중 전력망 설명 시안에 적용. 실제 이미지는 image_gen으로 생성, Godot 캡처나 원본 자동 파이프라인 검증 아님 |
 | discernment-nudge | 판단·검토 지침 | 설치 확인. 개별 적용 품질 미검증 |
-| frontend-design | 웹 화면 설계 | 이전 작업에서 도시 공원 웹 예제 제작·모바일 확인 기록 |
+| frontend-design | 웹 화면 설계 | 이전 공원 예제와 2차 지중 전력 HTML/SVG 시안에 적용. 실제 게임 UI 통합 아님 |
 | internal-comms | 내부 문서 작성 | 설치 확인. 개별 적용 품질 미검증 |
 | mcp-builder | MCP 서버 제작 | 설치 확인. 실제 서버/API 실행 미검증 |
 | skill-creator | 스킬 작성·검사·패키징 | 이전 작업에서 메타데이터 검사·패키징 성공. 자동 평가/개선은 Claude CLI 의존 |
 | slack-gif-creator | GIF 생성·검사 | 이전 작업에서 공식 도우미로 12프레임 GIF 검사 성공. 이번 주행 GIF는 Godot 캡처/Pillow 경로 |
 | theme-factory | 테마 적용 | 설치 확인. 개별 작업 실행 미검증 |
 | web-artifacts-builder | 웹 초기화·빌드·단일 HTML | 이전 작업에서 Vite/TypeScript/Parcel 실행 기록. 최신 의존성 보정 필요 |
-| webapp-testing | Playwright 웹 테스트 | 이전 작업에서 데스크톱/모바일 조작·번들 검사 성공 |
+| webapp-testing | Playwright 웹 테스트 | 이전 웹 검사에 더해 2차 전력 시안의 흐름/소멸/모드/모바일/동작 줄이기/JS 오류를 Chromium으로 검사 |
 | cities-do-construction | 이 게임의 건설·성장·구획 | 로컬 프로젝트 지침. 기존 Godot 도시·UI·애셋·도로·구획·전시 검사에 적용 |
 | cities-do-modular-facilities | 공원·직사각형 주차 시설·연결 단지 | 자체 작성. 평면 주차장 결합/내부 경계 제거/철거 분리/한 결합 메시를 69개 검사로 검증 |
 | vehicle | Blender 차량 모델링·리그 | 원본 재설치. common.py의 도형·피벗 헬퍼를 차량 20종 생성기에 실제 사용 |
@@ -107,6 +107,13 @@ cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setu
 공원 4종과 주차 시설 4종, 평면 주차장 결합 로직·전시를 새로 제작했다. Blender/GLB/PNG/생성기/시설 검사를 Git에 보존했다. 일반 도시의 시설 배치·도로 접면·주차 수요·차량 입출고 AI는 아직 연결하지 않았다. 기존 ZIP은 과거 스냅샷이며 새 제작 묶음과 최신 main을 확인한다.
 
 ## 검증 상태와 다음 작업
+
+2026-11-02 지중 전력 시안 수정: 반경 **64m**, 접속점 간격 **32m**, 파란 선 위에
+간헐적으로 이동하는 하얀 원. 내부 말단/수출 이웃 접속부에서 소멸하며 수입 방향도 표시한다.
+[2차 독립 시안](concepts/underground-power-v2/DESIGN_KO.md)과 GIF/HTML/검사 스크립트를 Git에 보존한다.
+frontend-design/webapp-testing을 실제 적용해 브라우저 동작을 검사했다. 게임에는 도입하지 않았고
+발전/공급/가격 밸런스도 바꾸지 않았다. 아래 1차의 16m/8m 가정은 이번 시각 규칙으로 대체된다.
+
 
 2026-11-02 사용자가 지중 전력망을 요청했으나 **바로 도입하지 말고 예시부터 보자고 명시**했다.
 [시안 PNG·가정](concepts/underground-power/DESIGN_KO.md)과

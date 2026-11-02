@@ -12,6 +12,8 @@
 
 ## 최신 작업
 
+- [64m 반경·32m 간격·하얀 원 흐름 GIF](concepts/underground-power-v2/flow-demo.gif) · [시안 설명](concepts/underground-power-v2/DESIGN_KO.md) — 게임 미적용
+
 - [지중 전력망 시안과 kWh 단가 제안](ELECTRICITY_TARIFF_PROPOSAL_KO.md) — 생성형 예시, 게임 미적용
 
 - [새 규칙: 네 이웃 마을과 외부 교류](REGIONAL_EXCHANGE_RULES_KO.md)

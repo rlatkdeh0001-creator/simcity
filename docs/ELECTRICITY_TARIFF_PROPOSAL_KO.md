@@ -64,6 +64,9 @@ kW는 그 순간의 발전/수요/거래 전력, kWh는 정산할 전력량이�
 
 ## 시각 시안과 구현 상태
 
+최신 시각 규칙은 [2차 지중 전력망 시안](concepts/underground-power-v2/DESIGN_KO.md)의
+반경 64m·접속점 32m·하얀 원 흐름 표시다. 기존 가격 제안을 승인하거나 변경한 것은 아니다.
+
 [지중 전력망 예시 PNG](concepts/underground-power/concept.png) ·
 [시안의 가정과 디자인 기록](concepts/underground-power/DESIGN_KO.md)
 
