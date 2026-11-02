@@ -16,6 +16,7 @@ Store dimensions as width/depth independently; do not force rectangular faciliti
 6. Author editable .blend, GLB, transparent preview and spec per asset. Four-storey tower means four occupied parking decks, not four decks plus occupied roof parking. Use ramps and readable P signage.
 7. Compare Python layout fixtures with Godot output, test L shapes/holes/corners/tower exclusion/removal/order invariance and inspect actual runtime captures.
 8. Record provenance, commands and remaining limits in the report and skill handoff. Original guidance; procedural-gen/tilemap were reviewed as references, not installed or run as full pipelines.
+9. Propose construction cost and monthly upkeep in doth for each new asset, explaining capacity, comparables and the 50,000 doth starting budget. Record as proposed in docs/PRICE_PROPOSALS_KO.md; apply charges only after user approval.
 
 Commands: `blender -b --factory-startup -t 2 -P tools/build_facilities.py` and
 `godot --headless --path cities_do --script tests/test_facilities.gd`.

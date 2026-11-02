@@ -108,6 +108,11 @@ cloud-environment:cloud-environment-runtime과 cloud-environment-onboarding:setu
 
 ## 검증 상태와 다음 작업
 
+2026-11-02 가격 논의: 주거/상업/공업 구획은 무료, 드래그 지정 후 자동 신축이 확정 설계다.
+현재 수동 배치 프로토타입을 이 기능의 완성으로 간주하지 않는다.
+[가격 제안 1차](PRICE_PROPOSALS_KO.md)는 검토 대기이며 차감 코드에 적용하지 않았다.
+앞으로 새 애셋마다 건설비·유지비·근거를 추론해 사용자에게 제시하고 승인 상태를 기록한다.
+
 2026-11-02 재화 규칙: **doth(도쓰)**, 기본 난이도 시작 자금 **50,000 doth**.
 `core/economy_config.gd`와 도시 자금 상태·화면 표시·초기화에 적용했다.
 [확정 범위](CURRENCY_RULES_KO.md)와 [이번 검사 결과](currency-validation/results.json)를 확인한다.

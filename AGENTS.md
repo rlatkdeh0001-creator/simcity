@@ -1,5 +1,16 @@
 # Project skills
 
+## Asset pricing proposals (user requirement, 2026-11-02)
+
+For every newly created asset, propose a construction price and recurring upkeep
+in doth, with units, rationale, comparable assets and effect on the 50,000 doth
+normal starting budget. Record proposals in `docs/PRICE_PROPOSALS_KO.md` (or a
+linked asset proposal). Mark them proposed until the user approves; do not turn
+a proposal into live charges without approval. Residential/commercial/industrial
+zoning and automatic building construction have no municipal construction fee.
+The confirmed design is drag-painted zones with automatic development; distinguish
+this rule from the current click-placement/manual-growth prototype.
+
 ## Persistent skill handoff (user requirement)
 
 At the start of every resumed/new session, read `docs/SKILL_HANDOFF_KO.md` and
