@@ -20,6 +20,11 @@ Water trade tariffs are now authorized: read `docs/WATER_TARIFFS_KO.md`, edit
 city.utility_balance() budget with electricity. Construction/upkeep remain proposed. Rail/metro still have registration APIs only. Do not equate boundary
 availability with delivered utilities, completed networks or simulated trade.
 
+For player UI copy, keep names, live values and actionable feedback concise.
+Do not add network-radius/node-spacing tutorials or implementation/development
+notes to HUDs; keep design explanations in docs. The current compact bottom UI
+review follows `docs/concepts/bottom-ui/SKYLINES_REFERENCE_KO.md`.
+
 For economy edits, update `docs/economy-balance/ECONOMY_BALANCE.csv` first and
 synchronize approved runtime values with their listed code/JSON source. This CSV
 is an editable register, not loaded by the current game. Keep proposed and

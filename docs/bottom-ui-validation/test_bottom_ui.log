@@ -5,6 +5,7 @@ PASS every preview building comes from actual game catalog
 PASS preview uses six actual model roads
 PASS preview contains actual utility sources
 PASS eight real category buttons created
+PASS HUD omits range explanations and development instructions
 PASS old side panel and debug HUD hidden only in preview
 PASS power view uses real network overlay with bottom controls
 PASS dock stays anchored to bottom at (1920, 1080)
@@ -23,4 +24,4 @@ PASS preview pause actually stops water simulation time
 PASS 3x control advances the actual model three game seconds
 PASS status uses actual funds and building count
 PASS camera fitting supports newly built procedural lots too
-RESULT 23/23 bottom UI checks passed
+RESULT 24/24 bottom UI checks passed

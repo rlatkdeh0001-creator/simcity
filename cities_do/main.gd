@@ -25,7 +25,7 @@ var selected := -1
 var stroke := PackedVector2Array()
 var drawing := false
 var pointer := Vector2.ZERO
-var message := "빈 지도입니다. 도로를 그리면 주변 건설 격자가 표시됩니다."
+var message := ""
 var hud: Label
 var info: Label
 var treasury_label: Label
@@ -185,7 +185,7 @@ func _ready():
 	box.add_child(parcel_demo)
 	var reset := Button.new()
 	reset.text = "도시 초기화"
-	reset.pressed.connect(func(): stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = "자유 도로를 먼저 그려 주세요."; refresh())
+	reset.pressed.connect(func(): stop_traffic(); city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed)); selected = -1; message = ""; refresh())
 	box.add_child(reset)
 	hud = Label.new()
 	hud.position = Vector2(360, get_viewport_rect().size.y-100)
@@ -275,11 +275,7 @@ func refresh():
 		var asset: Dictionary = city.catalog.get_asset(b.get("asset_id", ""))
 		if not asset.is_empty():
 			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
-		if b.has("frame"):
-			info.text += "\n도로 직각 구획 · 방향 %.1f°" % rad_to_deg(Vector2(b.frame.along).angle())
-			if not city.supports_static_sprite(b):info.text += "\n방향에 맞춘 임시 입체 건물"
-	hud.text = "도구: %s · 건물 %d개 · 도로 %d개\n%s\n8×8 45%% / 4×4 30%% / 2×2 25%% · 인접 연쇄 55%% (최대 8개)" % [mode, city.buildings.size(), city.roads.size(), message]
-	hud.text += "\n%d×%d · 1칸=4m · 휠 확대/축소 · 가운데 버튼 드래그 이동" % [city.width, city.height]
+	hud.text = message
 	queue_redraw()
 
 func _unhandled_input(event):

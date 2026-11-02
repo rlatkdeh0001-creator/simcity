@@ -99,6 +99,11 @@ func icon(kind: String) -> Texture2D:
     var p := Vector2(12,12)+Vector2(cos(a),sin(a))*radius
     path+=("M" if i==0 else "L")+str(p.x)+" "+str(p.y)+" "
    body='<path d="'+path+'z M16 12a4 4 0 1 0-8 0a4 4 0 1 0 8 0z" fill-rule="evenodd"/>'
+  "wire": body='<path d="m5 17 14-10" fill="none" stroke="#e4eef1" stroke-width="2"/><circle cx="5" cy="17" r="4"/><circle cx="19" cy="7" r="4"/>'
+  "pipes": body='<path d="M2 6h20v4H2zm0 9h20v4H2z"/><path d="M6 4h3v8H6zm9 9h3v8h-3z"/>'
+  "factory": body='<path d="M2 22V11l6-4v5l6-4v5h3V2h4v20z"/><path d="M5 17h3v3H5zm6 0h3v3h-3z" fill="#152d3b"/>'
+  "erase": body='<path d="m4 10 9-8 9 9-8 10H8l-6-6zm5 9h5l-5-5-3 3zM2 22h20v2H2z"/>'
+  "select": body='<path d="M5 1v20l5-5 4 7 4-2-4-7h8z"/>'
   "map": body='<path d="m2 4 6-3 8 3 6-3v19l-6 3-8-3-6 3zm6 0v13l8 3V7z" fill-rule="evenodd"/>'
   "menu": body='<path d="M2 4h20v3H2zm0 7h20v3H2zm0 7h20v3H2z"/>'
   "pause": body='<path d="M5 3h5v18H5zm9 0h5v18h-5z"/>'
@@ -144,7 +149,7 @@ func build_bottom_hud():
  dock.name="BottomDock"
  root.add_child(dock)
  dock.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
- dock.offset_top=-190
+ dock.offset_top=-156
  dock.add_theme_stylebox_override("panel",style(Color("102633"),Color("38515e")))
  var box := VBoxContainer.new()
  box.add_theme_constant_override("separation",6)
@@ -185,32 +190,34 @@ func build_bottom_hud():
  var row := HBoxContainer.new()
  row.size_flags_horizontal=Control.SIZE_EXPAND_FILL
  row.add_theme_constant_override("separation",8)
+ row.alignment=BoxContainer.ALIGNMENT_CENTER
  scroll.add_child(row)
  for key in NAMES:
   var button := Button.new()
   button.name="Bottom_"+key
-  button.custom_minimum_size=Vector2(100,94)
-  button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+  button.custom_minimum_size=Vector2(92,72)
   button.pressed.connect(select_category.bind(key))
   row.add_child(button)
   var content := VBoxContainer.new()
   content.mouse_filter=Control.MOUSE_FILTER_IGNORE
   button.add_child(content)
   content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-  content.offset_top=10
+  content.offset_top=6
   content.add_theme_constant_override("separation",5)
   var picture := TextureRect.new()
   picture.texture=icon(key)
   picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
   picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-  picture.custom_minimum_size=Vector2(44,44)
+  picture.custom_minimum_size=Vector2(32,32)
   picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(picture)
-  var caption := label(NAMES[key],19)
+  var caption := label(NAMES[key],16)
   caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
   caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(caption)
   categories.append(button)
+ box.move_child(scroll,0)
+ box.move_child(status_scroll,2)
  for i in range(categories.size()):
   categories[i].focus_neighbor_left=categories[(i+7)%8].get_path()
   categories[i].focus_neighbor_right=categories[(i+1)%8].get_path()
@@ -218,8 +225,8 @@ func build_bottom_hud():
  drawer.name="BottomDrawer"
  root.add_child(drawer)
  drawer.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
- drawer.offset_bottom=-206
- drawer.offset_top=-306
+ drawer.offset_bottom=-170
+ drawer.offset_top=-290
  drawer.add_theme_stylebox_override("panel",style(Color("142e3c"),Color("38515e")))
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
@@ -244,10 +251,8 @@ func select_category(key: String):
  power_overlay.stroke.clear()
  water_overlay.stroke.clear()
  var heading := VBoxContainer.new()
- heading.custom_minimum_size.x=200
- heading.add_child(label(NAMES[key],24))
- var detail := "공급 반경 64m · 접속점 32m" if key in ["power","water"] else ""
- heading.add_child(label(detail,15))
+ heading.custom_minimum_size.x=140
+ heading.add_child(label(NAMES[key],22))
  drawer_box.add_child(heading)
  var choices := []
  match key:
@@ -256,12 +261,30 @@ func select_category(key: String):
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
   _:
-   drawer_box.add_child(label("배치 검토용 메뉴",18))
+   pass
  for choice in choices:
   var button := Button.new()
-  button.text=choice[0]
+  button.name="Tool_"+choice[1]
+  button.tooltip_text=choice[0]
   button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-  button.custom_minimum_size.y=66
+  button.custom_minimum_size=Vector2(112,84)
+  var content := VBoxContainer.new()
+  button.add_child(content)
+  content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+  content.offset_top=8
+  content.mouse_filter=Control.MOUSE_FILTER_IGNORE
+  var image := TextureRect.new()
+  var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select"}
+  image.texture=icon(tool_icons.get(choice[1],"other"))
+  image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+  image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+  image.custom_minimum_size=Vector2(38,38)
+  image.mouse_filter=Control.MOUSE_FILTER_IGNORE
+  content.add_child(image)
+  var caption := label(choice[0],16)
+  caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+  caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
+  content.add_child(caption)
   var tool: String=choice[1]
   button.pressed.connect(func():
    zone="commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential")
@@ -274,6 +297,7 @@ func select_category(key: String):
  close.pressed.connect(func():drawer.hide())
  drawer_box.add_child(close)
  drawer.show()
+ fit_preview()
  queue_redraw()
 
 func fit_preview():
@@ -300,7 +324,7 @@ func fit_preview():
   first=false
  map_zoom=minf(available.size.x/bounds.size.x,available.size.y/bounds.size.y)
  origin=available.position+(available.size-bounds.size*map_zoom)/2-bounds.position*map_zoom
- var width_value := minf(1000,viewport_size.x-32)
+ var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),viewport_size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
  queue_redraw()

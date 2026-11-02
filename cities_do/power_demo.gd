@@ -47,9 +47,6 @@ func _ready():
  title.text="CITIES_DO\n실제 전력 공급·교역"
  title.add_theme_font_size_override("font_size",22)
  box.add_child(title)
- var info_label := Label.new()
- info_label.text="건물 6채 × 40kW = 240kW\n반경 64m · 점 간격 32m\n초기 부하는 실습용 임시 값"
- box.add_child(info_label)
  for pair in [["내부 공급 240kW","domestic"],["수출: 발전 300kW","export"],["수입: 발전 100kW","import"],["발전 정지·단선","off"]]:
   var button := Button.new()
   button.name="Scenario_"+pair[1]

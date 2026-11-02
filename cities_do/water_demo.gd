@@ -50,9 +50,6 @@ func _ready():
  title.text="CITIES_DO\n함께 설치하는 상하수도"
  title.add_theme_font_size_override("font_size",22)
  box.add_child(title)
- var info_label := Label.new()
- info_label.text="상수 → 건물 / 하수 → 처리장\n푸른 원 · 갈색 원의 꿀렁임\n64m 범위 / 32m 접속점\n용량·수요는 실습용 임시 값"
- box.add_child(info_label)
  for pair in [["내부 급수·하수 처리","domestic"],["잉여 상수 수출","export"],["상수 수입·하수 외부 위탁","import"],["관로 단선","off"]]:
   var button := Button.new()
   button.name="Scenario_"+pair[1]

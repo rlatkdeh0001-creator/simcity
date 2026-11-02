@@ -29,7 +29,7 @@ func setup(owner_view, layer: CanvasLayer):
  box.add_theme_constant_override("separation",8)
  scroll.add_child(box)
  var title := Label.new()
- title.text="지중 전력 · 64m / 32m"
+ title.text="전력"
  title.add_theme_font_size_override("font_size",20)
  box.add_child(title)
  for pair in [["발전소 배치","plant"],["지중 전력선 · 드래그","wire"],["발전소 선택","select"],["전력선 철거","erase_wire"],["발전소 철거","erase_plant"]]:
@@ -41,11 +41,11 @@ func setup(owner_view, layer: CanvasLayer):
    drawing=false
    stroke.clear()
    view.mode="power_"+action
-   instruction.text="발전소·이웃·기존 파란 점에서 시작" if action=="wire" else button.text
+   instruction.text=button.text
    queue_redraw())
   box.add_child(button)
  var power_label := Label.new()
- power_label.text="발전소 출력 kW · 초기값은 임시"
+ power_label.text="발전 출력 (kW)"
  box.add_child(power_label)
  output=SpinBox.new()
  output.name="GeneratorOutput"
@@ -61,7 +61,7 @@ func setup(owner_view, layer: CanvasLayer):
   refresh())
  box.add_child(apply)
  var load_label := Label.new()
- load_label.text="선택 건물 부하 kW · 시험용 조정"
+ load_label.text="건물 전력 수요 (kW)"
  box.add_child(load_label)
  load_input=SpinBox.new()
  load_input.min_value=0
@@ -88,15 +88,11 @@ func setup(owner_view, layer: CanvasLayer):
    queue_redraw())
   box.add_child(check)
  instruction=Label.new()
- instruction.text="발전소는 일반도로 옆에 배치\n선은 건물·도로와 겹쳐도 됩니다"
+ instruction.text=""
  box.add_child(instruction)
  summary=Label.new()
  summary.name="PowerSummary"
  box.add_child(summary)
- var hint := Label.new()
- hint.text="실제 공급은 하얀 원 도착과 무관\n1실제초 = 1게임초로 전력량 계량\n공사비·유지비는 검토 중 / 거래 단가 적용"
- hint.add_theme_font_size_override("font_size",12)
- box.add_child(hint)
  var close := Button.new()
  close.text="전력 탭 닫기"
  close.pressed.connect(toggle)
@@ -160,7 +156,7 @@ func handle_input(event) -> bool:
     else:
      drawing=true
      stroke=PackedVector2Array([anchor.position])
-     instruction.text="지중 전력선을 그린 뒤 놓으세요"
+     instruction.text=""
    "power_plant":
     var result: Dictionary=view.city.add_power_plant(p,output.value)
     instruction.text=result.reason

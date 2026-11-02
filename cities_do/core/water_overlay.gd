@@ -31,7 +31,7 @@ func setup(owner_view, layer: CanvasLayer):
  title.text="상하수도 · 함께 설치"
  title.add_theme_font_size_override("font_size",20)
  box.add_child(title)
- for pair in [["취수장 배치 · 시험용","supply"],["하수처리장 배치 · 시험용","treatment"],["상하수관 함께 · 드래그","pipe"],["시설 선택","select"],["상하수관 함께 철거","erase_pipe"],["시설 철거","erase_facility"]]:
+ for pair in [["취수장 배치","supply"],["하수처리장 배치","treatment"],["상하수관 함께 · 드래그","pipe"],["시설 선택","select"],["상하수관 함께 철거","erase_pipe"],["시설 철거","erase_facility"]]:
   var button := Button.new()
   button.name="Water_"+pair[1]
   button.text=pair[0]
@@ -40,11 +40,11 @@ func setup(owner_view, layer: CanvasLayer):
    drawing=false
    stroke.clear()
    view.mode="water_"+action
-   instruction.text="시설·이웃·기존 접속점에서 시작" if action=="pipe" else button.text
+   instruction.text=button.text
    queue_redraw())
   box.add_child(button)
  var capacity_label := Label.new()
- capacity_label.text="시설 용량 m³/일 · 시험용"
+ capacity_label.text="시설 용량 (m³/일)"
  box.add_child(capacity_label)
  output=SpinBox.new()
  output.name="WaterFacilityCapacity"
@@ -71,15 +71,11 @@ func setup(owner_view, layer: CanvasLayer):
    queue_redraw())
   box.add_child(check)
  instruction=Label.new()
- instruction.text="시설은 일반도로 옆 · 두 관을 함께 건설\n푸른 관: 상수 / 갈색 관: 하수"
+ instruction.text=""
  box.add_child(instruction)
  summary=Label.new()
  summary.name="WaterSummary"
  box.add_child(summary)
- var hint := Label.new()
- hint.text="공급·처리는 흐름 원 도착과 무관\n반경 64m / 접속점 32m · 깊이 지정 없음\n용량·소비는 시험값 / 거래 요금 적용"
- hint.add_theme_font_size_override("font_size",12)
- box.add_child(hint)
  var close := Button.new()
  close.text="상하수도 닫기"
  close.pressed.connect(toggle)
@@ -138,7 +134,7 @@ func handle_input(event) -> bool:
     else:
      drawing=true
      stroke=PackedVector2Array([anchor.position])
-     instruction.text="상수관·하수관을 함께 그린 뒤 놓으세요"
+     instruction.text=""
    "water_supply","water_treatment":
     var kind := "water" if view.mode=="water_supply" else "sewage"
     var result: Dictionary=view.city.add_water_facility(p,kind,output.value)

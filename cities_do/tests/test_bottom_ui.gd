@@ -19,6 +19,11 @@ func run():
  verify(preview.city.roads.size()==6,"preview uses six actual model roads")
  verify(preview.city.power.plants.size()==1 and preview.city.water.facilities.size()==2,"preview contains actual utility sources")
  verify(preview.categories.size()==8,"eight real category buttons created")
+ var no_instructions := true
+ for node in preview.find_children("*","Label",true,false):
+  for phrase in ["64m","32m","도착과 무관","1실제초","시험용","배치 검토용"]:
+   no_instructions=no_instructions and not phrase in node.text
+ verify(no_instructions,"HUD omits range explanations and development instructions")
  verify(not preview.controls_panel.visible and not preview.hud.visible,"old side panel and debug HUD hidden only in preview")
  verify(preview.chosen=="power" and preview.power_overlay.tab_open and not preview.power_overlay.panel.visible,"power view uses real network overlay with bottom controls")
  for size_value in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:
@@ -34,7 +39,7 @@ func run():
  verify(not preview.water_overlay.panel.visible,"water side panel stays hidden with bottom controls")
  var button: Button
  for child in preview.drawer_box.get_children():
-  if child is Button and child.text=="상하수관 함께": button=child
+  if child is Button and child.name=="Tool_water_pipe": button=child
  if button!=null: button.pressed.emit()
  verify(button!=null and preview.mode=="water_pipe","bottom water tool selects existing paired-pipe construction mode")
  preview.categories[2].grab_focus()

@@ -13,6 +13,13 @@ Water trade tariffs were delegated and applied: read `docs/WATER_TARIFFS_KO.md`.
 Edit `cities_do/core/water_tariffs.json`; include both utilities' fractional balances
 in the available funds calculation. Construction/upkeep proposals remain separate.
 
+UI rule (user, 2026-11-02): reference Cities: Skylines' compact bottom categories,
+asset chooser above and status/time row below. Keep our own icons and game art.
+Do not put supply-radius/node-spacing explanations, development notes or tutorials
+in player-facing HUDs. Keep those in docs. Tool labels, meaningful live values and
+short action/error feedback remain appropriate. Do not change simulation rules
+when removing explanatory text. Current layout review is bottom_ui_preview.tscn.
+
 Economic values register: `docs/economy-balance/ECONOMY_BALANCE.csv` is the single
 editable overview requested by the user. Keep it in sync when changing economic
 values. Preserve units, approval/application status and source locations. It is
