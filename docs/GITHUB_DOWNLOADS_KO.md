@@ -1,5 +1,7 @@
 # GitHub에서 보기·다운로드
 
+**[상하수도망 실제 도입·조작·가격/용량 제안](WATER_SEWAGE_KO.md)** · [게임 GIF](screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](screenshots/water-flow-closeup.gif)
+
 **최신 전력 업데이트:** [실제 건설·동시 공급·자동 수출입·거래단가·실행 안내](UNDERGROUND_POWER_KO.md). 계약한도 미적용. 최신 코드는 main 기준이며 기존 ZIP은 이전 스냅샷입니다.
 
 이 저장소의 게임 소스, 건물·차량 애셋, Blender 제작 원본, 생성기, 설치한 스킬,

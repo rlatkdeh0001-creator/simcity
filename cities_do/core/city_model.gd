@@ -21,6 +21,8 @@ var external_infrastructure: Array[Dictionary] = []
 var next_external_link_id := 1
 const PowerGrid = preload("res://core/power_grid.gd")
 var power
+const WaterGrid = preload("res://core/water_grid.gd")
+var water
 const PROTOTYPE_POWER_LOADS := {"residential":1.6,"commercial":1.5,"industrial":3.0}
 
 func _init(w: int = 40, h: int = 40, seed_value: int = 42):
@@ -29,6 +31,7 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	rng.seed = seed_value
 	appearance_rng.seed = seed_value ^ 0x5f3759df
 	power = PowerGrid.new(Vector2(w,h)*4.0)
+	water = WaterGrid.new(Vector2(w,h)*4.0)
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -62,6 +65,8 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 			if b.id!=ignore_id and Parcels.overlap(polygon_value,footprint(b)):return "다른 건물이 있습니다"
 		for plant in power.plants:
 			if Parcels.overlap(polygon_value,power_plant_footprint(plant)):return "발전소가 있습니다"
+		for facility in water.facilities:
+			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
 	var access:=false
 	for road in roads:
 		var distance:=_polygon_road_distance(polygon_value,road)
@@ -126,6 +131,9 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for plant in power.plants:
 		if _polygon_road_distance(power_plant_footprint(plant),road)<-0.0005:
 			return {"ok":false,"reason":"발전소와 충돌합니다"}
+	for facility in water.facilities:
+		if _polygon_road_distance(power_plant_footprint(facility),road)<-0.0005:
+			return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
 	if commit:
 		roads.append(road)
 		_update_zoning_for_road(road)
@@ -144,6 +152,21 @@ func regional_exchange() -> Dictionary:
 		var points := PackedVector2Array()
 		for point in wire.points: points.append(point/4.0)
 		links.append({"kind":"power","points":points})
+	# Report actual paired neighbor ports even when the last pipe segment runs
+	# along the map edge. Arbitrary boundary touches are not operating ports.
+	water.geometry.rebuild()
+	for port in water.geometry.ports:
+		var node: int=water.geometry._find_node(port.position)
+		if water.geometry.adjacency[node].is_empty(): continue
+		var endpoint: Vector2=port.position/4.0
+		var inward := Vector2.ZERO
+		match port.edge:
+			"x_min": inward=Vector2.RIGHT
+			"x_max": inward=Vector2.LEFT
+			"y_min": inward=Vector2.DOWN
+			"y_max": inward=Vector2.UP
+		var points := PackedVector2Array([endpoint+inward,endpoint])
+		for kind in ["water","sewage"]: links.append({"kind":kind,"points":points})
 	return RegionalExchange.evaluate(width,height,roads,links)
 
 func power_plant_footprint(plant: Dictionary) -> PackedVector2Array:
@@ -195,6 +218,44 @@ func advance_power(hours: float) -> Dictionary:
 	funds += settled
 	power.pending_doth -= settled
 	_apply_power_state(state)
+	return state
+
+func add_water_facility(point: Vector2, kind: String, capacity: float = 300.0) -> Dictionary:
+	var center := Vector2(floorf(point.x)+1,floorf(point.y)+1)
+	var error := _polygon_error(footprint({"x":center.x-1,"y":center.y-1,"size":2}))
+	if error!="": return {"ok":false,"reason":error}
+	var id: int=water.add_facility(center*4,kind,capacity)
+	return {"ok":id!=-1,"id":id,"reason":"상하수도 시험 시설 설치" if id!=-1 else "시설 종류/용량을 확인하세요"}
+
+func water_consumers() -> Array:
+	var consumers := []
+	# Provisional per-lot water loads, not a completed population simulation.
+	var loads := {"residential":1.6,"commercial":.15,"industrial":.3}
+	for building in buildings:
+		var center := Vector2.ZERO
+		var corners := footprint(building)
+		for corner in corners: center+=corner
+		center/=corners.size()
+		var demand: float=loads[building.zone]*building.size*building.size/4.0*maxi(1,building.level)
+		consumers.append({"id":building.id,"position":center*4,"demand_m3_day":float(building.get("water_demand_m3_day",demand)),"return_ratio":float(building.get("sewage_return_ratio",.8))})
+	return consumers
+
+func _apply_water_state(state: Dictionary):
+	for building in buildings:
+		var service: Dictionary=state.consumers[building.id]
+		building.has_water=service.has_water
+		building.has_sewage=service.has_sewage
+		building.water_ratio=service.water_ratio
+		building.sewage_ratio=service.sewage_ratio
+
+func water_state() -> Dictionary:
+	var state: Dictionary=water.solve(water_consumers())
+	_apply_water_state(state)
+	return state
+
+func advance_water(days: float) -> Dictionary:
+	var state: Dictionary=water.advance(water_consumers(),days)
+	_apply_water_state(state)
 	return state
 
 func add_external_link(kind: String, points: PackedVector2Array, commit: bool = true) -> Dictionary:

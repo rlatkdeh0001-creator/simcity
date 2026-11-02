@@ -4,6 +4,9 @@ const Traffic = preload("res://core/traffic_controller.gd")
 const PowerOverlay = preload("res://core/power_overlay.gd")
 var power_overlay
 var power_snapshot := {}
+const WaterOverlay = preload("res://core/water_overlay.gd")
+var water_overlay
+var water_snapshot := {}
 var traffic
 var traffic_button: Button
 var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
@@ -144,7 +147,9 @@ func _ready():
 	power_button.name = "PowerTabButton"
 	power_button.text = "전력"
 	power_button.visible = not showcase_view
-	power_button.pressed.connect(func(): power_overlay.toggle())
+	power_button.pressed.connect(func():
+		if water_overlay.tab_open: water_overlay.toggle()
+		power_overlay.toggle())
 	var power_row := HBoxContainer.new()
 	power_row.visible = not showcase_view
 	box.add_child(power_row)
@@ -156,6 +161,21 @@ func _ready():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://power_demo.tscn"))
 	power_row.add_child(power_demo)
+	var water_row := HBoxContainer.new()
+	water_row.visible = not showcase_view
+	box.add_child(water_row)
+	var water_button := Button.new()
+	water_button.name = "WaterTabButton"
+	water_button.text = "상하수도"
+	water_button.pressed.connect(func(): water_overlay.toggle())
+	water_row.add_child(water_button)
+	var water_demo := Button.new()
+	water_demo.name = "WaterDemoButton"
+	water_demo.text = "상하수도 실습 도시"
+	water_demo.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://water_demo.tscn"))
+	water_row.add_child(water_demo)
 	var parcel_demo := Button.new()
 	parcel_demo.text = "도로 직각 구획 예시"
 	parcel_demo.visible = not showcase_view
@@ -175,6 +195,10 @@ func _ready():
 	power_overlay = PowerOverlay.new()
 	add_child(power_overlay)
 	power_overlay.setup(self,layer)
+	water_snapshot = city.water_state()
+	water_overlay = WaterOverlay.new()
+	add_child(water_overlay)
+	water_overlay.setup(self,layer)
 	refresh()
 
 func toggle_traffic():
@@ -195,6 +219,8 @@ func stop_traffic():
 func _process(delta: float):
 	# Simulation/billing runs regardless of the power tab or visual pause.
 	power_snapshot = city.advance_power(delta/3600.0)
+	water_snapshot = city.advance_water(delta/86400.0)
+	if water_overlay != null: water_overlay.update_state(delta)
 	if treasury_label != null: treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	if power_overlay != null: power_overlay.update_state(delta)
 	if traffic != null and traffic.running:
@@ -257,6 +283,7 @@ func refresh():
 	queue_redraw()
 
 func _unhandled_input(event):
+	if water_overlay != null and water_overlay.handle_input(event): return
 	if power_overlay != null and power_overlay.handle_input(event): return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
@@ -295,6 +322,7 @@ func _unhandled_input(event):
 			finish_road()
 
 func _input(event):
+	if water_overlay != null: water_overlay.finish_capture(event)
 	if power_overlay != null: power_overlay.finish_capture(event)
 	# Release above the HUD must also finish/cancel a captured map stroke.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE and not event.pressed:

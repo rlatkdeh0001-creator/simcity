@@ -6,6 +6,33 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 상하수도망 통합 (2026-11-02 KST)
+
+[상하수도 동작·가격/용량 제안·한계](WATER_SEWAGE_KO.md)를 읽는다.
+한 번에 푸른 상수관·갈색 하수관 설치/철거, 64m/32m, 독립 공급·처리 상태,
+푸른/갈색 원의 반대 흐름과 꿀렁이는 윤곽 효과를 구현했다.
+원 도착·변형·표시 토글은 실제 물량과 무관하다. 부족 상수 수입, 잉여 상수 수출,
+초과 하수 외부 위탁을 연결 이웃에서 처리한다. 수도 단가/건설비/유지비는 미승인·미적용이다.
+
+이번에도 `.agents/skills/cities-do-construction/SKILL.md`,
+`godot-gdscript/SKILL.md`, `godot-gdscript-headless-testing/SKILL.md`를 읽어 적용했다.
+새 외부 스킬을 설치한 것이 아니며 아래 고정 SHA·출처·LICENSE·NOTICE를 그대로 보존했다.
+미터 단위 그래프 재사용, 공급/표시 분리, 명시적 실패 집계를 적용했다.
+전기 단가나 전력 정산을 물에 재사용하지 않았다.
+변경: `core/water_{grid,flow,overlay}.gd`, `core/city_model.gd`, `main.gd`,
+`water_demo.gd/.tscn`, `tests/test_water.gd`, `tools/capture_water_main.gd`,
+`tools/build_water_evidence.py`, `tools/validate_water_update.py`.
+건설 스킬에 현재 수도 API와 시각/실제 물량 분리 규칙을 추가했다.
+
+이번 실행: Godot 4.6.3 상하수도 **60/60**, 전체 **12/12 스크립트 통과**.
+명령 `godot --headless --path cities_do --script tests/test_water.gd`,
+전체 `tests/test_*.gd` 각각 실행, 75초 제한과 종료 코드/오류 로그 검사를 적용했다.
+[이번 결과](water-validation/results.json), [원본 로그](water-validation/),
+[실제 게임 GIF](screenshots/water-game-running.gif), [흐름 확대](screenshots/water-flow-closeup.gif),
+[일반 건설 화면](screenshots/water-main-ui.png)을 보존했다.
+이번 GIF는 실제 Godot 뷰포트→Pillow이며 slack-gif-creator의 자동 파이프라인을 실행했다는 뜻이 아니다.
+시설/부하/하수 80%는 시험 수치다. 수원·전원·수압·관경·오염·역류·장기 경제는 미완성이다.
+
 ## 최신 작업: 지중 전력 실제 통합 (2026-11-02)
 
 [현재 동작·임시 수치·한계·실행법](UNDERGROUND_POWER_KO.md)을 먼저 읽는다.

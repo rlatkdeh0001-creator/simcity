@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[상하수도망 실제 도입·조작·가격/용량 제안](docs/WATER_SEWAGE_KO.md)** · [게임 GIF](docs/screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](docs/screenshots/water-flow-closeup.gif)
+
 **새 담당자 시작점: [스킬 인계장 · 익힌 내용과 검증 범위](docs/SKILL_HANDOFF_KO.md)**
 
 **새 게임 규칙: [네 이웃 마을과 도로·철도·전력·지하철·상하수도 교류](docs/REGIONAL_EXCHANGE_RULES_KO.md)**

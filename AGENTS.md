@@ -5,6 +5,11 @@ Connected eligible consumers receive power simultaneously when supply suffices.
 White traveling circles are display-only: their arrival, disappearance, speed,
 count or visibility must never gate supply or change power/trade billing.
 
+Water/sewage rule: read `docs/WATER_SEWAGE_KO.md`. Install/remove both pipes
+atomically. Blue supply flows source-to-consumer; brown sewage flows consumer-to-sink.
+Fluid circles, wobble, visibility and visual pause never affect actual services
+or metering. Use m³/game day for rates and m³ for volume; do not reuse electric tariffs.
+
 ## Asset pricing proposals (user requirement, 2026-11-02)
 
 For every newly created asset, propose a construction price and recurring upkeep

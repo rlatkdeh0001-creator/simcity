@@ -1,5 +1,7 @@
 # CITIES_DO · 건설·성장 MVP
 
+**[상하수도망 실제 도입·조작·가격/용량 제안](../docs/WATER_SEWAGE_KO.md)** · [게임 GIF](../docs/screenshots/water-game-running.gif) · [꿀렁이는 흐름 확대](../docs/screenshots/water-flow-closeup.gif)
+
 **최신 전력 업데이트:** [실제 건설·동시 공급·자동 수출입·거래단가·실행 안내](../docs/UNDERGROUND_POWER_KO.md). 계약한도 미적용. 최신 코드는 main 기준이며 기존 ZIP은 이전 스냅샷입니다.
 
 Godot 4.6 / GDScript. Claude 로그인과 외부 패키지가 필요하지 않습니다.

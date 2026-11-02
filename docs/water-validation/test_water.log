@@ -1,0 +1,63 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS unknown facility rejected
+PASS negative capacity rejected
+PASS nonfinite facility rejected
+PASS facility alone without constructed pipes cannot supply
+PASS paired pipes require a real anchor
+PASS out of bounds pipe rejected
+PASS preview creates neither channel
+PASS one owned geometry atomically constructs both channels
+PASS shared supply and collection points spaced 32m
+PASS 64m supply boundary in world metres
+PASS paired branch extends service
+PASS branch removal stops distant supply
+PASS removal atomically disconnects both pipes
+PASS near and far buildings get simultaneous water before marker arrival
+PASS both buildings receive simultaneous sewage service
+PASS supply counted once and 80 percent returns as sewage
+PASS treated water remains sewage output and never becomes drinking production
+PASS insufficient water shared proportionally regardless of distance
+PASS sewage follows actual delivered water not unmet demand
+PASS sewage bottleneck reported without silently deleting waste
+PASS drinking service and sewage treatment are separate states
+PASS removing treatment facility leaves water intact but stops treatment
+PASS nonfinite capacity update rejected
+PASS removing last water source stops supply immediately
+PASS neighbor automatically imports water deficit
+PASS sewage remaining after local treatment is sent to neighbor
+PASS external disposal can complete sewer service
+PASS internal water consumption precedes surplus export
+PASS boundary disconnection stops both exchanges
+PASS neighbor-only system supplies and collects without invented contract quota
+PASS queries do not meter water twice
+PASS rates times game days meter actual m3
+PASS negative time cannot reverse volume meters
+PASS 30 and 60 updates produce same supply and treatment volumes
+PASS metering does not change network capacities
+PASS blue flow travels from water source toward consumers
+PASS brown flow travels from consumers toward treatment sink
+PASS flow speed and calls never mutate supply treatment trade or volume
+PASS fluid circle visibly squashes and ripples over time
+PASS wobble remains a finite bounded circular contour
+PASS fluid markers disappear at route end
+PASS both services already active at animation time zero
+PASS water prototype facility placed beside normal road
+PASS facilities cannot overlap
+PASS water facility blocks overlapping generator
+PASS water facility blocks overlapping housing
+PASS roads cannot cut through water facilities
+PASS city exposes independent building water and sewage flags
+PASS unapproved water prices are not charged or sent through electricity billing
+PASS paired boundary pipe registers both regional channels
+PASS removing paired terminal closes both regional channels
+PASS water tab opens paired tools and closes power overlay
+PASS mouse drag creates one paired pipe in actual game
+PASS UI hiding and pausing fluid effects do not change service
+PASS switching back to power closes water overlay
+PASS live demo has six valid consumers and two validated facilities
+PASS demo domestic button provides actual water and treatment
+PASS demo import button enables real two-way neighbor exchange
+PASS demo cut scenario actually removes pipes
+PASS reconnecting demo restores supply
+RESULT 60/60 water checks passed
