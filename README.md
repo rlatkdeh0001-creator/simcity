@@ -1,5 +1,7 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+**[사용자 피드백·반복하지 않을 실수](mistake.md)** — 작업 시작 때 읽고, 지적받은 결과와 재발 방지 방법을 계속 기록합니다.
+
 **[주민·학력별 일자리·수요와 시간 규칙](docs/POPULATION_TIME_KO.md)** — 현실 1시간=게임 하루, 12일=1년. 실제 통근·학교 운영은 후속.
 
 **[드래그 구획·자동 신축](docs/ZONING_DEVELOPMENT_KO.md)** · [색칠 화면](docs/zoning-validation/zones-painted.png) · [신축 후](docs/zoning-validation/zones-developed.png) — 임시 시간 기반이며 주민/수요 엔진은 다음 단계.

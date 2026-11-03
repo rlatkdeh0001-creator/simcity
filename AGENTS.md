@@ -1,3 +1,13 @@
+# User feedback and recurring mistakes
+
+Read `mistake.md` at the start of every task, alongside this file and the handoff.
+Before implementing or creating assets, apply its relevant prevention rules. When the
+user identifies an unsatisfactory result, update mistake.md in the same work with the
+actual feedback, verified cause (or unknown), prevention, validation and status/evidence.
+Do not invent complaints or classify every new requirement as a mistake. Preserve
+resolved entries and distinguish inherited evidence from checks run now. Current user
+instructions take precedence. Do not add approval gates merely because of this log.
+
 # Project skills
 
 Power rule: read `docs/ELECTRICITY_RULES_KO.md` before implementing electricity.
