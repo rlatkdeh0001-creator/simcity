@@ -35,6 +35,8 @@ const ZONE_COLORS := {"residential":Color("65b77a"),"commercial":Color("629dce")
 var pointer := Vector2.ZERO
 var message := ""
 var hud: Label
+var labor_panel: PanelContainer
+var labor_rings
 var info: Label
 var treasury_label: Label
 var origin := Vector2(650, 130)
@@ -211,6 +213,12 @@ func _ready():
 	water_overlay = WaterOverlay.new()
 	add_child(water_overlay)
 	water_overlay.setup(self,layer)
+	labor_panel=PanelContainer.new()
+	labor_panel.name="LaborPanel"
+	labor_panel.position=Vector2(get_viewport_rect().size.x-490,20)
+	layer.add_child(labor_panel)
+	labor_rings=preload("res://labor_rings.gd").new()
+	labor_panel.add_child(labor_rings)
 	refresh()
 
 func toggle_traffic():
@@ -229,10 +237,13 @@ func stop_traffic():
 	if traffic_button != null: traffic_button.text = "도로 주행 시작"
 
 func _process(delta: float):
-	if not city.advance_development(delta).is_empty(): refresh()
+	var before_buildings: int=city.buildings.size()
+	city.advance_society(delta)
+	if labor_panel!=null:labor_panel.position.x=maxf(8,get_viewport_rect().size.x-490)
+	if city.buildings.size()!=before_buildings or (labor_panel!=null and labor_panel.visible): refresh()
 	# Simulation/billing runs regardless of the power tab or visual pause.
-	power_snapshot = city.advance_power(delta/3600.0)
-	water_snapshot = city.advance_water(delta/86400.0)
+	power_snapshot = city.advance_power(delta*city.Clock.SCALE/3600.0)
+	water_snapshot = city.advance_water(delta*city.Clock.SCALE/86400.0)
 	if water_overlay != null: water_overlay.update_state(delta)
 	if treasury_label != null: treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	if power_overlay != null: power_overlay.update_state(delta)
@@ -295,6 +306,10 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if labor_panel!=null:
+		labor_panel.visible=city.population.workplaces.has(selected)
+		labor_rings.work=city.population.workplaces.get(selected,{})
+		labor_rings.queue_redraw()
 	if treasury_label != null:
 		treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	var b: Dictionary = city.find_building(selected)

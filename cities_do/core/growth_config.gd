@@ -12,7 +12,8 @@ var parcel_block_length := 8.0
 var parcel_turn_degrees := 10.0
 var parcel_max_deviation := 0.25
 
-# Temporary development pacing until resident/job demand exists; game seconds.
+# Prototype pacing in speed-adjusted real seconds; 2 seconds = 48 game seconds.
+# Population demand must also permit construction.
 var development_interval_seconds := 2.0
 var development_max_steps := 8
 var development_checks_per_step := 256

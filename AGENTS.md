@@ -119,6 +119,18 @@ click construction. Use city.paint_zones and zone_designations keyed by stable r
 parcel IDs. Develop only uniformly zoned 2x2 lots via the shared frontage/collision path.
 Repainting/erasing preserves existing buildings and their uses; the common bulldozer is
 separate. Prune only removed parcels after road changes. Keep zoning free and new private
-construction free. The temporary 2-game-second development clock is not real demand or
-resident/job simulation. Pause/speed affect it, tab visibility does not. Keep original
+construction free. The original ungated development was superseded by population demand;
+read POPULATION_TIME_KO.md for the current clock and prototype household model. Pause/speed affect it, tab visibility does not. Keep original
 2x2 display-only asset flags; procedural fallback is intentional until models are enabled.
+
+## Population, jobs and clock (user, 2026-11-03)
+
+Read docs/POPULATION_TIME_KO.md. At 1x one real hour is one game day; twelve game
+days are one year. 05:00-09:00 commuting is ten real minutes; routes remain future.
+Use city.clock and convert real delta by Clock.SCALE only at utility API boundaries.
+Advance society on fixed ticks. Start with residential demand only; actual immigrants
+then create commercial/industrial demand. Five job education bands accept absolute
+education difference <=1, same-stage priority, working age independent of education.
+Local births start at stage zero and need recorded education, not inherited degrees.
+Keep population_config.json prototype values synchronized with the economy CSV.
+Do not present school completion API as school operation or employment as commuting.

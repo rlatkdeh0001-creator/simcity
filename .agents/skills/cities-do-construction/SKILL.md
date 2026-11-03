@@ -129,3 +129,8 @@ Do not warp fixed-camera PNGs to fake rotated architecture: use the real GLB dir
 validated and separate from normal 2x2 construction. Preserve the existing city
 and camera when switching scenes. Capture evidence only with a real graphics
 renderer; headless tests do not produce screenshots.
+
+For current residential-first population demand and the unified 12-day-year clock,
+read repository-root docs/POPULATION_TIME_KO.md. Player updates call advance_society;
+advance_development remains the bounded construction step. Geometry-only fixtures
+may explicitly disable population gating; actual play must keep it enabled.

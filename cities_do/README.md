@@ -1,6 +1,8 @@
 # CITIES_DO · 건설·성장 MVP
 
-**[드래그 구획·자동 신축 조작과 한계](../docs/ZONING_DEVELOPMENT_KO.md)** — 구획에서 주거·상업·공업을 드래그로 지정/해제하며 임시 2게임초 간격으로 신축합니다. 기존 즉시 클릭 배치를 대신하고, 수동 시나리오/성장 API는 유지합니다.
+**[주민·학력별 일자리·수요와 시간 규칙](../docs/POPULATION_TIME_KO.md)** — 현실 1시간=게임 하루, 12일=1년. 실제 통근·학교 운영은 후속.
+
+**[드래그 구획·자동 신축 조작과 한계](../docs/ZONING_DEVELOPMENT_KO.md)** — 구획에서 주거·상업·공업을 드래그로 지정/해제하며 수요가 허용할 때 1배속 현실 2초 간격으로 신축합니다. 기존 즉시 클릭 배치를 대신하고, 수동 시나리오/성장 API는 유지합니다.
 
 **[X자·T자 실제 교차로 연결·차량 회전](../docs/ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](../docs/screenshots/junctions-running.gif) · [교차로 확대](../docs/screenshots/junctions-closeup.gif)
 

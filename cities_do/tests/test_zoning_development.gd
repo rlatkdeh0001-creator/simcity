@@ -10,6 +10,7 @@ func verify(value: bool, detail: String) -> void:
   push_error("FAIL "+detail)
 func town(diagonal: bool=false):
  var city=Model.new(60,60,42)
+ city.population_enabled=false
  city.add_road(PackedVector2Array([Vector2(10,30),Vector2(42,42) if diagonal else Vector2(42,30)]))
  return city
 func paint(city,frame,u: int,v: int,size: int,zone: String):

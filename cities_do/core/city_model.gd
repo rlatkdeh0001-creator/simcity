@@ -16,6 +16,12 @@ var height: int
 var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
 var rng := RandomNumberGenerator.new()
+const Clock=preload("res://core/city_clock.gd")
+const Population=preload("res://core/population.gd")
+var clock=Clock.new()
+var population
+var population_enabled := true
+var society_elapsed := 0.0
 var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
 var development_elapsed := 0.0
 var development_cursor := 0
@@ -35,6 +41,7 @@ const PROTOTYPE_POWER_LOADS := {"residential":1.6,"commercial":1.5,"industrial":
 func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	width = w
 	height = h
+	population=Population.new(seed_value)
 	rng.seed = seed_value
 	appearance_rng.seed = seed_value ^ 0x5f3759df
 	power = PowerGrid.new(Vector2(w,h)*4.0)
@@ -145,6 +152,7 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 			var parcel: Dictionary=zoning_grid.parcels.get(id,{})
 			if parcel.is_empty():continue
 			var zone_type: String=zone_designations[id]
+			if population_enabled and population.demand(buildings)[zone_type]<=0:continue
 			if not zoned_lot_matches(parcel.frame,parcel.u,parcel.v,2,zone_type):continue
 			if parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)!="":continue
 			var result := add_building_at(parcel.center,zone_type)
@@ -153,8 +161,20 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 				building.automatically_developed=true
 				catalog.assign(building,appearance_rng)
 				created.append(building)
+				if population_enabled:population.sync(buildings)
 				break
 	return created
+
+func advance_society(seconds: float) -> void:
+	if seconds<=0 or not is_finite(seconds):return
+	clock.advance_real(seconds)
+	society_elapsed+=seconds
+	var steps := 0
+	while society_elapsed>=config.development_interval_seconds and steps<config.development_max_steps:
+		society_elapsed-=config.development_interval_seconds
+		steps+=1
+		if population_enabled:population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
+		advance_development(config.development_interval_seconds)
 
 func orient_building(b: Dictionary) -> void:
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
@@ -240,6 +260,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 		"water_facility": removed=water.remove_facility(id)
 		"water_pipe": removed=water.remove_pipe(id)
 	if removed:
+		population.sync(buildings)
 		power_state()
 		water_state()
 	return {"ok":removed,"reason":"철거 완료" if removed else "철거할 대상을 선택하세요"}

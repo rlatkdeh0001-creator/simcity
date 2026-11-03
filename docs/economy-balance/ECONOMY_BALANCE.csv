@@ -169,3 +169,20 @@
 공공서비스 제안,service.crematorium-4x4.sewage,화장터 sewage,2.4,m³/게임일,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
 공공서비스 제안,service.crematorium-4x4.fuel,화장터 fuel,600,kWh-열/게임일; 연료 종류 미정,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
 공공서비스 제안,service.crematorium-4x4.residue,화장터 residue,36,kg/게임일; 정격 유골 수거량,제안·미적용,화장터,docs/SERVICE_ASSETS_KO.md,2026-11-03 KST; 게임월=30게임일 제안. 승인 전 과금·공급·서비스 계산에 연결하지 않음
+시간,clock.real_seconds_per_day,real_seconds_per_day,3600,현실초/게임일; 1배속,사용자확정·적용,도시,cities_do/core/city_clock.gd,05~09 출근 시간대; 실제 통근 경로는 후속
+시간,clock.days_per_year,days_per_year,12,게임일/게임년,사용자확정·적용,도시,cities_do/core/city_clock.gd,05~09 출근 시간대; 실제 통근 경로는 후속
+시간,clock.commute_start,commute_start,5,게임 시각,사용자확정·적용,도시,cities_do/core/city_clock.gd,05~09 출근 시간대; 실제 통근 경로는 후속
+시간,clock.commute_end,commute_end,9,게임 시각,사용자확정·적용,도시,cities_do/core/city_clock.gd,05~09 출근 시간대; 실제 통근 경로는 후속
+주민·수요,population.households_per_2x2,households_per_2x2,2,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.immigrant_adults_per_household,immigrant_adults_per_household,2,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.household_max_members,household_max_members,4,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.immigrant_education_weights,immigrant_education_weights,"[1, 1, 1, 1, 1]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.working_age_years,working_age_years,18,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.initial_housing_target,initial_housing_target,8,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.residents_per_commercial,residents_per_commercial,8,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.residents_per_industrial,residents_per_industrial,12,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.commercial_jobs,commercial_jobs,"[3, 2, 1, 1, 0]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.industrial_jobs,industrial_jobs,"[2, 2, 2, 1, 1]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.birth_probability_per_household_day,birth_probability_per_household_day,0.01,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.education_min_ages,education_min_ages,"[0, 12, 18, 20, 22]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.jobs_per_target_household,추가 주거 목표 일자리 기준,4,일자리/목표 가구,임시기본값·적용,주거 수요,cities_do/core/population.gd demand,"목표=최대(초기8가구, 올림(일자리/4)); 문서의 보수적 목표식. 과금 아님"

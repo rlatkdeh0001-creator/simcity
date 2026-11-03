@@ -15,6 +15,7 @@ var elapsed := 0.0
 var capture_pending := false
 var last_funds := -1
 var last_count := -1
+var social_status: Label
 const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
@@ -171,7 +172,8 @@ func build_bottom_hud():
  status.add_child(money)
  counts=label("건물 %d개" % city.buildings.size())
  status.add_child(counts)
- status.add_child(label("인구 —   만족도 —"))
+ social_status=label("인구 0")
+ status.add_child(social_status)
  var spacer := Control.new()
  spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL
  status.add_child(spacer)
@@ -392,6 +394,9 @@ func _process(delta: float):
  if city.buildings.size()!=last_count:
   counts.text="건물 %d개" % city.buildings.size()
   last_count=city.buildings.size()
+ var stats: Dictionary=city.population.stats()
+ var demand: Dictionary=city.population.demand(city.buildings)
+ social_status.text="인구 %d · 취업 %d · 미취업 %d   주 %d 상 %d 공 %d   %s" % [stats.population,stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial,city.clock.caption()]
  elapsed+=delta
  if capture_path!="" and elapsed>3 and not capture_pending:
   capture_pending=true

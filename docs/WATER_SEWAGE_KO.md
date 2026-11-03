@@ -117,3 +117,9 @@ godot --path cities_do --script ../tools/capture_water_main.gd -- /tmp/water-mai
 지정한다(도구 폴더는 Godot 프로젝트 밖). 제한 환경은 writable XDG 경로를 사용한다.
 화면/GIF는 Xvfb+Mesa OpenGL의 실제 Godot 뷰포트에서 캡처했다. 확대 GIF는 실제 장면의
 관로 접점 부위를 잘라 확대했으며, HTML/생성형 시안을 작동 게임으로 제시하지 않았다.
+
+## 2026-11-03 시간 환산 갱신
+
+[현실 1시간=게임 하루, 12일=1년](POPULATION_TIME_KO.md)을 적용했다.
+main에서 현실 delta를 24배 게임 시간으로 바꿔 전력은 게임시간, 수도는 게임일로 전달한다.
+기존 단가·공급률 단위·흐름과 계량 분리는 유지한다. 과거 현실초=게임초 설명은 이전 시험 기준이다.

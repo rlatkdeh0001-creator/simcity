@@ -6,6 +6,41 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 주민·5학력 취업·수요·12일 달력 (2026-11-03 KST)
+
+시작 `/workspace/simcity`, main 9ecfa41 깨끗한 상태. 사용자가 주거만 초기 수요,
+입주 후 상업/공업 수요, 5단계 학력별 정원과 ±1 취업, 외부 랜덤 학력/지역 출생 교육,
+현실 1시간=1게임일·12일=1년을 확정했다. [구현·임시 기본값·재현·한계](POPULATION_TIME_KO.md),
+[이번 실행 증거](population-validation/)를 참고한다. 05~09시는 1배속 현실 10분이다.
+
+프로젝트 자체 cities-do-construction/SKILL.md와 기존 godot-gdscript/SKILL.md,
+godot-gdscript-headless-testing/SKILL.md 지침을 적용했다. 전력/수도/요금 규칙도 읽었다.
+자체 construction 지침을 현재 API로 갱신했고 외부 스킬·고정 출처·Apache-2.0 라이선스는
+변경하지 않았다. 새 외부 설치/애셋 제작·기존 차량/화장터 변경은 없다.
+
+변경: core/city_clock.gd, population.gd, population_config.json, city_model의 수요 허가/
+고정 society 틱/철거 정리, main의 통합 시간과 utility 단위 환산, labor_rings.gd의 5개
+학력별 충원/정원 표시, bottom_ui_preview의 실제 인구/취업/수요/날짜. 테스트 population과
+기존 UI/구획 fixture, tools/validate_population.py·capture_population.gd.
+가격 차감은 추가하지 않았고 임시 정원/확률/비율은 경제 CSV와 문서에 동기화했다.
+
+같은 학력 우선/±1 취업·중복 고용 방지·미성년 취업 금지·지역 출생/교육 이수 API·
+철거 시 실직/무주택 가구 보존을 구현했다. 학교 메뉴/출석/졸업 엔진·실제 통근·물류/
+소비/생산·월 과금·저장 파일은 구현하지 않았다. 교육 이수 API가 실제 학교 운영이라는
+뜻은 아니다. 전력/수도는 기존 시험 건물 부하이며 아직 주민 소비량으로 대체하지 않았다.
+
+최종 전체 20개 스크립트 통과·주민/시간/취업 52/52. 전체 회귀 후 기하 전용 fixture와
+추가 출생/나이 검사를 선택 재실행했으며 results.json은 합본이다. 캡처 해시는
+population-validation/evidence.json에 보존했다. Godot 4.6.3 headless 재임포트와 전체 회귀, 별도 실제 GL Compatibility/Xvfb :99 캡처를
+실행했다. 명령 python3 tools/validate_population.py; DISPLAY=:99 godot --path cities_do
+--audio-driver Dummy --rendering-method gl_compatibility --script /workspace/simcity/tools/capture_population.gd.
+XDG 3경로는 /tmp/cities-do-{data,config,cache}. 실제 화면은 주거4/상업2/공업2,
+8가구·16명·취업16, 자금50,000, 게임02:24를 확인했다. 초기 구획 자료는 이전 증거로 유지한다.
+초기 검사에서 typed Array 대입 fixture를 append로 수정했고, 기존 대형 주택 성장 이후
+신축 검사는 수요와 독립인 기하 fixture임을 명시했다. 스크립트 오류와 종료 코드를 함께
+검사한다. 런타임/학교/대규모 성능의 미검증 범위를 보고서에 명시했다. 코드·문서·화면을
+같은 작업으로 main에 커밋·푸시하고 원격 SHA를 확인한다.
+
 ## 최신 작업: 드래그 구획 지정·해제와 자동 신축 (2026-11-03 KST)
 
 사용자가 주거/상업/공업 드래그 지정 후 자동 신축을 승인했다. `/workspace/simcity`,

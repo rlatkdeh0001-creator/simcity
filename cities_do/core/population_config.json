@@ -1,0 +1,14 @@
+{
+  "households_per_2x2": 2,
+  "immigrant_adults_per_household": 2,
+  "household_max_members": 4,
+  "immigrant_education_weights": [1, 1, 1, 1, 1],
+  "working_age_years": 18,
+  "initial_housing_target": 8,
+  "residents_per_commercial": 8,
+  "residents_per_industrial": 12,
+  "commercial_jobs": [3, 2, 1, 1, 0],
+  "industrial_jobs": [2, 2, 2, 1, 1],
+  "birth_probability_per_household_day": 0.01,
+  "education_min_ages": [0, 12, 18, 20, 22]
+}

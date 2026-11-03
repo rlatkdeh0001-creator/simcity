@@ -1,0 +1,108 @@
+{
+  "building_counts": {
+    "commercial": 2,
+    "industrial": 2,
+    "residential": 4
+  },
+  "demand": {
+    "commercial": 0,
+    "industrial": 0,
+    "residential": 0
+  },
+  "engine": "4.6.3-stable (official)",
+  "funds": 50000,
+  "game_seconds_advanced": 8640.0,
+  "people": {
+    "employed": 16,
+    "households": 8,
+    "population": 16,
+    "unemployed": 0
+  },
+  "renderer": "gl_compatibility",
+  "source": "Actual Godot bottom_ui_preview renderer; input-driven rectangle designation and model development; no generated image or compositing",
+  "temporary_interval_seconds": 2.0,
+  "workplaces": {
+    "5": {
+      "filled": [
+        3,
+        2,
+        1,
+        1,
+        0
+      ],
+      "id": 5,
+      "slots": [
+        3,
+        2,
+        1,
+        1,
+        0
+      ],
+      "zone": "commercial"
+    },
+    "6": {
+      "filled": [
+        1,
+        2,
+        1,
+        1,
+        0
+      ],
+      "id": 6,
+      "slots": [
+        3,
+        2,
+        1,
+        1,
+        0
+      ],
+      "zone": "commercial"
+    },
+    "7": {
+      "filled": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "id": 7,
+      "slots": [
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "zone": "industrial"
+    },
+    "8": {
+      "filled": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "id": 8,
+      "slots": [
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "zone": "industrial"
+    }
+  },
+  "zone_cells": 204,
+  "sha256": {
+    "initial-demand.png": "af1f4d4ca81d38271e3bfd4088f943f719d5b214053f69acc0f66e5aca93dec6",
+    "residents-jobs.png": "4d659fd8dbcbe905f703b18b161e7e92ca5a7a6b6ac4fcde453caea73e945b6b"
+  },
+  "tests": {
+    "scripts": 20,
+    "passed": 20,
+    "population_checks": 52
+  }
+}

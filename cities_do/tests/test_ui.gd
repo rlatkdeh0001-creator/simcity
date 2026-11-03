@@ -34,6 +34,8 @@ func run():
 	for child in panel.get_children():
 		if child is Button and child.text == "선택 건물 업그레이드": child.emit_signal("pressed")
 	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")
+	# This fixture tests pointer geometry after growing a large authored home.
+	scene.city.population_enabled = false
 	scene.mode = "build"
 	var before: int = scene.city.buildings.size()
 	click(scene, Vector2(27,18))

@@ -11,6 +11,7 @@ func run() -> void:
  root.add_child(scene)
  await process_frame
  scene.city=scene.Model.new(64,64,42)
+ scene.city.population_enabled=false
  for y in [18,34,50]:scene.city.add_road(PackedVector2Array([Vector2(12,y),Vector2(52,y)]))
  scene.power_snapshot=scene.city.power_state()
  scene.water_snapshot=scene.city.water_state()
