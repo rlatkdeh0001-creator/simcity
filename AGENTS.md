@@ -144,3 +144,10 @@ education difference <=1, same-stage priority, working age independent of educat
 Local births start at stage zero and need recorded education, not inherited degrees.
 Keep population_config.json prototype values synchronized with the economy CSV.
 Do not present school completion API as school operation or employment as commuting.
+
+## New environment freshness check
+
+Before reporting a requested feature or asset as absent, compare the local commit
+with origin/main (fetch when available) and read the latest handoff. A stale checkout
+is not evidence that work is missing. Preserve completed models and distinguish
+asset registration/inspection from city placement and operational simulation.

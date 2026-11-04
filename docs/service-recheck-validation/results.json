@@ -1,0 +1,189 @@
+[
+  {
+    "test": "test_bottom_ui.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 36/36 bottom UI checks passed"
+    ]
+  },
+  {
+    "test": "test_building_assets.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 25/25 asset checks passed"
+    ]
+  },
+  {
+    "test": "test_building_frontage.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 138/138 frontage checks passed"
+    ]
+  },
+  {
+    "test": "test_city.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 24/24 passed"
+    ]
+  },
+  {
+    "test": "test_demolition.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 47/47 demolition checks passed"
+    ]
+  },
+  {
+    "test": "test_facilities.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 69/69 facility checks passed"
+    ]
+  },
+  {
+    "test": "test_junctions.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 52/52 junction checks passed"
+    ]
+  },
+  {
+    "test": "test_population.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 52/52 population checks passed"
+    ]
+  },
+  {
+    "test": "test_power.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 41/41 power checks passed"
+    ]
+  },
+  {
+    "test": "test_recovered_assets.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 59/59 recovered asset checks passed"
+    ]
+  },
+  {
+    "test": "test_regional_exchange.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 38/38 regional checks passed"
+    ]
+  },
+  {
+    "test": "test_road_parcels.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 18/18 road-local checks passed"
+    ]
+  },
+  {
+    "test": "test_road_setback.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 49/49 setback checks passed"
+    ]
+  },
+  {
+    "test": "test_roads_zoning.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 18/18 road/zoning checks passed"
+    ]
+  },
+  {
+    "test": "test_service_assets.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 9/9 service asset checks passed"
+    ]
+  },
+  {
+    "test": "test_showcase.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 26/26 showcase checks passed"
+    ]
+  },
+  {
+    "test": "test_traffic.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 43/43 traffic checks passed"
+    ]
+  },
+  {
+    "test": "test_ui.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": []
+  },
+  {
+    "test": "test_vehicles.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 308/308 vehicle checks passed"
+    ]
+  },
+  {
+    "test": "test_water.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 80/80 water checks passed"
+    ]
+  },
+  {
+    "test": "test_zoning_development.gd",
+    "exit_code": 0,
+    "errors": [],
+    "passed": true,
+    "summary": [
+      "RESULT 37/37 zoning checks passed"
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "clinic.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "304435c0f4ad2e3b5eb8fdabe1d099f17251f4a8b2796faab25c634510661858"
+  },
+  "crematorium.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "a6dfc14023bc729702f968279c4306deb8b002453fcf2838d4a515c6c379dc72"
+  },
+  "education-tab.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "d373c716cbeb06f8c7afaf9d59d6e53e50360d4f2168c0eb61f0f0af8c3fc7a4"
+  },
+  "health-tab.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "aaf2e2ac6718da0b45896939ce73d6d93502bdfcd7072e72d3effcfd074719e9"
+  },
+  "hospital.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "e78a5cc3e2a0867491b2047d05b821cab94cf215185845bbcf89ccc4cb623df1"
+  },
+  "large_hospital.png": {
+    "resolution": [
+      1280,
+      820
+    ],
+    "sha256": "f92cc95961ad1df4aae59678ed0db21b716ba7fb9583d50794b8f7495fabe159"
+  },
+  "public-assets.png": {
+    "resolution": [
+      1920,
+      1080
+    ],
+    "sha256": "0b58c9eaf6f5b6d9727e3ceb9d38fc35a4e55eb1f2bdd0f4ce9a337a66e03604"
+  }
+}

@@ -46,18 +46,27 @@ func run() -> void:
 	await process_frame
 	var city_before=scene.city
 	var buildings_before:int=scene.city.buildings.size()
-	for group in ["education","health"]:
+	verify(not scene.NAMES.has("other"),"empty other tab remains removed")
+	var groups:={"education":["elementary","high_school","college","university"],"health":["hospital","clinic","large_hospital","crematorium"]}
+	for group in groups:
 		scene.select_category(group)
-		for tool in scene.SERVICE_TOOLS:
-			if tool=="crematorium":continue
+		var expected: Array=groups[group]
+		var buttons: Array=scene.drawer_box.get_children().filter(func(node):return node is Button and String(node.name).begins_with("Tool_"))
+		verify(buttons.size()==expected.size(),group+" has exactly its four facilities")
+		for tool in expected:
 			var button=scene.find_child("Tool_"+tool,true,false)
+			verify(button!=null,tool+" has a visible category button")
 			if button==null:continue
 			verify(not button.disabled,tool+" is available")
+			var entry: Dictionary=facilities.filter(func(e):return e.id==scene.SERVICE_TOOLS[tool])[0]
 			button.pressed.emit()
 			await process_frame
 			var windows:Array=scene.find_children("ServiceAssetPreview","Window",true,false)
-			verify(windows.size()==1 and windows[0].find_children("*","MeshInstance3D",true,false).size()>0,tool+" opens its own real model")
-			if not windows.is_empty():windows[0].close_requested.emit()
+			verify(windows.size()==1 and windows[0].title==entry.name+" · 애셋",tool+" opens its matching facility")
+			if not windows.is_empty():
+				var meshes: Array=windows[0].find_children("*","MeshInstance3D",true,false)
+				verify(not meshes.is_empty(),tool+" inspector contains real geometry")
+				windows[0].close_requested.emit()
 			await process_frame
 	verify(scene.city==city_before and scene.city.buildings.size()==buildings_before,"asset inspectors preserve city and do not fake service placement")
 	scene.queue_free()
