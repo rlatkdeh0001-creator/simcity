@@ -1,0 +1,32 @@
+{
+  "id": "trailer-container-05",
+  "label": "컨테이너 트레일러",
+  "category": "industrial",
+  "body_type": "container",
+  "length_m": 16.2,
+  "width_m": 2.5,
+  "height_m": 3.85,
+  "color": "#aa6555",
+  "wheel_count": 10,
+  "triangles": 12706,
+  "bounds_blender": {
+    "min": [
+      -1.4250000715255737,
+      -8.19849967956543,
+      0.0
+    ],
+    "max": [
+      1.4250000715255737,
+      8.138999938964844,
+      3.8499999046325684
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/trailer-container-05.glb",
+  "preview": "res://assets/vehicles/trailer-container-05.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

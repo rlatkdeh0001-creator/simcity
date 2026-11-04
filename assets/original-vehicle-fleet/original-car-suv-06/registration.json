@@ -1,0 +1,23 @@
+{
+  "id": "original-car-suv-06",
+  "name": "대형 SUV · 원본",
+  "category": "civilian",
+  "style": "suv",
+  "length_m": 4.95,
+  "width_m": 1.98,
+  "height_m": 1.86,
+  "triangles": 4246,
+  "model": "res://assets/vehicles/original-car-suv-06.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-suv-06",
+  "source": "assets/original-vehicle-fleet/original-car-suv-06/vehicle.blend",
+  "source_sha256": "c67359bee593842777fe1103fe9eee16545737fd1193d9be878120d81ef76763",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

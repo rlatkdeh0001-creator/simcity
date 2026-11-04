@@ -19,6 +19,7 @@ var social_status: Label
 const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
+const SERVICE_TOOLS := {"clinic":"medical-clinic","hospital":"medical-hospital","large_hospital":"medical-large-hospital","elementary":"elementary-school","high_school":"high-school","college":"technical-college","university":"university","crematorium":"crematorium-4x4"}
 
 func _ready():
  showcase_view=true
@@ -276,7 +277,7 @@ func select_category(key: String):
   "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"]]
   "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"]]
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
-  "health": choices=[["병원","hospital"],["진료소","clinic"],["화장터","crematorium"]]
+  "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
   _:
@@ -306,15 +307,12 @@ func select_category(key: String):
   content.add_child(caption)
   var tool: String=choice[1]
   if key in ["health","education"]:
-   button.disabled=tool!="crematorium"
-   button.tooltip_text=choice[0]+(" · 준비 중" if button.disabled else " · 애셋 보기")
-   if button.disabled:
-    caption.text=choice[0]+" · 준비 중"
-    content.modulate=Color(1,1,1,.5)
+   button.tooltip_text=choice[0]+" · 애셋 보기"
   button.pressed.connect(func():
    cancel_zoning_drag()
-   if tool=="crematorium":
-    var entry: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities[0]
+   if SERVICE_TOOLS.has(tool):
+    var entries: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities
+    var entry: Dictionary=entries.filter(func(e):return e.id==SERVICE_TOOLS[tool])[0]
     var preview=preload("res://service_asset_preview.gd").new()
     preview.name="ServiceAssetPreview"
     add_child(preview)

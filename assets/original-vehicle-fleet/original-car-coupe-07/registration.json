@@ -1,0 +1,23 @@
+{
+  "id": "original-car-coupe-07",
+  "name": "스포츠 쿠페 · 원본",
+  "category": "civilian",
+  "style": "coupe",
+  "length_m": 4.42,
+  "width_m": 1.88,
+  "height_m": 1.25,
+  "triangles": 4154,
+  "model": "res://assets/vehicles/original-car-coupe-07.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-coupe-07",
+  "source": "assets/original-vehicle-fleet/original-car-coupe-07/vehicle.blend",
+  "source_sha256": "b70605d0d8d7d309f76a97881a97a2fd17afa704be96affbddd44aa193bbbe1a",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

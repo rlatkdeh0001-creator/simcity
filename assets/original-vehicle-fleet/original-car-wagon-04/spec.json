@@ -1,0 +1,32 @@
+{
+  "id": "car-wagon-04",
+  "label": "스테이션 왜건",
+  "category": "citizen",
+  "body_type": "wagon",
+  "length_m": 4.65,
+  "width_m": 1.82,
+  "height_m": 1.53,
+  "color": "#73876a",
+  "wheel_count": 4,
+  "triangles": 4262,
+  "bounds_blender": {
+    "min": [
+      -1.0850000381469727,
+      -2.367500066757202,
+      0.0
+    ],
+    "max": [
+      1.0850000381469727,
+      2.363999843597412,
+      1.5575000047683716
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-wagon-04.glb",
+  "preview": "res://assets/vehicles/car-wagon-04.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

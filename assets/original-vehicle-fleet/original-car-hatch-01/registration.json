@@ -1,0 +1,23 @@
+{
+  "id": "original-car-hatch-01",
+  "name": "소형 해치백 · 원본",
+  "category": "civilian",
+  "style": "hatch",
+  "length_m": 3.6,
+  "width_m": 1.65,
+  "height_m": 1.5,
+  "triangles": 4030,
+  "model": "res://assets/vehicles/original-car-hatch-01.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-hatch-01",
+  "source": "assets/original-vehicle-fleet/original-car-hatch-01/vehicle.blend",
+  "source_sha256": "afc504a15b986726dab27c278f02b043fbb58e1aef9911581aca7fe3041b37e1",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

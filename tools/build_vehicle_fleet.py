@@ -363,8 +363,14 @@ def main():
                 doc[key]=[replacements.get(e['id'],e) for e in doc[key]]+[e for e in additions if e['id'] not in original_ids]
                 write_json(path,doc)
     if not args.only:
-        write_json(ROOT/'cities_do/assets/vehicles/catalog.json',{'schema_version':1,'vehicles':entries})
-        if args.render:write_json(ROOT/'cities_do/assets/vehicles/render_manifest.json',{'resolution':[430,245],'camera_elevation_deg':30,'angle_zero':'nose view; positive camera azimuth towards left (+X Blender)','vehicles':rendered})
+        # Rebuilding the registered fleet must retain separately approved originals.
+        path=ROOT/'cities_do/assets/vehicles/catalog.json'
+        originals=[e for e in json.loads(path.read_text())['vehicles'] if e.get('rig_schema')=='recovered-original'] if path.exists() else []
+        write_json(path,{'schema_version':1,'vehicles':entries+originals})
+        if args.render:
+            manifest=ROOT/'cities_do/assets/vehicles/render_manifest.json'
+            original_renders=[e for e in json.loads(manifest.read_text())['vehicles'] if e['id'].startswith('original-')] if manifest.exists() else []
+            write_json(manifest,{'resolution':[430,245],'camera_elevation_deg':30,'angle_zero':'nose view; positive camera azimuth towards left (+X Blender)','vehicles':rendered+original_renders})
     write_json(ROOT/'assets/vehicle-fleet'/('last-build-'+args.only+'.json' if args.only else 'last-build.json'),entries)
 
 

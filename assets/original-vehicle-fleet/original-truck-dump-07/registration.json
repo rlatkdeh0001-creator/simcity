@@ -1,0 +1,23 @@
+{
+  "id": "original-truck-dump-07",
+  "name": "중형 덤프트럭 · 원본",
+  "category": "industrial",
+  "style": "dump",
+  "length_m": 7.8,
+  "width_m": 2.5,
+  "height_m": 3.15,
+  "triangles": 6586,
+  "model": "res://assets/vehicles/original-truck-dump-07.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "truck-dump-07",
+  "source": "assets/original-vehicle-fleet/original-truck-dump-07/vehicle.blend",
+  "source_sha256": "7f7fbc0714ca77c89d1648e09f6a6ecc854175c606ff88558a685e99745d6018",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

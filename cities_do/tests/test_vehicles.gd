@@ -15,7 +15,7 @@ func verify(condition: bool, detail: String):
 
 func run():
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
-	verify(doc is Dictionary and doc.vehicles.size() == 23, "catalog contains 23 vehicles")
+	verify(doc is Dictionary and doc.vehicles.size() == 41, "catalog contains 23 registered plus 18 original variants")
 	var categories := {}
 	var ids := {}
 	for entry in doc.vehicles:
@@ -56,13 +56,16 @@ func run():
 				right = right and center.x < 0
 			verify(right, "bus has front and middle right-side double doors")
 		if entry.style in ["container", "tanker"]:
-			verify(model.find_children("TrailerHitch", "Node3D", true, false).size() == 1, entry.id + " articulation pivot")
+			var pivot_name: String="Trailer_Pivot" if entry.get("rig_schema","")=="recovered-original" else "TrailerHitch"
+			verify(model.find_children(pivot_name, "Node3D", true, false).size() == 1, entry.id + " articulation pivot")
 		if entry.style in ["dump", "heavy_dump"]:
-			verify(model.find_children("DumpBedPivot", "Node3D", true, false).size() == 1, entry.id + " dump bed hinge")
+			var pivot_name: String="Dump_Bed_Pivot" if entry.get("rig_schema","")=="recovered-original" else "DumpBedPivot"
+			verify(model.find_children(pivot_name, "Node3D", true, false).size() == 1, entry.id + " dump bed hinge")
 		if entry.style == "mixer":
-			verify(model.find_children("MixerSpin", "Node3D", true, false).size() == 1, "mixer drum spin pivot")
+			var pivot_name: String="Mixer_Drum_Pivot" if entry.get("rig_schema","")=="recovered-original" else "MixerSpin"
+			verify(model.find_children(pivot_name, "Node3D", true, false).size() == 1, entry.id + " mixer drum spin pivot")
 		model.free()
-	verify(categories == {"bus":1, "taxi":1, "civilian":10, "industrial":8, "service":3}, "required category counts")
+	verify(categories == {"bus":1, "taxi":1, "civilian":20, "industrial":16, "service":3}, "required category counts; bus and taxi originals excluded")
 	var main: Node2D = load("res://main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
@@ -76,7 +79,7 @@ func run():
 	await process_frame
 	var showcase = current_scene
 	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "button opens actual vehicle showcase scene")
-	verify(showcase.rigs.size() == 23 and showcase.cameras.size() == 23, "showcase creates twenty-three real model viewports")
+	verify(showcase.rigs.size() == 41 and showcase.cameras.size() == 41, "showcase creates forty-one real model viewports")
 	showcase.same_scale = true
 	showcase.update_scale()
 	verify(is_equal_approx(showcase.cameras[0].size, showcase.cameras[19].size), "same-scale mode uses identical camera scale")

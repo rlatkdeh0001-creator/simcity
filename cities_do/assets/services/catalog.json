@@ -28,6 +28,160 @@
       },
       "status": "asset_preview_only",
       "simulation_enabled": false
+    },
+    {
+      "id": "elementary-school",
+      "name": "초등학교",
+      "group": "education",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "length_m": 16,
+      "width_m": 16,
+      "height_m": 5.87,
+      "storeys": 2,
+      "triangles": 2156,
+      "model": "res://assets/services/elementary-school.glb",
+      "preview": "res://assets/services/elementary-school.png",
+      "source": "assets/education-study/elementary-school/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "high-school",
+      "name": "고등학교",
+      "group": "education",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "length_m": 16,
+      "width_m": 16,
+      "height_m": 8.57,
+      "storeys": 3,
+      "triangles": 2500,
+      "model": "res://assets/services/high-school.glb",
+      "preview": "res://assets/services/high-school.png",
+      "source": "assets/education-study/high-school/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "technical-college",
+      "name": "전문대",
+      "group": "education",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "length_m": 32,
+      "width_m": 32,
+      "height_m": 8.57,
+      "storeys": 3,
+      "triangles": 6560,
+      "model": "res://assets/services/technical-college.glb",
+      "preview": "res://assets/services/technical-college.png",
+      "source": "assets/education-study/technical-college/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "university",
+      "name": "대학교",
+      "group": "education",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "length_m": 32,
+      "width_m": 32,
+      "height_m": 8.57,
+      "storeys": 3,
+      "triangles": 7344,
+      "model": "res://assets/services/university.glb",
+      "preview": "res://assets/services/university.png",
+      "source": "assets/education-study/university/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "medical-clinic",
+      "name": "진료소",
+      "group": "medical",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "length_m": 16,
+      "width_m": 16,
+      "height_m": 5.7807,
+      "storeys": 1,
+      "triangles": 1074,
+      "model": "res://assets/services/medical-clinic.glb",
+      "preview": "res://assets/services/medical-clinic.png",
+      "source": "assets/medical-study/clinic/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "medical-hospital",
+      "name": "병원",
+      "group": "medical",
+      "width": 6,
+      "depth": 6,
+      "metres": [
+        24,
+        24
+      ],
+      "length_m": 24,
+      "width_m": 24,
+      "height_m": 13.5,
+      "storeys": 4,
+      "triangles": 1948,
+      "model": "res://assets/services/medical-hospital.glb",
+      "preview": "res://assets/services/medical-hospital.png",
+      "source": "assets/medical-study/hospital/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
+    },
+    {
+      "id": "medical-large-hospital",
+      "name": "대형병원",
+      "group": "medical",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "length_m": 32,
+      "width_m": 32,
+      "height_m": 23.8775,
+      "storeys": 6,
+      "triangles": 5648,
+      "model": "res://assets/services/medical-large-hospital.glb",
+      "preview": "res://assets/services/medical-large-hospital.png",
+      "source": "assets/medical-study/large-hospital/building.blend",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true
     }
   ]
 }

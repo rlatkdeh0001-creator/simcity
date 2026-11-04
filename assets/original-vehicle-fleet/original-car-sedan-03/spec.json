@@ -1,0 +1,32 @@
+{
+  "id": "car-sedan-03",
+  "label": "중형 세단",
+  "category": "citizen",
+  "body_type": "sedan",
+  "length_m": 4.8,
+  "width_m": 1.86,
+  "height_m": 1.48,
+  "color": "#4e657e",
+  "wheel_count": 4,
+  "triangles": 4046,
+  "bounds_blender": {
+    "min": [
+      -1.1050000190734863,
+      -2.442500114440918,
+      0.0
+    ],
+    "max": [
+      1.1050000190734863,
+      2.438999891281128,
+      1.4450000524520874
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-sedan-03.glb",
+  "preview": "res://assets/vehicles/car-sedan-03.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

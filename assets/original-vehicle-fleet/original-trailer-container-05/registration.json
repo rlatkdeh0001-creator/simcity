@@ -1,0 +1,23 @@
+{
+  "id": "original-trailer-container-05",
+  "name": "컨테이너 트레일러 · 원본",
+  "category": "industrial",
+  "style": "container",
+  "length_m": 16.2,
+  "width_m": 2.5,
+  "height_m": 3.85,
+  "triangles": 12706,
+  "model": "res://assets/vehicles/original-trailer-container-05.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "trailer-container-05",
+  "source": "assets/original-vehicle-fleet/original-trailer-container-05/vehicle.blend",
+  "source_sha256": "2d2cef432050952f2ac4ce9f24635d87035aa5b41b8f6d6d82be0903f3d10b5c",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "medical-clinic",
+  "name": "진료소",
+  "category": "medical_service",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "max_storeys": 1,
+  "helicopter_model": false,
+  "rooftop_helipad": false,
+  "rooftop_stair_access": false,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0006,
+    807.2666
+  ],
+  "lot_corners_px": [
+    [
+      72.8771,
+      618.7048
+    ],
+    [
+      450.0006,
+      807.2666
+    ],
+    [
+      827.1243,
+      618.7048
+    ],
+    [
+      450.0008,
+      430.143
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      5.780696392059326
+    ]
+  ],
+  "revision": "white-red-distinct-architecture",
+  "approval_status": "approved",
+  "game_registered": true,
+  "source": "original Blender buildings, ambulance and rescue helicopter; adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved white-red medical design; game integration pending",
+  "palette": "white-with-red-accents",
+  "architecture": "single-storey-gabled-clinic",
+  "registration_scope": "asset catalog and inspector; no operating service simulation"
+}

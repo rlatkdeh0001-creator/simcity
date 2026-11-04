@@ -1,0 +1,23 @@
+{
+  "id": "original-car-sedan-03",
+  "name": "중형 세단 · 원본",
+  "category": "civilian",
+  "style": "sedan",
+  "length_m": 4.8,
+  "width_m": 1.86,
+  "height_m": 1.48,
+  "triangles": 4046,
+  "model": "res://assets/vehicles/original-car-sedan-03.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-sedan-03",
+  "source": "assets/original-vehicle-fleet/original-car-sedan-03/vehicle.blend",
+  "source_sha256": "8ca97da9cfd3629a4864716ef5070d77c1334fd360162f1a7656576fdca8a64e",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

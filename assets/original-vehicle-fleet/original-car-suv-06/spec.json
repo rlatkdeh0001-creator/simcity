@@ -1,0 +1,32 @@
+{
+  "id": "car-suv-06",
+  "label": "대형 SUV",
+  "category": "citizen",
+  "body_type": "suv",
+  "length_m": 4.95,
+  "width_m": 1.98,
+  "height_m": 1.86,
+  "color": "#965d64",
+  "wheel_count": 4,
+  "triangles": 4246,
+  "bounds_blender": {
+    "min": [
+      -1.165000081062317,
+      -2.5174999237060547,
+      0.0
+    ],
+    "max": [
+      1.165000081062317,
+      2.5139999389648438,
+      1.8875000476837158
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-suv-06.glb",
+  "preview": "res://assets/vehicles/car-suv-06.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

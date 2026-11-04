@@ -43,10 +43,10 @@ func run():
   var tools := []
   for child in preview.drawer_box.get_children():
    if child is Button and child.name.begins_with("Tool_"): tools.append(child)
-  verify(tools.size()==(3 if key=="health" else 4),key+" has expected facility entries")
-  verify(tools.all(func(b):return b.disabled or b.name=="Tool_crematorium"),"unavailable services stay disabled")
+  verify(tools.size()==4,key+" has expected facility entries")
+  verify(tools.all(func(b):return not b.disabled),"registered service assets can be inspected")
   if key=="health":
-   tools[2].pressed.emit()
+   tools[3].pressed.emit()
    await process_frame
    var windows=preview.find_children("ServiceAssetPreview","Window",true,false)
    verify(windows.size()==1,"crematorium opens actual model inspector")

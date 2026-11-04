@@ -32,13 +32,14 @@ func show_asset(entry: Dictionary) -> void:
  viewport.add_child(light)
  var camera := Camera3D.new()
  camera.projection=Camera3D.PROJECTION_ORTHOGONAL
- camera.size=24
+ # Camera size is calibrated from the physical footprint, including 8x8 campuses.
+ camera.size=maxf(24.0,Vector2(entry.width*4,entry.depth*4).length()*.62+entry.height_m)
  viewport.add_child(camera)
  camera.position=Vector3(28,25,28)
- camera.look_at(Vector3(0,2.5,0))
+ camera.look_at(Vector3(0,entry.height_m*.4,0))
  camera.current=true
  var label := Label.new()
- label.text="%s · 16 × 16m · 애셋" % entry.name
+ label.text="%s · %d × %dm · 애셋" % [entry.name,entry.width*4,entry.depth*4]
  label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
  column.add_child(label)
  popup_centered()

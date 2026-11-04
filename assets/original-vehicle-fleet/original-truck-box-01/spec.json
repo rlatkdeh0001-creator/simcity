@@ -1,0 +1,32 @@
+{
+  "id": "truck-box-01",
+  "label": "소형 탑차",
+  "category": "industrial",
+  "body_type": "box",
+  "length_m": 6.2,
+  "width_m": 2.25,
+  "height_m": 3.15,
+  "color": "#e0dfcf",
+  "wheel_count": 4,
+  "triangles": 6298,
+  "bounds_blender": {
+    "min": [
+      -1.3000000715255737,
+      -3.198500156402588,
+      0.0
+    ],
+    "max": [
+      1.3000000715255737,
+      3.1389999389648438,
+      3.1500000953674316
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/truck-box-01.glb",
+  "preview": "res://assets/vehicles/truck-box-01.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

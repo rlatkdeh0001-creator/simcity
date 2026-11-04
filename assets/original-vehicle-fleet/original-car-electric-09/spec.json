@@ -1,0 +1,32 @@
+{
+  "id": "car-electric-09",
+  "label": "전기 세단",
+  "category": "citizen",
+  "body_type": "electric",
+  "length_m": 4.62,
+  "width_m": 1.86,
+  "height_m": 1.52,
+  "color": "#8e82a8",
+  "wheel_count": 4,
+  "triangles": 4154,
+  "bounds_blender": {
+    "min": [
+      -1.1050000190734863,
+      -2.3545000553131104,
+      0.0
+    ],
+    "max": [
+      1.1050000190734863,
+      2.3489999771118164,
+      1.4850000143051147
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-electric-09.glb",
+  "preview": "res://assets/vehicles/car-electric-09.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

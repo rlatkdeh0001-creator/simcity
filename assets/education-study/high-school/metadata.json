@@ -1,0 +1,63 @@
+{
+  "id": "high-school",
+  "name": "고등학교",
+  "category": "education_service",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "user-specified",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "max_storeys": 3,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0006,
+    833.3926
+  ],
+  "lot_corners_px": [
+    [
+      94.427,
+      655.6058
+    ],
+    [
+      450.0006,
+      833.3926
+    ],
+    [
+      805.5744,
+      655.6058
+    ],
+    [
+      450.0008,
+      477.8189
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      8.569999694824219
+    ]
+  ],
+  "campus_buildings": 3,
+  "revision": "dense-school-and-multi-building-campus",
+  "approval_status": "approved",
+  "game_registered": true,
+  "source": "original Blender geometry, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "educational visual concept only; enrolment, education and traffic simulation not implemented",
+  "registration_scope": "asset catalog and inspector; no operating service simulation"
+}

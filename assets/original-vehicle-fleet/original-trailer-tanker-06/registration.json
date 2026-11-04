@@ -1,0 +1,23 @@
+{
+  "id": "original-trailer-tanker-06",
+  "name": "탱크 트레일러 · 원본",
+  "category": "industrial",
+  "style": "tanker",
+  "length_m": 15.4,
+  "width_m": 2.5,
+  "height_m": 3.6,
+  "triangles": 6990,
+  "model": "res://assets/vehicles/original-trailer-tanker-06.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "trailer-tanker-06",
+  "source": "assets/original-vehicle-fleet/original-trailer-tanker-06/vehicle.blend",
+  "source_sha256": "3b2cc55e4c6f2ba70a2d041e4045f1eb970514e905af78f7d19cfb9bf3e2acfb",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "trailer-tanker-06",
+  "label": "탱크 트레일러",
+  "category": "industrial",
+  "body_type": "tanker",
+  "length_m": 15.4,
+  "width_m": 2.5,
+  "height_m": 3.6,
+  "color": "#567b68",
+  "wheel_count": 10,
+  "triangles": 6990,
+  "bounds_blender": {
+    "min": [
+      -1.4250000715255737,
+      -7.798499584197998,
+      0.0
+    ],
+    "max": [
+      1.4250000715255737,
+      7.73900032043457,
+      3.3999998569488525
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/trailer-tanker-06.glb",
+  "preview": "res://assets/vehicles/trailer-tanker-06.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

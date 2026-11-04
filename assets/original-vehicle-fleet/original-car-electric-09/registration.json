@@ -1,0 +1,23 @@
+{
+  "id": "original-car-electric-09",
+  "name": "전기 세단 · 원본",
+  "category": "civilian",
+  "style": "electric",
+  "length_m": 4.62,
+  "width_m": 1.86,
+  "height_m": 1.52,
+  "triangles": 4154,
+  "model": "res://assets/vehicles/original-car-electric-09.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-electric-09",
+  "source": "assets/original-vehicle-fleet/original-car-electric-09/vehicle.blend",
+  "source_sha256": "d31434e769edf23bca7ba1e2107258d0545166b15685159db846d634c6f611eb",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

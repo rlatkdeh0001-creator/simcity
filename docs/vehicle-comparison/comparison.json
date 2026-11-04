@@ -1,0 +1,626 @@
+{
+  "remote_commit": "e4a8c1d2073fefaf83221403d8675371f1638e11",
+  "original_count": 20,
+  "registered_count": 23,
+  "same_ids": 20,
+  "identical_files": 0,
+  "identical_mesh_buffers": 0,
+  "pairs": [
+    {
+      "id": "bus-city-01",
+      "label": "시내버스",
+      "original": {
+        "id": "bus-city-01",
+        "label": "시내버스",
+        "model": "res://models/original/bus-city-01.glb",
+        "length_m": 12.0,
+        "width_m": 2.5,
+        "height_m": 3.2,
+        "triangles": 7508,
+        "sha256": "a9bd747eaa99df825a6f559ea7f3ddfe4c860802e1c28d62476f64bed59d6e43",
+        "mesh_buffer_sha256": "ff4eb9d74c60a804b4499f7d300c889a1846e25bbb1fe66f39777eb8f028c8a9"
+      },
+      "registered": {
+        "id": "bus-city-01",
+        "label": "시내버스",
+        "model": "res://models/registered/bus-city-01.glb",
+        "length_m": 10.8,
+        "width_m": 2.5,
+        "height_m": 3.15,
+        "triangles": 2340,
+        "sha256": "ff4241568d47c745a815758cb1aa979454f7932e383e25f96697238c8ad49151",
+        "mesh_buffer_sha256": "7274f88f71527e431f6fe44c98d63aca5ff3a3e125bf171739bcda74f62a54a8"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "taxi-sedan-01",
+      "label": "택시",
+      "original": {
+        "id": "taxi-sedan-01",
+        "label": "택시",
+        "model": "res://models/original/taxi-sedan-01.glb",
+        "length_m": 4.65,
+        "width_m": 1.82,
+        "height_m": 1.62,
+        "triangles": 4498,
+        "sha256": "fd435165065b444446b1bd319d51015f49bd7558f7d5e85dc4c6e8bc3079c412",
+        "mesh_buffer_sha256": "f8b2194571a7785878581c9e2cb4b22ed99386a9ac74f21f233061ad31401f3e"
+      },
+      "registered": {
+        "id": "taxi-sedan-01",
+        "label": "택시",
+        "model": "res://models/registered/taxi-sedan-01.glb",
+        "length_m": 4.65,
+        "width_m": 1.82,
+        "height_m": 1.5,
+        "triangles": 2384,
+        "sha256": "0c240611de4476fb1e7450190fbfbd24b132a8bacd7c1afd10d4c357c99de3a4",
+        "mesh_buffer_sha256": "269b9a2fd90c899a1053bb281dad1caf2afcea4bf62da0f51f7c21b0cc300889"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-hatch-01",
+      "label": "소형 해치백",
+      "original": {
+        "id": "car-hatch-01",
+        "label": "소형 해치백",
+        "model": "res://models/original/car-hatch-01.glb",
+        "length_m": 3.6,
+        "width_m": 1.65,
+        "height_m": 1.5,
+        "triangles": 4030,
+        "sha256": "afc504a15b986726dab27c278f02b043fbb58e1aef9911581aca7fe3041b37e1",
+        "mesh_buffer_sha256": "a21f3a87c643b7dde639db976aec3cb2c86c67d930059edf4bd40645ba4178a0"
+      },
+      "registered": {
+        "id": "car-hatch-01",
+        "label": "소형 해치백",
+        "model": "res://models/registered/car-hatch-01.glb",
+        "length_m": 3.65,
+        "width_m": 1.64,
+        "height_m": 1.49,
+        "triangles": 1724,
+        "sha256": "72ee99f45aec6e5ff467e95fd4fd81fd314dbcfe97572d1aeda673b194e125b0",
+        "mesh_buffer_sha256": "dfd914ef0b3768fcea5d07ad9373d896e94ae30d8e99d27f921a3d7dbba532da"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-compact-02",
+      "label": "준중형 세단",
+      "original": {
+        "id": "car-compact-02",
+        "label": "준중형 세단",
+        "model": "res://models/original/car-compact-02.glb",
+        "length_m": 4.35,
+        "width_m": 1.76,
+        "height_m": 1.43,
+        "triangles": 4046,
+        "sha256": "4d4bd23cf4e348710edee5fae0369e7291402f031f0776d4cae57d82bff8a4aa",
+        "mesh_buffer_sha256": "67d14884e354fae7be0bf55c093298230c47d9161a690e58d60312bf276596da"
+      },
+      "registered": {
+        "id": "car-compact-02",
+        "label": "준중형 세단",
+        "model": "res://models/registered/car-compact-02.glb",
+        "length_m": 4.35,
+        "width_m": 1.76,
+        "height_m": 1.43,
+        "triangles": 1724,
+        "sha256": "242da789de9679ed31b52d974130506df2e57adb45072ba52b00aba54b611921",
+        "mesh_buffer_sha256": "14c1e7f90aba2ced528f50af02b9b309b2533c5b9d1654ee7ffce17d293eccc4"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-sedan-03",
+      "label": "중형 세단",
+      "original": {
+        "id": "car-sedan-03",
+        "label": "중형 세단",
+        "model": "res://models/original/car-sedan-03.glb",
+        "length_m": 4.8,
+        "width_m": 1.86,
+        "height_m": 1.48,
+        "triangles": 4046,
+        "sha256": "8ca97da9cfd3629a4864716ef5070d77c1334fd360162f1a7656576fdca8a64e",
+        "mesh_buffer_sha256": "b49c508d0fdbc677fb1e26617e72af2e9973f0df5c55de1acdbb70df2ac662b1"
+      },
+      "registered": {
+        "id": "car-sedan-03",
+        "label": "중형 세단",
+        "model": "res://models/registered/car-sedan-03.glb",
+        "length_m": 4.85,
+        "width_m": 1.87,
+        "height_m": 1.48,
+        "triangles": 1724,
+        "sha256": "7fd3c32d75a0531e44ff2f42e925aa56405a54c3904cbcb5391d07ca32500c08",
+        "mesh_buffer_sha256": "4adff507348ed0d7bb2f9ab02afbc86ad3890670360e3ffb1d5df65e0b068d6f"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-wagon-04",
+      "label": "스테이션 왜건",
+      "original": {
+        "id": "car-wagon-04",
+        "label": "스테이션 왜건",
+        "model": "res://models/original/car-wagon-04.glb",
+        "length_m": 4.65,
+        "width_m": 1.82,
+        "height_m": 1.53,
+        "triangles": 4262,
+        "sha256": "8aaf8d38ce3770c877705d1cc6d1558838a3a6303eb41af7b3f367c8b3c6573b",
+        "mesh_buffer_sha256": "ac8890340350cc5ff3c83e5f569198c55f8971a1e1db9177828ef59466b6f62a"
+      },
+      "registered": {
+        "id": "car-wagon-04",
+        "label": "스테이션왜건",
+        "model": "res://models/registered/car-wagon-04.glb",
+        "length_m": 4.75,
+        "width_m": 1.83,
+        "height_m": 1.52,
+        "triangles": 1812,
+        "sha256": "55f452969bc900127cd9d309af6a22dba379ce39b7435f705f106c731089f524",
+        "mesh_buffer_sha256": "5ee657a2fe92a33f63b9762d73b60c554090e1cb79a807dcd3a7124bcab5eff6"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-crossover-05",
+      "label": "크로스오버",
+      "original": {
+        "id": "car-crossover-05",
+        "label": "크로스오버",
+        "model": "res://models/original/car-crossover-05.glb",
+        "length_m": 4.35,
+        "width_m": 1.83,
+        "height_m": 1.65,
+        "triangles": 4230,
+        "sha256": "421ccc2f00fd8996d52a45091d0d6d266bf8e32c26f638427c92287d53844266",
+        "mesh_buffer_sha256": "2c3afec753a773128e89af08a9a3a6ca705ab21d47859eac8d2feb15ad6bbad9"
+      },
+      "registered": {
+        "id": "car-crossover-05",
+        "label": "크로스오버",
+        "model": "res://models/registered/car-crossover-05.glb",
+        "length_m": 4.35,
+        "width_m": 1.82,
+        "height_m": 1.65,
+        "triangles": 1812,
+        "sha256": "ed4befbe928c18913d5b093419b6fb426bc240df9715e2bd4ce74ade745a14e5",
+        "mesh_buffer_sha256": "d99d4a6637533e5583152088ed18ad4efe1e2b66c9faaec155963a9a38180f8d"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-suv-06",
+      "label": "대형 SUV",
+      "original": {
+        "id": "car-suv-06",
+        "label": "대형 SUV",
+        "model": "res://models/original/car-suv-06.glb",
+        "length_m": 4.95,
+        "width_m": 1.98,
+        "height_m": 1.86,
+        "triangles": 4246,
+        "sha256": "c67359bee593842777fe1103fe9eee16545737fd1193d9be878120d81ef76763",
+        "mesh_buffer_sha256": "7c7ea77370d6bf3ab021a193b2695048bc8790c34eb9a0004fe35a4badc03a60"
+      },
+      "registered": {
+        "id": "car-suv-06",
+        "label": "대형 SUV",
+        "model": "res://models/registered/car-suv-06.glb",
+        "length_m": 5.05,
+        "width_m": 2.0,
+        "height_m": 1.88,
+        "triangles": 1812,
+        "sha256": "7c1429583a458ee6d417e51595cce3c8fb8d2f2b6dcea8638bf9a41a1fb23f10",
+        "mesh_buffer_sha256": "1efb03943e5c86c945e3d96d11eb29ddbae12e8255acbc890e2db3f9f6441e06"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-coupe-07",
+      "label": "스포츠 쿠페",
+      "original": {
+        "id": "car-coupe-07",
+        "label": "스포츠 쿠페",
+        "model": "res://models/original/car-coupe-07.glb",
+        "length_m": 4.42,
+        "width_m": 1.88,
+        "height_m": 1.25,
+        "triangles": 4154,
+        "sha256": "b70605d0d8d7d309f76a97881a97a2fd17afa704be96affbddd44aa193bbbe1a",
+        "mesh_buffer_sha256": "18dd1accec6e489995686645f17ea6bf20d2cf751b4dfcc9e355098a8420defd"
+      },
+      "registered": {
+        "id": "car-coupe-07",
+        "label": "스포츠쿠페",
+        "model": "res://models/registered/car-coupe-07.glb",
+        "length_m": 4.45,
+        "width_m": 1.88,
+        "height_m": 1.23,
+        "triangles": 1724,
+        "sha256": "8f7f2172706efaab324c8791968ca442d7362f8efac9a8b39acbb1d80cd0155d",
+        "mesh_buffer_sha256": "ccc2801c6681775fa7aab281b1f2d4c42f87df83c97b5f5802bddaa19be3537f"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-minivan-08",
+      "label": "패밀리 미니밴",
+      "original": {
+        "id": "car-minivan-08",
+        "label": "패밀리 미니밴",
+        "model": "res://models/original/car-minivan-08.glb",
+        "length_m": 5.1,
+        "width_m": 1.92,
+        "height_m": 1.83,
+        "triangles": 4046,
+        "sha256": "780ef5ecec7a3c4d5a2a6d46dd2859c357e9a56898f34b50f16ef4c9a4f29eab",
+        "mesh_buffer_sha256": "2ca36f3d202bd61c9cace4b3d1da155f6d3fcd4112ce03cd4f10c013404e3b58"
+      },
+      "registered": {
+        "id": "car-minivan-08",
+        "label": "패밀리 미니밴",
+        "model": "res://models/registered/car-minivan-08.glb",
+        "length_m": 4.95,
+        "width_m": 1.9,
+        "height_m": 1.85,
+        "triangles": 1724,
+        "sha256": "ea14bd26c1821e6a6d7140cb5d715166a1f6ded2ebad6d067cb232c00806ce10",
+        "mesh_buffer_sha256": "121e2ff2a32295dec0ed1db719babd32dab7f54701f465ee16268e1e3a1ca62d"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-electric-09",
+      "label": "전기 세단",
+      "original": {
+        "id": "car-electric-09",
+        "label": "전기 세단",
+        "model": "res://models/original/car-electric-09.glb",
+        "length_m": 4.62,
+        "width_m": 1.86,
+        "height_m": 1.52,
+        "triangles": 4154,
+        "sha256": "d31434e769edf23bca7ba1e2107258d0545166b15685159db846d634c6f611eb",
+        "mesh_buffer_sha256": "c4458ec080145acfd62758346c5cf43225e8545c12c2539bf718e30fc20137f1"
+      },
+      "registered": {
+        "id": "car-electric-09",
+        "label": "전기 세단",
+        "model": "res://models/registered/car-electric-09.glb",
+        "length_m": 4.7,
+        "width_m": 1.86,
+        "height_m": 1.45,
+        "triangles": 1768,
+        "sha256": "fec5b6a0d21356366c035c1dcfb9236fdef6a19a76805629d665e3c0d94f79d4",
+        "mesh_buffer_sha256": "9363a8e75a47bb5c76db2e3ef45d6687b10e3112589637f7b2103cf1e9490e56"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "car-pickup-10",
+      "label": "레저 픽업",
+      "original": {
+        "id": "car-pickup-10",
+        "label": "레저 픽업",
+        "model": "res://models/original/car-pickup-10.glb",
+        "length_m": 5.35,
+        "width_m": 1.98,
+        "height_m": 1.8,
+        "triangles": 4462,
+        "sha256": "b6c97f0410cb0e286b1bb1aeedcebac7a7a0999856b0a77908c8d3042fd1cfce",
+        "mesh_buffer_sha256": "bf9c5e3b1ce2c2285b2621d94861859086832e6e6011b72482500ca2fb2314ef"
+      },
+      "registered": {
+        "id": "car-pickup-10",
+        "label": "레저 픽업",
+        "model": "res://models/registered/car-pickup-10.glb",
+        "length_m": 5.25,
+        "width_m": 1.95,
+        "height_m": 1.82,
+        "triangles": 1900,
+        "sha256": "4fc01520d11331ff8acf088da211559f6ab92d430f55a8a6ca3c7daf66359784",
+        "mesh_buffer_sha256": "796b722269e8b54a51e7314d4ddefac85002a72e78f65fb6b1adffce7c921c12"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-box-01",
+      "label": "소형 탑차",
+      "original": {
+        "id": "truck-box-01",
+        "label": "소형 탑차",
+        "model": "res://models/original/truck-box-01.glb",
+        "length_m": 6.2,
+        "width_m": 2.25,
+        "height_m": 3.15,
+        "triangles": 6298,
+        "sha256": "40d192903164c7a57f2a215a901b7cd099f3d1f89cf43793bbed50831b63595e",
+        "mesh_buffer_sha256": "e91654bb674e4a5772db56efe75f868815dff2b466dcded1fe6c9c8e207e24f4"
+      },
+      "registered": {
+        "id": "truck-box-01",
+        "label": "소형 탑차",
+        "model": "res://models/registered/truck-box-01.glb",
+        "length_m": 6.1,
+        "width_m": 2.15,
+        "height_m": 3.05,
+        "triangles": 1812,
+        "sha256": "e8373cb4abb0951fbf121195880030d62313625314a343dade35180bd109ef69",
+        "mesh_buffer_sha256": "a1f27b18b0bebb2d4bc88cc14bec14ed200006dc0dea797c9185cbd7f7fd595f"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-flatbed-02",
+      "label": "평판 트럭",
+      "original": {
+        "id": "truck-flatbed-02",
+        "label": "평판 트럭",
+        "model": "res://models/original/truck-flatbed-02.glb",
+        "length_m": 7.45,
+        "width_m": 2.45,
+        "height_m": 2.85,
+        "triangles": 6406,
+        "sha256": "2f81049b6bd1ffc0548b225a0109d830504badab2910961709bdf807a8dfdc05",
+        "mesh_buffer_sha256": "b8382a0102478da6a495472274ffb940c78389da954c8bf71435c08baac4dbfa"
+      },
+      "registered": {
+        "id": "truck-flatbed-02",
+        "label": "평판트럭",
+        "model": "res://models/registered/truck-flatbed-02.glb",
+        "length_m": 7.4,
+        "width_m": 2.35,
+        "height_m": 2.85,
+        "triangles": 2340,
+        "sha256": "26f1d7c9108298728e47c08850b60f304eaa64c5ec76510e4a20fa25b7932094",
+        "mesh_buffer_sha256": "5c1f5a16dae0d0707adb4f9c6ba11b89cc67033649f8e3d4a26a9c82cb840996"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-fridge-03",
+      "label": "냉동 트럭",
+      "original": {
+        "id": "truck-fridge-03",
+        "label": "냉동 트럭",
+        "model": "res://models/original/truck-fridge-03.glb",
+        "length_m": 8.15,
+        "width_m": 2.48,
+        "height_m": 3.45,
+        "triangles": 8270,
+        "sha256": "b9821efdd4d079532510968fa4c735943c96620657899e39384692ce4555d768",
+        "mesh_buffer_sha256": "5f4d4e3af57278a06991beb11a1e600973f02bdf8ba732825d8a8b8b237d1c19"
+      },
+      "registered": {
+        "id": "truck-fridge-03",
+        "label": "냉동트럭",
+        "model": "res://models/registered/truck-fridge-03.glb",
+        "length_m": 7.0,
+        "width_m": 2.35,
+        "height_m": 3.35,
+        "triangles": 1944,
+        "sha256": "53965dfca252444a6673c60d1fe03bc7f67ca1cfe75998ee6feb571185577bd1",
+        "mesh_buffer_sha256": "f293fb1245c0e90cb52563d58abcc3cd4be18410c8ded32a4fb55131276993f2"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-mixer-04",
+      "label": "콘크리트 믹서",
+      "original": {
+        "id": "truck-mixer-04",
+        "label": "콘크리트 믹서",
+        "model": "res://models/original/truck-mixer-04.glb",
+        "length_m": 8.4,
+        "width_m": 2.5,
+        "height_m": 3.5,
+        "triangles": 5326,
+        "sha256": "e35c29547d2f4222401469f161ef6f52cfa10d873bf6fa00e8bf545c0633dfc2",
+        "mesh_buffer_sha256": "4a25e5575bf2ad3780638d6a10288521c23cb0f219031f7f15593474a7bbaa3b"
+      },
+      "registered": {
+        "id": "truck-mixer-04",
+        "label": "콘크리트 믹서",
+        "model": "res://models/registered/truck-mixer-04.glb",
+        "length_m": 8.2,
+        "width_m": 2.48,
+        "height_m": 3.45,
+        "triangles": 2560,
+        "sha256": "b12269d2246c8941cefba1acfc59b53d5e44b9973d93605ded213c7bf4b9050d",
+        "mesh_buffer_sha256": "24bf348bfb56fd4f431b5379ed25157bf080301ff754fa995f47bbf4f1ed6f23"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "trailer-container-05",
+      "label": "컨테이너 트레일러",
+      "original": {
+        "id": "trailer-container-05",
+        "label": "컨테이너 트레일러",
+        "model": "res://models/original/trailer-container-05.glb",
+        "length_m": 16.2,
+        "width_m": 2.5,
+        "height_m": 3.85,
+        "triangles": 12706,
+        "sha256": "2d2cef432050952f2ac4ce9f24635d87035aa5b41b8f6d6d82be0903f3d10b5c",
+        "mesh_buffer_sha256": "0e3cefa31a4857475115145ceee0655bd0114152e7c9cb9bd7b055fc91ffb246"
+      },
+      "registered": {
+        "id": "trailer-container-05",
+        "label": "컨테이너 트레일러",
+        "model": "res://models/registered/trailer-container-05.glb",
+        "length_m": 15.5,
+        "width_m": 2.5,
+        "height_m": 3.9,
+        "triangles": 7144,
+        "sha256": "4ce269ff19750e061d078c56dc7e0ac86941b647858d21ebe2db4f262d9c629d",
+        "mesh_buffer_sha256": "ef6ba4944f57a8f8e183c0542f4ea5547a9781f9ccd3e0b2ba7622df07d3a5e0"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "trailer-tanker-06",
+      "label": "탱크 트레일러",
+      "original": {
+        "id": "trailer-tanker-06",
+        "label": "탱크 트레일러",
+        "model": "res://models/original/trailer-tanker-06.glb",
+        "length_m": 15.4,
+        "width_m": 2.5,
+        "height_m": 3.6,
+        "triangles": 6990,
+        "sha256": "3b2cc55e4c6f2ba70a2d041e4045f1eb970514e905af78f7d19cfb9bf3e2acfb",
+        "mesh_buffer_sha256": "064fa0d3c9dd85418de404172bd4ea2f0395f8bc461e5a77fa05afe047b83923"
+      },
+      "registered": {
+        "id": "trailer-tanker-06",
+        "label": "탱크 트레일러",
+        "model": "res://models/registered/trailer-tanker-06.glb",
+        "length_m": 14.6,
+        "width_m": 2.5,
+        "height_m": 3.7,
+        "triangles": 3140,
+        "sha256": "bb9227c2aba63efaec2eb229e4972833fcefdb5cf9d933c7dc179f0c062ff565",
+        "mesh_buffer_sha256": "cbe4708de197d0c8a26e564f524858d568d1513c3d1e3abf6a317d46a73298be"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-dump-07",
+      "label": "중형 덤프트럭",
+      "original": {
+        "id": "truck-dump-07",
+        "label": "중형 덤프트럭",
+        "model": "res://models/original/truck-dump-07.glb",
+        "length_m": 7.8,
+        "width_m": 2.5,
+        "height_m": 3.15,
+        "triangles": 6586,
+        "sha256": "7f7fbc0714ca77c89d1648e09f6a6ecc854175c606ff88558a685e99745d6018",
+        "mesh_buffer_sha256": "383c6552be5eb3d626d5228fee2031db8f4051411a1d4e21ba33536e87772cc6"
+      },
+      "registered": {
+        "id": "truck-dump-07",
+        "label": "중형 덤프트럭",
+        "model": "res://models/registered/truck-dump-07.glb",
+        "length_m": 7.25,
+        "width_m": 2.4,
+        "height_m": 3.0,
+        "triangles": 2828,
+        "sha256": "82c0722e3360d5b66f8ac77fc5ba231d84e8599e5c546feac0a6fdc79b15226a",
+        "mesh_buffer_sha256": "5afa38c213b876a9563bfb752ec1400f05d497b95699e7bca46159002b61ec0c"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    },
+    {
+      "id": "truck-heavy-dump-08",
+      "label": "대형 덤프트럭",
+      "original": {
+        "id": "truck-heavy-dump-08",
+        "label": "대형 덤프트럭",
+        "model": "res://models/original/truck-heavy-dump-08.glb",
+        "length_m": 9.6,
+        "width_m": 2.6,
+        "height_m": 3.55,
+        "triangles": 7290,
+        "sha256": "9c9f4b10260618f85ebe1f1d4df472cf4af9f329ca38a9b92303350d66f47cc3",
+        "mesh_buffer_sha256": "e01d741ff68aa700318899beb116e41e03c0b71d37d99770c8b5a8d454f9a095"
+      },
+      "registered": {
+        "id": "truck-heavy-dump-08",
+        "label": "대형 덤프트럭",
+        "model": "res://models/registered/truck-heavy-dump-08.glb",
+        "length_m": 9.2,
+        "width_m": 2.9,
+        "height_m": 3.65,
+        "triangles": 2828,
+        "sha256": "1be043613a99d7a8bfb2932e46ef13edb4a5ee306bd86f1014b408da22ea32fb",
+        "mesh_buffer_sha256": "21a79f3821706839b8f9791c893fe31def25f7658835471e83bc53cd1f2f7d06"
+      },
+      "same_id": true,
+      "identical_file": false,
+      "identical_mesh_buffer": false
+    }
+  ],
+  "registered_only": [
+    {
+      "id": "fire-engine-01",
+      "label": "소방차",
+      "model": "res://models/registered/fire-engine-01.glb",
+      "length_m": 7.6,
+      "width_m": 2.35,
+      "height_m": 2.95,
+      "triangles": 4336,
+      "sha256": "06c649130c6dab0ebe94e0edd5dfc1157484026a84ca77fcef3aa77fd61ec9c2",
+      "mesh_buffer_sha256": "1abc25a9f87bc57a1f75fa5d780620f6700fe0f89300c72f515db260a5a48847"
+    },
+    {
+      "id": "police-car-01",
+      "label": "경찰차",
+      "model": "res://models/registered/police-car-01.glb",
+      "length_m": 4.85,
+      "width_m": 1.87,
+      "height_m": 1.48,
+      "triangles": 2032,
+      "sha256": "51c7e32c03a5f76a02a0bbfeb5e14f2cf218dd2896ce2cc14b0142846553c8e2",
+      "mesh_buffer_sha256": "1225a7b2f6b982ee311c099337ff861a2ca190c547b35b8dcaee4f9f4ed3dfaf"
+    },
+    {
+      "id": "hearse-01",
+      "label": "운구차",
+      "model": "res://models/registered/hearse-01.glb",
+      "length_m": 5.5,
+      "width_m": 1.95,
+      "height_m": 1.85,
+      "triangles": 2912,
+      "sha256": "c6183ba5ab6181211c310040dd750be813301081b0c372c65b60c998808fa87a",
+      "mesh_buffer_sha256": "c0e802553bbb92a7dd3812c61befe014baef15f931a98578462e116ab0a92520"
+    }
+  ],
+  "decision": "Approved: preserve all 23 registered vehicles; omit original bus/taxi; add remaining 18 originals under separate IDs."
+}

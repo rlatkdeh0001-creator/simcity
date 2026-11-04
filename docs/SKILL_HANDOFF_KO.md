@@ -6,6 +6,28 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 최신 작업: 기존 차량 보존·원본 18종 및 교육/의료 회수 (2026-11-04 KST)
+
+기존 오프라인 환경이 복구됐다. 전체 디렉터리/.git 백업+해시 확인과 stash 뒤 기존 체크아웃을
+main e4a8c1d로 fast-forward했다. [실제 변경·재현·한계·검증](recovered-assets-validation/README_KO.md).
+원본과 현재 등록본을 동일 카메라/조명/쌍별 축척으로 비교해 20쌍이 다른 모델임을 확인했다.
+사용자 결정은 기존 23종 유지, 원본 버스·택시 제외, 나머지 원본 18종 추가이며 최종 사용자 요청으로 커밋·푸시한다.
+
+기존 cities-do-vehicles/SKILL.md, vehicle/SKILL.md·rig-contract, cities-do-construction,
+godot-gdscript 및 godot-gdscript-headless-testing 지침을 읽고 적용했다. 외부 원본 스킬은 수정하지 않았다.
+vehicle 출처 https://github.com/duolahypercho/zstack, 고정 74f7786e9931b9ced858a0e2df880f23e4c2430e, MIT.
+GDScript 두 스킬의 기존 고정 출처/Apache-2.0 NOTICE는 그대로다. 새 외부 스킬 설치는 없다.
+이번에는 기존 제작된 18종을 회수·등록·방향 렌더링했으며 common.py 제작 파이프라인/실차IoU/
+문개폐/충돌 게이트를 새로 실행한 것이 아니다. 교육·의료는 회수 .blend를 열어 GLB로 내보냈다.
+
+새 경로 assets/original-vehicle-fleet, tools/{capture_original_vehicle_sprites.gd,
+register_original_vehicle_sprites.py,export_recovered_services.py}, vehicles original-*와 services 7종.
+메뉴/전시/traffic civilian 후보/검증기를 연결했다. 카탈로그41·Blender41·GLB41·PNG328 구조 검사,
+기존 230파일 해시 보존, 11스크립트 통과(차량308/308·회수애셋38/38), 실제 교육·의료7종 화면 확인.
+기존 23종 모델 재제작과 전체 upstream 게이트, 대량 성능/시설운영·도시 배치는 실행/구현하지 않았다.
+등록이 가격 승인/새 과금이라는 뜻은 아니다. 기존 미승인 PRICE/CAPACITY 제안은 유지했다.
+초기 검사/수정과 명령은 링크한 보고서와 로그를 확인한다. 최종 사용자 지시에 따라 관련 소스·스킬 인계장·검증을 함께 커밋·푸시한다.
+
 ## 최신 작업: 사용자 피드백 재발 방지 기록 (2026-11-03 KST)
 
 사용자 요청으로 저장소 루트 [mistake.md](../mistake.md)를 신설했다. 과거 확인된 접도/

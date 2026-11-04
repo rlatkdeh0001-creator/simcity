@@ -1,0 +1,32 @@
+{
+  "id": "truck-flatbed-02",
+  "label": "평판 트럭",
+  "category": "industrial",
+  "body_type": "flatbed",
+  "length_m": 7.45,
+  "width_m": 2.45,
+  "height_m": 2.85,
+  "color": "#4f7c9d",
+  "wheel_count": 4,
+  "triangles": 6406,
+  "bounds_blender": {
+    "min": [
+      -1.4000000953674316,
+      -3.823500156402588,
+      0.0
+    ],
+    "max": [
+      1.4000000953674316,
+      3.7639999389648438,
+      2.450000047683716
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/truck-flatbed-02.glb",
+  "preview": "res://assets/vehicles/truck-flatbed-02.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

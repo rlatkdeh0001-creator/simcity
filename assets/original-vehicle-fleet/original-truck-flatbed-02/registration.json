@@ -1,0 +1,23 @@
+{
+  "id": "original-truck-flatbed-02",
+  "name": "평판 트럭 · 원본",
+  "category": "industrial",
+  "style": "flatbed",
+  "length_m": 7.45,
+  "width_m": 2.45,
+  "height_m": 2.85,
+  "triangles": 6406,
+  "model": "res://assets/vehicles/original-truck-flatbed-02.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "truck-flatbed-02",
+  "source": "assets/original-vehicle-fleet/original-truck-flatbed-02/vehicle.blend",
+  "source_sha256": "2f81049b6bd1ffc0548b225a0109d830504badab2910961709bdf807a8dfdc05",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

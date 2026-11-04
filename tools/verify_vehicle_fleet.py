@@ -11,6 +11,8 @@ import struct
 
 IDS = "bus-city-01 taxi-sedan-01 car-hatch-01 car-compact-02 car-sedan-03 car-wagon-04 car-crossover-05 car-suv-06 car-coupe-07 car-minivan-08 car-electric-09 car-pickup-10 truck-box-01 truck-flatbed-02 truck-fridge-03 truck-mixer-04 trailer-container-05 trailer-tanker-06 truck-dump-07 truck-heavy-dump-08 fire-engine-01 police-car-01 hearse-01".split()
 
+IDS += ["original-"+ident for ident in IDS if ident.startswith(("car-", "truck-", "trailer-"))]
+
 
 def audit(root):
     from PIL import Image
@@ -54,14 +56,15 @@ def audit(root):
         except (ValueError, OSError, struct.error) as e:
             failures.append(f"invalid: {path}: {e}")
     for asset in IDS:
-        check(f'assets/vehicle-fleet/{asset}/vehicle.blend', 'blend')
-        check(f'assets/vehicle-fleet/{asset}/spec.json', 'json')
+        source = 'original-vehicle-fleet' if asset.startswith('original-') else 'vehicle-fleet'
+        check(f'assets/{source}/{asset}/vehicle.blend', 'blend')
+        check(f'assets/{source}/{asset}/spec.json', 'json')
         check(f'cities_do/assets/vehicles/{asset}.glb', 'glb')
         for angle in range(0, 360, 45):
             check(f'cities_do/assets/vehicles/sprites/{asset}/{angle:03}.png', 'sprites')
     for name in ['catalog.json', 'render_manifest.json']:
         check('cities_do/assets/vehicles/' + name, 'json')
-    return {'valid_files': counts, 'expected': {'blend': 23, 'glb': 23, 'sprites': 184},
+    return {'valid_files': counts, 'expected': {'blend': len(IDS), 'glb': len(IDS), 'sprites': len(IDS)*8},
             'passed': not failures, 'failures': failures,
             'scope': 'Structural audit only; does not validate pivots, scale, visual design, mesh integrity or Godot import.'}
 

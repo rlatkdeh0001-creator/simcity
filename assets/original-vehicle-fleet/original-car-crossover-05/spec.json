@@ -1,0 +1,32 @@
+{
+  "id": "car-crossover-05",
+  "label": "크로스오버",
+  "category": "citizen",
+  "body_type": "crossover",
+  "length_m": 4.35,
+  "width_m": 1.83,
+  "height_m": 1.65,
+  "color": "#ce8760",
+  "wheel_count": 4,
+  "triangles": 4230,
+  "bounds_blender": {
+    "min": [
+      -1.090000033378601,
+      -2.2174999713897705,
+      0.0
+    ],
+    "max": [
+      1.090000033378601,
+      2.2139999866485596,
+      1.6775000095367432
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-crossover-05.glb",
+  "preview": "res://assets/vehicles/car-crossover-05.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

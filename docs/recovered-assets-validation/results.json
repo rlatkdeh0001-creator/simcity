@@ -1,0 +1,88 @@
+[
+  {
+    "test": "test_city",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 24/24 passed"
+    ]
+  },
+  {
+    "test": "test_ui",
+    "exit_code": 0,
+    "passed": true,
+    "results": []
+  },
+  {
+    "test": "test_building_assets",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 25/25 asset checks passed"
+    ]
+  },
+  {
+    "test": "test_roads_zoning",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 18/18 road/zoning checks passed"
+    ]
+  },
+  {
+    "test": "test_showcase",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 26/26 showcase checks passed"
+    ]
+  },
+  {
+    "test": "test_road_parcels",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 18/18 road-local checks passed"
+    ]
+  },
+  {
+    "test": "test_vehicles",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 308/308 vehicle checks passed"
+    ]
+  },
+  {
+    "test": "test_traffic",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 43/43 traffic checks passed"
+    ]
+  },
+  {
+    "test": "test_service_assets",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 9/9 service asset checks passed"
+    ]
+  },
+  {
+    "test": "test_bottom_ui",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 36/36 bottom UI checks passed"
+    ]
+  },
+  {
+    "test": "test_recovered_assets",
+    "exit_code": 0,
+    "passed": true,
+    "results": [
+      "RESULT 38/38 recovered asset checks passed"
+    ]
+  }
+]

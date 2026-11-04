@@ -1,0 +1,23 @@
+{
+  "id": "original-truck-mixer-04",
+  "name": "콘크리트 믹서 · 원본",
+  "category": "industrial",
+  "style": "mixer",
+  "length_m": 8.4,
+  "width_m": 2.5,
+  "height_m": 3.5,
+  "triangles": 5326,
+  "model": "res://assets/vehicles/original-truck-mixer-04.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "truck-mixer-04",
+  "source": "assets/original-vehicle-fleet/original-truck-mixer-04/vehicle.blend",
+  "source_sha256": "e35c29547d2f4222401469f161ef6f52cfa10d873bf6fa00e8bf545c0633dfc2",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

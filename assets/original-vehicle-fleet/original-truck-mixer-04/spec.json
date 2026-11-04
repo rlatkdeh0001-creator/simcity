@@ -1,0 +1,32 @@
+{
+  "id": "truck-mixer-04",
+  "label": "콘크리트 믹서",
+  "category": "industrial",
+  "body_type": "mixer",
+  "length_m": 8.4,
+  "width_m": 2.5,
+  "height_m": 3.5,
+  "color": "#ce9162",
+  "wheel_count": 6,
+  "triangles": 5326,
+  "bounds_blender": {
+    "min": [
+      -1.4250000715255737,
+      -4.298499584197998,
+      0.0
+    ],
+    "max": [
+      1.4250000715255737,
+      4.424999713897705,
+      3.0819997787475586
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/truck-mixer-04.glb",
+  "preview": "res://assets/vehicles/truck-mixer-04.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "car-coupe-07",
+  "label": "스포츠 쿠페",
+  "category": "citizen",
+  "body_type": "coupe",
+  "length_m": 4.42,
+  "width_m": 1.88,
+  "height_m": 1.25,
+  "color": "#bb5e50",
+  "wheel_count": 4,
+  "triangles": 4154,
+  "bounds_blender": {
+    "min": [
+      -1.1150000095367432,
+      -2.252500057220459,
+      0.0
+    ],
+    "max": [
+      1.1150000095367432,
+      2.248999834060669,
+      1.215000033378601
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-coupe-07.glb",
+  "preview": "res://assets/vehicles/car-coupe-07.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

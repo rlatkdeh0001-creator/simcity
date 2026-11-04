@@ -1,0 +1,32 @@
+{
+  "id": "car-hatch-01",
+  "label": "소형 해치백",
+  "category": "citizen",
+  "body_type": "hatch",
+  "length_m": 3.6,
+  "width_m": 1.65,
+  "height_m": 1.5,
+  "color": "#84b6a0",
+  "wheel_count": 4,
+  "triangles": 4030,
+  "bounds_blender": {
+    "min": [
+      -1.0,
+      -1.84250009059906,
+      0.0
+    ],
+    "max": [
+      1.0,
+      1.8389999866485596,
+      1.465000033378601
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-hatch-01.glb",
+  "preview": "res://assets/vehicles/car-hatch-01.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

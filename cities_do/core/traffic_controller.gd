@@ -35,6 +35,8 @@ func rebuild(roads: Array) -> bool:
 	return true
 
 func seed_traffic():
+	var civilian_assets := catalog.filter(func(asset): return asset.category=="civilian")
+	if civilian_assets.is_empty(): return
 	for lane in network.lanes:
 		if lane.length < 24 or lane.get("junction",-1)>=0: continue
 		var route := [lane.id]
@@ -48,7 +50,7 @@ func seed_traffic():
 		var loop: bool = route[0] in network.lanes[route[-1]].next
 		var count := mini(4, int(lane.length/35.0))
 		for i in range(count):
-			var asset: Dictionary = catalog[2+(i+lane.id)%10].duplicate()
+			var asset: Dictionary = civilian_assets[(i+lane.id)%civilian_assets.size()].duplicate()
 			asset.max_speed = 7.0 if i == count-1 else 14.0
 			simulation.spawn(asset, route, 8.0+i*25.0, loop)
 	bridge.sync(simulation.vehicles)

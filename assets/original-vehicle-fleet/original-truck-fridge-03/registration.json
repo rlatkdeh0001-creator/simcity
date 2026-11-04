@@ -1,0 +1,23 @@
+{
+  "id": "original-truck-fridge-03",
+  "name": "냉동 트럭 · 원본",
+  "category": "industrial",
+  "style": "fridge",
+  "length_m": 8.15,
+  "width_m": 2.48,
+  "height_m": 3.45,
+  "triangles": 8270,
+  "model": "res://assets/vehicles/original-truck-fridge-03.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "truck-fridge-03",
+  "source": "assets/original-vehicle-fleet/original-truck-fridge-03/vehicle.blend",
+  "source_sha256": "b9821efdd4d079532510968fa4c735943c96620657899e39384692ce4555d768",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

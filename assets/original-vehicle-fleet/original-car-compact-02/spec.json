@@ -1,0 +1,32 @@
+{
+  "id": "car-compact-02",
+  "label": "준중형 세단",
+  "category": "citizen",
+  "body_type": "sedan",
+  "length_m": 4.35,
+  "width_m": 1.76,
+  "height_m": 1.43,
+  "color": "#b6bdc3",
+  "wheel_count": 4,
+  "triangles": 4046,
+  "bounds_blender": {
+    "min": [
+      -1.0550000667572021,
+      -2.2174999713897705,
+      0.0
+    ],
+    "max": [
+      1.0550000667572021,
+      2.2139999866485596,
+      1.3949999809265137
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/car-compact-02.glb",
+  "preview": "res://assets/vehicles/car-compact-02.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

@@ -1,0 +1,67 @@
+{
+  "id": "medical-large-hospital",
+  "name": "대형병원",
+  "category": "medical_service",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "max_storeys": 6,
+  "helicopter_model": true,
+  "rooftop_helipad": true,
+  "rooftop_stair_access": true,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    885.4364
+  ],
+  "lot_corners_px": [
+    [
+      83.9686,
+      702.4205
+    ],
+    [
+      450.0003,
+      885.4364
+    ],
+    [
+      816.0321,
+      702.4206
+    ],
+    [
+      450.0004,
+      519.4047
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      23.877500534057617
+    ]
+  ],
+  "revision": "white-red-distinct-architecture",
+  "approval_status": "approved",
+  "game_registered": true,
+  "source": "original Blender buildings, ambulance and rescue helicopter; adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved white-red medical design; game integration pending",
+  "palette": "white-with-red-accents",
+  "architecture": "stepped-podium-and-ward-tower",
+  "registration_scope": "asset catalog and inspector; no operating service simulation"
+}

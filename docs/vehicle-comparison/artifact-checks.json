@@ -1,0 +1,22 @@
+{
+  "pair-1.png": {
+    "sha256": "cb3cb5c08e9fdb26e699201456801aeef0634d85272c5642be0d9af918a35fac",
+    "size_bytes": 299518
+  },
+  "pair-2.png": {
+    "sha256": "11425124266e8c4cd66b1806d2c36a53a8a497314741167470a0a78c928ec5ed",
+    "size_bytes": 323895
+  },
+  "pair-3.png": {
+    "sha256": "7a490b2606b6a617b98fd5d555f711e7885886e03cfe2dc7fedd5151d2787e93",
+    "size_bytes": 300634
+  },
+  "pair-4.png": {
+    "sha256": "d37cc81b8df2c921d62b87d66413bebaaa3ab5936d6552fe4af4f835643a32d1",
+    "size_bytes": 304010
+  },
+  "registered-only.png": {
+    "sha256": "24c5ec6a52bdd14887728ec74781c3dea8a2fe565470cca326d7cfecde64487e",
+    "size_bytes": 137824
+  }
+}

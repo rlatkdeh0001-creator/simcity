@@ -1,0 +1,63 @@
+{
+  "id": "technical-college",
+  "name": "전문대",
+  "category": "education_service",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "user-specified",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "max_storeys": 3,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    821.3319
+  ],
+  "lot_corners_px": [
+    [
+      54.9185,
+      623.7909
+    ],
+    [
+      450.0003,
+      821.3319
+    ],
+    [
+      845.0823,
+      623.791
+    ],
+    [
+      450.0004,
+      426.2501
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      8.569999694824219
+    ]
+  ],
+  "campus_buildings": 4,
+  "revision": "dense-school-and-multi-building-campus",
+  "approval_status": "approved",
+  "game_registered": true,
+  "source": "original Blender geometry, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "educational visual concept only; enrolment, education and traffic simulation not implemented",
+  "registration_scope": "asset catalog and inspector; no operating service simulation"
+}

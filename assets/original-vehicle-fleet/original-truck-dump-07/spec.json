@@ -1,0 +1,32 @@
+{
+  "id": "truck-dump-07",
+  "label": "중형 덤프트럭",
+  "category": "industrial",
+  "body_type": "dump",
+  "length_m": 7.8,
+  "width_m": 2.5,
+  "height_m": 3.15,
+  "color": "#d4ac4e",
+  "wheel_count": 6,
+  "triangles": 6586,
+  "bounds_blender": {
+    "min": [
+      -1.4250000715255737,
+      -3.998500108718872,
+      0.0
+    ],
+    "max": [
+      1.4250000715255737,
+      3.938999891281128,
+      2.450000047683716
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/truck-dump-07.glb",
+  "preview": "res://assets/vehicles/truck-dump-07.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

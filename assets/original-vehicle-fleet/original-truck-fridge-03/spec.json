@@ -1,0 +1,32 @@
+{
+  "id": "truck-fridge-03",
+  "label": "냉동 트럭",
+  "category": "industrial",
+  "body_type": "fridge",
+  "length_m": 8.15,
+  "width_m": 2.48,
+  "height_m": 3.45,
+  "color": "#71a9a1",
+  "wheel_count": 6,
+  "triangles": 8270,
+  "bounds_blender": {
+    "min": [
+      -1.415000081062317,
+      -4.173499584197998,
+      0.0
+    ],
+    "max": [
+      1.415000081062317,
+      4.11400032043457,
+      3.4499998092651367
+    ]
+  },
+  "forward_axis_gltf": "+Z",
+  "traffic_side": "right",
+  "steering": "left_hand_drive",
+  "source_skill": "zstack/vehicle",
+  "model": "res://assets/vehicles/truck-fridge-03.glb",
+  "preview": "res://assets/vehicles/truck-fridge-03.png",
+  "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+  "nominal_dimensions": "original design values in metres, not a certified replica"
+}

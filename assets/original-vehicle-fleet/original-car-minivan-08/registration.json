@@ -1,0 +1,23 @@
+{
+  "id": "original-car-minivan-08",
+  "name": "패밀리 미니밴 · 원본",
+  "category": "civilian",
+  "style": "minivan",
+  "length_m": 5.1,
+  "width_m": 1.92,
+  "height_m": 1.83,
+  "triangles": 4046,
+  "model": "res://assets/vehicles/original-car-minivan-08.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-minivan-08",
+  "source": "assets/original-vehicle-fleet/original-car-minivan-08/vehicle.blend",
+  "source_sha256": "780ef5ecec7a3c4d5a2a6d46dd2859c357e9a56898f34b50f16ef4c9a4f29eab",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

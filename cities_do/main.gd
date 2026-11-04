@@ -128,7 +128,7 @@ func _ready():
 	box.add_child(showcase_button)
 	var vehicle_button := Button.new()
 	vehicle_button.name = "VehicleShowcaseButton"
-	vehicle_button.text = "차량 23종 전시"
+	vehicle_button.text = "차량 41종 전시"
 	vehicle_button.visible = not showcase_view
 	vehicle_button.pressed.connect(func():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
@@ -142,6 +142,14 @@ func _ready():
 		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
 		get_tree().change_scene_to_file("res://facilities_showcase.tscn"))
 	box.add_child(facility_button)
+	var services_button := Button.new()
+	services_button.name="EducationMedicalShowcaseButton"
+	services_button.text="교육·의료 7종 전시"
+	services_button.visible=not showcase_view
+	services_button.pressed.connect(func():
+		get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
+		get_tree().change_scene_to_file("res://education_medical_showcase.tscn"))
+	box.add_child(services_button)
 	var traffic_row := HBoxContainer.new()
 	traffic_row.visible = not showcase_view
 	box.add_child(traffic_row)

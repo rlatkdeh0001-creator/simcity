@@ -1,0 +1,23 @@
+{
+  "id": "original-car-wagon-04",
+  "name": "스테이션 왜건 · 원본",
+  "category": "civilian",
+  "style": "wagon",
+  "length_m": 4.65,
+  "width_m": 1.82,
+  "height_m": 1.53,
+  "triangles": 4262,
+  "model": "res://assets/vehicles/original-car-wagon-04.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-wagon-04",
+  "source": "assets/original-vehicle-fleet/original-car-wagon-04/vehicle.blend",
+  "source_sha256": "8aaf8d38ce3770c877705d1cc6d1558838a3a6303eb41af7b3f367c8b3c6573b",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "original-car-pickup-10",
+  "name": "레저 픽업 · 원본",
+  "category": "civilian",
+  "style": "pickup",
+  "length_m": 5.35,
+  "width_m": 1.98,
+  "height_m": 1.8,
+  "triangles": 4462,
+  "model": "res://assets/vehicles/original-car-pickup-10.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-pickup-10",
+  "source": "assets/original-vehicle-fleet/original-car-pickup-10/vehicle.blend",
+  "source_sha256": "b6c97f0410cb0e286b1bb1aeedcebac7a7a0999856b0a77908c8d3042fd1cfce",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

@@ -136,3 +136,7 @@ Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-const
 ## 도로 직각 구획
 
 [실제 게임의 직선·사선·꺾임·곡선 구획](docs/screenshots/road-perpendicular-parcels.png)을 추가했습니다. 도로별 직각 좌표계에서 건설·성장을 처리하고, 곡선은 짧은 반듯한 블록으로 나눕니다. **도로 직각 구획 예시** 버튼 또는 `godot --path cities_do road_parcel_demo.tscn`으로 확인할 수 있습니다. 회전 부지는 현재 임시 입체 건물로 표시합니다.
+
+## 2026-11-04 회수 애셋 로컬 통합
+
+기존 차량23종을 유지하고 원본18종을 별도 등록해 총41종, 교육·의료7종을 실제 애셋 메뉴/전시에 연결했다. 원본 버스·택시는 추가하지 않았고 최종 사용자 요청으로 관련 통합을 GitHub main에 푸시한다. [범위·재현·검증·원본 보존](docs/recovered-assets-validation/README_KO.md).

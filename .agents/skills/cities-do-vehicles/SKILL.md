@@ -39,3 +39,14 @@ revolve, tri_count를 실제 호출하고 아래 게임 규약으로 별도 제�
 차체 명목 치수와 사이드미러·지붕 부속물을 포함한 메시 경계를 구분한다.
 건물의 부지 크기와 본체 크기, 지붕 포함 높이와 층 높이도 구분한다.
 글로벌 배율 조정 전에 같은 줌의 실제 화면에서 문·차고·주차면 여유를 확인한다.
+
+## 회수 원본의 추가 등록 (2026-11-04)
+
+사용자 승인: 기존 23종 보존, 원본 버스·택시는 제외, 원본 시민차10·산업차8을 original- ID로 추가.
+같은 차종 이름으로 서로 다른 모델을 자동 제거하지 않는다. 원본/등록본 실제 비교 후 사용자 결정을 따른다.
+전체 41종이며 기존 GLB/Blender/8방향 이미지와 카탈로그/ppm 23항목을 보존한다.
+회수 원본은 assets/original-vehicle-fleet와 rig_schema=recovered-original로 구분한다.
+촬영/등록은 tools/capture_original_vehicle_sprites.gd → tools/register_original_vehicle_sprites.py.
+기존 전체 빌드에서도 원본 항목/렌더 정보를 유지한다. 원본 버스/택시를 실수로 추가하거나 기존ID를 덮어쓰지 않는다.
+회수 모델 사용이 실사 IoU/문개폐/충돌 검증 통과를 뜻하지 않는다. docs/recovered-assets-validation 참조.
+원격 푸시 여부는 현재 대화의 최신 사용자 지시를 따른다. 이번에는 최종적으로 커밋·푸시를 요청받았다.

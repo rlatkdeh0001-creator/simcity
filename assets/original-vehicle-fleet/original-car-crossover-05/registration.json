@@ -1,0 +1,23 @@
+{
+  "id": "original-car-crossover-05",
+  "name": "크로스오버 · 원본",
+  "category": "civilian",
+  "style": "crossover",
+  "length_m": 4.35,
+  "width_m": 1.83,
+  "height_m": 1.65,
+  "triangles": 4230,
+  "model": "res://assets/vehicles/original-car-crossover-05.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-crossover-05",
+  "source": "assets/original-vehicle-fleet/original-car-crossover-05/vehicle.blend",
+  "source_sha256": "421ccc2f00fd8996d52a45091d0d6d266bf8e32c26f638427c92287d53844266",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

@@ -1,0 +1,41 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS seven approved recovered education/medical assets
+PASS elementary-school has actual imported geometry
+PASS elementary-school preserves metre footprint
+PASS elementary-school does not claim operational services
+PASS high-school has actual imported geometry
+PASS high-school preserves metre footprint
+PASS high-school does not claim operational services
+PASS technical-college has actual imported geometry
+PASS technical-college preserves metre footprint
+PASS technical-college does not claim operational services
+PASS university has actual imported geometry
+PASS university preserves metre footprint
+PASS university does not claim operational services
+PASS medical-clinic has actual imported geometry
+PASS medical-clinic preserves metre footprint
+PASS medical-clinic does not claim operational services
+PASS medical-hospital has actual imported geometry
+PASS medical-hospital preserves metre footprint
+PASS medical-hospital does not claim operational services
+PASS medical-large-hospital has actual imported geometry
+PASS medical-large-hospital preserves metre footprint
+PASS medical-large-hospital does not claim operational services
+PASS education and medical gallery loads all seven models
+PASS elementary is available
+PASS elementary opens its own real model
+PASS high_school is available
+PASS high_school opens its own real model
+PASS college is available
+PASS college opens its own real model
+PASS university is available
+PASS university opens its own real model
+PASS clinic is available
+PASS clinic opens its own real model
+PASS hospital is available
+PASS hospital opens its own real model
+PASS large_hospital is available
+PASS large_hospital opens its own real model
+PASS asset inspectors preserve city and do not fake service placement
+RESULT 38/38 recovered asset checks passed

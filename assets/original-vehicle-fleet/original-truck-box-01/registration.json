@@ -1,0 +1,23 @@
+{
+  "id": "original-truck-box-01",
+  "name": "소형 탑차 · 원본",
+  "category": "industrial",
+  "style": "box",
+  "length_m": 6.2,
+  "width_m": 2.25,
+  "height_m": 3.15,
+  "triangles": 6298,
+  "model": "res://assets/vehicles/original-truck-box-01.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "truck-box-01",
+  "source": "assets/original-vehicle-fleet/original-truck-box-01/vehicle.blend",
+  "source_sha256": "40d192903164c7a57f2a215a901b7cd099f3d1f89cf43793bbed50831b63595e",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}

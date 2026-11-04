@@ -1,0 +1,931 @@
+{
+  "baseline": "e4a8c1d2073fefaf83221403d8675371f1638e11",
+  "registered_vehicle_count": 41,
+  "existing_catalog_entries_unchanged": 23,
+  "new_originals": 18,
+  "original_bus_taxi_excluded": true,
+  "existing_manifest_entries_unchanged": 23,
+  "preserved_files": [
+    {
+      "path": "cities_do/assets/vehicles/bus-city-01.glb",
+      "sha256": "ff4241568d47c745a815758cb1aa979454f7932e383e25f96697238c8ad49151"
+    },
+    {
+      "path": "assets/vehicle-fleet/bus-city-01/vehicle.blend",
+      "sha256": "3b8950a04d90e6ffecacff4f5b829f9ce70b9b0cf14a7b511a3fe34e77b69cec"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/000.png",
+      "sha256": "fcf6e04b0a622a8aa3ac5c617dcff2635dc998f342315f5eadc5095bd3288e46"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/045.png",
+      "sha256": "fb4831d95124cbb047ca5ccb6e516287506a9c9256bb4b5c2b3b02275b166412"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/090.png",
+      "sha256": "66c3f6accc573654fbb7630c8fbdc4fac3beff41f22bdad646c68602aa85063e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/135.png",
+      "sha256": "cedf67a089fbf159138fc48e02b1d5f0a95d3f849955973e692ec5d3b0bc258c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/180.png",
+      "sha256": "89a0aee809f7c8755002097c8592838747ec566b41f1182df3bc690f25344065"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/225.png",
+      "sha256": "fa0b61be87eab3848ac79c10f350b06a746f194cda19488ee1102fdc48ba1ace"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/270.png",
+      "sha256": "753dbacb6347ec6cca9af5d250fa4bcc158ec3bff6c4a60f5b6f3e94c41dc683"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/bus-city-01/315.png",
+      "sha256": "da9b51a409eebc773e1bb750d9f932316c3a5625de4411742edfbdf1ffe7a28f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/taxi-sedan-01.glb",
+      "sha256": "0c240611de4476fb1e7450190fbfbd24b132a8bacd7c1afd10d4c357c99de3a4"
+    },
+    {
+      "path": "assets/vehicle-fleet/taxi-sedan-01/vehicle.blend",
+      "sha256": "0c2028e760c9e2c777193c3e4ab93d364c19e1d3b924073ea9615e51321e099a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/000.png",
+      "sha256": "f3648d0aaeb71c57e5d72b1cc3284b04cf3990c23c07fc1883b573817972e59a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/045.png",
+      "sha256": "57f8ee9d6ddca1a3bd96879e001feebe1a1b5020cb462384e044658aab1090fb"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/090.png",
+      "sha256": "c5ba19cbcda969da337a831642449a6f8dc83af7ea9b35306bab28002829cde3"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/135.png",
+      "sha256": "7f84aca677f867d3061af593d802639aba07a6714e7776c60503fe012ffb679f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/180.png",
+      "sha256": "df116ab06fe4d02fd12ab90530db2a7166fbc961f2343b12895e24052de53fac"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/225.png",
+      "sha256": "554a62732252c1c8f73460bcd882e388922c12c89f2b538b2c05bb2c3a6ca4a1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/270.png",
+      "sha256": "3a65f18740cd57ac426e13d6162eb881bc691a5bbfa4f60b5d5ef4889c3be42a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/taxi-sedan-01/315.png",
+      "sha256": "bfe618ab5c1d23530821071bb240afada19486124b5d17188cf4beda9ad5299c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-hatch-01.glb",
+      "sha256": "72ee99f45aec6e5ff467e95fd4fd81fd314dbcfe97572d1aeda673b194e125b0"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-hatch-01/vehicle.blend",
+      "sha256": "96c8bf35ae7a230c00c892a98a0d2a79ea8016d6e3b9d0d5180942a29a8b10f1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/000.png",
+      "sha256": "4ebb64dac89534c89dd27ea2a88c73b95ef4e0970573de443970a2d75f6b50db"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/045.png",
+      "sha256": "c503444124c1074ff87208e5e6f29d28c7111a8fe483bea732f028251ef5711c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/090.png",
+      "sha256": "2d2e5a5334ddbfb1a4ebe7c99858734af2d2f82dae147d0bd1706041f9275ba0"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/135.png",
+      "sha256": "5735ceec2e3a44269a4b4e1bae3747347d5e9cdf8475cdc8bc416ee43cf9c59f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/180.png",
+      "sha256": "114d4668765aa9c6af0e6e22872161b3fca3dceef526c433b291d4e29967da45"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/225.png",
+      "sha256": "de8ef71a7f2648d70c0fa4ad8220a676af717a8971ead8eecd9c1f56e5843ee3"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/270.png",
+      "sha256": "04c1d961f8833a91713f8c836ff9f6a9f29c1468c347d4f1ff6af081df9a510c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-hatch-01/315.png",
+      "sha256": "cafb509b40b1da8801b1edb8b08acba84e40c05cb552ad107c111ff25aea3a18"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-compact-02.glb",
+      "sha256": "242da789de9679ed31b52d974130506df2e57adb45072ba52b00aba54b611921"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-compact-02/vehicle.blend",
+      "sha256": "550c5b8659d460f8f38ccd07520d488ee621000fd0a1c94a0aaa911a86ef2b8e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/000.png",
+      "sha256": "83fccd0fd049034649f9b84dc800af3183cc4352788546c1bf249e6de58f3da3"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/045.png",
+      "sha256": "8c46a4909cba6ae97d03c2a1d1aae2a970dcb990fd263df63a1506177e8a461f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/090.png",
+      "sha256": "66ce7ae81e600f595d8c5e34e2afee2e7ffbd3600701e8a71b0b09b50db07ef5"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/135.png",
+      "sha256": "ee4d726583044bc57180ca0ae5365d82838214da978745594892068ddadc26a8"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/180.png",
+      "sha256": "3ffeba744bfe7b3df157f5d3f621f6ccf51c9dde5b1336b3e6a0887e983f08db"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/225.png",
+      "sha256": "4b33907c456cf863eb4f44525d3b74e9c82ffb045396f79c5d32704bbf7af8ec"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/270.png",
+      "sha256": "933bfcc38d2bb26b5d43d86de02f34c58dd34f245f81be31aa321246d13341cc"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-compact-02/315.png",
+      "sha256": "d30da56dab1c40831014f73937ace627d4b819b4306c4d59b9436fc1ff6bf6cc"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-sedan-03.glb",
+      "sha256": "7fd3c32d75a0531e44ff2f42e925aa56405a54c3904cbcb5391d07ca32500c08"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-sedan-03/vehicle.blend",
+      "sha256": "44d56caa6a24a77ff09e2d3413cc61492d7fd1b720c9b528824b6c8f3c84318c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/000.png",
+      "sha256": "8303a9a37b999b9e19d55bda85ef8c8cd5d1747b4562da1b5e0c1e680a27cc04"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/045.png",
+      "sha256": "5f71100ff706ec301106c5dbaf92ffd542d8022505f37ebcfa0d00fc6195412f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/090.png",
+      "sha256": "2cce671af1529ff27e75b46ddc53aab1987a9eafc0db9f33c211a9623944be45"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/135.png",
+      "sha256": "84f5805b6eee2cfa48e82782c9b5e6cd00d5032bdb75d984b4f452bf28a46731"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/180.png",
+      "sha256": "aa3a24b444612153f4aa6935f9f7deb7ec1ba57a9ffce1467c656f488f0df931"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/225.png",
+      "sha256": "1ed37a415e975664a0fa6f7ffc0bd9d346212adb2e1ac3cbe41777b75c29fd05"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/270.png",
+      "sha256": "fc2be70c115fb58683055a1d194cb782921ead9344a59bf8dde98815bc2ac71e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/315.png",
+      "sha256": "91c431b2c4a113c10bf50caa68e5de6bfbdbacdb4f77de4482e013c86301fd15"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-wagon-04.glb",
+      "sha256": "55f452969bc900127cd9d309af6a22dba379ce39b7435f705f106c731089f524"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-wagon-04/vehicle.blend",
+      "sha256": "c659672f41f1d3d1eae6f990da604d1d863e0653b6fe165b27959b42e825d89f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/000.png",
+      "sha256": "088e20e8bd3e2850fd8f5877096ea498f93abf2d91bcf0b45d428c1c100c666f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/045.png",
+      "sha256": "4e1e33ee5f56dbb37d094908fc4f04ffc517d7e3d2e1e881a95d520c73166453"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/090.png",
+      "sha256": "f37ff4c78a1907b804284b8e3db8819618cd6052be19bdcefeff9a72d543f764"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/135.png",
+      "sha256": "6af0e1b21bada6d4919d7458145f0cf75e12714d5140183a8266f4815c0e9e02"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/180.png",
+      "sha256": "c15b89b606eaf9fd183f087f5ba4446751a820dd6f010cbb08d38c5455a7ff05"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/225.png",
+      "sha256": "0d9fe525a9ebc12767569bad07cdb9142cd23f014a9d844b11a14df72c5cb9b9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/270.png",
+      "sha256": "e463cc72ece02f398689f5093ceb9407f7ee2d54ef222565f79cb39c6045f848"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-wagon-04/315.png",
+      "sha256": "1e50da678b3f55c5676f6a729e77d6c7154ea86f9c18eb51744d21e5c049f11a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-crossover-05.glb",
+      "sha256": "ed4befbe928c18913d5b093419b6fb426bc240df9715e2bd4ce74ade745a14e5"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-crossover-05/vehicle.blend",
+      "sha256": "f16b1cf0c74005ed8646053820326d6093d014e24c9fe2d3876b31fa329f9256"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/000.png",
+      "sha256": "2db927cfdb09d6bf2458cbf1a5f50b16678b552f5faea579aaf236cd75dd9c4b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/045.png",
+      "sha256": "c570f87e415ca7157a0e4de4c370be364d6131a45a0e50b62edf8982ca66506f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/090.png",
+      "sha256": "250cc42f2879011a3903f262fd45a5bf8de50de8daac351435531d76faa9b11a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/135.png",
+      "sha256": "550a844d95177d029e3456936bd2599ac2d85f409541530ba9f73a4cbf71ddad"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/180.png",
+      "sha256": "e298b39d213f01cbfe2003f10da09414e50cbef3b974a7f66a523a6fad23e0dd"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/225.png",
+      "sha256": "243ef82f0a66808c2ef27d9a4c6f33d2f03bbca269a83ecbdb259a51612857b1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/270.png",
+      "sha256": "75c245fc13112ecfb917dced38bad805369bb636b2233c446b4572f909ace955"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-crossover-05/315.png",
+      "sha256": "ff5d89c4f2213e02ec741b959a9c2e29236369b29fe75e54446d418d4d4f8e0b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-suv-06.glb",
+      "sha256": "7c1429583a458ee6d417e51595cce3c8fb8d2f2b6dcea8638bf9a41a1fb23f10"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-suv-06/vehicle.blend",
+      "sha256": "844917173548b02ddde43db0d97fcd5525b6f489c6667e77e05f2267d65c5811"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/000.png",
+      "sha256": "aae4be22e88de644805eeef4813510c22994cfd4cb300504bf695a367aeea798"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/045.png",
+      "sha256": "8787d56035f520d8674e3f49d0727ed33049e17f30f5d44f3c1f745df30294b0"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/090.png",
+      "sha256": "375b7c2e60af9be4ea782ef57838d9a06324bce8c416f54fc69a162b120a7718"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/135.png",
+      "sha256": "83520ba9b74dd4c66921d9f8a5d493e05d5f28600e71cd6ce6aae0da98736ef3"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/180.png",
+      "sha256": "1588fded842765cd5dd0ee7b87d1ab62986aee7db4eb5eb2c40e28b75e01cd62"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/225.png",
+      "sha256": "38ec5e6400d6b65159b853df976f89e0ed5eebcf60d05e56873c5e33a2dbef6a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/270.png",
+      "sha256": "aaf9a172fdf35a00b2e901265f7e108fe3db1bc55075d44780ab3b09f0c72e9a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-suv-06/315.png",
+      "sha256": "4b242726514100e05b5714a5c26ea10acfc3dfcfed096d42c0e7e4130552cbcf"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-coupe-07.glb",
+      "sha256": "8f7f2172706efaab324c8791968ca442d7362f8efac9a8b39acbb1d80cd0155d"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-coupe-07/vehicle.blend",
+      "sha256": "40d09257cda744dadf827421988de1e84eab289e8d8e3a8283f2b62607ab467e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/000.png",
+      "sha256": "8bc5599d5d0af0d9f7657cf54764a7748ff461197369829fb873b574dd712b06"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/045.png",
+      "sha256": "8cea7e5f07f466258a0b1dbcf9d4cc96be1dbc35f9a76d2c1c63428656b4bf4a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/090.png",
+      "sha256": "3fc3ac4b52fb3b5cd746b953ba28fee792517b753e0e5c57cdcd83a1ac823225"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/135.png",
+      "sha256": "15b2582a823c6a1a82b71007d15d029c0745302616427ef0d50bae35260ccfa2"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/180.png",
+      "sha256": "e900684452becee0abc207656e72cc25d225044a3ae9c1984d767488f0089878"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/225.png",
+      "sha256": "1c28fab1874b28abb332ed5b0a5fbb4f5a616be6bc451803a1ceb2071b7923e9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/270.png",
+      "sha256": "77f85f0c649f938ddfa869f5da9c03cd253df7da884cd258cb85c8cf9b6f8b5b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-coupe-07/315.png",
+      "sha256": "7fbc8b5a7c22cf5f5d5933ef42064730af40929f6357a32f9de557993757af23"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-minivan-08.glb",
+      "sha256": "ea14bd26c1821e6a6d7140cb5d715166a1f6ded2ebad6d067cb232c00806ce10"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-minivan-08/vehicle.blend",
+      "sha256": "e5bc338d141176fe1fac1c2f217dea4b34349e90f66f9935a5f8a4bea23b829c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/000.png",
+      "sha256": "fb60d8991cac58205f8eb23ef4f178e1fcc9e76d106618c295893b926630df5b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/045.png",
+      "sha256": "9e1c62579371f8eb75f90e72fb23ea93f6fdc418caf92350a7bd139d4750f509"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/090.png",
+      "sha256": "e23d0295a1582f397b88e5d1059276afe0bf5efb2a166d030ccd29bf8417d56a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/135.png",
+      "sha256": "bcc4f9bec11fd33f3c0620d85ca9d02788c3c8111777df56ece22c1b820f1ff5"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/180.png",
+      "sha256": "9f32155cecb6fd74b9baa7a73c626f386e4c7c155ad8037c6c3282238fb11f61"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/225.png",
+      "sha256": "388a8061dd40fdfd54f13cb11653c6fcbdd33df4f8d51b743077d31b156a13e7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/270.png",
+      "sha256": "01a5b17860589680466cd09bfeed1210e0e381c1cde85c6d19e40e8d5a0dcfc2"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-minivan-08/315.png",
+      "sha256": "7210e0c9f9fbd862d2ae72f9015d4e38f9b9dbee6a9285f31c5e5a9b4756c3db"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-electric-09.glb",
+      "sha256": "fec5b6a0d21356366c035c1dcfb9236fdef6a19a76805629d665e3c0d94f79d4"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-electric-09/vehicle.blend",
+      "sha256": "79b4edfcd0433eebcdd6d5acb741d39623876834c85441a130254be3b921cbe2"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/000.png",
+      "sha256": "db99f083ea0c4bf748bd9ddbfbfc981dc1b8146960927d30a1cd4c26efe31d70"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/045.png",
+      "sha256": "0c441f8a10bf813592a13950f5ce0e125a3719fe00255d4143849ee6e31e32ed"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/090.png",
+      "sha256": "3e7448ec6a9c8c07bc7f965e40887cbed5130c07b17ff451cd34e4d0c1c0ecde"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/135.png",
+      "sha256": "d8b23217f577224f842ae65418cd4d9927966c554ab7ac226087d924895bbd4d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/180.png",
+      "sha256": "b5a0fadc4a1cb57a67431148af8ea9a481df85f2b178108072a113ccc49f9302"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/225.png",
+      "sha256": "1ed1631e04484884c0e886d857cbec840677e4a30a6658a1fc71ca5a17de6cda"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/270.png",
+      "sha256": "c7e3eb6c24dc7b2cedd8fc6c4a0333cfefd4e1c4c7540c8c84a1cdd5ea2ce141"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-electric-09/315.png",
+      "sha256": "9f2ccc0a7a82da875821a52b77651870ab28136b2d27a170f4cb3389bed728c9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/car-pickup-10.glb",
+      "sha256": "4fc01520d11331ff8acf088da211559f6ab92d430f55a8a6ca3c7daf66359784"
+    },
+    {
+      "path": "assets/vehicle-fleet/car-pickup-10/vehicle.blend",
+      "sha256": "3343b04c9af4f091e37cf83317f75e7cc44e698c0c719784fb26b6f454f4739b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/000.png",
+      "sha256": "e452527b966b801a3a8f0feda65728ca74256c352cde5056996ab80a0bee014e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/045.png",
+      "sha256": "19b6f08fae46fba6049fdb194180199147d0f2ed435280c2c717c0826907fae4"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/090.png",
+      "sha256": "15cb9bd771da18db5b8c248fc04fe8bff414e071a7bd3aba32bc670cf0b651a9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/135.png",
+      "sha256": "1ddd8acc27096187b5878588f186359b88c09f7ab588981d5e9a1f5d60659585"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/180.png",
+      "sha256": "997756b42a759d32df70c5567edbc9401e6579f1e4f8e5305a5d7e5f475f07f1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/225.png",
+      "sha256": "f07d9e02e1a700c8f5239b00ada7239f4c24fe4027a0904bcb554da0eae842b3"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/270.png",
+      "sha256": "15387ce7c93bdddb476653dd6c1888fd519699f4a4d53653a9a0503964efb779"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-pickup-10/315.png",
+      "sha256": "c049ce8f7bc6433974a17c744d554b6b1e0b2e07c8828dbeb5ed7ca80bb9c256"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-box-01.glb",
+      "sha256": "e8373cb4abb0951fbf121195880030d62313625314a343dade35180bd109ef69"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-box-01/vehicle.blend",
+      "sha256": "d89908f75ea58db636f68ae3e9d59c3b2bc2dc590fdfda61f355f1089b346a7c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/000.png",
+      "sha256": "cee74087bca7be745390f8352e7a356b0747cf67015d7cbb845058c2b1b0b000"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/045.png",
+      "sha256": "2be9de7ce2639d4b7c1ddcbec0029ed22dc7e2d61954bd1ab9c74b16288f1040"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/090.png",
+      "sha256": "bc79672e0b9d32a6799b680782c02e81ab4397833e8ee4128c551af7c24c94ad"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/135.png",
+      "sha256": "dc6205f73bdf9449ac2f800b73e7df9645200b0a8aae609b1cbed6f38b2beba7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/180.png",
+      "sha256": "454659ff58131957c758412968f294bb5a26f65b6c0cd57be661115ee78e3431"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/225.png",
+      "sha256": "03f0ff10a9187b588569ae9734d117e25553e76eca2e2604c348cb6406ab1ab7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/270.png",
+      "sha256": "f9427e20e8748dd14459aeb3e494b3936c1492b97b5928b126d957e66603b60d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-box-01/315.png",
+      "sha256": "102d386b168ede05136bf1fb0c21f847490ed22a15c1b5d4f6652aff607c54cc"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-flatbed-02.glb",
+      "sha256": "26f1d7c9108298728e47c08850b60f304eaa64c5ec76510e4a20fa25b7932094"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-flatbed-02/vehicle.blend",
+      "sha256": "39cbe70bc30d80f272a7a4cb5b0f5bbb9eaa45f26c944caf5ec75be9061a8f6c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/000.png",
+      "sha256": "c4f0976fcceb49485cf633a19eed9cd975faa6c41fa649842eb666199d119afb"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/045.png",
+      "sha256": "5de1014f1991476c74a1975b5a8ca9a53e2dd2e9aa8562d88e0e6a41e8f4769d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/090.png",
+      "sha256": "6054e2a2de54ee7ac8d192d7adeed0da8f036cf32fdcb19f0ea526ec955d8d86"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/135.png",
+      "sha256": "8b54ba6ee88df3d688e84f17c2f34395d54b9e2fadb1a31c1062f1cb2dd60cc7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/180.png",
+      "sha256": "d87a02bf28493b1dbe54ab4b779707fadede908a6b5b0922633a15aa64c363b6"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/225.png",
+      "sha256": "7105944f0613f7f609b580092edf68f347b1bc84b4d12fa85e74253275979fae"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/270.png",
+      "sha256": "8277d4cfbe47957d35cddd5712f309b680c0523cab764b162c62d7f74815b525"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-flatbed-02/315.png",
+      "sha256": "fde30978e6e14ec3d3bb41c174813240178ec996d1a9e058b33c4c43c33ebd7c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-fridge-03.glb",
+      "sha256": "53965dfca252444a6673c60d1fe03bc7f67ca1cfe75998ee6feb571185577bd1"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-fridge-03/vehicle.blend",
+      "sha256": "1212c12ee07632fc48a9e31ac0e4eb3969056852f3f2747715cd9cb4970d30e4"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/000.png",
+      "sha256": "168c63595330a56334deed4dc50c64427f7f754f13fb00d04eee7d8708daebe9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/045.png",
+      "sha256": "a44547800f404e76fb95028814cb278bbdafcb1645f6d9f069df3e706d571bad"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/090.png",
+      "sha256": "3fc558bc01b8c1296c54dfa593512a8adac01d0a7ecf46c1ff301d363c44b483"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/135.png",
+      "sha256": "25de8cc4a93beedb00527d6fa13ac62cc6669268797fb7d59fe311702c5c1b05"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/180.png",
+      "sha256": "46f100065b01c8ffc6f42136a81a357cad938af4b0e2112fca19b8620e9d8b69"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/225.png",
+      "sha256": "fa6e7b2954672e1a043ff69d6490b45b0c4fa1ca49b8f0d11d88bad7d69735e0"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/270.png",
+      "sha256": "0ae323017f886fdffbdf570faf5a68b0c9693eb2bd5368d820ac4c6a8b22635c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-fridge-03/315.png",
+      "sha256": "b17748459bf00c84d2e5a470ff2e286795be3b9aca4e1e46ed4c60178ba75633"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-mixer-04.glb",
+      "sha256": "b12269d2246c8941cefba1acfc59b53d5e44b9973d93605ded213c7bf4b9050d"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-mixer-04/vehicle.blend",
+      "sha256": "4945df3481aa79c06299da13b8ae2d04ef56a58408d5ad4f1b2ebba0dc033cef"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/000.png",
+      "sha256": "e17129c88233247f1c1ff8f2672073f3701512ed459881debf4a176c9604e28a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/045.png",
+      "sha256": "f11c37daef563ae4ecb1330ce1062ea0cff1294900000466f78e64784b3e8502"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/090.png",
+      "sha256": "cdfb0da8a2daa0a4b52634c3db035e71d6534b662799a4e9cdeec0e3f4668337"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/135.png",
+      "sha256": "83466770bf1446c98302bb9a72fd5451e403895a892fa203adb666c73413aabb"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/180.png",
+      "sha256": "ea67e6917203498ba2d49cc1ccd4e551a0a27daa67010fbc0ac78d8ae0e65b0a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/225.png",
+      "sha256": "398b96c5d0179585cd6035c444033364ed19dcfa85e28e99524b3f66be55d298"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/270.png",
+      "sha256": "a816b7ece52758ffe7f783b31608d8638e325a23b77b034dca5c725fc32b1776"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-mixer-04/315.png",
+      "sha256": "f54b11bb21fcd877eff933745095caf7d8257b89855689551222a3b1966e73ff"
+    },
+    {
+      "path": "cities_do/assets/vehicles/trailer-container-05.glb",
+      "sha256": "4ce269ff19750e061d078c56dc7e0ac86941b647858d21ebe2db4f262d9c629d"
+    },
+    {
+      "path": "assets/vehicle-fleet/trailer-container-05/vehicle.blend",
+      "sha256": "4b519a2c2e093b2eda5fe1063b252cadcc11380c04ce6ded01ff4385a2cfd46c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/000.png",
+      "sha256": "22f85edc4376744cb32594592706686a4e342fc0146e2ad75ae428e7a4db835d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/045.png",
+      "sha256": "1d82eddadc4d306158f3a35764d2e14eabcb1d18f492ba2d8dcd687b0c989768"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/090.png",
+      "sha256": "d5776f0311bdeedb6670e79b3ca3ca48b71fe029a9ea211514bce95bebab3340"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/135.png",
+      "sha256": "7f435287b047039a3aa3b466e0efe31264ab7717f77b604beb0f4bb6b8ea23d0"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/180.png",
+      "sha256": "27a9a95a27258d8293d0c5244a7db3b7ed07831cce7253e0443e6de387290c85"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/225.png",
+      "sha256": "53c2318d8dfeebb436035c5737e7f036137ae473c85d4788798ae844fd77b26d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/270.png",
+      "sha256": "eab500e7605ffdb72a963d90f5f3bc7c4087ad28d285d86b4484f21f34a20b06"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-container-05/315.png",
+      "sha256": "d6c1807eb4ee9dfd83e5a879deb31b3af56bfe9d4b0116068aad8b538e88376b"
+    },
+    {
+      "path": "cities_do/assets/vehicles/trailer-tanker-06.glb",
+      "sha256": "bb9227c2aba63efaec2eb229e4972833fcefdb5cf9d933c7dc179f0c062ff565"
+    },
+    {
+      "path": "assets/vehicle-fleet/trailer-tanker-06/vehicle.blend",
+      "sha256": "31e78acc10425ff23b30c9a78c2dd3f5811fb70e21b61dc03cddd6ce5e70b4bd"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/000.png",
+      "sha256": "5390373ee9dc6e80b0766956299eb713ae0e2cf33ba74261fcf2037cff1ec5d5"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/045.png",
+      "sha256": "8e50a0b4dbe290eea7ffbf353ccc296bc597a2c83abad542aa9c37f526b92157"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/090.png",
+      "sha256": "284b8040dd69f30247455cc546f589c8ffb02a41b3bb08a1b7b12b5cec079af7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/135.png",
+      "sha256": "031ed6c682dbe583de6460cb8741e7f196314375d43988f72b0e5b408a376bcd"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/180.png",
+      "sha256": "187eb4e776fc929ae6a7388691f23bbf1417f17313f85d308aa2715e79c4d3c1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/225.png",
+      "sha256": "d7ff7d21eac986c4edd4c31223b49bbd5a0f23a58d5ca7817f7b3474dae04128"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/270.png",
+      "sha256": "7614437aaf953550acc608feb3bc1f80ae0258cd1927d72190c54ed43a92b5c4"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/trailer-tanker-06/315.png",
+      "sha256": "483e07d2638e0fc3171b1fe732cd2e5bf6f9b9e8c89131a7f37a7296b49124d8"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-dump-07.glb",
+      "sha256": "82c0722e3360d5b66f8ac77fc5ba231d84e8599e5c546feac0a6fdc79b15226a"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-dump-07/vehicle.blend",
+      "sha256": "eeab23897d0fe23b36f162740ef59e77cf17409423bb8178a5dda27a2665dedf"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/000.png",
+      "sha256": "1c2911d6be5410cd85d4f361ba9636fc86c2263f45b80faadf794ebf1f7f9140"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/045.png",
+      "sha256": "227afe07744aa88e9d14027a7aba534849c9d8dd27c02d20f4ce0042d6e4ba8e"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/090.png",
+      "sha256": "6bf818bc4b5e693121ec9c2d7109c69a19ae6d83d43c7673d74ca483aa39262d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/135.png",
+      "sha256": "08719f21488c387994dfc1a83452e9296e4415b6edf8b2660d24dacbc99e4588"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/180.png",
+      "sha256": "4033738097dae1b3ddec10f422a1870cb0ce4d12a03994c73431f06b3fd013bc"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/225.png",
+      "sha256": "e108e793a39e6e675c1f6d8cfb53b113502f2da80f08550b4d17266903c25cdf"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/270.png",
+      "sha256": "ecac85ebb111116e1b1c67c21c1c1302c368923885c4c2cf682e50872911e9bf"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-dump-07/315.png",
+      "sha256": "36b78dd13448e15006f127ed934d7755c3a7b7fdf0a02ac6812eb8003ba862c1"
+    },
+    {
+      "path": "cities_do/assets/vehicles/truck-heavy-dump-08.glb",
+      "sha256": "1be043613a99d7a8bfb2932e46ef13edb4a5ee306bd86f1014b408da22ea32fb"
+    },
+    {
+      "path": "assets/vehicle-fleet/truck-heavy-dump-08/vehicle.blend",
+      "sha256": "e81a7ffb0358d68f6d031f973c9923bf34cbb06cd7dc8e5b576ba17c3a7b5916"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/000.png",
+      "sha256": "7d5dcee291cca10f699907870155a9a5ad4028389a534668801f5b9d031de9d0"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/045.png",
+      "sha256": "fe7a9b1f922c0e563f0fe8eaeb4c7dd3610683f88d48af65be1fad24d900c0e7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/090.png",
+      "sha256": "3ad84c5e0ae1d5bae93e7fe76d06ddb42a19085c7c39be1595428431b6ec35ea"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/135.png",
+      "sha256": "cc704beba9fc91a9ccfcebf251b4a9525226aa7ff4882eb9947520bbd4b818b8"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/180.png",
+      "sha256": "65433349d400dbf3d263463accf3f603bdc7b28ea4e026e6b6882feebd30a38f"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/225.png",
+      "sha256": "5d394711254623cd5a393e480841e1ca3dc75ff5b0b996caf4c8cc717e57235a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/270.png",
+      "sha256": "18a9dcdd46aca2ca0d2f63ffaeaab7aaf7d3731533770e414d56a9329bf10d22"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/truck-heavy-dump-08/315.png",
+      "sha256": "2252a677522abb14359a36c67ce35cb421acd44545121b30863d1606ba28f860"
+    },
+    {
+      "path": "cities_do/assets/vehicles/fire-engine-01.glb",
+      "sha256": "06c649130c6dab0ebe94e0edd5dfc1157484026a84ca77fcef3aa77fd61ec9c2"
+    },
+    {
+      "path": "assets/vehicle-fleet/fire-engine-01/vehicle.blend",
+      "sha256": "7ba5338953e0e5191b29cca8edf46f6aee47899e139ee56d17c932273c2c5f44"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/000.png",
+      "sha256": "d8297d746f03d07ca2c0667ce71a4c5058866e8bdf8d8cffe4d34e10a3e13314"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/045.png",
+      "sha256": "bdbe0edbd3231c86cbc0b3baaf80d139def1487522ebac0bbb02c1ac5542d037"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/090.png",
+      "sha256": "80b611c4bd87045382279c355bbb5ec5cd8a172f23962667921ae51f6c6f89ef"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/135.png",
+      "sha256": "010aa3d2e2a39867e4d12f61f14736cd98fda0f17c416d18fb278712a4e3a03d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/180.png",
+      "sha256": "70590c4111a87e8f0efeebe05d8e1186e05ee70218474de2dc69c75e493e0a19"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/225.png",
+      "sha256": "2a6128ef87b5304af892c2ad440fdd93019608adced2ef08049ed871a349ed26"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/270.png",
+      "sha256": "3ecc1db8f840bb559c2d3a7c6973604284434469770e729e75f68c3d30041267"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/fire-engine-01/315.png",
+      "sha256": "d1aa72c5714173a123f4747d02a02cd123fbf29cbf7feabaf317724fbe734771"
+    },
+    {
+      "path": "cities_do/assets/vehicles/police-car-01.glb",
+      "sha256": "51c7e32c03a5f76a02a0bbfeb5e14f2cf218dd2896ce2cc14b0142846553c8e2"
+    },
+    {
+      "path": "assets/vehicle-fleet/police-car-01/vehicle.blend",
+      "sha256": "16145ee6335146a8620f2715293303683eaca0d5b2ed4210e7ad90bab1e66d57"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/000.png",
+      "sha256": "df2a3a16cee6306ff63b59707f869b6fb7a1f14b0463678aee579646276d9b6d"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/045.png",
+      "sha256": "3ddb35d4c71f0a3683a45455147f2a932a5b8f655301c03e7e7658e8af64f1a2"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/090.png",
+      "sha256": "fdd04ffeae26b0ebfb1d5ca5d6b57b802ceb234f4d8d41b49ffb3ceb46afb7ee"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/135.png",
+      "sha256": "586ba90d436d66e2e39b60f31b37fa53edbc3b0ebb0d206435f67c482348ab31"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/180.png",
+      "sha256": "69608cf937f7548066244342a9c863c78608aacd23b2b56558a5fb2821e92c37"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/225.png",
+      "sha256": "d50a838781ea6b7775d439b4e1d4de162e5cec49c63b033a45f306cc0aac0099"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/270.png",
+      "sha256": "abe317cab4b857e95021aa2c55f2331310e741d632d9cd54bb29a9b0dabbc1f7"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/police-car-01/315.png",
+      "sha256": "00d814f9f4c1007392a301b58a80a6efc86d7dde97863224a1697b3d4fdef49c"
+    },
+    {
+      "path": "cities_do/assets/vehicles/hearse-01.glb",
+      "sha256": "c6183ba5ab6181211c310040dd750be813301081b0c372c65b60c998808fa87a"
+    },
+    {
+      "path": "assets/vehicle-fleet/hearse-01/vehicle.blend",
+      "sha256": "4ce39331d6d925fec6515053d6615b4f6f0afbc15dd26640b9659653312852a8"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/000.png",
+      "sha256": "6e66b776545d1f24a86bdeb2af057f81eb2da4e46829d927bf65e5fabb9d4cf9"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/045.png",
+      "sha256": "5305b34fd760be9dfa1c9a08ce41ec3f05a5c43536c33e234404807d0d451994"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/090.png",
+      "sha256": "b9d869b5baa1cbc7155bb83f18ebfb4f3f1a2dd89fe8473c49ba7b335b210140"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/135.png",
+      "sha256": "37b21f852fe675db193aca2f9754337baa4666af6a27bdd00ee2f062ddb3511a"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/180.png",
+      "sha256": "7d516531c0574edfdd77e9493b5138610c2bb647ef0e95b653e3ea8704002496"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/225.png",
+      "sha256": "ae80e4268b310145be8130e49b0c0b92382c38fa1c964ffd4dd0336b8e572dd4"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/270.png",
+      "sha256": "3f9836bf598d72f83767235b633a4d8a3de46eb36e2a954c24538dfb549b3b74"
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/hearse-01/315.png",
+      "sha256": "74b00e929c59bb75991bdb77702aac071a424ccd88de8361158edfee85d3a591"
+    }
+  ],
+  "all_identical": true
+}

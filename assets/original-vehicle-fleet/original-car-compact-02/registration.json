@@ -1,0 +1,23 @@
+{
+  "id": "original-car-compact-02",
+  "name": "준중형 세단 · 원본",
+  "category": "civilian",
+  "style": "sedan",
+  "length_m": 4.35,
+  "width_m": 1.76,
+  "height_m": 1.43,
+  "triangles": 4046,
+  "model": "res://assets/vehicles/original-car-compact-02.glb",
+  "driver_side": "left",
+  "rig_schema": "recovered-original",
+  "original_id": "car-compact-02",
+  "source": "assets/original-vehicle-fleet/original-car-compact-02/vehicle.blend",
+  "source_sha256": "4d4bd23cf4e348710edee5fae0369e7291402f031f0776d4cae57d82bff8a4aa",
+  "dimensions_source": "original nominal design dimensions; excludes accessories",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "crash deformation",
+    "large-fleet performance"
+  ]
+}
