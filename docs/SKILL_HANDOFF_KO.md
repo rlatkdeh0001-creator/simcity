@@ -8,7 +8,7 @@
 
 ## 최신 작업: 본게임 하단 HUD 통합·소방/경찰/교정 빈 슬롯 1A (2026-11-10 KST)
 
-실제 Windows 공용 체크아웃 `C:/Users/wlgml/projects/simcity`, main/origin/main e8fff35에서
+실제 Windows 공용 체크아웃은 현재 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`), main/origin/main e8fff35에서
 `feature/bottom-ui-main-integration`로 작업했다. [범위·재현·실패/최종 로그·화면](bottom-ui-main-validation/README_KO.md).
 현재 지시는 로컬 브랜치 커밋까지만이며 원격 푸시/머지는 하지 않는다.
 마무리 fetch에서 origin/main a4913a2의 원본 7종 회수를 확인했다. 이 브랜치에는 병합하지 않았으며

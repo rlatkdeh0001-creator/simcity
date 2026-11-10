@@ -1,6 +1,6 @@
 # 하단 UI 본게임 통합 · 1A 검증
 
-2026-11-10 KST. Windows 공용 체크아웃 `C:/Users/wlgml/projects/simcity`,
+2026-11-10 KST. Windows 공용 체크아웃은 현재 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`),
 기준 `main`/`origin/main` **e8fff35**, 작업 브랜치 `feature/bottom-ui-main-integration`.
 사용자 화면 검토 전 **로컬 커밋만** 한다. 원격 푸시·머지하지 않는다.
 이 PC의 Git 작성자 설정은 비어 있었다. 현재 인증한 GitHub 계정/ID 기반 noreply 작성자를
