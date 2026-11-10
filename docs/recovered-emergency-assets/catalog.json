@@ -1,0 +1,122 @@
+{
+  "assets": [
+    {
+      "name": "소방서",
+      "source_name": "소방서",
+      "id": "fire-station",
+      "group": "fire",
+      "footprint_cells": [
+        6,
+        6
+      ],
+      "cell_meters": 4,
+      "source": "assets/fire-study/fire-station/building.blend",
+      "preview": "assets/fire-study/fire-station/building.png",
+      "metadata": "assets/fire-study/fire-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 3
+    },
+    {
+      "name": "광역소방서",
+      "source_name": "광역 소방서",
+      "id": "regional-fire-station",
+      "group": "fire",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "cell_meters": 4,
+      "source": "assets/fire-study/regional-fire-station/building.blend",
+      "preview": "assets/fire-study/regional-fire-station/building.png",
+      "metadata": "assets/fire-study/regional-fire-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 4
+    },
+    {
+      "name": "소형소방서",
+      "source_name": "소형 소방서",
+      "id": "small-fire-station",
+      "group": "fire",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "cell_meters": 4,
+      "source": "assets/fire-study/small-fire-station/building.blend",
+      "preview": "assets/fire-study/small-fire-station/building.png",
+      "metadata": "assets/fire-study/small-fire-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 1
+    },
+    {
+      "name": "경찰서",
+      "source_name": "경찰서",
+      "id": "police-station",
+      "group": "police",
+      "footprint_cells": [
+        6,
+        6
+      ],
+      "cell_meters": 4,
+      "source": "assets/police-study/police-station/building.blend",
+      "preview": "assets/police-study/police-station/building.png",
+      "metadata": "assets/police-study/police-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 3
+    },
+    {
+      "name": "경찰본부",
+      "source_name": "광역 경찰서",
+      "id": "regional-police-station",
+      "group": "police",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "cell_meters": 4,
+      "source": "assets/police-study/regional-police-station/building.blend",
+      "preview": "assets/police-study/regional-police-station/building.png",
+      "metadata": "assets/police-study/regional-police-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 4
+    },
+    {
+      "name": "파출소",
+      "source_name": "소형 경찰서",
+      "id": "small-police-station",
+      "group": "police",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "cell_meters": 4,
+      "source": "assets/police-study/small-police-station/building.blend",
+      "preview": "assets/police-study/small-police-station/building.png",
+      "metadata": "assets/police-study/small-police-station/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "draft",
+      "max_storeys": 1
+    },
+    {
+      "name": "교도소",
+      "source_name": "교도소",
+      "id": "prison-8x8",
+      "group": "prison",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "cell_meters": 4,
+      "source": "assets/prison-study/prison/building.blend",
+      "preview": "assets/prison-study/prison/building.png",
+      "metadata": "assets/prison-study/prison/metadata.json",
+      "game_integration": "source archive only; not newly registered or placed",
+      "footprint_status": "user-specified"
+    }
+  ]
+}

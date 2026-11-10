@@ -42,7 +42,21 @@ Git 작성자 기본 설정은 없으므로 현재 인증 GitHub 계정/ID 기�
 전역/저장소 작성자 설정이나 시스템 PATH를 바꾸지 않았다.
 대규모 성능/모바일/물리 게임패드·시설 배치/출동·경제 운영·사용자 건물 인수는 하지 않았다.
 
-## 이전 작업: 병원·진료소와 기존 공공 애셋/탭 재확인 (2026-11-04 KST)
+## 최신 작업: 소방·경찰·교도소 7종 원본 업로드 (2026-11-10 KST)
+
+환경 복구 후 사용자가 이전에 요청한 GitHub 업로드를 재개했다. fetch로 main e8fff35를 확인하고
+기존 체크아웃을 fast-forward했다. GitHub에는 해당 원본 폴더가 없었으며 이전 stash의 untracked
+트리에서 assets/fire-study·police-study·prison-study 51파일을 바이트 그대로 회수했다.
+[7종 이름/ID/부지/원본·이미지/검증](recovered-emergency-assets/README_KO.md).
+
+cloud-environment-runtime 지침으로 환경/네트워크를 조회했다. 새 제작 스킬·외부 모델·스킬 변경은 없다.
+원본 직접 제작/DejaVu FONT_LICENSE와 편집 Blend·PNG·metadata·생성 스크립트를 보존했다.
+이번에는 Blender 4.3.2로 원본7개를 읽어 유한 메시/metadata 경계, Pillow로 PNG14장,
+51파일 SHA/원본 바이트 일치를 검사했다. tools/verify_emergency_sources.py로 재현한다.
+전체 게임 회귀/새 렌더/시설 운영·배치·가격 적용은 수행하지 않았다. 게임 코드와 기존 차량·보건/교육
+등록은 수정하지 않고 관련 원본/인덱스/검증/이 인계장만 커밋·푸시한다.
+
+## 최신 작업: 병원·진료소와 기존 공공 애셋/탭 재확인 (2026-11-04 KST)
 
 사용자가 이미 된 작업을 먼저 확인하라고 정정했다. 로컬 cdca2de와 원격 4651283을
 비교하고 fetch/fast-forward하여 기존 모델·보건/교육 탭을 보존했다.

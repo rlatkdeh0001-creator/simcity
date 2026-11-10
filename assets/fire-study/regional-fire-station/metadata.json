@@ -1,0 +1,70 @@
+{
+  "id": "regional-fire-station",
+  "name": "광역 소방서",
+  "category": "fire_service",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "max_storeys": 4,
+  "main_building_storeys": 4,
+  "revision": "helipad-with-rooftop-stair-access",
+  "rooftop_stair_access": true,
+  "helipad_access_walkway": true,
+  "rooftop_helipad": true,
+  "helipad_deck_m": [
+    14.8,
+    14.8
+  ],
+  "garage_bays": 4,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    862.0063
+  ],
+  "lot_corners_px": [
+    [
+      78.5054,
+      676.2588
+    ],
+    [
+      450.0003,
+      862.0063
+    ],
+    [
+      821.4952,
+      676.2589
+    ],
+    [
+      450.0004,
+      490.5114
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      22.0
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+  "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+}

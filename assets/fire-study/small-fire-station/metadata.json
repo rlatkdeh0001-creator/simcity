@@ -1,0 +1,61 @@
+{
+  "id": "small-fire-station",
+  "name": "소형 소방서",
+  "category": "fire_service",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "max_storeys": 1,
+  "garage_bays": 2,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0006,
+    807.2666
+  ],
+  "lot_corners_px": [
+    [
+      72.8771,
+      618.7048
+    ],
+    [
+      450.0006,
+      807.2666
+    ],
+    [
+      827.1243,
+      618.7048
+    ],
+    [
+      450.0008,
+      430.143
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      5.865000247955322
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+  "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+}

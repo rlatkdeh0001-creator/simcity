@@ -1,0 +1,60 @@
+{
+  "id": "police-station",
+  "name": "경찰서",
+  "category": "police_service",
+  "footprint_cells": [
+    6,
+    6
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    24,
+    24
+  ],
+  "max_storeys": 3,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0004,
+    827.2343
+  ],
+  "lot_corners_px": [
+    [
+      52.8171,
+      628.6426
+    ],
+    [
+      450.0004,
+      827.2343
+    ],
+    [
+      847.1839,
+      628.6426
+    ],
+    [
+      450.0006,
+      430.0509
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -12.0,
+      -12.0,
+      -0.11999999731779099
+    ],
+    [
+      12.0,
+      12.0,
+      10.149999618530273
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "police visual concepts only; crime, patrol and response simulation not implemented"
+}

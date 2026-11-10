@@ -1,0 +1,60 @@
+{
+  "id": "small-police-station",
+  "name": "소형 경찰서",
+  "category": "police_service",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "max_storeys": 1,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0006,
+    807.2666
+  ],
+  "lot_corners_px": [
+    [
+      72.8771,
+      618.7048
+    ],
+    [
+      450.0006,
+      807.2666
+    ],
+    [
+      827.1243,
+      618.7048
+    ],
+    [
+      450.0008,
+      430.143
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      4.875
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved small police station design; game integration pending"
+}

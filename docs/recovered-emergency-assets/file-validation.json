@@ -1,0 +1,263 @@
+{
+  "source_stash_tree": "fd7294f403831cd94ee0f669ab89bd6fd7e55389",
+  "preserved_files": 51,
+  "images_checked": 14,
+  "original_bytes_preserved": true,
+  "files": [
+    {
+      "path": "assets/fire-study/.gitignore",
+      "bytes": 28,
+      "sha256": "e1b943257d252c73670b740940bc312d8b928c68a91fddcb0ea3fb6fc350a5e0"
+    },
+    {
+      "path": "assets/fire-study/FONT_LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/fire-study/README.md",
+      "bytes": 2575,
+      "sha256": "6005e194758a2be61705466702c34ac283479d93065721f2fe894cc06f553783"
+    },
+    {
+      "path": "assets/fire-study/build_fire-station.py",
+      "bytes": 14187,
+      "sha256": "8879c21ae009010b2e90ace54c30e5a140c5a7201f3da81a0e10d0ed7dc3409b"
+    },
+    {
+      "path": "assets/fire-study/build_regional-fire-station.py",
+      "bytes": 19693,
+      "sha256": "6677d175d66a6b2c55d68d777b9fc48ca28d17ba8de668bf77b4fb36ef5aae2b"
+    },
+    {
+      "path": "assets/fire-study/build_small-fire-station.py",
+      "bytes": 13898,
+      "sha256": "59443289b51ba61523b77ac1e8fb27367c23077bb2691e5ead92875f9315f53f"
+    },
+    {
+      "path": "assets/fire-study/fire-station/building.blend",
+      "bytes": 1903376,
+      "sha256": "a8fb8d15282669e3d4be00d22402bd0ed40c8778cffba6f209d0d2ecb831203c"
+    },
+    {
+      "path": "assets/fire-study/fire-station/building.png",
+      "bytes": 773595,
+      "sha256": "1a339a91f3bfbe6b8cd7c71bb34b5f645fa095f043f3845f7243132287b3cd59"
+    },
+    {
+      "path": "assets/fire-study/fire-station/metadata.json",
+      "bytes": 1045,
+      "sha256": "76572a77788a664b4d064e22d8c5216b30742466f6399d7373a74c504802cb87"
+    },
+    {
+      "path": "assets/fire-study/fire-station/production_log.md",
+      "bytes": 488,
+      "sha256": "e3869399994eeed3af728696807e3939f4d50b263dd2d4713a4d9b5561eddfc5"
+    },
+    {
+      "path": "assets/fire-study/fire-station/reverse-review.png",
+      "bytes": 747611,
+      "sha256": "4d9e4dcd9331975c28b284c2437f99185b5c3c3077087fee072e237c7e212501"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/building.blend",
+      "bytes": 6078664,
+      "sha256": "ca4806f1aa55d8c2258b9b8ae842a9b3693ca3d665af4d8c5746116b56e07064"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/building.png",
+      "bytes": 919280,
+      "sha256": "6248c647df8d2483b1b16770cc89db43ca48fa7d122a6dbfd7c560e39c29b8da"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/metadata.json",
+      "bytes": 1268,
+      "sha256": "964daf993395a088666cf2e964abeed7f508f03701104976c1d5c13cae3bb8db"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/production_log.md",
+      "bytes": 482,
+      "sha256": "337d3cee0fb5dea9b5757d82d37a0a9204bd30a2251e084d2dcaaa503ca86c6c"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/reverse-review.png",
+      "bytes": 819539,
+      "sha256": "b1f38ed1fc4e205dbdf3d5fe2ed3e692bd53190433b98ba8e30715562a16af21"
+    },
+    {
+      "path": "assets/fire-study/small-fire-station/building.blend",
+      "bytes": 1780740,
+      "sha256": "1a8b1962c5a6d9d7b665adaac2d339ba05dba657e60c4dae4a7c24bb0a2cc27a"
+    },
+    {
+      "path": "assets/fire-study/small-fire-station/building.png",
+      "bytes": 753882,
+      "sha256": "9535b26215a85b70a754c49d6ec4b842a73a8a589b1229eec4c15d8ba4493106"
+    },
+    {
+      "path": "assets/fire-study/small-fire-station/metadata.json",
+      "bytes": 1053,
+      "sha256": "0bcbc9ce92ff072f3aacd9843ba8552fbf54e27a8df1d7950279eabe4382d5d8"
+    },
+    {
+      "path": "assets/fire-study/small-fire-station/production_log.md",
+      "bytes": 491,
+      "sha256": "2e3d22409650839c453be20950d30d1edeb432d68a3ff9c200dc06f8effb0f0c"
+    },
+    {
+      "path": "assets/fire-study/small-fire-station/reverse-review.png",
+      "bytes": 696921,
+      "sha256": "de589d63faaf2cd9d51ead4df95ce38b8a2590fd780088ee35194240991995f1"
+    },
+    {
+      "path": "assets/police-study/.gitignore",
+      "bytes": 28,
+      "sha256": "e1b943257d252c73670b740940bc312d8b928c68a91fddcb0ea3fb6fc350a5e0"
+    },
+    {
+      "path": "assets/police-study/FONT_LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/police-study/README.md",
+      "bytes": 1723,
+      "sha256": "bffd6d035043b2d3aed552dfe8191a696baa697b5dfc674629906ab88eadaf0b"
+    },
+    {
+      "path": "assets/police-study/build_police-station.py",
+      "bytes": 13796,
+      "sha256": "d5d9704a452a9e492110308ab4ebc01da9f307ed6468a6ac991efdcc7a0e7fe1"
+    },
+    {
+      "path": "assets/police-study/build_regional-police-station.py",
+      "bytes": 18086,
+      "sha256": "16e8533cec327d964693935dac7d917d80e8fa15daf481bf7fc46e9bd09a1c76"
+    },
+    {
+      "path": "assets/police-study/build_small-police-station.py",
+      "bytes": 13582,
+      "sha256": "af18ebf05388183a7b9a2e7c0ba775515a358d80566e815493ba1b4f6439c620"
+    },
+    {
+      "path": "assets/police-study/police-station/building.blend",
+      "bytes": 2550760,
+      "sha256": "cce12de2c52d06fc00113f907e00759c55e0ce9dd0961fd7ba437e7564c7b67a"
+    },
+    {
+      "path": "assets/police-study/police-station/building.png",
+      "bytes": 802183,
+      "sha256": "c39902b65ef014e500a81f09d20f64edd8de01f1ef723abd2f9d6c20b6acd684"
+    },
+    {
+      "path": "assets/police-study/police-station/metadata.json",
+      "bytes": 1044,
+      "sha256": "08cf2bc8570ca11fc581c79ab98cc50613b1df901de7fe87fcd7d9a1f22c6f3a"
+    },
+    {
+      "path": "assets/police-study/police-station/production_log.md",
+      "bytes": 441,
+      "sha256": "bfb3f187defc5bf38545491c90dccbc77fc962a987b9990b2db0b3b0df9e98ba"
+    },
+    {
+      "path": "assets/police-study/police-station/reverse-review.png",
+      "bytes": 752206,
+      "sha256": "63cd94eff0b9cc95afa0d987e1d580ed2ca6248d6ed850c9ae3de2aaf132970d"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/building.blend",
+      "bytes": 2961980,
+      "sha256": "7a5e75241b1189461adf7c5eb9ea772aa86647ef65a0cc0b11fc742df91ea4f0"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/building.png",
+      "bytes": 868336,
+      "sha256": "df4fd479fd003adc8be9f984fea778b99612a6c72c8365a709b1d3a26c2f2974"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/metadata.json",
+      "bytes": 1181,
+      "sha256": "6ea199b958c40fa3a67bf5dc10d3c7eee1e6b251f259ec092ff5be6086ed5428"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/production_log.md",
+      "bytes": 432,
+      "sha256": "a4765239129731f8c2500850fb0bf871ea28f33864b58bf76f09e64ffcf51b54"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/reverse-review.png",
+      "bytes": 789742,
+      "sha256": "5d19f6eb30c9da79e76202a6934e49efb5f9b732b783480e33ba74c7e8062458"
+    },
+    {
+      "path": "assets/police-study/small-police-station/building.blend",
+      "bytes": 1688092,
+      "sha256": "21f89b90084a3b4119d31bb800ebae0050e8dca474b035f95a590587f6e6c749"
+    },
+    {
+      "path": "assets/police-study/small-police-station/building.png",
+      "bytes": 735696,
+      "sha256": "210773a8186bbcc4e00797350a1879749674f5fbd1941f2f9d5e1491e59c9e54"
+    },
+    {
+      "path": "assets/police-study/small-police-station/metadata.json",
+      "bytes": 1013,
+      "sha256": "59d0c6e76f2b09c2eb56621e6d5557773834d43a96bfaa9145818e611f9a0931"
+    },
+    {
+      "path": "assets/police-study/small-police-station/production_log.md",
+      "bytes": 431,
+      "sha256": "03fbde7d7ae8683d61d7b5de6e96c508ab48250a342e7d4269c4ae759e8fc29b"
+    },
+    {
+      "path": "assets/police-study/small-police-station/reverse-review.png",
+      "bytes": 689863,
+      "sha256": "ccabaac4e0cda8c036d1c15a384f3be13721e05d2fa0dc7c8ea80514951c28e6"
+    },
+    {
+      "path": "assets/prison-study/.gitignore",
+      "bytes": 28,
+      "sha256": "e1b943257d252c73670b740940bc312d8b928c68a91fddcb0ea3fb6fc350a5e0"
+    },
+    {
+      "path": "assets/prison-study/FONT_LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/prison-study/README.md",
+      "bytes": 912,
+      "sha256": "12d522e778d5b094b5dfbe2bee2388905d953867ab330871e31fcd6c683c5ecb"
+    },
+    {
+      "path": "assets/prison-study/build_prison.py",
+      "bytes": 16151,
+      "sha256": "259789517b963197043e1483896128b6fbfa2de696be7993b5a02ac031f0fd11"
+    },
+    {
+      "path": "assets/prison-study/prison/building.blend",
+      "bytes": 2413016,
+      "sha256": "763457e27f75fbd8cbe0ce6a2c355418f15af385c7cf23b8b8ac05901ca3bcc5"
+    },
+    {
+      "path": "assets/prison-study/prison/building.png",
+      "bytes": 779498,
+      "sha256": "f5afe3028bcbecc34befdc87fda553ddeaf308c4390b93d6e0ca9cd07b1289e7"
+    },
+    {
+      "path": "assets/prison-study/prison/metadata.json",
+      "bytes": 978,
+      "sha256": "6fb59e6e88e71b6a44c356fde8eb20bfa4e44ad5df73e8d31bc27296d3d08d99"
+    },
+    {
+      "path": "assets/prison-study/prison/production_log.md",
+      "bytes": 419,
+      "sha256": "a8f2ca52694dd5cc06ce0ea3110bea148ba3afc4b305e2ed983b110954e2a4e9"
+    },
+    {
+      "path": "assets/prison-study/prison/reverse-review.png",
+      "bytes": 756093,
+      "sha256": "57c226ad88e0de7df66c1ebf025c20080e2d1677966f78634175f711a18ef314"
+    }
+  ]
+}
