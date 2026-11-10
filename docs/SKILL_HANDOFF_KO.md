@@ -6,7 +6,18 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 본게임 하단 HUD 통합·소방/경찰/교정 빈 슬롯 1A (2026-11-10 KST)
+## 최신 작업: 승인된 1A와 원본 회수 병합·main 반영 (2026-11-10 KST)
+
+현재 체크아웃 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`).
+사용자 승인으로 1A a367fac와 origin/main a4913a2를 병합했다. 인계장 충돌 1개는 UI 기록과 원본 회수 기록을 모두 보존해 해결했다.
+기획자가 작성한 AGENTS/mistake/하단바v2/경제루프 문서는 내용 수정 없이 별도 docs 커밋했다.
+GitHub 병합 절차와 개인 프로필 godot-windows-validation 지침(자체 MIT)을 적용했으며 새 스킬 설치/수정은 없다.
+Godot 4.6.3 임포트 후 전체 22개 스크립트를 이 경로에서 새로 실행해 22/22 통과했다.
+[이번 실행·명령·원본 로그](1a-main-merge-validation/results.json). 이전 검증 수치/로그는 보존했다.
+이제 main fast-forward 및 원격 푸시가 승인된 범위다. pending 7슬롯·게임 코드·서비스 카탈로그는 변경하지 않는다.
+하단바 v2 구현·건물 변환/등록·사운드 등록·가격 적용은 하지 않으며 .import churn/기존 미추적 .uid8개를 제외한다.
+
+## 이전 작업: 본게임 하단 HUD 통합·소방/경찰/교정 빈 슬롯 1A (2026-11-10 KST)
 
 실제 Windows 공용 체크아웃은 현재 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`), main/origin/main e8fff35에서
 `feature/bottom-ui-main-integration`로 작업했다. [범위·재현·실패/최종 로그·화면](bottom-ui-main-validation/README_KO.md).

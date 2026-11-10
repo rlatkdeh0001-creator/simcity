@@ -1,5 +1,9 @@
 # 하단 UI 본게임 통합 · 1A 검증
 
+**후속 승인/병합:** 사용자가 1A를 승인해 원본 회수 a4913a2와 병합하고 main 반영·푸시를 허용했다.
+현재 체크아웃은 `D:/project/simcity`이며 [이동·병합 후 새 전체 검사 22/22](../1a-main-merge-validation/results.json)를 확인한다.
+아래 수치·이미지·명령 로그는 1A 제작 당시 기록으로 보존한다. 당시 로컬 커밋 제한은 현재 승인으로 해제됐다.
+
 2026-11-10 KST. Windows 공용 체크아웃은 현재 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`),
 기준 `main`/`origin/main` **e8fff35**, 작업 브랜치 `feature/bottom-ui-main-integration`.
 사용자 화면 검토 전 **로컬 커밋만** 한다. 원격 푸시·머지하지 않는다.
