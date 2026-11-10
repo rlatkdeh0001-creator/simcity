@@ -1,0 +1,59 @@
+{
+  "id": "prison-8x8",
+  "name": "교도소",
+  "category": "corrections_service",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "user-specified",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    810.3432
+  ],
+  "lot_corners_px": [
+    [
+      48.5462,
+      609.6161
+    ],
+    [
+      450.0003,
+      810.3432
+    ],
+    [
+      851.4545,
+      609.6162
+    ],
+    [
+      450.0004,
+      408.8891
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      10.305000305175781
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry; adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved 8x8 prison design; game integration pending"
+}

@@ -140,3 +140,7 @@ Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-const
 ## 2026-11-04 회수 애셋 로컬 통합
 
 기존 차량23종을 유지하고 원본18종을 별도 등록해 총41종, 교육·의료7종을 실제 애셋 메뉴/전시에 연결했다. 원본 버스·택시는 추가하지 않았고 최종 사용자 요청으로 관련 통합을 GitHub main에 푸시한다. [범위·재현·검증·원본 보존](docs/recovered-assets-validation/README_KO.md).
+
+## 회수된 소방·경찰·교도소 원본 7종
+
+[이름·ID·부지와 원본/이미지 링크](docs/recovered-emergency-assets/README_KO.md). 편집 원본·시안·규격 자료 보존이며 새 게임 등록/시설 운영 구현과 구분한다.

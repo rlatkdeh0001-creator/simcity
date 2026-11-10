@@ -1,10 +1,24 @@
 # CITIES_DO 스킬 인계장
 
-최종 기록: 2026-11-04 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
+최종 기록: 2026-11-10 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → [mistake.md](../mistake.md) → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
+
+## 최신 작업: 소방·경찰·교도소 7종 원본 업로드 (2026-11-10 KST)
+
+환경 복구 후 사용자가 이전에 요청한 GitHub 업로드를 재개했다. fetch로 main e8fff35를 확인하고
+기존 체크아웃을 fast-forward했다. GitHub에는 해당 원본 폴더가 없었으며 이전 stash의 untracked
+트리에서 assets/fire-study·police-study·prison-study 51파일을 바이트 그대로 회수했다.
+[7종 이름/ID/부지/원본·이미지/검증](recovered-emergency-assets/README_KO.md).
+
+cloud-environment-runtime 지침으로 환경/네트워크를 조회했다. 새 제작 스킬·외부 모델·스킬 변경은 없다.
+원본 직접 제작/DejaVu FONT_LICENSE와 편집 Blend·PNG·metadata·생성 스크립트를 보존했다.
+이번에는 Blender 4.3.2로 원본7개를 읽어 유한 메시/metadata 경계, Pillow로 PNG14장,
+51파일 SHA/원본 바이트 일치를 검사했다. tools/verify_emergency_sources.py로 재현한다.
+전체 게임 회귀/새 렌더/시설 운영·배치·가격 적용은 수행하지 않았다. 게임 코드와 기존 차량·보건/교육
+등록은 수정하지 않고 관련 원본/인덱스/검증/이 인계장만 커밋·푸시한다.
 
 ## 최신 작업: 병원·진료소와 기존 공공 애셋/탭 재확인 (2026-11-04 KST)
 

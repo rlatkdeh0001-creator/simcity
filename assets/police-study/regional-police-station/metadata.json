@@ -1,0 +1,67 @@
+{
+  "id": "regional-police-station",
+  "name": "광역 경찰서",
+  "category": "police_service",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "max_storeys": 4,
+  "rooftop_helipad": true,
+  "rooftop_stair_access": true,
+  "helipad_deck_m": [
+    14.8,
+    14.8
+  ],
+  "revision": "police-headquarters-rooftop-helipad",
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    847.7879
+  ],
+  "lot_corners_px": [
+    [
+      78.5054,
+      662.0405
+    ],
+    [
+      450.0003,
+      847.7879
+    ],
+    [
+      821.4952,
+      662.0405
+    ],
+    [
+      450.0004,
+      476.2931
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -1.475000023841858
+    ],
+    [
+      16.0,
+      16.0,
+      21.0
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved police headquarters with helipad; game integration pending"
+}

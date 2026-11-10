@@ -1,0 +1,18 @@
+SOURCE_OK fire-station
+SOURCE_OK regional-fire-station
+SOURCE_OK small-fire-station
+SOURCE_OK police-station
+SOURCE_OK regional-police-station
+SOURCE_OK small-police-station
+SOURCE_OK prison-8x8
+RESULT 7/7 Blender source files opened, finite, matching metadata
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/fire-study/fire-station/building.blend"
+Read blend: "/workspace/simcity/assets/fire-study/regional-fire-station/building.blend"
+Read blend: "/workspace/simcity/assets/fire-study/small-fire-station/building.blend"
+Read blend: "/workspace/simcity/assets/police-study/police-station/building.blend"
+Read blend: "/workspace/simcity/assets/police-study/regional-police-station/building.blend"
+Read blend: "/workspace/simcity/assets/police-study/small-police-station/building.blend"
+Read blend: "/workspace/simcity/assets/prison-study/prison/building.blend"
+
+Blender quit
