@@ -1,0 +1,165 @@
+{
+  "recorded_at": "2026-11-10T14:28:45.256744+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "captures": [
+    {
+      "name": "main-default-1920",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--borderless",
+        "--resolution",
+        "1920x1080",
+        "--position",
+        "0,0",
+        "--",
+        "--capture-bottom-ui=C:\\Users\\wlgml\\projects\\simcity\\docs\\bottom-ui-main-validation\\main-default-1920.png"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": false,
+      "elapsed_s": 4.94,
+      "log": "main-default-1920.log",
+      "png_size": [
+        1920,
+        1061
+      ],
+      "sha256": "0961111b307656d9200dfb2d3bfd0e96388bc7011830b969c1a13ead17a15469"
+    },
+    {
+      "name": "main-fire-1920",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--borderless",
+        "--resolution",
+        "1920x1080",
+        "--position",
+        "0,0",
+        "--",
+        "--capture-bottom-ui=C:\\Users\\wlgml\\projects\\simcity\\docs\\bottom-ui-main-validation\\main-fire-1920.png",
+        "--bottom-tab=fire"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": false,
+      "elapsed_s": 4.45,
+      "log": "main-fire-1920.log",
+      "png_size": [
+        1920,
+        1061
+      ],
+      "sha256": "69966c913752e09a3f74fb09ad76b1b10f953dc6094adca0a04a6ad8aa91c783"
+    },
+    {
+      "name": "main-corrections-1920",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--borderless",
+        "--resolution",
+        "1920x1080",
+        "--position",
+        "0,0",
+        "--",
+        "--capture-bottom-ui=C:\\Users\\wlgml\\projects\\simcity\\docs\\bottom-ui-main-validation\\main-corrections-1920.png",
+        "--bottom-tab=corrections"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": false,
+      "elapsed_s": 4.4,
+      "log": "main-corrections-1920.log",
+      "png_size": [
+        1920,
+        1061
+      ],
+      "sha256": "5bd26c3d758087f4e0e637a40d845531ceb1b5dd2e9111b9a48bf4e118f14074"
+    },
+    {
+      "name": "main-zoning-1920",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--borderless",
+        "--resolution",
+        "1920x1080",
+        "--position",
+        "0,0",
+        "--",
+        "--capture-bottom-ui=C:\\Users\\wlgml\\projects\\simcity\\docs\\bottom-ui-main-validation\\main-zoning-1920.png",
+        "--bottom-tab=build"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": false,
+      "elapsed_s": 4.43,
+      "log": "main-zoning-1920.log",
+      "png_size": [
+        1920,
+        1061
+      ],
+      "sha256": "5c5d43a99e6cfff4099ee161cb4c90118187c275ec780127776d7781ad426f2e"
+    },
+    {
+      "name": "main-fire-1280",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--borderless",
+        "--resolution",
+        "1280x820",
+        "--position",
+        "0,0",
+        "--",
+        "--capture-bottom-ui=C:\\Users\\wlgml\\projects\\simcity\\docs\\bottom-ui-main-validation\\main-fire-1280.png",
+        "--bottom-tab=fire"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": true,
+      "elapsed_s": 4.32,
+      "log": "main-fire-1280.log",
+      "png_size": [
+        1280,
+        820
+      ],
+      "sha256": "64517247081f4afc6a854a6d321ef7f15089cc8f0ff794bf2550d5d4b39acee7"
+    }
+  ]
+}

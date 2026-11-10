@@ -86,7 +86,8 @@ func run() -> void:
  await process_frame
  scene.city=town()
  scene.select_category("build")
- verify(scene.drawer_box.get_child_count()==6,"zoning tab provides three zone tools and one eraser")
+ var zone_tools: Array=scene.drawer_box.get_children().filter(func(n):return n.name in ["Tool_build","Tool_build_commercial","Tool_build_industrial","Tool_build_erase"])
+ verify(zone_tools.size()==4,"zoning tab provides three zone tools and one eraser alongside retained actions")
  var tool=scene.drawer_box.find_child("Tool_build_commercial",false,false)
  tool.pressed.emit()
  verify(scene.mode=="build" and scene.zone=="commercial","commercial button selects drag brush")

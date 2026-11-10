@@ -71,6 +71,24 @@ func _ready():
 	add_child(layer)
 	traffic = Traffic.new()
 	add_child(traffic)
+	_build_controls(layer)
+	power_snapshot = city.power_state()
+	power_overlay = PowerOverlay.new()
+	add_child(power_overlay)
+	power_overlay.setup(self,layer)
+	water_snapshot = city.water_state()
+	water_overlay = WaterOverlay.new()
+	add_child(water_overlay)
+	water_overlay.setup(self,layer)
+	labor_panel=PanelContainer.new()
+	labor_panel.name="LaborPanel"
+	labor_panel.position=Vector2(get_viewport_rect().size.x-490,20)
+	layer.add_child(labor_panel)
+	labor_rings=preload("res://labor_rings.gd").new()
+	labor_panel.add_child(labor_rings)
+	refresh()
+
+func _build_controls(layer: CanvasLayer):
 	var panel := PanelContainer.new()
 	controls_panel = panel
 	panel.position = Vector2(18, 18)
@@ -213,21 +231,6 @@ func _ready():
 	hud.position = Vector2(360, get_viewport_rect().size.y-100)
 	hud.add_theme_font_size_override("font_size", 16)
 	layer.add_child(hud)
-	power_snapshot = city.power_state()
-	power_overlay = PowerOverlay.new()
-	add_child(power_overlay)
-	power_overlay.setup(self,layer)
-	water_snapshot = city.water_state()
-	water_overlay = WaterOverlay.new()
-	add_child(water_overlay)
-	water_overlay.setup(self,layer)
-	labor_panel=PanelContainer.new()
-	labor_panel.name="LaborPanel"
-	labor_panel.position=Vector2(get_viewport_rect().size.x-490,20)
-	layer.add_child(labor_panel)
-	labor_rings=preload("res://labor_rings.gd").new()
-	labor_panel.add_child(labor_rings)
-	refresh()
 
 func toggle_traffic():
 	if traffic.running:
@@ -236,7 +239,7 @@ func toggle_traffic():
 	else:
 		if traffic.rebuild(city.roads):
 			traffic.seed_traffic()
-			traffic_button.text = "도로 주행 종료"
+			if traffic_button != null: traffic_button.text = "도로 주행 종료"
 		message = traffic.status
 	refresh()
 

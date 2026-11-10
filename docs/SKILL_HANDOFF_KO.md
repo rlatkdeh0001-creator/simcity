@@ -1,12 +1,48 @@
 # CITIES_DO 스킬 인계장
 
-최종 기록: 2026-11-04 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
+최종 기록: 2026-11-10 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → [mistake.md](../mistake.md) → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 병원·진료소와 기존 공공 애셋/탭 재확인 (2026-11-04 KST)
+## 최신 작업: 본게임 하단 HUD 통합·소방/경찰/교정 빈 슬롯 1A (2026-11-10 KST)
+
+실제 Windows 공용 체크아웃 `C:/Users/wlgml/projects/simcity`, main/origin/main e8fff35에서
+`feature/bottom-ui-main-integration`로 작업했다. [범위·재현·실패/최종 로그·화면](bottom-ui-main-validation/README_KO.md).
+현재 지시는 로컬 브랜치 커밋까지만이며 원격 푸시/머지는 하지 않는다.
+마무리 fetch에서 origin/main a4913a2의 원본 7종 회수를 확인했다. 이 브랜치에는 병합하지 않았으며
+슬롯의 pending_asset은 게임 연결 대기를 뜻한다. 원본 부재로 간주하거나 재제작하지 않는다.
+`ECONOMY_LOOP_SPEC_KO.md`는 수정/포함하지 않고 기획자가 준 FIRE_POLICE 슬롯 문서는 근거로 포함한다.
+
+읽고 적용한 저장소 스킬: `.agents/skills/{cities-do-construction,game-ui-ux,godot-gdscript,godot-gdscript-headless-testing}/SKILL.md`.
+construction은 프로젝트 자체 지침이며 별도 외부 SHA/라이선스를 부여하지 않는다.
+나머지 세 원본은 https://github.com/gamedev-skills/awesome-gamedev-agent-skills,
+고정 `19d93f97c9c1ea0f8b306e77aa81e0d3e352d3e9`, Apache-2.0이며 기존 LICENSE/NOTICE/UPSTREAM을 보존했다.
+anchor/container·포커스 추적·명시적 실패 집계·종료 코드+오류 로그 검사를 적용했다.
+환경 프로필의 `software-development/{test-driven-development,systematic-debugging,requesting-code-review}/SKILL.md`도
+읽어 실패→구현→재검사/원인 추적/자체 diff·정적 점검에 사용했다. 해당 제공본은 MIT이며 별도 upstream 고정 SHA는
+제공되지 않았다. 레포에 새로 설치하거나 원본을 변경하지 않았으며 독립/병렬 리뷰 에이전트를 실행했다고 주장하지 않는다.
+
+변경: main의 UI 생성 메서드 분리와 `main.tscn`의 공유 `bottom_ui.gd` 연결,
+검토 장면에는 예제 도시만 유지, pending_slots.json의 7칸·12분류·기존 기능 하단 경로,
+test_main_bottom_ui와 기존 UI/전력/수도/전시/차량/구획 검사 진입 경로, Python 검증기·README/백로그·경제 CSV 상태 설명.
+서비스 카탈로그·기존 원본/GLB/PNG·시뮬레이션 규칙·가격 수치는 변경하지 않았다.
+빈 경로/pending 상태는 직접 신호를 보내도 비활성이며 ready+실제 spec 경로만 애셋 보기로 활성화한다.
+이 활성화는 도시 배치를 뜻하지 않는다. 기존 보건·교육 모델도 계속 애셋 보기이며 1B 도시 배치는 미구현이다.
+
+이번 실제 Windows 실행: Godot 4.6.3 표준, 전체 22스크립트 통과·본게임 HUD146/146·검토 HUD46/46.
+초기 전체18/22와 실패4개 로그는 보존했고 지연 포커스/구획 도구 수 검사를 수정한 뒤 전체를 새로 실행했다.
+1920×1080 네 장과 1280×820 한 장은 실제 GL Compatibility / RTX 2070 SUPER 창의 뷰포트다.
+Windows borderless 작업영역 제한은 fullscreen 재촬영으로 해결했으며 이미지 확대/합성을 하지 않았다.
+Blender 4.3.2 공식 ZIP 포터블은 앞 환경 검증에서 설치·버전 확인했지만 이번 1A에는 Blender 제작을 실행하지 않았다.
+실행 도구 경로·명령은 보고서, tests/captures JSON에 있다. 설치는 개인 프로필 tools 아래이며 시스템 PATH를 변경하지 않았다.
+재임포트 .import churn과 이전 .uid8개는 커밋에서 제외하고 이번 새 .gd2개의 .uid만 포함한다.
+Git 작성자 기본 설정은 없으므로 현재 인증 GitHub 계정/ID 기반 noreply를 명령 한정 `git -c`로 사용한다.
+전역/저장소 작성자 설정이나 시스템 PATH를 바꾸지 않았다.
+대규모 성능/모바일/물리 게임패드·시설 배치/출동·경제 운영·사용자 건물 인수는 하지 않았다.
+
+## 이전 작업: 병원·진료소와 기존 공공 애셋/탭 재확인 (2026-11-04 KST)
 
 사용자가 이미 된 작업을 먼저 확인하라고 정정했다. 로컬 cdca2de와 원격 4651283을
 비교하고 fetch/fast-forward하여 기존 모델·보건/교육 탭을 보존했다.

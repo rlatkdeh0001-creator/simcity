@@ -28,7 +28,8 @@ asset chooser above and status/time row below. Keep our own icons and game art.
 Do not put supply-radius/node-spacing explanations, development notes or tutorials
 in player-facing HUDs. Keep those in docs. Tool labels, meaningful live values and
 short action/error feedback remain appropriate. Do not change simulation rules
-when removing explanatory text. Current layout review is bottom_ui_preview.tscn.
+when removing explanatory text. Main now uses the shared bottom_ui.gd HUD;
+bottom_ui_preview.tscn is an authored review fixture, not the playable city's initial state.
 
 Road intersections: read `docs/ROAD_JUNCTIONS_KO.md`. Same-level centreline
 crossings form actual junctions with derived lane sections/turn connectors.

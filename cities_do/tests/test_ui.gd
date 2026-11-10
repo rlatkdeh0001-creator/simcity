@@ -18,7 +18,7 @@ func run():
 	root.add_child(scene)
 	await process_frame
 	verify(scene.city.difficulty == "normal" and scene.city.funds == 50000, "normal difficulty starts with 50000 doth")
-	verify(scene.treasury_label.text == "자금: 50,000 doth", "treasury displays confirmed currency and starting amount")
+	verify(scene.money.text == "50,000 doth", "bottom treasury displays confirmed currency and starting amount")
 	verify(scene.city.width == 100 and scene.city.height == 100 and scene.city.buildings.is_empty() and scene.city.roads.is_empty() and scene.city.zoning_grid.count() == 0, "100x100 scene starts empty with no zoning grid")
 	scene.map_zoom = 1.0
 	scene.city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
@@ -30,9 +30,8 @@ func run():
 	scene.mode = "select"
 	click(scene, Vector2(10.5,17.5))
 	verify(scene.selected == 1 and "120" in scene.info.text, "isometric click selects building and displays score")
-	var panel = scene.controls_panel.get_child(0)
-	for child in panel.get_children():
-		if child is Button and child.text == "선택 건물 업그레이드": child.emit_signal("pressed")
+	scene.select_category("build")
+	scene.drawer_box.find_children("Tool_upgrade","Button",true,false)[0].pressed.emit()
 	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")
 	# This fixture tests pointer geometry after growing a large authored home.
 	scene.city.population_enabled = false
@@ -55,10 +54,9 @@ func run():
 	verify(scene.city.roads.size() == 2 and scene.city.roads[1].points.size() == 4, "free road pointer stroke retains fractional geometry")
 	scene.city.funds = 12345
 	scene.refresh()
-	verify(scene.treasury_label.text == "자금: 12,345 doth", "treasury reflects current city balance")
-	for child in panel.get_children():
-		if child is Button and child.text == "도시 초기화": child.emit_signal("pressed")
-	verify(scene.city.funds == 50000 and scene.treasury_label.text == "자금: 50,000 doth", "city reset restores normal starting funds")
+	verify(scene.money.text == "12,345 doth", "bottom treasury reflects current city balance")
+	scene.drawer_box.find_children("Tool_reset","Button",true,false)[0].pressed.emit()
+	verify(scene.city.funds == 50000 and scene.money.text == "50,000 doth", "city reset restores normal starting funds")
 	await process_frame
 	scene.queue_free()
 	await process_frame

@@ -1,5 +1,18 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+## 2026-11-10 · 본게임 하단 UI 통합 (1A)
+
+기본 `main.tscn`에 공유 하단 HUD를 연결했다. 12분류와 우측 통합 불도저,
+기존 구획·도로·전력·상하수도·정지/배속·실제 자금/인구/날짜를 사용한다.
+소방·경찰·교정 7칸은 **이름만 있는 비활성 게임 등록 대기 슬롯**이며 가격·가짜 모델은 없다.
+[변경·검증·Windows 실행법](docs/bottom-ui-main-validation/README_KO.md) ·
+[기본 화면](docs/bottom-ui-main-validation/main-default-1920.png) ·
+[소방](docs/bottom-ui-main-validation/main-fire-1920.png) ·
+[교정](docs/bottom-ui-main-validation/main-corrections-1920.png) ·
+[1280 화면](docs/bottom-ui-main-validation/main-fire-1280.png).
+Godot 4.6.3 전체 22스크립트 통과. 1B 서비스 도시 배치/정면/철거는 다음 범위다.
+이번 결과는 `feature/bottom-ui-main-integration`의 로컬 커밋이며 승인 전 원격 푸시하지 않는다.
+
 **[사용자 피드백·반복하지 않을 실수](mistake.md)** — 작업 시작 때 읽고, 지적받은 결과와 재발 방지 방법을 계속 기록합니다.
 
 **[주민·학력별 일자리·수요와 시간 규칙](docs/POPULATION_TIME_KO.md)** — 현실 1시간=게임 하루, 12일=1년. 실제 통근·학교 운영은 후속.
@@ -8,7 +21,7 @@
 
 **[공공차량 3종·화장터 / 보건·교육 탭](docs/SERVICE_ASSETS_KO.md)** · [실제 Godot 화면](docs/service-assets-validation/service-assets.png) · [개발 현황·백로그](docs/DEVELOPMENT_STATUS_BACKLOG_KO.md)
 
-보건의 병원·진료소와 교육시설은 애셋 부재로 준비 중입니다. 화장터는 애셋 보기 연결이며 도시 배치·서비스 운영은 미구현입니다.
+보건·교육 기존 애셋은 보기 창에 연결돼 있습니다. 시설 도시 배치·서비스 운영은 미구현이며, 위 1A가 이를 구현했다는 뜻은 아닙니다.
 
 **[X자·T자 실제 교차로 연결·차량 회전](docs/ROAD_JUNCTIONS_KO.md)** · [실제 주행 GIF](docs/screenshots/junctions-running.gif) · [교차로 확대](docs/screenshots/junctions-closeup.gif)
 

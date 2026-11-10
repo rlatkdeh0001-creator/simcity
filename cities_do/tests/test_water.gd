@@ -238,8 +238,8 @@ func test_ui() -> bool:
  current_scene=main
  main.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
  var facility: Dictionary=main.city.add_water_facility(Vector2(20,41),"water",300)
- main.find_children("PowerTabButton","Button",true,false)[0].pressed.emit()
- main.find_children("WaterTabButton","Button",true,false)[0].pressed.emit()
+ main.find_children("Bottom_power","Button",true,false)[0].pressed.emit()
+ main.find_children("Bottom_water","Button",true,false)[0].pressed.emit()
  verify(main.water_overlay.tab_open and not main.power_overlay.tab_open and main.mode=="water_pipe","water tab opens paired tools and closes power overlay")
  var start: Vector2=main.city.water.facilities[0].position
  var click := InputEventMouseButton.new()
@@ -260,7 +260,7 @@ func test_ui() -> bool:
  main.water_overlay.visual_time=10000
  main.water_overlay.update_state(10)
  verify(main.city.water_state()==state,"UI hiding and pausing fluid effects do not change service")
- main.find_children("PowerTabButton","Button",true,false)[0].pressed.emit()
+ main.find_children("Bottom_power","Button",true,false)[0].pressed.emit()
  verify(not main.water_overlay.tab_open and main.power_overlay.tab_open,"switching back to power closes water overlay")
  main.queue_free()
  await process_frame

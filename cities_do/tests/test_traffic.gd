@@ -196,7 +196,8 @@ func test_bridge_and_ui() -> bool:
 	var city = main.city
 	main.map_zoom = 1.14
 	main.origin = Vector2(412,230)
-	main.find_children("TrafficDemoButton","Button",true,false)[0].pressed.emit()
+	main.select_category("transport")
+	main.find_children("Tool_traffic_demo","Button",true,false)[0].pressed.emit()
 	await process_frame
 	await process_frame
 	var demo = current_scene

@@ -75,7 +75,8 @@ func run():
  current_scene=scene
  var saved_city=scene.city
  scene.map_zoom=1.17
- scene.find_children("FacilitiesShowcaseButton","Button",true,false)[0].pressed.emit()
+ scene.select_category("park")
+ scene.find_children("Tool_facilities_gallery","Button",true,false)[0].pressed.emit()
  await process_frame
  await process_frame
  var showcase=current_scene

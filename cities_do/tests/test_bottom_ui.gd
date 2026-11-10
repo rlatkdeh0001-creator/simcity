@@ -18,13 +18,13 @@ func run():
  verify(preview.city.buildings.all(func(b):return not b.asset_id.is_empty()),"every preview building comes from actual game catalog")
  verify(preview.city.roads.size()==6,"preview uses six actual model roads")
  verify(preview.city.power.plants.size()==1 and preview.city.water.facilities.size()==2,"preview contains actual utility sources")
- verify(preview.categories.size()==9,"nine real category buttons created")
+ verify(preview.categories.size()==12,"twelve real category buttons created")
  var no_instructions := true
  for node in preview.find_children("*","Label",true,false):
   for phrase in ["64m","32m","도착과 무관","1실제초","시험용","배치 검토용"]:
    no_instructions=no_instructions and not phrase in node.text
  verify(no_instructions,"HUD omits range explanations and development instructions")
- verify(not preview.controls_panel.visible and not preview.hud.visible,"old side panel and debug HUD hidden only in preview")
+ verify(not preview.controls_panel.visible and not preview.hud.visible,"shared HUD does not create legacy side tools")
  verify(preview.chosen=="power" and preview.power_overlay.tab_open and not preview.power_overlay.panel.visible,"power view uses real network overlay with bottom controls")
  for size_value in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:
   root.size=size_value
@@ -36,6 +36,17 @@ func run():
  verify(preview.categories.all(func(b):return b.get_global_rect().position.y>root.get_visible_rect().size.y*.65),"all primary category icons remain in bottom region")
  verify(not preview.NAMES.has("other"),"unused other category removed")
  var saved_city=preview.city
+ var slots: Array=preview.service_slots()
+ verify(slots.size()==7,"preview shares all seven data-driven service slots with main")
+ for key in ["fire","police","corrections"]:
+  preview.select_category(key)
+  var slot_buttons: Array=preview.drawer_box.get_children().filter(func(n):return n is Button and n.name.begins_with("Slot_"))
+  verify(slot_buttons.size()==slots.filter(func(s):return s.category==key).size(),key+" preview shows exact configured slots")
+  verify(slot_buttons.all(func(b):return b.disabled and b.get_child_count()==0),key+" preview slots have names only and remain disabled")
+  var funds: int=preview.city.funds
+  var buildings: int=preview.city.buildings.size()
+  for button in slot_buttons: button.pressed.emit()
+  verify(preview.city==saved_city and preview.city.funds==funds and preview.city.buildings.size()==buildings,key+" forced clicks cannot construct or charge")
  for key in ["health","education"]:
   preview.select_category(key)
   verify(not preview.show_zoning_tiles(),key+" hides placement grid")

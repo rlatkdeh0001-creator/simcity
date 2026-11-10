@@ -146,8 +146,8 @@ func test_ui() -> bool:
  main.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
  var plant: Dictionary=main.city.add_power_plant(Vector2(20,41),300)
  verify(plant.ok,"player can place prototype generator beside road")
- main.find_children("PowerTabButton","Button",true,false)[0].pressed.emit()
- verify(main.power_overlay.tab_open and main.power_overlay.panel.visible,"power tab opens actual game controls")
+ main.find_children("Bottom_power","Button",true,false)[0].pressed.emit()
+ verify(main.power_overlay.tab_open and main.drawer.visible and not main.power_overlay.panel.visible,"bottom power tab opens actual tools without legacy side panel")
  main.mode="power_wire"
  var source: Vector2=main.city.power.plants[0].position
  var click := InputEventMouseButton.new()

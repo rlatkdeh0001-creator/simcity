@@ -80,20 +80,20 @@
 유지비,waste.recycling.upkeep,재활용센터 월 유지비,150,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 건설비,waste.incinerator.construction,소각장 건설비,25000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 유지비,waste.incinerator.upkeep,소각장 월 유지비,350,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,fire.small.construction,소형소방서 건설비,8000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,fire.small.upkeep,소형소방서 월 유지비,120,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,fire.standard.construction,소방서 건설비,20000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,fire.standard.upkeep,소방서 월 유지비,300,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,fire.regional.construction,광역소방서 건설비,50000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,fire.regional.upkeep,광역소방서 월 유지비,700,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,police.small.construction,파출소 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,police.small.upkeep,파출소 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,police.standard.construction,경찰서 건설비,18000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,police.standard.upkeep,경찰서 월 유지비,250,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,police.headquarters.construction,경찰본부 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,police.headquarters.upkeep,경찰본부 월 유지비,600,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-건설비,police.prison.construction,교도소 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,police.prison.upkeep,교도소 월 유지비,500,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,fire.small.construction,소형소방서 건설비,8000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,fire.small.upkeep,소형소방서 월 유지비,120,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,fire.standard.construction,소방서 건설비,20000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,fire.standard.upkeep,소방서 월 유지비,300,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,fire.regional.construction,광역소방서 건설비,50000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,fire.regional.upkeep,광역소방서 월 유지비,700,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,police.small.construction,파출소 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,police.small.upkeep,파출소 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,police.standard.construction,경찰서 건설비,18000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,police.standard.upkeep,경찰서 월 유지비,250,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,police.headquarters.construction,경찰본부 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+유지비,police.headquarters.upkeep,경찰본부 월 유지비,600,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 하단 UI 이름 슬롯만 추가(pending_asset); 가격 표시·배치 불가.
+건설비,police.prison.construction,교도소 건설비,45000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 별도 교정 카테고리의 pending_asset 이름 슬롯; 가격 표시·배치 불가.
+유지비,police.prison.upkeep,교도소 월 유지비,500,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인·미차감. 별도 교정 카테고리의 pending_asset 이름 슬롯; 가격 표시·배치 불가.
 건설비,health.clinic.construction,진료소 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 유지비,health.clinic.upkeep,진료소 월 유지비,100,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 건설비,health.hospital.construction,병원 건설비,25000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.

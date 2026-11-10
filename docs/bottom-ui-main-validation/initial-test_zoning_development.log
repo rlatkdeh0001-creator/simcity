@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS paint sixteen road-local cells
+PASS designation is free and does not construct immediately
+PASS pause and negative delta cannot develop
+PASS construction waits for complete game-time interval
+PASS one tick develops one eligible 2x2 lot
+PASS new building records automatic origin and zoning
+PASS automatic placement uses shared frontage collision checks
+PASS display-only residential concepts are not silently enabled for growth
+PASS repainting preserves existing building ID zone frontage and model
+PASS zone erasure does not demolish buildings
+PASS automatic building cannot grow into erased or differently zoned cells
+PASS unpainted land cannot develop or charge construction fees
+PASS mixed-use 2x2 cells cannot form one building
+PASS industrial zones develop without residential facade substitution
+PASS missing industrial model uses existing procedural rendering
+PASS deep zoning never bypasses 1.5 metre frontage rule
+PASS both road sides develop valid lots diagonal=false
+PASS both road sides develop valid lots diagonal=true
+PASS development is deterministic across frame rates
+PASS adding separate road preserves painted stable parcel IDs
+PASS road demolition prunes removed designations without moving buildings
+PASS bounded round-robin scanning develops all three zoning types
+PASS occupied zones cannot repeatedly spawn overlapping buildings
+PASS highway cannot create development frontage
+ERROR: FAIL zoning tab provides three zone tools and one eraser
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_development.gd:10)
+       [1] run (res://tests/test_zoning_development.gd:89)
+PASS commercial button selects drag brush
+PASS mouse press starts preview only
+PASS release above HUD cancels captured paint
+PASS tab switch cancels pending drag
+PASS captured mouse release commits exactly once
+PASS drag release paints without clicking a building
+PASS bottom pause stops automatic construction
+PASS 3x advances automatic development in game seconds
+PASS eraser uses zoning brush instead of bulldozer
+PASS Escape cancels active drag
+PASS right click cancels active drag
+PASS zoning overlay is hidden outside zoning and road tabs
+RESULT 36/37 zoning checks passed

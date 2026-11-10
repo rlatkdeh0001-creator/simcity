@@ -1,0 +1,466 @@
+{
+  "recorded_at": "2026-11-10T14:35:53.635357+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.55,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_bottom_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_bottom_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 46/46 bottom UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.66,
+      "log": "test_bottom_ui.log"
+    },
+    {
+      "name": "test_building_assets",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_building_assets.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 25/25 asset checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 23.69,
+      "log": "test_building_assets.log"
+    },
+    {
+      "name": "test_building_frontage",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_building_frontage.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 138/138 frontage checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.98,
+      "log": "test_building_frontage.log"
+    },
+    {
+      "name": "test_city",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_city.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 24/24 passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.66,
+      "log": "test_city.log"
+    },
+    {
+      "name": "test_demolition",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_demolition.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 47/47 demolition checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 9.5,
+      "log": "test_demolition.log"
+    },
+    {
+      "name": "test_facilities",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_facilities.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 69/69 facility checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.4,
+      "log": "test_facilities.log"
+    },
+    {
+      "name": "test_junctions",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_junctions.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 junction checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.07,
+      "log": "test_junctions.log"
+    },
+    {
+      "name": "test_main_bottom_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_main_bottom_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 146/146 main bottom UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.04,
+      "log": "test_main_bottom_ui.log"
+    },
+    {
+      "name": "test_population",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_population.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 population checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 8.12,
+      "log": "test_population.log"
+    },
+    {
+      "name": "test_power",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_power.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 41/41 power checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.3,
+      "log": "test_power.log"
+    },
+    {
+      "name": "test_recovered_assets",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_recovered_assets.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 59/59 recovered asset checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.66,
+      "log": "test_recovered_assets.log"
+    },
+    {
+      "name": "test_regional_exchange",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_regional_exchange.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 38/38 regional checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.75,
+      "log": "test_regional_exchange.log"
+    },
+    {
+      "name": "test_road_parcels",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_parcels.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road-local checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.39,
+      "log": "test_road_parcels.log"
+    },
+    {
+      "name": "test_road_setback",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_setback.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 49/49 setback checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.77,
+      "log": "test_road_setback.log"
+    },
+    {
+      "name": "test_roads_zoning",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_roads_zoning.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road/zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.86,
+      "log": "test_roads_zoning.log"
+    },
+    {
+      "name": "test_service_assets",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_service_assets.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 9/9 service asset checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.38,
+      "log": "test_service_assets.log"
+    },
+    {
+      "name": "test_showcase",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_showcase.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 26/26 showcase checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.49,
+      "log": "test_showcase.log"
+    },
+    {
+      "name": "test_traffic",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_traffic.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 43/43 traffic checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 5.64,
+      "log": "test_traffic.log"
+    },
+    {
+      "name": "test_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [],
+      "passed": true,
+      "elapsed_s": 1.21,
+      "log": "test_ui.log"
+    },
+    {
+      "name": "test_vehicles",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_vehicles.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 308/308 vehicle checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.5,
+      "log": "test_vehicles.log"
+    },
+    {
+      "name": "test_water",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_water.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 80/80 water checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.5,
+      "log": "test_water.log"
+    },
+    {
+      "name": "test_zoning_development",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Users\\wlgml\\projects\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_development.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 37/37 zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 8.76,
+      "log": "test_zoning_development.log"
+    }
+  ],
+  "total": 22,
+  "passed": 22,
+  "failed": 0
+}

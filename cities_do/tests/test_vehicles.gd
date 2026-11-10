@@ -72,7 +72,8 @@ func run():
 	main.map_zoom = 1.23
 	main.origin = Vector2(501, 211)
 	var saved_city = main.city
-	var buttons := main.find_children("VehicleShowcaseButton", "Button", true, false)
+	main.select_category("transport")
+	var buttons := main.find_children("Tool_vehicles_gallery", "Button", true, false)
 	verify(buttons.size() == 1 and buttons[0].visible, "main screen offers vehicle showcase button")
 	buttons[0].pressed.emit()
 	await process_frame

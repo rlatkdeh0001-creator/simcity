@@ -1,0 +1,37 @@
+{
+  "branch": "feature/bottom-ui-main-integration",
+  "base": "e8fff35d7b16892e6652026eb06feebe82317b41",
+  "full_test_scripts": 22,
+  "tests_passed": 22,
+  "captures_verified": 5,
+  "economic_rows": 187,
+  "economic_changed_notes": [
+    "fire.small.construction",
+    "fire.small.upkeep",
+    "fire.standard.construction",
+    "fire.standard.upkeep",
+    "fire.regional.construction",
+    "fire.regional.upkeep",
+    "police.small.construction",
+    "police.small.upkeep",
+    "police.standard.construction",
+    "police.standard.upkeep",
+    "police.headquarters.construction",
+    "police.headquarters.upkeep",
+    "police.prison.construction",
+    "police.prison.upkeep"
+  ],
+  "numeric_units_approval_fields_unchanged": true,
+  "protected_planning_sha256": "18cea2826c475c709be5c1beea39a48ff59772ac0f0b6a70cfc8356f3b8b8c6b",
+  "protected_planning_matches_environment_check": false,
+  "protected_planning_excluded_from_commit": true,
+  "no_imports_staged": true,
+  "included_uids": [
+    "cities_do/bottom_ui.gd.uid",
+    "cities_do/tests/test_main_bottom_ui.gd.uid"
+  ],
+  "static_security_findings": [],
+  "review_mode": "self-review; no independent agent used",
+  "simulation_core_unchanged": true,
+  "services_catalog_unchanged": true
+}
