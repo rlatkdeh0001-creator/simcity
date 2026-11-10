@@ -1,0 +1,276 @@
+[
+  {
+    "name": "fix-police-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1920.png",
+      "--bottom-tab=police"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.57,
+    "log": "fix-police-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "9fc90cb9a1fe4d28f3e4a3c2b850ee2a7db35999af6cb4b592cc8ae753300ecc",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1920.png",
+        "--bottom-tab=police"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "police",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "fix-health-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-health-1920.png",
+      "--bottom-tab=health"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.43,
+    "log": "fix-health-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "299166f284b48b60b53cc719b2d7db840aa8a74a45a7286f1a787a6f7ddba36c",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-health-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-health-1920.png",
+        "--bottom-tab=health"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "health",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "fix-park-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-park-1920.png",
+      "--bottom-tab=park"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.4,
+    "log": "fix-park-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "702e1eb08b328159c99143005eaa6041663884d98a2c284f46bd3534a8bdd36f",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-park-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-park-1920.png",
+        "--bottom-tab=park"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "park",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "fix-police-1280",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1280x820",
+      "--position",
+      "0,0",
+      "--borderless",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1280.png",
+      "--bottom-tab=police"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.44,
+    "log": "fix-police-1280.log",
+    "png_size": [
+      1280,
+      820
+    ],
+    "sha256": "91a768a798d5d38d86e599e50383a25577c02e5d22823886f3a22d6f1500efb9",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1280.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1280.png",
+        "--bottom-tab=police"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 624.0), S: (1280.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "police",
+      "viewport": "[P: (0.0, 0.0), S: (1280.0, 820.0)]"
+    }
+  },
+  {
+    "name": "fix-police-960",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "960x640",
+      "--position",
+      "0,0",
+      "--borderless",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-960.png",
+      "--bottom-tab=police"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.42,
+    "log": "fix-police-960.log",
+    "png_size": [
+      960,
+      640
+    ],
+    "sha256": "200b8c8354f7273de94da193164b0ae120d3c9357de7755c65a7a814c8b0b970",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-960.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-960.png",
+        "--bottom-tab=police"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 444.0), S: (960.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "police",
+      "viewport": "[P: (0.0, 0.0), S: (960.0, 640.0)]"
+    }
+  },
+  {
+    "name": "fix-default-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-default-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.42,
+    "log": "fix-default-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "80402c2abac79c9387e44d1bc1219b8db2e01caac74f2594bcccdc580c196b6e",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-default-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-default-1920.png"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": false,
+      "funds": 50000,
+      "population": 0,
+      "tab": "",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  }
+]

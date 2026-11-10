@@ -1,0 +1,439 @@
+{
+  "crematorium-4x4": {
+    "name": "화장터",
+    "source": "res://assets/services/crematorium-4x4.png",
+    "source_sha256": "399e0d63f1477a523e6837b1b177aa50ddcd3aa1e3a3afcaf52205338eb7193c",
+    "thumbnail": "res://assets/ui/thumbnails/crematorium-4x4.png",
+    "sha256": "f541c72d7c9094b7f8d5a5f7f53a7cc9c6668742688bb3a7f7e18e77725ed89b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      44,
+      164,
+      756,
+      583
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "elementary-school": {
+    "name": "초등학교",
+    "source": "res://assets/services/elementary-school.png",
+    "source_sha256": "4d16a562fcd6d1dfcfc455a7ee56c26879a7290bed3bdd730fc7e394e54edfd2",
+    "thumbnail": "res://assets/ui/thumbnails/elementary-school.png",
+    "sha256": "c03080e3944622b2b53c6abe009312499a22bfafd63dd5b169336ae40428742b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      34,
+      261,
+      866,
+      856
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "high-school": {
+    "name": "고등학교",
+    "source": "res://assets/services/high-school.png",
+    "source_sha256": "4cf878946f826b8b67dbec68951f85733fd9edcae4e661c1ec98ca18244f4d25",
+    "thumbnail": "res://assets/ui/thumbnails/high-school.png",
+    "sha256": "8f2661ba836f60a70e1b1637ee8c596ead63d35885b451b836f462ce15cc703e",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      58,
+      228,
+      842,
+      869
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "technical-college": {
+    "name": "전문대",
+    "source": "res://assets/services/technical-college.png",
+    "source_sha256": "3ae662615924eb9338e48b9782a861be2d5ba509b728549f9c1fbf96f44f1bad",
+    "thumbnail": "res://assets/ui/thumbnails/technical-college.png",
+    "sha256": "464405e65db27b3720c2682371082ce9f842a1372e71bc12e32835198c1557a1",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      14,
+      305,
+      886,
+      850
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "university": {
+    "name": "대학교",
+    "source": "res://assets/services/university.png",
+    "source_sha256": "39e1db704c9b631db40f27b2d2b70034d0b010c87f404b74f627319cdf29b8d3",
+    "thumbnail": "res://assets/ui/thumbnails/university.png",
+    "sha256": "5a241e8365df17753171380c3b0220033ed5b4edde7bd8be82eb99ea58d3c2e1",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      28,
+      378,
+      872,
+      854
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medical-clinic": {
+    "name": "진료소",
+    "source": "res://assets/services/medical-clinic.png",
+    "source_sha256": "08ac8e0d7f52a1a284b4ca724fd8b4fe13ba193cb30ef066c66f7a708e16f218",
+    "thumbnail": "res://assets/ui/thumbnails/medical-clinic.png",
+    "sha256": "9689ee20062ad3cdb7774475c2e12e938528de75f3e1b1c2741fdac2cda46363",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      34,
+      316,
+      866,
+      838
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medical-hospital": {
+    "name": "병원",
+    "source": "res://assets/services/medical-hospital.png",
+    "source_sha256": "d93dd3633fd506e904e675d4f3af7861bdb7d2f143c6f0a37059f7f8ca036c8d",
+    "thumbnail": "res://assets/ui/thumbnails/medical-hospital.png",
+    "sha256": "e19544fb8a619c4c99b6501bbdcbf19b29b0f4fc97f33a981f9f92290c9e33c9",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      226,
+      879,
+      896
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medical-large-hospital": {
+    "name": "대형병원",
+    "source": "res://assets/services/medical-large-hospital.png",
+    "source_sha256": "c44e14563eb0de9c8cf3535396dddb679f21d3615d9700afaa647ecfc3d2a744",
+    "thumbnail": "res://assets/ui/thumbnails/medical-large-hospital.png",
+    "sha256": "590b9d9741569a4b273cde518a1c1e4c478ab4f7f0605f12e2bd23c6bc1d365c",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      46,
+      237,
+      854,
+      920
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-fire-station": {
+    "name": "소형소방서",
+    "source": "res://assets/services/small-fire-station.png",
+    "source_sha256": "9535b26215a85b70a754c49d6ec4b842a73a8a589b1229eec4c15d8ba4493106",
+    "thumbnail": "res://assets/ui/thumbnails/small-fire-station.png",
+    "sha256": "ec80a407aa33e6d60791da6037899e7e794cd119558ef824c8ffd06475935b70",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      34,
+      315,
+      866,
+      838
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "fire-station": {
+    "name": "소방서",
+    "source": "res://assets/services/fire-station.png",
+    "source_sha256": "1a339a91f3bfbe6b8cd7c71bb34b5f645fa095f043f3845f7243132287b3cd59",
+    "thumbnail": "res://assets/ui/thumbnails/fire-station.png",
+    "sha256": "0011373f9d27c1061b5a0fbd7b517419e1078ec4ad5c9a0daaf174b76388a914",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      12,
+      342,
+      888,
+      855
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "regional-fire-station": {
+    "name": "광역소방서",
+    "source": "res://assets/services/regional-fire-station.png",
+    "source_sha256": "6248c647df8d2483b1b16770cc89db43ca48fa7d122a6dbfd7c560e39c29b8da",
+    "thumbnail": "res://assets/ui/thumbnails/regional-fire-station.png",
+    "sha256": "c7483e313e1f1c8c145f576c9bc9bde8ac361bddde0a2811a1fceb5fd34628da",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      41,
+      235,
+      859,
+      896
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-police-station": {
+    "name": "파출소",
+    "source": "res://assets/services/small-police-station.png",
+    "source_sha256": "210773a8186bbcc4e00797350a1879749674f5fbd1941f2f9d5e1491e59c9e54",
+    "thumbnail": "res://assets/ui/thumbnails/small-police-station.png",
+    "sha256": "ce88a6b2cbc89ab3b3b8b758abde9ee5b768fb517d78fc309d7e5b3e420e8feb",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      34,
+      312,
+      866,
+      838
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "police-station": {
+    "name": "경찰서",
+    "source": "res://assets/services/police-station.png",
+    "source_sha256": "c39902b65ef014e500a81f09d20f64edd8de01f1ef723abd2f9d6c20b6acd684",
+    "thumbnail": "res://assets/ui/thumbnails/police-station.png",
+    "sha256": "893418f9ab83eab847f3d91e6b1196262d0d2472a8152d08fc1b0320dc5e2a02",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      12,
+      312,
+      888,
+      857
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "regional-police-station": {
+    "name": "경찰본부",
+    "source": "res://assets/services/regional-police-station.png",
+    "source_sha256": "df4fd479fd003adc8be9f984fea778b99612a6c72c8365a709b1d3a26c2f2974",
+    "thumbnail": "res://assets/ui/thumbnails/regional-police-station.png",
+    "sha256": "9c1dd157e6c29c1d0cb28606568935745912b7d4d25752e1c48649f895d98523",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      41,
+      250,
+      859,
+      881
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "prison-8x8": {
+    "name": "교도소",
+    "source": "res://assets/services/prison-8x8.png",
+    "source_sha256": "f5afe3028bcbecc34befdc87fda553ddeaf308c4390b93d6e0ca9cd07b1289e7",
+    "thumbnail": "res://assets/ui/thumbnails/prison-8x8.png",
+    "sha256": "b52ebc21f9048a50c9fc92ec1b32d22d0103bcb546c29b26057776f7c653ea35",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      8,
+      262,
+      892,
+      841
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "park-pocket-2x2": {
+    "name": "쉼터 공원",
+    "source": "res://assets/facilities/park-pocket-2x2.png",
+    "source_sha256": "2934b59dd19fd45c815bad44e902e0059cac73ae38216b79b277baee33bb9621",
+    "thumbnail": "res://assets/ui/thumbnails/park-pocket-2x2.png",
+    "sha256": "2b23cca69b0c95a82ea53bf95454ec42b3f77ef7a22dda93561e5ff5742cec0b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      50,
+      779,
+      596
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "park-garden-2x2": {
+    "name": "꽃정원 공원",
+    "source": "res://assets/facilities/park-garden-2x2.png",
+    "source_sha256": "d6e1443afc8186b303ba1aea7c1d82e6dc8944780743242027692e313587c78f",
+    "thumbnail": "res://assets/ui/thumbnails/park-garden-2x2.png",
+    "sha256": "2d556d106b59e051928036cdc3d807f8d7c6edbf5d20ae282f572aff78e93c3d",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      151,
+      779,
+      591
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "park-plaza-4x4": {
+    "name": "분수 광장 공원",
+    "source": "res://assets/facilities/park-plaza-4x4.png",
+    "source_sha256": "89a5e6dae3f443068e9fbef73b0bd221a8d352e8945ed4472ec51ac0009968a0",
+    "thumbnail": "res://assets/ui/thumbnails/park-plaza-4x4.png",
+    "sha256": "3a2d8f6c556c8d9200bb6293ea2a527ece93e673d4fcc22e8c31537fa09548bd",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      92,
+      779,
+      563
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "park-play-4x4": {
+    "name": "놀이터 공원",
+    "source": "res://assets/facilities/park-play-4x4.png",
+    "source_sha256": "cd106b09975af906dc60f47d2e647169f4a228b178dfa45d42dff4028fe0bf47",
+    "thumbnail": "res://assets/ui/thumbnails/park-play-4x4.png",
+    "sha256": "b424ba07f9d119ac6f9f27d6425d8f4bcd9973d9d165f1d7693950799ea2f1c4",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      159,
+      779,
+      560
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "parking-small-2x4": {
+    "name": "소형 주차장",
+    "source": "res://assets/facilities/parking-small-2x4.png",
+    "source_sha256": "e802edb3792c19a761a7d0b3116d8f26b3028ebab284df653168389d3c718909",
+    "thumbnail": "res://assets/ui/thumbnails/parking-small-2x4.png",
+    "sha256": "44b00cb0ce2107b3f207e950eda0a21620e761863266e69fc7d5c6e793b843e1",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      19,
+      175,
+      781,
+      570
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "parking-medium-4x4": {
+    "name": "중형 주차장",
+    "source": "res://assets/facilities/parking-medium-4x4.png",
+    "source_sha256": "7a9ce4e1883236b0e265d4509802e4ec6aab8022669f9f8633ec7efa58db50a1",
+    "thumbnail": "res://assets/ui/thumbnails/parking-medium-4x4.png",
+    "sha256": "47e9d8d9a33ec850a0e0904bd1b80ebfa7c68035f80171d35856f0b170dd4a38",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      19,
+      169,
+      781,
+      561
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "parking-large-4x8": {
+    "name": "대형 주차장",
+    "source": "res://assets/facilities/parking-large-4x8.png",
+    "source_sha256": "eb21b5217ac23ca282dd93c6312f4f88df1141f98c4248d6f57d619566d39115",
+    "thumbnail": "res://assets/ui/thumbnails/parking-large-4x8.png",
+    "sha256": "7de8d25a688a655dae6d8f068da4418233cd4079ba8e146258679b0b4b9171a3",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      19,
+      162,
+      781,
+      551
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "parking-tower-4x4-4f": {
+    "name": "4층 주차타워",
+    "source": "res://assets/facilities/parking-tower-4x4-4f.png",
+    "source_sha256": "8007c5d6b0324d797e11da33fb43412799a05edccd16d7b706587d9a268a316b",
+    "thumbnail": "res://assets/ui/thumbnails/parking-tower-4x4-4f.png",
+    "sha256": "0c4189356d06701d9dc6b28b471233bd67d541e1d3dbddb6eeaa0a48007cf844",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      77,
+      18,
+      723,
+      662
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  }
+}

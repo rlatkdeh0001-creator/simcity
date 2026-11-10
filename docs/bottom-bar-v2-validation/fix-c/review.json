@@ -1,0 +1,12 @@
+{
+  "review_mode": "self-review",
+  "baseline": "022408b",
+  "tests_passed": 25,
+  "original_pngs_unchanged": 23,
+  "original_emergency_files_unchanged": 51,
+  "thumbnail_cards": 23,
+  "icon_tools": 27,
+  "native_captures": 6,
+  "scope": "HUD and read-only inspection only; original models/simulation/prices unchanged",
+  "staging": "explicit allowlist; no .import churn or old UID8"
+}

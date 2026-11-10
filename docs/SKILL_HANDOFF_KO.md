@@ -6,7 +6,22 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 승인 A2 하단바 v2 (2026-11-10 KST)
+## 최신 작업: 승인 fix-C 썸네일/포커스/정렬과 main 통합 승인 (2026-11-10 KST)
+
+feature/bottom-bar-v2 022408b에서 이어서 사용자 승인 fix-C를 적용했다.
+[실제 25/25·새 HUD143/143·3해상도 캡처·시안 비교·원본 보존·남은 아이콘 목록](bottom-bar-v2-validation/fix-c/README_KO.md).
+기존 PNG23개에서 축소/중심 cover/둥근 알파 썸네일을 파생했으며 공통 C형 카드·18px 이름 띠로 표시한다.
+공원/주차8개도 읽기 전용 검사창으로 연결했다. 선택/점선 키보드 포커스를 구분하고 일시정지 아이콘을 중앙으로 맞췄다.
+core/asset_thumbnail_button.gd, bottom_ui.gd, service_asset_preview.gd의 검사 높이 fallback과 관련 검사/도구만 변경했다.
+기존 모델/원본/카탈로그/가격/시뮬레이션 규칙과 이전 A2 원본 캡처·로그는 보존한다. 1B는 하지 않았다.
+MAP_SIZE_KO.md와 VEHICLE_SPAWN_DESPAWN_KO.md는 내용 수정 없이 별도 docs 커밋 d8db5d5에 넣었다.
+game-ui-ux/프로필 TDD/Windows validation/자체 리뷰/GitHub 절차를 적용했다(정확한 경로·고정 출처/라이선스는 아래 기존 기록).
+개인 godot-windows-validation(MIT)에는 실제 마우스 press/release·선택과 포커스 모양 분리·빈 텍스트 아이콘 정렬 검증 규칙을 보완했다.
+새 외부 스킬/의존성 설치나 병렬 리뷰 에이전트는 없다. 원본 보존 파생 PNG/실제 버튼 인벤토리/추가 캡처·증거 도구를 레포에 기록했다.
+사용자 피드백 원인은 mistake.md M-009에 확인된 코드/RED/실제 캡처로 기록했다.
+현재 승인은 통과 후 main 통합·origin/main 푸시까지다. .import churn과 기존 미추적 .uid8개는 제외한다.
+
+## 이전 작업: 승인 A2 하단바 v2 (2026-11-10 KST)
 
 파트1 feature/emergency-assets 9c10c646c0b8925ab82dfe4deadb9cc22d3652e7에서 feature/bottom-bar-v2로 분기했다.
 기획자 A2 승인 기록/시안 폴더를 그대로 포함하며 [구현·명령·실제 검증·한계](bottom-bar-v2-validation/README_KO.md)를 확인한다.

@@ -1,0 +1,19 @@
+{
+  "resized": false,
+  "sources": [
+    {
+      "path": "D:\\project\\simcity\\docs\\concepts\\bottom-ui-v2\\fix-C.png",
+      "sha256": "a847f2ae4100e9d8eea56170976c9a6af345fcd9a99102827b68d0de195d4783"
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-police-1920.png",
+      "sha256": "9fc90cb9a1fe4d28f3e4a3c2b850ee2a7db35999af6cb4b592cc8ae753300ecc"
+    }
+  ],
+  "output": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-C-comparison.png",
+  "size": [
+    3840,
+    1124
+  ],
+  "sha256": "9d4aa9e0ea08280840290b8455cdd5f0ab8d39f59e040f1c4620ed03bb10a9d8"
+}

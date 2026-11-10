@@ -1,0 +1,398 @@
+[
+  {
+    "button": "Tool_build",
+    "category": "build",
+    "name": "주거",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_build_commercial",
+    "category": "build",
+    "name": "상업",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_build_industrial",
+    "category": "build",
+    "name": "공업",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_build_erase",
+    "category": "build",
+    "name": "구획 해제",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_select",
+    "category": "build",
+    "name": "건물 선택",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_upgrade",
+    "category": "build",
+    "name": "건물 성장",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_score",
+    "category": "build",
+    "name": "성장 수치 +100",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_residential_gallery",
+    "category": "build",
+    "name": "주거 전시",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_reset",
+    "category": "build",
+    "name": "도시 초기화",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_road",
+    "category": "road",
+    "name": "도로 그리기",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_select",
+    "category": "road",
+    "name": "건물 선택",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_parcel_demo",
+    "category": "road",
+    "name": "도로 구획 예시",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_power_wire",
+    "category": "power",
+    "name": "지중 전력선",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_power_plant",
+    "category": "power",
+    "name": "발전시설",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_power_select",
+    "category": "power",
+    "name": "시설 선택",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_power_settings",
+    "category": "power",
+    "name": "전력 설정",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_power_demo",
+    "category": "power",
+    "name": "전력 실습",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_pipe",
+    "category": "water",
+    "name": "상하수관 함께",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_supply",
+    "category": "water",
+    "name": "취수장",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_treatment",
+    "category": "water",
+    "name": "하수처리장",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_select",
+    "category": "water",
+    "name": "시설 선택",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_settings",
+    "category": "water",
+    "name": "상하수도 설정",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_water_demo",
+    "category": "water",
+    "name": "상하수도 실습",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_facilities_gallery",
+    "category": "park",
+    "name": "공원·주차 전시",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "asset": "park-pocket-2x2",
+    "button": "Facility_park-pocket-2x2",
+    "category": "park",
+    "disabled": false,
+    "name": "쉼터 공원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/park-pocket-2x2.png"
+  },
+  {
+    "asset": "park-garden-2x2",
+    "button": "Facility_park-garden-2x2",
+    "category": "park",
+    "disabled": false,
+    "name": "꽃정원 공원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/park-garden-2x2.png"
+  },
+  {
+    "asset": "park-plaza-4x4",
+    "button": "Facility_park-plaza-4x4",
+    "category": "park",
+    "disabled": false,
+    "name": "분수 광장 공원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/park-plaza-4x4.png"
+  },
+  {
+    "asset": "park-play-4x4",
+    "button": "Facility_park-play-4x4",
+    "category": "park",
+    "disabled": false,
+    "name": "놀이터 공원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/park-play-4x4.png"
+  },
+  {
+    "asset": "parking-small-2x4",
+    "button": "Facility_parking-small-2x4",
+    "category": "park",
+    "disabled": false,
+    "name": "소형 주차장",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/parking-small-2x4.png"
+  },
+  {
+    "asset": "parking-medium-4x4",
+    "button": "Facility_parking-medium-4x4",
+    "category": "park",
+    "disabled": false,
+    "name": "중형 주차장",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/parking-medium-4x4.png"
+  },
+  {
+    "asset": "parking-large-4x8",
+    "button": "Facility_parking-large-4x8",
+    "category": "park",
+    "disabled": false,
+    "name": "대형 주차장",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/parking-large-4x8.png"
+  },
+  {
+    "asset": "parking-tower-4x4-4f",
+    "button": "Facility_parking-tower-4x4-4f",
+    "category": "park",
+    "disabled": false,
+    "name": "4층 주차타워",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/facilities/parking-tower-4x4-4f.png"
+  },
+  {
+    "button": "Tool_vehicles_gallery",
+    "category": "transport",
+    "name": "차량 전시",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_traffic",
+    "category": "transport",
+    "name": "도로 주행",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "button": "Tool_traffic_demo",
+    "category": "transport",
+    "name": "주행 시험장",
+    "presentation": "existing_icon_tool",
+    "reason": "action/network tool or gallery launcher; no individual registered asset PNG"
+  },
+  {
+    "asset": "medical-hospital",
+    "button": "Tool_hospital",
+    "category": "health",
+    "disabled": false,
+    "name": "병원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/medical-hospital.png"
+  },
+  {
+    "asset": "medical-clinic",
+    "button": "Tool_clinic",
+    "category": "health",
+    "disabled": false,
+    "name": "진료소",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/medical-clinic.png"
+  },
+  {
+    "asset": "medical-large-hospital",
+    "button": "Tool_large_hospital",
+    "category": "health",
+    "disabled": false,
+    "name": "대형병원",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/medical-large-hospital.png"
+  },
+  {
+    "asset": "crematorium-4x4",
+    "button": "Tool_crematorium",
+    "category": "health",
+    "disabled": false,
+    "name": "화장터",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/crematorium-4x4.png"
+  },
+  {
+    "asset": "elementary-school",
+    "button": "Tool_elementary",
+    "category": "education",
+    "disabled": false,
+    "name": "초등학교",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/elementary-school.png"
+  },
+  {
+    "asset": "high-school",
+    "button": "Tool_high_school",
+    "category": "education",
+    "disabled": false,
+    "name": "고등학교",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/high-school.png"
+  },
+  {
+    "asset": "technical-college",
+    "button": "Tool_college",
+    "category": "education",
+    "disabled": false,
+    "name": "전문대",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/technical-college.png"
+  },
+  {
+    "asset": "university",
+    "button": "Tool_university",
+    "category": "education",
+    "disabled": false,
+    "name": "대학교",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/university.png"
+  },
+  {
+    "asset": "small-fire-station",
+    "button": "Slot_fire_small",
+    "category": "fire",
+    "disabled": false,
+    "name": "소형소방서",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/small-fire-station.png"
+  },
+  {
+    "asset": "fire-station",
+    "button": "Slot_fire_standard",
+    "category": "fire",
+    "disabled": false,
+    "name": "소방서",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/fire-station.png"
+  },
+  {
+    "asset": "regional-fire-station",
+    "button": "Slot_fire_regional",
+    "category": "fire",
+    "disabled": false,
+    "name": "광역소방서",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/regional-fire-station.png"
+  },
+  {
+    "asset": "small-police-station",
+    "button": "Slot_police_small",
+    "category": "police",
+    "disabled": false,
+    "name": "파출소",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/small-police-station.png"
+  },
+  {
+    "asset": "police-station",
+    "button": "Slot_police_standard",
+    "category": "police",
+    "disabled": false,
+    "name": "경찰서",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/police-station.png"
+  },
+  {
+    "asset": "regional-police-station",
+    "button": "Slot_police_headquarters",
+    "category": "police",
+    "disabled": false,
+    "name": "경찰본부",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/regional-police-station.png"
+  },
+  {
+    "asset": "prison-8x8",
+    "button": "Slot_police_prison",
+    "category": "police",
+    "disabled": false,
+    "name": "교도소",
+    "presentation": "thumbnail_C",
+    "source_png": "res://assets/services/prison-8x8.png"
+  }
+]

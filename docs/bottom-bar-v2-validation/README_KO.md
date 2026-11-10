@@ -1,5 +1,8 @@
 # 하단바 v2 · 승인 A2 구현 및 실제 Windows 검증
 
+**후속 승인 fix-C:** [공통 썸네일/포커스/일시정지 수정 · 전체25/25 · 실제 캡처](fix-c/README_KO.md).
+아래는 022408b의 기존 A2 검증 기록이며 파일/수치를 보존한다. 후속 수정과 파트1/2의 main 통합·푸시가 승인됐다.
+
 기준은 파트1 `feature/emergency-assets`의 `9c10c646c0b8925ab82dfe4deadb9cc22d3652e7`.
 작업 브랜치 **`feature/bottom-bar-v2`**, 체크아웃 `D:/project/simcity`.
 사용자가 승인한 [A2 원본](../concepts/bottom-ui-v2/mockup-A2.png)과

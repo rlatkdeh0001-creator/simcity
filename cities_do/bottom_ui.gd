@@ -36,6 +36,8 @@ var utility_owner: PanelContainer
 const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육","fire":"소방","police":"경찰"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
+const ThumbnailButton=preload("res://core/asset_thumbnail_button.gd")
+var thumbnail_manifest: Dictionary={}
 const SERVICE_TOOLS := {"clinic":"medical-clinic","hospital":"medical-hospital","large_hospital":"medical-large-hospital","elementary":"elementary-school","high_school":"high-school","college":"technical-college","university":"university","crematorium":"crematorium-4x4"}
 
 # Main uses the model already created/restored by the base view; only the preview adds a town.
@@ -68,7 +70,21 @@ func _ready():
  refresh()
 
 func focus_initial_category():
- if is_inside_tree(): categories[0].grab_focus()
+ if is_inside_tree(): categories[maxi(0,NAMES.keys().find(chosen))].grab_focus()
+
+func keyboard_focus_style() -> StyleBoxTexture:
+ var image:=Image.create(128,96,false,Image.FORMAT_RGBA8)
+ image.fill(Color.TRANSPARENT)
+ for x in range(4,124):
+  if x%8<4:
+   for y in [3,4,91,92]:image.set_pixel(x,y,Color("edf4f5"))
+ for y in range(4,92):
+  if y%8<4:
+   for x in [3,4,123,124]:image.set_pixel(x,y,Color("edf4f5"))
+ var outline:=StyleBoxTexture.new()
+ outline.resource_name="KeyboardFocusDashed"
+ outline.texture=ImageTexture.create_from_image(image)
+ return outline
 
 func style(background: Color, border: Color = Color.TRANSPARENT) -> StyleBoxFlat:
  var result := StyleBoxFlat.new()
@@ -155,7 +171,7 @@ func build_bottom_hud():
  theme_value.set_stylebox("normal","Button",style(Color("152d3b")))
  theme_value.set_stylebox("hover","Button",style(Color("244958")))
  theme_value.set_stylebox("pressed","Button",style(Color("163f58"),BLUE))
- theme_value.set_stylebox("focus","Button",style(Color(0,0,0,0),BLUE))
+ theme_value.set_stylebox("focus","Button",keyboard_focus_style())
  theme_value.set_color("font_color","Button",INK)
  root.theme=theme_value
  layer.add_child(root)
@@ -296,6 +312,7 @@ func build_status_row(box: VBoxContainer) -> Control:
  date_box.add_child(playback_controls)
  pause_button=small_button("pause","일시정지 / 재개",toggle_pause)
  pause_button.name="PauseButton"
+ pause_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
  pause_button.toggle_mode=true
  speed_button=Button.new()
  speed_button.name="SpeedButton"
@@ -501,6 +518,7 @@ func select_category(key: String):
  chosen=key
  for button in categories:
   button.add_theme_stylebox_override("normal",style(Color("163f58") if button.name=="Bottom_"+key else Color("152d3b"),BLUE if button.name=="Bottom_"+key else Color.TRANSPARENT))
+  if button.name=="Bottom_"+key:button.grab_focus()
  for child in drawer_box.get_children():
   drawer_box.remove_child(child)
   child.queue_free()
@@ -531,6 +549,14 @@ func select_category(key: String):
   _:
    pass
  for choice in choices:
+  if SERVICE_TOOLS.has(choice[1]):
+   var service_entries: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities
+   var matches: Array=service_entries.filter(func(entry):return entry.id==SERVICE_TOOLS[choice[1]])
+   if not matches.is_empty():
+    var service_button:=make_asset_button(matches[0],activate_tool.bind(str(choice[1])))
+    service_button.name="Tool_"+str(choice[1])
+    drawer_box.add_child(service_button)
+    continue
   var button := Button.new()
   button.name="Tool_"+choice[1]
   button.tooltip_text=choice[0]
@@ -567,16 +593,23 @@ func select_category(key: String):
   lanes.select(0 if road_lanes==2 else 1)
   lanes.item_selected.connect(func(index):road_lanes=2 if index==0 else 4;queue_redraw())
   drawer_box.add_child(lanes)
+ if key=="park":
+  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+   var facility_button:=make_asset_button(entry,open_facility_asset.bind(str(entry.id)))
+   facility_button.name="Facility_"+str(entry.id)
+   drawer_box.add_child(facility_button)
  for slot in service_slots():
-  if slot.category!=key: continue
-  var slot_button := Button.new()
+  if slot.category!=key:continue
+  var entry:=slot_asset(slot)
+  var slot_button: Button
+  if not entry.is_empty():slot_button=make_asset_button(entry,open_service_slot.bind(str(slot.id)))
+  else:
+   slot_button=Button.new()
+   slot_button.text=slot.name
+   slot_button.disabled=true
+   slot_button.custom_minimum_size=Vector2(128,96)
   slot_button.name="Slot_"+slot.id.replace(".","_")
-  slot_button.text=slot.name
   slot_button.set_meta("slot_id",slot.id)
-  slot_button.disabled=slot_asset(slot).is_empty()
-  slot_button.tooltip_text=slot.name
-  slot_button.custom_minimum_size=Vector2(112,84)
-  slot_button.pressed.connect(open_service_slot.bind(str(slot.id)))
   drawer_box.add_child(slot_button)
  mode="power_wire" if key=="power" else ("water_pipe" if key=="water" else "select")
  bulldozer.set_pressed_no_signal(false)
@@ -661,6 +694,24 @@ func _unhandled_key_input(event):
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
   drawer.hide()
+
+func make_asset_button(entry: Dictionary,action: Callable) -> Button:
+ if thumbnail_manifest.is_empty():thumbnail_manifest=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/thumbnails/manifest.json"))
+ var item=ThumbnailButton.new()
+ var preview_path: String=thumbnail_manifest.get(str(entry.id),{}).get("thumbnail",str(entry.preview))
+ item.set_asset(entry,preview_path)
+ item.pressed.connect(func():
+  if not item.disabled:action.call())
+ return item
+
+func open_facility_asset(id: String):
+ for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+  if entry.id==id:
+   var preview=preload("res://service_asset_preview.gd").new()
+   preview.name="ServiceAssetPreview"
+   add_child(preview)
+   preview.show_asset(entry)
+   return
 
 func service_slots() -> Array:
  var data=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/pending_slots.json"))

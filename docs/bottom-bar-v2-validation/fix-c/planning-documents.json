@@ -1,0 +1,8 @@
+{
+  "commit": "d8db5d56afdc0211d8567d8303e8fa929a238c52",
+  "contents_edited": false,
+  "sha256": {
+    "docs/design/MAP_SIZE_KO.md": "e83fdb52acbdc29c39c3a2ca1b3817705c0209a695acb9329e4e8bafbec56880",
+    "docs/design/VEHICLE_SPAWN_DESPAWN_KO.md": "1a0acb864b2dd90ab5ba3cd357ccb803665443b9b4acca3cab2ccb1e9b3d209a"
+  }
+}

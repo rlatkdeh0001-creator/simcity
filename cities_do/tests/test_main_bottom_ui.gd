@@ -35,7 +35,7 @@ func run():
      var match_buttons: Array= buttons.filter(func(b):return b.get_meta("slot_id")==id)
      verify(match_buttons.size()==1 and not match_buttons[0].disabled,id+" inspector button is enabled")
      if match_buttons.size()==1:
-      verify(match_buttons[0].get_child_count()==0,id+" has name only and no invented thumbnail")
+      verify(match_buttons[0].has_meta("thumbnail_asset_id") and match_buttons[0].get_node_or_null("NameBand/AssetName")!=null,id+" uses the real PNG C card and name band")
      verify(not game.slot_asset(matches[0]).is_empty(),id+" resolves real geometry metadata")
    var after := JSON.stringify(game.city.buildings)+JSON.stringify(game.city.roads)+str(game.city.funds)+str(game.city.clock.game_seconds)
    verify(before==after,"asset browsing preserves city, funds and clock")

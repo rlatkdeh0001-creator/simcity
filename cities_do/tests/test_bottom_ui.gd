@@ -42,7 +42,7 @@ func run():
   preview.select_category(key)
   var slot_buttons: Array=preview.drawer_box.get_children().filter(func(n):return n is Button and n.name.begins_with("Slot_"))
   verify(slot_buttons.size()==slots.filter(func(s):return s.category==key).size(),key+" preview shows exact configured slots")
-  verify(slot_buttons.all(func(b):return not b.disabled and b.get_child_count()==0),key+" ready preview slots have names only and real inspectors")
+  verify(slot_buttons.all(func(b):return not b.disabled and b.has_meta("thumbnail_asset_id") and b.get_node_or_null("NameBand/AssetName")!=null),key+" ready preview slots have real PNG C cards and inspectors")
   var funds: int=preview.city.funds
   var buildings: int=preview.city.buildings.size()
   for button in slot_buttons:

@@ -18,7 +18,15 @@ func show_asset(entry: Dictionary) -> void:
  viewport.size=Vector2i(660,490)
  viewport.own_world_3d=true
  container.add_child(viewport)
- viewport.add_child(load(entry.model).instantiate())
+ var model: Node3D=load(entry.model).instantiate()
+ viewport.add_child(model)
+ var measured:=AABB()
+ var first:=true
+ for mesh: MeshInstance3D in model.find_children("*","MeshInstance3D",true,false):
+  var bounds: AABB=mesh.global_transform*mesh.get_aabb()
+  measured=bounds if first else measured.merge(bounds)
+  first=false
+ var height_m: float=entry.get("height_m",measured.size.y)
  var environment := WorldEnvironment.new()
  environment.environment=Environment.new()
  environment.environment.background_mode=Environment.BG_COLOR
@@ -33,10 +41,10 @@ func show_asset(entry: Dictionary) -> void:
  var camera := Camera3D.new()
  camera.projection=Camera3D.PROJECTION_ORTHOGONAL
  # Camera size is calibrated from the physical footprint, including 8x8 campuses.
- camera.size=maxf(24.0,Vector2(entry.width*4,entry.depth*4).length()*.62+entry.height_m)
+ camera.size=maxf(24.0,Vector2(entry.width*4,entry.depth*4).length()*.62+height_m)
  viewport.add_child(camera)
  camera.position=Vector3(28,25,28)
- camera.look_at(Vector3(0,entry.height_m*.4,0))
+ camera.look_at(Vector3(0,height_m*.4,0))
  camera.current=true
  var label := Label.new()
  label.text="%s · %d × %dm · 애셋" % [entry.name,entry.width*4,entry.depth*4]

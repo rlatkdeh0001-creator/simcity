@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\fix-c\\fix-default-1920.png"
+  ],
+  "city_name": "CITIESDO",
+  "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+  "drawer_visible": false,
+  "funds": 50000,
+  "population": 0,
+  "tab": "",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}
