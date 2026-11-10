@@ -1,0 +1,66 @@
+{
+  "id": "medium-4x4-office-retail-05",
+  "name": "업무·상가 복합빌딩",
+  "zone": "commercial",
+  "category": "medium_commercial",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 4,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    904.6151
+  ],
+  "lot_corners_px": [
+    [
+      61.0912,
+      710.1607
+    ],
+    [
+      450.0,
+      904.6151
+    ],
+    [
+      838.9087,
+      710.1607
+    ],
+    [
+      450.0,
+      515.7063
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      13.279999732971191
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 32,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "PHARMACY and BAKERY signs",
+    "separate OFFICE entrance",
+    "continuous office window bands",
+    "four occupied floors"
+  ],
+  "scope": "user-approved medium commercial design; game integration pending"
+}

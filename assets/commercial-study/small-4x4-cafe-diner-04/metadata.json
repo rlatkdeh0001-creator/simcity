@@ -1,0 +1,66 @@
+{
+  "id": "small-4x4-cafe-diner-04",
+  "name": "식당·카페 복합상가",
+  "zone": "commercial",
+  "category": "small_commercial",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 2,
+  "approval_status": "approved",
+  "game_registered": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    860.0115
+  ],
+  "lot_corners_px": [
+    [
+      5.5328,
+      637.7779
+    ],
+    [
+      450.0,
+      860.0115
+    ],
+    [
+      894.4671,
+      637.778
+    ],
+    [
+      450.0,
+      415.5444
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      7.200000286102295
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 28,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "CAFE and DINER signs",
+    "outdoor seating",
+    "menu board",
+    "two-storey neighbourhood shops"
+  ],
+  "scope": "user-approved 4x4 small commercial asset"
+}

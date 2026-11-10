@@ -171,3 +171,7 @@ Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-const
 ## 회수된 소방·경찰·교도소 원본 7종
 
 [이름·ID·부지와 원본/이미지 링크](docs/recovered-emergency-assets/README_KO.md). 편집 원본·시안·규격 자료 보존이며 새 게임 등록/시설 운영 구현과 구분한다.
+
+## 나머지 원본30종·이전 도로/도시 전시장 보존
+
+[발전소6종을 포함한 원본 목록·이미지·규격](docs/remaining-original-assets/README_KO.md). 예전 코드/전시장은 archive 아래 역사 자료로 보존하며 현재 게임에 덮어쓰지 않는다.

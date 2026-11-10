@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "units": "metres",
+  "count": 20,
+  "skill": "https://github.com/duolahypercho/zstack/tree/74f7786e9931b9ced858a0e2df880f23e4c2430e/skills/vehicle",
+  "entries": [
+    {
+      "id": "bus-city-01",
+      "label": "시내버스",
+      "category": "bus",
+      "body_type": "bus",
+      "length_m": 12.0,
+      "width_m": 2.5,
+      "height_m": 3.2,
+      "color": "#447f96",
+      "wheel_count": 4,
+      "triangles": 7508,
+      "bounds_blender": {
+        "min": [
+          -1.4250000715255737,
+          -6.053999900817871,
+          0.0
+        ],
+        "max": [
+          1.4250000715255737,
+          6.039000034332275,
+          3.2899999618530273
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/bus-city-01.glb",
+      "preview": "res://assets/vehicles/bus-city-01.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "taxi-sedan-01",
+      "label": "택시",
+      "category": "taxi",
+      "body_type": "sedan",
+      "length_m": 4.65,
+      "width_m": 1.82,
+      "height_m": 1.62,
+      "color": "#e4b343",
+      "wheel_count": 4,
+      "triangles": 4498,
+      "bounds_blender": {
+        "min": [
+          -1.0850000381469727,
+          -2.367500066757202,
+          0.0
+        ],
+        "max": [
+          1.0850000381469727,
+          2.363999843597412,
+          1.659999966621399
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/taxi-sedan-01.glb",
+      "preview": "res://assets/vehicles/taxi-sedan-01.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-hatch-01",
+      "label": "소형 해치백",
+      "category": "citizen",
+      "body_type": "hatch",
+      "length_m": 3.6,
+      "width_m": 1.65,
+      "height_m": 1.5,
+      "color": "#84b6a0",
+      "wheel_count": 4,
+      "triangles": 4030,
+      "bounds_blender": {
+        "min": [
+          -1.0,
+          -1.84250009059906,
+          0.0
+        ],
+        "max": [
+          1.0,
+          1.8389999866485596,
+          1.465000033378601
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-hatch-01.glb",
+      "preview": "res://assets/vehicles/car-hatch-01.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-compact-02",
+      "label": "준중형 세단",
+      "category": "citizen",
+      "body_type": "sedan",
+      "length_m": 4.35,
+      "width_m": 1.76,
+      "height_m": 1.43,
+      "color": "#b6bdc3",
+      "wheel_count": 4,
+      "triangles": 4046,
+      "bounds_blender": {
+        "min": [
+          -1.0550000667572021,
+          -2.2174999713897705,
+          0.0
+        ],
+        "max": [
+          1.0550000667572021,
+          2.2139999866485596,
+          1.3949999809265137
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-compact-02.glb",
+      "preview": "res://assets/vehicles/car-compact-02.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-sedan-03",
+      "label": "중형 세단",
+      "category": "citizen",
+      "body_type": "sedan",
+      "length_m": 4.8,
+      "width_m": 1.86,
+      "height_m": 1.48,
+      "color": "#4e657e",
+      "wheel_count": 4,
+      "triangles": 4046,
+      "bounds_blender": {
+        "min": [
+          -1.1050000190734863,
+          -2.442500114440918,
+          0.0
+        ],
+        "max": [
+          1.1050000190734863,
+          2.438999891281128,
+          1.4450000524520874
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-sedan-03.glb",
+      "preview": "res://assets/vehicles/car-sedan-03.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-wagon-04",
+      "label": "스테이션 왜건",
+      "category": "citizen",
+      "body_type": "wagon",
+      "length_m": 4.65,
+      "width_m": 1.82,
+      "height_m": 1.53,
+      "color": "#73876a",
+      "wheel_count": 4,
+      "triangles": 4262,
+      "bounds_blender": {
+        "min": [
+          -1.0850000381469727,
+          -2.367500066757202,
+          0.0
+        ],
+        "max": [
+          1.0850000381469727,
+          2.363999843597412,
+          1.5575000047683716
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-wagon-04.glb",
+      "preview": "res://assets/vehicles/car-wagon-04.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-crossover-05",
+      "label": "크로스오버",
+      "category": "citizen",
+      "body_type": "crossover",
+      "length_m": 4.35,
+      "width_m": 1.83,
+      "height_m": 1.65,
+      "color": "#ce8760",
+      "wheel_count": 4,
+      "triangles": 4230,
+      "bounds_blender": {
+        "min": [
+          -1.090000033378601,
+          -2.2174999713897705,
+          0.0
+        ],
+        "max": [
+          1.090000033378601,
+          2.2139999866485596,
+          1.6775000095367432
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-crossover-05.glb",
+      "preview": "res://assets/vehicles/car-crossover-05.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-suv-06",
+      "label": "대형 SUV",
+      "category": "citizen",
+      "body_type": "suv",
+      "length_m": 4.95,
+      "width_m": 1.98,
+      "height_m": 1.86,
+      "color": "#965d64",
+      "wheel_count": 4,
+      "triangles": 4246,
+      "bounds_blender": {
+        "min": [
+          -1.165000081062317,
+          -2.5174999237060547,
+          0.0
+        ],
+        "max": [
+          1.165000081062317,
+          2.5139999389648438,
+          1.8875000476837158
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-suv-06.glb",
+      "preview": "res://assets/vehicles/car-suv-06.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-coupe-07",
+      "label": "스포츠 쿠페",
+      "category": "citizen",
+      "body_type": "coupe",
+      "length_m": 4.42,
+      "width_m": 1.88,
+      "height_m": 1.25,
+      "color": "#bb5e50",
+      "wheel_count": 4,
+      "triangles": 4154,
+      "bounds_blender": {
+        "min": [
+          -1.1150000095367432,
+          -2.252500057220459,
+          0.0
+        ],
+        "max": [
+          1.1150000095367432,
+          2.248999834060669,
+          1.215000033378601
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-coupe-07.glb",
+      "preview": "res://assets/vehicles/car-coupe-07.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-minivan-08",
+      "label": "패밀리 미니밴",
+      "category": "citizen",
+      "body_type": "minivan",
+      "length_m": 5.1,
+      "width_m": 1.92,
+      "height_m": 1.83,
+      "color": "#d7d0b3",
+      "wheel_count": 4,
+      "triangles": 4046,
+      "bounds_blender": {
+        "min": [
+          -1.1350001096725464,
+          -2.5924999713897705,
+          0.0
+        ],
+        "max": [
+          1.1350001096725464,
+          2.5889999866485596,
+          1.7949999570846558
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-minivan-08.glb",
+      "preview": "res://assets/vehicles/car-minivan-08.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-electric-09",
+      "label": "전기 세단",
+      "category": "citizen",
+      "body_type": "electric",
+      "length_m": 4.62,
+      "width_m": 1.86,
+      "height_m": 1.52,
+      "color": "#8e82a8",
+      "wheel_count": 4,
+      "triangles": 4154,
+      "bounds_blender": {
+        "min": [
+          -1.1050000190734863,
+          -2.3545000553131104,
+          0.0
+        ],
+        "max": [
+          1.1050000190734863,
+          2.3489999771118164,
+          1.4850000143051147
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-electric-09.glb",
+      "preview": "res://assets/vehicles/car-electric-09.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "car-pickup-10",
+      "label": "레저 픽업",
+      "category": "citizen",
+      "body_type": "pickup",
+      "length_m": 5.35,
+      "width_m": 1.98,
+      "height_m": 1.8,
+      "color": "#548d90",
+      "wheel_count": 4,
+      "triangles": 4462,
+      "bounds_blender": {
+        "min": [
+          -1.165000081062317,
+          -2.7174999713897705,
+          0.0
+        ],
+        "max": [
+          1.165000081062317,
+          2.7139999866485596,
+          1.7649999856948853
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/car-pickup-10.glb",
+      "preview": "res://assets/vehicles/car-pickup-10.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-box-01",
+      "label": "소형 탑차",
+      "category": "industrial",
+      "body_type": "box",
+      "length_m": 6.2,
+      "width_m": 2.25,
+      "height_m": 3.15,
+      "color": "#e0dfcf",
+      "wheel_count": 4,
+      "triangles": 6298,
+      "bounds_blender": {
+        "min": [
+          -1.3000000715255737,
+          -3.198500156402588,
+          0.0
+        ],
+        "max": [
+          1.3000000715255737,
+          3.1389999389648438,
+          3.1500000953674316
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-box-01.glb",
+      "preview": "res://assets/vehicles/truck-box-01.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-flatbed-02",
+      "label": "평판 트럭",
+      "category": "industrial",
+      "body_type": "flatbed",
+      "length_m": 7.45,
+      "width_m": 2.45,
+      "height_m": 2.85,
+      "color": "#4f7c9d",
+      "wheel_count": 4,
+      "triangles": 6406,
+      "bounds_blender": {
+        "min": [
+          -1.4000000953674316,
+          -3.823500156402588,
+          0.0
+        ],
+        "max": [
+          1.4000000953674316,
+          3.7639999389648438,
+          2.450000047683716
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-flatbed-02.glb",
+      "preview": "res://assets/vehicles/truck-flatbed-02.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-fridge-03",
+      "label": "냉동 트럭",
+      "category": "industrial",
+      "body_type": "fridge",
+      "length_m": 8.15,
+      "width_m": 2.48,
+      "height_m": 3.45,
+      "color": "#71a9a1",
+      "wheel_count": 6,
+      "triangles": 8270,
+      "bounds_blender": {
+        "min": [
+          -1.415000081062317,
+          -4.173499584197998,
+          0.0
+        ],
+        "max": [
+          1.415000081062317,
+          4.11400032043457,
+          3.4499998092651367
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-fridge-03.glb",
+      "preview": "res://assets/vehicles/truck-fridge-03.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-mixer-04",
+      "label": "콘크리트 믹서",
+      "category": "industrial",
+      "body_type": "mixer",
+      "length_m": 8.4,
+      "width_m": 2.5,
+      "height_m": 3.5,
+      "color": "#ce9162",
+      "wheel_count": 6,
+      "triangles": 5326,
+      "bounds_blender": {
+        "min": [
+          -1.4250000715255737,
+          -4.298499584197998,
+          0.0
+        ],
+        "max": [
+          1.4250000715255737,
+          4.424999713897705,
+          3.0819997787475586
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-mixer-04.glb",
+      "preview": "res://assets/vehicles/truck-mixer-04.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "trailer-container-05",
+      "label": "컨테이너 트레일러",
+      "category": "industrial",
+      "body_type": "container",
+      "length_m": 16.2,
+      "width_m": 2.5,
+      "height_m": 3.85,
+      "color": "#aa6555",
+      "wheel_count": 10,
+      "triangles": 12706,
+      "bounds_blender": {
+        "min": [
+          -1.4250000715255737,
+          -8.19849967956543,
+          0.0
+        ],
+        "max": [
+          1.4250000715255737,
+          8.138999938964844,
+          3.8499999046325684
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/trailer-container-05.glb",
+      "preview": "res://assets/vehicles/trailer-container-05.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "trailer-tanker-06",
+      "label": "탱크 트레일러",
+      "category": "industrial",
+      "body_type": "tanker",
+      "length_m": 15.4,
+      "width_m": 2.5,
+      "height_m": 3.6,
+      "color": "#567b68",
+      "wheel_count": 10,
+      "triangles": 6990,
+      "bounds_blender": {
+        "min": [
+          -1.4250000715255737,
+          -7.798499584197998,
+          0.0
+        ],
+        "max": [
+          1.4250000715255737,
+          7.73900032043457,
+          3.3999998569488525
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/trailer-tanker-06.glb",
+      "preview": "res://assets/vehicles/trailer-tanker-06.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-dump-07",
+      "label": "중형 덤프트럭",
+      "category": "industrial",
+      "body_type": "dump",
+      "length_m": 7.8,
+      "width_m": 2.5,
+      "height_m": 3.15,
+      "color": "#d4ac4e",
+      "wheel_count": 6,
+      "triangles": 6586,
+      "bounds_blender": {
+        "min": [
+          -1.4250000715255737,
+          -3.998500108718872,
+          0.0
+        ],
+        "max": [
+          1.4250000715255737,
+          3.938999891281128,
+          2.450000047683716
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-dump-07.glb",
+      "preview": "res://assets/vehicles/truck-dump-07.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    },
+    {
+      "id": "truck-heavy-dump-08",
+      "label": "대형 덤프트럭",
+      "category": "industrial",
+      "body_type": "heavy_dump",
+      "length_m": 9.6,
+      "width_m": 2.6,
+      "height_m": 3.55,
+      "color": "#b47b4e",
+      "wheel_count": 8,
+      "triangles": 7290,
+      "bounds_blender": {
+        "min": [
+          -1.475000023841858,
+          -4.898499965667725,
+          0.0
+        ],
+        "max": [
+          1.475000023841858,
+          4.839000225067139,
+          2.6700000762939453
+        ]
+      },
+      "forward_axis_gltf": "+Z",
+      "traffic_side": "right",
+      "steering": "left_hand_drive",
+      "source_skill": "zstack/vehicle",
+      "model": "res://assets/vehicles/truck-heavy-dump-08.glb",
+      "preview": "res://assets/vehicles/truck-heavy-dump-08.png",
+      "rig_scope": "wheel steer/spin; trailer or dump pivots where applicable; no door/crash simulation",
+      "nominal_dimensions": "original design values in metres, not a certified replica"
+    }
+  ]
+}

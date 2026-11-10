@@ -1,0 +1,182 @@
+[
+  {
+    "id": "large-4x4-department-07",
+    "opens": true,
+    "mesh_count": 202,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-4x4-office-nova-08",
+    "opens": true,
+    "mesh_count": 221,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-8x8-grand-department-09",
+    "opens": true,
+    "mesh_count": 304,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-8x8-twin-central-10",
+    "opens": true,
+    "mesh_count": 489,
+    "finite_vertices": true
+  },
+  {
+    "id": "medium-4x4-brick-services-06",
+    "opens": true,
+    "mesh_count": 189,
+    "finite_vertices": true
+  },
+  {
+    "id": "medium-4x4-office-retail-05",
+    "opens": true,
+    "mesh_count": 135,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-2x2-auto-02",
+    "opens": true,
+    "mesh_count": 54,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-2x2-mart-01",
+    "opens": true,
+    "mesh_count": 133,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-4x4-cafe-diner-04",
+    "opens": true,
+    "mesh_count": 121,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-4x4-market-03",
+    "opens": true,
+    "mesh_count": 124,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-4x4-chemical-06",
+    "opens": true,
+    "mesh_count": 145,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-4x4-pharma-05",
+    "opens": true,
+    "mesh_count": 163,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-8x8-auto-assembly-07",
+    "opens": true,
+    "mesh_count": 312,
+    "finite_vertices": true
+  },
+  {
+    "id": "large-8x8-chemical-complex-08",
+    "opens": true,
+    "mesh_count": 250,
+    "finite_vertices": true
+  },
+  {
+    "id": "medium-4x4-circuitworks-04",
+    "opens": true,
+    "mesh_count": 144,
+    "finite_vertices": true
+  },
+  {
+    "id": "medium-4x4-precision-03",
+    "opens": true,
+    "mesh_count": 179,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-2x2-foodworks-02",
+    "opens": true,
+    "mesh_count": 78,
+    "finite_vertices": true
+  },
+  {
+    "id": "small-2x2-metalworks-01",
+    "opens": true,
+    "mesh_count": 128,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-coal",
+    "opens": true,
+    "mesh_count": 62,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-hydro",
+    "opens": true,
+    "mesh_count": 198,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-nuclear",
+    "opens": true,
+    "mesh_count": 31,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-oil",
+    "opens": true,
+    "mesh_count": 70,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-solar",
+    "opens": true,
+    "mesh_count": 1087,
+    "finite_vertices": true
+  },
+  {
+    "id": "power-wind",
+    "opens": true,
+    "mesh_count": 13,
+    "finite_vertices": true
+  },
+  {
+    "id": "water-intake",
+    "opens": true,
+    "mesh_count": 71,
+    "finite_vertices": true
+  },
+  {
+    "id": "water-sewage-outfall",
+    "opens": true,
+    "mesh_count": 64,
+    "finite_vertices": true
+  },
+  {
+    "id": "water-sewage-treatment",
+    "opens": true,
+    "mesh_count": 109,
+    "finite_vertices": true
+  },
+  {
+    "id": "water-water-tower",
+    "opens": true,
+    "mesh_count": 75,
+    "finite_vertices": true
+  },
+  {
+    "id": "waste-incinerator",
+    "opens": true,
+    "mesh_count": 156,
+    "finite_vertices": true
+  },
+  {
+    "id": "waste-recycling-center",
+    "opens": true,
+    "mesh_count": 144,
+    "finite_vertices": true
+  }
+]

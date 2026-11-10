@@ -1,0 +1,62 @@
+{
+  "id": "elementary-school",
+  "name": "초등학교",
+  "category": "education_service",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "user-specified",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "max_storeys": 2,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0006,
+    821.7004
+  ],
+  "lot_corners_px": [
+    [
+      72.8771,
+      633.1386
+    ],
+    [
+      450.0006,
+      821.7004
+    ],
+    [
+      827.1243,
+      633.1386
+    ],
+    [
+      450.0008,
+      444.5767
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      5.87000036239624
+    ]
+  ],
+  "campus_buildings": 3,
+  "revision": "dense-school-and-multi-building-campus",
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry, adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "educational visual concept only; enrolment, education and traffic simulation not implemented"
+}

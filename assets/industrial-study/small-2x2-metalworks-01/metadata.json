@@ -1,0 +1,68 @@
+{
+  "id": "small-2x2-metalworks-01",
+  "name": "금속가공 작업장",
+  "zone": "industrial",
+  "category": "small_industrial",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "occupied_storeys": 1,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    876.8141
+  ],
+  "lot_corners_px": [
+    [
+      35.164,
+      669.3961
+    ],
+    [
+      450.0,
+      876.8141
+    ],
+    [
+      864.836,
+      669.3962
+    ],
+    [
+      450.0,
+      461.9781
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      5.059999942779541
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 15,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "METAL WORKS sign",
+    "roller shutter",
+    "corrugated cladding",
+    "ridge vent",
+    "stock pallet",
+    "delivery apron"
+  ],
+  "scope": "user-approved industrial design; game integration pending"
+}

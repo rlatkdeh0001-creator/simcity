@@ -1,0 +1,64 @@
+SOURCE_OK large-4x4-department-07
+SOURCE_OK large-4x4-office-nova-08
+SOURCE_OK large-8x8-grand-department-09
+SOURCE_OK large-8x8-twin-central-10
+SOURCE_OK medium-4x4-brick-services-06
+SOURCE_OK medium-4x4-office-retail-05
+SOURCE_OK small-2x2-auto-02
+SOURCE_OK small-2x2-mart-01
+SOURCE_OK small-4x4-cafe-diner-04
+SOURCE_OK small-4x4-market-03
+SOURCE_OK large-4x4-chemical-06
+SOURCE_OK large-4x4-pharma-05
+SOURCE_OK large-8x8-auto-assembly-07
+SOURCE_OK large-8x8-chemical-complex-08
+SOURCE_OK medium-4x4-circuitworks-04
+SOURCE_OK medium-4x4-precision-03
+SOURCE_OK small-2x2-foodworks-02
+SOURCE_OK small-2x2-metalworks-01
+SOURCE_OK power-coal
+SOURCE_OK power-hydro
+SOURCE_OK power-nuclear
+SOURCE_OK power-oil
+SOURCE_OK power-solar
+SOURCE_OK power-wind
+SOURCE_OK water-intake
+SOURCE_OK water-sewage-outfall
+SOURCE_OK water-sewage-treatment
+SOURCE_OK water-water-tower
+SOURCE_OK waste-incinerator
+SOURCE_OK waste-recycling-center
+RESULT 30/30 sources opened with finite geometry
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/commercial-study/large-4x4-department-07/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/large-4x4-office-nova-08/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/large-8x8-grand-department-09/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/large-8x8-twin-central-10/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/medium-4x4-brick-services-06/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/medium-4x4-office-retail-05/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/small-2x2-auto-02/auto.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/small-2x2-mart-01/mart.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/small-4x4-cafe-diner-04/building.blend"
+Read blend: "/workspace/simcity/assets/commercial-study/small-4x4-market-03/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/large-4x4-chemical-06/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/large-4x4-pharma-05/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/large-8x8-auto-assembly-07/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/large-8x8-chemical-complex-08/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/medium-4x4-circuitworks-04/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/medium-4x4-precision-03/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/small-2x2-foodworks-02/building.blend"
+Read blend: "/workspace/simcity/assets/industrial-study/small-2x2-metalworks-01/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/coal/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/hydro/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/nuclear/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/oil/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/solar/building.blend"
+Read blend: "/workspace/simcity/assets/power-study/wind/building.blend"
+Read blend: "/workspace/simcity/assets/water-study/intake/building.blend"
+Read blend: "/workspace/simcity/assets/water-study/sewage-outfall/building.blend"
+Read blend: "/workspace/simcity/assets/water-study/sewage-treatment/building.blend"
+Read blend: "/workspace/simcity/assets/water-study/water-tower/building.blend"
+Read blend: "/workspace/simcity/assets/waste-study/incinerator/building.blend"
+Read blend: "/workspace/simcity/assets/waste-study/recycling-center/building.blend"
+
+Blender quit

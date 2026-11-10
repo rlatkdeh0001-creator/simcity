@@ -1,0 +1,61 @@
+{
+  "id": "power-coal",
+  "name": "석탄발전소",
+  "category": "power_facility",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    875.8525
+  ],
+  "lot_corners_px": [
+    [
+      94.4266,
+      698.0656
+    ],
+    [
+      450.0003,
+      875.8525
+    ],
+    [
+      805.574,
+      698.0657
+    ],
+    [
+      450.0004,
+      520.2788
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -1.9500000476837158
+    ],
+    [
+      16.0,
+      16.0,
+      29.350000381469727
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+  "revision": "requested-footprints-and-equipment-scale"
+}

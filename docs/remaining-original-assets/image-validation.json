@@ -1,0 +1,482 @@
+[
+  {
+    "path": "assets/commercial-study/large-4x4-department-07/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-4x4-department-07/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-4x4-office-nova-08/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-4x4-office-nova-08/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-8x8-grand-department-09/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-8x8-grand-department-09/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-8x8-twin-central-10/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/large-8x8-twin-central-10/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/medium-4x4-brick-services-06/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/medium-4x4-brick-services-06/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/medium-4x4-office-retail-05/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/medium-4x4-office-retail-05/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-2x2-auto-02/auto.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-2x2-auto-02/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-2x2-mart-01/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-2x2-mart-01/mart.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-4x4-cafe-diner-04/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-4x4-cafe-diner-04/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-4x4-market-03/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/commercial-study/small-4x4-market-03/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-4x4-chemical-06/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-4x4-chemical-06/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-4x4-pharma-05/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-4x4-pharma-05/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-8x8-auto-assembly-07/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-8x8-auto-assembly-07/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-8x8-chemical-complex-08/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/large-8x8-chemical-complex-08/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/medium-4x4-circuitworks-04/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/medium-4x4-circuitworks-04/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/medium-4x4-precision-03/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/medium-4x4-precision-03/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/small-2x2-foodworks-02/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/small-2x2-foodworks-02/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/small-2x2-metalworks-01/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/industrial-study/small-2x2-metalworks-01/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/coal/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/coal/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/hydro/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/hydro/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/nuclear/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/nuclear/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/oil/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/oil/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/solar/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/solar/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/wind/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/power-study/wind/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/intake/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/intake/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/sewage-outfall/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/sewage-outfall/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/sewage-treatment/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/sewage-treatment/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/water-tower/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/water-study/water-tower/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/waste-study/incinerator/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/waste-study/incinerator/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/waste-study/recycling-center/reverse-review.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  },
+  {
+    "path": "assets/waste-study/recycling-center/building.png",
+    "size": [
+      900,
+      1100
+    ],
+    "mode": "RGBA"
+  }
+]

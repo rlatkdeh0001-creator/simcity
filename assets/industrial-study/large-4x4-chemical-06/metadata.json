@@ -1,0 +1,68 @@
+{
+  "id": "large-4x4-chemical-06",
+  "name": "화학 생산시설",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 2,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    874.8454
+  ],
+  "lot_corners_px": [
+    [
+      61.0912,
+      680.391
+    ],
+    [
+      450.0,
+      874.8454
+    ],
+    [
+      838.9087,
+      680.391
+    ],
+    [
+      450.0,
+      485.9367
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      10.139999389648438
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 32,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "CHEM WORKS sign",
+    "two-storey production wing",
+    "reactor vessels",
+    "tall process column",
+    "service platform",
+    "pipe bridge"
+  ],
+  "scope": "user-approved industrial design; game integration pending"
+}

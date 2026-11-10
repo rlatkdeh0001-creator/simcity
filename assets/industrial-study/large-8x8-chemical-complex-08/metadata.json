@@ -1,0 +1,69 @@
+{
+  "id": "large-8x8-chemical-complex-08",
+  "name": "대규모 화학 플랜트",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "occupied_storeys": 4,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9999,
+    842.2949
+  ],
+  "lot_corners_px": [
+    [
+      67.0744,
+      650.8321
+    ],
+    [
+      449.9999,
+      842.2949
+    ],
+    [
+      832.9254,
+      650.8322
+    ],
+    [
+      449.9999,
+      459.3693
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      17.59000015258789
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 65,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "CHEM COMPLEX sign",
+    "four-storey production block",
+    "horizontal storage vessels",
+    "low service annex",
+    "rear tank farm",
+    "roof air plant"
+  ],
+  "scope": "user-approved four-storey industrial design; game integration pending",
+  "revision": "four-storey-redesign"
+}

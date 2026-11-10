@@ -1,0 +1,24 @@
+{
+  "repository": "https://github.com/duolahypercho/zstack",
+  "commit": "74f7786e9931b9ced858a0e2df880f23e4c2430e",
+  "license": "MIT",
+  "application": "Adapted for original low-poly city vehicles; uses common.empty/parent_keep/revolve/rounded_box/tri_count; no reference-match, crash or opening-door claims",
+  "files": [
+    {
+      "path": "skills/vehicle/SKILL.md",
+      "sha256": "136dc257ffec5723695f0c9cec316b800f1ea40c421fc2fab7584ad94bf0b3bb"
+    },
+    {
+      "path": "skills/vehicle/reference/rig-contract.md",
+      "sha256": "c29ce37790bb500419dde9b725faa395add16f11b7ef365540037cdb427e5117"
+    },
+    {
+      "path": "skills/vehicle/blender/common.py",
+      "sha256": "175562c1db2adf4bb11d0bdf2ddb2433f13b40e04dca5142431e0b8f4ab578ce"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "088b06889272db34bd5b482253c95e5252a71e200a3248fb975902cd1d36df74"
+    }
+  ]
+}

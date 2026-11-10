@@ -1,0 +1,68 @@
+{
+  "id": "medium-4x4-circuitworks-04",
+  "name": "전자부품 공장",
+  "zone": "industrial",
+  "category": "medium_industrial",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 3,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    879.4354
+  ],
+  "lot_corners_px": [
+    [
+      72.8764,
+      690.8736
+    ],
+    [
+      450.0,
+      879.4354
+    ],
+    [
+      827.1236,
+      690.8736
+    ],
+    [
+      450.0,
+      502.3117
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      11.809999465942383
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 33,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "CIRCUIT WORKS sign",
+    "microchip pictogram",
+    "three production floors",
+    "loading bay",
+    "air handling units",
+    "external utility pipes"
+  ],
+  "scope": "user-approved industrial design; game integration pending"
+}

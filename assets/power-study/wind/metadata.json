@@ -1,0 +1,64 @@
+{
+  "id": "power-wind",
+  "name": "풍력발전소",
+  "category": "power_facility",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "presentation_lot_cells": [
+    2,
+    2
+  ],
+  "rotor_radius_m": 11,
+  "rotor_overhang_allowed": true,
+  "display_slab": false,
+  "cell_meters": 4,
+  "presentation_lot_meters": [
+    8,
+    8
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0005,
+    936.1189
+  ],
+  "lot_corners_px": [
+    [
+      325.5497,
+      873.8936
+    ],
+    [
+      450.0005,
+      936.1189
+    ],
+    [
+      574.4513,
+      873.8936
+    ],
+    [
+      450.0005,
+      811.6682
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -9.52627944946289,
+      -2.1374998092651367,
+      0.0
+    ],
+    [
+      9.52627944946289,
+      2.75,
+      37.400001525878906
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
+  "revision": "requested-footprints-and-equipment-scale"
+}

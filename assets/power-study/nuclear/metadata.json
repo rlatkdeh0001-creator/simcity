@@ -1,0 +1,64 @@
+{
+  "id": "power-nuclear",
+  "name": "원자력발전소",
+  "category": "power_facility",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    862.0063
+  ],
+  "lot_corners_px": [
+    [
+      78.5054,
+      676.2588
+    ],
+    [
+      450.0003,
+      862.0063
+    ],
+    [
+      821.4952,
+      676.2589
+    ],
+    [
+      450.0004,
+      490.5114
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      20.399999618530273
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+  "revision": "stouter-cooling-tower",
+  "cooling_tower_height_m": 20,
+  "cooling_tower_base_radius_m": 6.8,
+  "cooling_tower_waist_radius_m": 5.2
+}

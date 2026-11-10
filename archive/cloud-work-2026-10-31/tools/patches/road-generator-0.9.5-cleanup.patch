@@ -1,0 +1,12 @@
+--- a/addons/road-generator/plugin.gd
++++ b/addons/road-generator/plugin.gd
+@@ -95,6 +95,9 @@
+ 
+ 
+ func _exit_tree():
++	# CITIES_DO: the divider template is not parented; release it on shutdown.
++	if is_instance_valid(road_point_gizmo.lane_divider):road_point_gizmo.lane_divider.free()
++	if is_instance_valid(connection_tool):connection_tool.free()
+ 	_eds.disconnect("selection_changed", self._on_selection_changed)
+ 	disconnect("scene_changed", self._on_scene_changed)
+ 	disconnect("scene_closed", self._on_scene_closed)
