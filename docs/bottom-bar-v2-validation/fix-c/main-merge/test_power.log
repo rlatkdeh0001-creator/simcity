@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS source without constructed line cannot supply
+PASS wire cannot start from arbitrary unconnected ground
+PASS wire outside map rejected
+PASS wire preview does not change grid
+PASS wire owns copied geometry
+PASS 192m wire has source plus six 32m supply points
+PASS supply-point spacing is exactly 32 metres
+PASS 64m radial supply boundary is exact
+PASS partial terminal does not create extra supply radius
+PASS bend retains visual route geometry without extra service point
+PASS near and far consumers receive power simultaneously before any visual arrival
+PASS overlapping supply circles do not count consumers twice
+PASS insufficient isolated grid shares power proportionally instead of arrival ordering
+PASS removing source removes delivery immediately
+PASS removing wire disconnects distant consumers immediately
+PASS branch from existing supply point carries power
+PASS branch deletion removes its supply
+PASS local consumption is served before automatic surplus export
+PASS developed neighbor export tariff 0.0012 doth/kWh
+PASS imports fill shortage without proposed contract cap
+PASS developed import tariff 0.0027 doth/kWh
+PASS neighbor alone can supply city at peer tariff 0.003
+PASS connected import uses cheapest advanced neighbor
+PASS export uses highest buying price and does not simultaneously import same grid
+PASS funds budget curtails import when money is insufficient
+PASS empty funds cannot import for free
+PASS 720 hours at 100kW and peer rate costs 216 doth
+PASS meter integrates kW times hours into kWh
+PASS fractional doth is carried without per-frame rounding
+PASS 30/60 update rates have same energy and money totals
+PASS import cannot create debt without an approved debt rule
+PASS zero remaining balance stops future import
+PASS animation calls cannot mutate supply, meters or finances
+PASS far consumer is powered before first marker arrives
+PASS display marker vanishes at endpoint without lingering or looping
+PASS player can place prototype generator beside road
+PASS bottom power tab opens actual tools without legacy side panel
+PASS mouse drag commits underground wire from blue source
+PASS underground line can overlap terrain without depth parameter
+PASS UI animation/range controls do not alter simulation state
+PASS live wire removal updates game state
+RESULT 41/41 power checks passed

@@ -19,7 +19,10 @@ game-ui-ux/프로필 TDD/Windows validation/자체 리뷰/GitHub 절차를 적�
 개인 godot-windows-validation(MIT)에는 실제 마우스 press/release·선택과 포커스 모양 분리·빈 텍스트 아이콘 정렬 검증 규칙을 보완했다.
 새 외부 스킬/의존성 설치나 병렬 리뷰 에이전트는 없다. 원본 보존 파생 PNG/실제 버튼 인벤토리/추가 캡처·증거 도구를 레포에 기록했다.
 사용자 피드백 원인은 mistake.md M-009에 확인된 코드/RED/실제 캡처로 기록했다.
-현재 승인은 통과 후 main 통합·origin/main 푸시까지다. .import churn과 기존 미추적 .uid8개는 제외한다.
+수정 e7f8cab에 원격 abd0cc1 원본30종/역사 자료를 보존 병합했다(6d661cc). 인계장/mistake 충돌2개는 양쪽 본문을 보존했다.
+현재 게임 코드는 수정 커밋과 같으며 archive 속 코드를 실행하거나 원본30종을 게임에 새로 등록하지 않았다.
+main fast-forward 후 import/전체25/25를 새로 실행했다: [별도 main 검증](bottom-bar-v2-validation/fix-c/main-merge/results.json).
+현재 승인은 main 통합·origin/main 푸시까지다. .import churn과 기존 미추적 .uid8개는 제외한다.
 
 ## 병행 원격 작업: 나머지 원본30종·도로/도시 전시장 역사 보존 (2026-11-11 KST)
 

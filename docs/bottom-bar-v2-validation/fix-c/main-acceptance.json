@@ -1,0 +1,15 @@
+{
+  "tested_on_branch": "main",
+  "tested_merge_commit": "6d661cc6f50c260c7b34035600495e2da86c045d",
+  "fix_commit": "e7f8cabd38f0abbe273d45ea27ed5cec819005a3",
+  "upstream_preserved": "abd0cc19518e13add36e7a48a6c89e134e52d1ab",
+  "runtime_identical_to_fix": true,
+  "total": 25,
+  "passed": 25,
+  "failed": 0,
+  "runtime_tree": "342f59544dec677367ed9825d61b9b4dbe5026b5",
+  "new_import_churn_committed": false,
+  "source_originals_unchanged": true,
+  "planning_docs_preserved": true,
+  "authorization": "main integration and origin push approved; exact remote SHA reported after push"
+}

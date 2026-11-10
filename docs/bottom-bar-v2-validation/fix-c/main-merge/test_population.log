@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS ten real minutes equal four game hours
+PASS 05 commute begins after 750 real seconds
+PASS 09 commute ends ten real minutes later
+PASS twelve real hours complete one twelve-day year
+PASS empty city has only residential demand
+PASS commercial zoning waits for real residents
+PASS house construction precedes immigration
+PASS immigrants occupy actual household capacity
+PASS residents generate both commercial and industrial demand
+PASS dwelling household capacity prevents overfill
+PASS uneducated adult can fill food retail job
+PASS immigration can draw all five configured education levels
+PASS local newborn starts uneducated rather than inheriting parent degree
+PASS children cannot work despite education eligibility
+PASS age prerequisites prevent instant infant graduation
+PASS education cannot skip completed levels
+PASS completed education advances one level 1
+PASS completed education advances one level 2
+PASS completed education advances one level 3
+PASS completed education advances one level 4
+PASS education tolerance 0 to 0
+PASS education tolerance 0 to 1
+PASS education tolerance 0 to 2
+PASS education tolerance 0 to 3
+PASS education tolerance 0 to 4
+PASS education tolerance 1 to 0
+PASS education tolerance 1 to 1
+PASS education tolerance 1 to 2
+PASS education tolerance 1 to 3
+PASS education tolerance 1 to 4
+PASS education tolerance 2 to 0
+PASS education tolerance 2 to 1
+PASS education tolerance 2 to 2
+PASS education tolerance 2 to 3
+PASS education tolerance 2 to 4
+PASS education tolerance 3 to 0
+PASS education tolerance 3 to 1
+PASS education tolerance 3 to 2
+PASS education tolerance 3 to 3
+PASS education tolerance 3 to 4
+PASS education tolerance 4 to 0
+PASS education tolerance 4 to 1
+PASS education tolerance 4 to 2
+PASS education tolerance 4 to 3
+PASS education tolerance 4 to 4
+PASS demolished workplace clears old assignments
+PASS demolished home preserves residents as displaced households
+PASS daily birth scheduling creates local citizens when eligible
+PASS one game day ages citizens by one twelfth of a year
+PASS fixed population ticks are frame independent
+PASS business inspector exposes five labor rings
+PASS pause freezes unified city clock
+RESULT 52/52 population checks passed

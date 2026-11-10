@@ -1,0 +1,12 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS crematorium keeps 4m cell scale
+PASS asset catalog does not claim working service
+PASS GLB imports with finite geometry
+PASS model footprint exactly 16 x 16 metres
+PASS ground and full accessory height match specification
+PASS main entrance faces GLB +Z
+PASS dedicated gallery loads all four actual GLB assets
+PASS public vehicles have separate service category
+PASS same metre scale accommodates the full facility lot
+RESULT 9/9 service asset checks passed
