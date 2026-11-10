@@ -30,6 +30,8 @@ in player-facing HUDs. Keep those in docs. Tool labels, meaningful live values a
 short action/error feedback remain appropriate. Do not change simulation rules
 when removing explanatory text. Main now uses the shared bottom_ui.gd HUD;
 bottom_ui_preview.tscn is an authored review fixture, not the playable city's initial state.
+UI mockups first (user, 2026-11-10; mistake.md M-008): before implementing any UI/HUD/menu
+layout change, show about 3 mockup options and implement only the one the user approves.
 
 Road intersections: read `docs/ROAD_JUNCTIONS_KO.md`. Same-level centreline
 crossings form actual junctions with derived lane sections/turn connectors.
