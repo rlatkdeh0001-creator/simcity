@@ -1,0 +1,66 @@
+{
+  "id": "medical-hospital",
+  "name": "병원",
+  "category": "medical_service",
+  "footprint_cells": [
+    6,
+    6
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    24,
+    24
+  ],
+  "max_storeys": 4,
+  "helicopter_model": false,
+  "rooftop_helipad": false,
+  "rooftop_stair_access": false,
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0004,
+    861.1513
+  ],
+  "lot_corners_px": [
+    [
+      61.0918,
+      666.697
+    ],
+    [
+      450.0004,
+      861.1513
+    ],
+    [
+      838.9093,
+      666.697
+    ],
+    [
+      450.0005,
+      472.2426
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -12.0,
+      -12.0,
+      -0.11999999731779099
+    ],
+    [
+      12.0,
+      12.0,
+      13.5
+    ]
+  ],
+  "revision": "white-red-distinct-architecture",
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender buildings, ambulance and rescue helicopter; adapted local helpers; DejaVu font; no external models or textures",
+  "scope": "user-approved white-red medical design; game integration pending",
+  "palette": "white-with-red-accents",
+  "architecture": "unequal-pavilions-with-bridge"
+}

@@ -1,0 +1,305 @@
+{
+  "camera_elevation_degrees": 30,
+  "camera_position_xz_ratio": [
+    -1,
+    1
+  ],
+  "entries": {
+    "bus-city-01": {
+      "frames": [
+        "res://assets/vehicles/sprites/bus-city-01/000.png",
+        "res://assets/vehicles/sprites/bus-city-01/045.png",
+        "res://assets/vehicles/sprites/bus-city-01/090.png",
+        "res://assets/vehicles/sprites/bus-city-01/135.png",
+        "res://assets/vehicles/sprites/bus-city-01/180.png",
+        "res://assets/vehicles/sprites/bus-city-01/225.png",
+        "res://assets/vehicles/sprites/bus-city-01/270.png",
+        "res://assets/vehicles/sprites/bus-city-01/315.png"
+      ],
+      "ortho_height_m": 9.91626071929932,
+      "pixels_per_metre": 24.7068937511066
+    },
+    "car-compact-02": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-compact-02/000.png",
+        "res://assets/vehicles/sprites/car-compact-02/045.png",
+        "res://assets/vehicles/sprites/car-compact-02/090.png",
+        "res://assets/vehicles/sprites/car-compact-02/135.png",
+        "res://assets/vehicles/sprites/car-compact-02/180.png",
+        "res://assets/vehicles/sprites/car-compact-02/225.png",
+        "res://assets/vehicles/sprites/car-compact-02/270.png",
+        "res://assets/vehicles/sprites/car-compact-02/315.png"
+      ],
+      "ortho_height_m": 3.63383007049561,
+      "pixels_per_metre": 67.4219749539871
+    },
+    "car-coupe-07": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-coupe-07/000.png",
+        "res://assets/vehicles/sprites/car-coupe-07/045.png",
+        "res://assets/vehicles/sprites/car-coupe-07/090.png",
+        "res://assets/vehicles/sprites/car-coupe-07/135.png",
+        "res://assets/vehicles/sprites/car-coupe-07/180.png",
+        "res://assets/vehicles/sprites/car-coupe-07/225.png",
+        "res://assets/vehicles/sprites/car-coupe-07/270.png",
+        "res://assets/vehicles/sprites/car-coupe-07/315.png"
+      ],
+      "ortho_height_m": 3.69123005867004,
+      "pixels_per_metre": 66.3735383885213
+    },
+    "car-crossover-05": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-crossover-05/000.png",
+        "res://assets/vehicles/sprites/car-crossover-05/045.png",
+        "res://assets/vehicles/sprites/car-crossover-05/090.png",
+        "res://assets/vehicles/sprites/car-crossover-05/135.png",
+        "res://assets/vehicles/sprites/car-crossover-05/180.png",
+        "res://assets/vehicles/sprites/car-crossover-05/225.png",
+        "res://assets/vehicles/sprites/car-crossover-05/270.png",
+        "res://assets/vehicles/sprites/car-crossover-05/315.png"
+      ],
+      "ortho_height_m": 3.63383007049561,
+      "pixels_per_metre": 67.4219749539871
+    },
+    "car-electric-09": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-electric-09/000.png",
+        "res://assets/vehicles/sprites/car-electric-09/045.png",
+        "res://assets/vehicles/sprites/car-electric-09/090.png",
+        "res://assets/vehicles/sprites/car-electric-09/135.png",
+        "res://assets/vehicles/sprites/car-electric-09/180.png",
+        "res://assets/vehicles/sprites/car-electric-09/225.png",
+        "res://assets/vehicles/sprites/car-electric-09/270.png",
+        "res://assets/vehicles/sprites/car-electric-09/315.png"
+      ],
+      "ortho_height_m": 3.85686993598938,
+      "pixels_per_metre": 63.5230132377154
+    },
+    "car-hatch-01": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-hatch-01/000.png",
+        "res://assets/vehicles/sprites/car-hatch-01/045.png",
+        "res://assets/vehicles/sprites/car-hatch-01/090.png",
+        "res://assets/vehicles/sprites/car-hatch-01/135.png",
+        "res://assets/vehicles/sprites/car-hatch-01/180.png",
+        "res://assets/vehicles/sprites/car-hatch-01/225.png",
+        "res://assets/vehicles/sprites/car-hatch-01/270.png",
+        "res://assets/vehicles/sprites/car-hatch-01/315.png"
+      ],
+      "ortho_height_m": 3.01883006095886,
+      "pixels_per_metre": 81.1572678993999
+    },
+    "car-minivan-08": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-minivan-08/000.png",
+        "res://assets/vehicles/sprites/car-minivan-08/045.png",
+        "res://assets/vehicles/sprites/car-minivan-08/090.png",
+        "res://assets/vehicles/sprites/car-minivan-08/135.png",
+        "res://assets/vehicles/sprites/car-minivan-08/180.png",
+        "res://assets/vehicles/sprites/car-minivan-08/225.png",
+        "res://assets/vehicles/sprites/car-minivan-08/270.png",
+        "res://assets/vehicles/sprites/car-minivan-08/315.png"
+      ],
+      "ortho_height_m": 4.24882984161377,
+      "pixels_per_metre": 57.6629352393518
+    },
+    "car-pickup-10": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-pickup-10/000.png",
+        "res://assets/vehicles/sprites/car-pickup-10/045.png",
+        "res://assets/vehicles/sprites/car-pickup-10/090.png",
+        "res://assets/vehicles/sprites/car-pickup-10/135.png",
+        "res://assets/vehicles/sprites/car-pickup-10/180.png",
+        "res://assets/vehicles/sprites/car-pickup-10/225.png",
+        "res://assets/vehicles/sprites/car-pickup-10/270.png",
+        "res://assets/vehicles/sprites/car-pickup-10/315.png"
+      ],
+      "ortho_height_m": 4.45382976531982,
+      "pixels_per_metre": 55.0088379910063
+    },
+    "car-sedan-03": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-sedan-03/000.png",
+        "res://assets/vehicles/sprites/car-sedan-03/045.png",
+        "res://assets/vehicles/sprites/car-sedan-03/090.png",
+        "res://assets/vehicles/sprites/car-sedan-03/135.png",
+        "res://assets/vehicles/sprites/car-sedan-03/180.png",
+        "res://assets/vehicles/sprites/car-sedan-03/225.png",
+        "res://assets/vehicles/sprites/car-sedan-03/270.png",
+        "res://assets/vehicles/sprites/car-sedan-03/315.png"
+      ],
+      "ortho_height_m": 4.00283002853394,
+      "pixels_per_metre": 61.2066958260861
+    },
+    "car-suv-06": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-suv-06/000.png",
+        "res://assets/vehicles/sprites/car-suv-06/045.png",
+        "res://assets/vehicles/sprites/car-suv-06/090.png",
+        "res://assets/vehicles/sprites/car-suv-06/135.png",
+        "res://assets/vehicles/sprites/car-suv-06/180.png",
+        "res://assets/vehicles/sprites/car-suv-06/225.png",
+        "res://assets/vehicles/sprites/car-suv-06/270.png",
+        "res://assets/vehicles/sprites/car-suv-06/315.png"
+      ],
+      "ortho_height_m": 4.12582969665527,
+      "pixels_per_metre": 59.3819953835265
+    },
+    "car-wagon-04": {
+      "frames": [
+        "res://assets/vehicles/sprites/car-wagon-04/000.png",
+        "res://assets/vehicles/sprites/car-wagon-04/045.png",
+        "res://assets/vehicles/sprites/car-wagon-04/090.png",
+        "res://assets/vehicles/sprites/car-wagon-04/135.png",
+        "res://assets/vehicles/sprites/car-wagon-04/180.png",
+        "res://assets/vehicles/sprites/car-wagon-04/225.png",
+        "res://assets/vehicles/sprites/car-wagon-04/270.png",
+        "res://assets/vehicles/sprites/car-wagon-04/315.png"
+      ],
+      "ortho_height_m": 3.87982964515686,
+      "pixels_per_metre": 63.1471024264764
+    },
+    "taxi-sedan-01": {
+      "frames": [
+        "res://assets/vehicles/sprites/taxi-sedan-01/000.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/045.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/090.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/135.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/180.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/225.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/270.png",
+        "res://assets/vehicles/sprites/taxi-sedan-01/315.png"
+      ],
+      "ortho_height_m": 3.87982964515686,
+      "pixels_per_metre": 63.1471024264764
+    },
+    "trailer-container-05": {
+      "frames": [
+        "res://assets/vehicles/sprites/trailer-container-05/000.png",
+        "res://assets/vehicles/sprites/trailer-container-05/045.png",
+        "res://assets/vehicles/sprites/trailer-container-05/090.png",
+        "res://assets/vehicles/sprites/trailer-container-05/135.png",
+        "res://assets/vehicles/sprites/trailer-container-05/180.png",
+        "res://assets/vehicles/sprites/trailer-container-05/225.png",
+        "res://assets/vehicles/sprites/trailer-container-05/270.png",
+        "res://assets/vehicles/sprites/trailer-container-05/315.png"
+      ],
+      "ortho_height_m": 13.39674949646,
+      "pixels_per_metre": 18.2880183035997
+    },
+    "trailer-tanker-06": {
+      "frames": [
+        "res://assets/vehicles/sprites/trailer-tanker-06/000.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/045.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/090.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/135.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/180.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/225.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/270.png",
+        "res://assets/vehicles/sprites/trailer-tanker-06/315.png"
+      ],
+      "ortho_height_m": 12.7407503128052,
+      "pixels_per_metre": 19.2296367156463
+    },
+    "truck-box-01": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-box-01/000.png",
+        "res://assets/vehicles/sprites/truck-box-01/045.png",
+        "res://assets/vehicles/sprites/truck-box-01/090.png",
+        "res://assets/vehicles/sprites/truck-box-01/135.png",
+        "res://assets/vehicles/sprites/truck-box-01/180.png",
+        "res://assets/vehicles/sprites/truck-box-01/225.png",
+        "res://assets/vehicles/sprites/truck-box-01/270.png",
+        "res://assets/vehicles/sprites/truck-box-01/315.png"
+      ],
+      "ortho_height_m": 5.19750022888184,
+      "pixels_per_metre": 47.1380450622333
+    },
+    "truck-dump-07": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-dump-07/000.png",
+        "res://assets/vehicles/sprites/truck-dump-07/045.png",
+        "res://assets/vehicles/sprites/truck-dump-07/090.png",
+        "res://assets/vehicles/sprites/truck-dump-07/135.png",
+        "res://assets/vehicles/sprites/truck-dump-07/180.png",
+        "res://assets/vehicles/sprites/truck-dump-07/225.png",
+        "res://assets/vehicles/sprites/truck-dump-07/270.png",
+        "res://assets/vehicles/sprites/truck-dump-07/315.png"
+      ],
+      "ortho_height_m": 6.50874996185303,
+      "pixels_per_metre": 37.6416364794952
+    },
+    "truck-flatbed-02": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-flatbed-02/000.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/045.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/090.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/135.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/180.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/225.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/270.png",
+        "res://assets/vehicles/sprites/truck-flatbed-02/315.png"
+      ],
+      "ortho_height_m": 6.22175025939941,
+      "pixels_per_metre": 39.3779868662954
+    },
+    "truck-fridge-03": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-fridge-03/000.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/045.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/090.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/135.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/180.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/225.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/270.png",
+        "res://assets/vehicles/sprites/truck-fridge-03/315.png"
+      ],
+      "ortho_height_m": 6.7957501411438,
+      "pixels_per_metre": 36.0519434810715
+    },
+    "truck-heavy-dump-08": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/000.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/045.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/090.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/135.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/180.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/225.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/270.png",
+        "res://assets/vehicles/sprites/truck-heavy-dump-08/315.png"
+      ],
+      "ortho_height_m": 7.98475027084351,
+      "pixels_per_metre": 30.6834893627948
+    },
+    "truck-mixer-04": {
+      "frames": [
+        "res://assets/vehicles/sprites/truck-mixer-04/000.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/045.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/090.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/135.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/180.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/225.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/270.png",
+        "res://assets/vehicles/sprites/truck-mixer-04/315.png"
+      ],
+      "ortho_height_m": 7.15326929092407,
+      "pixels_per_metre": 34.2500736426701
+    }
+  },
+  "forward_axis_gltf": "+Z",
+  "model_yaw_degrees": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "sprite_size_px": [
+    430,
+    245
+  ],
+  "units": "metres"
+}

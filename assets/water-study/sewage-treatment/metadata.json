@@ -1,0 +1,59 @@
+{
+  "id": "water-sewage-treatment",
+  "name": "하수처리장",
+  "category": "water_utility",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    785.153
+  ],
+  "lot_corners_px": [
+    [
+      28.1333,
+      574.2194
+    ],
+    [
+      450.0003,
+      785.153
+    ],
+    [
+      871.8675,
+      574.2195
+    ],
+    [
+      450.0004,
+      363.2859
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      4.239999771118164
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+}

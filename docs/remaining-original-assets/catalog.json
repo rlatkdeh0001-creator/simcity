@@ -1,0 +1,481 @@
+{
+  "assets": [
+    {
+      "id": "large-4x4-department-07",
+      "name": "AUREL 백화점",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/large-4x4-department-07/building.blend",
+      "metadata": "assets/commercial-study/large-4x4-department-07/metadata.json",
+      "previews": [
+        "assets/commercial-study/large-4x4-department-07/reverse-review.png",
+        "assets/commercial-study/large-4x4-department-07/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-4x4-office-nova-08",
+      "name": "NOVA 오피스 타워",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/large-4x4-office-nova-08/building.blend",
+      "metadata": "assets/commercial-study/large-4x4-office-nova-08/metadata.json",
+      "previews": [
+        "assets/commercial-study/large-4x4-office-nova-08/reverse-review.png",
+        "assets/commercial-study/large-4x4-office-nova-08/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-8x8-grand-department-09",
+      "name": "AUREL GRAND 대형 백화점",
+      "group": "commercial",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/commercial-study/large-8x8-grand-department-09/building.blend",
+      "metadata": "assets/commercial-study/large-8x8-grand-department-09/metadata.json",
+      "previews": [
+        "assets/commercial-study/large-8x8-grand-department-09/reverse-review.png",
+        "assets/commercial-study/large-8x8-grand-department-09/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-8x8-twin-central-10",
+      "name": "NOVA CENTRAL 트윈 복합타워",
+      "group": "commercial",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/commercial-study/large-8x8-twin-central-10/building.blend",
+      "metadata": "assets/commercial-study/large-8x8-twin-central-10/metadata.json",
+      "previews": [
+        "assets/commercial-study/large-8x8-twin-central-10/reverse-review.png",
+        "assets/commercial-study/large-8x8-twin-central-10/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "medium-4x4-brick-services-06",
+      "name": "벽돌형 식당·서비스 상가",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/medium-4x4-brick-services-06/building.blend",
+      "metadata": "assets/commercial-study/medium-4x4-brick-services-06/metadata.json",
+      "previews": [
+        "assets/commercial-study/medium-4x4-brick-services-06/reverse-review.png",
+        "assets/commercial-study/medium-4x4-brick-services-06/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "medium-4x4-office-retail-05",
+      "name": "업무·상가 복합빌딩",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/medium-4x4-office-retail-05/building.blend",
+      "metadata": "assets/commercial-study/medium-4x4-office-retail-05/metadata.json",
+      "previews": [
+        "assets/commercial-study/medium-4x4-office-retail-05/reverse-review.png",
+        "assets/commercial-study/medium-4x4-office-retail-05/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "small-2x2-auto-02",
+      "name": "자동차 전시장 AUTO",
+      "group": "commercial",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/commercial-study/small-2x2-auto-02/auto.blend",
+      "metadata": "assets/commercial-study/small-2x2-auto-02/metadata.json",
+      "previews": [
+        "assets/commercial-study/small-2x2-auto-02/auto.png",
+        "assets/commercial-study/small-2x2-auto-02/reverse-review.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "small-2x2-mart-01",
+      "name": "동네 MART",
+      "group": "commercial",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/commercial-study/small-2x2-mart-01/mart.blend",
+      "metadata": "assets/commercial-study/small-2x2-mart-01/metadata.json",
+      "previews": [
+        "assets/commercial-study/small-2x2-mart-01/reverse-review.png",
+        "assets/commercial-study/small-2x2-mart-01/mart.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "small-4x4-cafe-diner-04",
+      "name": "식당·카페 복합상가",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/small-4x4-cafe-diner-04/building.blend",
+      "metadata": "assets/commercial-study/small-4x4-cafe-diner-04/metadata.json",
+      "previews": [
+        "assets/commercial-study/small-4x4-cafe-diner-04/reverse-review.png",
+        "assets/commercial-study/small-4x4-cafe-diner-04/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "small-4x4-market-03",
+      "name": "동네 슈퍼마켓",
+      "group": "commercial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/commercial-study/small-4x4-market-03/building.blend",
+      "metadata": "assets/commercial-study/small-4x4-market-03/metadata.json",
+      "previews": [
+        "assets/commercial-study/small-4x4-market-03/reverse-review.png",
+        "assets/commercial-study/small-4x4-market-03/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-4x4-chemical-06",
+      "name": "화학 생산시설",
+      "group": "industrial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/industrial-study/large-4x4-chemical-06/building.blend",
+      "metadata": "assets/industrial-study/large-4x4-chemical-06/metadata.json",
+      "previews": [
+        "assets/industrial-study/large-4x4-chemical-06/reverse-review.png",
+        "assets/industrial-study/large-4x4-chemical-06/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-4x4-pharma-05",
+      "name": "제약 생산시설",
+      "group": "industrial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/industrial-study/large-4x4-pharma-05/building.blend",
+      "metadata": "assets/industrial-study/large-4x4-pharma-05/metadata.json",
+      "previews": [
+        "assets/industrial-study/large-4x4-pharma-05/reverse-review.png",
+        "assets/industrial-study/large-4x4-pharma-05/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-8x8-auto-assembly-07",
+      "name": "자동차 조립공장",
+      "group": "industrial",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/industrial-study/large-8x8-auto-assembly-07/building.blend",
+      "metadata": "assets/industrial-study/large-8x8-auto-assembly-07/metadata.json",
+      "previews": [
+        "assets/industrial-study/large-8x8-auto-assembly-07/reverse-review.png",
+        "assets/industrial-study/large-8x8-auto-assembly-07/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "large-8x8-chemical-complex-08",
+      "name": "대규모 화학 플랜트",
+      "group": "industrial",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/industrial-study/large-8x8-chemical-complex-08/building.blend",
+      "metadata": "assets/industrial-study/large-8x8-chemical-complex-08/metadata.json",
+      "previews": [
+        "assets/industrial-study/large-8x8-chemical-complex-08/reverse-review.png",
+        "assets/industrial-study/large-8x8-chemical-complex-08/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "medium-4x4-circuitworks-04",
+      "name": "전자부품 공장",
+      "group": "industrial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/industrial-study/medium-4x4-circuitworks-04/building.blend",
+      "metadata": "assets/industrial-study/medium-4x4-circuitworks-04/metadata.json",
+      "previews": [
+        "assets/industrial-study/medium-4x4-circuitworks-04/reverse-review.png",
+        "assets/industrial-study/medium-4x4-circuitworks-04/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "medium-4x4-precision-03",
+      "name": "정밀기계 공장",
+      "group": "industrial",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/industrial-study/medium-4x4-precision-03/building.blend",
+      "metadata": "assets/industrial-study/medium-4x4-precision-03/metadata.json",
+      "previews": [
+        "assets/industrial-study/medium-4x4-precision-03/reverse-review.png",
+        "assets/industrial-study/medium-4x4-precision-03/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "small-2x2-foodworks-02",
+      "name": "식품가공 작업장",
+      "group": "industrial",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/industrial-study/small-2x2-foodworks-02/building.blend",
+      "metadata": "assets/industrial-study/small-2x2-foodworks-02/metadata.json",
+      "previews": [
+        "assets/industrial-study/small-2x2-foodworks-02/reverse-review.png",
+        "assets/industrial-study/small-2x2-foodworks-02/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "small-2x2-metalworks-01",
+      "name": "금속가공 작업장",
+      "group": "industrial",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/industrial-study/small-2x2-metalworks-01/building.blend",
+      "metadata": "assets/industrial-study/small-2x2-metalworks-01/metadata.json",
+      "previews": [
+        "assets/industrial-study/small-2x2-metalworks-01/reverse-review.png",
+        "assets/industrial-study/small-2x2-metalworks-01/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "power-coal",
+      "name": "석탄발전소",
+      "group": "power",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/power-study/coal/building.blend",
+      "metadata": "assets/power-study/coal/metadata.json",
+      "previews": [
+        "assets/power-study/coal/reverse-review.png",
+        "assets/power-study/coal/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "power-hydro",
+      "name": "수력발전댐",
+      "group": "power",
+      "footprint_cells": null,
+      "source": "assets/power-study/hydro/building.blend",
+      "metadata": "assets/power-study/hydro/metadata.json",
+      "previews": [
+        "assets/power-study/hydro/reverse-review.png",
+        "assets/power-study/hydro/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "power-nuclear",
+      "name": "원자력발전소",
+      "group": "power",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/power-study/nuclear/building.blend",
+      "metadata": "assets/power-study/nuclear/metadata.json",
+      "previews": [
+        "assets/power-study/nuclear/reverse-review.png",
+        "assets/power-study/nuclear/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "power-oil",
+      "name": "석유발전소",
+      "group": "power",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/power-study/oil/building.blend",
+      "metadata": "assets/power-study/oil/metadata.json",
+      "previews": [
+        "assets/power-study/oil/reverse-review.png",
+        "assets/power-study/oil/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "power-solar",
+      "name": "태양광발전소",
+      "group": "power",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/power-study/solar/building.blend",
+      "metadata": "assets/power-study/solar/metadata.json",
+      "previews": [
+        "assets/power-study/solar/reverse-review.png",
+        "assets/power-study/solar/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "power-wind",
+      "name": "풍력발전소",
+      "group": "power",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/power-study/wind/building.blend",
+      "metadata": "assets/power-study/wind/metadata.json",
+      "previews": [
+        "assets/power-study/wind/reverse-review.png",
+        "assets/power-study/wind/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "water-intake",
+      "name": "취수장",
+      "group": "water",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/water-study/intake/building.blend",
+      "metadata": "assets/water-study/intake/metadata.json",
+      "previews": [
+        "assets/water-study/intake/reverse-review.png",
+        "assets/water-study/intake/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "water-sewage-outfall",
+      "name": "하수장",
+      "group": "water",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "source": "assets/water-study/sewage-outfall/building.blend",
+      "metadata": "assets/water-study/sewage-outfall/metadata.json",
+      "previews": [
+        "assets/water-study/sewage-outfall/reverse-review.png",
+        "assets/water-study/sewage-outfall/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "water-sewage-treatment",
+      "name": "하수처리장",
+      "group": "water",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/water-study/sewage-treatment/building.blend",
+      "metadata": "assets/water-study/sewage-treatment/metadata.json",
+      "previews": [
+        "assets/water-study/sewage-treatment/reverse-review.png",
+        "assets/water-study/sewage-treatment/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "water-water-tower",
+      "name": "급수탑",
+      "group": "water",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "source": "assets/water-study/water-tower/building.blend",
+      "metadata": "assets/water-study/water-tower/metadata.json",
+      "previews": [
+        "assets/water-study/water-tower/reverse-review.png",
+        "assets/water-study/water-tower/building.png"
+      ],
+      "recorded_approval": "pending-user-review"
+    },
+    {
+      "id": "waste-incinerator",
+      "name": "쓰레기 소각장",
+      "group": "waste",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/waste-study/incinerator/building.blend",
+      "metadata": "assets/waste-study/incinerator/metadata.json",
+      "previews": [
+        "assets/waste-study/incinerator/reverse-review.png",
+        "assets/waste-study/incinerator/building.png"
+      ],
+      "recorded_approval": "approved"
+    },
+    {
+      "id": "waste-recycling-center",
+      "name": "재활용센터",
+      "group": "waste",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "source": "assets/waste-study/recycling-center/building.blend",
+      "metadata": "assets/waste-study/recycling-center/metadata.json",
+      "previews": [
+        "assets/waste-study/recycling-center/reverse-review.png",
+        "assets/waste-study/recycling-center/building.png"
+      ],
+      "recorded_approval": "approved"
+    }
+  ]
+}

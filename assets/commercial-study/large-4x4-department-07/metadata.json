@@ -1,0 +1,69 @@
+{
+  "id": "large-4x4-department-07",
+  "name": "AUREL 백화점",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "occupied_storeys": 8,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    931.2993
+  ],
+  "lot_corners_px": [
+    [
+      179.4548,
+      796.0267
+    ],
+    [
+      450.0,
+      931.2993
+    ],
+    [
+      720.5452,
+      796.0267
+    ],
+    [
+      450.0,
+      660.7541
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      27.149999618530273
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 46,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "AUREL department-store lettering",
+    "diamond emblem",
+    "double-height shopfront",
+    "stone vertical piers",
+    "eight occupied floors"
+  ],
+  "scope": "user-approved large commercial design; game integration pending",
+  "density": "high",
+  "retail_type": "department_store"
+}

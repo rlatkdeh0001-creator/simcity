@@ -1,0 +1,1734 @@
+{
+  "map_size": [
+    100,
+    100
+  ],
+  "cell_meters": 4,
+  "entries": [
+    {
+      "id": "mansion-a-4x4-4f",
+      "name": "벽돌형 맨션",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        761.963
+      ],
+      "image_size": [
+        900,
+        900
+      ],
+      "width_px": 727.31,
+      "texture": "res://assets/all_buildings/mansion-a-4x4-4f.png",
+      "height": 12,
+      "source": "assets/mansion-study/a-brick/mansion.blend"
+    },
+    {
+      "id": "mansion-b-4x4-4f",
+      "name": "모던형 맨션",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        761.963
+      ],
+      "image_size": [
+        900,
+        900
+      ],
+      "width_px": 727.31,
+      "texture": "res://assets/all_buildings/mansion-b-4x4-4f.png",
+      "height": 12,
+      "source": "assets/mansion-study/b-modern/mansion.blend"
+    },
+    {
+      "id": "small-2x2-a",
+      "name": "단층 전원주택",
+      "group": "residential",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        891.8023
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-a.png",
+      "height": 3,
+      "source": "assets/residential-eight/small-2x2-a/building.blend"
+    },
+    {
+      "id": "small-2x2-b",
+      "name": "2층 타운하우스",
+      "group": "residential",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        941.6406
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-b.png",
+      "height": 6,
+      "source": "assets/residential-eight/small-2x2-b/building.blend"
+    },
+    {
+      "id": "small-4x4-a",
+      "name": "정원형 단독주택",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        844.5697
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/small-4x4-a.png",
+      "height": 6,
+      "source": "assets/residential-eight/small-4x4-a/building.blend"
+    },
+    {
+      "id": "small-4x4-b",
+      "name": "안뜰형 연립주택",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        863.6431
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/small-4x4-b.png",
+      "height": 9,
+      "source": "assets/residential-eight/small-4x4-b/building.blend"
+    },
+    {
+      "id": "large-4x4-a",
+      "name": "발코니 아파트",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        449.9999,
+        912.5366
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 541.0904,
+      "texture": "res://assets/all_buildings/large-4x4-a.png",
+      "height": 24,
+      "source": "assets/residential-eight/large-4x4-a/building.blend"
+    },
+    {
+      "id": "large-4x4-b",
+      "name": "코너 주거타워",
+      "group": "residential",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0001,
+        957.9521
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 541.0904,
+      "texture": "res://assets/all_buildings/large-4x4-b.png",
+      "height": 30,
+      "source": "assets/residential-eight/large-4x4-b/building.blend"
+    },
+    {
+      "id": "large-8x8-a",
+      "name": "L자형 주거 아파트",
+      "group": "residential",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0,
+        912.8259
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 592.6228000000001,
+      "texture": "res://assets/all_buildings/large-8x8-a.png",
+      "height": 42,
+      "source": "assets/residential-eight/large-8x8-a/building.blend"
+    },
+    {
+      "id": "large-8x8-b",
+      "name": "계단형 주거타워",
+      "group": "residential",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        449.9999,
+        972.3198
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 592.6228,
+      "texture": "res://assets/all_buildings/large-8x8-b.png",
+      "height": 54,
+      "source": "assets/residential-eight/large-8x8-b/building.blend"
+    },
+    {
+      "id": "large-4x4-department-07",
+      "name": "AUREL 백화점",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        931.2993
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 541.0904,
+      "texture": "res://assets/all_buildings/large-4x4-department-07.png",
+      "height": 27.149999618530273,
+      "source": "assets/commercial-study/large-4x4-department-07/metadata.json"
+    },
+    {
+      "id": "large-4x4-office-nova-08",
+      "name": "NOVA 오피스 타워",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        938.9004
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 497.80320000000006,
+      "texture": "res://assets/all_buildings/large-4x4-office-nova-08.png",
+      "height": 30.729999542236328,
+      "source": "assets/commercial-study/large-4x4-office-nova-08/metadata.json"
+    },
+    {
+      "id": "large-8x8-grand-department-09",
+      "name": "AUREL GRAND 대형 백화점",
+      "group": "commercial",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        918.8796
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898000000001,
+      "texture": "res://assets/all_buildings/large-8x8-grand-department-09.png",
+      "height": 30.100000381469727,
+      "source": "assets/commercial-study/large-8x8-grand-department-09/metadata.json"
+    },
+    {
+      "id": "large-8x8-twin-central-10",
+      "name": "NOVA CENTRAL 트윈 복합타워",
+      "group": "commercial",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0002,
+        923.6111
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 592.6228,
+      "texture": "res://assets/all_buildings/large-8x8-twin-central-10.png",
+      "height": 45.14999771118164,
+      "source": "assets/commercial-study/large-8x8-twin-central-10/metadata.json"
+    },
+    {
+      "id": "medium-4x4-brick-services-06",
+      "name": "벽돌형 식당·서비스 상가",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        904.6151
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/medium-4x4-brick-services-06.png",
+      "height": 13.75,
+      "source": "assets/commercial-study/medium-4x4-brick-services-06/metadata.json"
+    },
+    {
+      "id": "medium-4x4-office-retail-05",
+      "name": "업무·상가 복합빌딩",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        904.6151
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/medium-4x4-office-retail-05.png",
+      "height": 13.279999732971191,
+      "source": "assets/commercial-study/medium-4x4-office-retail-05/metadata.json"
+    },
+    {
+      "id": "small-2x2-auto-02",
+      "name": "자동차 전시장 AUTO",
+      "group": "commercial",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        876.8141
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-auto-02.png",
+      "height": 4.324999809265137,
+      "source": "assets/commercial-study/small-2x2-auto-02/metadata.json"
+    },
+    {
+      "id": "small-2x2-mart-01",
+      "name": "동네 MART",
+      "group": "commercial",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        876.8141
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-mart-01.png",
+      "height": 5.070000171661377,
+      "source": "assets/commercial-study/small-2x2-mart-01/metadata.json"
+    },
+    {
+      "id": "small-4x4-cafe-diner-04",
+      "name": "식당·카페 복합상가",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        860.0115
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 888.9343,
+      "texture": "res://assets/all_buildings/small-4x4-cafe-diner-04.png",
+      "height": 7.200000286102295,
+      "source": "assets/commercial-study/small-4x4-cafe-diner-04/metadata.json"
+    },
+    {
+      "id": "small-4x4-market-03",
+      "name": "동네 슈퍼마켓",
+      "group": "commercial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        860.0115
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 888.9343,
+      "texture": "res://assets/all_buildings/small-4x4-market-03.png",
+      "height": 5.650000095367432,
+      "source": "assets/commercial-study/small-4x4-market-03/metadata.json"
+    },
+    {
+      "id": "large-4x4-chemical-06",
+      "name": "화학 생산시설",
+      "group": "industrial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        874.8454
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/large-4x4-chemical-06.png",
+      "height": 10.139999389648438,
+      "source": "assets/industrial-study/large-4x4-chemical-06/metadata.json"
+    },
+    {
+      "id": "large-4x4-pharma-05",
+      "name": "제약 생산시설",
+      "group": "industrial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        882.4408
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 672.7070000000001,
+      "texture": "res://assets/all_buildings/large-4x4-pharma-05.png",
+      "height": 15.375,
+      "source": "assets/industrial-study/large-4x4-pharma-05/metadata.json"
+    },
+    {
+      "id": "large-8x8-auto-assembly-07",
+      "name": "자동차 조립공장",
+      "group": "industrial",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        449.9999,
+        831.6541
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 843.7342,
+      "texture": "res://assets/all_buildings/large-8x8-auto-assembly-07.png",
+      "height": 11.300000190734863,
+      "source": "assets/industrial-study/large-8x8-auto-assembly-07/metadata.json"
+    },
+    {
+      "id": "large-8x8-chemical-complex-08",
+      "name": "대규모 화학 플랜트",
+      "group": "industrial",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        449.9999,
+        842.2949
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 765.851,
+      "texture": "res://assets/all_buildings/large-8x8-chemical-complex-08.png",
+      "height": 17.59000015258789,
+      "source": "assets/industrial-study/large-8x8-chemical-complex-08/metadata.json"
+    },
+    {
+      "id": "medium-4x4-circuitworks-04",
+      "name": "전자부품 공장",
+      "group": "industrial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        879.4354
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 754.2472,
+      "texture": "res://assets/all_buildings/medium-4x4-circuitworks-04.png",
+      "height": 11.809999465942383,
+      "source": "assets/industrial-study/medium-4x4-circuitworks-04/metadata.json"
+    },
+    {
+      "id": "medium-4x4-precision-03",
+      "name": "정밀기계 공장",
+      "group": "industrial",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0,
+        848.8704
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/medium-4x4-precision-03.png",
+      "height": 7.650000095367432,
+      "source": "assets/industrial-study/medium-4x4-precision-03/metadata.json"
+    },
+    {
+      "id": "small-2x2-foodworks-02",
+      "name": "식품가공 작업장",
+      "group": "industrial",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        876.8141
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-foodworks-02.png",
+      "height": 5.049999713897705,
+      "source": "assets/industrial-study/small-2x2-foodworks-02/metadata.json"
+    },
+    {
+      "id": "small-2x2-metalworks-01",
+      "name": "금속가공 작업장",
+      "group": "industrial",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0,
+        876.8141
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.672,
+      "texture": "res://assets/all_buildings/small-2x2-metalworks-01.png",
+      "height": 5.059999942779541,
+      "source": "assets/industrial-study/small-2x2-metalworks-01/metadata.json"
+    },
+    {
+      "id": "power-coal",
+      "name": "석탄발전소",
+      "group": "power",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        875.8525
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 711.1474,
+      "texture": "res://assets/all_buildings/power-coal.png",
+      "height": 29.350000381469727,
+      "source": "assets/power-study/coal/metadata.json"
+    },
+    {
+      "id": "power-hydro",
+      "name": "수력발전댐",
+      "group": "power",
+      "footprint": [
+        15.0,
+        8.0
+      ],
+      "anchor": [
+        547.5758,
+        734.8869
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 641.2114,
+      "texture": "res://assets/all_buildings/power-hydro.png",
+      "height": 9.65000057220459,
+      "source": "assets/power-study/hydro/metadata.json"
+    },
+    {
+      "id": "power-nuclear",
+      "name": "원자력발전소",
+      "group": "power",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        862.0063
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898,
+      "texture": "res://assets/all_buildings/power-nuclear.png",
+      "height": 20.399999618530273,
+      "source": "assets/power-study/nuclear/metadata.json"
+    },
+    {
+      "id": "power-oil",
+      "name": "석유발전소",
+      "group": "power",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        862.0063
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898,
+      "texture": "res://assets/all_buildings/power-oil.png",
+      "height": 25.350000381469727,
+      "source": "assets/power-study/oil/metadata.json"
+    },
+    {
+      "id": "power-solar",
+      "name": "태양광발전소",
+      "group": "power",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0008,
+        783.0422
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 873.3389,
+      "texture": "res://assets/all_buildings/power-solar.png",
+      "height": 1.21999990940094,
+      "source": "assets/power-study/solar/metadata.json"
+    },
+    {
+      "id": "power-wind",
+      "name": "풍력발전소",
+      "group": "power",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0005,
+        936.1189
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 248.90159999999997,
+      "texture": "res://assets/all_buildings/power-wind.png",
+      "height": 37.400001525878906,
+      "source": "assets/power-study/wind/metadata.json"
+    },
+    {
+      "id": "water-intake",
+      "name": "취수장",
+      "group": "water",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0007,
+        812.9248
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/water-intake.png",
+      "height": 5.789999961853027,
+      "source": "assets/water-study/intake/metadata.json"
+    },
+    {
+      "id": "water-sewage-outfall",
+      "name": "하수장",
+      "group": "water",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0007,
+        803.9937
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/water-sewage-outfall.png",
+      "height": 4.839999675750732,
+      "source": "assets/water-study/sewage-outfall/metadata.json"
+    },
+    {
+      "id": "water-sewage-treatment",
+      "name": "하수처리장",
+      "group": "water",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        785.153
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 843.7342,
+      "texture": "res://assets/all_buildings/water-sewage-treatment.png",
+      "height": 4.239999771118164,
+      "source": "assets/water-study/sewage-treatment/metadata.json"
+    },
+    {
+      "id": "water-water-tower",
+      "name": "급수탑",
+      "group": "water",
+      "footprint": [
+        2,
+        2
+      ],
+      "anchor": [
+        450.0009,
+        889.5015
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 478.6568,
+      "texture": "res://assets/all_buildings/water-water-tower.png",
+      "height": 13.619999885559082,
+      "source": "assets/water-study/water-tower/metadata.json"
+    },
+    {
+      "id": "waste-incinerator",
+      "name": "쓰레기 소각장",
+      "group": "waste",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        854.8971
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898,
+      "texture": "res://assets/all_buildings/waste-incinerator.png",
+      "height": 22.6875,
+      "source": "assets/waste-study/incinerator/metadata.json"
+    },
+    {
+      "id": "waste-recycling-center",
+      "name": "재활용센터",
+      "group": "waste",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        803.1442
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 829.6719,
+      "texture": "res://assets/all_buildings/waste-recycling-center.png",
+      "height": 7.440000057220459,
+      "source": "assets/waste-study/recycling-center/metadata.json"
+    },
+    {
+      "id": "fire-station",
+      "name": "소방서",
+      "group": "fire",
+      "footprint": [
+        6,
+        6
+      ],
+      "anchor": [
+        450.0004,
+        827.2343
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 794.3668,
+      "texture": "res://assets/all_buildings/fire-station.png",
+      "height": 9.949999809265137,
+      "source": "assets/fire-study/fire-station/metadata.json"
+    },
+    {
+      "id": "regional-fire-station",
+      "name": "광역 소방서",
+      "group": "fire",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        862.0063
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898,
+      "texture": "res://assets/all_buildings/regional-fire-station.png",
+      "height": 22.0,
+      "source": "assets/fire-study/regional-fire-station/metadata.json"
+    },
+    {
+      "id": "small-fire-station",
+      "name": "소형 소방서",
+      "group": "fire",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0006,
+        807.2666
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 754.2471999999999,
+      "texture": "res://assets/all_buildings/small-fire-station.png",
+      "height": 5.865000247955322,
+      "source": "assets/fire-study/small-fire-station/metadata.json"
+    },
+    {
+      "id": "police-station",
+      "name": "경찰서",
+      "group": "police",
+      "footprint": [
+        6,
+        6
+      ],
+      "anchor": [
+        450.0004,
+        827.2343
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 794.3668,
+      "texture": "res://assets/all_buildings/police-station.png",
+      "height": 10.149999618530273,
+      "source": "assets/police-study/police-station/metadata.json"
+    },
+    {
+      "id": "regional-police-station",
+      "name": "광역 경찰서",
+      "group": "police",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        847.7879
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 742.9898,
+      "texture": "res://assets/all_buildings/regional-police-station.png",
+      "height": 21.0,
+      "source": "assets/police-study/regional-police-station/metadata.json"
+    },
+    {
+      "id": "small-police-station",
+      "name": "소형 경찰서",
+      "group": "police",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0006,
+        807.2666
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 754.2471999999999,
+      "texture": "res://assets/all_buildings/small-police-station.png",
+      "height": 4.875,
+      "source": "assets/police-study/small-police-station/metadata.json"
+    },
+    {
+      "id": "prison-8x8",
+      "name": "교도소",
+      "group": "prison",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        810.3432
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 802.9083,
+      "texture": "res://assets/all_buildings/prison-8x8.png",
+      "height": 10.305000305175781,
+      "source": "assets/prison-study/prison/metadata.json"
+    },
+    {
+      "id": "medical-clinic",
+      "name": "진료소",
+      "group": "medical",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0006,
+        807.2666
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 754.2471999999999,
+      "texture": "res://assets/all_buildings/medical-clinic.png",
+      "height": 5.780696392059326,
+      "source": "assets/medical-study/clinic/metadata.json"
+    },
+    {
+      "id": "medical-hospital",
+      "name": "병원",
+      "group": "medical",
+      "footprint": [
+        6,
+        6
+      ],
+      "anchor": [
+        450.0004,
+        861.1513
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 777.8175,
+      "texture": "res://assets/all_buildings/medical-hospital.png",
+      "height": 13.5,
+      "source": "assets/medical-study/hospital/metadata.json"
+    },
+    {
+      "id": "medical-large-hospital",
+      "name": "대형병원",
+      "group": "medical",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        885.4364
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 732.0635,
+      "texture": "res://assets/all_buildings/medical-large-hospital.png",
+      "height": 23.877500534057617,
+      "source": "assets/medical-study/large-hospital/metadata.json"
+    },
+    {
+      "id": "elementary-school",
+      "name": "초등학교",
+      "group": "education",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0006,
+        821.7004
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 754.2471999999999,
+      "texture": "res://assets/all_buildings/elementary-school.png",
+      "height": 5.87000036239624,
+      "source": "assets/education-study/elementary-school/metadata.json"
+    },
+    {
+      "id": "high-school",
+      "name": "고등학교",
+      "group": "education",
+      "footprint": [
+        4,
+        4
+      ],
+      "anchor": [
+        450.0006,
+        833.3926
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 711.1474,
+      "texture": "res://assets/all_buildings/high-school.png",
+      "height": 8.569999694824219,
+      "source": "assets/education-study/high-school/metadata.json"
+    },
+    {
+      "id": "technical-college",
+      "name": "전문대",
+      "group": "education",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        821.3319
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 790.1638,
+      "texture": "res://assets/all_buildings/technical-college.png",
+      "height": 8.569999694824219,
+      "source": "assets/education-study/technical-college/metadata.json"
+    },
+    {
+      "id": "university",
+      "name": "대학교",
+      "group": "education",
+      "footprint": [
+        8,
+        8
+      ],
+      "anchor": [
+        450.0003,
+        827.639
+      ],
+      "image_size": [
+        900,
+        1100
+      ],
+      "width_px": 765.8511,
+      "texture": "res://assets/all_buildings/university.png",
+      "height": 8.569999694824219,
+      "source": "assets/education-study/university/metadata.json"
+    }
+  ],
+  "placements": [
+    {
+      "asset_id": "large-8x8-b",
+      "x": 5.0,
+      "y": 5
+    },
+    {
+      "asset_id": "large-8x8-twin-central-10",
+      "x": 15.0,
+      "y": 5
+    },
+    {
+      "asset_id": "large-8x8-a",
+      "x": 25.0,
+      "y": 5
+    },
+    {
+      "asset_id": "power-wind",
+      "x": 38.0,
+      "y": 11
+    },
+    {
+      "asset_id": "large-4x4-office-nova-08",
+      "x": 47.0,
+      "y": 9
+    },
+    {
+      "asset_id": "large-8x8-grand-department-09",
+      "x": 55.0,
+      "y": 5
+    },
+    {
+      "asset_id": "large-4x4-b",
+      "x": 67.0,
+      "y": 9
+    },
+    {
+      "asset_id": "power-coal",
+      "x": 75.0,
+      "y": 5
+    },
+    {
+      "asset_id": "large-4x4-department-07",
+      "x": 7.0,
+      "y": 19
+    },
+    {
+      "asset_id": "power-oil",
+      "x": 15.0,
+      "y": 15
+    },
+    {
+      "asset_id": "large-4x4-a",
+      "x": 27.0,
+      "y": 19
+    },
+    {
+      "asset_id": "medical-large-hospital",
+      "x": 35.0,
+      "y": 15
+    },
+    {
+      "asset_id": "waste-incinerator",
+      "x": 45.0,
+      "y": 15
+    },
+    {
+      "asset_id": "regional-fire-station",
+      "x": 55.0,
+      "y": 15
+    },
+    {
+      "asset_id": "regional-police-station",
+      "x": 65.0,
+      "y": 15
+    },
+    {
+      "asset_id": "power-nuclear",
+      "x": 75.0,
+      "y": 15
+    },
+    {
+      "asset_id": "large-8x8-chemical-complex-08",
+      "x": 5.0,
+      "y": 25
+    },
+    {
+      "asset_id": "large-4x4-pharma-05",
+      "x": 17.0,
+      "y": 29
+    },
+    {
+      "asset_id": "medium-4x4-brick-services-06",
+      "x": 27.0,
+      "y": 29
+    },
+    {
+      "asset_id": "water-water-tower",
+      "x": 38.0,
+      "y": 31
+    },
+    {
+      "asset_id": "medical-hospital",
+      "x": 46.0,
+      "y": 27
+    },
+    {
+      "asset_id": "medium-4x4-office-retail-05",
+      "x": 57.0,
+      "y": 29
+    },
+    {
+      "asset_id": "mansion-a-4x4-4f",
+      "x": 67.0,
+      "y": 29
+    },
+    {
+      "asset_id": "mansion-b-4x4-4f",
+      "x": 77.0,
+      "y": 29
+    },
+    {
+      "asset_id": "medium-4x4-circuitworks-04",
+      "x": 7.0,
+      "y": 39
+    },
+    {
+      "asset_id": "large-8x8-auto-assembly-07",
+      "x": 15.0,
+      "y": 35
+    },
+    {
+      "asset_id": "prison-8x8",
+      "x": 25.0,
+      "y": 35
+    },
+    {
+      "asset_id": "police-station",
+      "x": 36.0,
+      "y": 37
+    },
+    {
+      "asset_id": "large-4x4-chemical-06",
+      "x": 47.0,
+      "y": 39
+    },
+    {
+      "asset_id": "fire-station",
+      "x": 56.0,
+      "y": 37
+    },
+    {
+      "asset_id": "small-4x4-b",
+      "x": 67.0,
+      "y": 39
+    },
+    {
+      "asset_id": "high-school",
+      "x": 77.0,
+      "y": 39
+    },
+    {
+      "asset_id": "technical-college",
+      "x": 5.0,
+      "y": 45
+    },
+    {
+      "asset_id": "university",
+      "x": 15.0,
+      "y": 45
+    },
+    {
+      "asset_id": "medium-4x4-precision-03",
+      "x": 27.0,
+      "y": 49
+    },
+    {
+      "asset_id": "waste-recycling-center",
+      "x": 35.0,
+      "y": 45
+    },
+    {
+      "asset_id": "small-4x4-cafe-diner-04",
+      "x": 47.0,
+      "y": 49
+    },
+    {
+      "asset_id": "small-2x2-b",
+      "x": 58.0,
+      "y": 51
+    },
+    {
+      "asset_id": "small-4x4-a",
+      "x": 67.0,
+      "y": 49
+    },
+    {
+      "asset_id": "elementary-school",
+      "x": 77.0,
+      "y": 49
+    },
+    {
+      "asset_id": "small-fire-station",
+      "x": 7.0,
+      "y": 59
+    },
+    {
+      "asset_id": "medical-clinic",
+      "x": 17.0,
+      "y": 59
+    },
+    {
+      "asset_id": "small-4x4-market-03",
+      "x": 27.0,
+      "y": 59
+    },
+    {
+      "asset_id": "small-2x2-mart-01",
+      "x": 38.0,
+      "y": 61
+    },
+    {
+      "asset_id": "small-2x2-metalworks-01",
+      "x": 48.0,
+      "y": 61
+    },
+    {
+      "asset_id": "small-2x2-foodworks-02",
+      "x": 58.0,
+      "y": 61
+    },
+    {
+      "asset_id": "small-police-station",
+      "x": 67.0,
+      "y": 59
+    },
+    {
+      "asset_id": "small-2x2-auto-02",
+      "x": 78.0,
+      "y": 61
+    },
+    {
+      "asset_id": "water-sewage-treatment",
+      "x": 5.0,
+      "y": 65
+    },
+    {
+      "asset_id": "small-2x2-a",
+      "x": 18.0,
+      "y": 71
+    },
+    {
+      "asset_id": "power-solar",
+      "x": 27.0,
+      "y": 69
+    },
+    {
+      "asset_id": "small-2x2-a",
+      "x": 38.0,
+      "y": 71
+    },
+    {
+      "asset_id": "small-2x2-b",
+      "x": 48.0,
+      "y": 71
+    },
+    {
+      "asset_id": "small-4x4-a",
+      "x": 57.0,
+      "y": 69
+    },
+    {
+      "asset_id": "small-4x4-b",
+      "x": 67.0,
+      "y": 69
+    },
+    {
+      "asset_id": "small-2x2-mart-01",
+      "x": 78.0,
+      "y": 71
+    },
+    {
+      "asset_id": "water-intake",
+      "x": 5,
+      "y": 80
+    },
+    {
+      "asset_id": "water-sewage-outfall",
+      "x": 15,
+      "y": 80
+    },
+    {
+      "asset_id": "power-hydro",
+      "x": 84,
+      "y": 60
+    }
+  ],
+  "roads": [
+    {
+      "points": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          14,
+          4
+        ],
+        [
+          14,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          24,
+          4
+        ],
+        [
+          24,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          34,
+          4
+        ],
+        [
+          34,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          44,
+          4
+        ],
+        [
+          44,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          54,
+          4
+        ],
+        [
+          54,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          64,
+          4
+        ],
+        [
+          64,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          74,
+          4
+        ],
+        [
+          74,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          84,
+          4
+        ],
+        [
+          84,
+          78
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          4
+        ],
+        [
+          84,
+          4
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          14
+        ],
+        [
+          84,
+          14
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          24
+        ],
+        [
+          84,
+          24
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          34
+        ],
+        [
+          84,
+          34
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          44
+        ],
+        [
+          84,
+          44
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          54
+        ],
+        [
+          84,
+          54
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          64
+        ],
+        [
+          84,
+          64
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          74
+        ],
+        [
+          84,
+          74
+        ]
+      ],
+      "width": 2,
+      "lanes": 2
+    },
+    {
+      "points": [
+        [
+          4,
+          78
+        ],
+        [
+          84,
+          78
+        ]
+      ],
+      "width": 4,
+      "lanes": 4
+    }
+  ],
+  "unique_types": 54,
+  "building_count": 59,
+  "water_polygons": [
+    [
+      [
+        0,
+        83.6
+      ],
+      [
+        100,
+        83.6
+      ],
+      [
+        100,
+        100
+      ],
+      [
+        0,
+        100
+      ]
+    ],
+    [
+      [
+        85.5,
+        0
+      ],
+      [
+        97.5,
+        0
+      ],
+      [
+        97.5,
+        100
+      ],
+      [
+        85.5,
+        100
+      ]
+    ]
+  ]
+}

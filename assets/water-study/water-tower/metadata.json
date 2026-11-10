@@ -1,0 +1,59 @@
+{
+  "id": "water-water-tower",
+  "name": "급수탑",
+  "category": "water_utility",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0009,
+    889.5015
+  ],
+  "lot_corners_px": [
+    [
+      210.6725,
+      769.8373
+    ],
+    [
+      450.0009,
+      889.5015
+    ],
+    [
+      689.3293,
+      769.8374
+    ],
+    [
+      450.001,
+      650.1731
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      13.619999885559082
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+}

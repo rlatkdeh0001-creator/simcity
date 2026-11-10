@@ -1,0 +1,59 @@
+{
+  "id": "power-hydro",
+  "name": "수력발전댐",
+  "category": "power_facility",
+  "footprint_cells": null,
+  "placement_mode": "drag_across_watercourse",
+  "fixed_size_limit": false,
+  "dam_span_m": 48,
+  "gate_bays": 9,
+  "presentation_lot_cells": null,
+  "presentation_lot_meters": [
+    60,
+    32
+  ],
+  "cell_meters": 4,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    547.5758,
+    734.8869
+  ],
+  "lot_corners_px": [
+    [
+      129.3945,
+      525.7961
+    ],
+    [
+      547.5758,
+      734.8869
+    ],
+    [
+      770.6059,
+      623.3718
+    ],
+    [
+      352.4246,
+      414.2811
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -30.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      30.0,
+      16.0,
+      9.65000057220459
+    ]
+  ],
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original length-parametric Blender geometry; DejaVu font; no external models or textures",
+  "scope": "length-parametric dam visual prototype; gameplay dragging, terrain and hydrology checks not yet implemented",
+  "revision": "requested-footprints-and-equipment-scale"
+}

@@ -1,0 +1,61 @@
+{
+  "id": "power-solar",
+  "name": "태양광발전소",
+  "category": "power_facility",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0008,
+    783.0422
+  ],
+  "lot_corners_px": [
+    [
+      13.3314,
+      564.7074
+    ],
+    [
+      450.0008,
+      783.0422
+    ],
+    [
+      886.6703,
+      564.7075
+    ],
+    [
+      450.0009,
+      346.3727
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.05999999865889549
+    ],
+    [
+      8.0,
+      8.0,
+      1.21999990940094
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "user-approved solar design adapted to 4x4 footprint; game integration pending",
+  "revision": "requested-footprints-and-equipment-scale"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "large-8x8-grand-department-09",
+  "name": "AUREL GRAND 대형 백화점",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "density": "high",
+  "retail_type": "department_store",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "occupied_storeys": 8,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    918.8796
+  ],
+  "lot_corners_px": [
+    [
+      78.5055,
+      733.1321
+    ],
+    [
+      450.0003,
+      918.8796
+    ],
+    [
+      821.4953,
+      733.1321
+    ],
+    [
+      450.0004,
+      547.3847
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      30.100000381469727
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 67,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "wide department-store wings",
+    "central glazed atrium",
+    "roof skylight",
+    "diamond emblems",
+    "AUREL GRAND sign"
+  ],
+  "scope": "user-approved large commercial design; game integration pending"
+}

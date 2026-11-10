@@ -1,0 +1,61 @@
+{
+  "id": "waste-recycling-center",
+  "name": "재활용센터",
+  "category": "waste_utility",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "placement_surface": "land",
+  "road_adjacency_required": true,
+  "landfill_included": false,
+  "incineration_included": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0003,
+    803.1442
+  ],
+  "lot_corners_px": [
+    [
+      35.1644,
+      595.7262
+    ],
+    [
+      450.0003,
+      803.1442
+    ],
+    [
+      864.8363,
+      595.7263
+    ],
+    [
+      450.0005,
+      388.3082
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      7.440000057220459
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "user-approved recycling centre design; game integration pending"
+}

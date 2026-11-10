@@ -1,0 +1,70 @@
+{
+  "id": "large-8x8-auto-assembly-07",
+  "name": "자동차 조립공장",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "occupied_storeys": 3,
+  "production_hall_storeys": 1,
+  "office_wing_storeys": 3,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9999,
+    831.6541
+  ],
+  "lot_corners_px": [
+    [
+      28.1328,
+      620.7205
+    ],
+    [
+      449.9999,
+      831.6541
+    ],
+    [
+      871.867,
+      620.7206
+    ],
+    [
+      449.9999,
+      409.787
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      11.300000190734863
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 59,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "AUTO ASSEMBLY sign",
+    "single-volume production hall",
+    "three-storey office wing",
+    "sawtooth rooflights",
+    "loading bays",
+    "vehicle dispatch yard"
+  ],
+  "scope": "user-approved industrial design; game integration pending"
+}

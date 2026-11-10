@@ -1,0 +1,65 @@
+{
+  "id": "water-intake",
+  "name": "취수장",
+  "category": "water_utility",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "footprint_status": "draft",
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "placement_surface": "shore_land",
+  "main_structure_on_land": true,
+  "water_edge_required": true,
+  "water_contact_parts_only": [
+    "intake_screen"
+  ],
+  "road_adjacency_required": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0007,
+    812.9248
+  ],
+  "lot_corners_px": [
+    [
+      61.092,
+      618.4704
+    ],
+    [
+      450.0007,
+      812.9248
+    ],
+    [
+      838.9095,
+      618.4704
+    ],
+    [
+      450.0008,
+      424.0161
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.699999988079071
+    ],
+    [
+      8.0,
+      8.0,
+      5.789999961853027
+    ]
+  ],
+  "approval_status": "approved",
+  "game_registered": false,
+  "source": "original Blender geometry; DejaVu font; no external models or textures",
+  "scope": "user-approved shoreline land design; game integration pending",
+  "revision": "shoreline-land-foundation"
+}

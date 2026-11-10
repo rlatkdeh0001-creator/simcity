@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/TheDuckCow/godot-road-generator",
+  "commit": "7cbefde04e57a84499c5d8ba636c9cb4fd7d22c0",
+  "version": "0.9.5",
+  "license": "MIT",
+  "local_modifications": [
+    "plugin.gd: free unparented lane-divider MeshInstance3D and Object-based connection_tool in _exit_tree"
+  ]
+}

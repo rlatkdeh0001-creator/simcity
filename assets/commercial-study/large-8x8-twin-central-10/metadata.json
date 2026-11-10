@@ -1,0 +1,68 @@
+{
+  "id": "large-8x8-twin-central-10",
+  "name": "NOVA CENTRAL 트윈 복합타워",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "density": "high",
+  "retail_type": "office_with_retail",
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    32,
+    32
+  ],
+  "occupied_storeys": 14,
+  "approval_status": "approved",
+  "game_registered": false,
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0002,
+    923.6111
+  ],
+  "lot_corners_px": [
+    [
+      153.6889,
+      775.4553
+    ],
+    [
+      450.0002,
+      923.6111
+    ],
+    [
+      746.3117,
+      775.4554
+    ],
+    [
+      450.0003,
+      627.2997
+    ]
+  ],
+  "vertex_bounds_m": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      45.14999771118164
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "orthographic_scale": 84,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "cues": [
+    "two unequal office towers",
+    "three-floor retail podium",
+    "NOVA CENTRAL sign",
+    "planted podium roof"
+  ],
+  "scope": "user-approved large commercial design; game integration pending"
+}
