@@ -31,15 +31,15 @@ func run():
     verify(buttons.size()==expected[category].size(),category+" has exact slot count")
     for id in expected[category]:
      var matches := slots.filter(func(s):return s.id==id and s.category==category)
-     verify(matches.size()==1 and matches[0].status=="pending_asset" and matches[0].asset=="",id+" is pending with empty asset path")
+     verify(matches.size()==1 and matches[0].status=="ready" and not str(matches[0].asset).is_empty(),id+" is ready with a real spec path")
      var match_buttons: Array= buttons.filter(func(b):return b.get_meta("slot_id")==id)
-     verify(match_buttons.size()==1 and match_buttons[0].disabled,id+" button is disabled")
+     verify(match_buttons.size()==1 and not match_buttons[0].disabled,id+" inspector button is enabled")
      if match_buttons.size()==1:
       verify(match_buttons[0].get_child_count()==0,id+" has name only and no invented thumbnail")
-      match_buttons[0].pressed.emit()
-     verify(not game.open_service_slot(id),id+" rejects forced activation")
+     verify(not game.slot_asset(matches[0]).is_empty(),id+" resolves real geometry metadata")
    var after := JSON.stringify(game.city.buildings)+JSON.stringify(game.city.roads)+str(game.city.funds)+str(game.city.clock.game_seconds)
-   verify(before==after,"pending construction/activation attempts preserve city, funds and clock")
+   verify(before==after,"asset browsing preserves city, funds and clock")
+   verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
   verify(game.drawer_box.find_children("RoadLanes","OptionButton",true,false).size()==1,"bottom road tools expose existing lane width choice")
   var zoom_before: float=game.map_zoom

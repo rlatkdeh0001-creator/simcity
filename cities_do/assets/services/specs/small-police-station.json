@@ -1,0 +1,44 @@
+{
+  "id": "small-police-station",
+  "name": "파출소",
+  "group": "emergency",
+  "width": 4,
+  "depth": 4,
+  "metres": [
+    16,
+    16
+  ],
+  "height_m": 4.995,
+  "storeys": 1,
+  "model": "res://assets/services/small-police-station.glb",
+  "preview": "res://assets/services/small-police-station.png",
+  "source": "assets/police-study/small-police-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "소형 경찰서",
+  "source_group": "police",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      4.875
+    ]
+  ],
+  "garage_doors": [],
+  "front_feature_node": "BlueDoorStripe"
+}

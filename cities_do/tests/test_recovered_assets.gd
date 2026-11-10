@@ -15,7 +15,7 @@ func _initialize() -> void:
 
 func run() -> void:
 	var facilities:Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities
-	var recovered:Array=facilities.filter(func(e):return e.get("recovered_original",false))
+	var recovered:Array=facilities.filter(func(e):return e.get("recovered_original",false) and e.get("group","") in ["education","medical"])
 	verify(recovered.size()==7,"seven approved recovered education/medical assets")
 	for entry:Dictionary in recovered:
 		var model:Node3D=load(entry.model).instantiate()

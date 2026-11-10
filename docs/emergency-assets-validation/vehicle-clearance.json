@@ -1,0 +1,108 @@
+{
+  "camera_elevation_deg": 30,
+  "orthographic_width_m": 210,
+  "resolution": [
+    2400,
+    1500
+  ],
+  "all_model_scales": [
+    1,
+    1,
+    1
+  ],
+  "vehicles": {
+    "fire-engine-01": {
+      "width_m": 2.557000160217285,
+      "length_m": 7.68500018119812,
+      "height_m": 3.5300002098083496
+    },
+    "police-car-01": {
+      "width_m": 2.130000114440918,
+      "length_m": 4.920000076293945,
+      "height_m": 1.7850000858306885
+    },
+    "car-sedan-03": {
+      "width_m": 2.130000114440918,
+      "length_m": 4.920000076293945,
+      "height_m": 1.4799998998641968
+    }
+  },
+  "garage_clearances": [
+    {
+      "building": "small-fire-station",
+      "door": "GarageShutter",
+      "door_width_m": 3.4500001668930054,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 0.8930000066757202,
+      "height_clearance_m": -0.13000011444091797
+    },
+    {
+      "building": "small-fire-station",
+      "door": "GarageShutter.001",
+      "door_width_m": 3.450000047683716,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 0.8929998874664307,
+      "height_clearance_m": -0.13000011444091797
+    },
+    {
+      "building": "fire-station",
+      "door": "GarageShutter",
+      "door_width_m": 3.450000286102295,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 0.8930001258850098,
+      "height_clearance_m": 0.31999945640563965
+    },
+    {
+      "building": "fire-station",
+      "door": "GarageShutter.001",
+      "door_width_m": 3.4499998092651367,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 0.8929996490478516,
+      "height_clearance_m": 0.31999945640563965
+    },
+    {
+      "building": "fire-station",
+      "door": "GarageShutter.002",
+      "door_width_m": 3.450000047683716,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 0.8929998874664307,
+      "height_clearance_m": 0.31999945640563965
+    },
+    {
+      "building": "regional-fire-station",
+      "door": "GarageShutter",
+      "door_width_m": 4.649999618530273,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 2.0929994583129883,
+      "height_clearance_m": 0.6199996471405029
+    },
+    {
+      "building": "regional-fire-station",
+      "door": "GarageShutter.001",
+      "door_width_m": 4.6499998569488525,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 2.0929996967315674,
+      "height_clearance_m": 0.6199996471405029
+    },
+    {
+      "building": "regional-fire-station",
+      "door": "GarageShutter.002",
+      "door_width_m": 4.650000214576721,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 2.093000054359436,
+      "height_clearance_m": 0.6199996471405029
+    },
+    {
+      "building": "regional-fire-station",
+      "door": "GarageShutter.003",
+      "door_width_m": 4.649999618530273,
+      "truck_width_including_mirrors_m": 2.557000160217285,
+      "horizontal_clearance_total_m": 2.0929994583129883,
+      "height_clearance_m": 0.6199996471405029
+    }
+  ],
+  "all_door_widths_fit": true,
+  "all_door_heights_fit": false,
+  "physical_drive_through_validated": false,
+  "scope": "asset inspection only; original small station has a documented height shortfall"
+}

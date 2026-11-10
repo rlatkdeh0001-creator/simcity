@@ -1,0 +1,44 @@
+{
+  "id": "police-station",
+  "name": "경찰서",
+  "group": "emergency",
+  "width": 6,
+  "depth": 6,
+  "metres": [
+    24,
+    24
+  ],
+  "height_m": 10.27,
+  "storeys": 3,
+  "model": "res://assets/services/police-station.glb",
+  "preview": "res://assets/services/police-station.png",
+  "source": "assets/police-study/police-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "경찰서",
+  "source_group": "police",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -12.0,
+      -12.0,
+      -0.11999999731779099
+    ],
+    [
+      12.0,
+      12.0,
+      10.149999618530273
+    ]
+  ],
+  "garage_doors": [],
+  "front_feature_node": "BlueDoorStripe"
+}

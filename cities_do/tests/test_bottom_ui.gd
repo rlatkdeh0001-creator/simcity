@@ -42,11 +42,14 @@ func run():
   preview.select_category(key)
   var slot_buttons: Array=preview.drawer_box.get_children().filter(func(n):return n is Button and n.name.begins_with("Slot_"))
   verify(slot_buttons.size()==slots.filter(func(s):return s.category==key).size(),key+" preview shows exact configured slots")
-  verify(slot_buttons.all(func(b):return b.disabled and b.get_child_count()==0),key+" preview slots have names only and remain disabled")
+  verify(slot_buttons.all(func(b):return not b.disabled and b.get_child_count()==0),key+" ready preview slots have names only and real inspectors")
   var funds: int=preview.city.funds
   var buildings: int=preview.city.buildings.size()
-  for button in slot_buttons: button.pressed.emit()
-  verify(preview.city==saved_city and preview.city.funds==funds and preview.city.buildings.size()==buildings,key+" forced clicks cannot construct or charge")
+  for button in slot_buttons:
+   button.pressed.emit()
+   for window in preview.find_children("ServiceAssetPreview*","Window",true,false): window.close_requested.emit()
+   await process_frame
+  verify(preview.city==saved_city and preview.city.funds==funds and preview.city.buildings.size()==buildings,key+" inspector clicks cannot construct or charge")
  for key in ["health","education"]:
   preview.select_category(key)
   verify(not preview.show_zoning_tiles(),key+" hides placement grid")

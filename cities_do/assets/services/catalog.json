@@ -182,6 +182,371 @@
       "status": "asset_preview_only",
       "simulation_enabled": false,
       "recovered_original": true
+    },
+    {
+      "id": "small-fire-station",
+      "name": "소형소방서",
+      "group": "emergency",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "height_m": 5.985,
+      "storeys": 1,
+      "model": "res://assets/services/small-fire-station.glb",
+      "preview": "res://assets/services/small-fire-station.png",
+      "source": "assets/fire-study/small-fire-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "소형 소방서",
+      "source_group": "fire",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          -0.11999999731779099
+        ],
+        [
+          8.0,
+          8.0,
+          5.865000247955322
+        ]
+      ],
+      "garage_doors": [
+        {
+          "node": "GarageShutter",
+          "width_m": 3.4500001668930054,
+          "height_m": 3.4000000953674316,
+          "front_blender_y": -2.0399999618530273
+        },
+        {
+          "node": "GarageShutter.001",
+          "width_m": 3.450000047683716,
+          "height_m": 3.4000000953674316,
+          "front_blender_y": -2.0399999618530273
+        }
+      ],
+      "front_feature_node": "DoorWindowDivision"
+    },
+    {
+      "id": "fire-station",
+      "name": "소방서",
+      "group": "emergency",
+      "width": 6,
+      "depth": 6,
+      "metres": [
+        24,
+        24
+      ],
+      "height_m": 10.07,
+      "storeys": 3,
+      "model": "res://assets/services/fire-station.glb",
+      "preview": "res://assets/services/fire-station.png",
+      "source": "assets/fire-study/fire-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "소방서",
+      "source_group": "fire",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -12.0,
+          -12.0,
+          -0.11999999731779099
+        ],
+        [
+          12.0,
+          12.0,
+          9.949999809265137
+        ]
+      ],
+      "garage_doors": [
+        {
+          "node": "GarageShutter",
+          "width_m": 3.450000286102295,
+          "height_m": 3.8499996662139893,
+          "front_blender_y": -4.25
+        },
+        {
+          "node": "GarageShutter.001",
+          "width_m": 3.4499998092651367,
+          "height_m": 3.8499996662139893,
+          "front_blender_y": -4.25
+        },
+        {
+          "node": "GarageShutter.002",
+          "width_m": 3.450000047683716,
+          "height_m": 3.8499996662139893,
+          "front_blender_y": -4.25
+        }
+      ],
+      "front_feature_node": "OfficeDoor"
+    },
+    {
+      "id": "regional-fire-station",
+      "name": "광역소방서",
+      "group": "emergency",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "height_m": 22.120003,
+      "storeys": 4,
+      "model": "res://assets/services/regional-fire-station.glb",
+      "preview": "res://assets/services/regional-fire-station.png",
+      "source": "assets/fire-study/regional-fire-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "광역 소방서",
+      "source_group": "fire",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          -0.11999999731779099
+        ],
+        [
+          16.0,
+          16.0,
+          22.0
+        ]
+      ],
+      "garage_doors": [
+        {
+          "node": "GarageShutter",
+          "width_m": 4.649999618530273,
+          "height_m": 4.1499998569488525,
+          "front_blender_y": -7.849999904632568
+        },
+        {
+          "node": "GarageShutter.001",
+          "width_m": 4.6499998569488525,
+          "height_m": 4.1499998569488525,
+          "front_blender_y": -7.849999904632568
+        },
+        {
+          "node": "GarageShutter.002",
+          "width_m": 4.650000214576721,
+          "height_m": 4.1499998569488525,
+          "front_blender_y": -7.849999904632568
+        },
+        {
+          "node": "GarageShutter.003",
+          "width_m": 4.649999618530273,
+          "height_m": 4.1499998569488525,
+          "front_blender_y": -7.849999904632568
+        }
+      ],
+      "front_feature_node": "DoorWindowDivision"
+    },
+    {
+      "id": "small-police-station",
+      "name": "파출소",
+      "group": "emergency",
+      "width": 4,
+      "depth": 4,
+      "metres": [
+        16,
+        16
+      ],
+      "height_m": 4.995,
+      "storeys": 1,
+      "model": "res://assets/services/small-police-station.glb",
+      "preview": "res://assets/services/small-police-station.png",
+      "source": "assets/police-study/small-police-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "소형 경찰서",
+      "source_group": "police",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          -0.11999999731779099
+        ],
+        [
+          8.0,
+          8.0,
+          4.875
+        ]
+      ],
+      "garage_doors": [],
+      "front_feature_node": "BlueDoorStripe"
+    },
+    {
+      "id": "police-station",
+      "name": "경찰서",
+      "group": "emergency",
+      "width": 6,
+      "depth": 6,
+      "metres": [
+        24,
+        24
+      ],
+      "height_m": 10.27,
+      "storeys": 3,
+      "model": "res://assets/services/police-station.glb",
+      "preview": "res://assets/services/police-station.png",
+      "source": "assets/police-study/police-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "경찰서",
+      "source_group": "police",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -12.0,
+          -12.0,
+          -0.11999999731779099
+        ],
+        [
+          12.0,
+          12.0,
+          10.149999618530273
+        ]
+      ],
+      "garage_doors": [],
+      "front_feature_node": "BlueDoorStripe"
+    },
+    {
+      "id": "regional-police-station",
+      "name": "경찰본부",
+      "group": "emergency",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "height_m": 22.475,
+      "storeys": 4,
+      "model": "res://assets/services/regional-police-station.glb",
+      "preview": "res://assets/services/regional-police-station.png",
+      "source": "assets/police-study/regional-police-station/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "광역 경찰서",
+      "source_group": "police",
+      "ground_offset_m": 1.475,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          -1.475000023841858
+        ],
+        [
+          16.0,
+          16.0,
+          21.0
+        ]
+      ],
+      "garage_doors": [],
+      "front_feature_node": "BlueDoorStripe"
+    },
+    {
+      "id": "prison-8x8",
+      "name": "교도소",
+      "group": "emergency",
+      "width": 8,
+      "depth": 8,
+      "metres": [
+        32,
+        32
+      ],
+      "height_m": 10.425,
+      "storeys": 1,
+      "model": "res://assets/services/prison-8x8.glb",
+      "preview": "res://assets/services/prison-8x8.png",
+      "source": "assets/prison-study/prison/building.blend",
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "recovered_original": true,
+      "source_name": "교도소",
+      "source_group": "prison",
+      "ground_offset_m": 0.12,
+      "render": {
+        "source_preview_preserved": true
+      },
+      "source_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          -0.11999999731779099
+        ],
+        [
+          16.0,
+          16.0,
+          10.305000305175781
+        ]
+      ],
+      "garage_doors": [],
+      "front_feature_node": "EntryGateBar"
     }
   ]
 }

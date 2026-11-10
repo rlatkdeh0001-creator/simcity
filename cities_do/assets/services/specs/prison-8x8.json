@@ -1,0 +1,44 @@
+{
+  "id": "prison-8x8",
+  "name": "교도소",
+  "group": "emergency",
+  "width": 8,
+  "depth": 8,
+  "metres": [
+    32,
+    32
+  ],
+  "height_m": 10.425,
+  "storeys": 1,
+  "model": "res://assets/services/prison-8x8.glb",
+  "preview": "res://assets/services/prison-8x8.png",
+  "source": "assets/prison-study/prison/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "교도소",
+  "source_group": "prison",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      10.305000305175781
+    ]
+  ],
+  "garage_doors": [],
+  "front_feature_node": "EntryGateBar"
+}

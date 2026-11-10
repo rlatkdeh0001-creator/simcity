@@ -1,0 +1,57 @@
+{
+  "id": "small-fire-station",
+  "name": "소형소방서",
+  "group": "emergency",
+  "width": 4,
+  "depth": 4,
+  "metres": [
+    16,
+    16
+  ],
+  "height_m": 5.985,
+  "storeys": 1,
+  "model": "res://assets/services/small-fire-station.glb",
+  "preview": "res://assets/services/small-fire-station.png",
+  "source": "assets/fire-study/small-fire-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "소형 소방서",
+  "source_group": "fire",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      5.865000247955322
+    ]
+  ],
+  "garage_doors": [
+    {
+      "node": "GarageShutter",
+      "width_m": 3.4500001668930054,
+      "height_m": 3.4000000953674316,
+      "front_blender_y": -2.0399999618530273
+    },
+    {
+      "node": "GarageShutter.001",
+      "width_m": 3.450000047683716,
+      "height_m": 3.4000000953674316,
+      "front_blender_y": -2.0399999618530273
+    }
+  ],
+  "front_feature_node": "DoorWindowDivision"
+}

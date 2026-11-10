@@ -1,0 +1,150 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS default main scene provides the shared bottom HUD
+PASS main has twelve categories
+PASS main preserves empty starting city instead of preview fixture
+PASS main starts with placement grid hidden before choosing a category
+PASS service slots are loaded from separate data
+PASS seven confirmed slots exist
+PASS fire has exact slot count
+PASS fire.small is ready with a real spec path
+PASS fire.small inspector button is enabled
+PASS fire.small has name only and no invented thumbnail
+PASS fire.small resolves real geometry metadata
+PASS fire.standard is ready with a real spec path
+PASS fire.standard inspector button is enabled
+PASS fire.standard has name only and no invented thumbnail
+PASS fire.standard resolves real geometry metadata
+PASS fire.regional is ready with a real spec path
+PASS fire.regional inspector button is enabled
+PASS fire.regional has name only and no invented thumbnail
+PASS fire.regional resolves real geometry metadata
+PASS police has exact slot count
+PASS police.small is ready with a real spec path
+PASS police.small inspector button is enabled
+PASS police.small has name only and no invented thumbnail
+PASS police.small resolves real geometry metadata
+PASS police.standard is ready with a real spec path
+PASS police.standard inspector button is enabled
+PASS police.standard has name only and no invented thumbnail
+PASS police.standard resolves real geometry metadata
+PASS police.headquarters is ready with a real spec path
+PASS police.headquarters inspector button is enabled
+PASS police.headquarters has name only and no invented thumbnail
+PASS police.headquarters resolves real geometry metadata
+PASS corrections has exact slot count
+PASS police.prison is ready with a real spec path
+PASS police.prison inspector button is enabled
+PASS police.prison has name only and no invented thumbnail
+PASS police.prison resolves real geometry metadata
+PASS asset browsing preserves city, funds and clock
+PASS pending status remains fail-closed even with a populated path
+PASS bottom road tools expose existing lane width choice
+PASS tab changes never reset the player camera
+PASS city reset remains reachable from the bottom tools
+PASS existing selected-building upgrade remains reachable
+PASS main never creates the legacy side buttons
+PASS main dock anchored at (1920, 1080)
+PASS rightmost bulldozer remains inside (1920, 1080)
+PASS build drawer fits (1920, 1080)
+PASS road drawer fits (1920, 1080)
+PASS power drawer fits (1920, 1080)
+PASS water drawer fits (1920, 1080)
+PASS environment drawer fits (1920, 1080)
+PASS park drawer fits (1920, 1080)
+PASS transport drawer fits (1920, 1080)
+PASS health drawer fits (1920, 1080)
+PASS education drawer fits (1920, 1080)
+PASS fire drawer fits (1920, 1080)
+PASS police drawer fits (1920, 1080)
+PASS corrections drawer fits (1920, 1080)
+PASS 일시정지 / 재개 remains reachable at (1920, 1080)
+PASS 도시 전체 보기 remains reachable at (1920, 1080)
+PASS 도구 모음 접기 / 펼치기 remains reachable at (1920, 1080)
+PASS keyboard traverses category 0 at (1920, 1080)
+PASS keyboard traverses category 1 at (1920, 1080)
+PASS keyboard traverses category 2 at (1920, 1080)
+PASS keyboard traverses category 3 at (1920, 1080)
+PASS keyboard traverses category 4 at (1920, 1080)
+PASS keyboard traverses category 5 at (1920, 1080)
+PASS keyboard traverses category 6 at (1920, 1080)
+PASS keyboard traverses category 7 at (1920, 1080)
+PASS keyboard traverses category 8 at (1920, 1080)
+PASS keyboard traverses category 9 at (1920, 1080)
+PASS keyboard traverses category 10 at (1920, 1080)
+PASS keyboard traverses category 11 at (1920, 1080)
+PASS keyboard wraps twelve categories at (1920, 1080)
+PASS main dock anchored at (1280, 820)
+PASS rightmost bulldozer remains inside (1280, 820)
+PASS build drawer fits (1280, 820)
+PASS road drawer fits (1280, 820)
+PASS power drawer fits (1280, 820)
+PASS water drawer fits (1280, 820)
+PASS environment drawer fits (1280, 820)
+PASS park drawer fits (1280, 820)
+PASS transport drawer fits (1280, 820)
+PASS health drawer fits (1280, 820)
+PASS education drawer fits (1280, 820)
+PASS fire drawer fits (1280, 820)
+PASS police drawer fits (1280, 820)
+PASS corrections drawer fits (1280, 820)
+PASS 일시정지 / 재개 remains reachable at (1280, 820)
+PASS 도시 전체 보기 remains reachable at (1280, 820)
+PASS 도구 모음 접기 / 펼치기 remains reachable at (1280, 820)
+PASS keyboard traverses category 0 at (1280, 820)
+PASS keyboard traverses category 1 at (1280, 820)
+PASS keyboard traverses category 2 at (1280, 820)
+PASS keyboard traverses category 3 at (1280, 820)
+PASS keyboard traverses category 4 at (1280, 820)
+PASS keyboard traverses category 5 at (1280, 820)
+PASS keyboard traverses category 6 at (1280, 820)
+PASS keyboard traverses category 7 at (1280, 820)
+PASS keyboard traverses category 8 at (1280, 820)
+PASS keyboard traverses category 9 at (1280, 820)
+PASS keyboard traverses category 10 at (1280, 820)
+PASS keyboard traverses category 11 at (1280, 820)
+PASS keyboard wraps twelve categories at (1280, 820)
+PASS main dock anchored at (960, 640)
+PASS rightmost bulldozer remains inside (960, 640)
+PASS build drawer fits (960, 640)
+PASS road drawer fits (960, 640)
+PASS power drawer fits (960, 640)
+PASS water drawer fits (960, 640)
+PASS environment drawer fits (960, 640)
+PASS park drawer fits (960, 640)
+PASS transport drawer fits (960, 640)
+PASS health drawer fits (960, 640)
+PASS education drawer fits (960, 640)
+PASS fire drawer fits (960, 640)
+PASS police drawer fits (960, 640)
+PASS corrections drawer fits (960, 640)
+PASS 일시정지 / 재개 remains reachable at (960, 640)
+PASS 도시 전체 보기 remains reachable at (960, 640)
+PASS 도구 모음 접기 / 펼치기 remains reachable at (960, 640)
+PASS keyboard traverses category 0 at (960, 640)
+PASS keyboard traverses category 1 at (960, 640)
+PASS keyboard traverses category 2 at (960, 640)
+PASS keyboard traverses category 3 at (960, 640)
+PASS keyboard traverses category 4 at (960, 640)
+PASS keyboard traverses category 5 at (960, 640)
+PASS keyboard traverses category 6 at (960, 640)
+PASS keyboard traverses category 7 at (960, 640)
+PASS keyboard traverses category 8 at (960, 640)
+PASS keyboard traverses category 9 at (960, 640)
+PASS keyboard traverses category 10 at (960, 640)
+PASS keyboard traverses category 11 at (960, 640)
+PASS keyboard wraps twelve categories at (960, 640)
+PASS changing tabs cancels an unfinished road before release
+PASS power retains existing output and display controls in a bottom-launched popup
+PASS power settings popup opens
+PASS power popup uses the actual existing capacity input
+PASS power settings close returns controls to hidden owner
+PASS water retains existing output and display controls in a bottom-launched popup
+PASS water settings popup opens
+PASS water popup uses the actual existing capacity input
+PASS water settings close returns controls to hidden owner
+PASS main Escape collapses drawer
+PASS main pause freezes unified clock
+PASS main 3x uses existing clock conversion
+PASS main status exposes actual population and date
+RESULT 147/147 main bottom UI checks passed

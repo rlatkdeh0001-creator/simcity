@@ -1,0 +1,69 @@
+{
+  "id": "regional-fire-station",
+  "name": "광역소방서",
+  "group": "emergency",
+  "width": 8,
+  "depth": 8,
+  "metres": [
+    32,
+    32
+  ],
+  "height_m": 22.120003,
+  "storeys": 4,
+  "model": "res://assets/services/regional-fire-station.glb",
+  "preview": "res://assets/services/regional-fire-station.png",
+  "source": "assets/fire-study/regional-fire-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "광역 소방서",
+  "source_group": "fire",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      -0.11999999731779099
+    ],
+    [
+      16.0,
+      16.0,
+      22.0
+    ]
+  ],
+  "garage_doors": [
+    {
+      "node": "GarageShutter",
+      "width_m": 4.649999618530273,
+      "height_m": 4.1499998569488525,
+      "front_blender_y": -7.849999904632568
+    },
+    {
+      "node": "GarageShutter.001",
+      "width_m": 4.6499998569488525,
+      "height_m": 4.1499998569488525,
+      "front_blender_y": -7.849999904632568
+    },
+    {
+      "node": "GarageShutter.002",
+      "width_m": 4.650000214576721,
+      "height_m": 4.1499998569488525,
+      "front_blender_y": -7.849999904632568
+    },
+    {
+      "node": "GarageShutter.003",
+      "width_m": 4.649999618530273,
+      "height_m": 4.1499998569488525,
+      "front_blender_y": -7.849999904632568
+    }
+  ],
+  "front_feature_node": "DoorWindowDivision"
+}

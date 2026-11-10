@@ -1,0 +1,44 @@
+{
+  "id": "regional-police-station",
+  "name": "경찰본부",
+  "group": "emergency",
+  "width": 8,
+  "depth": 8,
+  "metres": [
+    32,
+    32
+  ],
+  "height_m": 22.475,
+  "storeys": 4,
+  "model": "res://assets/services/regional-police-station.glb",
+  "preview": "res://assets/services/regional-police-station.png",
+  "source": "assets/police-study/regional-police-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "광역 경찰서",
+  "source_group": "police",
+  "ground_offset_m": 1.475,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      -1.475000023841858
+    ],
+    [
+      16.0,
+      16.0,
+      21.0
+    ]
+  ],
+  "garage_doors": [],
+  "front_feature_node": "BlueDoorStripe"
+}

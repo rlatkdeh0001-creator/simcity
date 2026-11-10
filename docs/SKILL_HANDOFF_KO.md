@@ -6,7 +6,20 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 승인된 1A와 원본 회수 병합·main 반영 (2026-11-10 KST)
+## 최신 작업: 응급·치안·교정 7종 검사창 등록 (2026-11-10 KST)
+
+main 21d36db에서 feature/emergency-assets로 분기했다. 원본 51파일 해시 보존,
+7개 GLB/원본 PNG/spec/카탈로그와 ready 슬롯을 연결했다. 도시 건설/운영/가격 적용은 없다.
+[실측·실제 공통 축척 렌더·전체 23/23 및 신규 79/79](emergency-assets-validation/README_KO.md).
+소형소방서 문 높이 3.40m < 기존 소방차 3.53m(약 −0.13m)은 원본 한계로 남기며 사용자 결정 대기다.
+원본 .blend/metadata/빌드 스크립트를 수정하거나 빌드 스크립트를 재실행하지 않았다.
+기존 recovered exporter는 metadata 쓰기가 있어 실행하지 않고 새 읽기 전용 파생 exporter를 사용했다.
+개인 프로필 godot-windows-validation/test-driven-development/requesting-code-review(MIT, 별도 고정 SHA 미제공)와
+기존 저장소 facilities/vehicles/게임 UI 스킬의 단위·검증 범위를 적용했다. 외부 스킬/라이선스 변경 없음.
+검토는 자체 diff/정적 검사이며 독립 에이전트 리뷰가 아니다. 파생 도구와 실제 명령/로그는 위 보고서에 있다.
+로컬 커밋만 승인됐으며 main 푸시는 하지 않는다. 하단바 v2 승인 문서/시안은 다음 브랜치에 분리한다.
+
+## 이전 작업: 승인된 1A와 원본 회수 병합·main 반영 (2026-11-10 KST)
 
 현재 체크아웃 `D:/project/simcity`(사용자 요청으로 이동, 이전 경로 `C:/Users/wlgml/projects/simcity`).
 사용자 승인으로 1A a367fac와 origin/main a4913a2를 병합했다. 인계장 충돌 1개는 UI 기록과 원본 회수 기록을 모두 보존해 해결했다.

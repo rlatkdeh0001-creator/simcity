@@ -1,0 +1,63 @@
+{
+  "id": "fire-station",
+  "name": "소방서",
+  "group": "emergency",
+  "width": 6,
+  "depth": 6,
+  "metres": [
+    24,
+    24
+  ],
+  "height_m": 10.07,
+  "storeys": 3,
+  "model": "res://assets/services/fire-station.glb",
+  "preview": "res://assets/services/fire-station.png",
+  "source": "assets/fire-study/fire-station/building.blend",
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "recovered_original": true,
+  "source_name": "소방서",
+  "source_group": "fire",
+  "ground_offset_m": 0.12,
+  "render": {
+    "source_preview_preserved": true
+  },
+  "source_bounds_blender": [
+    [
+      -12.0,
+      -12.0,
+      -0.11999999731779099
+    ],
+    [
+      12.0,
+      12.0,
+      9.949999809265137
+    ]
+  ],
+  "garage_doors": [
+    {
+      "node": "GarageShutter",
+      "width_m": 3.450000286102295,
+      "height_m": 3.8499996662139893,
+      "front_blender_y": -4.25
+    },
+    {
+      "node": "GarageShutter.001",
+      "width_m": 3.4499998092651367,
+      "height_m": 3.8499996662139893,
+      "front_blender_y": -4.25
+    },
+    {
+      "node": "GarageShutter.002",
+      "width_m": 3.450000047683716,
+      "height_m": 3.8499996662139893,
+      "front_blender_y": -4.25
+    }
+  ],
+  "front_feature_node": "OfficeDoor"
+}

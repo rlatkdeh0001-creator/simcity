@@ -1,12 +1,54 @@
 {
   "schema_version": 1,
   "slots": [
-    {"id": "fire.small", "category": "fire", "name": "소형소방서", "status": "pending_asset", "asset": ""},
-    {"id": "fire.standard", "category": "fire", "name": "소방서", "status": "pending_asset", "asset": ""},
-    {"id": "fire.regional", "category": "fire", "name": "광역소방서", "status": "pending_asset", "asset": ""},
-    {"id": "police.small", "category": "police", "name": "파출소", "status": "pending_asset", "asset": ""},
-    {"id": "police.standard", "category": "police", "name": "경찰서", "status": "pending_asset", "asset": ""},
-    {"id": "police.headquarters", "category": "police", "name": "경찰본부", "status": "pending_asset", "asset": ""},
-    {"id": "police.prison", "category": "corrections", "name": "교도소", "status": "pending_asset", "asset": ""}
+    {
+      "id": "fire.small",
+      "category": "fire",
+      "name": "소형소방서",
+      "status": "ready",
+      "asset": "res://assets/services/specs/small-fire-station.json"
+    },
+    {
+      "id": "fire.standard",
+      "category": "fire",
+      "name": "소방서",
+      "status": "ready",
+      "asset": "res://assets/services/specs/fire-station.json"
+    },
+    {
+      "id": "fire.regional",
+      "category": "fire",
+      "name": "광역소방서",
+      "status": "ready",
+      "asset": "res://assets/services/specs/regional-fire-station.json"
+    },
+    {
+      "id": "police.small",
+      "category": "police",
+      "name": "파출소",
+      "status": "ready",
+      "asset": "res://assets/services/specs/small-police-station.json"
+    },
+    {
+      "id": "police.standard",
+      "category": "police",
+      "name": "경찰서",
+      "status": "ready",
+      "asset": "res://assets/services/specs/police-station.json"
+    },
+    {
+      "id": "police.headquarters",
+      "category": "police",
+      "name": "경찰본부",
+      "status": "ready",
+      "asset": "res://assets/services/specs/regional-police-station.json"
+    },
+    {
+      "id": "police.prison",
+      "category": "corrections",
+      "name": "교도소",
+      "status": "ready",
+      "asset": "res://assets/services/specs/prison-8x8.json"
+    }
   ]
 }
