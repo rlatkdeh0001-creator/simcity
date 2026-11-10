@@ -6,7 +6,25 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 응급·치안·교정 7종 검사창 등록 (2026-11-10 KST)
+## 최신 작업: 승인 A2 하단바 v2 (2026-11-10 KST)
+
+파트1 feature/emergency-assets 9c10c646c0b8925ab82dfe4deadb9cc22d3652e7에서 feature/bottom-bar-v2로 분기했다.
+기획자 A2 승인 기록/시안 폴더를 그대로 포함하며 [구현·명령·실제 검증·한계](bottom-bar-v2-validation/README_KO.md)를 확인한다.
+11분류/수도/경찰 내 교도소, 날짜 너비와 같은 재생 버튼, 중앙 도시명 편집/실제 인구·자금·수요를 연결했다.
+city_model과 city_clock에는 HUD용 신호·도시명만 더했으며 계산식/시간 배율/가격/원본 애셋은 바꾸지 않았다.
+행복도/수지는 미구현 상태인 —를 유지하고 미래 월 집계 연결점만 만들었다. 도시명은 기존 세션 모델 참조로 보존한다.
+기존 `.agents/skills/game-ui-ux/SKILL.md`(고정 출처/Apache-2.0는 아래 1A 기록)와 개인 프로필 TDD/Windows validation/자체 리뷰 지침을 적용했다.
+개인 스킬 경로는 `C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/skills/software-development/` 아래
+`{test-driven-development,godot-windows-validation,requesting-code-review}/SKILL.md`다.
+개인 godot-windows-validation(MIT, 별도 고정 SHA 미제공)의 windows-capture 참고문서에
+테마 구분선 최소 높이 진단/원본 캡처와 별도 상태 JSON 검증/비교본 해시 분리 규칙을 보완했다. 외부 원본 스킬 변경/새 설치는 없다.
+실제 전체 24/24, HUD v2 72/72, 본게임 140/140, 검토 HUD43/43, emergency79/79 통과.
+실제 Godot 원본 캡처 6장(필수 5장+기존 검토 도시 1장), A2 비교본 2장을 구분해 저장했다.
+최초 22/24 실패는 구분선 기본 최소 높이로 dock이 화면 밖으로 넘친 것이며 1px divider로 고친 뒤 전체 재실행했다.
+1B/가격/사운드/실제 행복도·월별 재정은 미구현, 원본 소형소방서 높이 한계는 사용자 결정 대기다.
+변경 목록은 각 validation 폴더 changed-files.txt다. 로컬 커밋까지만이며 main 푸시하지 않는다.
+
+## 이전 작업: 응급·치안·교정 7종 검사창 등록 (2026-11-10 KST)
 
 main 21d36db에서 feature/emergency-assets로 분기했다. 원본 51파일 해시 보존,
 7개 GLB/원본 PNG/spec/카탈로그와 ready 슬롯을 연결했다. 도시 건설/운영/가격 적용은 없다.

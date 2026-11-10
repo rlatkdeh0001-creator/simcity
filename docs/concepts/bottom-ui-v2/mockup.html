@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>하단바 v2 시안</title>
+<style>
+:root{--dock:#102633;--line:#38515e;--btn:#152d3b;--ink:#e4eef1;--muted:#9fb3bb;--blue:#39b7ff;--gold:#efcd7c;--plus:#5fd38a;--minus:#ff6b6b;
+--r:#5fd38a;--c:#4aa8ff;--i:#f2c14e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1920px;height:1080px;overflow:hidden;font-family:"Malgun Gothic","맑은 고딕",sans-serif;color:var(--ink);background:#17242f url(mock/bg.png) no-repeat 0 0}
+.tag{position:absolute;left:24px;top:22px;background:rgba(16,38,51,.92);border:1px solid var(--line);border-radius:8px;padding:10px 16px}
+.tag b{font-size:26px;display:block}.tag span{font-size:18px;color:var(--muted)}
+.hud{position:absolute;left:0;right:0;bottom:0;background:var(--dock);border-top:1px solid var(--line)}
+.row{display:flex;align-items:center}
+.cats{display:flex;gap:4px}.cats img{display:block}
+.btn{display:block}
+.num{font-variant-numeric:tabular-nums}
+.date{font-size:24px;font-weight:700;letter-spacing:.5px}
+.time{font-size:18px;color:var(--muted);margin-left:8px;font-weight:400}
+.ctl{display:flex;gap:8px;margin-top:6px}
+.lbl{font-size:18px;color:var(--muted)}
+.happy{display:flex;align-items:center;gap:10px}
+.face{width:40px;height:40px;border-radius:50%;background:#2e6b4a;border:2px solid var(--plus);position:relative}
+.face:before,.face:after{content:"";position:absolute;top:12px;width:5px;height:6px;border-radius:3px;background:var(--ink)}
+.face:before{left:11px}.face:after{right:11px}
+.smile{position:absolute;left:10px;top:20px;width:16px;height:8px;border:3px solid var(--ink);border-top:none;border-radius:0 0 12px 12px}
+.hv{font-size:28px;font-weight:700}
+.rci{display:flex;gap:10px;align-items:flex-end}
+.bar{display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar .t{width:22px;background:#0b1c26;border:1px solid var(--line);border-radius:4px;display:flex;align-items:flex-end;overflow:hidden}
+.bar .f{width:100%}
+.bar .k{font-size:18px;font-weight:700}
+.city{font-size:18px;letter-spacing:3px;color:var(--muted);font-weight:700}
+.money{font-size:34px;font-weight:700;color:var(--gold)}
+.money small{font-size:22px;font-weight:700;color:var(--gold);opacity:.85}
+.bal{font-size:24px;font-weight:700}
+.bal.p{color:var(--plus)}.bal.m{color:var(--minus)}
+.pop{display:flex;align-items:center;gap:8px;font-size:22px}
+.pop i{font-style:normal;color:var(--muted);font-size:18px}
+.sep{width:1px;align-self:stretch;background:var(--line);margin:0 22px}
+.right{position:absolute;right:16px;display:flex;gap:6px}
+.kb{height:32px;display:flex;align-items:center;justify-content:center;background:var(--btn);border:1px solid var(--line);border-radius:6px;font-size:18px;font-weight:700}
+</style></head><body>
+<div id="root"></div>
+<script>
+const CATS=["build","road","power","water","environment","park","transport","health","education","fire","police"];
+const cats=()=>`<div class="cats">${CATS.map(k=>`<img src="mock/${k}.png">`).join("")}</div>`;
+const ctl=()=>`<div class="ctl"><img class="btn" src="mock/pause.png"><img class="btn" src="mock/speed.png"></div>`;
+const happy=(v=72)=>`<div class="happy"><div class="face"><div class="smile"></div></div><div><div class="lbl">행복도</div><div class="hv num">${v}</div></div></div>`;
+const rci=(h=[78,46,22],H=56)=>`<div class="rci">${[["주","var(--r)"],["상","var(--c)"],["공","var(--i)"]].map(([k,c],i)=>`<div class="bar"><div class="t" style="height:${H}px"><div class="f" style="height:${h[i]}%;background:${c}"></div></div><div class="k" style="color:${c}">${k}</div></div>`).join("")}</div>`;
+const v=new URLSearchParams(location.search).get("v")||"A";
+let html="";
+// ---- A2: user revision of A ----
+const PAUSE=`<svg viewBox="0 0 24 24" width="18" height="18"><rect x="6" y="5" width="4" height="14" rx="1" fill="#e4eef1"/><rect x="14" y="5" width="4" height="14" rx="1" fill="#e4eef1"/></svg>`;
+const PERSON=`<svg viewBox="0 0 24 24" width="26" height="26" aria-label="인구"><circle cx="12" cy="7" r="4" fill="#e4eef1"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8z" fill="#e4eef1"/></svg>`;
+const ctl2=()=>`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+  <div class="kb">${PAUSE}</div><div class="kb num">1×</div></div>`;
+const happy2=(v=72)=>`<div class="happy"><div class="face"><div class="smile"></div></div><div class="hv num">${v}</div></div>`;
+const rci2=(h=[78,46,22],H=64)=>`<div class="rci">${["var(--r)","var(--c)","var(--i)"].map((c,i)=>`<div class="bar"><div class="t" style="height:${H}px"><div class="f" style="height:${h[i]}%;background:${c}"></div></div></div>`).join("")}</div>`;
+if(v==="A2"){
+ html=`<div class="tag"><b>시안 A-2 · A 수정안</b><span>주상공 글씨·행복도 글씨 제거 · 인구 아이콘 · 버튼 폭을 날짜 줄에 맞춤 · 예시 값</span></div>
+ <div class="hud" style="height:196px">
+  <div class="row" style="height:96px;justify-content:center;position:relative">${cats()}
+    <div class="right" style="top:12px"><img src="mock/bulldozer.png"></div></div>
+  <div class="row" style="height:100px;border-top:1px solid var(--line);padding:0 20px;position:relative">
+   <div style="display:inline-grid"><div class="date num" style="white-space:nowrap">1년 3일<span class="time">14:20</span></div>${ctl2()}</div>
+   <div class="sep"></div>${happy2()}<div class="sep"></div>${rci2()}
+   <div style="position:absolute;left:50%;transform:translateX(-50%);top:8px;text-align:center">
+     <div class="city">CITIESDO</div>
+     <div class="row" style="gap:18px;justify-content:center"><div class="pop">${PERSON}<span class="num">1,248</span></div>
+     <div class="money num">48,730 <small>doth</small></div><div class="bal p num">+1,200/월</div></div></div>
+   <div class="right" style="top:30px"><img src="mock/mapbtn.png"><img src="mock/menu.png"></div>
+  </div></div>`;
+}
+if(v==="A"){
+ html=`<div class="tag"><b>시안 A · 지정안 그대로</b><span>한 줄 상태바 · 카테고리 위 · 예시 값</span></div>
+ <div class="hud" style="height:196px">
+  <div class="row" style="height:96px;justify-content:center;position:relative">${cats()}
+    <div class="right" style="top:12px"><img src="mock/bulldozer.png"></div></div>
+  <div class="row" style="height:100px;border-top:1px solid var(--line);padding:0 20px;position:relative">
+   <div><div class="date num">1년 3일<span class="time">14:20</span></div>${ctl()}</div>
+   <div class="sep"></div>${happy()}<div class="sep"></div>${rci()}
+   <div style="position:absolute;left:50%;transform:translateX(-50%);top:8px;text-align:center">
+     <div class="city">CITIESDO</div>
+     <div class="row" style="gap:18px;justify-content:center"><div class="pop"><i>인구</i><span class="num">1,248</span></div>
+     <div class="money num">48,730 <small>doth</small></div><div class="bal p num">+1,200/월</div></div></div>
+   <div class="right" style="top:30px"><img src="mock/mapbtn.png"><img src="mock/menu.png"></div>
+  </div></div>`;
+}
+if(v==="B"){
+ html=`<div class="tag"><b>시안 B · 왼쪽 계기판형</b><span>날짜·행복도·수요를 왼쪽 전체 높이 패널로 · 예시 값</span></div>
+ <div class="hud" style="height:196px">
+  <div style="position:absolute;left:16px;top:12px;bottom:12px;width:520px;background:#0d212c;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;padding:0 18px;gap:22px">
+    <div><div class="date num" style="font-size:30px">1년 3일</div><div class="time" style="margin:0;font-size:22px">14:20</div>${ctl()}</div>
+    <div class="sep" style="margin:0"></div>${happy()}<div class="sep" style="margin:0"></div>${rci([78,46,22],110)}
+  </div>
+  <div class="row" style="height:96px;justify-content:center;padding-left:560px">${cats()}</div>
+  <div class="row" style="height:100px;justify-content:center;padding-left:560px;gap:20px">
+     <div class="city" style="font-size:22px">CITIESDO</div><div class="sep" style="margin:0 4px"></div>
+     <div class="pop"><i>인구</i><span class="num">1,248</span></div>
+     <div class="money num">48,730 <small>doth</small></div><div class="bal p num">+1,200/월</div></div>
+  <div class="right" style="top:12px"><img src="mock/bulldozer.png"></div>
+  <div class="right" style="bottom:28px"><img src="mock/mapbtn.png"><img src="mock/menu.png"></div>
+ </div>`;
+}
+if(v==="C"){
+ const L=CATS.slice(0,6),R=CATS.slice(6);
+ html=`<div class="tag"><b>시안 C · 중앙 명판형</b><span>도시·자금을 가운데 명판으로 올리고 카테고리를 좌우로 · 적자 예시</span></div>
+ <div class="hud" style="height:176px">
+  <div style="position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:440px;height:212px;background:#0d212c;border:1px solid var(--line);border-bottom:none;border-radius:16px 16px 0 0;text-align:center;padding-top:18px">
+    <div class="city" style="font-size:22px">CITIESDO</div>
+    <div class="money num" style="font-size:44px;margin-top:6px">48,730 <small>doth</small></div>
+    <div class="bal m num" style="margin-top:2px">−350/월</div>
+    <div class="pop" style="justify-content:center;margin-top:10px"><i>인구</i><span class="num">1,248</span></div></div>
+  <div class="row" style="position:absolute;right:calc(50% + 236px);top:14px">${L.map(k=>`<img src="mock/${k}.png" style="margin-left:4px">`).join("")}</div>
+  <div class="row" style="position:absolute;left:calc(50% + 236px);top:14px">${R.map(k=>`<img src="mock/${k}.png" style="margin-right:4px">`).join("")}</div>
+  <div class="row" style="position:absolute;left:20px;bottom:10px;gap:0">
+    <div><div class="date num">1년 3일<span class="time">14:20</span></div>${ctl()}</div><div class="sep"></div>${happy(41)}<div class="sep"></div>${rci([30,64,82])}</div>
+  <div class="right" style="top:12px"><img src="mock/bulldozer.png"></div>
+  <div class="right" style="bottom:22px"><img src="mock/mapbtn.png"><img src="mock/menu.png"></div>
+ </div>`;
+}
+document.getElementById("root").innerHTML=html;
+</script></body></html>

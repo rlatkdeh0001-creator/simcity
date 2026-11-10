@@ -1,0 +1,35 @@
+[
+  {
+    "name": "main-default-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\main-default-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.75,
+    "log": "main-default-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "7850cdf174cdbcde1f0d6fa36b23512f4829c7d5caac051e83977317404b42b8",
+    "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\main-default-1920.png",
+    "fixture": false
+  }
+]

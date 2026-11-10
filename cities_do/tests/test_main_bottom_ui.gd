@@ -16,14 +16,14 @@ func run():
  await process_frame
  verify(game.has_method("select_category"),"default main scene provides the shared bottom HUD")
  if game.has_method("select_category"):
-  verify(game.categories.size()==12,"main has twelve categories")
+  verify(game.categories.size()==11,"main has eleven categories")
   verify(game.city.buildings.is_empty() and game.city.roads.is_empty(),"main preserves empty starting city instead of preview fixture")
   verify(not game.show_zoning_tiles(),"main starts with placement grid hidden before choosing a category")
   verify(game.has_method("service_slots"),"service slots are loaded from separate data")
   if game.has_method("service_slots"):
    var slots: Array=game.service_slots()
    verify(slots.size()==7,"seven confirmed slots exist")
-   var expected := {"fire":["fire.small","fire.standard","fire.regional"],"police":["police.small","police.standard","police.headquarters"],"corrections":["police.prison"]}
+   var expected := {"fire":["fire.small","fire.standard","fire.regional"],"police":["police.small","police.standard","police.headquarters","police.prison"]}
    var before := JSON.stringify(game.city.buildings)+JSON.stringify(game.city.roads)+str(game.city.funds)+str(game.city.clock.game_seconds)
    for category in expected:
     game.select_category(category)
@@ -67,7 +67,7 @@ func run():
     var controls: Array=game.find_children("*","Button",true,false).filter(func(b):return b.tooltip_text==tooltip)
     verify(controls.size()==1 and viewport_rect.encloses(controls[0].get_global_rect()),tooltip+" remains reachable at "+str(size_value))
    game.categories[0].grab_focus()
-   for i in range(12):
+   for i in range(11):
     verify(root.gui_get_focus_owner()==game.categories[i],"keyboard traverses category %d at %s" % [i,size_value])
     var right := InputEventAction.new()
     right.action="ui_right"
@@ -76,7 +76,7 @@ func run():
     right.pressed=false
     root.push_input(right)
     await process_frame
-   verify(root.gui_get_focus_owner()==game.categories[0],"keyboard wraps twelve categories at "+str(size_value))
+   verify(root.gui_get_focus_owner()==game.categories[0],"keyboard wraps eleven categories at "+str(size_value))
   game.select_category("road")
   game.drawing=true
   game.stroke=PackedVector2Array([Vector2(2,2),Vector2(10,2)])
@@ -106,7 +106,7 @@ func run():
   game.simulation_speed=3
   game._process(1)
   verify(is_equal_approx(game.city.clock.game_seconds-clock_before,72),"main 3x uses existing clock conversion")
-  verify("인구" in game.social_status.text and "년" in game.social_status.text,"main status exposes actual population and date")
+  verify(game.population_label.text==str(game.city.population.stats().population) and "년" in game.date_label.text,"main status exposes actual population and date")
  game.queue_free()
  await process_frame
  print("RESULT %d/%d main bottom UI checks passed" % [checks-failed,checks])

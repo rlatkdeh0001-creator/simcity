@@ -1,0 +1,58 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS preview uses 34 validated catalog buildings
+PASS every preview building comes from actual game catalog
+PASS preview uses six actual model roads
+PASS preview contains actual utility sources
+PASS eleven real category buttons created
+PASS HUD omits range explanations and development instructions
+PASS shared HUD does not create legacy side tools
+PASS power view uses real network overlay with bottom controls
+ERROR: FAIL dock stays anchored to bottom at (1920, 1080)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_bottom_ui.gd:10)
+       [1] run (res://tests/test_bottom_ui.gd:34)
+PASS context tray remains within screen at (1920, 1080)
+ERROR: FAIL dock stays anchored to bottom at (1280, 820)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_bottom_ui.gd:10)
+       [1] run (res://tests/test_bottom_ui.gd:34)
+PASS context tray remains within screen at (1280, 820)
+ERROR: FAIL dock stays anchored to bottom at (960, 640)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_bottom_ui.gd:10)
+       [1] run (res://tests/test_bottom_ui.gd:34)
+PASS context tray remains within screen at (960, 640)
+PASS all primary category icons remain in bottom region
+PASS unused other category removed
+PASS preview shares all seven data-driven service slots with main
+PASS fire preview shows exact configured slots
+PASS fire ready preview slots have names only and real inspectors
+PASS fire inspector clicks cannot construct or charge
+PASS police preview shows exact configured slots
+PASS police ready preview slots have names only and real inspectors
+PASS police inspector clicks cannot construct or charge
+PASS health hides placement grid
+PASS health disables utility overlays
+PASS health has expected facility entries
+PASS registered service assets can be inspected
+PASS crematorium opens actual model inspector
+PASS inspector preserves city
+PASS education hides placement grid
+PASS education disables utility overlays
+PASS education has expected facility entries
+PASS registered service assets can be inspected
+PASS keyboard navigation wraps across new category count
+PASS category switch enables actual water overlay
+PASS water side panel stays hidden with bottom controls
+PASS bottom water tool selects existing paired-pipe construction mode
+PASS keyboard focus has explicit category neighbor
+PASS escape closes bottom context tray
+PASS preview pause actually stops water simulation time
+PASS 3x control advances the actual model 72 game seconds
+PASS status uses actual funds and population without a building counter
+PASS camera fitting supports newly built procedural lots too
+RESULT 40/43 bottom UI checks passed

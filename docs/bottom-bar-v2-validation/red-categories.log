@@ -1,0 +1,18 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL v2 has eleven categories, no correction tab
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] run (res://tests/test_hud_v2.gd:18)
+ERROR: FAIL water compatibility key has approved short caption
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] run (res://tests/test_hud_v2.gd:19)
+ERROR: FAIL police contains all four real inspector slots including prison
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] run (res://tests/test_hud_v2.gd:22)
+RESULT 0/3 HUD v2 checks passed

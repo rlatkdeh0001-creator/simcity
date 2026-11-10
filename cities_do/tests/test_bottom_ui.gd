@@ -18,7 +18,7 @@ func run():
  verify(preview.city.buildings.all(func(b):return not b.asset_id.is_empty()),"every preview building comes from actual game catalog")
  verify(preview.city.roads.size()==6,"preview uses six actual model roads")
  verify(preview.city.power.plants.size()==1 and preview.city.water.facilities.size()==2,"preview contains actual utility sources")
- verify(preview.categories.size()==12,"twelve real category buttons created")
+ verify(preview.categories.size()==11,"eleven real category buttons created")
  var no_instructions := true
  for node in preview.find_children("*","Label",true,false):
   for phrase in ["64m","32m","도착과 무관","1실제초","시험용","배치 검토용"]:
@@ -38,7 +38,7 @@ func run():
  var saved_city=preview.city
  var slots: Array=preview.service_slots()
  verify(slots.size()==7,"preview shares all seven data-driven service slots with main")
- for key in ["fire","police","corrections"]:
+ for key in ["fire","police"]:
   preview.select_category(key)
   var slot_buttons: Array=preview.drawer_box.get_children().filter(func(n):return n is Button and n.name.begins_with("Slot_"))
   verify(slot_buttons.size()==slots.filter(func(s):return s.category==key).size(),key+" preview shows exact configured slots")
@@ -95,7 +95,7 @@ func run():
  var rate: float=preview.city.water_state().water_supplied_m3_day
  preview._process(1)
  verify(is_equal_approx(preview.city.water.supplied_m3-before,rate*3*24/86400),"3x control advances the actual model 72 game seconds")
- verify("50,000 doth" in preview.money.text and "34" in preview.counts.text,"status uses actual funds and building count")
+ verify(preview.money.text==preview.city.Economy.format_amount(preview.city.funds) and preview.population_label.text==str(preview.city.population.stats().population),"status uses actual funds and population without a building counter")
  var added: Dictionary=preview.city.add_building(28,67)
  preview.fit_preview()
  verify(added.ok and is_finite(preview.map_zoom),"camera fitting supports newly built procedural lots too")

@@ -1,0 +1,13 @@
+{
+  "args": [
+    "--capture-bottom-ui=D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\main-police-960.png",
+    "--bottom-tab=police"
+  ],
+  "city_name": "CITIESDO",
+  "dock": "[P: (0.0, 444.0), S: (960.0, 196.0)]",
+  "drawer_visible": true,
+  "funds": 50000,
+  "population": 0,
+  "tab": "police",
+  "viewport": "[P: (0.0, 0.0), S: (960.0, 640.0)]"
+}

@@ -45,7 +45,7 @@
     },
     {
       "id": "police.prison",
-      "category": "corrections",
+      "category": "police",
       "name": "교도소",
       "status": "ready",
       "asset": "res://assets/services/specs/prison-8x8.json"

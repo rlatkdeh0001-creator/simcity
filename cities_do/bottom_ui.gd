@@ -7,20 +7,33 @@ var drawer_box: HBoxContainer
 var categories: Array[Button] = []
 var bulldozer: Button
 var money: Label
-var counts: Label
 var chosen := ""
 var paused := false
 var simulation_speed := 1.0
 var capture_path := ""
 var elapsed := 0.0
 var capture_pending := false
-var last_funds := -1
-var last_count := -1
-var social_status: Label
+signal game_month_closed(day_index: int)
+var date_label: Label
+var playback_controls: HBoxContainer
+var pause_button: Button
+var speed_button: Button
+var status_left: HBoxContainer
+var happiness_label: Label
+var population_label: Label
+var balance_label: Label
+var city_name_button: Button
+var city_name_edit: LineEdit
+var demand_bars: Array[ProgressBar]=[]
+var editing_city_name:=false
+var monthly_balance: Variant=null
+var status_cache: Dictionary={}
+var observed_city
+var hud_refresh_count:=0
 var utility_popup: PopupPanel
 var utility_content: Control
 var utility_owner: PanelContainer
-const NAMES := {"build":"구획","road":"도로","power":"전력","water":"상하수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육","fire":"소방","police":"경찰","corrections":"교정"}
+const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육","fire":"소방","police":"경찰"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
 const SERVICE_TOOLS := {"clinic":"medical-clinic","hospital":"medical-hospital","large_hospital":"medical-large-hospital","elementary":"elementary-school","high_school":"high-school","college":"technical-college","university":"university","crematorium":"crematorium-4x4"}
@@ -172,56 +185,37 @@ func build_bottom_hud():
  dock.name="BottomDock"
  root.add_child(dock)
  dock.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
- dock.offset_top=-180
- dock.add_theme_stylebox_override("panel",style(Color("102633"),Color("38515e")))
+ dock.offset_top=-196
+ var dock_style:=style(Color("102633"),Color("38515e"))
+ dock_style.content_margin_top=0
+ dock_style.content_margin_bottom=0
+ dock.add_theme_stylebox_override("panel",dock_style)
  var box := VBoxContainer.new()
- box.add_theme_constant_override("separation",6)
+ box.add_theme_constant_override("separation",0)
  dock.add_child(box)
- var status_line := HBoxContainer.new()
- box.add_child(status_line)
- var status_scroll := ScrollContainer.new()
- status_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
- status_scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
- status_scroll.follow_focus=true
- status_line.add_child(status_scroll)
- var status := HBoxContainer.new()
- status.size_flags_horizontal=Control.SIZE_EXPAND_FILL
- status.add_theme_constant_override("separation",14)
- status_scroll.add_child(status)
- status.add_child(label("CITIES_DO",20))
- money=label(city.Economy.format_amount(city.funds),20)
- money.add_theme_color_override("font_color",Color("efcd7c"))
- status.add_child(money)
- counts=label("건물 %d개" % city.buildings.size())
- status.add_child(counts)
- social_status=label("인구 0",16)
- status.add_child(social_status)
- var spacer := Control.new()
- spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL
- status.add_child(spacer)
- status_line.add_child(small_button("pause","일시정지 / 재개",func():paused=not paused))
- var speed := Button.new()
- speed.text="1×"
- speed.custom_minimum_size=Vector2(50,38)
- speed.pressed.connect(func():
-  simulation_speed=3.0 if simulation_speed==1 else 1.0
-  speed.text="%d×" % int(simulation_speed))
- status_line.add_child(speed)
- status_line.add_child(small_button("map","도시 전체 보기",fit_preview))
-
- status_line.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))
- box.add_child(HSeparator.new())
+ var status_line:=build_status_row(box)
+ var divider:=HSeparator.new()
+ divider.add_theme_constant_override("separation",1)
+ var line:=StyleBoxLine.new()
+ line.color=Color("38515e")
+ line.thickness=1
+ divider.add_theme_stylebox_override("separator",line)
+ box.add_child(divider)
  var scroll := ScrollContainer.new()
  scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
  scroll.follow_focus=true
  scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
  var navigation := HBoxContainer.new()
+ navigation.custom_minimum_size.y=96
+ scroll.custom_minimum_size.y=72
+ scroll.size_flags_vertical=Control.SIZE_SHRINK_CENTER
  box.add_child(navigation)
  scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
  navigation.add_child(scroll)
  bulldozer=small_button("bulldozer","철거",toggle_demolition)
  bulldozer.name="BulldozerButton"
  bulldozer.custom_minimum_size=Vector2(72,72)
+ bulldozer.size_flags_vertical=Control.SIZE_SHRINK_CENTER
  bulldozer.add_theme_constant_override("icon_max_width",42)
  bulldozer.toggle_mode=true
  bulldozer.add_theme_stylebox_override("pressed",style(Color("614328"),Color("f3b34f")))
@@ -250,7 +244,7 @@ func build_bottom_hud():
   picture.custom_minimum_size=Vector2(32,32)
   picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(picture)
-  var caption := label(NAMES[key],14)
+  var caption := label(NAMES[key],18)
   caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
   caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(caption)
@@ -264,8 +258,8 @@ func build_bottom_hud():
  drawer.name="BottomDrawer"
  root.add_child(drawer)
  drawer.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
- drawer.offset_bottom=-194
- drawer.offset_top=-314
+ drawer.offset_bottom=-210
+ drawer.offset_top=-330
  drawer.add_theme_stylebox_override("panel",style(Color("142e3c"),Color("38515e")))
  drawer_scroll=ScrollContainer.new()
  drawer_scroll.vertical_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
@@ -274,6 +268,229 @@ func build_bottom_hud():
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
  drawer_scroll.add_child(drawer_box)
+
+func build_status_row(box: VBoxContainer) -> Control:
+ var status_line:=Control.new()
+ status_line.name="CityStatusRow"
+ status_line.custom_minimum_size.y=99
+ box.add_child(status_line)
+ var left_margin:=MarginContainer.new()
+ left_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ left_margin.add_theme_constant_override("margin_left",4)
+ left_margin.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ status_line.add_child(left_margin)
+ status_left=HBoxContainer.new()
+ status_left.name="LeftInstruments"
+ status_left.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN
+ status_left.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+ status_left.add_theme_constant_override("separation",12)
+ left_margin.add_child(status_left)
+ var date_box:=VBoxContainer.new()
+ date_box.add_theme_constant_override("separation",6)
+ status_left.add_child(date_box)
+ date_label=label(city.clock.caption(),24)
+ date_label.name="GameDate"
+ date_box.add_child(date_label)
+ playback_controls=HBoxContainer.new()
+ playback_controls.add_theme_constant_override("separation",6)
+ date_box.add_child(playback_controls)
+ pause_button=small_button("pause","일시정지 / 재개",toggle_pause)
+ pause_button.name="PauseButton"
+ pause_button.toggle_mode=true
+ speed_button=Button.new()
+ speed_button.name="SpeedButton"
+ speed_button.text="1×"
+ speed_button.tooltip_text="시간 배속"
+ speed_button.pressed.connect(toggle_speed)
+ for button in [pause_button,speed_button]:
+  button.custom_minimum_size=Vector2(0,32)
+  button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+  button.add_theme_constant_override("icon_max_width",18)
+  for state in ["normal","hover","pressed"]:
+   var background:=style(Color("152d3b") if state=="normal" else Color("244958"),Color("38515e"))
+   background.content_margin_left=4;background.content_margin_right=4
+   background.content_margin_top=3;background.content_margin_bottom=3
+   button.add_theme_stylebox_override(state,background)
+  playback_controls.add_child(button)
+ status_left.add_child(VSeparator.new())
+ var happy:=HBoxContainer.new()
+ happy.add_theme_constant_override("separation",10)
+ happy.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+ status_left.add_child(happy)
+ var face:=TextureRect.new()
+ face.texture=icon("smile")
+ face.modulate=Color("5fd38a")
+ face.custom_minimum_size=Vector2(36,36)
+ face.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+ face.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ happy.add_child(face)
+ happiness_label=label("—",28)
+ happiness_label.name="HappinessValue"
+ happy.add_child(happiness_label)
+ status_left.add_child(VSeparator.new())
+ var demands:=HBoxContainer.new()
+ demands.name="RCIDemand"
+ demands.add_theme_constant_override("separation",10)
+ demands.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+ status_left.add_child(demands)
+ for key in ["residential","commercial","industrial"]:
+  var bar:=ProgressBar.new()
+  bar.name="Demand_"+key
+  bar.set_meta("demand_key",key)
+  bar.custom_minimum_size=Vector2(22,64)
+  bar.fill_mode=ProgressBar.FILL_BOTTOM_TO_TOP
+  bar.show_percentage=false
+  bar.add_theme_stylebox_override("background",style(Color("0b1c26"),Color("38515e")))
+  var fill:=StyleBoxFlat.new()
+  fill.bg_color={"residential":Color("5fd38a"),"commercial":Color("4aa8ff"),"industrial":Color("f2c14e")}[key]
+  bar.add_theme_stylebox_override("fill",fill)
+  demand_bars.append(bar)
+  demands.add_child(bar)
+ var center:=CenterContainer.new()
+ center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ center.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ status_line.add_child(center)
+ var city_box:=VBoxContainer.new()
+ city_box.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ city_box.add_theme_constant_override("separation",2)
+ center.add_child(city_box)
+ city_name_button=Button.new()
+ city_name_button.name="CityNameButton"
+ city_name_button.text=city.city_name
+ city_name_button.clip_text=true
+ city_name_button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+ city_name_button.tooltip_text="도시 이름 변경"
+ var transparent:=StyleBoxEmpty.new()
+ city_name_button.add_theme_stylebox_override("normal",transparent)
+ city_name_button.add_theme_stylebox_override("hover",transparent)
+ city_name_button.add_theme_stylebox_override("pressed",transparent)
+ city_name_button.add_theme_color_override("font_color",Color("9fb3bb"))
+ city_name_button.pressed.connect(begin_city_name_edit)
+ city_box.add_child(city_name_button)
+ city_name_edit=LineEdit.new()
+ city_name_edit.name="CityNameEdit"
+ city_name_edit.alignment=HORIZONTAL_ALIGNMENT_CENTER
+ city_name_edit.custom_minimum_size.x=180
+ city_name_edit.expand_to_text_length=false
+ city_name_edit.text_submitted.connect(func(_text):finish_city_name_edit(true))
+ city_name_edit.gui_input.connect(on_city_name_input)
+ city_name_edit.focus_exited.connect(func():finish_city_name_edit(false))
+ city_box.add_child(city_name_edit)
+ city_name_edit.hide()
+ var finance:=HBoxContainer.new()
+ finance.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ finance.alignment=BoxContainer.ALIGNMENT_CENTER
+ finance.add_theme_constant_override("separation",18)
+ city_box.add_child(finance)
+ var population_box:=HBoxContainer.new()
+ population_box.add_theme_constant_override("separation",8)
+ population_box.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+ finance.add_child(population_box)
+ var person:=TextureRect.new()
+ person.texture=icon("people")
+ person.custom_minimum_size=Vector2(26,26)
+ person.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+ person.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ population_box.add_child(person)
+ population_label=label("0",22)
+ population_label.name="PopulationValue"
+ population_box.add_child(population_label)
+ money=label(city.Economy.format_amount(city.funds),34)
+ money.name="MoneyValue"
+ money.add_theme_color_override("font_color",Color("efcd7c"))
+ finance.add_child(money)
+ balance_label=label("—",24)
+ balance_label.name="MonthlyBalanceValue"
+ finance.add_child(balance_label)
+ var right_margin:=MarginContainer.new()
+ right_margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ right_margin.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ right_margin.add_theme_constant_override("margin_right",0)
+ status_line.add_child(right_margin)
+ var actions:=HBoxContainer.new()
+ actions.size_flags_horizontal=Control.SIZE_SHRINK_END
+ actions.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+ actions.add_theme_constant_override("separation",6)
+ right_margin.add_child(actions)
+ actions.add_child(small_button("map","도시 전체 보기",fit_preview))
+ actions.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))
+ return status_line
+
+func toggle_pause():
+ paused=not paused
+ pause_button.set_pressed_no_signal(paused)
+
+func toggle_speed():
+ simulation_speed=3.0 if simulation_speed==1 else 1.0
+ speed_button.text="%d×" % int(simulation_speed)
+
+func bind_status_events():
+ if observed_city==city:return
+ if observed_city!=null:
+  for event in ["funds_changed","society_changed","city_name_changed"]:
+   if observed_city.is_connected(event,refresh_status):observed_city.disconnect(event,refresh_status)
+  if observed_city.clock.minute_changed.is_connected(refresh_status):observed_city.clock.minute_changed.disconnect(refresh_status)
+  if observed_city.clock.day_changed.is_connected(on_game_day_changed):observed_city.clock.day_changed.disconnect(on_game_day_changed)
+ observed_city=city
+ for event in ["funds_changed","society_changed","city_name_changed"]:city.connect(event,refresh_status)
+ city.clock.minute_changed.connect(refresh_status)
+ city.clock.day_changed.connect(on_game_day_changed)
+ status_cache.clear()
+ monthly_balance=null
+
+func refresh_status():
+ if money==null:return
+ var stats: Dictionary=city.population.stats()
+ var demand: Dictionary=city.population.demand(city.buildings)
+ var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance}
+ if snapshot==status_cache:return
+ hud_refresh_count+=1
+ if snapshot.name!=status_cache.get("name"):city_name_button.text=snapshot.name
+ if snapshot.funds!=status_cache.get("funds"):money.text=city.Economy.format_amount(city.funds)
+ if snapshot.date!=status_cache.get("date"):date_label.text=snapshot.date
+ if snapshot.stats!=status_cache.get("stats") or snapshot.demand!=status_cache.get("demand"):
+  population_label.text=city.Economy.format_amount(stats.population).trim_suffix(" doth")
+  population_label.tooltip_text="취업 %d · 미취업 %d · 주 %d 상 %d 공 %d" % [stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial]
+  for bar in demand_bars:
+   var key: String=bar.get_meta("demand_key")
+   bar.max_value=maxf(8,float(demand[key]))
+   bar.value=maxf(0,float(demand[key]))
+   bar.tooltip_text={"residential":"주거","commercial":"상업","industrial":"공업"}[key]+" "+str(demand[key])
+ if snapshot.balance!=status_cache.get("balance") or status_cache.is_empty():
+  balance_label.text="—" if monthly_balance==null else ("−" if monthly_balance<0 else "+")+city.Economy.format_amount(absi(monthly_balance)).trim_suffix(" doth")+"/월"
+  balance_label.add_theme_color_override("font_color",INK if monthly_balance==null else (Color("ff6b6b") if monthly_balance<0 else Color("5fd38a")))
+ status_cache=snapshot.duplicate(true)
+
+func set_monthly_balance(value: Variant):
+ # Future economic producer publishes the closed game day's (= game month's) total.
+ if value!=null and not value is int:return
+ monthly_balance=value
+ refresh_status()
+
+func on_game_day_changed(previous: int,current: int):
+ for index in range(previous,current):game_month_closed.emit(index)
+
+func begin_city_name_edit():
+ editing_city_name=true
+ city_name_edit.text=city.city_name
+ city_name_button.hide()
+ city_name_edit.show()
+ city_name_edit.grab_focus()
+ city_name_edit.select_all()
+
+func finish_city_name_edit(commit: bool):
+ if not editing_city_name:return
+ editing_city_name=false
+ var candidate:=city_name_edit.text.strip_edges()
+ if commit and not candidate.is_empty():city.city_name=candidate
+ city_name_edit.hide()
+ city_name_button.show()
+ city_name_button.grab_focus()
+
+func on_city_name_input(event: InputEvent):
+ if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  city_name_edit.accept_event()
+  finish_city_name_edit(false)
 
 func select_category(key: String):
  if not NAMES.has(key): return
@@ -332,7 +549,8 @@ func select_category(key: String):
   image.custom_minimum_size=Vector2(38,38)
   image.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(image)
-  var caption := label(choice[0],16)
+  var caption := label(choice[0],18)
+  button.custom_minimum_size.x=maxf(112,caption.get_minimum_size().x+16)
   caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
   caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
   content.add_child(caption)
@@ -425,16 +643,6 @@ func _process(delta: float):
  super._process(simulated_delta)
  hud.visible=not message.is_empty()
  info.visible=selected>=0 and not drawer.visible
- if city.funds!=last_funds:
-  money.text=city.Economy.format_amount(city.funds)
-  last_funds=city.funds
- if city.buildings.size()!=last_count:
-  counts.text="건물 %d개" % city.buildings.size()
-  last_count=city.buildings.size()
- var stats: Dictionary=city.population.stats()
- var demand: Dictionary=city.population.demand(city.buildings)
- social_status.text="인구 %d · %s" % [stats.population,city.clock.caption()]
- social_status.tooltip_text="취업 %d · 미취업 %d · 주 %d 상 %d 공 %d" % [stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial]
  elapsed+=delta
  if capture_path!="" and elapsed>3 and not capture_pending:
   capture_pending=true
@@ -442,6 +650,9 @@ func _process(delta: float):
 
 func capture():
  await RenderingServer.frame_post_draw
+ var state_file:=FileAccess.open(capture_path.trim_suffix(".png")+".state.json",FileAccess.WRITE)
+ state_file.store_string(JSON.stringify({"tab":chosen,"drawer_visible":drawer.visible,"viewport":str(get_viewport_rect()),"dock":str(dock.get_global_rect()),"city_name":city.city_name,"funds":city.funds,"population":city.population.stats().population,"args":OS.get_cmdline_user_args()},"  ")+"\n")
+ state_file.close()
  var error := get_viewport().get_texture().get_image().save_png(capture_path)
  get_tree().quit(0 if error==OK else 1)
 
@@ -481,6 +692,13 @@ func open_service_slot(id: String) -> bool:
 
 func layout_bottom_hud():
  if dock==null: return
+ var narrow:=get_viewport_rect().size.x<1280
+ money.add_theme_font_size_override("font_size",26 if narrow else 34)
+ date_label.add_theme_font_size_override("font_size",18 if narrow else 24)
+ happiness_label.add_theme_font_size_override("font_size",22 if narrow else 28)
+ balance_label.add_theme_font_size_override("font_size",18 if narrow else 24)
+ status_left.add_theme_constant_override("separation",6 if narrow else 12)
+ for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
  var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
@@ -526,8 +744,8 @@ func activate_tool(tool: String):
 func refresh():
  super.refresh()
  if money==null: return
- money.text=city.Economy.format_amount(city.funds)
- counts.text="건물 %d개" % city.buildings.size()
+ bind_status_events()
+ refresh_status()
  money.tooltip_text=message
 
 func open_utility_settings(kind: String):

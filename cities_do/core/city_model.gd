@@ -1,7 +1,19 @@
 extends RefCounted
 const Economy = preload("res://core/economy_config.gd")
 var difficulty := Economy.DEFAULT_DIFFICULTY
-var funds: int = Economy.NORMAL_STARTING_FUNDS
+signal funds_changed
+signal society_changed
+signal city_name_changed
+var city_name := "CITIESDO":
+	set(value):
+		if city_name==value:return
+		city_name=value
+		city_name_changed.emit()
+var funds: int = Economy.NORMAL_STARTING_FUNDS:
+	set(value):
+		if funds==value:return
+		funds=value
+		funds_changed.emit()
 const Frontage = preload("res://core/building_frontage.gd")
 const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
@@ -175,6 +187,7 @@ func advance_society(seconds: float) -> void:
 		steps+=1
 		if population_enabled:population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
+	if steps>0:society_changed.emit()
 
 func orient_building(b: Dictionary) -> void:
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)

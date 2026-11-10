@@ -1,0 +1,21 @@
+{
+  "review_mode": "self-review",
+  "full_tests": 24,
+  "passed": 24,
+  "capture_count": 6,
+  "comparison_count": 2,
+  "original_source_files_unchanged": 51,
+  "runtime_scales_or_prices_changed": false,
+  "import_churn_staged": false,
+  "checks": [
+    "complete test-name enumeration",
+    "exit codes and error-prefix gate",
+    "native PNG dimensions/hash/state",
+    "196px dock bounds",
+    "original source hashes",
+    "protected catalog/prices/prior evidence",
+    "explicit stage allowlist",
+    "added-source security scan",
+    "source whitespace"
+  ]
+}

@@ -5,7 +5,15 @@ const GAME_SECONDS_PER_DAY := 86400.0
 const SCALE := GAME_SECONDS_PER_DAY/REAL_SECONDS_PER_DAY
 const COMMUTE_START := 5
 const COMMUTE_END := 9
-var game_seconds := 0.0
+signal minute_changed
+signal day_changed(previous: int,current: int)
+var game_seconds := 0.0:
+ set(value):
+  var previous_minute:=floori(game_seconds/60)
+  var previous_day:=day()
+  game_seconds=value
+  if floori(game_seconds/60)!=previous_minute:minute_changed.emit()
+  if day()!=previous_day:day_changed.emit(previous_day,day())
 func advance_real(seconds: float) -> void:
  if is_finite(seconds) and seconds>0:game_seconds+=seconds*SCALE
 func day() -> int:return floori(game_seconds/GAME_SECONDS_PER_DAY)

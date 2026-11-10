@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "path": "D:\\project\\simcity\\docs\\concepts\\bottom-ui-v2\\mockup-A2.png",
+      "sha256": "d5d36862d7ffd96e7898f43cf8fcda01577ac394cfb6aae1965bdd081253e1bc"
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\main-default-1920.png",
+      "sha256": "7850cdf174cdbcde1f0d6fa36b23512f4829c7d5caac051e83977317404b42b8"
+    }
+  ],
+  "resized": false,
+  "raw_capture_preserved": true,
+  "comparisons": [
+    {
+      "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\A2-comparison.png",
+      "size": [
+        3840,
+        1124
+      ],
+      "hud_crop_only": false,
+      "sha256": "ae9324df55a0b1412bd3cf83c9b74d5d471da2594c1bdd32c81d53aabc228d4f"
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\bottom-bar-v2-validation\\A2-hud-comparison.png",
+      "size": [
+        3840,
+        240
+      ],
+      "hud_crop_only": true,
+      "sha256": "2ddd7fd92ddc2d5c7f5e8d046a3e422b77dbf89480748606ba34c3648aa45cd1"
+    }
+  ]
+}
