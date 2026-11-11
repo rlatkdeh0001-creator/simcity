@@ -1,0 +1,77 @@
+{
+  "id": "small-4x4-metalshop-02",
+  "name": "금속가공 작업장·야적장",
+  "zone": "industrial",
+  "category": "small_industrial",
+  "density": "small",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "floors": 1,
+  "occupied_storeys": 1,
+  "storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "+Z",
+  "front_coordinate_space": "gltf/Godot",
+  "front_blender": "-Y",
+  "up_blender": "+Z",
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12,
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      5.525000095367432
+    ]
+  ],
+  "measured_dimensions_m": [
+    16.0,
+    16.0,
+    5.645000092685223
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    826.4454
+  ],
+  "lot_corners_px": [
+    [
+      49.0099,
+      625.9504
+    ],
+    [
+      450.0,
+      826.4454
+    ],
+    [
+      850.9901,
+      625.9504
+    ],
+    [
+      450.0,
+      425.4553
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 31.035879135131836,
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+  "industrial_structure_only": false
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "medium-2x2-multiplex-01",
+    "alpha_bbox_px": [
+      180,
+      110,
+      720,
+      1041
+    ],
+    "png_sha256": "c565b2356b7e9f837338e2e489b161ee35ba674f145e8901edb8b19f7e56dfab"
+  },
+  {
+    "id": "medium-2x2-corner-villa-02",
+    "alpha_bbox_px": [
+      209,
+      104,
+      691,
+      1041
+    ],
+    "png_sha256": "265a7910e6039ba102b66d88c72b325c5754a025a5e1e28385042d6d66bd3c5c"
+  },
+  {
+    "id": "large-2x2-slim-tower-01",
+    "alpha_bbox_px": [
+      286,
+      85,
+      615,
+      1032
+    ],
+    "png_sha256": "78db918e586e602e4330d8aae5cf5828c06a2940f4c6b8b4f34047e3884b11b5"
+  },
+  {
+    "id": "large-2x2-pencil-tower-02",
+    "alpha_bbox_px": [
+      311,
+      90,
+      589,
+      1019
+    ],
+    "png_sha256": "de5ae54e6c2a440af7aedc2b9ec927882b08641ce71916df94b82387d0b22712"
+  },
+  {
+    "id": "medium-2x2-neighborhood-01",
+    "alpha_bbox_px": [
+      119,
+      88,
+      781,
+      1041
+    ],
+    "png_sha256": "a935e58e1025d1b2f7967660a032786a2c2852bf011fc30285cb28d30d20b9de"
+  },
+  {
+    "id": "medium-2x2-cafe-building-02",
+    "alpha_bbox_px": [
+      162,
+      79,
+      738,
+      1041
+    ],
+    "png_sha256": "38d0a5f989075c6ac6382648f0f40326706e2812869aab9fc04effea7d0fea60"
+  },
+  {
+    "id": "large-2x2-slim-office-01",
+    "alpha_bbox_px": [
+      243,
+      65,
+      657,
+      1041
+    ],
+    "png_sha256": "e0fcf3475592a4de1f299621b2f6d5d515f3b64d582cc5a05d571c385f05f811"
+  },
+  {
+    "id": "large-2x2-boutique-hotel-02",
+    "alpha_bbox_px": [
+      277,
+      60,
+      622,
+      1036
+    ],
+    "png_sha256": "64372f488dc569623b4fe2dd09707ffe24710c6d908bc1e25d7412d199c4187e"
+  },
+  {
+    "id": "medium-2x2-bakery-01",
+    "alpha_bbox_px": [
+      48,
+      162,
+      852,
+      1000
+    ],
+    "png_sha256": "9df1a3b003ecb9a21d8048cde918ce9461a76d3865215a5374f37ef95eebb49b"
+  },
+  {
+    "id": "medium-2x2-electronics-02",
+    "alpha_bbox_px": [
+      67,
+      118,
+      834,
+      1041
+    ],
+    "png_sha256": "fd435670cc4752e8bdc1028e0fa427de05b89e14a03781f5487d1a1beb155f8c"
+  },
+  {
+    "id": "large-2x2-grain-silo-01",
+    "alpha_bbox_px": [
+      170,
+      132,
+      730,
+      1041
+    ],
+    "png_sha256": "d15817b1594e08c196b8e5b742a20d4c8a1cdcd088e237c7847867366d5f4b4f"
+  },
+  {
+    "id": "large-2x2-distillation-02",
+    "alpha_bbox_px": [
+      182,
+      120,
+      717,
+      1041
+    ],
+    "png_sha256": "a16649aa4d83da130e2b12f5d1bfa0e78265217495134f05dd92efeae401e2de"
+  },
+  {
+    "id": "small-4x4-logistics-01",
+    "alpha_bbox_px": [
+      48,
+      293,
+      852,
+      833
+    ],
+    "png_sha256": "67254db4c600573b06cf789f795ad135ee63cfd405cb19ecee9392d340116658"
+  },
+  {
+    "id": "small-4x4-metalshop-02",
+    "alpha_bbox_px": [
+      48,
+      308,
+      852,
+      834
+    ],
+    "png_sha256": "7d9e6a298e336bb0cd1fdd16f20a41b16993662ca6c2293b3718257631cb75d7"
+  }
+]

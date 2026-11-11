@@ -1,0 +1,77 @@
+{
+  "id": "medium-2x2-neighborhood-01",
+  "name": "편의점·학원 근린상가",
+  "zone": "commercial",
+  "category": "medium_commercial",
+  "density": "medium",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "floors": 4,
+  "occupied_storeys": 4,
+  "storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "+Z",
+  "front_coordinate_space": "gltf/Godot",
+  "front_blender": "-Y",
+  "up_blender": "+Z",
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      13.269999504089355
+    ]
+  ],
+  "measured_dimensions_m": [
+    8.0,
+    8.0,
+    13.389999501407146
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1027.9704
+  ],
+  "lot_corners_px": [
+    [
+      119.8993,
+      862.92
+    ],
+    [
+      450.0,
+      1027.9704
+    ],
+    [
+      780.1007,
+      862.92
+    ],
+    [
+      450.0,
+      697.8697
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 18.85042953491211,
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+  "industrial_structure_only": false
+}

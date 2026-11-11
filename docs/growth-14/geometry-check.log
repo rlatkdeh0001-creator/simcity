@@ -1,0 +1,32 @@
+VERIFY large-2x2-pencil-tower-02 True
+VERIFY large-2x2-slim-tower-01 True
+VERIFY medium-2x2-corner-villa-02 True
+VERIFY medium-2x2-multiplex-01 True
+VERIFY large-2x2-boutique-hotel-02 True
+VERIFY large-2x2-slim-office-01 True
+VERIFY medium-2x2-cafe-building-02 True
+VERIFY medium-2x2-neighborhood-01 True
+VERIFY large-2x2-distillation-02 True
+VERIFY large-2x2-grain-silo-01 True
+VERIFY medium-2x2-bakery-01 True
+VERIFY medium-2x2-electronics-02 True
+VERIFY small-4x4-logistics-01 True
+VERIFY small-4x4-metalshop-02 True
+RESULT 182 geometry checks passed
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/residential-growth/large-2x2-pencil-tower-02/large-2x2-pencil-tower-02.blend"
+Read blend: "/workspace/simcity/assets/residential-growth/large-2x2-slim-tower-01/large-2x2-slim-tower-01.blend"
+Read blend: "/workspace/simcity/assets/residential-growth/medium-2x2-corner-villa-02/medium-2x2-corner-villa-02.blend"
+Read blend: "/workspace/simcity/assets/residential-growth/medium-2x2-multiplex-01/medium-2x2-multiplex-01.blend"
+Read blend: "/workspace/simcity/assets/commercial-growth/large-2x2-boutique-hotel-02/large-2x2-boutique-hotel-02.blend"
+Read blend: "/workspace/simcity/assets/commercial-growth/large-2x2-slim-office-01/large-2x2-slim-office-01.blend"
+Read blend: "/workspace/simcity/assets/commercial-growth/medium-2x2-cafe-building-02/medium-2x2-cafe-building-02.blend"
+Read blend: "/workspace/simcity/assets/commercial-growth/medium-2x2-neighborhood-01/medium-2x2-neighborhood-01.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/large-2x2-distillation-02/large-2x2-distillation-02.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/large-2x2-grain-silo-01/large-2x2-grain-silo-01.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/medium-2x2-bakery-01/medium-2x2-bakery-01.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/medium-2x2-electronics-02/medium-2x2-electronics-02.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend"
+Read blend: "/workspace/simcity/assets/industrial-growth/small-4x4-metalshop-02/small-4x4-metalshop-02.blend"
+
+Blender quit

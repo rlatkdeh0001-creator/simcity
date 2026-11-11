@@ -1,0 +1,356 @@
+{
+  "assets": [
+    {
+      "id": "large-2x2-pencil-tower-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        39.34
+      ],
+      "floors": 12
+    },
+    {
+      "id": "large-2x2-slim-tower-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        33.24
+      ],
+      "floors": 10
+    },
+    {
+      "id": "medium-2x2-corner-villa-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        21.04
+      ],
+      "floors": 6
+    },
+    {
+      "id": "medium-2x2-multiplex-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        17.99
+      ],
+      "floors": 5
+    },
+    {
+      "id": "large-2x2-boutique-hotel-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        31.69
+      ],
+      "floors": 10
+    },
+    {
+      "id": "large-2x2-slim-office-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        25.59
+      ],
+      "floors": 8
+    },
+    {
+      "id": "medium-2x2-cafe-building-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        16.44
+      ],
+      "floors": 5
+    },
+    {
+      "id": "medium-2x2-neighborhood-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        13.39
+      ],
+      "floors": 4
+    },
+    {
+      "id": "large-2x2-distillation-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        18.22
+      ],
+      "floors": 0
+    },
+    {
+      "id": "large-2x2-grain-silo-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        17.12
+      ],
+      "floors": 0
+    },
+    {
+      "id": "medium-2x2-bakery-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        8.42
+      ],
+      "floors": 2
+    },
+    {
+      "id": "medium-2x2-electronics-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        8.0,
+        8.0,
+        10.63
+      ],
+      "floors": 3
+    },
+    {
+      "id": "small-4x4-logistics-01",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        5.53
+      ],
+      "floors": 1
+    },
+    {
+      "id": "small-4x4-metalshop-02",
+      "checks": {
+        "no_external_textures": true,
+        "lettering_height": true,
+        "no_8x8": true,
+        "metres": true,
+        "finite": true,
+        "entire_geometry_in_lot": true,
+        "exact_lot_extent": true,
+        "bounds_metadata": true,
+        "floor_count": true,
+        "front": true,
+        "camera_elevation_30": true,
+        "transparent_900x1100": true,
+        "not_applied": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        5.645
+      ],
+      "floors": 1
+    }
+  ],
+  "passed": true,
+  "scope": "source and geometry checks; not game integration or structural engineering certification"
+}

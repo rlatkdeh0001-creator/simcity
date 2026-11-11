@@ -1,0 +1,53 @@
+[
+  {
+    "id": "medium-2x2-electronics-02",
+    "before": {
+      "visible_letter_faces": 729,
+      "tested_letter_faces": 1011,
+      "visible_fraction": 0.7210682492581603,
+      "non_sign_geometry_sha256": "4e6d7bbf83ea1af2ace39a01d9b792f4c7d5b392924107b8bda8455c578cffb0"
+    },
+    "after": {
+      "visible_letter_faces": 1013,
+      "tested_letter_faces": 1013,
+      "visible_fraction": 1.0,
+      "non_sign_geometry_sha256": "4e6d7bbf83ea1af2ace39a01d9b792f4c7d5b392924107b8bda8455c578cffb0",
+      "material_luminance_contrast_ratio": 6.55670732549519
+    },
+    "non_sign_geometry_unchanged": true
+  },
+  {
+    "id": "small-4x4-logistics-01",
+    "before": {
+      "visible_letter_faces": 1562,
+      "tested_letter_faces": 1562,
+      "visible_fraction": 1.0,
+      "non_sign_geometry_sha256": "3d9290ddb9b58cf55cb24fc29bdebd252701a577359a40b9741ab0e79019d998"
+    },
+    "after": {
+      "visible_letter_faces": 1562,
+      "tested_letter_faces": 1562,
+      "visible_fraction": 1.0,
+      "non_sign_geometry_sha256": "3d9290ddb9b58cf55cb24fc29bdebd252701a577359a40b9741ab0e79019d998",
+      "material_luminance_contrast_ratio": 6.55670732549519
+    },
+    "non_sign_geometry_unchanged": true
+  },
+  {
+    "id": "small-4x4-metalshop-02",
+    "before": {
+      "visible_letter_faces": 754,
+      "tested_letter_faces": 948,
+      "visible_fraction": 0.7953586497890295,
+      "non_sign_geometry_sha256": "938860e961391ba7bb55e24c24823b3fe13a818512fb242da8748ceb1a3fd57f"
+    },
+    "after": {
+      "visible_letter_faces": 949,
+      "tested_letter_faces": 949,
+      "visible_fraction": 1.0,
+      "non_sign_geometry_sha256": "938860e961391ba7bb55e24c24823b3fe13a818512fb242da8748ceb1a3fd57f",
+      "material_luminance_contrast_ratio": 6.55670732549519
+    },
+    "non_sign_geometry_unchanged": true
+  }
+]

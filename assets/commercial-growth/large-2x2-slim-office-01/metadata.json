@@ -1,0 +1,77 @@
+{
+  "id": "large-2x2-slim-office-01",
+  "name": "커튼월 슬림 오피스",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "density": "large",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "floors": 8,
+  "occupied_storeys": 8,
+  "storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "+Z",
+  "front_coordinate_space": "gltf/Godot",
+  "front_blender": "-Y",
+  "up_blender": "+Z",
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      25.469999313354492
+    ]
+  ],
+  "measured_dimensions_m": [
+    8.0,
+    8.0,
+    25.589999310672283
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1032.5367
+  ],
+  "lot_corners_px": [
+    [
+      244.1805,
+      929.627
+    ],
+    [
+      450.0,
+      1032.5367
+    ],
+    [
+      655.8194,
+      929.627
+    ],
+    [
+      450.0,
+      826.7173
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 30.233003616333008,
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+  "industrial_structure_only": false
+}
