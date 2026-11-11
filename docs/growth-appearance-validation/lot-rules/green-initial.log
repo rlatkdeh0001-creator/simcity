@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS residential automatic wide zoning deterministically prefers 4x4
+PASS residential 4x4 starts with a stage1 small facade
+PASS commercial automatic wide zoning deterministically prefers 4x4
+PASS commercial 4x4 starts with a stage1 small facade
+PASS industrial automatic wide zoning deterministically prefers 4x4
+PASS industrial 4x4 starts with a stage1 small facade
+RESULT 6/6 lot rule checks passed

@@ -1,0 +1,379 @@
+[
+  {
+    "name": "initial-4x4-priority-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_lot_rules.gd",
+      "--",
+      "--case=wide",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\initial-4x4-priority-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 2.8,
+    "log": "initial-4x4-priority-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\initial-4x4-priority-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "4867b21f0e330c5e4f7e7fa3357159c437869a930b57998b9db846068d42ba97",
+    "state": {
+      "authored_lot_injection": false,
+      "buildings": [
+        {
+          "asset_id": "small-4x4-a",
+          "density": "small",
+          "id": 1,
+          "size": 4,
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-4x4-market-03",
+          "density": "small",
+          "id": 2,
+          "size": 4,
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "density": "small",
+          "id": 3,
+          "size": 4,
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "expansion_paint_after_birth": [],
+      "funds": 50000,
+      "growth_button_actions": [],
+      "initial_development": [
+        {
+          "asset_id": "small-4x4-a",
+          "id": 1,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-4x4-market-03",
+          "id": 2,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "id": 3,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "scenario": "wide",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "initial-2x2-fallback-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_lot_rules.gd",
+      "--",
+      "--case=narrow",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\initial-2x2-fallback-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 2.78,
+    "log": "initial-2x2-fallback-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\initial-2x2-fallback-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "efe4304b4d5b0f5a6e25c9368da520ce8f85929b0e22189b44b1873673686d4c",
+    "state": {
+      "authored_lot_injection": false,
+      "buildings": [
+        {
+          "asset_id": "small-2x2-a",
+          "density": "small",
+          "id": 1,
+          "size": 2,
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-2x2-mart-01",
+          "density": "small",
+          "id": 2,
+          "size": 2,
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-2x2-foodworks-02",
+          "density": "small",
+          "id": 3,
+          "size": 2,
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "expansion_paint_after_birth": [],
+      "funds": 50000,
+      "growth_button_actions": [],
+      "initial_development": [
+        {
+          "asset_id": "small-2x2-a",
+          "id": 1,
+          "painted_cells": 4,
+          "size": 2,
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-2x2-mart-01",
+          "id": 2,
+          "painted_cells": 4,
+          "size": 2,
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-2x2-foodworks-02",
+          "id": 3,
+          "painted_cells": 4,
+          "size": 2,
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "scenario": "narrow",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "stage5-8x8-expansion-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_lot_rules.gd",
+      "--",
+      "--case=stage5",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\stage5-8x8-expansion-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 3.94,
+    "log": "stage5-8x8-expansion-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-rules\\stage5-8x8-expansion-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "218d4519a0e53b4db9c7b5567792c755a5cf17a3da7ecce0c30a961d01037d86",
+    "state": {
+      "authored_lot_injection": false,
+      "buildings": [
+        {
+          "asset_id": "large-8x8-b",
+          "density": "large",
+          "id": 1,
+          "size": 8,
+          "stage": 5,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "large-8x8-twin-central-10",
+          "density": "large",
+          "id": 2,
+          "size": 8,
+          "stage": 5,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "large-8x8-auto-assembly-07",
+          "density": "large",
+          "id": 3,
+          "size": 8,
+          "stage": 5,
+          "zone": "industrial"
+        }
+      ],
+      "expansion_paint_after_birth": [
+        {
+          "changed": 48,
+          "ok": true,
+          "reason": "48칸 지정"
+        },
+        {
+          "changed": 48,
+          "ok": true,
+          "reason": "48칸 지정"
+        },
+        {
+          "changed": 48,
+          "ok": true,
+          "reason": "48칸 지정"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [
+        {
+          "id": 1,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 2
+        },
+        {
+          "id": 1,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 3
+        },
+        {
+          "id": 1,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 4
+        },
+        {
+          "id": 1,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 8,
+          "stage": 5
+        },
+        {
+          "id": 2,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 2
+        },
+        {
+          "id": 2,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 3
+        },
+        {
+          "id": 2,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 4
+        },
+        {
+          "id": 2,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 8,
+          "stage": 5
+        },
+        {
+          "id": 3,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 2
+        },
+        {
+          "id": 3,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 3
+        },
+        {
+          "id": 3,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 4,
+          "stage": 4
+        },
+        {
+          "id": 3,
+          "input": "existing HUD score and upgrade viewport mouse press/release",
+          "size": 8,
+          "stage": 5
+        }
+      ],
+      "initial_development": [
+        {
+          "asset_id": "small-4x4-a",
+          "id": 1,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-4x4-market-03",
+          "id": 2,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "id": 3,
+          "painted_cells": 16,
+          "size": 4,
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "scenario": "stage5",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  }
+]

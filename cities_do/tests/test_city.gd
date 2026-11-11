@@ -23,7 +23,8 @@ func _initialize():
 	check(not city.upgrade_chain(a.id).ok, "root score threshold enforced")
 	city.config.size_weights = {8: 1.0, 4: 0.0, 2: 0.0}
 	a.score = 120
-	check(city.upgrade_chain(a.id).ok and a.size == 8, "8x8 expansion searches valid free footprint")
+	for stage in range(2,6):city.upgrade_chain(a.id)
+	check(a.level==5 and a.size == 8, "8x8 expansion searches valid free footprint only on reaching stage5")
 	var chain = Model.new()
 	chain.add_road(PackedVector2Array([Vector2(0, 20), Vector2(39, 20)]))
 	for x in [10, 12, 14, 16]: chain.add_building(x, 17, "residential", 0)
@@ -42,16 +43,15 @@ func _initialize():
 	var highway = Model.new()
 	highway.add_road(PackedVector2Array([Vector2(0, 20),Vector2(39, 20)]), "highway")
 	check(not highway.add_building(10,17).ok, "highway does not grant zoning access")
-	var dist = Model.new()
-	var histogram := {8:0,4:0,2:0}
-	for i in range(20000): histogram[dist.pick_size()] += 1
-	check(abs(histogram[8] / 20000.0 - 0.45) < 0.02 and histogram[8] > histogram[4] and histogram[4] > histogram[2], "seeded weighted distribution prefers 8x8")
-	var repeat = Model.new()
-	var repeat2 = Model.new()
-	var same := true
-	for i in range(200):
-		if repeat.pick_size() != repeat2.pick_size(): same = false
-	check(same, "seeded replay deterministic")
+	var deterministic:=true
+	for seed_value in range(20):
+		var sample=Model.new(40,40,seed_value)
+		sample.add_road(PackedVector2Array([Vector2(0,20),Vector2(39,20)]))
+		sample.add_building(10,17,"residential",100)
+		sample.upgrade_chain(1)
+		if sample.buildings[0].size!=4 or sample.buildings[0].level!=2:deterministic=false
+	check(deterministic,"largest stage-legal footprint is independent of random seed")
+	check(not Model.new().has_method("pick_size"),"obsolete weighted size lottery is removed")
 	for b in city.buildings:
 		check(city.placement_error(b.x,b.y,b.size,b.id) == "", "post-growth spatial invariants")
 	var small = Model.new(3, 6)

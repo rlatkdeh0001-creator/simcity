@@ -1,0 +1,46 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS residential automatic wide zoning deterministically prefers 4x4
+PASS residential 4x4 starts with a stage1 small facade
+PASS commercial automatic wide zoning deterministically prefers 4x4
+PASS commercial 4x4 starts with a stage1 small facade
+PASS industrial automatic wide zoning deterministically prefers 4x4
+PASS industrial 4x4 starts with a stage1 small facade
+PASS residential largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS commercial largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS industrial largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS stage5 8x8 collision falls back to existing 4x4
+PASS no automatic merging or demolition of another building
+PASS legacy early-stage 8x8 keeps its existing large original without shrinking
+RESULT 43/43 lot rule checks passed

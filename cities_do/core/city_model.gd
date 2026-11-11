@@ -113,14 +113,15 @@ func parcel_placement_error(frame: Dictionary,u: int,v: int,size: int,ignore_id:
 			if not zoning_grid.has_parcel(frame.id,x,y):return "한 도로 블록 안에 반듯한 부지가 필요합니다"
 	return _polygon_error(Parcels.polygon(frame,u,v,size),ignore_id)
 
-func add_building_at(point: Vector2,zone: String="residential",score: float=0.0) -> Dictionary:
+func add_building_at(point: Vector2,zone: String="residential",score: float=0.0,size: int=2) -> Dictionary:
 	if zone not in ["residential","commercial","industrial"]:return {"ok":false,"reason":"지원하지 않는 구획입니다"}
+	if size not in [2,4]:return {"ok":false,"reason":"신축 부지는 2·4만 가능합니다"}
 	var parcel: Dictionary=zoning_grid.parcel_at(point)
 	if parcel.is_empty():return {"ok":false,"reason":"도로 주변 건설 구획을 선택하세요"}
-	var error:=parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)
+	var error:=parcel_placement_error(parcel.frame,parcel.u,parcel.v,size)
 	if error!="":return {"ok":false,"reason":error}
 	var origin: Vector2=parcel.polygon[0]
-	var building:={"id":next_id,"x":origin.x,"y":origin.y,"u":parcel.u,"v":parcel.v,"frame":parcel.frame.duplicate(),"size":2,"level":1,"zone":zone,"score":score,"asset_id":""}
+	var building:={"id":next_id,"x":origin.x,"y":origin.y,"u":parcel.u,"v":parcel.v,"frame":parcel.frame.duplicate(),"size":size,"level":1,"zone":zone,"score":score,"asset_id":""}
 	orient_building(building)
 	catalog.assign(building,appearance_rng)
 	next_id+=1;buildings.append(building)
@@ -158,24 +159,29 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 		steps+=1
 		var ids: Array=zone_designations.keys()
 		ids.sort()
-		for attempt in range(mini(ids.size(),config.development_checks_per_step)):
-			development_cursor%=ids.size()
-			var id: String=ids[development_cursor]
-			development_cursor+=1
-			var parcel: Dictionary=zoning_grid.parcels.get(id,{})
-			if parcel.is_empty():continue
-			var zone_type: String=zone_designations[id]
-			if population_enabled and population.demand(buildings)[zone_type]<=0:continue
-			if not zoned_lot_matches(parcel.frame,parcel.u,parcel.v,2,zone_type):continue
-			if parcel_placement_error(parcel.frame,parcel.u,parcel.v,2)!="":continue
-			var result := add_building_at(parcel.center,zone_type)
-			if result.ok:
-				var building: Dictionary=result.building
-				building.automatically_developed=true
-				catalog.assign(building,appearance_rng)
-				created.append(building)
+		var start:=development_cursor
+		var checks:=mini(ids.size(),config.development_checks_per_step)
+		development_cursor=start+checks
+		var built:=false
+		# Check larger lots across this bounded fair scan before considering small lots.
+		for size in [4,2]:
+			for attempt in range(checks):
+				var id: String=ids[(start+attempt)%ids.size()]
+				var parcel: Dictionary=zoning_grid.parcels.get(id,{})
+				if parcel.is_empty():continue
+				var zone_type: String=zone_designations[id]
+				if population_enabled and population.demand(buildings)[zone_type]<=0:continue
+				if not zoned_lot_matches(parcel.frame,parcel.u,parcel.v,size,zone_type):continue
+				if parcel_placement_error(parcel.frame,parcel.u,parcel.v,size)!="":continue
+				var result:=add_building_at(parcel.center,zone_type,0.0,size)
+				if not result.ok:continue
+				result.building.automatically_developed=true
+				created.append(result.building)
 				if population_enabled:population.sync(buildings)
+				development_cursor=start+attempt+1
+				built=true
 				break
+			if built:break
 	return created
 
 func advance_society(seconds: float) -> void:
@@ -451,24 +457,13 @@ func adjacent(a: Dictionary, b: Dictionary) -> bool:
 	var s := _rect(b)
 	return ((r.end.x == s.position.x or s.end.x == r.position.x) and min(r.end.y, s.end.y) > max(r.position.y, s.position.y)) or ((r.end.y == s.position.y or s.end.y == r.position.y) and min(r.end.x, s.end.x) > max(r.position.x, s.position.x))
 
-func pick_size() -> int:
-	var total := 0.0
-	for weight in config.size_weights.values():
-		total += max(0.0, float(weight))
-	if total <= 0.0:
-		return 2
-	var roll := rng.randf() * total
-	for size in [8, 4, 2]:
-		roll -= max(0.0, float(config.size_weights.get(size, 0.0)))
-		if roll < 0.0:
-			return size
-	return 2
-
 func _upgrade(b: Dictionary) -> bool:
-	var preferred := pick_size()
+	if int(b.level)>=5:return false
+	# Legacy 8x8 lots stay intact; newly reached stages1-4 cannot choose 8x8.
+	var preferred:=maxi(int(b.size),8 if int(b.level)+1>=5 else 4)
 	if b.has("frame"):return _upgrade_parcel_building(b,preferred)
 	for size in [8, 4, 2]:
-		if size > preferred:
+		if size > preferred or size<int(b.size):
 			continue
 		# Search footprints containing the previous center, nearest anchor first.
 		var candidates: Array[Vector2i] = []
@@ -538,13 +533,13 @@ func _update_zoning_for_road(_road: Dictionary):
 		if not zoning_grid.parcels.has(id):zone_designations.erase(id)
 
 func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
-	# Authored scenario placement of a completed building; normal construction stays 2x2.
+	# Authored scenario placement; automatic birth uses the separate 4x4-first zoning path.
 	var asset: Dictionary = catalog.get_asset(asset_id)
 	if asset.is_empty(): return {"ok":false,"reason":"등록되지 않은 건물입니다"}
 	var size: int = asset.footprint[0]
 	var error := placement_error(x,y,size)
 	if error != "": return {"ok":false,"reason":error}
-	var building := {"id":next_id,"x":x,"y":y,"size":size,"level":asset.min_level,"zone":asset.zone,"score":0.0,"asset_id":asset_id}
+	var building := {"id":next_id,"x":x,"y":y,"size":size,"level":5 if size==8 else asset.min_level,"zone":asset.zone,"score":0.0,"asset_id":asset_id}
 	orient_building(building)
 	next_id += 1
 	buildings.append(building)
@@ -554,7 +549,7 @@ func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
 func _upgrade_parcel_building(b: Dictionary,preferred: int) -> bool:
 	var center:=Vector2(b.u+b.size/2.0,b.v+b.size/2.0)
 	for size in [8,4,2]:
-		if size>preferred:continue
+		if size>preferred or size<int(b.size):continue
 		var candidates: Array[Vector2i]=[]
 		for u in range(floori(center.x)-size+1,floori(center.x)+1):
 			for v in range(floori(center.y)-size+1,floori(center.y)+1):candidates.append(Vector2i(u,v))

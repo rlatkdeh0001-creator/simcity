@@ -1,0 +1,61 @@
+{
+  "authored_lot_injection": false,
+  "buildings": [
+    {
+      "asset_id": "small-4x4-a",
+      "density": "small",
+      "id": 1,
+      "size": 4,
+      "stage": 1,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "small-4x4-market-03",
+      "density": "small",
+      "id": 2,
+      "size": 4,
+      "stage": 1,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "small-4x4-logistics-01",
+      "density": "small",
+      "id": 3,
+      "size": 4,
+      "stage": 1,
+      "zone": "industrial"
+    }
+  ],
+  "expansion_paint_after_birth": [],
+  "funds": 50000,
+  "growth_button_actions": [],
+  "initial_development": [
+    {
+      "asset_id": "small-4x4-a",
+      "id": 1,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "small-4x4-market-03",
+      "id": 2,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "small-4x4-logistics-01",
+      "id": 3,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "industrial"
+    }
+  ],
+  "population_gating_disabled_in_fixture_only": true,
+  "scenario": "wide",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

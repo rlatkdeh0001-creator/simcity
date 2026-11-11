@@ -37,6 +37,7 @@ func run():
 			check(building.has("frame") and building.size==2 and city.building_at(point).id==building.id,"rotated building footprint is used for picking")
 			check(not city.add_building_at(point).ok,"rotated lot overlap rejected")
 			city.config.size_weights={8:1.0,4:0.0,2:0.0}
+			for stage in range(2,5):city.upgrade_chain(building.id)
 			var grown: Dictionary=city.upgrade_chain(building.id)
 			check(grown.ok and building.size==8,"8x8 upgrade stays square within the same road-local block")
 			check(city._polygon_error(city.footprint(building),building.id)=="","rotated growth preserves road/neighbor/boundary clearance")

@@ -1,0 +1,305 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS fourteen approved growth originals have a runtime registry
+PASS all fourteen source IDs registered
+PASS medium-2x2-multiplex-01 actual GLB and spec exist
+PASS medium-2x2-corner-villa-02 actual GLB and spec exist
+PASS large-2x2-slim-tower-01 actual GLB and spec exist
+PASS large-2x2-pencil-tower-02 actual GLB and spec exist
+PASS medium-2x2-neighborhood-01 actual GLB and spec exist
+PASS medium-2x2-cafe-building-02 actual GLB and spec exist
+PASS large-2x2-slim-office-01 actual GLB and spec exist
+PASS large-2x2-boutique-hotel-02 actual GLB and spec exist
+PASS medium-2x2-bakery-01 actual GLB and spec exist
+PASS medium-2x2-electronics-02 actual GLB and spec exist
+PASS large-2x2-grain-silo-01 actual GLB and spec exist
+PASS large-2x2-distillation-02 actual GLB and spec exist
+PASS small-4x4-logistics-01 actual GLB and spec exist
+PASS small-4x4-metalshop-02 actual GLB and spec exist
+PASS appearance matcher exposes density-aware candidate resolution
+PASS commercial 2x2 stage3 selects actual medium appearances
+PASS existing initial placement assigns the real small commercial facade
+PASS residential exactly fourteen approved appearances enabled
+PASS residential 2x2 level1 has its two nearest same-lot original candidates
+PASS small-2x2-a candidate uses original zone, lot and density
+PASS small-2x2-b candidate uses original zone, lot and density
+PASS residential 2 level1 fallback only for original 8x8 small/medium appearance gap
+PASS residential 2x2 level2 has its two nearest same-lot original candidates
+PASS small-2x2-a candidate uses original zone, lot and density
+PASS small-2x2-b candidate uses original zone, lot and density
+PASS residential 2 level2 fallback only for original 8x8 small/medium appearance gap
+PASS residential 2x2 level3 has its two nearest same-lot original candidates
+PASS medium-2x2-multiplex-01 candidate uses original zone, lot and density
+PASS medium-2x2-corner-villa-02 candidate uses original zone, lot and density
+PASS residential 2 level3 fallback only for original 8x8 small/medium appearance gap
+PASS residential 2x2 level4 has its two nearest same-lot original candidates
+PASS medium-2x2-multiplex-01 candidate uses original zone, lot and density
+PASS medium-2x2-corner-villa-02 candidate uses original zone, lot and density
+PASS residential 2 level4 fallback only for original 8x8 small/medium appearance gap
+PASS residential 2x2 level5 has its two nearest same-lot original candidates
+PASS large-2x2-slim-tower-01 candidate uses original zone, lot and density
+PASS large-2x2-pencil-tower-02 candidate uses original zone, lot and density
+PASS residential 2 level5 fallback only for original 8x8 small/medium appearance gap
+PASS residential 4x4 level1 has its two nearest same-lot original candidates
+PASS small-4x4-a candidate uses original zone, lot and density
+PASS small-4x4-b candidate uses original zone, lot and density
+PASS residential 4 level1 fallback only for original 8x8 small/medium appearance gap
+PASS residential 4x4 level2 has its two nearest same-lot original candidates
+PASS small-4x4-a candidate uses original zone, lot and density
+PASS small-4x4-b candidate uses original zone, lot and density
+PASS residential 4 level2 fallback only for original 8x8 small/medium appearance gap
+PASS residential 4x4 level3 has its two nearest same-lot original candidates
+PASS mansion-a-4x4-4f candidate uses original zone, lot and density
+PASS mansion-b-4x4-4f candidate uses original zone, lot and density
+PASS residential 4 level3 fallback only for original 8x8 small/medium appearance gap
+PASS residential 4x4 level4 has its two nearest same-lot original candidates
+PASS mansion-a-4x4-4f candidate uses original zone, lot and density
+PASS mansion-b-4x4-4f candidate uses original zone, lot and density
+PASS residential 4 level4 fallback only for original 8x8 small/medium appearance gap
+PASS residential 4x4 level5 has its two nearest same-lot original candidates
+PASS large-4x4-a candidate uses original zone, lot and density
+PASS large-4x4-b candidate uses original zone, lot and density
+PASS residential 4 level5 fallback only for original 8x8 small/medium appearance gap
+PASS residential 8x8 level1 has its two nearest same-lot original candidates
+PASS large-8x8-a candidate uses original zone, lot and density
+PASS large-8x8-b candidate uses original zone, lot and density
+PASS residential 8 level1 fallback only for original 8x8 small/medium appearance gap
+PASS residential 8x8 level2 has its two nearest same-lot original candidates
+PASS large-8x8-a candidate uses original zone, lot and density
+PASS large-8x8-b candidate uses original zone, lot and density
+PASS residential 8 level2 fallback only for original 8x8 small/medium appearance gap
+PASS residential 8x8 level3 has its two nearest same-lot original candidates
+PASS large-8x8-a candidate uses original zone, lot and density
+PASS large-8x8-b candidate uses original zone, lot and density
+PASS residential 8 level3 fallback only for original 8x8 small/medium appearance gap
+PASS residential 8x8 level4 has its two nearest same-lot original candidates
+PASS large-8x8-a candidate uses original zone, lot and density
+PASS large-8x8-b candidate uses original zone, lot and density
+PASS residential 8 level4 fallback only for original 8x8 small/medium appearance gap
+PASS residential 8x8 level5 has its two nearest same-lot original candidates
+PASS large-8x8-a candidate uses original zone, lot and density
+PASS large-8x8-b candidate uses original zone, lot and density
+PASS residential 8 level5 fallback only for original 8x8 small/medium appearance gap
+PASS commercial exactly fourteen approved appearances enabled
+PASS commercial 2x2 level1 has its two nearest same-lot original candidates
+PASS small-2x2-auto-02 candidate uses original zone, lot and density
+PASS small-2x2-mart-01 candidate uses original zone, lot and density
+PASS commercial 2 level1 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 2x2 level2 has its two nearest same-lot original candidates
+PASS small-2x2-auto-02 candidate uses original zone, lot and density
+PASS small-2x2-mart-01 candidate uses original zone, lot and density
+PASS commercial 2 level2 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 2x2 level3 has its two nearest same-lot original candidates
+PASS medium-2x2-neighborhood-01 candidate uses original zone, lot and density
+PASS medium-2x2-cafe-building-02 candidate uses original zone, lot and density
+PASS commercial 2 level3 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 2x2 level4 has its two nearest same-lot original candidates
+PASS medium-2x2-neighborhood-01 candidate uses original zone, lot and density
+PASS medium-2x2-cafe-building-02 candidate uses original zone, lot and density
+PASS commercial 2 level4 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 2x2 level5 has its two nearest same-lot original candidates
+PASS large-2x2-slim-office-01 candidate uses original zone, lot and density
+PASS large-2x2-boutique-hotel-02 candidate uses original zone, lot and density
+PASS commercial 2 level5 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 4x4 level1 has its two nearest same-lot original candidates
+PASS small-4x4-cafe-diner-04 candidate uses original zone, lot and density
+PASS small-4x4-market-03 candidate uses original zone, lot and density
+PASS commercial 4 level1 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 4x4 level2 has its two nearest same-lot original candidates
+PASS small-4x4-cafe-diner-04 candidate uses original zone, lot and density
+PASS small-4x4-market-03 candidate uses original zone, lot and density
+PASS commercial 4 level2 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 4x4 level3 has its two nearest same-lot original candidates
+PASS medium-4x4-brick-services-06 candidate uses original zone, lot and density
+PASS medium-4x4-office-retail-05 candidate uses original zone, lot and density
+PASS commercial 4 level3 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 4x4 level4 has its two nearest same-lot original candidates
+PASS medium-4x4-brick-services-06 candidate uses original zone, lot and density
+PASS medium-4x4-office-retail-05 candidate uses original zone, lot and density
+PASS commercial 4 level4 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 4x4 level5 has its two nearest same-lot original candidates
+PASS large-4x4-department-07 candidate uses original zone, lot and density
+PASS large-4x4-office-nova-08 candidate uses original zone, lot and density
+PASS commercial 4 level5 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 8x8 level1 has its two nearest same-lot original candidates
+PASS large-8x8-grand-department-09 candidate uses original zone, lot and density
+PASS large-8x8-twin-central-10 candidate uses original zone, lot and density
+PASS commercial 8 level1 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 8x8 level2 has its two nearest same-lot original candidates
+PASS large-8x8-grand-department-09 candidate uses original zone, lot and density
+PASS large-8x8-twin-central-10 candidate uses original zone, lot and density
+PASS commercial 8 level2 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 8x8 level3 has its two nearest same-lot original candidates
+PASS large-8x8-grand-department-09 candidate uses original zone, lot and density
+PASS large-8x8-twin-central-10 candidate uses original zone, lot and density
+PASS commercial 8 level3 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 8x8 level4 has its two nearest same-lot original candidates
+PASS large-8x8-grand-department-09 candidate uses original zone, lot and density
+PASS large-8x8-twin-central-10 candidate uses original zone, lot and density
+PASS commercial 8 level4 fallback only for original 8x8 small/medium appearance gap
+PASS commercial 8x8 level5 has its two nearest same-lot original candidates
+PASS large-8x8-grand-department-09 candidate uses original zone, lot and density
+PASS large-8x8-twin-central-10 candidate uses original zone, lot and density
+PASS commercial 8 level5 fallback only for original 8x8 small/medium appearance gap
+PASS industrial exactly fourteen approved appearances enabled
+PASS industrial 2x2 level1 has its two nearest same-lot original candidates
+PASS small-2x2-foodworks-02 candidate uses original zone, lot and density
+PASS small-2x2-metalworks-01 candidate uses original zone, lot and density
+PASS industrial 2 level1 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 2x2 level2 has its two nearest same-lot original candidates
+PASS small-2x2-foodworks-02 candidate uses original zone, lot and density
+PASS small-2x2-metalworks-01 candidate uses original zone, lot and density
+PASS industrial 2 level2 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 2x2 level3 has its two nearest same-lot original candidates
+PASS medium-2x2-bakery-01 candidate uses original zone, lot and density
+PASS medium-2x2-electronics-02 candidate uses original zone, lot and density
+PASS industrial 2 level3 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 2x2 level4 has its two nearest same-lot original candidates
+PASS medium-2x2-bakery-01 candidate uses original zone, lot and density
+PASS medium-2x2-electronics-02 candidate uses original zone, lot and density
+PASS industrial 2 level4 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 2x2 level5 has its two nearest same-lot original candidates
+PASS large-2x2-grain-silo-01 candidate uses original zone, lot and density
+PASS large-2x2-distillation-02 candidate uses original zone, lot and density
+PASS industrial 2 level5 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 4x4 level1 has its two nearest same-lot original candidates
+PASS small-4x4-logistics-01 candidate uses original zone, lot and density
+PASS small-4x4-metalshop-02 candidate uses original zone, lot and density
+PASS industrial 4 level1 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 4x4 level2 has its two nearest same-lot original candidates
+PASS small-4x4-logistics-01 candidate uses original zone, lot and density
+PASS small-4x4-metalshop-02 candidate uses original zone, lot and density
+PASS industrial 4 level2 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 4x4 level3 has its two nearest same-lot original candidates
+PASS medium-4x4-circuitworks-04 candidate uses original zone, lot and density
+PASS medium-4x4-precision-03 candidate uses original zone, lot and density
+PASS industrial 4 level3 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 4x4 level4 has its two nearest same-lot original candidates
+PASS medium-4x4-circuitworks-04 candidate uses original zone, lot and density
+PASS medium-4x4-precision-03 candidate uses original zone, lot and density
+PASS industrial 4 level4 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 4x4 level5 has its two nearest same-lot original candidates
+PASS large-4x4-chemical-06 candidate uses original zone, lot and density
+PASS large-4x4-pharma-05 candidate uses original zone, lot and density
+PASS industrial 4 level5 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 8x8 level1 has its two nearest same-lot original candidates
+PASS large-8x8-auto-assembly-07 candidate uses original zone, lot and density
+PASS large-8x8-chemical-complex-08 candidate uses original zone, lot and density
+PASS industrial 8 level1 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 8x8 level2 has its two nearest same-lot original candidates
+PASS large-8x8-auto-assembly-07 candidate uses original zone, lot and density
+PASS large-8x8-chemical-complex-08 candidate uses original zone, lot and density
+PASS industrial 8 level2 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 8x8 level3 has its two nearest same-lot original candidates
+PASS large-8x8-auto-assembly-07 candidate uses original zone, lot and density
+PASS large-8x8-chemical-complex-08 candidate uses original zone, lot and density
+PASS industrial 8 level3 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 8x8 level4 has its two nearest same-lot original candidates
+PASS large-8x8-auto-assembly-07 candidate uses original zone, lot and density
+PASS large-8x8-chemical-complex-08 candidate uses original zone, lot and density
+PASS industrial 8 level4 fallback only for original 8x8 small/medium appearance gap
+PASS industrial 8x8 level5 has its two nearest same-lot original candidates
+PASS large-8x8-auto-assembly-07 candidate uses original zone, lot and density
+PASS large-8x8-chemical-complex-08 candidate uses original zone, lot and density
+PASS industrial 8 level5 fallback only for original 8x8 small/medium appearance gap
+PASS legacy mansion minimum level2 retained
+PASS mansion never appears at stage1
+PASS stage3 medium 4x4 matching retains both legacy mansions
+PASS no same-size source gives honest procedural fallback, not a stretched model
+PASS nearest-density tie chooses the lower density deterministically
+PASS residential existing actual paint/development path creates a 2x2 building
+PASS residential painted new construction uses a real small building
+PASS residential existing manual growth path changes only its normal stage and footprint outcome
+PASS residential facade rematches at every stage
+PASS residential existing manual growth path changes only its normal stage and footprint outcome
+PASS residential facade rematches at every stage
+PASS residential existing manual growth path changes only its normal stage and footprint outcome
+PASS residential facade rematches at every stage
+PASS residential existing manual growth path changes only its normal stage and footprint outcome
+PASS residential facade rematches at every stage
+PASS residential private zoning, construction and appearance growth remain free
+PASS residential appearance selection never changes growth RNG, size or stage rules
+PASS commercial existing actual paint/development path creates a 2x2 building
+PASS commercial painted new construction uses a real small building
+PASS commercial existing manual growth path changes only its normal stage and footprint outcome
+PASS commercial facade rematches at every stage
+PASS commercial existing manual growth path changes only its normal stage and footprint outcome
+PASS commercial facade rematches at every stage
+PASS commercial existing manual growth path changes only its normal stage and footprint outcome
+PASS commercial facade rematches at every stage
+PASS commercial existing manual growth path changes only its normal stage and footprint outcome
+PASS commercial facade rematches at every stage
+PASS commercial private zoning, construction and appearance growth remain free
+PASS commercial appearance selection never changes growth RNG, size or stage rules
+PASS industrial existing actual paint/development path creates a 2x2 building
+PASS industrial painted new construction uses a real small building
+PASS industrial existing manual growth path changes only its normal stage and footprint outcome
+PASS industrial facade rematches at every stage
+PASS industrial existing manual growth path changes only its normal stage and footprint outcome
+PASS industrial facade rematches at every stage
+PASS industrial existing manual growth path changes only its normal stage and footprint outcome
+PASS industrial facade rematches at every stage
+PASS industrial existing manual growth path changes only its normal stage and footprint outcome
+PASS industrial facade rematches at every stage
+PASS industrial private zoning, construction and appearance growth remain free
+PASS industrial appearance selection never changes growth RNG, size or stage rules
+PASS same density and lot retain existing eligible facade
+PASS density boundary rematches instead of preserving stale small facade
+PASS existing size-change path selects correct lot without stretching
+PASS medium-2x2-multiplex-01 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-multiplex-01 ground alignment is derivative only
+PASS medium-2x2-multiplex-01 original frontage convention exports to Godot +Z
+PASS medium-2x2-multiplex-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS medium-2x2-corner-villa-02 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-corner-villa-02 ground alignment is derivative only
+PASS medium-2x2-corner-villa-02 original frontage convention exports to Godot +Z
+PASS medium-2x2-corner-villa-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-slim-tower-01 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-slim-tower-01 ground alignment is derivative only
+PASS large-2x2-slim-tower-01 original frontage convention exports to Godot +Z
+PASS large-2x2-slim-tower-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-pencil-tower-02 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-pencil-tower-02 ground alignment is derivative only
+PASS large-2x2-pencil-tower-02 original frontage convention exports to Godot +Z
+PASS large-2x2-pencil-tower-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS medium-2x2-neighborhood-01 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-neighborhood-01 ground alignment is derivative only
+PASS medium-2x2-neighborhood-01 original frontage convention exports to Godot +Z
+PASS medium-2x2-neighborhood-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS medium-2x2-cafe-building-02 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-cafe-building-02 ground alignment is derivative only
+PASS medium-2x2-cafe-building-02 original frontage convention exports to Godot +Z
+PASS medium-2x2-cafe-building-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-slim-office-01 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-slim-office-01 ground alignment is derivative only
+PASS large-2x2-slim-office-01 original frontage convention exports to Godot +Z
+PASS large-2x2-slim-office-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-boutique-hotel-02 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-boutique-hotel-02 ground alignment is derivative only
+PASS large-2x2-boutique-hotel-02 original frontage convention exports to Godot +Z
+PASS large-2x2-boutique-hotel-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS medium-2x2-bakery-01 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-bakery-01 ground alignment is derivative only
+PASS medium-2x2-bakery-01 original frontage convention exports to Godot +Z
+PASS medium-2x2-bakery-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS medium-2x2-electronics-02 real GLB dimensions preserve source metre/lot scale
+PASS medium-2x2-electronics-02 ground alignment is derivative only
+PASS medium-2x2-electronics-02 original frontage convention exports to Godot +Z
+PASS medium-2x2-electronics-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-grain-silo-01 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-grain-silo-01 ground alignment is derivative only
+PASS large-2x2-grain-silo-01 original frontage convention exports to Godot +Z
+PASS large-2x2-grain-silo-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS large-2x2-distillation-02 real GLB dimensions preserve source metre/lot scale
+PASS large-2x2-distillation-02 ground alignment is derivative only
+PASS large-2x2-distillation-02 original frontage convention exports to Godot +Z
+PASS large-2x2-distillation-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS small-4x4-logistics-01 real GLB dimensions preserve source metre/lot scale
+PASS small-4x4-logistics-01 ground alignment is derivative only
+PASS small-4x4-logistics-01 original frontage convention exports to Godot +Z
+PASS small-4x4-logistics-01 original PNG and occupied-storey metadata preserved including equipment zero storeys
+PASS small-4x4-metalshop-02 real GLB dimensions preserve source metre/lot scale
+PASS small-4x4-metalshop-02 ground alignment is derivative only
+PASS small-4x4-metalshop-02 original frontage convention exports to Godot +Z
+PASS small-4x4-metalshop-02 original PNG and occupied-storey metadata preserved including equipment zero storeys
+RESULT 302/302 growth appearance checks passed

@@ -1,0 +1,150 @@
+{
+  "authored_lot_injection": false,
+  "buildings": [
+    {
+      "asset_id": "large-8x8-b",
+      "density": "large",
+      "id": 1,
+      "size": 8,
+      "stage": 5,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "large-8x8-twin-central-10",
+      "density": "large",
+      "id": 2,
+      "size": 8,
+      "stage": 5,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "large-8x8-auto-assembly-07",
+      "density": "large",
+      "id": 3,
+      "size": 8,
+      "stage": 5,
+      "zone": "industrial"
+    }
+  ],
+  "expansion_paint_after_birth": [
+    {
+      "changed": 48,
+      "ok": true,
+      "reason": "48칸 지정"
+    },
+    {
+      "changed": 48,
+      "ok": true,
+      "reason": "48칸 지정"
+    },
+    {
+      "changed": 48,
+      "ok": true,
+      "reason": "48칸 지정"
+    }
+  ],
+  "funds": 50000,
+  "growth_button_actions": [
+    {
+      "id": 1,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 2
+    },
+    {
+      "id": 1,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 3
+    },
+    {
+      "id": 1,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 4
+    },
+    {
+      "id": 1,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 8,
+      "stage": 5
+    },
+    {
+      "id": 2,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 2
+    },
+    {
+      "id": 2,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 3
+    },
+    {
+      "id": 2,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 4
+    },
+    {
+      "id": 2,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 8,
+      "stage": 5
+    },
+    {
+      "id": 3,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 2
+    },
+    {
+      "id": 3,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 3
+    },
+    {
+      "id": 3,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 4,
+      "stage": 4
+    },
+    {
+      "id": 3,
+      "input": "existing HUD score and upgrade viewport mouse press/release",
+      "size": 8,
+      "stage": 5
+    }
+  ],
+  "initial_development": [
+    {
+      "asset_id": "small-4x4-a",
+      "id": 1,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "small-4x4-market-03",
+      "id": 2,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "small-4x4-logistics-01",
+      "id": 3,
+      "painted_cells": 16,
+      "size": 4,
+      "stage": 1,
+      "zone": "industrial"
+    }
+  ],
+  "population_gating_disabled_in_fixture_only": true,
+  "scenario": "stage5",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

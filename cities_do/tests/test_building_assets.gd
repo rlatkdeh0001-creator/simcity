@@ -31,9 +31,9 @@ func run():
 	verify(b.asset_id == original_id, "same-density same-size growth preserves facade")
 	city.config.size_weights = {8:0.0,4:0.0,2:1.0}
 	city.upgrade_chain(1)
-	verify(b.size == 2 and city.catalog.get_asset(b.asset_id).footprint==[2,2], "smaller lot rematches without stretching the old mansion")
+	verify(b.size == 8 and b.level==5 and city.catalog.get_asset(b.asset_id).footprint==[8,8], "stage5 expands to the largest legal lot without shrinking")
 	city.config.size_weights = {8:1.0,4:0.0,2:0.0}
-	city.upgrade_chain(1)
+	verify(not city.upgrade_chain(1).ok and b.level==5,"final stage cannot grow into stage6")
 	verify(b.size == 8 and city.catalog.get_asset(b.asset_id).density=="large" and city.catalog.get_asset(b.asset_id).footprint==[8,8], "8x8 uses its original large model, not a stretched mansion")
 	for zone in ["commercial", "industrial"]:
 		verify(city.catalog.eligible({"zone":zone,"size":4,"level":3}).all(func(id):return city.catalog.get_asset(id).zone==zone), "mansion excluded from " + zone)

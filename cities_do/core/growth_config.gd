@@ -1,5 +1,6 @@
 extends RefCounted
 ## Prototype balance, not final game design. Footprints and density are independent.
+# Legacy fixture compatibility only; deterministic lot selection no longer reads these weights.
 var size_weights := {8: 0.45, 4: 0.30, 2: 0.25}
 var score_threshold := 100.0
 var neighbor_chance := 0.55

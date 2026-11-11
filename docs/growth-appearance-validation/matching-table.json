@@ -1,16 +1,20 @@
 {
-  "fallback_stage_rows": [
+  "fallback_stage_rows": [],
+  "legacy_fallback_stage_rows": [
     {
       "candidate_ids": [
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "residential"
@@ -20,12 +24,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "residential"
@@ -35,12 +42,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "residential"
@@ -50,12 +60,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "residential"
@@ -65,12 +78,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "commercial"
@@ -80,12 +96,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "commercial"
@@ -95,12 +114,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "commercial"
@@ -110,12 +132,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "commercial"
@@ -125,12 +150,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "industrial"
@@ -140,12 +168,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "industrial"
@@ -155,12 +186,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "industrial"
@@ -170,12 +204,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "industrial"
@@ -189,11 +226,14 @@
         "small-2x2-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "residential"
@@ -204,11 +244,14 @@
         "small-2x2-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "residential"
@@ -219,11 +262,14 @@
         "medium-2x2-corner-villa-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "residential"
@@ -234,11 +280,14 @@
         "medium-2x2-corner-villa-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "residential"
@@ -249,11 +298,14 @@
         "large-2x2-pencil-tower-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "residential"
@@ -264,11 +316,14 @@
         "small-4x4-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "residential"
@@ -279,11 +334,14 @@
         "small-4x4-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "residential"
@@ -294,11 +352,14 @@
         "mansion-b-4x4-4f"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "residential"
@@ -309,11 +370,14 @@
         "mansion-b-4x4-4f"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "residential"
@@ -324,11 +388,14 @@
         "large-4x4-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "residential"
@@ -338,12 +405,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "residential"
@@ -353,12 +423,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "residential"
@@ -368,12 +441,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "residential"
@@ -383,12 +459,15 @@
         "large-8x8-a",
         "large-8x8-b"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "residential"
@@ -399,11 +478,14 @@
         "large-8x8-b"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "residential"
@@ -414,11 +496,14 @@
         "small-2x2-mart-01"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "commercial"
@@ -429,11 +514,14 @@
         "small-2x2-mart-01"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "commercial"
@@ -444,11 +532,14 @@
         "medium-2x2-cafe-building-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "commercial"
@@ -459,11 +550,14 @@
         "medium-2x2-cafe-building-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "commercial"
@@ -474,11 +568,14 @@
         "large-2x2-boutique-hotel-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "commercial"
@@ -489,11 +586,14 @@
         "small-4x4-market-03"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "commercial"
@@ -504,11 +604,14 @@
         "small-4x4-market-03"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "commercial"
@@ -519,11 +622,14 @@
         "medium-4x4-office-retail-05"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "commercial"
@@ -534,11 +640,14 @@
         "medium-4x4-office-retail-05"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "commercial"
@@ -549,11 +658,14 @@
         "large-4x4-office-nova-08"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "commercial"
@@ -563,12 +675,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "commercial"
@@ -578,12 +693,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "commercial"
@@ -593,12 +711,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "commercial"
@@ -608,12 +729,15 @@
         "large-8x8-grand-department-09",
         "large-8x8-twin-central-10"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "commercial"
@@ -624,11 +748,14 @@
         "large-8x8-twin-central-10"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "commercial"
@@ -639,11 +766,14 @@
         "small-2x2-metalworks-01"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "industrial"
@@ -654,11 +784,14 @@
         "small-2x2-metalworks-01"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "industrial"
@@ -669,11 +802,14 @@
         "medium-2x2-electronics-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "industrial"
@@ -684,11 +820,14 @@
         "medium-2x2-electronics-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "industrial"
@@ -699,11 +838,14 @@
         "large-2x2-distillation-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         2,
         2
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "industrial"
@@ -714,11 +856,14 @@
         "small-4x4-metalshop-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 1,
       "target_density": "small",
       "zone": "industrial"
@@ -729,11 +874,14 @@
         "small-4x4-metalshop-02"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "small",
+      "simulation_reachable": true,
       "stage": 2,
       "target_density": "small",
       "zone": "industrial"
@@ -744,11 +892,14 @@
         "medium-4x4-precision-03"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 3,
       "target_density": "medium",
       "zone": "industrial"
@@ -759,11 +910,14 @@
         "medium-4x4-precision-03"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "medium",
+      "simulation_reachable": true,
       "stage": 4,
       "target_density": "medium",
       "zone": "industrial"
@@ -774,11 +928,14 @@
         "large-4x4-pharma-05"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         4,
         4
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "industrial"
@@ -788,12 +945,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 1,
       "target_density": "small",
       "zone": "industrial"
@@ -803,12 +963,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 2,
       "target_density": "small",
       "zone": "industrial"
@@ -818,12 +981,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 3,
       "target_density": "medium",
       "zone": "industrial"
@@ -833,12 +999,15 @@
         "large-8x8-auto-assembly-07",
         "large-8x8-chemical-complex-08"
       ],
-      "fallback": true,
+      "fallback": false,
+      "legacy_fallback": true,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "unreachable; existing saved 8x8 retains large",
       "resolved_density": "large",
+      "simulation_reachable": false,
       "stage": 4,
       "target_density": "medium",
       "zone": "industrial"
@@ -849,15 +1018,18 @@
         "large-8x8-chemical-complex-08"
       ],
       "fallback": false,
+      "legacy_fallback": false,
       "lot_cells": [
         8,
         8
       ],
+      "reachability": "reachable",
       "resolved_density": "large",
+      "simulation_reachable": true,
       "stage": 5,
       "target_density": "large",
       "zone": "industrial"
     }
   ],
-  "scope": "appearance only; early-stage 8x8 rows audit legacy fallback and do not implement or approve new 8x8 spawning"
+  "scope": "deterministic 4x4-first birth and stage5-only new 8x8; early-stage 8x8 is unreachable except preserved legacy data"
 }

@@ -43,9 +43,10 @@ func check_matrix(catalog):
      var entry: Dictionary=catalog.get_asset(id)
      verify(entry.zone==zone and entry.footprint==[size,size] and catalog.appearance_density(entry)==result.resolved_density,id+" candidate uses original zone, lot and density")
     verify(result.fallback==(size==8 and level<5),"%s %d level%d fallback only for original 8x8 small/medium appearance gap" % [zone,size,level])
-    var row: Dictionary={"zone":zone,"lot_cells":[size,size],"stage":level,"target_density":target,"resolved_density":result.resolved_density,"candidate_ids":result.candidates,"fallback":result.fallback}
+    var reachable: bool=not(size==8 and level<5)
+    var row: Dictionary={"zone":zone,"lot_cells":[size,size],"stage":level,"target_density":target,"resolved_density":result.resolved_density,"candidate_ids":result.candidates,"fallback":result.fallback and reachable,"simulation_reachable":reachable,"legacy_fallback":result.fallback and not reachable,"reachability":"reachable" if reachable else "unreachable; existing saved 8x8 retains large"}
     rows.append(row)
-    if result.fallback:fallback.append(row)
+    if not reachable:fallback.append(row)
  verify(catalog.get_asset("mansion-a-4x4-4f").min_level==2 and catalog.get_asset("mansion-b-4x4-4f").min_level==2,"legacy mansion minimum level2 retained")
  verify(not "mansion-a-4x4-4f" in catalog.eligible({"zone":"residential","size":4,"level":1}),"mansion never appears at stage1")
  verify("mansion-a-4x4-4f" in catalog.eligible({"zone":"residential","size":4,"level":3}),"stage3 medium 4x4 matching retains both legacy mansions")
@@ -54,7 +55,7 @@ func check_matrix(catalog):
  isolated.entries=isolated.entries.filter(func(e):return e.zone=="commercial" and e.density!="medium")
  verify(isolated.matching({"zone":"commercial","size":2,"level":3}).resolved_density=="small","nearest-density tie chooses the lower density deterministically")
  var file:=FileAccess.open(ProjectSettings.globalize_path("res://../docs/growth-appearance-validation/matching-table.json"),FileAccess.WRITE)
- file.store_string(JSON.stringify({"rows":rows,"fallback_stage_rows":fallback,"no_candidate_rows":[],"scope":"appearance only; early-stage 8x8 rows audit legacy fallback and do not implement or approve new 8x8 spawning"},"  ")+"\n")
+ file.store_string(JSON.stringify({"rows":rows,"fallback_stage_rows":[],"legacy_fallback_stage_rows":fallback,"no_candidate_rows":[],"scope":"deterministic 4x4-first birth and stage5-only new 8x8; early-stage 8x8 is unreachable except preserved legacy data"},"  ")+"\n")
  file.close()
 
 func check_city_growth():

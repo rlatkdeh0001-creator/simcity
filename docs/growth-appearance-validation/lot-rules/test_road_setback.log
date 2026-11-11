@@ -1,0 +1,52 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS 0.00m boundary gap correctly accepted/rejected
+PASS 1.49m boundary gap correctly accepted/rejected
+PASS 1.50m boundary gap correctly accepted/rejected
+PASS 1.51m boundary gap correctly accepted/rejected
+PASS 4.00m boundary gap correctly accepted/rejected
+PASS 8.00m boundary gap correctly accepted/rejected
+PASS only road-adjacent depth is valid 0.00/-1/0
+PASS only road-adjacent depth is valid 0.00/-1/1
+PASS only road-adjacent depth is valid 0.00/-1/2
+PASS only road-adjacent depth is valid 0.00/-1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS only road-adjacent depth is valid 0.00/1/0
+PASS only road-adjacent depth is valid 0.00/1/1
+PASS only road-adjacent depth is valid 0.00/1/2
+PASS only road-adjacent depth is valid 0.00/1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS only road-adjacent depth is valid 0.37/-1/0
+PASS only road-adjacent depth is valid 0.37/-1/1
+PASS only road-adjacent depth is valid 0.37/-1/2
+PASS only road-adjacent depth is valid 0.37/-1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS only road-adjacent depth is valid 0.37/1/0
+PASS only road-adjacent depth is valid 0.37/1/1
+PASS only road-adjacent depth is valid 0.37/1/2
+PASS only road-adjacent depth is valid 0.37/1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS only road-adjacent depth is valid 1.57/-1/0
+PASS only road-adjacent depth is valid 1.57/-1/1
+PASS only road-adjacent depth is valid 1.57/-1/2
+PASS only road-adjacent depth is valid 1.57/-1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS only road-adjacent depth is valid 1.57/1/0
+PASS only road-adjacent depth is valid 1.57/1/1
+PASS only road-adjacent depth is valid 1.57/1/2
+PASS only road-adjacent depth is valid 1.57/1/3
+PASS adjacent lot built
+PASS large growth keeps its frontage row
+PASS shrink either keeps frontage or leaves the original lot untouched
+PASS a close corner at a road endpoint does not grant frontage
+RESULT 49/49 setback checks passed

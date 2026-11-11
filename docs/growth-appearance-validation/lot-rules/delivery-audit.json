@@ -1,0 +1,18 @@
+{
+  "review_mode": "self-review",
+  "full_suite": {
+    "passed": 28,
+    "total": 28
+  },
+  "lot_rule_assertions": 86,
+  "appearance_assertions": 302,
+  "unchanged_source_files": 49,
+  "unchanged_existing_glb": 118,
+  "unreachable_8x8_stage_rows": 12,
+  "normal_density_fallback_rows": 0,
+  "captures": 3,
+  "protected_values_and_agents_unchanged": true,
+  "capacity_formula": "unchanged area proportional",
+  "demand_formula": "unchanged; commercial/industrial demand still counts buildings, not 2x2 equivalents",
+  "scope": "deterministic initial and manual-upgrade lot policy only; no happiness or automatic density growth"
+}
