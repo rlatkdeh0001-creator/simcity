@@ -176,3 +176,7 @@ Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-const
 ## 나머지 원본30종·이전 도로/도시 전시장 보존
 
 [발전소6종을 포함한 원본 목록·이미지·규격](docs/remaining-original-assets/README_KO.md). 예전 코드/전시장은 archive 아래 역사 자료로 보존하며 현재 게임에 덮어쓰지 않는다.
+
+## 건물·시설 부지 크기
+
+[전체63종 크기표](docs/asset-sizes/README_KO.md) · [Excel용 CSV](docs/asset-sizes/sizes.csv). 각 항목에서 원본 metadata/spec까지 열 수 있다.

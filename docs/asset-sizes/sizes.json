@@ -1,0 +1,1007 @@
+{
+  "cell_metres": 4,
+  "assets": [
+    {
+      "group": "주거",
+      "id": "mansion-a-4x4-4f",
+      "name": "벽돌형 맨션",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/mansion-study/a-brick/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "mansion-b-4x4-4f",
+      "name": "모던형 맨션",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/mansion-study/b-modern/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "large-4x4-a",
+      "name": "발코니 아파트",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/large-4x4-a/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "large-4x4-b",
+      "name": "코너 주거타워",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/large-4x4-b/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "large-8x8-a",
+      "name": "L자형 주거 아파트",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/large-8x8-a/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "large-8x8-b",
+      "name": "계단형 주거타워",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/large-8x8-b/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "small-2x2-a",
+      "name": "단층 전원주택",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/small-2x2-a/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "small-2x2-b",
+      "name": "2층 타운하우스",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/small-2x2-b/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "small-4x4-a",
+      "name": "정원형 단독주택",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/small-4x4-a/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "small-4x4-b",
+      "name": "안뜰형 연립주택",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/residential-eight/small-4x4-b/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-4x4-department-07",
+      "name": "AUREL 백화점",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/large-4x4-department-07/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-4x4-office-nova-08",
+      "name": "NOVA 오피스 타워",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/large-4x4-office-nova-08/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-8x8-grand-department-09",
+      "name": "AUREL GRAND 대형 백화점",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/large-8x8-grand-department-09/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-8x8-twin-central-10",
+      "name": "NOVA CENTRAL 트윈 복합타워",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/large-8x8-twin-central-10/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "medium-4x4-brick-services-06",
+      "name": "벽돌형 식당·서비스 상가",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/medium-4x4-brick-services-06/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "medium-4x4-office-retail-05",
+      "name": "업무·상가 복합빌딩",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/medium-4x4-office-retail-05/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "small-2x2-auto-02",
+      "name": "자동차 전시장 AUTO",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/small-2x2-auto-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "small-2x2-mart-01",
+      "name": "동네 MART",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/small-2x2-mart-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "small-4x4-cafe-diner-04",
+      "name": "식당·카페 복합상가",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/small-4x4-cafe-diner-04/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "small-4x4-market-03",
+      "name": "동네 슈퍼마켓",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/commercial-study/small-4x4-market-03/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-4x4-chemical-06",
+      "name": "화학 생산시설",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/large-4x4-chemical-06/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-4x4-pharma-05",
+      "name": "제약 생산시설",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/large-4x4-pharma-05/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-8x8-auto-assembly-07",
+      "name": "자동차 조립공장",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/large-8x8-auto-assembly-07/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-8x8-chemical-complex-08",
+      "name": "대규모 화학 플랜트",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/large-8x8-chemical-complex-08/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "medium-4x4-circuitworks-04",
+      "name": "전자부품 공장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/medium-4x4-circuitworks-04/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "medium-4x4-precision-03",
+      "name": "정밀기계 공장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/medium-4x4-precision-03/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "small-2x2-foodworks-02",
+      "name": "식품가공 작업장",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/small-2x2-foodworks-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "small-2x2-metalworks-01",
+      "name": "금속가공 작업장",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/industrial-study/small-2x2-metalworks-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-coal",
+      "name": "석탄발전소",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/power-study/coal/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-hydro",
+      "name": "수력발전댐",
+      "footprint_cells": null,
+      "lot_metres": null,
+      "dimension_status": "가변 길이 · 고정 필지 없음",
+      "spec_file": "assets/power-study/hydro/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-nuclear",
+      "name": "원자력발전소",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/power-study/nuclear/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-oil",
+      "name": "석유발전소",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/power-study/oil/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-solar",
+      "name": "태양광발전소",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/power-study/solar/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "발전",
+      "id": "power-wind",
+      "name": "풍력발전소",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/power-study/wind/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상하수도",
+      "id": "water-intake",
+      "name": "취수장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/water-study/intake/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상하수도",
+      "id": "water-sewage-outfall",
+      "name": "하수장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/water-study/sewage-outfall/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상하수도",
+      "id": "water-sewage-treatment",
+      "name": "하수처리장",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/water-study/sewage-treatment/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상하수도",
+      "id": "water-water-tower",
+      "name": "급수탑",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/water-study/water-tower/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "쓰레기",
+      "id": "waste-incinerator",
+      "name": "쓰레기 소각장",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/waste-study/incinerator/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "쓰레기",
+      "id": "waste-recycling-center",
+      "name": "재활용센터",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/waste-study/recycling-center/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "소방",
+      "id": "fire-station",
+      "name": "소방서",
+      "footprint_cells": [
+        6,
+        6
+      ],
+      "lot_metres": [
+        24,
+        24
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/fire-study/fire-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "소방",
+      "id": "regional-fire-station",
+      "name": "광역 소방서",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/fire-study/regional-fire-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "소방",
+      "id": "small-fire-station",
+      "name": "소형 소방서",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/fire-study/small-fire-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "경찰",
+      "id": "police-station",
+      "name": "경찰서",
+      "footprint_cells": [
+        6,
+        6
+      ],
+      "lot_metres": [
+        24,
+        24
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/police-study/police-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "경찰",
+      "id": "regional-police-station",
+      "name": "광역 경찰서",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/police-study/regional-police-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "경찰",
+      "id": "small-police-station",
+      "name": "소형 경찰서",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/police-study/small-police-station/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "교정",
+      "id": "prison-8x8",
+      "name": "교도소",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/prison-study/prison/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "의료",
+      "id": "medical-clinic",
+      "name": "진료소",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/medical-study/clinic/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "의료",
+      "id": "medical-hospital",
+      "name": "병원",
+      "footprint_cells": [
+        6,
+        6
+      ],
+      "lot_metres": [
+        24,
+        24
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/medical-study/hospital/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "의료",
+      "id": "medical-large-hospital",
+      "name": "대형병원",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "시안 규격",
+      "spec_file": "assets/medical-study/large-hospital/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "교육",
+      "id": "elementary-school",
+      "name": "초등학교",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/education-study/elementary-school/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "교육",
+      "id": "high-school",
+      "name": "고등학교",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/education-study/high-school/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "교육",
+      "id": "technical-college",
+      "name": "전문대",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/education-study/technical-college/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "교육",
+      "id": "university",
+      "name": "대학교",
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "lot_metres": [
+        32,
+        32
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/education-study/university/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공원·주차",
+      "id": "park-garden-2x2",
+      "name": "꽃정원 공원",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/park-garden-2x2/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "park-play-4x4",
+      "name": "놀이터 공원",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/park-play-4x4/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "park-plaza-4x4",
+      "name": "분수 광장 공원",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/park-plaza-4x4/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "park-pocket-2x2",
+      "name": "쉼터 공원",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/park-pocket-2x2/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "parking-large-4x8",
+      "name": "대형 주차장",
+      "footprint_cells": [
+        4,
+        8
+      ],
+      "lot_metres": [
+        16,
+        32
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/parking-large-4x8/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "parking-medium-4x4",
+      "name": "중형 주차장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/parking-medium-4x4/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "parking-small-2x4",
+      "name": "소형 주차장",
+      "footprint_cells": [
+        2,
+        4
+      ],
+      "lot_metres": [
+        8,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/parking-small-2x4/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "공원·주차",
+      "id": "parking-tower-4x4-4f",
+      "name": "4층 주차타워",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/facilities/parking-tower-4x4-4f/spec.json",
+      "spec_field": "width/depth"
+    },
+    {
+      "group": "기타 공공시설",
+      "id": "crematorium-4x4",
+      "name": "화장터",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "원본 규격",
+      "spec_file": "assets/service-facilities/crematorium-4x4/spec.json",
+      "spec_field": "width/depth"
+    }
+  ]
+}
