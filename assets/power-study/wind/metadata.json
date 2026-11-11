@@ -3,8 +3,8 @@
   "name": "풍력발전소",
   "category": "power_facility",
   "footprint_cells": [
-    2,
-    2
+    4,
+    4
   ],
   "presentation_lot_cells": [
     2,
@@ -60,5 +60,10 @@
   "game_registered": false,
   "source": "original Blender geometry; DejaVu font; no external models or textures",
   "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
-  "revision": "requested-footprints-and-equipment-scale"
+  "revision": "requested-footprints-and-equipment-scale",
+  "lot_meters": [
+    16,
+    16
+  ],
+  "footprint_status": "user-specified"
 }

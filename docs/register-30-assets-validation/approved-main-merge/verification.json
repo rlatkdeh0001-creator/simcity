@@ -1,0 +1,276 @@
+{
+  "size_rows": 63,
+  "registered_assets_consistent": 30,
+  "size_mismatch": [],
+  "changed_rows": [
+    {
+      "id": "power-wind",
+      "before": {
+        "group": "발전",
+        "id": "power-wind",
+        "name": "풍력발전소",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "lot_metres": [
+          8,
+          8
+        ],
+        "dimension_status": "원본 규격",
+        "spec_file": "assets/power-study/wind/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "발전",
+        "id": "power-wind",
+        "name": "풍력발전소",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "lot_metres": [
+          16,
+          16
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/power-study/wind/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "fire-station",
+      "before": {
+        "group": "소방",
+        "id": "fire-station",
+        "name": "소방서",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "lot_metres": [
+          24,
+          24
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/fire-study/fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "소방",
+        "id": "fire-station",
+        "name": "소방서",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "lot_metres": [
+          24,
+          24
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/fire-study/fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "regional-fire-station",
+      "before": {
+        "group": "소방",
+        "id": "regional-fire-station",
+        "name": "광역 소방서",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "lot_metres": [
+          32,
+          32
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/fire-study/regional-fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "소방",
+        "id": "regional-fire-station",
+        "name": "광역 소방서",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "lot_metres": [
+          32,
+          32
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/fire-study/regional-fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "small-fire-station",
+      "before": {
+        "group": "소방",
+        "id": "small-fire-station",
+        "name": "소형 소방서",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "lot_metres": [
+          16,
+          16
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/fire-study/small-fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "소방",
+        "id": "small-fire-station",
+        "name": "소형 소방서",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "lot_metres": [
+          16,
+          16
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/fire-study/small-fire-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "police-station",
+      "before": {
+        "group": "경찰",
+        "id": "police-station",
+        "name": "경찰서",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "lot_metres": [
+          24,
+          24
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/police-study/police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "경찰",
+        "id": "police-station",
+        "name": "경찰서",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "lot_metres": [
+          24,
+          24
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/police-study/police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "regional-police-station",
+      "before": {
+        "group": "경찰",
+        "id": "regional-police-station",
+        "name": "광역 경찰서",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "lot_metres": [
+          32,
+          32
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/police-study/regional-police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "경찰",
+        "id": "regional-police-station",
+        "name": "광역 경찰서",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "lot_metres": [
+          32,
+          32
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/police-study/regional-police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    },
+    {
+      "id": "small-police-station",
+      "before": {
+        "group": "경찰",
+        "id": "small-police-station",
+        "name": "소형 경찰서",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "lot_metres": [
+          16,
+          16
+        ],
+        "dimension_status": "시안 규격",
+        "spec_file": "assets/police-study/small-police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      },
+      "after": {
+        "group": "경찰",
+        "id": "small-police-station",
+        "name": "소형 경찰서",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "lot_metres": [
+          16,
+          16
+        ],
+        "dimension_status": "사용자 지정",
+        "spec_file": "assets/police-study/small-police-station/metadata.json",
+        "spec_field": "footprint_cells"
+      }
+    }
+  ],
+  "metadata_changes": 7,
+  "metadata_only_authorized_fields": true,
+  "glb_hashes_unchanged": 104,
+  "all_other_protected_sources_unchanged": true,
+  "planning_files_verbatim": [
+    "docs/design/BUILDING_GROWTH_KO.md",
+    "docs/design/INITIAL_LOT_SIZE_KO.md",
+    "docs/design/ASSET_REQUEST_GROWTH_KO.md",
+    "docs/design/ASSET_REQUEST_GROWTH_PROMPT_KO.md",
+    "docs/design/MAP_SIZE_KO.md",
+    "docs/design/VEHICLE_SPAWN_DESPAWN_KO.md",
+    "docs/design/ECONOMY_LOOP_SPEC_KO.md",
+    "docs/design/BOTTOM_BAR_LAYOUT_V2_KO.md",
+    "mistake.md"
+  ],
+  "tests_passed": 26,
+  "tests_total": 26,
+  "registered_checks_passed": 635,
+  "registered_checks_total": 635,
+  "review_mode": "self-review",
+  "main_integration_source": "12d714e6ae0773893f72ab791ce5b208c413ba85",
+  "conflicts": [
+    "docs/SKILL_HANDOFF_KO.md: both records retained"
+  ]
+}

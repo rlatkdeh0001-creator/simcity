@@ -6,7 +6,7 @@
 게임 등록 크기는 `cities_do/assets/buildings/catalog.json`의 `footprint`, services/facilities 카탈로그의 `width`/`depth`에도 있다.
 [CSV 내려받기/Excel용](sizes.csv) · [JSON](sizes.json)
 
-6×6 및 2×4·4×8도 원본에 있는 값을 그대로 표시한다. 시안 규격을 정식 건설 규칙으로 새로 승인한 것은 아니다.
+주거·상업·공업 일반 건물 부지는 2×2·4×4·8×8뿐이다(8×8은 성장 5단계 대형 전용). 6×6은 소방서·경찰서·병원 등 직접 배치 서비스 건물의 사용자 확정 크기다. 2×4·4×8 주차장은 원본 값 그대로.
 수력발전댐은 사용자가 길이를 정하므로 고정 칸 수가 없다. 시안의 48m 댐 길이나 배경판 60×32m를 고정 필지로 쓰지 않는다.
 이 표는 규격 조회용이며 런타임 로더가 아니다. 크기를 수정할 때 원본·실제 모델·게임 카탈로그를 함께 맞춰야 한다.
 
@@ -64,7 +64,7 @@
 | 원자력발전소 | 8×8 | 32×32 | 원본 규격 | [power-nuclear](../../assets/power-study/nuclear/metadata.json) |
 | 석유발전소 | 8×8 | 32×32 | 원본 규격 | [power-oil](../../assets/power-study/oil/metadata.json) |
 | 태양광발전소 | 4×4 | 16×16 | 원본 규격 | [power-solar](../../assets/power-study/solar/metadata.json) |
-| 풍력발전소 | 2×2 | 8×8 | 원본 규격 | [power-wind](../../assets/power-study/wind/metadata.json) |
+| 풍력발전소 | 4×4 | 16×16 | 사용자 지정 | [power-wind](../../assets/power-study/wind/metadata.json) |
 
 ## 상하수도
 
@@ -86,17 +86,17 @@
 
 | 이름 | 부지(칸) | 부지(m) | 규격 상태 | ID / 원본 규격 |
 |---|---|---|---|---|
-| 소방서 | 6×6 | 24×24 | 시안 규격 | [fire-station](../../assets/fire-study/fire-station/metadata.json) |
-| 광역 소방서 | 8×8 | 32×32 | 시안 규격 | [regional-fire-station](../../assets/fire-study/regional-fire-station/metadata.json) |
-| 소형 소방서 | 4×4 | 16×16 | 시안 규격 | [small-fire-station](../../assets/fire-study/small-fire-station/metadata.json) |
+| 소방서 | 6×6 | 24×24 | 사용자 지정 | [fire-station](../../assets/fire-study/fire-station/metadata.json) |
+| 광역 소방서 | 8×8 | 32×32 | 사용자 지정 | [regional-fire-station](../../assets/fire-study/regional-fire-station/metadata.json) |
+| 소형 소방서 | 4×4 | 16×16 | 사용자 지정 | [small-fire-station](../../assets/fire-study/small-fire-station/metadata.json) |
 
 ## 경찰
 
 | 이름 | 부지(칸) | 부지(m) | 규격 상태 | ID / 원본 규격 |
 |---|---|---|---|---|
-| 경찰서 | 6×6 | 24×24 | 시안 규격 | [police-station](../../assets/police-study/police-station/metadata.json) |
-| 광역 경찰서 | 8×8 | 32×32 | 시안 규격 | [regional-police-station](../../assets/police-study/regional-police-station/metadata.json) |
-| 소형 경찰서 | 4×4 | 16×16 | 시안 규격 | [small-police-station](../../assets/police-study/small-police-station/metadata.json) |
+| 경찰서 | 6×6 | 24×24 | 사용자 지정 | [police-station](../../assets/police-study/police-station/metadata.json) |
+| 광역 경찰서 | 8×8 | 32×32 | 사용자 지정 | [regional-police-station](../../assets/police-study/regional-police-station/metadata.json) |
+| 소형 경찰서 | 4×4 | 16×16 | 사용자 지정 | [small-police-station](../../assets/police-study/small-police-station/metadata.json) |
 
 ## 교정
 

@@ -1,0 +1,177 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road angle 0.00 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 0.00 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 1.57 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 1.57 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 3.14 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 3.14 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 4.71 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 4.71 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 0.37 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 0.37 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 0.79 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 0.79 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 2.17 reverse false
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS road angle 2.17 reverse true
+PASS front faces road on side -1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS front faces road on side 1
+PASS stable frontage road ID
+PASS growth preserves frontage
+PASS both sides support road-facing construction
+PASS original front image faces southern road
+PASS corner/second road does not flip an existing frontage
+PASS removed frontage rebinds to surviving local road
+PASS opposite front never uses fixed original image
+PASS disconnected building retains direction and lot
+PASS highways cannot become entrance roads
+PASS mansion-a-4x4-4f has a metre-based real directional model
+PASS mansion-a-4x4-4f exported height remains in metres
+PASS mansion-b-4x4-4f has a metre-based real directional model
+PASS mansion-b-4x4-4f exported height remains in metres
+PASS small-2x2-a has a metre-based real directional model
+PASS small-2x2-a exported height remains in metres
+PASS small-2x2-b has a metre-based real directional model
+PASS small-2x2-b exported height remains in metres
+PASS small-4x4-a has a metre-based real directional model
+PASS small-4x4-a exported height remains in metres
+PASS small-4x4-b has a metre-based real directional model
+PASS small-4x4-b exported height remains in metres
+PASS large-4x4-a has a metre-based real directional model
+PASS large-4x4-a exported height remains in metres
+PASS large-4x4-b has a metre-based real directional model
+PASS large-4x4-b exported height remains in metres
+PASS large-8x8-a has a metre-based real directional model
+PASS large-8x8-a exported height remains in metres
+PASS large-8x8-b has a metre-based real directional model
+PASS large-8x8-b exported height remains in metres
+PASS large-4x4-department-07 has a metre-based real directional model
+PASS large-4x4-department-07 exported height remains in metres
+PASS large-4x4-office-nova-08 has a metre-based real directional model
+PASS large-4x4-office-nova-08 exported height remains in metres
+PASS large-8x8-grand-department-09 has a metre-based real directional model
+PASS large-8x8-grand-department-09 exported height remains in metres
+PASS large-8x8-twin-central-10 has a metre-based real directional model
+PASS large-8x8-twin-central-10 exported height remains in metres
+PASS medium-4x4-brick-services-06 has a metre-based real directional model
+PASS medium-4x4-brick-services-06 exported height remains in metres
+PASS medium-4x4-office-retail-05 has a metre-based real directional model
+PASS medium-4x4-office-retail-05 exported height remains in metres
+PASS small-2x2-auto-02 has a metre-based real directional model
+PASS small-2x2-auto-02 exported height remains in metres
+PASS small-2x2-mart-01 has a metre-based real directional model
+PASS small-2x2-mart-01 exported height remains in metres
+PASS small-4x4-cafe-diner-04 has a metre-based real directional model
+PASS small-4x4-cafe-diner-04 exported height remains in metres
+PASS small-4x4-market-03 has a metre-based real directional model
+PASS small-4x4-market-03 exported height remains in metres
+PASS large-4x4-chemical-06 has a metre-based real directional model
+PASS large-4x4-chemical-06 exported height remains in metres
+PASS large-4x4-pharma-05 has a metre-based real directional model
+PASS large-4x4-pharma-05 exported height remains in metres
+PASS large-8x8-auto-assembly-07 has a metre-based real directional model
+PASS large-8x8-auto-assembly-07 exported height remains in metres
+PASS large-8x8-chemical-complex-08 has a metre-based real directional model
+PASS large-8x8-chemical-complex-08 exported height remains in metres
+PASS medium-4x4-circuitworks-04 has a metre-based real directional model
+PASS medium-4x4-circuitworks-04 exported height remains in metres
+PASS medium-4x4-precision-03 has a metre-based real directional model
+PASS medium-4x4-precision-03 exported height remains in metres
+PASS small-2x2-foodworks-02 has a metre-based real directional model
+PASS small-2x2-foodworks-02 exported height remains in metres
+PASS small-2x2-metalworks-01 has a metre-based real directional model
+PASS small-2x2-metalworks-01 exported height remains in metres
+RESULT 174/174 frontage checks passed

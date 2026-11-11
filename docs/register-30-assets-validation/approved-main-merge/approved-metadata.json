@@ -1,0 +1,1096 @@
+{
+  "basis": "User approval relayed by cities-claude; only listed metadata fields authorized",
+  "changes": [
+    {
+      "path": "assets/fire-study/small-fire-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "small-fire-station",
+        "name": "소형 소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "max_storeys": 1,
+        "garage_bays": 2,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0006,
+          807.2666
+        ],
+        "lot_corners_px": [
+          [
+            72.8771,
+            618.7048
+          ],
+          [
+            450.0006,
+            807.2666
+          ],
+          [
+            827.1243,
+            618.7048
+          ],
+          [
+            450.0008,
+            430.143
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            5.865000247955322
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "after": {
+        "id": "small-fire-station",
+        "name": "소형 소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "max_storeys": 1,
+        "garage_bays": 2,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0006,
+          807.2666
+        ],
+        "lot_corners_px": [
+          [
+            72.8771,
+            618.7048
+          ],
+          [
+            450.0006,
+            807.2666
+          ],
+          [
+            827.1243,
+            618.7048
+          ],
+          [
+            450.0008,
+            430.143
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            5.865000247955322
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "before_sha256": "a67bc331b4b428b4d208878802e31738df48e7c7862e46e389a24e0098d5a293",
+      "after_sha256": "ebd5cb7ec090aafb2ebf22bde3c2a063ea1d7cc564d2b683af1248570b70b695"
+    },
+    {
+      "path": "assets/fire-study/fire-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "fire-station",
+        "name": "소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          24,
+          24
+        ],
+        "max_storeys": 3,
+        "garage_bays": 3,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0004,
+          827.2343
+        ],
+        "lot_corners_px": [
+          [
+            52.8171,
+            628.6426
+          ],
+          [
+            450.0004,
+            827.2343
+          ],
+          [
+            847.1839,
+            628.6426
+          ],
+          [
+            450.0006,
+            430.0509
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -12.0,
+            -12.0,
+            -0.11999999731779099
+          ],
+          [
+            12.0,
+            12.0,
+            9.949999809265137
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "after": {
+        "id": "fire-station",
+        "name": "소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          24,
+          24
+        ],
+        "max_storeys": 3,
+        "garage_bays": 3,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0004,
+          827.2343
+        ],
+        "lot_corners_px": [
+          [
+            52.8171,
+            628.6426
+          ],
+          [
+            450.0004,
+            827.2343
+          ],
+          [
+            847.1839,
+            628.6426
+          ],
+          [
+            450.0006,
+            430.0509
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -12.0,
+            -12.0,
+            -0.11999999731779099
+          ],
+          [
+            12.0,
+            12.0,
+            9.949999809265137
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "before_sha256": "318d87bd2a314b563f42a2f64b298ebf6ce83e4543c7f6d0cbd5cbd3a4742667",
+      "after_sha256": "be4380d432f5553840dbb28ce10f1f8850652b5df9ea53e70865fd8d199a15e7"
+    },
+    {
+      "path": "assets/fire-study/regional-fire-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "regional-fire-station",
+        "name": "광역 소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "max_storeys": 4,
+        "main_building_storeys": 4,
+        "revision": "helipad-with-rooftop-stair-access",
+        "rooftop_stair_access": true,
+        "helipad_access_walkway": true,
+        "rooftop_helipad": true,
+        "helipad_deck_m": [
+          14.8,
+          14.8
+        ],
+        "garage_bays": 4,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          862.0063
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            676.2588
+          ],
+          [
+            450.0003,
+            862.0063
+          ],
+          [
+            821.4952,
+            676.2589
+          ],
+          [
+            450.0004,
+            490.5114
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            22.0
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "after": {
+        "id": "regional-fire-station",
+        "name": "광역 소방서",
+        "category": "fire_service",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "max_storeys": 4,
+        "main_building_storeys": 4,
+        "revision": "helipad-with-rooftop-stair-access",
+        "rooftop_stair_access": true,
+        "helipad_access_walkway": true,
+        "rooftop_helipad": true,
+        "helipad_deck_m": [
+          14.8,
+          14.8
+        ],
+        "garage_bays": 4,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          862.0063
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            676.2588
+          ],
+          [
+            450.0003,
+            862.0063
+          ],
+          [
+            821.4952,
+            676.2589
+          ],
+          [
+            450.0004,
+            490.5114
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            22.0
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender buildings, badges and fire engines; DejaVu font; no external models or textures",
+        "scope": "visual concept only; emergency dispatch, coverage and fire simulation not implemented"
+      },
+      "before_sha256": "61ddb35c10b6ac50dc27b194b3068a8e2982592af89b8d557bd32897e8dc16dc",
+      "after_sha256": "a71829c56496e1ffdc2295b828ccae4016913bdc16cb19c5209490e15f56a37e"
+    },
+    {
+      "path": "assets/police-study/small-police-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "small-police-station",
+        "name": "소형 경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "max_storeys": 1,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0006,
+          807.2666
+        ],
+        "lot_corners_px": [
+          [
+            72.8771,
+            618.7048
+          ],
+          [
+            450.0006,
+            807.2666
+          ],
+          [
+            827.1243,
+            618.7048
+          ],
+          [
+            450.0008,
+            430.143
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            4.875
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "user-approved small police station design; game integration pending"
+      },
+      "after": {
+        "id": "small-police-station",
+        "name": "소형 경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "max_storeys": 1,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0006,
+          807.2666
+        ],
+        "lot_corners_px": [
+          [
+            72.8771,
+            618.7048
+          ],
+          [
+            450.0006,
+            807.2666
+          ],
+          [
+            827.1243,
+            618.7048
+          ],
+          [
+            450.0008,
+            430.143
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            4.875
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "user-approved small police station design; game integration pending"
+      },
+      "before_sha256": "bb7765ebda0cf2d60d32ad25e82d10aa0437df7405b3a638b92a6f74103c989a",
+      "after_sha256": "5a0fadbcac5337b1dcd33ba47b24fd5b60463014184e183fffa100b30d73e372"
+    },
+    {
+      "path": "assets/police-study/police-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "police-station",
+        "name": "경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          24,
+          24
+        ],
+        "max_storeys": 3,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0004,
+          827.2343
+        ],
+        "lot_corners_px": [
+          [
+            52.8171,
+            628.6426
+          ],
+          [
+            450.0004,
+            827.2343
+          ],
+          [
+            847.1839,
+            628.6426
+          ],
+          [
+            450.0006,
+            430.0509
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -12.0,
+            -12.0,
+            -0.11999999731779099
+          ],
+          [
+            12.0,
+            12.0,
+            10.149999618530273
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "police visual concepts only; crime, patrol and response simulation not implemented"
+      },
+      "after": {
+        "id": "police-station",
+        "name": "경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          6,
+          6
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          24,
+          24
+        ],
+        "max_storeys": 3,
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0004,
+          827.2343
+        ],
+        "lot_corners_px": [
+          [
+            52.8171,
+            628.6426
+          ],
+          [
+            450.0004,
+            827.2343
+          ],
+          [
+            847.1839,
+            628.6426
+          ],
+          [
+            450.0006,
+            430.0509
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -12.0,
+            -12.0,
+            -0.11999999731779099
+          ],
+          [
+            12.0,
+            12.0,
+            10.149999618530273
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "police visual concepts only; crime, patrol and response simulation not implemented"
+      },
+      "before_sha256": "d387e821183fedddc0df64401313923a70602cb4110114424b0bb3a843660df2",
+      "after_sha256": "7e9561c7d1fa8ab9fdbe307e2aff52b56040aab8593965c7c13139ba631c08f8"
+    },
+    {
+      "path": "assets/police-study/regional-police-station/metadata.json",
+      "allowed_fields": [
+        "footprint_status"
+      ],
+      "changed_fields": [
+        "footprint_status"
+      ],
+      "before": {
+        "id": "regional-police-station",
+        "name": "광역 경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "max_storeys": 4,
+        "rooftop_helipad": true,
+        "rooftop_stair_access": true,
+        "helipad_deck_m": [
+          14.8,
+          14.8
+        ],
+        "revision": "police-headquarters-rooftop-helipad",
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          847.7879
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            662.0405
+          ],
+          [
+            450.0003,
+            847.7879
+          ],
+          [
+            821.4952,
+            662.0405
+          ],
+          [
+            450.0004,
+            476.2931
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -1.475000023841858
+          ],
+          [
+            16.0,
+            16.0,
+            21.0
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "user-approved police headquarters with helipad; game integration pending"
+      },
+      "after": {
+        "id": "regional-police-station",
+        "name": "광역 경찰서",
+        "category": "police_service",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "user-specified",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "max_storeys": 4,
+        "rooftop_helipad": true,
+        "rooftop_stair_access": true,
+        "helipad_deck_m": [
+          14.8,
+          14.8
+        ],
+        "revision": "police-headquarters-rooftop-helipad",
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          847.7879
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            662.0405
+          ],
+          [
+            450.0003,
+            847.7879
+          ],
+          [
+            821.4952,
+            662.0405
+          ],
+          [
+            450.0004,
+            476.2931
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -1.475000023841858
+          ],
+          [
+            16.0,
+            16.0,
+            21.0
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry and patrol vehicles, adapted local helpers; DejaVu font; no external models or textures",
+        "scope": "user-approved police headquarters with helipad; game integration pending"
+      },
+      "before_sha256": "d4baa3c4f52459a4699ff8d4a40c91d4a8081f402e894237134b681096c3924b",
+      "after_sha256": "5a4e28f18f0677c4210a76343dfa48ed15cc466826e1351d125624e246d5b65d"
+    },
+    {
+      "path": "assets/power-study/wind/metadata.json",
+      "allowed_fields": [
+        "footprint_cells",
+        "footprint_status",
+        "lot_meters"
+      ],
+      "changed_fields": [
+        "footprint_cells",
+        "footprint_status",
+        "lot_meters"
+      ],
+      "before": {
+        "id": "power-wind",
+        "name": "풍력발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "presentation_lot_cells": [
+          2,
+          2
+        ],
+        "rotor_radius_m": 11,
+        "rotor_overhang_allowed": true,
+        "display_slab": false,
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          8,
+          8
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0005,
+          936.1189
+        ],
+        "lot_corners_px": [
+          [
+            325.5497,
+            873.8936
+          ],
+          [
+            450.0005,
+            936.1189
+          ],
+          [
+            574.4513,
+            873.8936
+          ],
+          [
+            450.0005,
+            811.6682
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -9.52627944946289,
+            -2.1374998092651367,
+            0.0
+          ],
+          [
+            9.52627944946289,
+            2.75,
+            37.400001525878906
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "after": {
+        "id": "power-wind",
+        "name": "풍력발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "presentation_lot_cells": [
+          2,
+          2
+        ],
+        "rotor_radius_m": 11,
+        "rotor_overhang_allowed": true,
+        "display_slab": false,
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          8,
+          8
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0005,
+          936.1189
+        ],
+        "lot_corners_px": [
+          [
+            325.5497,
+            873.8936
+          ],
+          [
+            450.0005,
+            936.1189
+          ],
+          [
+            574.4513,
+            873.8936
+          ],
+          [
+            450.0005,
+            811.6682
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -9.52627944946289,
+            -2.1374998092651367,
+            0.0
+          ],
+          [
+            9.52627944946289,
+            2.75,
+            37.400001525878906
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
+        "revision": "requested-footprints-and-equipment-scale",
+        "lot_meters": [
+          16,
+          16
+        ],
+        "footprint_status": "user-specified"
+      },
+      "before_sha256": "88d846f4d0ec36cab46c194eed7332740f2eab7a27ae955607e2f240a266c5ec",
+      "after_sha256": "3f909fbfa6e39b023fb4e2b137ad5bd06e5c352a8cf569ffeb95c128705c27fa"
+    }
+  ],
+  "glb_count": 104,
+  "glb_sha256": {
+    "cities_do/assets/facilities/park-garden-2x2.glb": "6600c48d02a5d1b2ba9d7f810f0167c5678e5bd5910b8eae603ea894b453e218",
+    "cities_do/assets/facilities/park-play-4x4.glb": "4d09a92f1342e3cd9fdd43d947987a7abc01fc623e8a036adf9a987343b2dea5",
+    "cities_do/assets/facilities/park-plaza-4x4.glb": "1ab77f4bb664950eb135c5f1c9471b803cda88abff662f4fb9eca056667e20a3",
+    "cities_do/assets/facilities/park-pocket-2x2.glb": "62b4452e8361080c3843de56b5796b3559dcbc4be40c604c3521304c81123bdd",
+    "cities_do/assets/facilities/parking-large-4x8.glb": "aa789f1710422dcc089089948a1c33657ec78bab2ad54c41193c3e4be1b8176a",
+    "cities_do/assets/facilities/parking-medium-4x4.glb": "3d35e0b83081391e7c10bf622b42f24edcfe5b78bf2f3bb402cb95fbf690f943",
+    "cities_do/assets/facilities/parking-small-2x4.glb": "88e12f79566dd7fc58f7f57d5ee784b869c12da2950d84c5844a1b7b1f5cbff5",
+    "cities_do/assets/facilities/parking-tower-4x4-4f.glb": "f56cf869a415e7c759e097932d896020f88977a60038086e3aba947f5a175212",
+    "cities_do/assets/services/crematorium-4x4.glb": "c116b27a390302a6f9593ad4be79921d2b4aac5010fd3ef1b0ed70aefc8ccb45",
+    "cities_do/assets/services/elementary-school.glb": "8c9d1064b50578241a882ef746a065acac9f74d8a578799e510e4cadea148b04",
+    "cities_do/assets/services/fire-station.glb": "8425ff4849a4750743a0047db34ff779196a8d986203e6627b2de63d1c0b9008",
+    "cities_do/assets/services/high-school.glb": "ae4b7153029639f8f85d2e03d962dc0584b9a3abc62f611221df00feec969b49",
+    "cities_do/assets/services/medical-clinic.glb": "aa8d63906c120c24ff3ac37dcc57138342161c130dde5d4bf79eef5450d6e01d",
+    "cities_do/assets/services/medical-hospital.glb": "05dcfb397f4754fa97f035b5463e329c40b0723915d54be0619d71e6490d585c",
+    "cities_do/assets/services/medical-large-hospital.glb": "261114a5a93a4dbd297f8350287638bcff1bcaaf9c99ec1a19ff1f61ca8f6b5e",
+    "cities_do/assets/services/police-station.glb": "66d3b01a0ed25f74b3efaf92d964a06d830a1bd8aa3b55a5d63b14baba1def38",
+    "cities_do/assets/services/power-coal.glb": "01af6884146155eb9d111e772a78bb1783d65eb70732daa9f52981bc9d7ddc63",
+    "cities_do/assets/services/power-hydro.glb": "d1bddc5cef2759521f286de425ebe6db388fe2e1279296dc4e011d773851c308",
+    "cities_do/assets/services/power-nuclear.glb": "d6cdfc26a93e2de6633150f6d3c6fc3519493c5c2ed42f657f3ec296d72e5886",
+    "cities_do/assets/services/power-oil.glb": "9fcf6995a83532b39d0daaf001171f185b915b70f5a1e78be029b203ae921c88",
+    "cities_do/assets/services/power-solar.glb": "921869b0776b1414a3487515c78848f86b774c48f3d08d5b5b7e095a76f73fe1",
+    "cities_do/assets/services/power-wind.glb": "96e3d6e5e724510a3c58286244ccb06658244f9d4e66de3686433c1a612267d1",
+    "cities_do/assets/services/prison-8x8.glb": "aab999ab266c4d13f8dcbaedd2a54f028a8f9c9eacff7dfc1f4fc9b942cd9161",
+    "cities_do/assets/services/regional-fire-station.glb": "ba15c73dd10fc5b11bc1df1efd98b6a8ce66b63345cbd6b16e325af0c4741cda",
+    "cities_do/assets/services/regional-police-station.glb": "c5dd176666e4d6061ceb6eb8a896118f94fde1772bd75e183ffcb4d1b4ea42ca",
+    "cities_do/assets/services/small-fire-station.glb": "5ac3ebb5b9378828356b393a298273e762605903214c13dfe4637df2e14ed258",
+    "cities_do/assets/services/small-police-station.glb": "c0aede841557e6e34e1a4431b8edf20b45bfd33ca21e8db63d9e885c9ff23a28",
+    "cities_do/assets/services/technical-college.glb": "343cf295e40ed2badbe97254dc9f6fccfaa6916ec4c58efe4b0ccd1ede83e1ac",
+    "cities_do/assets/services/university.glb": "fdbfcc8087c690f1dbf765171cc4de54e08f5e6eabf38d24b2639650db8e0d1f",
+    "cities_do/assets/services/waste-incinerator.glb": "21a3801d7a7a20ee7e6bfd30939792374f098f53532c781a5fadd8e8e61fff23",
+    "cities_do/assets/services/waste-recycling-center.glb": "15648c3d491a4799682bc6798e04a96fe32303fc54bbd8f13137ee4af091aadc",
+    "cities_do/assets/services/water-intake.glb": "44e6c972d113458053107a0121e0b44fc8694d216f77f7e659426af42194d0e0",
+    "cities_do/assets/services/water-sewage-outfall.glb": "52747d5753a34df5c2d6805e464d990237367d093358f734a45abf675a8816fe",
+    "cities_do/assets/services/water-sewage-treatment.glb": "438cd78831360413ad51ee40e5f68c81ab2a04ad933169a0a618f3a339732f7b",
+    "cities_do/assets/services/water-water-tower.glb": "c20b8da7a153b989ab2b0d871f6772e79f29e9138a510c38446cfc3c28c36e5d",
+    "cities_do/assets/vehicles/bus-city-01.glb": "ff4241568d47c745a815758cb1aa979454f7932e383e25f96697238c8ad49151",
+    "cities_do/assets/vehicles/car-compact-02.glb": "242da789de9679ed31b52d974130506df2e57adb45072ba52b00aba54b611921",
+    "cities_do/assets/vehicles/car-coupe-07.glb": "8f7f2172706efaab324c8791968ca442d7362f8efac9a8b39acbb1d80cd0155d",
+    "cities_do/assets/vehicles/car-crossover-05.glb": "ed4befbe928c18913d5b093419b6fb426bc240df9715e2bd4ce74ade745a14e5",
+    "cities_do/assets/vehicles/car-electric-09.glb": "fec5b6a0d21356366c035c1dcfb9236fdef6a19a76805629d665e3c0d94f79d4",
+    "cities_do/assets/vehicles/car-hatch-01.glb": "72ee99f45aec6e5ff467e95fd4fd81fd314dbcfe97572d1aeda673b194e125b0",
+    "cities_do/assets/vehicles/car-minivan-08.glb": "ea14bd26c1821e6a6d7140cb5d715166a1f6ded2ebad6d067cb232c00806ce10",
+    "cities_do/assets/vehicles/car-pickup-10.glb": "4fc01520d11331ff8acf088da211559f6ab92d430f55a8a6ca3c7daf66359784",
+    "cities_do/assets/vehicles/car-sedan-03.glb": "7fd3c32d75a0531e44ff2f42e925aa56405a54c3904cbcb5391d07ca32500c08",
+    "cities_do/assets/vehicles/car-suv-06.glb": "7c1429583a458ee6d417e51595cce3c8fb8d2f2b6dcea8638bf9a41a1fb23f10",
+    "cities_do/assets/vehicles/car-wagon-04.glb": "55f452969bc900127cd9d309af6a22dba379ce39b7435f705f106c731089f524",
+    "cities_do/assets/vehicles/fire-engine-01.glb": "06c649130c6dab0ebe94e0edd5dfc1157484026a84ca77fcef3aa77fd61ec9c2",
+    "cities_do/assets/vehicles/hearse-01.glb": "c6183ba5ab6181211c310040dd750be813301081b0c372c65b60c998808fa87a",
+    "cities_do/assets/vehicles/original-car-compact-02.glb": "4d4bd23cf4e348710edee5fae0369e7291402f031f0776d4cae57d82bff8a4aa",
+    "cities_do/assets/vehicles/original-car-coupe-07.glb": "b70605d0d8d7d309f76a97881a97a2fd17afa704be96affbddd44aa193bbbe1a",
+    "cities_do/assets/vehicles/original-car-crossover-05.glb": "421ccc2f00fd8996d52a45091d0d6d266bf8e32c26f638427c92287d53844266",
+    "cities_do/assets/vehicles/original-car-electric-09.glb": "d31434e769edf23bca7ba1e2107258d0545166b15685159db846d634c6f611eb",
+    "cities_do/assets/vehicles/original-car-hatch-01.glb": "afc504a15b986726dab27c278f02b043fbb58e1aef9911581aca7fe3041b37e1",
+    "cities_do/assets/vehicles/original-car-minivan-08.glb": "780ef5ecec7a3c4d5a2a6d46dd2859c357e9a56898f34b50f16ef4c9a4f29eab",
+    "cities_do/assets/vehicles/original-car-pickup-10.glb": "b6c97f0410cb0e286b1bb1aeedcebac7a7a0999856b0a77908c8d3042fd1cfce",
+    "cities_do/assets/vehicles/original-car-sedan-03.glb": "8ca97da9cfd3629a4864716ef5070d77c1334fd360162f1a7656576fdca8a64e",
+    "cities_do/assets/vehicles/original-car-suv-06.glb": "c67359bee593842777fe1103fe9eee16545737fd1193d9be878120d81ef76763",
+    "cities_do/assets/vehicles/original-car-wagon-04.glb": "8aaf8d38ce3770c877705d1cc6d1558838a3a6303eb41af7b3f367c8b3c6573b",
+    "cities_do/assets/vehicles/original-trailer-container-05.glb": "2d2cef432050952f2ac4ce9f24635d87035aa5b41b8f6d6d82be0903f3d10b5c",
+    "cities_do/assets/vehicles/original-trailer-tanker-06.glb": "3b2cc55e4c6f2ba70a2d041e4045f1eb970514e905af78f7d19cfb9bf3e2acfb",
+    "cities_do/assets/vehicles/original-truck-box-01.glb": "40d192903164c7a57f2a215a901b7cd099f3d1f89cf43793bbed50831b63595e",
+    "cities_do/assets/vehicles/original-truck-dump-07.glb": "7f7fbc0714ca77c89d1648e09f6a6ecc854175c606ff88558a685e99745d6018",
+    "cities_do/assets/vehicles/original-truck-flatbed-02.glb": "2f81049b6bd1ffc0548b225a0109d830504badab2910961709bdf807a8dfdc05",
+    "cities_do/assets/vehicles/original-truck-fridge-03.glb": "b9821efdd4d079532510968fa4c735943c96620657899e39384692ce4555d768",
+    "cities_do/assets/vehicles/original-truck-heavy-dump-08.glb": "9c9f4b10260618f85ebe1f1d4df472cf4af9f329ca38a9b92303350d66f47cc3",
+    "cities_do/assets/vehicles/original-truck-mixer-04.glb": "e35c29547d2f4222401469f161ef6f52cfa10d873bf6fa00e8bf545c0633dfc2",
+    "cities_do/assets/vehicles/police-car-01.glb": "51c7e32c03a5f76a02a0bbfeb5e14f2cf218dd2896ce2cc14b0142846553c8e2",
+    "cities_do/assets/vehicles/taxi-sedan-01.glb": "0c240611de4476fb1e7450190fbfbd24b132a8bacd7c1afd10d4c357c99de3a4",
+    "cities_do/assets/vehicles/trailer-container-05.glb": "4ce269ff19750e061d078c56dc7e0ac86941b647858d21ebe2db4f262d9c629d",
+    "cities_do/assets/vehicles/trailer-tanker-06.glb": "bb9227c2aba63efaec2eb229e4972833fcefdb5cf9d933c7dc179f0c062ff565",
+    "cities_do/assets/vehicles/truck-box-01.glb": "e8373cb4abb0951fbf121195880030d62313625314a343dade35180bd109ef69",
+    "cities_do/assets/vehicles/truck-dump-07.glb": "82c0722e3360d5b66f8ac77fc5ba231d84e8599e5c546feac0a6fdc79b15226a",
+    "cities_do/assets/vehicles/truck-flatbed-02.glb": "26f1d7c9108298728e47c08850b60f304eaa64c5ec76510e4a20fa25b7932094",
+    "cities_do/assets/vehicles/truck-fridge-03.glb": "53965dfca252444a6673c60d1fe03bc7f67ca1cfe75998ee6feb571185577bd1",
+    "cities_do/assets/vehicles/truck-heavy-dump-08.glb": "1be043613a99d7a8bfb2932e46ef13edb4a5ee306bd86f1014b408da22ea32fb",
+    "cities_do/assets/vehicles/truck-mixer-04.glb": "b12269d2246c8941cefba1acfc59b53d5e44b9973d93605ded213c7bf4b9050d",
+    "cities_do/assets/buildings/models/large-4x4-a.glb": "d743007844e1c3418fde74f51d9b5657aae7726caf050b757311ab8e7d1a7927",
+    "cities_do/assets/buildings/models/large-4x4-b.glb": "f33c70cfe1a8c61ccb1446163b8e8200d233f1961d208b8bc6be3adbfa896672",
+    "cities_do/assets/buildings/models/large-4x4-chemical-06.glb": "9332e5c8aa6654be1be49f3127cf97580666950d466edc7dcf4c5279980e84e5",
+    "cities_do/assets/buildings/models/large-4x4-department-07.glb": "5318d279b195386ebf044250db3d9b3d289ef639ee8915d5c74ec456c892292e",
+    "cities_do/assets/buildings/models/large-4x4-office-nova-08.glb": "7358320eb3e9a3358fd80964ea7fd24a40b219737067643d141126a6f00a2523",
+    "cities_do/assets/buildings/models/large-4x4-pharma-05.glb": "2d8aecf455a57554f3c7551e1bd982c29e7f8a68610ba1ee1c1631141040d5bc",
+    "cities_do/assets/buildings/models/large-8x8-a.glb": "aeabcb4c10718ecbc90951f39625c8f98d0dbf8649e40aaa3c0e83693e35c009",
+    "cities_do/assets/buildings/models/large-8x8-auto-assembly-07.glb": "59495b9667eb5ceccc0c864770c5e40cab010c4eecfefb15e19d89875520b532",
+    "cities_do/assets/buildings/models/large-8x8-b.glb": "2ee6dca1ea7c5da806147495e4ba9e8a967a93a1f5ef93d49bbd8c3f869f5a7d",
+    "cities_do/assets/buildings/models/large-8x8-chemical-complex-08.glb": "4e4dac3c2b567e85e7563dfc2ef12438351b28a79df72512d2e4a6e2830e6c64",
+    "cities_do/assets/buildings/models/large-8x8-grand-department-09.glb": "20bca04dde3a16522fa2a34a6c494cdabfb5e5ca432e90a061e2356ac7d30ef3",
+    "cities_do/assets/buildings/models/large-8x8-twin-central-10.glb": "2e7adea5988f9c989b6f8f046eba6a653da2384138522a5dd4564e01852e0fcd",
+    "cities_do/assets/buildings/models/mansion-a-4x4-4f.glb": "9b014a7cddc926294858dbee1de4b10144e87ecba84af031c6afb217d33a34e2",
+    "cities_do/assets/buildings/models/mansion-b-4x4-4f.glb": "979e44d23d3d34f4508aec13e424292f4f3b8b5a7fa341cb2e44f85c7bdd1123",
+    "cities_do/assets/buildings/models/medium-4x4-brick-services-06.glb": "1bbb64a42a666dda70aa0619bbe3e0d4d9a19ac29c4829dcdf42dd791cebecf4",
+    "cities_do/assets/buildings/models/medium-4x4-circuitworks-04.glb": "7e5d052181f4f8103808cb9ab65707bbe2ea9975f7f1f5a2448d8f3631e13440",
+    "cities_do/assets/buildings/models/medium-4x4-office-retail-05.glb": "0879cd9b35e227a3beb89ee6a91f4d61d752b5fc3a2c723855343b7e3277445a",
+    "cities_do/assets/buildings/models/medium-4x4-precision-03.glb": "10ca3f175bef217201104db44b5888d67f70e88b391fa8f85eee673bcdbe38c9",
+    "cities_do/assets/buildings/models/small-2x2-a.glb": "8bc0ea0519b04c74420ebe9a1fd94f6027191776d50e1909f92158957c679216",
+    "cities_do/assets/buildings/models/small-2x2-auto-02.glb": "3b5883060d785435e83fa34bd1e22932d73c0a1d1f1010d7bd506624de03f97a",
+    "cities_do/assets/buildings/models/small-2x2-b.glb": "763b0690f79c53b287538eea28d84e1252d8d9625522003e6e2ab780751772c9",
+    "cities_do/assets/buildings/models/small-2x2-foodworks-02.glb": "38d5697335e958af0927b653e2d83d3b6356bf05ae149ed0a2b0630b5ed87590",
+    "cities_do/assets/buildings/models/small-2x2-mart-01.glb": "ddcc766770ae9f61196f245255b3c2869403b16f29fecdb15050527071001a9e",
+    "cities_do/assets/buildings/models/small-2x2-metalworks-01.glb": "2f2091bfda034acc6bbc8a8aaac6ca57b90d5bd93daa0f1486b7b4e945255b0a",
+    "cities_do/assets/buildings/models/small-4x4-a.glb": "206208508e91e10f8baf081555ca3c472f3ff116f7d305bca76b5dd5aba678fb",
+    "cities_do/assets/buildings/models/small-4x4-b.glb": "d72fb183776ba5d99cd8b4764348da35ef38374492b673923af1d8c4905db874",
+    "cities_do/assets/buildings/models/small-4x4-cafe-diner-04.glb": "1dbbc420c5c230d7d113a8858284203a8f3bb59342b54666a51023c02cfe3ced",
+    "cities_do/assets/buildings/models/small-4x4-market-03.glb": "597fef28ce7d854a482b8167b8a395ce06d37b28926c9dbd341f3ea72ed0dc5f"
+  },
+  "all_glb_bytes_unchanged": true,
+  "planning_hashes": {
+    "docs/design/BUILDING_GROWTH_KO.md": "a97ac50b9ce01f17c54466bab99edc230df51a4f545064dd354e86a477fa520d",
+    "docs/design/INITIAL_LOT_SIZE_KO.md": "b01fcc7d6d2204719d773049a229603f70731c1d73ade668c66a8f7fd66b01d2",
+    "docs/design/ASSET_REQUEST_GROWTH_KO.md": "3c5d5b05762b32b5d1e44d5e54278baf2d90543278b44426586a437fcc58d5b1",
+    "docs/design/ASSET_REQUEST_GROWTH_PROMPT_KO.md": "ecbfb0ca36f7a9c5a1a8d258b1016a5c56f982d164b80ebcfb34d2d40700c7ff",
+    "docs/design/MAP_SIZE_KO.md": "64ebdf2fbf27bd71355845e6f1b1929d7780fe97d28183536fd0b3b47d0cb74e",
+    "docs/design/VEHICLE_SPAWN_DESPAWN_KO.md": "4f7fd1f7ce865a1df4e5f017d41a7e0c4b5431745b85d263c2a1dd3d2b70c51f",
+    "docs/design/ECONOMY_LOOP_SPEC_KO.md": "12b5c2e6fe121924729289ba6d9947e95205be7139d6e4130d658b3c1318972d",
+    "docs/design/BOTTOM_BAR_LAYOUT_V2_KO.md": "6c64f100b592a6753b972d7819e9e7f76af0eac5e35ce81a5dee99157858792b",
+    "mistake.md": "ff702fb9f914b7adba45a65597d7293d5d651782225a4a00cc3561b3146cbfa1"
+  }
+}

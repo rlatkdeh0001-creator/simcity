@@ -48,7 +48,7 @@ func run():
   verify(actual.position.distance_to(expected.position)<.06 and actual.size.distance_to(expected.size)<.06,id+" GLB round-trip physical W/D/H and ground offset match measured source")
   verify(absf(actual.size.x-entry.width_m)<.05 and absf(actual.size.z-entry.length_m)<.05 and absf(actual.size.y-entry.height_m)<.05,id+" spec reports actual mesh dimensions")
   if id=="power-wind":
-   verify(entry.source_metadata.rotor_overhang_allowed and actual.size.x>entry.width*4 and Vector2(entry.footprint_cells[0],entry.footprint_cells[1])==Vector2(2,2),id+" original rotor overhang retained, never resized to 2x2")
+   verify(entry.source_metadata.rotor_overhang_allowed and actual.size.x>entry.width*4 and entry.width==4 and entry.depth==4 and Vector2(entry.footprint_cells[0],entry.footprint_cells[1])==Vector2(4,4) and entry.source_metadata.lot_meters[0]==16 and entry.source_metadata.footprint_status=="user-specified",id+" user-approved 4x4 lot retains unchanged model and allowed rotor overhang")
   elif id=="power-hydro":
    verify(entry.footprint_cells==null and not entry.fixed_footprint and Vector2(entry.presentation_lot_meters[0],entry.presentation_lot_meters[1])==Vector2(60,32),id+" parametric original retains null fixed footprint and original presentation dimensions")
   else:
@@ -58,7 +58,7 @@ func run():
    verify(ground!=null and absf((ground.global_transform*ground.get_aabb()).position.y)<.05,id+" original support datum aligned without deleting underground geometry")
   else:verify(absf(actual.position.y)<.05,id+" original lowest support is at zero")
   var marker: Node3D=model.find_child("ServiceFrontage",true,false)
-  verify(marker!=null and absf(marker.position.z-entry.depth*2)<.01,id+" exported +Z inspection frontage marker")
+  verify(marker!=null and absf(marker.position.z-float(entry.get("front_marker_distance_m",entry.depth*2)))<.01,id+" exported +Z inspection marker retained; lot metadata does not resize GLB")
   if id in NO_ENTRANCE:
    verify(entry.front_feature_node.is_empty() and entry.frontage_verification=="equipment_convention_only_no_named_entrance",id+" absence of original human entrance is explicit, never claimed verified")
   else:

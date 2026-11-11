@@ -1192,8 +1192,8 @@
       "id": "power-wind",
       "name": "풍력발전소",
       "group": "power",
-      "width": 2,
-      "depth": 2,
+      "width": 4,
+      "depth": 4,
       "height_m": 37.400001525878906,
       "width_m": 19.05255889892578,
       "length_m": 4.887499809265137,
@@ -1207,8 +1207,8 @@
         "name": "풍력발전소",
         "category": "power_facility",
         "footprint_cells": [
-          2,
-          2
+          4,
+          4
         ],
         "presentation_lot_cells": [
           2,
@@ -1264,15 +1264,20 @@
         "game_registered": false,
         "source": "original Blender geometry; DejaVu font; no external models or textures",
         "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
-        "revision": "requested-footprints-and-equipment-scale"
+        "revision": "requested-footprints-and-equipment-scale",
+        "lot_meters": [
+          16,
+          16
+        ],
+        "footprint_status": "user-specified"
       },
       "footprint_cells": [
-        2,
-        2
+        4,
+        4
       ],
       "presentation_lot_meters": [
-        8,
-        8
+        16,
+        16
       ],
       "fixed_footprint": true,
       "front_axis": [
@@ -1307,7 +1312,8 @@
         "rotor_overhang_ground_occupation_only",
         "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
       ],
-      "ui_category": "power"
+      "ui_category": "power",
+      "front_marker_distance_m": 4
     },
     {
       "id": "water-intake",

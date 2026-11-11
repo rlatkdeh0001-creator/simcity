@@ -1,0 +1,150 @@
+{
+  "review_mode": "self-review",
+  "registered_count": 30,
+  "group_counts": {
+    "commercial": 10,
+    "industrial": 8,
+    "power": 6,
+    "water": 4,
+    "waste": 2
+  },
+  "source_file_count": 209,
+  "all_original_sha256_unchanged": false,
+  "authorized_metadata_changes": [
+    "assets/power-study/wind/metadata.json"
+  ],
+  "unapproved_original_changes": [],
+  "all_source_metadata_values_preserved": true,
+  "all_preview_copies_byte_identical": true,
+  "new_thumbnail_count": 30,
+  "total_thumbnail_count": 53,
+  "existing_thumbnail_records_unchanged": true,
+  "missing_registration": [],
+  "missing_thumbnails": [],
+  "no_named_entrance_ids": [
+    "power-coal",
+    "power-hydro",
+    "power-nuclear",
+    "power-oil",
+    "power-solar",
+    "power-wind",
+    "water-water-tower"
+  ],
+  "issues": [
+    {
+      "id": "power-coal",
+      "issues": [
+        "original_below_ground_geometry_preserved",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "power-hydro",
+      "issues": [
+        "parametric_asset_no_fixed_footprint; dimensions_are_original_presentation_only",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "power-nuclear",
+      "issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "power-oil",
+      "issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "power-solar",
+      "issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "power-wind",
+      "issues": [
+        "rotor_overhang_ground_occupation_only",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    },
+    {
+      "id": "water-intake",
+      "issues": [
+        "original_below_ground_geometry_preserved"
+      ]
+    },
+    {
+      "id": "water-sewage-outfall",
+      "issues": [
+        "original_below_ground_geometry_preserved"
+      ]
+    },
+    {
+      "id": "water-water-tower",
+      "issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\overview-30.png",
+      "size": [
+        4800,
+        3600
+      ],
+      "sha256": "75bdbc913f9e6691f15ccb81faa923309e4ee173c6d7a6482aeef7416a913733",
+      "assets": 30
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\scale-commercial.png",
+      "size": [
+        3600,
+        2600
+      ],
+      "sha256": "c8bbe8d0c08e6d60d03bc811791c930008e0963279f9730f89192c2e1b4a6624",
+      "assets": 10
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\scale-industrial.png",
+      "size": [
+        3600,
+        2600
+      ],
+      "sha256": "f6cf3e7fcb6816d2f01d28922ff15ff0bb0aa6d6b472a398aa35a6b6ed0793ff",
+      "assets": 8
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\scale-infrastructure.png",
+      "size": [
+        3600,
+        2600
+      ],
+      "sha256": "5ec992e0b944ac6d1f02e7b879f52776d7a57e8be92d4dad387e6ccd6b84ba15",
+      "assets": 12
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\commercial-industrial-top-1920.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "20768f74e491fc737cb03d723b59108f58a634e56c0a1eae49952cb2deb8bd3a",
+      "registered_models": 18,
+      "scroll_bottom": false
+    },
+    {
+      "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\commercial-industrial-bottom-1920.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "769646a22618463ea2bae2aa5ee8ab3b1de2a980859bb4610faf139df3d6830a",
+      "registered_models": 18,
+      "scroll_bottom": true
+    }
+  ]
+}

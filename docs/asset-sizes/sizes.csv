@@ -32,19 +32,19 @@
 발전,원자력발전소,power-nuclear,8,8,32,32,원본 규격,assets/power-study/nuclear/metadata.json,footprint_cells
 발전,석유발전소,power-oil,8,8,32,32,원본 규격,assets/power-study/oil/metadata.json,footprint_cells
 발전,태양광발전소,power-solar,4,4,16,16,원본 규격,assets/power-study/solar/metadata.json,footprint_cells
-발전,풍력발전소,power-wind,2,2,8,8,원본 규격,assets/power-study/wind/metadata.json,footprint_cells
+발전,풍력발전소,power-wind,4,4,16,16,사용자 지정,assets/power-study/wind/metadata.json,footprint_cells
 상하수도,취수장,water-intake,4,4,16,16,시안 규격,assets/water-study/intake/metadata.json,footprint_cells
 상하수도,하수장,water-sewage-outfall,4,4,16,16,시안 규격,assets/water-study/sewage-outfall/metadata.json,footprint_cells
 상하수도,하수처리장,water-sewage-treatment,8,8,32,32,시안 규격,assets/water-study/sewage-treatment/metadata.json,footprint_cells
 상하수도,급수탑,water-water-tower,2,2,8,8,시안 규격,assets/water-study/water-tower/metadata.json,footprint_cells
 쓰레기,쓰레기 소각장,waste-incinerator,8,8,32,32,시안 규격,assets/waste-study/incinerator/metadata.json,footprint_cells
 쓰레기,재활용센터,waste-recycling-center,8,8,32,32,시안 규격,assets/waste-study/recycling-center/metadata.json,footprint_cells
-소방,소방서,fire-station,6,6,24,24,시안 규격,assets/fire-study/fire-station/metadata.json,footprint_cells
-소방,광역 소방서,regional-fire-station,8,8,32,32,시안 규격,assets/fire-study/regional-fire-station/metadata.json,footprint_cells
-소방,소형 소방서,small-fire-station,4,4,16,16,시안 규격,assets/fire-study/small-fire-station/metadata.json,footprint_cells
-경찰,경찰서,police-station,6,6,24,24,시안 규격,assets/police-study/police-station/metadata.json,footprint_cells
-경찰,광역 경찰서,regional-police-station,8,8,32,32,시안 규격,assets/police-study/regional-police-station/metadata.json,footprint_cells
-경찰,소형 경찰서,small-police-station,4,4,16,16,시안 규격,assets/police-study/small-police-station/metadata.json,footprint_cells
+소방,소방서,fire-station,6,6,24,24,사용자 지정,assets/fire-study/fire-station/metadata.json,footprint_cells
+소방,광역 소방서,regional-fire-station,8,8,32,32,사용자 지정,assets/fire-study/regional-fire-station/metadata.json,footprint_cells
+소방,소형 소방서,small-fire-station,4,4,16,16,사용자 지정,assets/fire-study/small-fire-station/metadata.json,footprint_cells
+경찰,경찰서,police-station,6,6,24,24,사용자 지정,assets/police-study/police-station/metadata.json,footprint_cells
+경찰,광역 경찰서,regional-police-station,8,8,32,32,사용자 지정,assets/police-study/regional-police-station/metadata.json,footprint_cells
+경찰,소형 경찰서,small-police-station,4,4,16,16,사용자 지정,assets/police-study/small-police-station/metadata.json,footprint_cells
 교정,교도소,prison-8x8,8,8,32,32,사용자 지정,assets/prison-study/prison/metadata.json,footprint_cells
 의료,진료소,medical-clinic,4,4,16,16,시안 규격,assets/medical-study/clinic/metadata.json,footprint_cells
 의료,병원,medical-hospital,6,6,24,24,시안 규격,assets/medical-study/hospital/metadata.json,footprint_cells

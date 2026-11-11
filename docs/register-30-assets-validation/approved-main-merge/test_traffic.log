@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight city road imports
+PASS two lanes represent opposite directions
+PASS city cells convert to metres; forward lane stays right
+PASS reverse lane stays on its own right side
+PASS opposite lane tangents
+PASS local speed ceiling 80 km/h
+PASS AStar lane route follows connected road endpoint despite reversed input
+PASS routing cannot turn into oncoming lane
+PASS disconnected roads have no fabricated route
+PASS crossing roads form a controlled junction
+PASS overlapping duplicate roads rejected
+PASS four lanes generated
+PASS highway speed ceiling 160 km/h
+PASS overlapping spawn refused
+PASS fast car never enters slow leader's protected gap
+PASS fast follower matches slow leader without overtaking
+PASS red stop line respected with bumper clearance
+PASS green releases stopped car with acceleration
+PASS open route stops at destination instead of wrapping
+PASS closed curved road produces valid lanes
+PASS spawn checks protected spacing across loop seam
+PASS following distance is maintained across closed-lane seam
+PASS vehicles stay on offset curved lane for three minutes
+PASS closed route keeps moving through seam
+PASS closed curved road produces valid lanes
+PASS 30/60 Hz frames produce identical fixed-step state
+PASS pause does not accumulate hidden movement
+PASS long frame advances deterministic substeps
+PASS closed curved road produces valid lanes
+PASS 100 vehicle fixture spawns with valid spacing
+BENCHMARK 100 vehicles / 300 fixed ticks: 1505.95 ms total, 5.020 ms per tick
+PASS 100 vehicle fixture preserves gaps and finite states
+PASS closed curved road produces valid lanes
+PASS actual upstream RoadLaneAgent and RoadLane instantiated
+PASS upstream agent agrees with metre-based simulation including loop wrap
+PASS upstream agent follows routed transition into next road
+PASS construction screen starts traffic on player's road
+PASS player road traffic advances
+PASS eastbound sprite faces down/right in isometric projection
+PASS southbound sprite faces down/left in isometric projection
+PASS demo button opens live fleet on curved road
+PASS demo pause control works
+PASS demo controlled stop-line button works
+PASS return preserves player's city and camera
+RESULT 43/43 traffic checks passed

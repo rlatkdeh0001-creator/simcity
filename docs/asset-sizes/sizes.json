@@ -528,14 +528,14 @@
       "id": "power-wind",
       "name": "풍력발전소",
       "footprint_cells": [
-        2,
-        2
+        4,
+        4
       ],
       "lot_metres": [
-        8,
-        8
+        16,
+        16
       ],
-      "dimension_status": "원본 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/power-study/wind/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -647,7 +647,7 @@
         24,
         24
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/fire-study/fire-station/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -663,7 +663,7 @@
         32,
         32
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/fire-study/regional-fire-station/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -679,7 +679,7 @@
         16,
         16
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/fire-study/small-fire-station/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -695,7 +695,7 @@
         24,
         24
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/police-study/police-station/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -711,7 +711,7 @@
         32,
         32
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/police-study/regional-police-station/metadata.json",
       "spec_field": "footprint_cells"
     },
@@ -727,7 +727,7 @@
         16,
         16
       ],
-      "dimension_status": "시안 규격",
+      "dimension_status": "사용자 지정",
       "spec_file": "assets/police-study/small-police-station/metadata.json",
       "spec_field": "footprint_cells"
     },
