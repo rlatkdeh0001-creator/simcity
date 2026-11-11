@@ -54,8 +54,8 @@
 유지비,parking-large-4x8.upkeep,대형 주차장 월 유지비,32,doth/게임월,제안,4×8칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
 건설비,parking-tower-4x4-4f.construction,4층 주차타워 건설비,16000,doth/시설,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
 유지비,parking-tower-4x4-4f.upkeep,4층 주차타워 월 유지비,160,doth/게임월,제안,4×4칸,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음. 연결 단지는 새로 추가한 부지만 건설비 계산; 재결합은 무료 제안.
-건설비,power.wind.construction,풍력 발전기 건설비,6000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
-유지비,power.wind.upkeep,풍력 발전기 월 유지비,80,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+건설비,power.wind.construction,풍력 발전기 건설비,15000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
+유지비,power.wind.upkeep,풍력 발전기 월 유지비,200,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 건설비,power.solar.construction,태양광 발전소 건설비,12000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 유지비,power.solar.upkeep,태양광 발전소 월 유지비,50,doth/게임월,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
 건설비,power.coal.construction,석탄 발전소 건설비,35000,doth/시설,제안,시설 1개,docs/PRICE_PROPOSALS_KO.md,미승인 제안이며 실제 차감 없음.
