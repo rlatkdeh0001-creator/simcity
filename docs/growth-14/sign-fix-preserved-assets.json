@@ -1,0 +1,150 @@
+{
+  "other_assets": 11,
+  "files": [
+    {
+      "path": "assets/residential-growth/FONT_LICENSE.txt",
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-slim-tower-01/metadata.json",
+      "sha256": "a01628186451d65075995f82a86601d182bc66640fa5ffd74ccf7d714a604ae5"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-slim-tower-01/large-2x2-slim-tower-01.blend",
+      "sha256": "67878fdc03419b8a7d87ae1ea38c0d385ad385500385f3d092d65e8cfb19f9e9"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-slim-tower-01/building.png",
+      "sha256": "78db918e586e602e4330d8aae5cf5828c06a2940f4c6b8b4f34047e3884b11b5"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-corner-villa-02/metadata.json",
+      "sha256": "a36791aa353e2b1fd37130efc0e414782866a8a9d4db6e3e76ae04e80dacefe7"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-corner-villa-02/medium-2x2-corner-villa-02.blend",
+      "sha256": "4a038fc089fb942e4dd9651112fa0ca0902bb53104223e292ffe0e03832225b0"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-corner-villa-02/building.png",
+      "sha256": "265a7910e6039ba102b66d88c72b325c5754a025a5e1e28385042d6d66bd3c5c"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-multiplex-01/metadata.json",
+      "sha256": "ff9e618fca5aa55e71d98cd8b090f7480dee28e0044381e77ef7722127469fd7"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-multiplex-01/medium-2x2-multiplex-01.blend",
+      "sha256": "655310aa259bf2a291afc285ca25466579ef952fd124cdb4b05771ac17c1bba0"
+    },
+    {
+      "path": "assets/residential-growth/medium-2x2-multiplex-01/building.png",
+      "sha256": "c565b2356b7e9f837338e2e489b161ee35ba674f145e8901edb8b19f7e56dfab"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-pencil-tower-02/metadata.json",
+      "sha256": "76da05ef566fe06072069014b29f8d4be5b94c741cae9bb41c20c091f33bebe2"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-pencil-tower-02/large-2x2-pencil-tower-02.blend",
+      "sha256": "679daab0a56720d9791001d7bf25b9829a9a97e551e1319778c4c22bf70b19c7"
+    },
+    {
+      "path": "assets/residential-growth/large-2x2-pencil-tower-02/building.png",
+      "sha256": "de5ae54e6c2a440af7aedc2b9ec927882b08641ce71916df94b82387d0b22712"
+    },
+    {
+      "path": "assets/commercial-growth/FONT_LICENSE.txt",
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-slim-office-01/metadata.json",
+      "sha256": "263af0e0441dc27006de226b43ba80dad7d9a2d069df338ef30a784577c6c352"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-slim-office-01/building.png",
+      "sha256": "e0fcf3475592a4de1f299621b2f6d5d515f3b64d582cc5a05d571c385f05f811"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-slim-office-01/large-2x2-slim-office-01.blend",
+      "sha256": "10f2eafd7a710cbc3a784f52a29336cd02f469bfdfe0ab176ad8739d27bd2fc8"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-neighborhood-01/metadata.json",
+      "sha256": "e093d84943cdef43b64dc0f86afcaf426910190f954f5b5efee31b021b59a45f"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-neighborhood-01/medium-2x2-neighborhood-01.blend",
+      "sha256": "1bece74827583d2c94d129bf8ae870c7bdd234a0226affc23e82216b820ba9eb"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-neighborhood-01/building.png",
+      "sha256": "a935e58e1025d1b2f7967660a032786a2c2852bf011fc30285cb28d30d20b9de"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-boutique-hotel-02/metadata.json",
+      "sha256": "7defd8451e3ac345b7f7b51abc6a22050bb27074d2290fa45425a93e28731988"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-boutique-hotel-02/large-2x2-boutique-hotel-02.blend",
+      "sha256": "b65674fd8cd8c4fd261436fdd34c824aee980b15615dab9e6e1e5df04f77d458"
+    },
+    {
+      "path": "assets/commercial-growth/large-2x2-boutique-hotel-02/building.png",
+      "sha256": "64372f488dc569623b4fe2dd09707ffe24710c6d908bc1e25d7412d199c4187e"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-cafe-building-02/metadata.json",
+      "sha256": "7f2a77265362ad7f30f2922e4ecc3aa625f40887168a3a7afbf2a19959353426"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-cafe-building-02/medium-2x2-cafe-building-02.blend",
+      "sha256": "baaa202aaa42880940be87b5dc21b028e2c43be94adf7fc2c42a30efa4476d53"
+    },
+    {
+      "path": "assets/commercial-growth/medium-2x2-cafe-building-02/building.png",
+      "sha256": "38d0a5f989075c6ac6382648f0f40326706e2812869aab9fc04effea7d0fea60"
+    },
+    {
+      "path": "assets/industrial-growth/FONT_LICENSE.txt",
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "path": "assets/industrial-growth/medium-2x2-bakery-01/metadata.json",
+      "sha256": "66dce114f202cbfd3f32025014de501366e02d5c74c39e5a98fd9dcd64de1d36"
+    },
+    {
+      "path": "assets/industrial-growth/medium-2x2-bakery-01/medium-2x2-bakery-01.blend",
+      "sha256": "f28f3c86430ee597c2680a3874a6275272dcfc4e6239737da8b1fe6b22811b60"
+    },
+    {
+      "path": "assets/industrial-growth/medium-2x2-bakery-01/building.png",
+      "sha256": "9df1a3b003ecb9a21d8048cde918ce9461a76d3865215a5374f37ef95eebb49b"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-distillation-02/metadata.json",
+      "sha256": "048e34b74c80024b45e8cd1b50b7ffebb4a793d36ce7a354ab3bc939e444da05"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-distillation-02/large-2x2-distillation-02.blend",
+      "sha256": "0393b8ebf30cf7e877ab833ddb5b919d1d456caf5bcf1306a4115c9ead393712"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-distillation-02/building.png",
+      "sha256": "a16649aa4d83da130e2b12f5d1bfa0e78265217495134f05dd92efeae401e2de"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-grain-silo-01/metadata.json",
+      "sha256": "b45657cc776648fdfb6cd81ee068d02e6431afe89ca9bbcf656a531ecc5b3849"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-grain-silo-01/large-2x2-grain-silo-01.blend",
+      "sha256": "d3b1dd741ae4d4a9ff6e43a25f61625955f7c323e2da5ce208f4f6a44fe2877a"
+    },
+    {
+      "path": "assets/industrial-growth/large-2x2-grain-silo-01/building.png",
+      "sha256": "d15817b1594e08c196b8e5b742a20d4c8a1cdcd088e237c7847867366d5f4b4f"
+    }
+  ],
+  "all_unchanged": true
+}

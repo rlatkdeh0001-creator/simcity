@@ -142,7 +142,10 @@ def industrial(style,floors):
    windows(w,d,cy,floor+1,z+1.8,mat,False,True)
   top=.12+floors*FLOOR;roof(w,d,cy,top,'stone');door(-1.95,cy-d/2-.12)
   box('LoadingDoor',(.65,cy-d/2-.10,1.5),(2.25,.12,2.65),'metal')
-  text('BAKERY' if style=='bakery' else 'MICRO LAB',(0,cy-d/2-.20,2.83),5.2,.35)
+  if style=='electronics':
+   box('ElectronicsSignBacking',(0,cy-d/2-.16,3.50),(5.4,.16,.72),'metal')
+   text('MICRO LAB',(0,cy-d/2-.255,3.50),5.0,.42)
+  else:text('BAKERY',(0,cy-d/2-.20,2.83),5.2,.35)
   for i in range(2 if style=='bakery' else 3):
    x=-1.7+i*1.6;box('RooftopAirPlant',(x,cy+.6,top+.6),(1.25,1.6,.95),'metal');tube('AirFilter',(x,cy+.6,top+1.15),.4,.18,'roof')
   if style=='bakery':
@@ -180,7 +183,11 @@ def industrial(style,floors):
     for z in [.5,1,1.5,2,2.5,3]:box('ShutterRib',(x,front-.17,z),(3.2,.05,.045),'stone')
     box('DockCanopy',(x,front-.65,3.9),(3.8,1.4,.16),'ivory')
     for xx in [x-1.8,x+1.8]:box('DockApronLine',(xx,-4.7,.135),(.07,4.3,.025),'ivory')
-   door(0,front-.12);text('LOGISTICS' if style=='logistics' else 'METAL WORKS',(0,front-.2,top-.5),10,.47)
+   door(0,front-.12)
+   sign_z=4.60 if style=='logistics' else 4.23
+   sign_width=7.2 if style=='logistics' else 5.6
+   box('IndustrialSignBacking',(0,front-.20,sign_z),(sign_width,.15,.80 if style=='logistics' else .52),'metal')
+   text('LOGISTICS' if style=='logistics' else 'METAL WORKS',(0,front-.29,sign_z),sign_width-.3,.47 if style=='logistics' else .34)
    if style=='metalshop':
     for x in [-5.3,-3.9,-2.5]:
      for z in [.45,.85,1.25]:box('StackedSteelStock',(x,-5.8,z),(1.15,2.5,.25),'stone')

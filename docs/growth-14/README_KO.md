@@ -43,3 +43,7 @@ geometry-validation.json: 14개 원본을 다시 열어 평가된 메시/폰트 
 image-validation.json: PNG 크기/알파/프레임 잘림과 SHA-256. 실제 렌더링과 기하 검사는 별도다.
 새 게임 기능·경제 적용·실내·LOD·충돌·구조공학 검증은 하지 않았다. 승인 전 game_registered=false를 유지한다.
 [가격·용량 제안](BALANCE_PROPOSALS_KO.md)은 미적용이다. 모델을 만들었다고 이 값을 승인된 경제로 쓰지 않는다.
+
+## 간판 부분 수정
+
+[10·13·14번 간판 위치/대비 수정과 전후 검증](SIGN_FIX_KO.md). 다른11종은 그대로 유지했다.

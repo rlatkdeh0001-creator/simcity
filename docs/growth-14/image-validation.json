@@ -97,7 +97,7 @@
       834,
       1041
     ],
-    "png_sha256": "185abc54647c910e3113c599a42de036d6904a7f842cedc40698ee2c8915888f"
+    "png_sha256": "fd435670cc4752e8bdc1028e0fa427de05b89e14a03781f5487d1a1beb155f8c"
   },
   {
     "id": "large-2x2-grain-silo-01",
@@ -127,7 +127,7 @@
       852,
       833
     ],
-    "png_sha256": "042663bcfe84b296ec7f12f7a3fe17c5c0e479203f153ff7b2a33f9cbe99e4e4"
+    "png_sha256": "67254db4c600573b06cf789f795ad135ee63cfd405cb19ecee9392d340116658"
   },
   {
     "id": "small-4x4-metalshop-02",
@@ -137,6 +137,6 @@
       852,
       834
     ],
-    "png_sha256": "13179d024a4fdd2793f1beae7b49b3d444269f264e8b246d0a1f28ff514cd4dd"
+    "png_sha256": "7d9e6a298e336bb0cd1fdd16f20a41b16993662ca6c2293b3718257631cb75d7"
   }
 ]
