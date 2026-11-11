@@ -1,0 +1,64 @@
+﻿분류,이름,ID,가로칸,세로칸,가로m,세로m,크기상태,규격파일,규격필드
+주거,벽돌형 맨션,mansion-a-4x4-4f,4,4,16,16,원본 규격,assets/mansion-study/a-brick/metadata.json,footprint_cells
+주거,모던형 맨션,mansion-b-4x4-4f,4,4,16,16,원본 규격,assets/mansion-study/b-modern/metadata.json,footprint_cells
+주거,발코니 아파트,large-4x4-a,4,4,16,16,원본 규격,assets/residential-eight/large-4x4-a/metadata.json,footprint_cells
+주거,코너 주거타워,large-4x4-b,4,4,16,16,원본 규격,assets/residential-eight/large-4x4-b/metadata.json,footprint_cells
+주거,L자형 주거 아파트,large-8x8-a,8,8,32,32,원본 규격,assets/residential-eight/large-8x8-a/metadata.json,footprint_cells
+주거,계단형 주거타워,large-8x8-b,8,8,32,32,원본 규격,assets/residential-eight/large-8x8-b/metadata.json,footprint_cells
+주거,단층 전원주택,small-2x2-a,2,2,8,8,원본 규격,assets/residential-eight/small-2x2-a/metadata.json,footprint_cells
+주거,2층 타운하우스,small-2x2-b,2,2,8,8,원본 규격,assets/residential-eight/small-2x2-b/metadata.json,footprint_cells
+주거,정원형 단독주택,small-4x4-a,4,4,16,16,원본 규격,assets/residential-eight/small-4x4-a/metadata.json,footprint_cells
+주거,안뜰형 연립주택,small-4x4-b,4,4,16,16,원본 규격,assets/residential-eight/small-4x4-b/metadata.json,footprint_cells
+상업,AUREL 백화점,large-4x4-department-07,4,4,16,16,원본 규격,assets/commercial-study/large-4x4-department-07/metadata.json,footprint_cells
+상업,NOVA 오피스 타워,large-4x4-office-nova-08,4,4,16,16,원본 규격,assets/commercial-study/large-4x4-office-nova-08/metadata.json,footprint_cells
+상업,AUREL GRAND 대형 백화점,large-8x8-grand-department-09,8,8,32,32,원본 규격,assets/commercial-study/large-8x8-grand-department-09/metadata.json,footprint_cells
+상업,NOVA CENTRAL 트윈 복합타워,large-8x8-twin-central-10,8,8,32,32,원본 규격,assets/commercial-study/large-8x8-twin-central-10/metadata.json,footprint_cells
+상업,벽돌형 식당·서비스 상가,medium-4x4-brick-services-06,4,4,16,16,원본 규격,assets/commercial-study/medium-4x4-brick-services-06/metadata.json,footprint_cells
+상업,업무·상가 복합빌딩,medium-4x4-office-retail-05,4,4,16,16,원본 규격,assets/commercial-study/medium-4x4-office-retail-05/metadata.json,footprint_cells
+상업,자동차 전시장 AUTO,small-2x2-auto-02,2,2,8,8,원본 규격,assets/commercial-study/small-2x2-auto-02/metadata.json,footprint_cells
+상업,동네 MART,small-2x2-mart-01,2,2,8,8,원본 규격,assets/commercial-study/small-2x2-mart-01/metadata.json,footprint_cells
+상업,식당·카페 복합상가,small-4x4-cafe-diner-04,4,4,16,16,원본 규격,assets/commercial-study/small-4x4-cafe-diner-04/metadata.json,footprint_cells
+상업,동네 슈퍼마켓,small-4x4-market-03,4,4,16,16,원본 규격,assets/commercial-study/small-4x4-market-03/metadata.json,footprint_cells
+공업,화학 생산시설,large-4x4-chemical-06,4,4,16,16,원본 규격,assets/industrial-study/large-4x4-chemical-06/metadata.json,footprint_cells
+공업,제약 생산시설,large-4x4-pharma-05,4,4,16,16,원본 규격,assets/industrial-study/large-4x4-pharma-05/metadata.json,footprint_cells
+공업,자동차 조립공장,large-8x8-auto-assembly-07,8,8,32,32,원본 규격,assets/industrial-study/large-8x8-auto-assembly-07/metadata.json,footprint_cells
+공업,대규모 화학 플랜트,large-8x8-chemical-complex-08,8,8,32,32,원본 규격,assets/industrial-study/large-8x8-chemical-complex-08/metadata.json,footprint_cells
+공업,전자부품 공장,medium-4x4-circuitworks-04,4,4,16,16,원본 규격,assets/industrial-study/medium-4x4-circuitworks-04/metadata.json,footprint_cells
+공업,정밀기계 공장,medium-4x4-precision-03,4,4,16,16,원본 규격,assets/industrial-study/medium-4x4-precision-03/metadata.json,footprint_cells
+공업,식품가공 작업장,small-2x2-foodworks-02,2,2,8,8,원본 규격,assets/industrial-study/small-2x2-foodworks-02/metadata.json,footprint_cells
+공업,금속가공 작업장,small-2x2-metalworks-01,2,2,8,8,원본 규격,assets/industrial-study/small-2x2-metalworks-01/metadata.json,footprint_cells
+발전,석탄발전소,power-coal,8,8,32,32,원본 규격,assets/power-study/coal/metadata.json,footprint_cells
+발전,수력발전댐,power-hydro,가변,가변,가변,가변,가변 길이 · 고정 필지 없음,assets/power-study/hydro/metadata.json,footprint_cells
+발전,원자력발전소,power-nuclear,8,8,32,32,원본 규격,assets/power-study/nuclear/metadata.json,footprint_cells
+발전,석유발전소,power-oil,8,8,32,32,원본 규격,assets/power-study/oil/metadata.json,footprint_cells
+발전,태양광발전소,power-solar,4,4,16,16,원본 규격,assets/power-study/solar/metadata.json,footprint_cells
+발전,풍력발전소,power-wind,2,2,8,8,원본 규격,assets/power-study/wind/metadata.json,footprint_cells
+상하수도,취수장,water-intake,4,4,16,16,시안 규격,assets/water-study/intake/metadata.json,footprint_cells
+상하수도,하수장,water-sewage-outfall,4,4,16,16,시안 규격,assets/water-study/sewage-outfall/metadata.json,footprint_cells
+상하수도,하수처리장,water-sewage-treatment,8,8,32,32,시안 규격,assets/water-study/sewage-treatment/metadata.json,footprint_cells
+상하수도,급수탑,water-water-tower,2,2,8,8,시안 규격,assets/water-study/water-tower/metadata.json,footprint_cells
+쓰레기,쓰레기 소각장,waste-incinerator,8,8,32,32,시안 규격,assets/waste-study/incinerator/metadata.json,footprint_cells
+쓰레기,재활용센터,waste-recycling-center,8,8,32,32,시안 규격,assets/waste-study/recycling-center/metadata.json,footprint_cells
+소방,소방서,fire-station,6,6,24,24,시안 규격,assets/fire-study/fire-station/metadata.json,footprint_cells
+소방,광역 소방서,regional-fire-station,8,8,32,32,시안 규격,assets/fire-study/regional-fire-station/metadata.json,footprint_cells
+소방,소형 소방서,small-fire-station,4,4,16,16,시안 규격,assets/fire-study/small-fire-station/metadata.json,footprint_cells
+경찰,경찰서,police-station,6,6,24,24,시안 규격,assets/police-study/police-station/metadata.json,footprint_cells
+경찰,광역 경찰서,regional-police-station,8,8,32,32,시안 규격,assets/police-study/regional-police-station/metadata.json,footprint_cells
+경찰,소형 경찰서,small-police-station,4,4,16,16,시안 규격,assets/police-study/small-police-station/metadata.json,footprint_cells
+교정,교도소,prison-8x8,8,8,32,32,사용자 지정,assets/prison-study/prison/metadata.json,footprint_cells
+의료,진료소,medical-clinic,4,4,16,16,시안 규격,assets/medical-study/clinic/metadata.json,footprint_cells
+의료,병원,medical-hospital,6,6,24,24,시안 규격,assets/medical-study/hospital/metadata.json,footprint_cells
+의료,대형병원,medical-large-hospital,8,8,32,32,시안 규격,assets/medical-study/large-hospital/metadata.json,footprint_cells
+교육,초등학교,elementary-school,4,4,16,16,사용자 지정,assets/education-study/elementary-school/metadata.json,footprint_cells
+교육,고등학교,high-school,4,4,16,16,사용자 지정,assets/education-study/high-school/metadata.json,footprint_cells
+교육,전문대,technical-college,8,8,32,32,사용자 지정,assets/education-study/technical-college/metadata.json,footprint_cells
+교육,대학교,university,8,8,32,32,사용자 지정,assets/education-study/university/metadata.json,footprint_cells
+공원·주차,꽃정원 공원,park-garden-2x2,2,2,8,8,원본 규격,assets/facilities/park-garden-2x2/spec.json,width/depth
+공원·주차,놀이터 공원,park-play-4x4,4,4,16,16,원본 규격,assets/facilities/park-play-4x4/spec.json,width/depth
+공원·주차,분수 광장 공원,park-plaza-4x4,4,4,16,16,원본 규격,assets/facilities/park-plaza-4x4/spec.json,width/depth
+공원·주차,쉼터 공원,park-pocket-2x2,2,2,8,8,원본 규격,assets/facilities/park-pocket-2x2/spec.json,width/depth
+공원·주차,대형 주차장,parking-large-4x8,4,8,16,32,원본 규격,assets/facilities/parking-large-4x8/spec.json,width/depth
+공원·주차,중형 주차장,parking-medium-4x4,4,4,16,16,원본 규격,assets/facilities/parking-medium-4x4/spec.json,width/depth
+공원·주차,소형 주차장,parking-small-2x4,2,4,8,16,원본 규격,assets/facilities/parking-small-2x4/spec.json,width/depth
+공원·주차,4층 주차타워,parking-tower-4x4-4f,4,4,16,16,원본 규격,assets/facilities/parking-tower-4x4-4f/spec.json,width/depth
+기타 공공시설,화장터,crematorium-4x4,4,4,16,16,원본 규격,assets/service-facilities/crematorium-4x4/spec.json,width/depth
