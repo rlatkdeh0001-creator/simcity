@@ -1,0 +1,54 @@
+{
+  "id": "ambulance-01",
+  "name": "구급차",
+  "category": "service",
+  "style": "medical",
+  "length_m": 5.9,
+  "width_m": 2.1,
+  "height_m": 2.6,
+  "dimensions_source": "fictional game design; nominal body envelope excludes mirrors, lamps and roof accessories",
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "triangles": 2720,
+  "driver_side": "left",
+  "reconstruction": "new service asset",
+  "not_validated": [
+    "reference IoU",
+    "door opening",
+    "traffic AI",
+    "large-fleet performance",
+    "crash deformation"
+  ],
+  "vertex_bounds_m": [
+    [
+      -1.1749999523162842,
+      -3.0225000381469727,
+      0.0
+    ],
+    [
+      1.1749999523162842,
+      3.0399999618530273,
+      2.5999999046325684
+    ]
+  ],
+  "measured_dimensions_m": [
+    6.0625,
+    2.3499999046325684,
+    2.5999999046325684
+  ],
+  "full_accessory_height_m": 2.5999999046325684,
+  "height_limit_m": 3.4,
+  "wheel_count": 4,
+  "game_registered": false,
+  "source_skill": "zstack/vehicle; 74f7786e9931b9ced858a0e2df880f23e4c2430e; MIT",
+  "preview": "preview.png",
+  "rear_review": "rear-review.png"
+}

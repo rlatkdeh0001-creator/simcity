@@ -1,0 +1,46 @@
+[
+  {
+    "id": "garbage-truck-01",
+    "image": "preview.png",
+    "alpha_bbox_px": [
+      179,
+      80,
+      820,
+      589
+    ],
+    "sha256": "578d57156f41a62e88fd8ef5f662ae957632f6ec11924da84af263aecdd5c3fd"
+  },
+  {
+    "id": "garbage-truck-01",
+    "image": "rear-review.png",
+    "alpha_bbox_px": [
+      180,
+      112,
+      821,
+      593
+    ],
+    "sha256": "6bd4bcfe05fa70e60d18e925a2fba577becff4a1f03654cdc95f7ad9c8e51f74"
+  },
+  {
+    "id": "ambulance-01",
+    "image": "preview.png",
+    "alpha_bbox_px": [
+      182,
+      68,
+      823,
+      591
+    ],
+    "sha256": "4868a1f328a1e3da6b1248a62e322f309581011d1c3196e92e6a034a0b95c655"
+  },
+  {
+    "id": "ambulance-01",
+    "image": "rear-review.png",
+    "alpha_bbox_px": [
+      177,
+      127,
+      818,
+      591
+    ],
+    "sha256": "a410ec11f1a8cda640cd9eda38a4815303b28b176a3d5750d4d7f39e14615be4"
+  }
+]

@@ -1,0 +1,1 @@
+Original fictional geometry built with existing fleet helpers. CPU Cycles preview and rear review rendered. Source reopened and measured including mirrors, lamps and roof accessories. No external meshes/textures/generation APIs. Door motion, waste compression, patient transport, crash, traffic AI and large-fleet performance not validated.

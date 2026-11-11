@@ -1,0 +1,60 @@
+{
+  "vehicles": [
+    {
+      "id": "garbage-truck-01",
+      "checks": {
+        "metric_units": true,
+        "finite_mesh": true,
+        "ground_contact": true,
+        "full_height_including_accessories": true,
+        "triangles_in_budget": true,
+        "triangles_match_spec": true,
+        "measured_dimensions_match": true,
+        "left_hand_driver": true,
+        "wheel_rig": true,
+        "front_wheel_negative_y": true,
+        "no_external_texture": true,
+        "source_only": true,
+        "no_glb": true,
+        "rear_lift_pivot": true,
+        "recycling_geometry": true,
+        "lift_in_front_of_hopper_backplate": true
+      },
+      "passed": true,
+      "triangles": 3186,
+      "measured_dimensions_m": [
+        8.113999843597412,
+        2.6999998092651367,
+        3.1449999809265137
+      ]
+    },
+    {
+      "id": "ambulance-01",
+      "checks": {
+        "metric_units": true,
+        "finite_mesh": true,
+        "ground_contact": true,
+        "full_height_including_accessories": true,
+        "triangles_in_budget": true,
+        "triangles_match_spec": true,
+        "measured_dimensions_match": true,
+        "left_hand_driver": true,
+        "wheel_rig": true,
+        "front_wheel_negative_y": true,
+        "no_external_texture": true,
+        "source_only": true,
+        "no_glb": true,
+        "side_and_rear_medical_marks": true,
+        "roof_lights": true
+      },
+      "passed": true,
+      "triangles": 2720,
+      "measured_dimensions_m": [
+        6.0625,
+        2.3499999046325684,
+        2.5999999046325684
+      ]
+    }
+  ],
+  "passed": true
+}

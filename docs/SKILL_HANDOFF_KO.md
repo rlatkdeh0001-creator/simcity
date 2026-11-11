@@ -6,6 +6,25 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 서비스 차량2종 · 원본 전용 애셋 브랜치 (2026-11-11 KST)
+
+브랜치 `assets/service-vehicles-2-20261111`. 쓰레기차 → 구급차 순으로 제작했다.
+[미리보기·실측·재현·비용/용량 제안](service-vehicles-2/README_KO.md).
+`.agents/skills/cities-do-vehicles/SKILL.md`와 기존 vehicle rig-contract를 적용했다.
+상류 https://github.com/duolahypercho/zstack 고정판74f7786e9931b9ced858a0e2df880f23e4c2430e, MIT;
+각 원본 폴더에 ZSTACK_LICENSE.txt를 보존했다. 상류 파일과 기존 제작기는 수정하지 않았다.
+새 tools/build_service_vehicles_2.py에서 기존 build_vehicle_fleet.py의 매스/차륜/좌측 운전석 및
+common.py의 empty/parent_keep/rounded_box/revolve를 재사용했다. 의료/재활용 표식도 직접 기하로 만들었다.
+외부 모델·텍스처·생성 API 없음. Blender4.3.2 CPU Cycles로 앞/뒤 PNG4장을 실제 렌더했다.
+쓰레기차 부속품 포함8.114×2.700×3.145m/3,186삼각형, 구급차6.0625×2.350×2.600m/2,720삼각형.
+명목 차체 치수와 미러/램프 포함 전체 실측을 spec.json에서 구분한다. 바퀴 접지z=0, 전방-Y/왼쪽+X/위+Z.
+이번 실행 tools/verify_service_vehicles_2.py의 실제 재개방 기하 검사31개와 PNG 투명/프레임 검사를 통과했다.
+쓰레기차3.3m/구급차3.4m 전체 높이 제한을 만족한다. tools/render_service_vehicle_scale.py로
+기존 세단·소방차를 확대/축소하지 않은 동일 미터 비교도 실제 렌더했다.
+vehicle.blend/spec/PNG와 생성·검증 스크립트만 추가한다. GLB/8방향 스프라이트/게임 등록/main 병합 없음.
+문 개폐·리프트 작동·충돌·교통AI·대량 성능은 미검증이다. 비용/용량은 미승인 제안이며 실행 수치 변경 없음.
+별도 애셋 브랜치에 원본·검증·인계 기록을 함께 커밋·푸시한다. 독립/병렬 에이전트 사용 없음.
+
 ## 최신 승인: 결정적 신축·성장 부지 규칙 / main 통합
 
 성장 외관4077e44 사용자 승인 후 같은 feature/growth-appearance에서 부지 규칙2개를 구현했다.

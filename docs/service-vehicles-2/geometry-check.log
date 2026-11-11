@@ -1,0 +1,8 @@
+VERIFY garbage-truck-01 {'metric_units': True, 'finite_mesh': True, 'ground_contact': True, 'full_height_including_accessories': True, 'triangles_in_budget': True, 'triangles_match_spec': True, 'measured_dimensions_match': True, 'left_hand_driver': True, 'wheel_rig': True, 'front_wheel_negative_y': True, 'no_external_texture': True, 'source_only': True, 'no_glb': True, 'rear_lift_pivot': True, 'recycling_geometry': True, 'lift_in_front_of_hopper_backplate': True}
+VERIFY ambulance-01 {'metric_units': True, 'finite_mesh': True, 'ground_contact': True, 'full_height_including_accessories': True, 'triangles_in_budget': True, 'triangles_match_spec': True, 'measured_dimensions_match': True, 'left_hand_driver': True, 'wheel_rig': True, 'front_wheel_negative_y': True, 'no_external_texture': True, 'source_only': True, 'no_glb': True, 'side_and_rear_medical_marks': True, 'roof_lights': True}
+RESULT 31 source checks passed
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/vehicle-fleet/garbage-truck-01/vehicle.blend"
+Read blend: "/workspace/simcity/assets/vehicle-fleet/ambulance-01/vehicle.blend"
+
+Blender quit
