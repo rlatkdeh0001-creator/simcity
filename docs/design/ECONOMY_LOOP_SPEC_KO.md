@@ -146,6 +146,9 @@ v1(단일 물품)은 폐기. 이 문서의 수치는 모두 임시 제안이며 
 
 ## 10. 코드·파일 배치(제안)
 
+**건물 성장 연동**: 행복도는 건물 성장 경험치의 기준값이다(docs/design/BUILDING_GROWTH_KO.md). 수요는 행복도의 한 요소.
+수도·전기 미공급 시 해당 건물 행복도 0·경험치 정지.
+
 - 신규: `cities_do/core/economy_loop.gd`, `core/goods_config.json`(물자·단가·소비량), `core/trade_config.json`(이웃 교역 성향·거래 상한), `core/happiness.gd`(또는 economy_loop 내부 분리)
 - 연결: `core/city_model.gd` 틱/일 경계 훅, `core/population.gd` 취업/이주 연동, `core/regional_exchange.gd` 도로 채널 읽기
 - 테스트: `tests/test_economy_loop.gd`, `tests/test_happiness_migration.gd`, `tools/validate_economy_loop.py`
