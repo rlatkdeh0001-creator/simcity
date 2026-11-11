@@ -1,0 +1,26 @@
+{
+  "count": 18,
+  "entries": [
+    "large-4x4-department-07",
+    "large-4x4-office-nova-08",
+    "large-8x8-grand-department-09",
+    "large-8x8-twin-central-10",
+    "medium-4x4-brick-services-06",
+    "medium-4x4-office-retail-05",
+    "small-2x2-auto-02",
+    "small-2x2-mart-01",
+    "small-4x4-cafe-diner-04",
+    "small-4x4-market-03",
+    "large-4x4-chemical-06",
+    "large-4x4-pharma-05",
+    "large-8x8-auto-assembly-07",
+    "large-8x8-chemical-complex-08",
+    "medium-4x4-circuitworks-04",
+    "medium-4x4-precision-03",
+    "small-2x2-foodworks-02",
+    "small-2x2-metalworks-01"
+  ],
+  "same_scale": false,
+  "scroll_bottom": true,
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

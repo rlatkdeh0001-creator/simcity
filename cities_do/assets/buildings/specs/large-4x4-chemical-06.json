@@ -1,0 +1,157 @@
+{
+  "id": "large-4x4-chemical-06",
+  "name": "화학 생산시설",
+  "group": "industrial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 10.25999927520752,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 36840,
+  "model": "res://assets/buildings/models/large-4x4-chemical-06.glb",
+  "preview": "res://assets/buildings/large-4x4-chemical-06.png",
+  "spec": "res://assets/buildings/specs/large-4x4-chemical-06.json",
+  "source": "assets/industrial-study/large-4x4-chemical-06/building.blend",
+  "source_metadata": {
+    "id": "large-4x4-chemical-06",
+    "name": "화학 생산시설",
+    "zone": "industrial",
+    "category": "large_industrial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 2,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      874.8454
+    ],
+    "lot_corners_px": [
+      [
+        61.0912,
+        680.391
+      ],
+      [
+        450.0,
+        874.8454
+      ],
+      [
+        838.9087,
+        680.391
+      ],
+      [
+        450.0,
+        485.9367
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        10.139999389648438
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 32,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "CHEM WORKS sign",
+      "two-storey production wing",
+      "reactor vessels",
+      "tall process column",
+      "service platform",
+      "pipe bridge"
+    ],
+    "scope": "user-approved industrial design; game integration pending"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "StaffDoorGlass",
+  "front_feature_position_gltf": [
+    -2.799999952316284,
+    2.0199999809265137,
+    4.300000190734863
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_4x4",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      10.25999927520752
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "category_name": "공업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 2,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-4x4-chemical-06.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    874.8454
+  ],
+  "lot_width_px": 777.8175,
+  "industry": "화학"
+}

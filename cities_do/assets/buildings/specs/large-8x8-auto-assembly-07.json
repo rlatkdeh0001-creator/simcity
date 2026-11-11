@@ -1,0 +1,159 @@
+{
+  "id": "large-8x8-auto-assembly-07",
+  "name": "자동차 조립공장",
+  "group": "industrial",
+  "width": 8,
+  "depth": 8,
+  "height_m": 11.420000076293945,
+  "width_m": 32.0,
+  "length_m": 32.0,
+  "triangles": 47540,
+  "model": "res://assets/buildings/models/large-8x8-auto-assembly-07.glb",
+  "preview": "res://assets/buildings/large-8x8-auto-assembly-07.png",
+  "spec": "res://assets/buildings/specs/large-8x8-auto-assembly-07.json",
+  "source": "assets/industrial-study/large-8x8-auto-assembly-07/building.blend",
+  "source_metadata": {
+    "id": "large-8x8-auto-assembly-07",
+    "name": "자동차 조립공장",
+    "zone": "industrial",
+    "category": "large_industrial",
+    "footprint_cells": [
+      8,
+      8
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      32,
+      32
+    ],
+    "occupied_storeys": 3,
+    "production_hall_storeys": 1,
+    "office_wing_storeys": 3,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      449.9999,
+      831.6541
+    ],
+    "lot_corners_px": [
+      [
+        28.1328,
+        620.7205
+      ],
+      [
+        449.9999,
+        831.6541
+      ],
+      [
+        871.867,
+        620.7206
+      ],
+      [
+        449.9999,
+        409.787
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -16.0,
+        -16.0,
+        -0.11999999731779099
+      ],
+      [
+        16.0,
+        16.0,
+        11.300000190734863
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 59,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "AUTO ASSEMBLY sign",
+      "single-volume production hall",
+      "three-storey office wing",
+      "sawtooth rooflights",
+      "loading bays",
+      "vehicle dispatch yard"
+    ],
+    "scope": "user-approved industrial design; game integration pending"
+  },
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    10.0,
+    1.9199999570846558,
+    8.380000114440918
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_8x8",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      11.420000076293945
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "category_name": "공업",
+  "footprint": [
+    8,
+    8
+  ],
+  "storeys": 3,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-8x8-auto-assembly-07.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9999,
+    831.6541
+  ],
+  "lot_width_px": 843.7342,
+  "industry": "자동차 조립"
+}

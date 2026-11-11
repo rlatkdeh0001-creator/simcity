@@ -1,0 +1,130 @@
+{
+  "id": "waste-recycling-center",
+  "name": "재활용센터",
+  "group": "waste",
+  "width": 8,
+  "depth": 8,
+  "height_m": 7.559999942779541,
+  "width_m": 32.0,
+  "length_m": 32.0,
+  "triangles": 83403,
+  "model": "res://assets/services/waste-recycling-center.glb",
+  "preview": "res://assets/services/waste-recycling-center.png",
+  "spec": "res://assets/services/specs/waste-recycling-center.json",
+  "source": "assets/waste-study/recycling-center/building.blend",
+  "source_metadata": {
+    "id": "waste-recycling-center",
+    "name": "재활용센터",
+    "category": "waste_utility",
+    "footprint_cells": [
+      8,
+      8
+    ],
+    "footprint_status": "draft",
+    "cell_meters": 4,
+    "lot_meters": [
+      32,
+      32
+    ],
+    "placement_surface": "land",
+    "road_adjacency_required": true,
+    "landfill_included": false,
+    "incineration_included": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0003,
+      803.1442
+    ],
+    "lot_corners_px": [
+      [
+        35.1644,
+        595.7262
+      ],
+      [
+        450.0003,
+        803.1442
+      ],
+      [
+        864.8363,
+        595.7263
+      ],
+      [
+        450.0005,
+        388.3082
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -16.0,
+        -16.0,
+        -0.11999999731779099
+      ],
+      [
+        16.0,
+        16.0,
+        7.440000057220459
+      ]
+    ],
+    "approval_status": "approved",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "user-approved recycling centre design; game integration pending"
+  },
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "StaffDoor",
+  "front_feature_position_gltf": [
+    4.800000190734863,
+    1.7200000286102295,
+    4.670000076293945
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      7.559999942779541
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "environment"
+}

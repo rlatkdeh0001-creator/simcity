@@ -308,6 +308,2830 @@
         1
       ],
       "height_m": 56.5
+    },
+    {
+      "id": "large-4x4-department-07",
+      "name": "AUREL 백화점",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 27.270000457763672,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 33440,
+      "model": "res://assets/buildings/models/large-4x4-department-07.glb",
+      "preview": "res://assets/buildings/large-4x4-department-07.png",
+      "spec": "res://assets/buildings/specs/large-4x4-department-07.json",
+      "source": "assets/commercial-study/large-4x4-department-07/building.blend",
+      "source_metadata": {
+        "id": "large-4x4-department-07",
+        "name": "AUREL 백화점",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 8,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          931.2993
+        ],
+        "lot_corners_px": [
+          [
+            179.4548,
+            796.0267
+          ],
+          [
+            450.0,
+            931.2993
+          ],
+          [
+            720.5452,
+            796.0267
+          ],
+          [
+            450.0,
+            660.7541
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            27.149999618530273
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 46,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "AUREL department-store lettering",
+          "diamond emblem",
+          "double-height shopfront",
+          "stone vertical piers",
+          "eight occupied floors"
+        ],
+        "scope": "user-approved large commercial design; game integration pending",
+        "density": "high",
+        "retail_type": "department_store"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorDivision",
+      "front_feature_position_gltf": [
+        -1.0499999523162842,
+        1.9700000882148743,
+        5.139999866485596
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          27.270000457763672
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "large_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 8,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-4x4-department-07.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        931.2993
+      ],
+      "lot_width_px": 541.0904,
+      "industry": "department_store"
+    },
+    {
+      "id": "large-4x4-office-nova-08",
+      "name": "NOVA 오피스 타워",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 30.850000381469727,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 49932,
+      "model": "res://assets/buildings/models/large-4x4-office-nova-08.glb",
+      "preview": "res://assets/buildings/large-4x4-office-nova-08.png",
+      "spec": "res://assets/buildings/specs/large-4x4-office-nova-08.json",
+      "source": "assets/commercial-study/large-4x4-office-nova-08/building.blend",
+      "source_metadata": {
+        "id": "large-4x4-office-nova-08",
+        "name": "NOVA 오피스 타워",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "density": "high",
+        "retail_type": "office_with_retail",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 10,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          938.9004
+        ],
+        "lot_corners_px": [
+          [
+            201.0984,
+            814.4496
+          ],
+          [
+            450.0,
+            938.9004
+          ],
+          [
+            698.9016,
+            814.4497
+          ],
+          [
+            450.0,
+            689.9989
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            30.729999542236328
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 50,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "NOVA vertical lettering",
+          "CAFE and TECH podium",
+          "separate OFFICE lobby",
+          "two upper setbacks",
+          "ten occupied floors"
+        ],
+        "scope": "user-approved large commercial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorDivision",
+      "front_feature_position_gltf": [
+        -1.0,
+        1.919999897480011,
+        5.019999980926514
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          30.850000381469727
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "large_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 10,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-4x4-office-nova-08.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        938.9004
+      ],
+      "lot_width_px": 497.80320000000006,
+      "industry": "office_with_retail"
+    },
+    {
+      "id": "large-8x8-grand-department-09",
+      "name": "AUREL GRAND 대형 백화점",
+      "group": "commercial",
+      "width": 8,
+      "depth": 8,
+      "height_m": 30.220001220703125,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 76424,
+      "model": "res://assets/buildings/models/large-8x8-grand-department-09.glb",
+      "preview": "res://assets/buildings/large-8x8-grand-department-09.png",
+      "spec": "res://assets/buildings/specs/large-8x8-grand-department-09.json",
+      "source": "assets/commercial-study/large-8x8-grand-department-09/building.blend",
+      "source_metadata": {
+        "id": "large-8x8-grand-department-09",
+        "name": "AUREL GRAND 대형 백화점",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "density": "high",
+        "retail_type": "department_store",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "occupied_storeys": 8,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          918.8796
+        ],
+        "lot_corners_px": [
+          [
+            78.5055,
+            733.1321
+          ],
+          [
+            450.0003,
+            918.8796
+          ],
+          [
+            821.4953,
+            733.1321
+          ],
+          [
+            450.0004,
+            547.3847
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            30.100000381469727
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 67,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "wide department-store wings",
+          "central glazed atrium",
+          "roof skylight",
+          "diamond emblems",
+          "AUREL GRAND sign"
+        ],
+        "scope": "user-approved large commercial design; game integration pending"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        -1.649999976158142,
+        2.219999670982361,
+        10.149999618530273
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          30.220001220703125
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "large_commercial",
+      "category_name": "상업",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 8,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-8x8-grand-department-09.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0003,
+        918.8796
+      ],
+      "lot_width_px": 742.9898000000001,
+      "industry": "department_store"
+    },
+    {
+      "id": "large-8x8-twin-central-10",
+      "name": "NOVA CENTRAL 트윈 복합타워",
+      "group": "commercial",
+      "width": 8,
+      "depth": 8,
+      "height_m": 45.269996643066406,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 87036,
+      "model": "res://assets/buildings/models/large-8x8-twin-central-10.glb",
+      "preview": "res://assets/buildings/large-8x8-twin-central-10.png",
+      "spec": "res://assets/buildings/specs/large-8x8-twin-central-10.json",
+      "source": "assets/commercial-study/large-8x8-twin-central-10/building.blend",
+      "source_metadata": {
+        "id": "large-8x8-twin-central-10",
+        "name": "NOVA CENTRAL 트윈 복합타워",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "density": "high",
+        "retail_type": "office_with_retail",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "occupied_storeys": 14,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0002,
+          923.6111
+        ],
+        "lot_corners_px": [
+          [
+            153.6889,
+            775.4553
+          ],
+          [
+            450.0002,
+            923.6111
+          ],
+          [
+            746.3117,
+            775.4554
+          ],
+          [
+            450.0003,
+            627.2997
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            45.14999771118164
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 84,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "two unequal office towers",
+          "three-floor retail podium",
+          "NOVA CENTRAL sign",
+          "planted podium roof"
+        ],
+        "scope": "user-approved large commercial design; game integration pending"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        -1.649999976158142,
+        2.219999670982361,
+        9.800000190734863
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          45.269996643066406
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "large_commercial",
+      "category_name": "상업",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 14,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-8x8-twin-central-10.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0002,
+        923.6111
+      ],
+      "lot_width_px": 592.6228,
+      "industry": "office_with_retail"
+    },
+    {
+      "id": "medium-4x4-brick-services-06",
+      "name": "벽돌형 식당·서비스 상가",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 13.869999885559082,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 84816,
+      "model": "res://assets/buildings/models/medium-4x4-brick-services-06.glb",
+      "preview": "res://assets/buildings/medium-4x4-brick-services-06.png",
+      "spec": "res://assets/buildings/specs/medium-4x4-brick-services-06.json",
+      "source": "assets/commercial-study/medium-4x4-brick-services-06/building.blend",
+      "source_metadata": {
+        "id": "medium-4x4-brick-services-06",
+        "name": "벽돌형 식당·서비스 상가",
+        "zone": "commercial",
+        "category": "medium_commercial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 4,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          904.6151
+        ],
+        "lot_corners_px": [
+          [
+            61.0912,
+            710.1607
+          ],
+          [
+            450.0,
+            904.6151
+          ],
+          [
+            838.9087,
+            710.1607
+          ],
+          [
+            450.0,
+            515.7063
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            13.75
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 32,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "BISTRO and SALON storefronts",
+          "FOOD CAFE GYM SALON tenant directory",
+          "brick facade",
+          "four occupied floors"
+        ],
+        "scope": "user-approved medium commercial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "ShopDoor",
+      "front_feature_position_gltf": [
+        -3.0999999046325684,
+        1.6200000047683716,
+        3.450000047683716
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          13.869999885559082
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "medium_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 4,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-4x4-brick-services-06.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        904.6151
+      ],
+      "lot_width_px": 777.8175,
+      "industry": "식음·서비스"
+    },
+    {
+      "id": "medium-4x4-office-retail-05",
+      "name": "업무·상가 복합빌딩",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 13.399999618530273,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 44472,
+      "model": "res://assets/buildings/models/medium-4x4-office-retail-05.glb",
+      "preview": "res://assets/buildings/medium-4x4-office-retail-05.png",
+      "spec": "res://assets/buildings/specs/medium-4x4-office-retail-05.json",
+      "source": "assets/commercial-study/medium-4x4-office-retail-05/building.blend",
+      "source_metadata": {
+        "id": "medium-4x4-office-retail-05",
+        "name": "업무·상가 복합빌딩",
+        "zone": "commercial",
+        "category": "medium_commercial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 4,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          904.6151
+        ],
+        "lot_corners_px": [
+          [
+            61.0912,
+            710.1607
+          ],
+          [
+            450.0,
+            904.6151
+          ],
+          [
+            838.9087,
+            710.1607
+          ],
+          [
+            450.0,
+            515.7063
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            13.279999732971191
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 32,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "PHARMACY and BAKERY signs",
+          "separate OFFICE entrance",
+          "continuous office window bands",
+          "four occupied floors"
+        ],
+        "scope": "user-approved medium commercial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        0.0,
+        1.6699999570846558,
+        3.950000047683716
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          13.399999618530273
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "medium_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 4,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-4x4-office-retail-05.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        904.6151
+      ],
+      "lot_width_px": 777.8175,
+      "industry": "업무·상가"
+    },
+    {
+      "id": "small-2x2-auto-02",
+      "name": "자동차 전시장 AUTO",
+      "group": "commercial",
+      "width": 2,
+      "depth": 2,
+      "height_m": 4.444999694824219,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 28684,
+      "model": "res://assets/buildings/models/small-2x2-auto-02.glb",
+      "preview": "res://assets/buildings/small-2x2-auto-02.png",
+      "spec": "res://assets/buildings/specs/small-2x2-auto-02.json",
+      "source": "assets/commercial-study/small-2x2-auto-02/auto.blend",
+      "source_metadata": {
+        "id": "small-2x2-auto-02",
+        "name": "자동차 전시장 AUTO",
+        "zone": "commercial",
+        "category": "small_commercial",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "occupied_storeys": 1,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          876.8141
+        ],
+        "lot_corners_px": [
+          [
+            35.164,
+            669.3961
+          ],
+          [
+            450.0,
+            876.8141
+          ],
+          [
+            864.836,
+            669.3962
+          ],
+          [
+            450.0,
+            461.9781
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            4.324999809265137
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 15,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "AUTO lettering",
+          "car silhouette",
+          "display vehicle",
+          "glass showroom"
+        ],
+        "scope": "review-only concept; no game catalog or growth changes"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "Door",
+      "front_feature_position_gltf": [
+        2.0,
+        1.6200000047683716,
+        2.2100000381469727
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_2x2",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          4.444999694824219
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "small_commercial",
+      "category_name": "상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-2x2-auto-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        876.8141
+      ],
+      "lot_width_px": 829.672,
+      "industry": "자동차 전시"
+    },
+    {
+      "id": "small-2x2-mart-01",
+      "name": "동네 MART",
+      "group": "commercial",
+      "width": 2,
+      "depth": 2,
+      "height_m": 5.190000057220459,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 17452,
+      "model": "res://assets/buildings/models/small-2x2-mart-01.glb",
+      "preview": "res://assets/buildings/small-2x2-mart-01.png",
+      "spec": "res://assets/buildings/specs/small-2x2-mart-01.json",
+      "source": "assets/commercial-study/small-2x2-mart-01/mart.blend",
+      "source_metadata": {
+        "id": "small-2x2-mart-01",
+        "name": "동네 MART",
+        "zone": "commercial",
+        "category": "small_commercial",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "occupied_storeys": 1,
+        "approval_status": "approved",
+        "game_registered": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          876.8141
+        ],
+        "lot_corners_px": [
+          [
+            35.164,
+            669.3961
+          ],
+          [
+            450.0,
+            876.8141
+          ],
+          [
+            864.836,
+            669.3962
+          ],
+          [
+            450.0,
+            461.9781
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            5.070000171661377
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 15,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "MART lettering",
+          "shopping basket icon",
+          "wide shopfront",
+          "striped awning",
+          "produce stand",
+          "shopping trolley"
+        ],
+        "scope": "user-approved small commercial asset; matching 2x2 commercial construction"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorCenterBar",
+      "front_feature_position_gltf": [
+        1.4500000476837158,
+        1.7299999594688416,
+        2.3499999046325684
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_2x2",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          5.190000057220459
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "small_commercial",
+      "category_name": "상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-2x2-mart-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        876.8141
+      ],
+      "lot_width_px": 829.672,
+      "industry": "마트"
+    },
+    {
+      "id": "small-4x4-cafe-diner-04",
+      "name": "식당·카페 복합상가",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 7.320000171661377,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 26524,
+      "model": "res://assets/buildings/models/small-4x4-cafe-diner-04.glb",
+      "preview": "res://assets/buildings/small-4x4-cafe-diner-04.png",
+      "spec": "res://assets/buildings/specs/small-4x4-cafe-diner-04.json",
+      "source": "assets/commercial-study/small-4x4-cafe-diner-04/building.blend",
+      "source_metadata": {
+        "id": "small-4x4-cafe-diner-04",
+        "name": "식당·카페 복합상가",
+        "zone": "commercial",
+        "category": "small_commercial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 2,
+        "approval_status": "approved",
+        "game_registered": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          860.0115
+        ],
+        "lot_corners_px": [
+          [
+            5.5328,
+            637.7779
+          ],
+          [
+            450.0,
+            860.0115
+          ],
+          [
+            894.4671,
+            637.778
+          ],
+          [
+            450.0,
+            415.5444
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            7.200000286102295
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 28,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "CAFE and DINER signs",
+          "outdoor seating",
+          "menu board",
+          "two-storey neighbourhood shops"
+        ],
+        "scope": "user-approved 4x4 small commercial asset"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "ShopDoor",
+      "front_feature_position_gltf": [
+        -1.3500000536441803,
+        1.6700000166893005,
+        3.0799999237060547
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          7.320000171661377
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "small_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 2,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-4x4-cafe-diner-04.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        860.0115
+      ],
+      "lot_width_px": 888.9343,
+      "industry": "식음"
+    },
+    {
+      "id": "small-4x4-market-03",
+      "name": "동네 슈퍼마켓",
+      "group": "commercial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 5.769999980926514,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 29080,
+      "model": "res://assets/buildings/models/small-4x4-market-03.glb",
+      "preview": "res://assets/buildings/small-4x4-market-03.png",
+      "spec": "res://assets/buildings/specs/small-4x4-market-03.json",
+      "source": "assets/commercial-study/small-4x4-market-03/building.blend",
+      "source_metadata": {
+        "id": "small-4x4-market-03",
+        "name": "동네 슈퍼마켓",
+        "zone": "commercial",
+        "category": "small_commercial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 1,
+        "approval_status": "approved",
+        "game_registered": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          860.0115
+        ],
+        "lot_corners_px": [
+          [
+            5.5328,
+            637.7779
+          ],
+          [
+            450.0,
+            860.0115
+          ],
+          [
+            894.4671,
+            637.778
+          ],
+          [
+            450.0,
+            415.5444
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            5.650000095367432
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 28,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "FRESH MART lettering",
+          "produce stands",
+          "striped awning",
+          "cycle racks"
+        ],
+        "scope": "user-approved 4x4 small commercial asset"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        0.0,
+        1.7699999809265137,
+        3.1500000953674316
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          5.769999980926514
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "commercial",
+      "category": "small_commercial",
+      "category_name": "상업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-4x4-market-03.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        860.0115
+      ],
+      "lot_width_px": 888.9343,
+      "industry": "슈퍼마켓"
+    },
+    {
+      "id": "large-4x4-chemical-06",
+      "name": "화학 생산시설",
+      "group": "industrial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 10.25999927520752,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 36840,
+      "model": "res://assets/buildings/models/large-4x4-chemical-06.glb",
+      "preview": "res://assets/buildings/large-4x4-chemical-06.png",
+      "spec": "res://assets/buildings/specs/large-4x4-chemical-06.json",
+      "source": "assets/industrial-study/large-4x4-chemical-06/building.blend",
+      "source_metadata": {
+        "id": "large-4x4-chemical-06",
+        "name": "화학 생산시설",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 2,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          874.8454
+        ],
+        "lot_corners_px": [
+          [
+            61.0912,
+            680.391
+          ],
+          [
+            450.0,
+            874.8454
+          ],
+          [
+            838.9087,
+            680.391
+          ],
+          [
+            450.0,
+            485.9367
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            10.139999389648438
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 32,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "CHEM WORKS sign",
+          "two-storey production wing",
+          "reactor vessels",
+          "tall process column",
+          "service platform",
+          "pipe bridge"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoorGlass",
+      "front_feature_position_gltf": [
+        -2.799999952316284,
+        2.0199999809265137,
+        4.300000190734863
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          10.25999927520752
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "large_industrial",
+      "category_name": "공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 2,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-4x4-chemical-06.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        874.8454
+      ],
+      "lot_width_px": 777.8175,
+      "industry": "화학"
+    },
+    {
+      "id": "large-4x4-pharma-05",
+      "name": "제약 생산시설",
+      "group": "industrial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 15.494999885559082,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 29876,
+      "model": "res://assets/buildings/models/large-4x4-pharma-05.glb",
+      "preview": "res://assets/buildings/large-4x4-pharma-05.png",
+      "spec": "res://assets/buildings/specs/large-4x4-pharma-05.json",
+      "source": "assets/industrial-study/large-4x4-pharma-05/building.blend",
+      "source_metadata": {
+        "id": "large-4x4-pharma-05",
+        "name": "제약 생산시설",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 4,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          882.4408
+        ],
+        "lot_corners_px": [
+          [
+            113.6465,
+            714.264
+          ],
+          [
+            450.0,
+            882.4408
+          ],
+          [
+            786.3535,
+            714.264
+          ],
+          [
+            450.0,
+            546.0873
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            15.375
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 37,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "PHARMA LAB sign",
+          "capsule pictogram",
+          "four production floors",
+          "sealed utility tanks",
+          "roof air handling units",
+          "loading bay"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        0.75,
+        1.8700000643730164,
+        3.940000057220459
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          15.494999885559082
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "large_industrial",
+      "category_name": "공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 4,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-4x4-pharma-05.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        882.4408
+      ],
+      "lot_width_px": 672.7070000000001,
+      "industry": "제약"
+    },
+    {
+      "id": "large-8x8-auto-assembly-07",
+      "name": "자동차 조립공장",
+      "group": "industrial",
+      "width": 8,
+      "depth": 8,
+      "height_m": 11.420000076293945,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 47540,
+      "model": "res://assets/buildings/models/large-8x8-auto-assembly-07.glb",
+      "preview": "res://assets/buildings/large-8x8-auto-assembly-07.png",
+      "spec": "res://assets/buildings/specs/large-8x8-auto-assembly-07.json",
+      "source": "assets/industrial-study/large-8x8-auto-assembly-07/building.blend",
+      "source_metadata": {
+        "id": "large-8x8-auto-assembly-07",
+        "name": "자동차 조립공장",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "occupied_storeys": 3,
+        "production_hall_storeys": 1,
+        "office_wing_storeys": 3,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          449.9999,
+          831.6541
+        ],
+        "lot_corners_px": [
+          [
+            28.1328,
+            620.7205
+          ],
+          [
+            449.9999,
+            831.6541
+          ],
+          [
+            871.867,
+            620.7206
+          ],
+          [
+            449.9999,
+            409.787
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            11.300000190734863
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 59,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "AUTO ASSEMBLY sign",
+          "single-volume production hall",
+          "three-storey office wing",
+          "sawtooth rooflights",
+          "loading bays",
+          "vehicle dispatch yard"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        10.0,
+        1.9199999570846558,
+        8.380000114440918
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_8x8",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          11.420000076293945
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "large_industrial",
+      "category_name": "공업",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 3,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-8x8-auto-assembly-07.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        449.9999,
+        831.6541
+      ],
+      "lot_width_px": 843.7342,
+      "industry": "자동차 조립"
+    },
+    {
+      "id": "large-8x8-chemical-complex-08",
+      "name": "대규모 화학 플랜트",
+      "group": "industrial",
+      "width": 8,
+      "depth": 8,
+      "height_m": 17.71000099182129,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 44496,
+      "model": "res://assets/buildings/models/large-8x8-chemical-complex-08.glb",
+      "preview": "res://assets/buildings/large-8x8-chemical-complex-08.png",
+      "spec": "res://assets/buildings/specs/large-8x8-chemical-complex-08.json",
+      "source": "assets/industrial-study/large-8x8-chemical-complex-08/building.blend",
+      "source_metadata": {
+        "id": "large-8x8-chemical-complex-08",
+        "name": "대규모 화학 플랜트",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "occupied_storeys": 4,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          449.9999,
+          842.2949
+        ],
+        "lot_corners_px": [
+          [
+            67.0744,
+            650.8321
+          ],
+          [
+            449.9999,
+            842.2949
+          ],
+          [
+            832.9254,
+            650.8322
+          ],
+          [
+            449.9999,
+            459.3693
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            17.59000015258789
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 65,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "CHEM COMPLEX sign",
+          "four-storey production block",
+          "horizontal storage vessels",
+          "low service annex",
+          "rear tank farm",
+          "roof air plant"
+        ],
+        "scope": "user-approved four-storey industrial design; game integration pending",
+        "revision": "four-storey-redesign"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        0.9999999701976776,
+        2.019999921321869,
+        8.550000190734863
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_8x8",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          17.71000099182129
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "large_industrial",
+      "category_name": "공업",
+      "footprint": [
+        8,
+        8
+      ],
+      "storeys": 4,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-8x8-chemical-complex-08.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        449.9999,
+        842.2949
+      ],
+      "lot_width_px": 765.851,
+      "industry": "화학"
+    },
+    {
+      "id": "medium-4x4-circuitworks-04",
+      "name": "전자부품 공장",
+      "group": "industrial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 11.929999351501465,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 44124,
+      "model": "res://assets/buildings/models/medium-4x4-circuitworks-04.glb",
+      "preview": "res://assets/buildings/medium-4x4-circuitworks-04.png",
+      "spec": "res://assets/buildings/specs/medium-4x4-circuitworks-04.json",
+      "source": "assets/industrial-study/medium-4x4-circuitworks-04/building.blend",
+      "source_metadata": {
+        "id": "medium-4x4-circuitworks-04",
+        "name": "전자부품 공장",
+        "zone": "industrial",
+        "category": "medium_industrial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 3,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          879.4354
+        ],
+        "lot_corners_px": [
+          [
+            72.8764,
+            690.8736
+          ],
+          [
+            450.0,
+            879.4354
+          ],
+          [
+            827.1236,
+            690.8736
+          ],
+          [
+            450.0,
+            502.3117
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            11.809999465942383
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 33,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "CIRCUIT WORKS sign",
+          "microchip pictogram",
+          "three production floors",
+          "loading bay",
+          "air handling units",
+          "external utility pipes"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        2.5999999046325684,
+        1.8200000524520874,
+        3.9200000762939453
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          11.929999351501465
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "medium_industrial",
+      "category_name": "공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 3,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-4x4-circuitworks-04.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        879.4354
+      ],
+      "lot_width_px": 754.2472,
+      "industry": "전자부품"
+    },
+    {
+      "id": "medium-4x4-precision-03",
+      "name": "정밀기계 공장",
+      "group": "industrial",
+      "width": 4,
+      "depth": 4,
+      "height_m": 7.769999980926514,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 50196,
+      "model": "res://assets/buildings/models/medium-4x4-precision-03.glb",
+      "preview": "res://assets/buildings/medium-4x4-precision-03.png",
+      "spec": "res://assets/buildings/specs/medium-4x4-precision-03.json",
+      "source": "assets/industrial-study/medium-4x4-precision-03/building.blend",
+      "source_metadata": {
+        "id": "medium-4x4-precision-03",
+        "name": "정밀기계 공장",
+        "zone": "industrial",
+        "category": "medium_industrial",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "occupied_storeys": 2,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          848.8704
+        ],
+        "lot_corners_px": [
+          [
+            35.164,
+            641.4524
+          ],
+          [
+            450.0,
+            848.8704
+          ],
+          [
+            864.836,
+            641.4524
+          ],
+          [
+            450.0,
+            434.0344
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            7.650000095367432
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 30,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "PRECISION WORKS sign",
+          "two loading shutters",
+          "sawtooth rooflights",
+          "two-storey office wing",
+          "dust extraction",
+          "stock pallets"
+        ],
+        "scope": "user-approved industrial design; game integration pending",
+        "production_hall_storeys": 1,
+        "office_wing_storeys": 2
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoorGlass",
+      "front_feature_position_gltf": [
+        4.349999904632568,
+        1.9700000882148743,
+        3.7899999618530273
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_4x4",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          7.769999980926514
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "medium_industrial",
+      "category_name": "공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "storeys": 2,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-4x4-precision-03.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        848.8704
+      ],
+      "lot_width_px": 829.672,
+      "industry": "정밀기계"
+    },
+    {
+      "id": "small-2x2-foodworks-02",
+      "name": "식품가공 작업장",
+      "group": "industrial",
+      "width": 2,
+      "depth": 2,
+      "height_m": 5.169999599456787,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 34048,
+      "model": "res://assets/buildings/models/small-2x2-foodworks-02.glb",
+      "preview": "res://assets/buildings/small-2x2-foodworks-02.png",
+      "spec": "res://assets/buildings/specs/small-2x2-foodworks-02.json",
+      "source": "assets/industrial-study/small-2x2-foodworks-02/building.blend",
+      "source_metadata": {
+        "id": "small-2x2-foodworks-02",
+        "name": "식품가공 작업장",
+        "zone": "industrial",
+        "category": "small_industrial",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "occupied_storeys": 1,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          876.8141
+        ],
+        "lot_corners_px": [
+          [
+            35.164,
+            669.3961
+          ],
+          [
+            450.0,
+            876.8141
+          ],
+          [
+            864.836,
+            669.3962
+          ],
+          [
+            450.0,
+            461.9781
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            5.049999713897705
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 15,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "FOOD WORKS sign",
+          "wheat pictogram",
+          "insulated loading door",
+          "external condenser",
+          "sealed dispatch cartons",
+          "one occupied floor"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "DoorSplit",
+      "front_feature_position_gltf": [
+        -1.0499999523162842,
+        1.8199999928474426,
+        2.4100000858306885
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_2x2",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          5.169999599456787
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "small_industrial",
+      "category_name": "공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-2x2-foodworks-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        876.8141
+      ],
+      "lot_width_px": 829.672,
+      "industry": "식품가공"
+    },
+    {
+      "id": "small-2x2-metalworks-01",
+      "name": "금속가공 작업장",
+      "group": "industrial",
+      "width": 2,
+      "depth": 2,
+      "height_m": 5.179999828338623,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 23004,
+      "model": "res://assets/buildings/models/small-2x2-metalworks-01.glb",
+      "preview": "res://assets/buildings/small-2x2-metalworks-01.png",
+      "spec": "res://assets/buildings/specs/small-2x2-metalworks-01.json",
+      "source": "assets/industrial-study/small-2x2-metalworks-01/building.blend",
+      "source_metadata": {
+        "id": "small-2x2-metalworks-01",
+        "name": "금속가공 작업장",
+        "zone": "industrial",
+        "category": "small_industrial",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "occupied_storeys": 1,
+        "approval_status": "approved",
+        "game_registered": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          876.8141
+        ],
+        "lot_corners_px": [
+          [
+            35.164,
+            669.3961
+          ],
+          [
+            450.0,
+            876.8141
+          ],
+          [
+            864.836,
+            669.3962
+          ],
+          [
+            450.0,
+            461.9781
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            5.059999942779541
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "orthographic_scale": 15,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "cues": [
+          "METAL WORKS sign",
+          "roller shutter",
+          "corrugated cladding",
+          "ridge vent",
+          "stock pallet",
+          "delivery apron"
+        ],
+        "scope": "user-approved industrial design; game integration pending"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "WorkerDoor",
+      "front_feature_position_gltf": [
+        2.0199999809265137,
+        1.5200000405311584,
+        2.2300000190734863
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot_2x2",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          5.179999828338623
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "",
+      "zone": "industrial",
+      "category": "small_industrial",
+      "category_name": "공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-2x2-metalworks-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        876.8141
+      ],
+      "lot_width_px": 829.672,
+      "industry": "금속가공"
     }
   ]
 }

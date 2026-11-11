@@ -1,0 +1,638 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS remaining thirty assets have an actual registry
+PASS registry contains all thirty original asset IDs
+PASS large-4x4-department-07 real spec exists
+PASS large-4x4-department-07 original preview copy and actual GLB exist
+PASS large-4x4-department-07 inspection-only status, no growth/operation
+PASS large-4x4-department-07 metre/cell convention and +Z front axis
+PASS large-4x4-department-07 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-department-07 spec reports actual mesh dimensions
+PASS large-4x4-department-07 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-department-07 original support datum aligned without deleting underground geometry
+PASS large-4x4-department-07 exported +Z inspection frontage marker
+PASS large-4x4-department-07 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-office-nova-08 real spec exists
+PASS large-4x4-office-nova-08 original preview copy and actual GLB exist
+PASS large-4x4-office-nova-08 inspection-only status, no growth/operation
+PASS large-4x4-office-nova-08 metre/cell convention and +Z front axis
+PASS large-4x4-office-nova-08 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-office-nova-08 spec reports actual mesh dimensions
+PASS large-4x4-office-nova-08 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-office-nova-08 original support datum aligned without deleting underground geometry
+PASS large-4x4-office-nova-08 exported +Z inspection frontage marker
+PASS large-4x4-office-nova-08 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-grand-department-09 real spec exists
+PASS large-8x8-grand-department-09 original preview copy and actual GLB exist
+PASS large-8x8-grand-department-09 inspection-only status, no growth/operation
+PASS large-8x8-grand-department-09 metre/cell convention and +Z front axis
+PASS large-8x8-grand-department-09 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-grand-department-09 spec reports actual mesh dimensions
+PASS large-8x8-grand-department-09 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-grand-department-09 original support datum aligned without deleting underground geometry
+PASS large-8x8-grand-department-09 exported +Z inspection frontage marker
+PASS large-8x8-grand-department-09 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-twin-central-10 real spec exists
+PASS large-8x8-twin-central-10 original preview copy and actual GLB exist
+PASS large-8x8-twin-central-10 inspection-only status, no growth/operation
+PASS large-8x8-twin-central-10 metre/cell convention and +Z front axis
+PASS large-8x8-twin-central-10 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-twin-central-10 spec reports actual mesh dimensions
+PASS large-8x8-twin-central-10 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-twin-central-10 original support datum aligned without deleting underground geometry
+PASS large-8x8-twin-central-10 exported +Z inspection frontage marker
+PASS large-8x8-twin-central-10 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-brick-services-06 real spec exists
+PASS medium-4x4-brick-services-06 original preview copy and actual GLB exist
+PASS medium-4x4-brick-services-06 inspection-only status, no growth/operation
+PASS medium-4x4-brick-services-06 metre/cell convention and +Z front axis
+PASS medium-4x4-brick-services-06 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-brick-services-06 spec reports actual mesh dimensions
+PASS medium-4x4-brick-services-06 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-brick-services-06 original support datum aligned without deleting underground geometry
+PASS medium-4x4-brick-services-06 exported +Z inspection frontage marker
+PASS medium-4x4-brick-services-06 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-office-retail-05 real spec exists
+PASS medium-4x4-office-retail-05 original preview copy and actual GLB exist
+PASS medium-4x4-office-retail-05 inspection-only status, no growth/operation
+PASS medium-4x4-office-retail-05 metre/cell convention and +Z front axis
+PASS medium-4x4-office-retail-05 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-office-retail-05 spec reports actual mesh dimensions
+PASS medium-4x4-office-retail-05 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-office-retail-05 original support datum aligned without deleting underground geometry
+PASS medium-4x4-office-retail-05 exported +Z inspection frontage marker
+PASS medium-4x4-office-retail-05 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-auto-02 real spec exists
+PASS small-2x2-auto-02 original preview copy and actual GLB exist
+PASS small-2x2-auto-02 inspection-only status, no growth/operation
+PASS small-2x2-auto-02 metre/cell convention and +Z front axis
+PASS small-2x2-auto-02 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-auto-02 spec reports actual mesh dimensions
+PASS small-2x2-auto-02 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-auto-02 original support datum aligned without deleting underground geometry
+PASS small-2x2-auto-02 exported +Z inspection frontage marker
+PASS small-2x2-auto-02 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-mart-01 real spec exists
+PASS small-2x2-mart-01 original preview copy and actual GLB exist
+PASS small-2x2-mart-01 inspection-only status, no growth/operation
+PASS small-2x2-mart-01 metre/cell convention and +Z front axis
+PASS small-2x2-mart-01 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-mart-01 spec reports actual mesh dimensions
+PASS small-2x2-mart-01 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-mart-01 original support datum aligned without deleting underground geometry
+PASS small-2x2-mart-01 exported +Z inspection frontage marker
+PASS small-2x2-mart-01 actual authored door/entry geometry survives axis conversion
+PASS small-4x4-cafe-diner-04 real spec exists
+PASS small-4x4-cafe-diner-04 original preview copy and actual GLB exist
+PASS small-4x4-cafe-diner-04 inspection-only status, no growth/operation
+PASS small-4x4-cafe-diner-04 metre/cell convention and +Z front axis
+PASS small-4x4-cafe-diner-04 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-4x4-cafe-diner-04 spec reports actual mesh dimensions
+PASS small-4x4-cafe-diner-04 actual horizontal extent matches original lot at 4m/cell
+PASS small-4x4-cafe-diner-04 original support datum aligned without deleting underground geometry
+PASS small-4x4-cafe-diner-04 exported +Z inspection frontage marker
+PASS small-4x4-cafe-diner-04 actual authored door/entry geometry survives axis conversion
+PASS small-4x4-market-03 real spec exists
+PASS small-4x4-market-03 original preview copy and actual GLB exist
+PASS small-4x4-market-03 inspection-only status, no growth/operation
+PASS small-4x4-market-03 metre/cell convention and +Z front axis
+PASS small-4x4-market-03 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-4x4-market-03 spec reports actual mesh dimensions
+PASS small-4x4-market-03 actual horizontal extent matches original lot at 4m/cell
+PASS small-4x4-market-03 original support datum aligned without deleting underground geometry
+PASS small-4x4-market-03 exported +Z inspection frontage marker
+PASS small-4x4-market-03 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-chemical-06 real spec exists
+PASS large-4x4-chemical-06 original preview copy and actual GLB exist
+PASS large-4x4-chemical-06 inspection-only status, no growth/operation
+PASS large-4x4-chemical-06 metre/cell convention and +Z front axis
+PASS large-4x4-chemical-06 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-chemical-06 spec reports actual mesh dimensions
+PASS large-4x4-chemical-06 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-chemical-06 original support datum aligned without deleting underground geometry
+PASS large-4x4-chemical-06 exported +Z inspection frontage marker
+PASS large-4x4-chemical-06 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-pharma-05 real spec exists
+PASS large-4x4-pharma-05 original preview copy and actual GLB exist
+PASS large-4x4-pharma-05 inspection-only status, no growth/operation
+PASS large-4x4-pharma-05 metre/cell convention and +Z front axis
+PASS large-4x4-pharma-05 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-pharma-05 spec reports actual mesh dimensions
+PASS large-4x4-pharma-05 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-pharma-05 original support datum aligned without deleting underground geometry
+PASS large-4x4-pharma-05 exported +Z inspection frontage marker
+PASS large-4x4-pharma-05 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-auto-assembly-07 real spec exists
+PASS large-8x8-auto-assembly-07 original preview copy and actual GLB exist
+PASS large-8x8-auto-assembly-07 inspection-only status, no growth/operation
+PASS large-8x8-auto-assembly-07 metre/cell convention and +Z front axis
+PASS large-8x8-auto-assembly-07 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-auto-assembly-07 spec reports actual mesh dimensions
+PASS large-8x8-auto-assembly-07 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-auto-assembly-07 original support datum aligned without deleting underground geometry
+PASS large-8x8-auto-assembly-07 exported +Z inspection frontage marker
+PASS large-8x8-auto-assembly-07 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-chemical-complex-08 real spec exists
+PASS large-8x8-chemical-complex-08 original preview copy and actual GLB exist
+PASS large-8x8-chemical-complex-08 inspection-only status, no growth/operation
+PASS large-8x8-chemical-complex-08 metre/cell convention and +Z front axis
+PASS large-8x8-chemical-complex-08 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-chemical-complex-08 spec reports actual mesh dimensions
+PASS large-8x8-chemical-complex-08 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-chemical-complex-08 original support datum aligned without deleting underground geometry
+PASS large-8x8-chemical-complex-08 exported +Z inspection frontage marker
+PASS large-8x8-chemical-complex-08 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-circuitworks-04 real spec exists
+PASS medium-4x4-circuitworks-04 original preview copy and actual GLB exist
+PASS medium-4x4-circuitworks-04 inspection-only status, no growth/operation
+PASS medium-4x4-circuitworks-04 metre/cell convention and +Z front axis
+PASS medium-4x4-circuitworks-04 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-circuitworks-04 spec reports actual mesh dimensions
+PASS medium-4x4-circuitworks-04 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-circuitworks-04 original support datum aligned without deleting underground geometry
+PASS medium-4x4-circuitworks-04 exported +Z inspection frontage marker
+PASS medium-4x4-circuitworks-04 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-precision-03 real spec exists
+PASS medium-4x4-precision-03 original preview copy and actual GLB exist
+PASS medium-4x4-precision-03 inspection-only status, no growth/operation
+PASS medium-4x4-precision-03 metre/cell convention and +Z front axis
+PASS medium-4x4-precision-03 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-precision-03 spec reports actual mesh dimensions
+PASS medium-4x4-precision-03 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-precision-03 original support datum aligned without deleting underground geometry
+PASS medium-4x4-precision-03 exported +Z inspection frontage marker
+PASS medium-4x4-precision-03 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-foodworks-02 real spec exists
+PASS small-2x2-foodworks-02 original preview copy and actual GLB exist
+PASS small-2x2-foodworks-02 inspection-only status, no growth/operation
+PASS small-2x2-foodworks-02 metre/cell convention and +Z front axis
+PASS small-2x2-foodworks-02 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-foodworks-02 spec reports actual mesh dimensions
+PASS small-2x2-foodworks-02 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-foodworks-02 original support datum aligned without deleting underground geometry
+PASS small-2x2-foodworks-02 exported +Z inspection frontage marker
+PASS small-2x2-foodworks-02 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-metalworks-01 real spec exists
+PASS small-2x2-metalworks-01 original preview copy and actual GLB exist
+PASS small-2x2-metalworks-01 inspection-only status, no growth/operation
+PASS small-2x2-metalworks-01 metre/cell convention and +Z front axis
+PASS small-2x2-metalworks-01 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-metalworks-01 spec reports actual mesh dimensions
+PASS small-2x2-metalworks-01 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-metalworks-01 original support datum aligned without deleting underground geometry
+PASS small-2x2-metalworks-01 exported +Z inspection frontage marker
+PASS small-2x2-metalworks-01 actual authored door/entry geometry survives axis conversion
+PASS power-coal real spec exists
+PASS power-coal original preview copy and actual GLB exist
+PASS power-coal inspection-only status, no growth/operation
+PASS power-coal metre/cell convention and +Z front axis
+PASS power-coal GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-coal spec reports actual mesh dimensions
+PASS power-coal actual horizontal extent matches original lot at 4m/cell
+PASS power-coal original support datum aligned without deleting underground geometry
+PASS power-coal exported +Z inspection frontage marker
+PASS power-coal absence of original human entrance is explicit, never claimed verified
+PASS power-hydro real spec exists
+PASS power-hydro original preview copy and actual GLB exist
+PASS power-hydro inspection-only status, no growth/operation
+PASS power-hydro metre/cell convention and +Z front axis
+PASS power-hydro GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-hydro spec reports actual mesh dimensions
+PASS power-hydro parametric original retains null fixed footprint and original presentation dimensions
+PASS power-hydro original support datum aligned without deleting underground geometry
+PASS power-hydro exported +Z inspection frontage marker
+PASS power-hydro absence of original human entrance is explicit, never claimed verified
+PASS power-nuclear real spec exists
+PASS power-nuclear original preview copy and actual GLB exist
+PASS power-nuclear inspection-only status, no growth/operation
+PASS power-nuclear metre/cell convention and +Z front axis
+PASS power-nuclear GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-nuclear spec reports actual mesh dimensions
+PASS power-nuclear actual horizontal extent matches original lot at 4m/cell
+PASS power-nuclear original support datum aligned without deleting underground geometry
+PASS power-nuclear exported +Z inspection frontage marker
+PASS power-nuclear absence of original human entrance is explicit, never claimed verified
+PASS power-oil real spec exists
+PASS power-oil original preview copy and actual GLB exist
+PASS power-oil inspection-only status, no growth/operation
+PASS power-oil metre/cell convention and +Z front axis
+PASS power-oil GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-oil spec reports actual mesh dimensions
+PASS power-oil actual horizontal extent matches original lot at 4m/cell
+PASS power-oil original support datum aligned without deleting underground geometry
+PASS power-oil exported +Z inspection frontage marker
+PASS power-oil absence of original human entrance is explicit, never claimed verified
+PASS power-solar real spec exists
+PASS power-solar original preview copy and actual GLB exist
+PASS power-solar inspection-only status, no growth/operation
+PASS power-solar metre/cell convention and +Z front axis
+PASS power-solar GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-solar spec reports actual mesh dimensions
+PASS power-solar actual horizontal extent matches original lot at 4m/cell
+PASS power-solar original support datum aligned without deleting underground geometry
+PASS power-solar exported +Z inspection frontage marker
+PASS power-solar absence of original human entrance is explicit, never claimed verified
+PASS power-wind real spec exists
+PASS power-wind original preview copy and actual GLB exist
+PASS power-wind inspection-only status, no growth/operation
+PASS power-wind metre/cell convention and +Z front axis
+PASS power-wind GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-wind spec reports actual mesh dimensions
+PASS power-wind original rotor overhang retained, never resized to 2x2
+PASS power-wind original lowest support is at zero
+PASS power-wind exported +Z inspection frontage marker
+PASS power-wind absence of original human entrance is explicit, never claimed verified
+PASS water-intake real spec exists
+PASS water-intake original preview copy and actual GLB exist
+PASS water-intake inspection-only status, no growth/operation
+PASS water-intake metre/cell convention and +Z front axis
+PASS water-intake GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-intake spec reports actual mesh dimensions
+PASS water-intake actual horizontal extent matches original lot at 4m/cell
+PASS water-intake original support datum aligned without deleting underground geometry
+PASS water-intake exported +Z inspection frontage marker
+PASS water-intake actual authored door/entry geometry survives axis conversion
+PASS water-sewage-outfall real spec exists
+PASS water-sewage-outfall original preview copy and actual GLB exist
+PASS water-sewage-outfall inspection-only status, no growth/operation
+PASS water-sewage-outfall metre/cell convention and +Z front axis
+PASS water-sewage-outfall GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-sewage-outfall spec reports actual mesh dimensions
+PASS water-sewage-outfall actual horizontal extent matches original lot at 4m/cell
+PASS water-sewage-outfall original support datum aligned without deleting underground geometry
+PASS water-sewage-outfall exported +Z inspection frontage marker
+PASS water-sewage-outfall actual authored door/entry geometry survives axis conversion
+PASS water-sewage-treatment real spec exists
+PASS water-sewage-treatment original preview copy and actual GLB exist
+PASS water-sewage-treatment inspection-only status, no growth/operation
+PASS water-sewage-treatment metre/cell convention and +Z front axis
+PASS water-sewage-treatment GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-sewage-treatment spec reports actual mesh dimensions
+PASS water-sewage-treatment actual horizontal extent matches original lot at 4m/cell
+PASS water-sewage-treatment original support datum aligned without deleting underground geometry
+PASS water-sewage-treatment exported +Z inspection frontage marker
+PASS water-sewage-treatment actual authored door/entry geometry survives axis conversion
+PASS water-water-tower real spec exists
+PASS water-water-tower original preview copy and actual GLB exist
+PASS water-water-tower inspection-only status, no growth/operation
+PASS water-water-tower metre/cell convention and +Z front axis
+PASS water-water-tower GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-water-tower spec reports actual mesh dimensions
+PASS water-water-tower actual horizontal extent matches original lot at 4m/cell
+PASS water-water-tower original support datum aligned without deleting underground geometry
+PASS water-water-tower exported +Z inspection frontage marker
+PASS water-water-tower absence of original human entrance is explicit, never claimed verified
+PASS waste-incinerator real spec exists
+PASS waste-incinerator original preview copy and actual GLB exist
+PASS waste-incinerator inspection-only status, no growth/operation
+PASS waste-incinerator metre/cell convention and +Z front axis
+PASS waste-incinerator GLB round-trip physical W/D/H and ground offset match measured source
+PASS waste-incinerator spec reports actual mesh dimensions
+PASS waste-incinerator actual horizontal extent matches original lot at 4m/cell
+PASS waste-incinerator original support datum aligned without deleting underground geometry
+PASS waste-incinerator exported +Z inspection frontage marker
+PASS waste-incinerator actual authored door/entry geometry survives axis conversion
+PASS waste-recycling-center real spec exists
+PASS waste-recycling-center original preview copy and actual GLB exist
+PASS waste-recycling-center inspection-only status, no growth/operation
+PASS waste-recycling-center metre/cell convention and +Z front axis
+PASS waste-recycling-center GLB round-trip physical W/D/H and ground offset match measured source
+PASS waste-recycling-center spec reports actual mesh dimensions
+PASS waste-recycling-center actual horizontal extent matches original lot at 4m/cell
+PASS waste-recycling-center original support datum aligned without deleting underground geometry
+PASS waste-recycling-center exported +Z inspection frontage marker
+PASS waste-recycling-center actual authored door/entry geometry survives axis conversion
+PASS all five original groups match requested counts
+PASS ten commercial and eight industrial entries remain excluded from growth
+PASS large-4x4-department-07 original industry/storey metadata retained
+PASS large-4x4-department-07 cannot be selected by automatic growth
+PASS large-4x4-office-nova-08 original industry/storey metadata retained
+PASS large-4x4-office-nova-08 cannot be selected by automatic growth
+PASS large-8x8-grand-department-09 original industry/storey metadata retained
+PASS large-8x8-grand-department-09 cannot be selected by automatic growth
+PASS large-8x8-twin-central-10 original industry/storey metadata retained
+PASS large-8x8-twin-central-10 cannot be selected by automatic growth
+PASS medium-4x4-brick-services-06 original industry/storey metadata retained
+PASS medium-4x4-brick-services-06 cannot be selected by automatic growth
+PASS medium-4x4-office-retail-05 original industry/storey metadata retained
+PASS medium-4x4-office-retail-05 cannot be selected by automatic growth
+PASS small-2x2-auto-02 original industry/storey metadata retained
+PASS small-2x2-auto-02 cannot be selected by automatic growth
+PASS small-2x2-mart-01 original industry/storey metadata retained
+PASS small-2x2-mart-01 cannot be selected by automatic growth
+PASS small-4x4-cafe-diner-04 original industry/storey metadata retained
+PASS small-4x4-cafe-diner-04 cannot be selected by automatic growth
+PASS small-4x4-market-03 original industry/storey metadata retained
+PASS small-4x4-market-03 cannot be selected by automatic growth
+PASS large-4x4-chemical-06 original industry/storey metadata retained
+PASS large-4x4-chemical-06 cannot be selected by automatic growth
+PASS large-4x4-pharma-05 original industry/storey metadata retained
+PASS large-4x4-pharma-05 cannot be selected by automatic growth
+PASS large-8x8-auto-assembly-07 original industry/storey metadata retained
+PASS large-8x8-auto-assembly-07 cannot be selected by automatic growth
+PASS large-8x8-chemical-complex-08 original industry/storey metadata retained
+PASS large-8x8-chemical-complex-08 cannot be selected by automatic growth
+PASS medium-4x4-circuitworks-04 original industry/storey metadata retained
+PASS medium-4x4-circuitworks-04 cannot be selected by automatic growth
+PASS medium-4x4-precision-03 original industry/storey metadata retained
+PASS medium-4x4-precision-03 cannot be selected by automatic growth
+PASS small-2x2-foodworks-02 original industry/storey metadata retained
+PASS small-2x2-foodworks-02 cannot be selected by automatic growth
+PASS small-2x2-metalworks-01 original industry/storey metadata retained
+PASS small-2x2-metalworks-01 cannot be selected by automatic growth
+PASS large-4x4-department-07 derived thumbnail exists in common manifest
+PASS large-4x4-department-07 uses existing 256x192 thumbnail convention
+PASS large-4x4-office-nova-08 derived thumbnail exists in common manifest
+PASS large-4x4-office-nova-08 uses existing 256x192 thumbnail convention
+PASS large-8x8-grand-department-09 derived thumbnail exists in common manifest
+PASS large-8x8-grand-department-09 uses existing 256x192 thumbnail convention
+PASS large-8x8-twin-central-10 derived thumbnail exists in common manifest
+PASS large-8x8-twin-central-10 uses existing 256x192 thumbnail convention
+PASS medium-4x4-brick-services-06 derived thumbnail exists in common manifest
+PASS medium-4x4-brick-services-06 uses existing 256x192 thumbnail convention
+PASS medium-4x4-office-retail-05 derived thumbnail exists in common manifest
+PASS medium-4x4-office-retail-05 uses existing 256x192 thumbnail convention
+PASS small-2x2-auto-02 derived thumbnail exists in common manifest
+PASS small-2x2-auto-02 uses existing 256x192 thumbnail convention
+PASS small-2x2-mart-01 derived thumbnail exists in common manifest
+PASS small-2x2-mart-01 uses existing 256x192 thumbnail convention
+PASS small-4x4-cafe-diner-04 derived thumbnail exists in common manifest
+PASS small-4x4-cafe-diner-04 uses existing 256x192 thumbnail convention
+PASS small-4x4-market-03 derived thumbnail exists in common manifest
+PASS small-4x4-market-03 uses existing 256x192 thumbnail convention
+PASS large-4x4-chemical-06 derived thumbnail exists in common manifest
+PASS large-4x4-chemical-06 uses existing 256x192 thumbnail convention
+PASS large-4x4-pharma-05 derived thumbnail exists in common manifest
+PASS large-4x4-pharma-05 uses existing 256x192 thumbnail convention
+PASS large-8x8-auto-assembly-07 derived thumbnail exists in common manifest
+PASS large-8x8-auto-assembly-07 uses existing 256x192 thumbnail convention
+PASS large-8x8-chemical-complex-08 derived thumbnail exists in common manifest
+PASS large-8x8-chemical-complex-08 uses existing 256x192 thumbnail convention
+PASS medium-4x4-circuitworks-04 derived thumbnail exists in common manifest
+PASS medium-4x4-circuitworks-04 uses existing 256x192 thumbnail convention
+PASS medium-4x4-precision-03 derived thumbnail exists in common manifest
+PASS medium-4x4-precision-03 uses existing 256x192 thumbnail convention
+PASS small-2x2-foodworks-02 derived thumbnail exists in common manifest
+PASS small-2x2-foodworks-02 uses existing 256x192 thumbnail convention
+PASS small-2x2-metalworks-01 derived thumbnail exists in common manifest
+PASS small-2x2-metalworks-01 uses existing 256x192 thumbnail convention
+PASS power-coal derived thumbnail exists in common manifest
+PASS power-coal uses existing 256x192 thumbnail convention
+PASS power-hydro derived thumbnail exists in common manifest
+PASS power-hydro uses existing 256x192 thumbnail convention
+PASS power-nuclear derived thumbnail exists in common manifest
+PASS power-nuclear uses existing 256x192 thumbnail convention
+PASS power-oil derived thumbnail exists in common manifest
+PASS power-oil uses existing 256x192 thumbnail convention
+PASS power-solar derived thumbnail exists in common manifest
+PASS power-solar uses existing 256x192 thumbnail convention
+PASS power-wind derived thumbnail exists in common manifest
+PASS power-wind uses existing 256x192 thumbnail convention
+PASS water-intake derived thumbnail exists in common manifest
+PASS water-intake uses existing 256x192 thumbnail convention
+PASS water-sewage-outfall derived thumbnail exists in common manifest
+PASS water-sewage-outfall uses existing 256x192 thumbnail convention
+PASS water-sewage-treatment derived thumbnail exists in common manifest
+PASS water-sewage-treatment uses existing 256x192 thumbnail convention
+PASS water-water-tower derived thumbnail exists in common manifest
+PASS water-water-tower uses existing 256x192 thumbnail convention
+PASS waste-incinerator derived thumbnail exists in common manifest
+PASS waste-incinerator uses existing 256x192 thumbnail convention
+PASS waste-recycling-center derived thumbnail exists in common manifest
+PASS waste-recycling-center uses existing 256x192 thumbnail convention
+PASS shared registered-asset route exists
+PASS large-4x4-department-07 shared read-only route opens real GLB inspector
+PASS large-4x4-department-07 inspector identifies the actual requested model
+PASS large-4x4-department-07 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-4x4-office-nova-08 shared read-only route opens real GLB inspector
+PASS large-4x4-office-nova-08 inspector identifies the actual requested model
+PASS large-4x4-office-nova-08 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-8x8-grand-department-09 shared read-only route opens real GLB inspector
+PASS large-8x8-grand-department-09 inspector identifies the actual requested model
+PASS large-8x8-grand-department-09 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-8x8-twin-central-10 shared read-only route opens real GLB inspector
+PASS large-8x8-twin-central-10 inspector identifies the actual requested model
+PASS large-8x8-twin-central-10 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS medium-4x4-brick-services-06 shared read-only route opens real GLB inspector
+PASS medium-4x4-brick-services-06 inspector identifies the actual requested model
+PASS medium-4x4-brick-services-06 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS medium-4x4-office-retail-05 shared read-only route opens real GLB inspector
+PASS medium-4x4-office-retail-05 inspector identifies the actual requested model
+PASS medium-4x4-office-retail-05 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-2x2-auto-02 shared read-only route opens real GLB inspector
+PASS small-2x2-auto-02 inspector identifies the actual requested model
+PASS small-2x2-auto-02 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-2x2-mart-01 shared read-only route opens real GLB inspector
+PASS small-2x2-mart-01 inspector identifies the actual requested model
+PASS small-2x2-mart-01 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-4x4-cafe-diner-04 shared read-only route opens real GLB inspector
+PASS small-4x4-cafe-diner-04 inspector identifies the actual requested model
+PASS small-4x4-cafe-diner-04 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-4x4-market-03 shared read-only route opens real GLB inspector
+PASS small-4x4-market-03 inspector identifies the actual requested model
+PASS small-4x4-market-03 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-4x4-chemical-06 shared read-only route opens real GLB inspector
+PASS large-4x4-chemical-06 inspector identifies the actual requested model
+PASS large-4x4-chemical-06 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-4x4-pharma-05 shared read-only route opens real GLB inspector
+PASS large-4x4-pharma-05 inspector identifies the actual requested model
+PASS large-4x4-pharma-05 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-8x8-auto-assembly-07 shared read-only route opens real GLB inspector
+PASS large-8x8-auto-assembly-07 inspector identifies the actual requested model
+PASS large-8x8-auto-assembly-07 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS large-8x8-chemical-complex-08 shared read-only route opens real GLB inspector
+PASS large-8x8-chemical-complex-08 inspector identifies the actual requested model
+PASS large-8x8-chemical-complex-08 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS medium-4x4-circuitworks-04 shared read-only route opens real GLB inspector
+PASS medium-4x4-circuitworks-04 inspector identifies the actual requested model
+PASS medium-4x4-circuitworks-04 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS medium-4x4-precision-03 shared read-only route opens real GLB inspector
+PASS medium-4x4-precision-03 inspector identifies the actual requested model
+PASS medium-4x4-precision-03 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-2x2-foodworks-02 shared read-only route opens real GLB inspector
+PASS small-2x2-foodworks-02 inspector identifies the actual requested model
+PASS small-2x2-foodworks-02 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS small-2x2-metalworks-01 shared read-only route opens real GLB inspector
+PASS small-2x2-metalworks-01 inspector identifies the actual requested model
+PASS small-2x2-metalworks-01 inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-coal shared read-only route opens real GLB inspector
+PASS power-coal inspector identifies the actual requested model
+PASS power-coal inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-hydro shared read-only route opens real GLB inspector
+PASS power-hydro inspector identifies the actual requested model
+PASS power-hydro inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-nuclear shared read-only route opens real GLB inspector
+PASS power-nuclear inspector identifies the actual requested model
+PASS power-nuclear inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-oil shared read-only route opens real GLB inspector
+PASS power-oil inspector identifies the actual requested model
+PASS power-oil inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-solar shared read-only route opens real GLB inspector
+PASS power-solar inspector identifies the actual requested model
+PASS power-solar inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power-wind shared read-only route opens real GLB inspector
+PASS power-wind inspector identifies the actual requested model
+PASS power-wind inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS water-intake shared read-only route opens real GLB inspector
+PASS water-intake inspector identifies the actual requested model
+PASS water-intake inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS water-sewage-outfall shared read-only route opens real GLB inspector
+PASS water-sewage-outfall inspector identifies the actual requested model
+PASS water-sewage-outfall inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS water-sewage-treatment shared read-only route opens real GLB inspector
+PASS water-sewage-treatment inspector identifies the actual requested model
+PASS water-sewage-treatment inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS water-water-tower shared read-only route opens real GLB inspector
+PASS water-water-tower inspector identifies the actual requested model
+PASS water-water-tower inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS waste-incinerator shared read-only route opens real GLB inspector
+PASS waste-incinerator inspector identifies the actual requested model
+PASS waste-incinerator inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS waste-recycling-center shared read-only route opens real GLB inspector
+PASS waste-recycling-center inspector identifies the actual requested model
+PASS waste-recycling-center inspection leaves funds, city, infrastructure, demand, RNG and active tool unchanged
+PASS power has exactly its approved inspection cards
+PASS power-coal C-card is bound to the real registered entry
+PASS power-coal unchanged approved C-card layout
+PASS power-coal actual card click opens its GLB inspector
+PASS power-coal card click never places or charges anything
+PASS power-coal existing horizontal scroll hosts the new card
+PASS power-coal card remains mouse-accessible after horizontal scrolling
+PASS power-coal real viewport mouse press/release opens the correct inspector
+PASS power-coal real mouse activation is also read-only
+PASS power-hydro C-card is bound to the real registered entry
+PASS power-hydro unchanged approved C-card layout
+PASS power-hydro actual card click opens its GLB inspector
+PASS power-hydro card click never places or charges anything
+PASS power-hydro existing horizontal scroll hosts the new card
+PASS power-hydro card remains mouse-accessible after horizontal scrolling
+PASS power-hydro real viewport mouse press/release opens the correct inspector
+PASS power-hydro real mouse activation is also read-only
+PASS power-nuclear C-card is bound to the real registered entry
+PASS power-nuclear unchanged approved C-card layout
+PASS power-nuclear actual card click opens its GLB inspector
+PASS power-nuclear card click never places or charges anything
+PASS power-nuclear existing horizontal scroll hosts the new card
+PASS power-nuclear card remains mouse-accessible after horizontal scrolling
+PASS power-nuclear real viewport mouse press/release opens the correct inspector
+PASS power-nuclear real mouse activation is also read-only
+PASS power-oil C-card is bound to the real registered entry
+PASS power-oil unchanged approved C-card layout
+PASS power-oil actual card click opens its GLB inspector
+PASS power-oil card click never places or charges anything
+PASS power-oil existing horizontal scroll hosts the new card
+PASS power-oil card remains mouse-accessible after horizontal scrolling
+PASS power-oil real viewport mouse press/release opens the correct inspector
+PASS power-oil real mouse activation is also read-only
+PASS power-solar C-card is bound to the real registered entry
+PASS power-solar unchanged approved C-card layout
+PASS power-solar actual card click opens its GLB inspector
+PASS power-solar card click never places or charges anything
+PASS power-solar existing horizontal scroll hosts the new card
+PASS power-solar card remains mouse-accessible after horizontal scrolling
+PASS power-solar real viewport mouse press/release opens the correct inspector
+PASS power-solar real mouse activation is also read-only
+PASS power-wind C-card is bound to the real registered entry
+PASS power-wind unchanged approved C-card layout
+PASS power-wind actual card click opens its GLB inspector
+PASS power-wind card click never places or charges anything
+PASS power-wind existing horizontal scroll hosts the new card
+PASS power-wind card remains mouse-accessible after horizontal scrolling
+PASS power-wind real viewport mouse press/release opens the correct inspector
+PASS power-wind real mouse activation is also read-only
+PASS power_plant original placement/drawing tool remains separate from preview cards
+PASS power_wire original placement/drawing tool remains separate from preview cards
+PASS water has exactly its approved inspection cards
+PASS water-intake C-card is bound to the real registered entry
+PASS water-intake unchanged approved C-card layout
+PASS water-intake actual card click opens its GLB inspector
+PASS water-intake card click never places or charges anything
+PASS water-intake existing horizontal scroll hosts the new card
+PASS water-intake card remains mouse-accessible after horizontal scrolling
+PASS water-intake real viewport mouse press/release opens the correct inspector
+PASS water-intake real mouse activation is also read-only
+PASS water-sewage-outfall C-card is bound to the real registered entry
+PASS water-sewage-outfall unchanged approved C-card layout
+PASS water-sewage-outfall actual card click opens its GLB inspector
+PASS water-sewage-outfall card click never places or charges anything
+PASS water-sewage-outfall existing horizontal scroll hosts the new card
+PASS water-sewage-outfall card remains mouse-accessible after horizontal scrolling
+PASS water-sewage-outfall real viewport mouse press/release opens the correct inspector
+PASS water-sewage-outfall real mouse activation is also read-only
+PASS water-sewage-treatment C-card is bound to the real registered entry
+PASS water-sewage-treatment unchanged approved C-card layout
+PASS water-sewage-treatment actual card click opens its GLB inspector
+PASS water-sewage-treatment card click never places or charges anything
+PASS water-sewage-treatment existing horizontal scroll hosts the new card
+PASS water-sewage-treatment card remains mouse-accessible after horizontal scrolling
+PASS water-sewage-treatment real viewport mouse press/release opens the correct inspector
+PASS water-sewage-treatment real mouse activation is also read-only
+PASS water-water-tower C-card is bound to the real registered entry
+PASS water-water-tower unchanged approved C-card layout
+PASS water-water-tower actual card click opens its GLB inspector
+PASS water-water-tower card click never places or charges anything
+PASS water-water-tower existing horizontal scroll hosts the new card
+PASS water-water-tower card remains mouse-accessible after horizontal scrolling
+PASS water-water-tower real viewport mouse press/release opens the correct inspector
+PASS water-water-tower real mouse activation is also read-only
+PASS water_supply original placement/drawing tool remains separate from preview cards
+PASS water_treatment original placement/drawing tool remains separate from preview cards
+PASS water_pipe original placement/drawing tool remains separate from preview cards
+PASS environment has exactly its approved inspection cards
+PASS waste-incinerator C-card is bound to the real registered entry
+PASS waste-incinerator unchanged approved C-card layout
+PASS waste-incinerator actual card click opens its GLB inspector
+PASS waste-incinerator card click never places or charges anything
+PASS waste-incinerator existing horizontal scroll hosts the new card
+PASS waste-incinerator card remains mouse-accessible after horizontal scrolling
+PASS waste-incinerator real viewport mouse press/release opens the correct inspector
+PASS waste-incinerator real mouse activation is also read-only
+PASS waste-recycling-center C-card is bound to the real registered entry
+PASS waste-recycling-center unchanged approved C-card layout
+PASS waste-recycling-center actual card click opens its GLB inspector
+PASS waste-recycling-center card click never places or charges anything
+PASS waste-recycling-center existing horizontal scroll hosts the new card
+PASS waste-recycling-center card remains mouse-accessible after horizontal scrolling
+PASS waste-recycling-center real viewport mouse press/release opens the correct inspector
+PASS waste-recycling-center real mouse activation is also read-only
+PASS unknown registered ID cannot open or mutate the city
+PASS existing exhibition grid exposes all eighteen commercial/industrial GLBs without a new menu/layout
+PASS exhibition uses only actual disabled-growth registered originals
+PASS existing same-scale switch gives all eighteen models identical metre-to-pixel scale
+PASS large-4x4-department-07 inspection camera stays outside the original model
+PASS large-4x4-department-07 common-scale framing retains all measured mesh bounds
+PASS large-4x4-office-nova-08 inspection camera stays outside the original model
+PASS large-4x4-office-nova-08 common-scale framing retains all measured mesh bounds
+PASS large-8x8-grand-department-09 inspection camera stays outside the original model
+PASS large-8x8-grand-department-09 common-scale framing retains all measured mesh bounds
+PASS large-8x8-twin-central-10 inspection camera stays outside the original model
+PASS large-8x8-twin-central-10 common-scale framing retains all measured mesh bounds
+PASS medium-4x4-brick-services-06 inspection camera stays outside the original model
+PASS medium-4x4-brick-services-06 common-scale framing retains all measured mesh bounds
+PASS medium-4x4-office-retail-05 inspection camera stays outside the original model
+PASS medium-4x4-office-retail-05 common-scale framing retains all measured mesh bounds
+PASS small-2x2-auto-02 inspection camera stays outside the original model
+PASS small-2x2-auto-02 common-scale framing retains all measured mesh bounds
+PASS small-2x2-mart-01 inspection camera stays outside the original model
+PASS small-2x2-mart-01 common-scale framing retains all measured mesh bounds
+PASS small-4x4-cafe-diner-04 inspection camera stays outside the original model
+PASS small-4x4-cafe-diner-04 common-scale framing retains all measured mesh bounds
+PASS small-4x4-market-03 inspection camera stays outside the original model
+PASS small-4x4-market-03 common-scale framing retains all measured mesh bounds
+PASS large-4x4-chemical-06 inspection camera stays outside the original model
+PASS large-4x4-chemical-06 common-scale framing retains all measured mesh bounds
+PASS large-4x4-pharma-05 inspection camera stays outside the original model
+PASS large-4x4-pharma-05 common-scale framing retains all measured mesh bounds
+PASS large-8x8-auto-assembly-07 inspection camera stays outside the original model
+PASS large-8x8-auto-assembly-07 common-scale framing retains all measured mesh bounds
+PASS large-8x8-chemical-complex-08 inspection camera stays outside the original model
+PASS large-8x8-chemical-complex-08 common-scale framing retains all measured mesh bounds
+PASS medium-4x4-circuitworks-04 inspection camera stays outside the original model
+PASS medium-4x4-circuitworks-04 common-scale framing retains all measured mesh bounds
+PASS medium-4x4-precision-03 inspection camera stays outside the original model
+PASS medium-4x4-precision-03 common-scale framing retains all measured mesh bounds
+PASS small-2x2-foodworks-02 inspection camera stays outside the original model
+PASS small-2x2-foodworks-02 common-scale framing retains all measured mesh bounds
+PASS small-2x2-metalworks-01 inspection camera stays outside the original model
+PASS small-2x2-metalworks-01 common-scale framing retains all measured mesh bounds
+RESULT 635/635 registered30 checks passed

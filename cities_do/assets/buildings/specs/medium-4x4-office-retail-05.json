@@ -1,0 +1,155 @@
+{
+  "id": "medium-4x4-office-retail-05",
+  "name": "업무·상가 복합빌딩",
+  "group": "commercial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 13.399999618530273,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 44472,
+  "model": "res://assets/buildings/models/medium-4x4-office-retail-05.glb",
+  "preview": "res://assets/buildings/medium-4x4-office-retail-05.png",
+  "spec": "res://assets/buildings/specs/medium-4x4-office-retail-05.json",
+  "source": "assets/commercial-study/medium-4x4-office-retail-05/building.blend",
+  "source_metadata": {
+    "id": "medium-4x4-office-retail-05",
+    "name": "업무·상가 복합빌딩",
+    "zone": "commercial",
+    "category": "medium_commercial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 4,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      904.6151
+    ],
+    "lot_corners_px": [
+      [
+        61.0912,
+        710.1607
+      ],
+      [
+        450.0,
+        904.6151
+      ],
+      [
+        838.9087,
+        710.1607
+      ],
+      [
+        450.0,
+        515.7063
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        13.279999732971191
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 32,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "PHARMACY and BAKERY signs",
+      "separate OFFICE entrance",
+      "continuous office window bands",
+      "four occupied floors"
+    ],
+    "scope": "user-approved medium commercial design; game integration pending"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    0.0,
+    1.6699999570846558,
+    3.950000047683716
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      13.399999618530273
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "medium_commercial",
+  "category_name": "상업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 4,
+  "min_level": 1,
+  "texture": "res://assets/buildings/medium-4x4-office-retail-05.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    904.6151
+  ],
+  "lot_width_px": 777.8175,
+  "industry": "업무·상가"
+}

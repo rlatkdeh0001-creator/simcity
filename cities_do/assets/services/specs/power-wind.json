@@ -1,0 +1,121 @@
+{
+  "id": "power-wind",
+  "name": "풍력발전소",
+  "group": "power",
+  "width": 2,
+  "depth": 2,
+  "height_m": 37.400001525878906,
+  "width_m": 19.05255889892578,
+  "length_m": 4.887499809265137,
+  "triangles": 6272,
+  "model": "res://assets/services/power-wind.glb",
+  "preview": "res://assets/services/power-wind.png",
+  "spec": "res://assets/services/specs/power-wind.json",
+  "source": "assets/power-study/wind/building.blend",
+  "source_metadata": {
+    "id": "power-wind",
+    "name": "풍력발전소",
+    "category": "power_facility",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "presentation_lot_cells": [
+      2,
+      2
+    ],
+    "rotor_radius_m": 11,
+    "rotor_overhang_allowed": true,
+    "display_slab": false,
+    "cell_meters": 4,
+    "presentation_lot_meters": [
+      8,
+      8
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0005,
+      936.1189
+    ],
+    "lot_corners_px": [
+      [
+        325.5497,
+        873.8936
+      ],
+      [
+        450.0005,
+        936.1189
+      ],
+      [
+        574.4513,
+        873.8936
+      ],
+      [
+        450.0005,
+        811.6682
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -9.52627944946289,
+        -2.1374998092651367,
+        0.0
+      ],
+      [
+        9.52627944946289,
+        2.75,
+        37.400001525878906
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
+    "revision": "requested-footprints-and-equipment-scale"
+  },
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "presentation_lot_meters": [
+    8,
+    8
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "",
+  "front_feature_position_gltf": null,
+  "frontage_verification": "equipment_convention_only_no_named_entrance",
+  "ground_reference_node": "",
+  "ground_offset_m": -0.0,
+  "full_bounds_blender": [
+    [
+      -9.52627944946289,
+      -2.1374998092651367,
+      0.0
+    ],
+    [
+      9.52627944946289,
+      2.75,
+      37.400001525878906
+    ]
+  ],
+  "ground_bounds_blender": null,
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "rotor_overhang_ground_occupation_only",
+    "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+  ],
+  "ui_category": "power"
+}

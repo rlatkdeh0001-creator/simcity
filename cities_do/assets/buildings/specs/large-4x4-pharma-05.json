@@ -1,0 +1,157 @@
+{
+  "id": "large-4x4-pharma-05",
+  "name": "제약 생산시설",
+  "group": "industrial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 15.494999885559082,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 29876,
+  "model": "res://assets/buildings/models/large-4x4-pharma-05.glb",
+  "preview": "res://assets/buildings/large-4x4-pharma-05.png",
+  "spec": "res://assets/buildings/specs/large-4x4-pharma-05.json",
+  "source": "assets/industrial-study/large-4x4-pharma-05/building.blend",
+  "source_metadata": {
+    "id": "large-4x4-pharma-05",
+    "name": "제약 생산시설",
+    "zone": "industrial",
+    "category": "large_industrial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 4,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      882.4408
+    ],
+    "lot_corners_px": [
+      [
+        113.6465,
+        714.264
+      ],
+      [
+        450.0,
+        882.4408
+      ],
+      [
+        786.3535,
+        714.264
+      ],
+      [
+        450.0,
+        546.0873
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        15.375
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 37,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "PHARMA LAB sign",
+      "capsule pictogram",
+      "four production floors",
+      "sealed utility tanks",
+      "roof air handling units",
+      "loading bay"
+    ],
+    "scope": "user-approved industrial design; game integration pending"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    0.75,
+    1.8700000643730164,
+    3.940000057220459
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_4x4",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      15.494999885559082
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "industrial",
+  "category": "large_industrial",
+  "category_name": "공업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 4,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-4x4-pharma-05.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    882.4408
+  ],
+  "lot_width_px": 672.7070000000001,
+  "industry": "제약"
+}

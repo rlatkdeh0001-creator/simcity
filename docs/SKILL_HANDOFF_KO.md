@@ -6,7 +6,26 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 승인 fix-C 썸네일/포커스/정렬과 main 통합 승인 (2026-11-10 KST)
+## 최신 작업: 원본30종 검사 등록 · 로컬 승인 대기 (2026-11-11 KST)
+
+`main 12dbc38`에서 `feature/register-30-assets`를 만들었다. [검증/실측/예외/실제 이미지/재현 명령](register-30-assets-validation/README_KO.md).
+상업10·공업8·발전6·상하수도4·쓰레기2를 실제 GLB/spec/기존 PNG 복사/파생 썸네일로 30/30 등록했다.
+전력6·수도4·환경2는 기존 C카드/검사창, 상업·공업18은 growth_enabled:false인 건물 카탈로그와 기존 vehicle_showcase의
+`--asset-group=commercial_industrial` 데이터 옵션을 쓴다. 새 메뉴/레이아웃·도시 배치·자동 성장/가격/용량 적용은 없다.
+이번 import/전체26/26와 신규635/635, 실제 Blender4장/Godot HUD4장/기존 전시2장, 원본209파일 해시 불변을 검증했다.
+풍력 로터 오버행·수력 null 고정부지/60×32m 시연틀·석탄/해안 지하부는 원형을 유지했다.
+발전6+급수탑은 명명된 사람 출입구를 확인 못 해 +Z 검사 규약만 기록했다. 실제 접도/차량 통과 검증으로 간주하지 않는다.
+`tools/audit_remaining_asset_sources.py`, `export_remaining_assets.py`, `render_remaining_assets.py`,
+`capture_registered_assets.py`, `capture_registered_gallery.gd`, `audit_registered_delivery.py`를 추가했다.
+기존 emergency export/render/validator/썸네일 도구를 재사용했다. 원본 제작기나 archive 코드는 실행/덮어쓰기하지 않았다.
+외부 설치/새 upstream·라이선스 추가 없음: 프로젝트 내부 도구이며 기존 인계의 Blender4.3.2/Godot4.6.3/Pillow와
+modular-facilities/vehicles 규약, 프로필 godot-windows-validation·TDD·systematic-debugging·requesting-code-review(MIT)를 적용했다.
+이들의 기존 고정 출처/라이선스/NOTICE 기록은 아래에서 보존한다. 새 독립/병렬 에이전트는 없고 자체 리뷰다.
+CUDA 타임아웃은 로그를 보존하고 실제 EEVEE Next 렌더로 대체했다. 큰 장면 카메라 far/프러스텀 검사를 보완했다.
+프로필 Godot 검증 스킬의 references/derived-asset-validation.md에 원본 지면 기준/미검증 출입구 구분/렌더 클리핑·백엔드 검증 교훈을 기록했다.
+**승인은 로컬 커밋까지만. main 병합/푸시 금지.** 재임포트 churn·기존 uid8·병행 기획/mistake 변경은 제외한다.
+
+## 이전 작업: 승인 fix-C 썸네일/포커스/정렬과 main 통합 승인 (2026-11-10 KST)
 
 feature/bottom-bar-v2 022408b에서 이어서 사용자 승인 fix-C를 적용했다.
 [실제 25/25·새 HUD143/143·3해상도 캡처·시안 비교·원본 보존·남은 아이콘 목록](bottom-bar-v2-validation/fix-c/README_KO.md).

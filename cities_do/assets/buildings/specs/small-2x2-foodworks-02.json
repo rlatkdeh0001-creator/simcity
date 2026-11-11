@@ -1,0 +1,157 @@
+{
+  "id": "small-2x2-foodworks-02",
+  "name": "식품가공 작업장",
+  "group": "industrial",
+  "width": 2,
+  "depth": 2,
+  "height_m": 5.169999599456787,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 34048,
+  "model": "res://assets/buildings/models/small-2x2-foodworks-02.glb",
+  "preview": "res://assets/buildings/small-2x2-foodworks-02.png",
+  "spec": "res://assets/buildings/specs/small-2x2-foodworks-02.json",
+  "source": "assets/industrial-study/small-2x2-foodworks-02/building.blend",
+  "source_metadata": {
+    "id": "small-2x2-foodworks-02",
+    "name": "식품가공 작업장",
+    "zone": "industrial",
+    "category": "small_industrial",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "occupied_storeys": 1,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      876.8141
+    ],
+    "lot_corners_px": [
+      [
+        35.164,
+        669.3961
+      ],
+      [
+        450.0,
+        876.8141
+      ],
+      [
+        864.836,
+        669.3962
+      ],
+      [
+        450.0,
+        461.9781
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        5.049999713897705
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 15,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "FOOD WORKS sign",
+      "wheat pictogram",
+      "insulated loading door",
+      "external condenser",
+      "sealed dispatch cartons",
+      "one occupied floor"
+    ],
+    "scope": "user-approved industrial design; game integration pending"
+  },
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "presentation_lot_meters": [
+    8,
+    8
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    -1.0499999523162842,
+    1.8199999928474426,
+    2.4100000858306885
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_2x2",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      5.169999599456787
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "industrial",
+  "category": "small_industrial",
+  "category_name": "공업",
+  "footprint": [
+    2,
+    2
+  ],
+  "storeys": 1,
+  "min_level": 1,
+  "texture": "res://assets/buildings/small-2x2-foodworks-02.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    876.8141
+  ],
+  "lot_width_px": 829.672,
+  "industry": "식품가공"
+}

@@ -1,0 +1,158 @@
+{
+  "id": "large-4x4-department-07",
+  "name": "AUREL 백화점",
+  "group": "commercial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 27.270000457763672,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 33440,
+  "model": "res://assets/buildings/models/large-4x4-department-07.glb",
+  "preview": "res://assets/buildings/large-4x4-department-07.png",
+  "spec": "res://assets/buildings/specs/large-4x4-department-07.json",
+  "source": "assets/commercial-study/large-4x4-department-07/building.blend",
+  "source_metadata": {
+    "id": "large-4x4-department-07",
+    "name": "AUREL 백화점",
+    "zone": "commercial",
+    "category": "large_commercial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 8,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      931.2993
+    ],
+    "lot_corners_px": [
+      [
+        179.4548,
+        796.0267
+      ],
+      [
+        450.0,
+        931.2993
+      ],
+      [
+        720.5452,
+        796.0267
+      ],
+      [
+        450.0,
+        660.7541
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        27.149999618530273
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 46,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "AUREL department-store lettering",
+      "diamond emblem",
+      "double-height shopfront",
+      "stone vertical piers",
+      "eight occupied floors"
+    ],
+    "scope": "user-approved large commercial design; game integration pending",
+    "density": "high",
+    "retail_type": "department_store"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorDivision",
+  "front_feature_position_gltf": [
+    -1.0499999523162842,
+    1.9700000882148743,
+    5.139999866485596
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      27.270000457763672
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "category_name": "상업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 8,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-4x4-department-07.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    931.2993
+  ],
+  "lot_width_px": 541.0904,
+  "industry": "department_store"
+}

@@ -1,0 +1,636 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS remaining thirty assets have an actual registry
+PASS registry contains all thirty original asset IDs
+PASS large-4x4-department-07 real spec exists
+PASS large-4x4-department-07 original preview copy and actual GLB exist
+PASS large-4x4-department-07 inspection-only status, no growth/operation
+ERROR: FAIL large-4x4-department-07 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-4x4-department-07 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-department-07 spec reports actual mesh dimensions
+PASS large-4x4-department-07 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-department-07 original support datum aligned without deleting underground geometry
+PASS large-4x4-department-07 exported +Z inspection frontage marker
+PASS large-4x4-department-07 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-office-nova-08 real spec exists
+PASS large-4x4-office-nova-08 original preview copy and actual GLB exist
+PASS large-4x4-office-nova-08 inspection-only status, no growth/operation
+ERROR: FAIL large-4x4-office-nova-08 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-4x4-office-nova-08 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-office-nova-08 spec reports actual mesh dimensions
+PASS large-4x4-office-nova-08 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-office-nova-08 original support datum aligned without deleting underground geometry
+PASS large-4x4-office-nova-08 exported +Z inspection frontage marker
+PASS large-4x4-office-nova-08 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-grand-department-09 real spec exists
+PASS large-8x8-grand-department-09 original preview copy and actual GLB exist
+PASS large-8x8-grand-department-09 inspection-only status, no growth/operation
+ERROR: FAIL large-8x8-grand-department-09 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-8x8-grand-department-09 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-grand-department-09 spec reports actual mesh dimensions
+PASS large-8x8-grand-department-09 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-grand-department-09 original support datum aligned without deleting underground geometry
+PASS large-8x8-grand-department-09 exported +Z inspection frontage marker
+PASS large-8x8-grand-department-09 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-twin-central-10 real spec exists
+PASS large-8x8-twin-central-10 original preview copy and actual GLB exist
+PASS large-8x8-twin-central-10 inspection-only status, no growth/operation
+ERROR: FAIL large-8x8-twin-central-10 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-8x8-twin-central-10 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-twin-central-10 spec reports actual mesh dimensions
+PASS large-8x8-twin-central-10 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-twin-central-10 original support datum aligned without deleting underground geometry
+PASS large-8x8-twin-central-10 exported +Z inspection frontage marker
+PASS large-8x8-twin-central-10 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-brick-services-06 real spec exists
+PASS medium-4x4-brick-services-06 original preview copy and actual GLB exist
+PASS medium-4x4-brick-services-06 inspection-only status, no growth/operation
+ERROR: FAIL medium-4x4-brick-services-06 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS medium-4x4-brick-services-06 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-brick-services-06 spec reports actual mesh dimensions
+PASS medium-4x4-brick-services-06 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-brick-services-06 original support datum aligned without deleting underground geometry
+PASS medium-4x4-brick-services-06 exported +Z inspection frontage marker
+PASS medium-4x4-brick-services-06 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-office-retail-05 real spec exists
+PASS medium-4x4-office-retail-05 original preview copy and actual GLB exist
+PASS medium-4x4-office-retail-05 inspection-only status, no growth/operation
+ERROR: FAIL medium-4x4-office-retail-05 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS medium-4x4-office-retail-05 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-office-retail-05 spec reports actual mesh dimensions
+PASS medium-4x4-office-retail-05 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-office-retail-05 original support datum aligned without deleting underground geometry
+PASS medium-4x4-office-retail-05 exported +Z inspection frontage marker
+PASS medium-4x4-office-retail-05 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-auto-02 real spec exists
+PASS small-2x2-auto-02 original preview copy and actual GLB exist
+PASS small-2x2-auto-02 inspection-only status, no growth/operation
+ERROR: FAIL small-2x2-auto-02 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-2x2-auto-02 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-auto-02 spec reports actual mesh dimensions
+PASS small-2x2-auto-02 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-auto-02 original support datum aligned without deleting underground geometry
+PASS small-2x2-auto-02 exported +Z inspection frontage marker
+PASS small-2x2-auto-02 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-mart-01 real spec exists
+PASS small-2x2-mart-01 original preview copy and actual GLB exist
+PASS small-2x2-mart-01 inspection-only status, no growth/operation
+ERROR: FAIL small-2x2-mart-01 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-2x2-mart-01 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-mart-01 spec reports actual mesh dimensions
+PASS small-2x2-mart-01 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-mart-01 original support datum aligned without deleting underground geometry
+PASS small-2x2-mart-01 exported +Z inspection frontage marker
+PASS small-2x2-mart-01 actual authored door/entry geometry survives axis conversion
+PASS small-4x4-cafe-diner-04 real spec exists
+PASS small-4x4-cafe-diner-04 original preview copy and actual GLB exist
+PASS small-4x4-cafe-diner-04 inspection-only status, no growth/operation
+ERROR: FAIL small-4x4-cafe-diner-04 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-4x4-cafe-diner-04 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-4x4-cafe-diner-04 spec reports actual mesh dimensions
+PASS small-4x4-cafe-diner-04 actual horizontal extent matches original lot at 4m/cell
+PASS small-4x4-cafe-diner-04 original support datum aligned without deleting underground geometry
+PASS small-4x4-cafe-diner-04 exported +Z inspection frontage marker
+PASS small-4x4-cafe-diner-04 actual authored door/entry geometry survives axis conversion
+PASS small-4x4-market-03 real spec exists
+PASS small-4x4-market-03 original preview copy and actual GLB exist
+PASS small-4x4-market-03 inspection-only status, no growth/operation
+ERROR: FAIL small-4x4-market-03 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-4x4-market-03 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-4x4-market-03 spec reports actual mesh dimensions
+PASS small-4x4-market-03 actual horizontal extent matches original lot at 4m/cell
+PASS small-4x4-market-03 original support datum aligned without deleting underground geometry
+PASS small-4x4-market-03 exported +Z inspection frontage marker
+PASS small-4x4-market-03 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-chemical-06 real spec exists
+PASS large-4x4-chemical-06 original preview copy and actual GLB exist
+PASS large-4x4-chemical-06 inspection-only status, no growth/operation
+ERROR: FAIL large-4x4-chemical-06 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-4x4-chemical-06 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-chemical-06 spec reports actual mesh dimensions
+PASS large-4x4-chemical-06 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-chemical-06 original support datum aligned without deleting underground geometry
+PASS large-4x4-chemical-06 exported +Z inspection frontage marker
+PASS large-4x4-chemical-06 actual authored door/entry geometry survives axis conversion
+PASS large-4x4-pharma-05 real spec exists
+PASS large-4x4-pharma-05 original preview copy and actual GLB exist
+PASS large-4x4-pharma-05 inspection-only status, no growth/operation
+ERROR: FAIL large-4x4-pharma-05 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-4x4-pharma-05 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-4x4-pharma-05 spec reports actual mesh dimensions
+PASS large-4x4-pharma-05 actual horizontal extent matches original lot at 4m/cell
+PASS large-4x4-pharma-05 original support datum aligned without deleting underground geometry
+PASS large-4x4-pharma-05 exported +Z inspection frontage marker
+PASS large-4x4-pharma-05 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-auto-assembly-07 real spec exists
+PASS large-8x8-auto-assembly-07 original preview copy and actual GLB exist
+PASS large-8x8-auto-assembly-07 inspection-only status, no growth/operation
+ERROR: FAIL large-8x8-auto-assembly-07 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-8x8-auto-assembly-07 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-auto-assembly-07 spec reports actual mesh dimensions
+PASS large-8x8-auto-assembly-07 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-auto-assembly-07 original support datum aligned without deleting underground geometry
+PASS large-8x8-auto-assembly-07 exported +Z inspection frontage marker
+PASS large-8x8-auto-assembly-07 actual authored door/entry geometry survives axis conversion
+PASS large-8x8-chemical-complex-08 real spec exists
+PASS large-8x8-chemical-complex-08 original preview copy and actual GLB exist
+PASS large-8x8-chemical-complex-08 inspection-only status, no growth/operation
+ERROR: FAIL large-8x8-chemical-complex-08 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS large-8x8-chemical-complex-08 GLB round-trip physical W/D/H and ground offset match measured source
+PASS large-8x8-chemical-complex-08 spec reports actual mesh dimensions
+PASS large-8x8-chemical-complex-08 actual horizontal extent matches original lot at 4m/cell
+PASS large-8x8-chemical-complex-08 original support datum aligned without deleting underground geometry
+PASS large-8x8-chemical-complex-08 exported +Z inspection frontage marker
+PASS large-8x8-chemical-complex-08 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-circuitworks-04 real spec exists
+PASS medium-4x4-circuitworks-04 original preview copy and actual GLB exist
+PASS medium-4x4-circuitworks-04 inspection-only status, no growth/operation
+ERROR: FAIL medium-4x4-circuitworks-04 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS medium-4x4-circuitworks-04 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-circuitworks-04 spec reports actual mesh dimensions
+PASS medium-4x4-circuitworks-04 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-circuitworks-04 original support datum aligned without deleting underground geometry
+PASS medium-4x4-circuitworks-04 exported +Z inspection frontage marker
+PASS medium-4x4-circuitworks-04 actual authored door/entry geometry survives axis conversion
+PASS medium-4x4-precision-03 real spec exists
+PASS medium-4x4-precision-03 original preview copy and actual GLB exist
+PASS medium-4x4-precision-03 inspection-only status, no growth/operation
+ERROR: FAIL medium-4x4-precision-03 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS medium-4x4-precision-03 GLB round-trip physical W/D/H and ground offset match measured source
+PASS medium-4x4-precision-03 spec reports actual mesh dimensions
+PASS medium-4x4-precision-03 actual horizontal extent matches original lot at 4m/cell
+PASS medium-4x4-precision-03 original support datum aligned without deleting underground geometry
+PASS medium-4x4-precision-03 exported +Z inspection frontage marker
+PASS medium-4x4-precision-03 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-foodworks-02 real spec exists
+PASS small-2x2-foodworks-02 original preview copy and actual GLB exist
+PASS small-2x2-foodworks-02 inspection-only status, no growth/operation
+ERROR: FAIL small-2x2-foodworks-02 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-2x2-foodworks-02 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-foodworks-02 spec reports actual mesh dimensions
+PASS small-2x2-foodworks-02 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-foodworks-02 original support datum aligned without deleting underground geometry
+PASS small-2x2-foodworks-02 exported +Z inspection frontage marker
+PASS small-2x2-foodworks-02 actual authored door/entry geometry survives axis conversion
+PASS small-2x2-metalworks-01 real spec exists
+PASS small-2x2-metalworks-01 original preview copy and actual GLB exist
+PASS small-2x2-metalworks-01 inspection-only status, no growth/operation
+ERROR: FAIL small-2x2-metalworks-01 metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS small-2x2-metalworks-01 GLB round-trip physical W/D/H and ground offset match measured source
+PASS small-2x2-metalworks-01 spec reports actual mesh dimensions
+PASS small-2x2-metalworks-01 actual horizontal extent matches original lot at 4m/cell
+PASS small-2x2-metalworks-01 original support datum aligned without deleting underground geometry
+PASS small-2x2-metalworks-01 exported +Z inspection frontage marker
+PASS small-2x2-metalworks-01 actual authored door/entry geometry survives axis conversion
+PASS power-coal real spec exists
+PASS power-coal original preview copy and actual GLB exist
+PASS power-coal inspection-only status, no growth/operation
+ERROR: FAIL power-coal metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-coal GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-coal spec reports actual mesh dimensions
+PASS power-coal actual horizontal extent matches original lot at 4m/cell
+PASS power-coal original support datum aligned without deleting underground geometry
+PASS power-coal exported +Z inspection frontage marker
+PASS power-coal absence of original human entrance is explicit, never claimed verified
+PASS power-hydro real spec exists
+PASS power-hydro original preview copy and actual GLB exist
+PASS power-hydro inspection-only status, no growth/operation
+ERROR: FAIL power-hydro metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-hydro GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-hydro spec reports actual mesh dimensions
+ERROR: FAIL power-hydro parametric original retains null fixed footprint and original presentation dimensions
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:53)
+PASS power-hydro original support datum aligned without deleting underground geometry
+PASS power-hydro exported +Z inspection frontage marker
+PASS power-hydro absence of original human entrance is explicit, never claimed verified
+PASS power-nuclear real spec exists
+PASS power-nuclear original preview copy and actual GLB exist
+PASS power-nuclear inspection-only status, no growth/operation
+ERROR: FAIL power-nuclear metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-nuclear GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-nuclear spec reports actual mesh dimensions
+PASS power-nuclear actual horizontal extent matches original lot at 4m/cell
+PASS power-nuclear original support datum aligned without deleting underground geometry
+PASS power-nuclear exported +Z inspection frontage marker
+PASS power-nuclear absence of original human entrance is explicit, never claimed verified
+PASS power-oil real spec exists
+PASS power-oil original preview copy and actual GLB exist
+PASS power-oil inspection-only status, no growth/operation
+ERROR: FAIL power-oil metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-oil GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-oil spec reports actual mesh dimensions
+PASS power-oil actual horizontal extent matches original lot at 4m/cell
+PASS power-oil original support datum aligned without deleting underground geometry
+PASS power-oil exported +Z inspection frontage marker
+PASS power-oil absence of original human entrance is explicit, never claimed verified
+PASS power-solar real spec exists
+PASS power-solar original preview copy and actual GLB exist
+PASS power-solar inspection-only status, no growth/operation
+ERROR: FAIL power-solar metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-solar GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-solar spec reports actual mesh dimensions
+PASS power-solar actual horizontal extent matches original lot at 4m/cell
+PASS power-solar original support datum aligned without deleting underground geometry
+PASS power-solar exported +Z inspection frontage marker
+PASS power-solar absence of original human entrance is explicit, never claimed verified
+PASS power-wind real spec exists
+PASS power-wind original preview copy and actual GLB exist
+PASS power-wind inspection-only status, no growth/operation
+ERROR: FAIL power-wind metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS power-wind GLB round-trip physical W/D/H and ground offset match measured source
+PASS power-wind spec reports actual mesh dimensions
+ERROR: FAIL power-wind original rotor overhang retained, never resized to 2x2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:51)
+PASS power-wind original lowest support is at zero
+PASS power-wind exported +Z inspection frontage marker
+PASS power-wind absence of original human entrance is explicit, never claimed verified
+PASS water-intake real spec exists
+PASS water-intake original preview copy and actual GLB exist
+PASS water-intake inspection-only status, no growth/operation
+ERROR: FAIL water-intake metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS water-intake GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-intake spec reports actual mesh dimensions
+PASS water-intake actual horizontal extent matches original lot at 4m/cell
+PASS water-intake original support datum aligned without deleting underground geometry
+PASS water-intake exported +Z inspection frontage marker
+PASS water-intake actual authored door/entry geometry survives axis conversion
+PASS water-sewage-outfall real spec exists
+PASS water-sewage-outfall original preview copy and actual GLB exist
+PASS water-sewage-outfall inspection-only status, no growth/operation
+ERROR: FAIL water-sewage-outfall metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS water-sewage-outfall GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-sewage-outfall spec reports actual mesh dimensions
+PASS water-sewage-outfall actual horizontal extent matches original lot at 4m/cell
+PASS water-sewage-outfall original support datum aligned without deleting underground geometry
+PASS water-sewage-outfall exported +Z inspection frontage marker
+PASS water-sewage-outfall actual authored door/entry geometry survives axis conversion
+PASS water-sewage-treatment real spec exists
+PASS water-sewage-treatment original preview copy and actual GLB exist
+PASS water-sewage-treatment inspection-only status, no growth/operation
+ERROR: FAIL water-sewage-treatment metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS water-sewage-treatment GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-sewage-treatment spec reports actual mesh dimensions
+PASS water-sewage-treatment actual horizontal extent matches original lot at 4m/cell
+PASS water-sewage-treatment original support datum aligned without deleting underground geometry
+PASS water-sewage-treatment exported +Z inspection frontage marker
+PASS water-sewage-treatment actual authored door/entry geometry survives axis conversion
+PASS water-water-tower real spec exists
+PASS water-water-tower original preview copy and actual GLB exist
+PASS water-water-tower inspection-only status, no growth/operation
+ERROR: FAIL water-water-tower metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS water-water-tower GLB round-trip physical W/D/H and ground offset match measured source
+PASS water-water-tower spec reports actual mesh dimensions
+PASS water-water-tower actual horizontal extent matches original lot at 4m/cell
+PASS water-water-tower original support datum aligned without deleting underground geometry
+PASS water-water-tower exported +Z inspection frontage marker
+PASS water-water-tower absence of original human entrance is explicit, never claimed verified
+PASS waste-incinerator real spec exists
+PASS waste-incinerator original preview copy and actual GLB exist
+PASS waste-incinerator inspection-only status, no growth/operation
+ERROR: FAIL waste-incinerator metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS waste-incinerator GLB round-trip physical W/D/H and ground offset match measured source
+PASS waste-incinerator spec reports actual mesh dimensions
+PASS waste-incinerator actual horizontal extent matches original lot at 4m/cell
+PASS waste-incinerator original support datum aligned without deleting underground geometry
+PASS waste-incinerator exported +Z inspection frontage marker
+PASS waste-incinerator actual authored door/entry geometry survives axis conversion
+PASS waste-recycling-center real spec exists
+PASS waste-recycling-center original preview copy and actual GLB exist
+PASS waste-recycling-center inspection-only status, no growth/operation
+ERROR: FAIL waste-recycling-center metre/cell convention and +Z front axis
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:41)
+PASS waste-recycling-center GLB round-trip physical W/D/H and ground offset match measured source
+PASS waste-recycling-center spec reports actual mesh dimensions
+PASS waste-recycling-center actual horizontal extent matches original lot at 4m/cell
+PASS waste-recycling-center original support datum aligned without deleting underground geometry
+PASS waste-recycling-center exported +Z inspection frontage marker
+PASS waste-recycling-center actual authored door/entry geometry survives axis conversion
+PASS all five original groups match requested counts
+PASS ten commercial and eight industrial entries remain excluded from growth
+PASS large-4x4-department-07 original industry/storey metadata retained
+PASS large-4x4-department-07 cannot be selected by automatic growth
+PASS large-4x4-office-nova-08 original industry/storey metadata retained
+PASS large-4x4-office-nova-08 cannot be selected by automatic growth
+PASS large-8x8-grand-department-09 original industry/storey metadata retained
+PASS large-8x8-grand-department-09 cannot be selected by automatic growth
+PASS large-8x8-twin-central-10 original industry/storey metadata retained
+PASS large-8x8-twin-central-10 cannot be selected by automatic growth
+PASS medium-4x4-brick-services-06 original industry/storey metadata retained
+PASS medium-4x4-brick-services-06 cannot be selected by automatic growth
+PASS medium-4x4-office-retail-05 original industry/storey metadata retained
+PASS medium-4x4-office-retail-05 cannot be selected by automatic growth
+PASS small-2x2-auto-02 original industry/storey metadata retained
+PASS small-2x2-auto-02 cannot be selected by automatic growth
+PASS small-2x2-mart-01 original industry/storey metadata retained
+PASS small-2x2-mart-01 cannot be selected by automatic growth
+PASS small-4x4-cafe-diner-04 original industry/storey metadata retained
+PASS small-4x4-cafe-diner-04 cannot be selected by automatic growth
+PASS small-4x4-market-03 original industry/storey metadata retained
+PASS small-4x4-market-03 cannot be selected by automatic growth
+PASS large-4x4-chemical-06 original industry/storey metadata retained
+PASS large-4x4-chemical-06 cannot be selected by automatic growth
+PASS large-4x4-pharma-05 original industry/storey metadata retained
+PASS large-4x4-pharma-05 cannot be selected by automatic growth
+PASS large-8x8-auto-assembly-07 original industry/storey metadata retained
+PASS large-8x8-auto-assembly-07 cannot be selected by automatic growth
+PASS large-8x8-chemical-complex-08 original industry/storey metadata retained
+PASS large-8x8-chemical-complex-08 cannot be selected by automatic growth
+PASS medium-4x4-circuitworks-04 original industry/storey metadata retained
+PASS medium-4x4-circuitworks-04 cannot be selected by automatic growth
+PASS medium-4x4-precision-03 original industry/storey metadata retained
+PASS medium-4x4-precision-03 cannot be selected by automatic growth
+PASS small-2x2-foodworks-02 original industry/storey metadata retained
+PASS small-2x2-foodworks-02 cannot be selected by automatic growth
+PASS small-2x2-metalworks-01 original industry/storey metadata retained
+PASS small-2x2-metalworks-01 cannot be selected by automatic growth
+ERROR: FAIL large-4x4-department-07 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-4x4-office-nova-08 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-8x8-grand-department-09 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-8x8-twin-central-10 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL medium-4x4-brick-services-06 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL medium-4x4-office-retail-05 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-2x2-auto-02 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-2x2-mart-01 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-4x4-cafe-diner-04 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-4x4-market-03 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-4x4-chemical-06 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-4x4-pharma-05 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-8x8-auto-assembly-07 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL large-8x8-chemical-complex-08 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL medium-4x4-circuitworks-04 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL medium-4x4-precision-03 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-2x2-foodworks-02 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL small-2x2-metalworks-01 derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-coal derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-hydro derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-nuclear derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-oil derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-solar derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL power-wind derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL water-intake derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL water-sewage-outfall derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL water-sewage-treatment derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL water-water-tower derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL waste-incinerator derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL waste-recycling-center derived thumbnail exists in common manifest
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:83)
+ERROR: FAIL shared registered-asset route exists
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:92)
+ERROR: FAIL existing exhibition grid exposes all eighteen commercial/industrial GLBs without a new menu/layout
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:133)
+ERROR: FAIL exhibition uses only actual disabled-growth registered originals
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_registered_30_assets.gd:9)
+       [1] run (res://tests/test_registered_30_assets.gd:134)
+RESULT 308/373 registered30 checks passed

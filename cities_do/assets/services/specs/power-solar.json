@@ -1,0 +1,128 @@
+{
+  "id": "power-solar",
+  "name": "태양광발전소",
+  "group": "power",
+  "width": 4,
+  "depth": 4,
+  "height_m": 1.279999852180481,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 133132,
+  "model": "res://assets/services/power-solar.glb",
+  "preview": "res://assets/services/power-solar.png",
+  "spec": "res://assets/services/specs/power-solar.json",
+  "source": "assets/power-study/solar/building.blend",
+  "source_metadata": {
+    "id": "power-solar",
+    "name": "태양광발전소",
+    "category": "power_facility",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "presentation_lot_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "presentation_lot_meters": [
+      16,
+      16
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0008,
+      783.0422
+    ],
+    "lot_corners_px": [
+      [
+        13.3314,
+        564.7074
+      ],
+      [
+        450.0008,
+        783.0422
+      ],
+      [
+        886.6703,
+        564.7075
+      ],
+      [
+        450.0009,
+        346.3727
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.05999999865889549
+      ],
+      [
+        8.0,
+        8.0,
+        1.21999990940094
+      ]
+    ],
+    "approval_status": "approved",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "user-approved solar design adapted to 4x4 footprint; game integration pending",
+    "revision": "requested-footprints-and-equipment-scale"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "",
+  "front_feature_position_gltf": null,
+  "frontage_verification": "equipment_convention_only_no_named_entrance",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.05999999865889549,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      1.279999852180481
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.11999999731779099
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+  ],
+  "ui_category": "power"
+}

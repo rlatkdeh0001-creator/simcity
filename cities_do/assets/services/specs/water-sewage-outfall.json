@@ -1,0 +1,136 @@
+{
+  "id": "water-sewage-outfall",
+  "name": "하수장",
+  "group": "water",
+  "width": 4,
+  "depth": 4,
+  "height_m": 5.439999580383301,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 25708,
+  "model": "res://assets/services/water-sewage-outfall.glb",
+  "preview": "res://assets/services/water-sewage-outfall.png",
+  "spec": "res://assets/services/specs/water-sewage-outfall.json",
+  "source": "assets/water-study/sewage-outfall/building.blend",
+  "source_metadata": {
+    "id": "water-sewage-outfall",
+    "name": "하수장",
+    "category": "water_utility",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "footprint_status": "draft",
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "placement_surface": "shore_land",
+    "main_structure_on_land": true,
+    "water_edge_required": true,
+    "water_contact_parts_only": [
+      "outfall_mouth"
+    ],
+    "road_adjacency_required": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0007,
+      803.9937
+    ],
+    "lot_corners_px": [
+      [
+        61.092,
+        609.5393
+      ],
+      [
+        450.0007,
+        803.9937
+      ],
+      [
+        838.9095,
+        609.5393
+      ],
+      [
+        450.0008,
+        415.085
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.6000000238418579
+      ],
+      [
+        8.0,
+        8.0,
+        4.839999675750732
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "shoreline land installation; only inlet/outlet extends into water; runtime siting and water networks not implemented",
+    "revision": "shoreline-land-foundation"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "StaffDoor",
+  "front_feature_position_gltf": [
+    -2.200000047683716,
+    2.2549999356269836,
+    -0.6200000047683716
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Context_LandSurface",
+  "ground_offset_m": -0.29499998688697815,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      -0.8949999809265137
+    ],
+    [
+      8.0,
+      8.0,
+      4.544999599456787
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -7.96999979019165,
+      -2.370000123977661,
+      5.587935447692871e-09
+    ],
+    [
+      7.96999979019165,
+      7.970000267028809,
+      0.05000000447034836
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "original_below_ground_geometry_preserved"
+  ],
+  "ui_category": "water"
+}

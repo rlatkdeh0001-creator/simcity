@@ -1,0 +1,186 @@
+[
+  {
+    "name": "power-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1920.png",
+      "--bottom-tab=power"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.32,
+    "log": "power-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "0a3fac263e7d396d9bde2e8066f0f67c85ba7165283f8111bca5e07e71a6c925",
+    "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1920.png",
+        "--bottom-tab=power"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "power",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "water-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\water-1920.png",
+      "--bottom-tab=water"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.67,
+    "log": "water-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "ebc1ea63ec2f6600ad6c5fb99414533f6f373b945c8dfbe9312d12093e729f47",
+    "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\water-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\water-1920.png",
+        "--bottom-tab=water"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "water",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "environment-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\environment-1920.png",
+      "--bottom-tab=environment"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.77,
+    "log": "environment-1920.log",
+    "png_size": [
+      1920,
+      1080
+    ],
+    "sha256": "9a8f874d6767b9725994f3f30800a260d94d82b503e4b1567d185d9a0945b0d9",
+    "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\environment-1920.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\environment-1920.png",
+        "--bottom-tab=environment"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 884.0), S: (1920.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "environment",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "power-1280",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--audio-driver",
+      "Dummy",
+      "--rendering-method",
+      "gl_compatibility",
+      "--resolution",
+      "1280x820",
+      "--position",
+      "0,0",
+      "--borderless",
+      "--",
+      "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1280.png",
+      "--bottom-tab=power"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 5.7,
+    "log": "power-1280.log",
+    "png_size": [
+      1280,
+      820
+    ],
+    "sha256": "986ebfca0ff9475e7fa7b8710a09549f503f6c22a4b8c7c7f48783e542141f81",
+    "path": "D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1280.png",
+    "state": {
+      "args": [
+        "--capture-bottom-ui=D:\\project\\simcity\\docs\\register-30-assets-validation\\power-1280.png",
+        "--bottom-tab=power"
+      ],
+      "city_name": "CITIESDO",
+      "dock": "[P: (0.0, 624.0), S: (1280.0, 196.0)]",
+      "drawer_visible": true,
+      "funds": 50000,
+      "population": 0,
+      "tab": "power",
+      "viewport": "[P: (0.0, 0.0), S: (1280.0, 820.0)]"
+    }
+  }
+]

@@ -1,0 +1,655 @@
+{
+  "category": "infrastructure",
+  "resolution": [
+    3600,
+    2600
+  ],
+  "engine": "BLENDER_EEVEE_NEXT",
+  "device": [
+    "EEVEE Next"
+  ],
+  "assets": [
+    {
+      "id": "power-coal",
+      "position_m": [
+        -219.20309448242188,
+        49.497467041015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        31.30000126361847
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-hydro",
+      "position_m": [
+        -162.63455200195312,
+        106.06600952148438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        60.0,
+        32.0,
+        9.770000457763672
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-nuclear",
+      "position_m": [
+        -106.06600952148438,
+        162.63455200195312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        20.55050277709961
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-oil",
+      "position_m": [
+        -49.497467041015625,
+        219.20309448242188,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        25.470001220703125
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-solar",
+      "position_m": [
+        -84.85281372070312,
+        -84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        1.279999852180481
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-wind",
+      "position_m": [
+        -28.284271240234375,
+        -28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        19.05255889892578,
+        4.88749885559082,
+        37.400001525878906
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-intake",
+      "position_m": [
+        28.284271240234375,
+        28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        6.489999890327454
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-sewage-outfall",
+      "position_m": [
+        84.85281372070312,
+        84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        5.439999580383301
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-sewage-treatment",
+      "position_m": [
+        49.497467041015625,
+        -219.20309448242188,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        4.359999656677246
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-water-tower",
+      "position_m": [
+        106.06600952148438,
+        -162.63455200195312,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        13.739999771118164
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "waste-incinerator",
+      "position_m": [
+        162.63455200195312,
+        -106.06600952148438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        22.8075008392334
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "waste-recycling-center",
+      "position_m": [
+        219.20309448242188,
+        -49.497467041015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        7.559999942779541
+      ],
+      "scale_changed": false
+    }
+  ],
+  "vehicle_instances": [
+    {
+      "asset": "power-coal",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -182.4335479736328,
+        -8.106231689453125e-06,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-coal",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -169.7056121826172,
+        12.727912902832031,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-hydro",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -125.86499786376953,
+        56.56853485107422,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-hydro",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -113.13707733154297,
+        69.29645538330078,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-nuclear",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -69.29645538330078,
+        113.13707733154297,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-nuclear",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -56.56853485107422,
+        125.86499786376953,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-oil",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -12.727912902832031,
+        169.7056121826172,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-oil",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        8.106231689453125e-06,
+        182.4335479736328,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-solar",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -48.08325958251953,
+        -134.3502960205078,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-solar",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -35.35533905029297,
+        -121.62236785888672,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-wind",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        8.485282897949219,
+        -77.78174591064453,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "power-wind",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        21.21320343017578,
+        -65.05382537841797,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-intake",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        65.05382537841797,
+        -21.21320343017578,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-intake",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        77.78174591064453,
+        -8.485282897949219,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-sewage-outfall",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        121.62236785888672,
+        35.35533905029297,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-sewage-outfall",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        134.3502960205078,
+        48.08325958251953,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-sewage-treatment",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        86.26702117919922,
+        -268.7005615234375,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-sewage-treatment",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        98.99494171142578,
+        -255.97264099121094,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-water-tower",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        142.83555603027344,
+        -212.1320343017578,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "water-water-tower",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        155.56349182128906,
+        -199.4040985107422,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "waste-incinerator",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        199.4040985107422,
+        -155.56349182128906,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "waste-incinerator",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        212.1320343017578,
+        -142.83555603027344,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "waste-recycling-center",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        255.97264099121094,
+        -98.99494171142578,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "waste-recycling-center",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        268.7005615234375,
+        -86.26702117919922,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "camera": {
+    "orthographic_width_m": 422.9148864746094,
+    "camera_position": [
+      884.274658203125,
+      -884.274658203125,
+      728.1727294921875
+    ],
+    "camera_target": [
+      10.700427055358887,
+      -10.700427055358887,
+      14.902322769165039
+    ],
+    "camera_elevation_deg": 30
+  },
+  "no_image_resizing": true,
+  "image_sha256": "5ec992e0b944ac6d1f02e7b879f52776d7a57e8be92d4dad387e6ccd6b84ba15"
+}

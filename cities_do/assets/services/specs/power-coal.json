@@ -1,0 +1,129 @@
+{
+  "id": "power-coal",
+  "name": "석탄발전소",
+  "group": "power",
+  "width": 8,
+  "depth": 8,
+  "height_m": 31.30000126361847,
+  "width_m": 32.0,
+  "length_m": 32.0,
+  "triangles": 26460,
+  "model": "res://assets/services/power-coal.glb",
+  "preview": "res://assets/services/power-coal.png",
+  "spec": "res://assets/services/specs/power-coal.json",
+  "source": "assets/power-study/coal/building.blend",
+  "source_metadata": {
+    "id": "power-coal",
+    "name": "석탄발전소",
+    "category": "power_facility",
+    "footprint_cells": [
+      8,
+      8
+    ],
+    "presentation_lot_cells": [
+      8,
+      8
+    ],
+    "cell_meters": 4,
+    "presentation_lot_meters": [
+      32,
+      32
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0003,
+      875.8525
+    ],
+    "lot_corners_px": [
+      [
+        94.4266,
+        698.0656
+      ],
+      [
+        450.0003,
+        875.8525
+      ],
+      [
+        805.574,
+        698.0657
+      ],
+      [
+        450.0004,
+        520.2788
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -16.0,
+        -16.0,
+        -1.9500000476837158
+      ],
+      [
+        16.0,
+        16.0,
+        29.350000381469727
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+    "revision": "requested-footprints-and-equipment-scale"
+  },
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "",
+  "front_feature_position_gltf": null,
+  "frontage_verification": "equipment_convention_only_no_named_entrance",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      -1.8300000429153442
+    ],
+    [
+      16.0,
+      16.0,
+      29.470001220703125
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "original_below_ground_geometry_preserved",
+    "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+  ],
+  "ui_category": "power"
+}

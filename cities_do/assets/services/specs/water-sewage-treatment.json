@@ -1,0 +1,128 @@
+{
+  "id": "water-sewage-treatment",
+  "name": "하수처리장",
+  "group": "water",
+  "width": 8,
+  "depth": 8,
+  "height_m": 4.359999656677246,
+  "width_m": 32.0,
+  "length_m": 32.0,
+  "triangles": 41792,
+  "model": "res://assets/services/water-sewage-treatment.glb",
+  "preview": "res://assets/services/water-sewage-treatment.png",
+  "spec": "res://assets/services/specs/water-sewage-treatment.json",
+  "source": "assets/water-study/sewage-treatment/building.blend",
+  "source_metadata": {
+    "id": "water-sewage-treatment",
+    "name": "하수처리장",
+    "category": "water_utility",
+    "footprint_cells": [
+      8,
+      8
+    ],
+    "footprint_status": "draft",
+    "cell_meters": 4,
+    "lot_meters": [
+      32,
+      32
+    ],
+    "placement_surface": "land",
+    "road_adjacency_required": true,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0003,
+      785.153
+    ],
+    "lot_corners_px": [
+      [
+        28.1333,
+        574.2194
+      ],
+      [
+        450.0003,
+        785.153
+      ],
+      [
+        871.8675,
+        574.2195
+      ],
+      [
+        450.0004,
+        363.2859
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -16.0,
+        -16.0,
+        -0.11999999731779099
+      ],
+      [
+        16.0,
+        16.0,
+        4.239999771118164
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+  },
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "StaffDoor",
+  "front_feature_position_gltf": [
+    9.0,
+    1.7200000286102295,
+    9.779999732971191
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      4.359999656677246
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "water"
+}

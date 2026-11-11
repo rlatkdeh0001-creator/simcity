@@ -593,6 +593,12 @@ func select_category(key: String):
   lanes.select(0 if road_lanes==2 else 1)
   lanes.item_selected.connect(func(index):road_lanes=2 if index==0 else 4;queue_redraw())
   drawer_box.add_child(lanes)
+ for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
+  if entry.ui_category!=key:continue
+  var registered_button:=make_asset_button(entry,open_registered_asset.bind(str(entry.id)))
+  registered_button.name="Registered_"+str(entry.id)
+  registered_button.set_meta("registered_asset_id",str(entry.id))
+  drawer_box.add_child(registered_button)
  if key=="park":
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
    var facility_button:=make_asset_button(entry,open_facility_asset.bind(str(entry.id)))
@@ -703,6 +709,24 @@ func make_asset_button(entry: Dictionary,action: Callable) -> Button:
  item.pressed.connect(func():
   if not item.disabled:action.call())
  return item
+
+func open_registered_asset(id: String) -> bool:
+ # Inspection only: never dispatch a placement tool or touch the simulation.
+ var data=JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json"))
+ if not data is Dictionary:return false
+ for registered: Dictionary in data.get("assets",[]):
+  if registered.id!=id:continue
+  if not FileAccess.file_exists(str(registered.spec)):return false
+  var entry=JSON.parse_string(FileAccess.get_file_as_string(str(registered.spec)))
+  if not entry is Dictionary or entry.get("status","")!="asset_preview_only" or entry.get("simulation_enabled",true):return false
+  if not ResourceLoader.exists(str(entry.get("model",""))):return false
+  var preview=preload("res://service_asset_preview.gd").new()
+  preview.name="ServiceAssetPreview"
+  preview.set_meta("asset_id",id)
+  add_child(preview)
+  preview.show_asset(entry)
+  return true
+ return false
 
 func open_facility_asset(id: String):
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:

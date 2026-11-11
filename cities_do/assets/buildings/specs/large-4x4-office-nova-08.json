@@ -1,0 +1,158 @@
+{
+  "id": "large-4x4-office-nova-08",
+  "name": "NOVA 오피스 타워",
+  "group": "commercial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 30.850000381469727,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 49932,
+  "model": "res://assets/buildings/models/large-4x4-office-nova-08.glb",
+  "preview": "res://assets/buildings/large-4x4-office-nova-08.png",
+  "spec": "res://assets/buildings/specs/large-4x4-office-nova-08.json",
+  "source": "assets/commercial-study/large-4x4-office-nova-08/building.blend",
+  "source_metadata": {
+    "id": "large-4x4-office-nova-08",
+    "name": "NOVA 오피스 타워",
+    "zone": "commercial",
+    "category": "large_commercial",
+    "density": "high",
+    "retail_type": "office_with_retail",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 10,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      938.9004
+    ],
+    "lot_corners_px": [
+      [
+        201.0984,
+        814.4496
+      ],
+      [
+        450.0,
+        938.9004
+      ],
+      [
+        698.9016,
+        814.4497
+      ],
+      [
+        450.0,
+        689.9989
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        30.729999542236328
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 50,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "NOVA vertical lettering",
+      "CAFE and TECH podium",
+      "separate OFFICE lobby",
+      "two upper setbacks",
+      "ten occupied floors"
+    ],
+    "scope": "user-approved large commercial design; game integration pending"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorDivision",
+  "front_feature_position_gltf": [
+    -1.0,
+    1.919999897480011,
+    5.019999980926514
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      30.850000381469727
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "category_name": "상업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 10,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-4x4-office-nova-08.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    938.9004
+  ],
+  "lot_width_px": 497.80320000000006,
+  "industry": "office_with_retail"
+}

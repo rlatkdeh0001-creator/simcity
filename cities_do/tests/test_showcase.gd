@@ -40,7 +40,8 @@ func run():
 	var scene = load("res://residential_showcase.tscn").instantiate()
 	root.add_child(scene)
 	await process_frame
-	check(scene.city.buildings.size()==10 and scene.building_textures.size()==10,"actual game scene loads all ten textures")
+	check(scene.city.buildings.size()==10 and scene.city.buildings.all(func(b):return ids.has(b.asset_id)) and ids.keys().all(func(id):return scene.building_textures.has(id)),"actual showcase retains all ten original residential textures and buildings")
+	check(scene.building_textures.size()==scene.city.catalog.entries.size(),"texture cache includes the complete expanded catalogue without placing the new inspection assets")
 	check(has_meta("construction_session") and get_meta("construction_session").city==saved_city and scene.city!=saved_city,"opening showcase preserves the original construction session")
 	var reference_scale := -1.0
 	var all_clicks := true

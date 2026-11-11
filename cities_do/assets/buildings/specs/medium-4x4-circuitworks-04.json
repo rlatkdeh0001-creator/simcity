@@ -1,0 +1,157 @@
+{
+  "id": "medium-4x4-circuitworks-04",
+  "name": "전자부품 공장",
+  "group": "industrial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 11.929999351501465,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 44124,
+  "model": "res://assets/buildings/models/medium-4x4-circuitworks-04.glb",
+  "preview": "res://assets/buildings/medium-4x4-circuitworks-04.png",
+  "spec": "res://assets/buildings/specs/medium-4x4-circuitworks-04.json",
+  "source": "assets/industrial-study/medium-4x4-circuitworks-04/building.blend",
+  "source_metadata": {
+    "id": "medium-4x4-circuitworks-04",
+    "name": "전자부품 공장",
+    "zone": "industrial",
+    "category": "medium_industrial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 3,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      879.4354
+    ],
+    "lot_corners_px": [
+      [
+        72.8764,
+        690.8736
+      ],
+      [
+        450.0,
+        879.4354
+      ],
+      [
+        827.1236,
+        690.8736
+      ],
+      [
+        450.0,
+        502.3117
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        11.809999465942383
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 33,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "CIRCUIT WORKS sign",
+      "microchip pictogram",
+      "three production floors",
+      "loading bay",
+      "air handling units",
+      "external utility pipes"
+    ],
+    "scope": "user-approved industrial design; game integration pending"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    2.5999999046325684,
+    1.8200000524520874,
+    3.9200000762939453
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_4x4",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      11.929999351501465
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "industrial",
+  "category": "medium_industrial",
+  "category_name": "공업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 3,
+  "min_level": 1,
+  "texture": "res://assets/buildings/medium-4x4-circuitworks-04.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    879.4354
+  ],
+  "lot_width_px": 754.2472,
+  "industry": "전자부품"
+}

@@ -1,0 +1,450 @@
+{
+  "category": "overview",
+  "resolution": [
+    4800,
+    3600
+  ],
+  "engine": "BLENDER_EEVEE_NEXT",
+  "device": [
+    "EEVEE Next"
+  ],
+  "assets": [
+    {
+      "id": "large-4x4-department-07",
+      "position_m": [
+        -410.1219177246094,
+        127.27920532226562,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        27.270000457763672
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-4x4-office-nova-08",
+      "position_m": [
+        -353.5533752441406,
+        183.84774780273438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        30.850000381469727
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-grand-department-09",
+      "position_m": [
+        -296.9848327636719,
+        240.41629028320312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        30.220001220703125
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-twin-central-10",
+      "position_m": [
+        -240.41629028320312,
+        296.9848327636719,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        45.269996643066406
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-brick-services-06",
+      "position_m": [
+        -183.84774780273438,
+        353.5533752441406,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        13.869999885559082
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-office-retail-05",
+      "position_m": [
+        -127.27920532226562,
+        410.1219177246094,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        13.399999618530273
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-auto-02",
+      "position_m": [
+        -275.7716369628906,
+        -7.071075439453125,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        4.444999694824219
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-mart-01",
+      "position_m": [
+        -219.20309448242188,
+        49.497467041015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.190000057220459
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-4x4-cafe-diner-04",
+      "position_m": [
+        -162.63455200195312,
+        106.06600952148438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        7.320000171661377
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-4x4-market-03",
+      "position_m": [
+        -106.06600952148438,
+        162.63455200195312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        5.769999980926514
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-4x4-chemical-06",
+      "position_m": [
+        -49.497467041015625,
+        219.20309448242188,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        10.25999927520752
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-4x4-pharma-05",
+      "position_m": [
+        7.071075439453125,
+        275.7716369628906,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        15.494999885559082
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-auto-assembly-07",
+      "position_m": [
+        -141.42135620117188,
+        -141.42135620117188,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        11.420000076293945
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-chemical-complex-08",
+      "position_m": [
+        -84.85281372070312,
+        -84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        17.71000099182129
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-circuitworks-04",
+      "position_m": [
+        -28.284271240234375,
+        -28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        11.929999351501465
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-precision-03",
+      "position_m": [
+        28.284271240234375,
+        28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        7.769999980926514
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-foodworks-02",
+      "position_m": [
+        84.85281372070312,
+        84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.169999599456787
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-metalworks-01",
+      "position_m": [
+        141.42135620117188,
+        141.42135620117188,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.179999828338623
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-coal",
+      "position_m": [
+        -7.071075439453125,
+        -275.7716369628906,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        31.30000126361847
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-hydro",
+      "position_m": [
+        49.497467041015625,
+        -219.20309448242188,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        60.0,
+        32.0,
+        9.770000457763672
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-nuclear",
+      "position_m": [
+        106.06600952148438,
+        -162.63455200195312,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        20.55050277709961
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-oil",
+      "position_m": [
+        162.63455200195312,
+        -106.06600952148438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        25.470001220703125
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-solar",
+      "position_m": [
+        219.20309448242188,
+        -49.497467041015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        1.279999852180481
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "power-wind",
+      "position_m": [
+        275.7716369628906,
+        7.071075439453125,
+        0.0
+      ],
+      "measured_wdh_m": [
+        19.05255126953125,
+        4.887499809265137,
+        37.400001525878906
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-intake",
+      "position_m": [
+        127.27920532226562,
+        -410.1219177246094,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        6.489999890327454
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-sewage-outfall",
+      "position_m": [
+        183.84774780273438,
+        -353.5533752441406,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        5.439999580383301
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-sewage-treatment",
+      "position_m": [
+        240.41629028320312,
+        -296.9848327636719,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        4.359999656677246
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "water-water-tower",
+      "position_m": [
+        296.9848327636719,
+        -240.41629028320312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        13.739999771118164
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "waste-incinerator",
+      "position_m": [
+        353.5533752441406,
+        -183.84774780273438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        22.8075008392334
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "waste-recycling-center",
+      "position_m": [
+        410.1219177246094,
+        -127.27920532226562,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        7.559999942779541
+      ],
+      "scale_changed": false
+    }
+  ],
+  "vehicle_instances": [],
+  "camera": {
+    "orthographic_width_m": 689.692138671875,
+    "camera_position": [
+      1080.756103515625,
+      -1080.7562255859375,
+      896.499267578125
+    ],
+    "camera_target": [
+      10.906551361083984,
+      -10.906557083129883,
+      22.97063446044922
+    ],
+    "camera_elevation_deg": 30
+  },
+  "no_image_resizing": true,
+  "image_sha256": "75bdbc913f9e6691f15ccb81faa923309e4ee173c6d7a6482aeef7416a913733"
+}

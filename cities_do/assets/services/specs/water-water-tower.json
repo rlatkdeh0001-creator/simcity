@@ -1,0 +1,126 @@
+{
+  "id": "water-water-tower",
+  "name": "급수탑",
+  "group": "water",
+  "width": 2,
+  "depth": 2,
+  "height_m": 13.739999771118164,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 11008,
+  "model": "res://assets/services/water-water-tower.glb",
+  "preview": "res://assets/services/water-water-tower.png",
+  "spec": "res://assets/services/specs/water-water-tower.json",
+  "source": "assets/water-study/water-tower/building.blend",
+  "source_metadata": {
+    "id": "water-water-tower",
+    "name": "급수탑",
+    "category": "water_utility",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "footprint_status": "draft",
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "placement_surface": "land",
+    "road_adjacency_required": true,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0009,
+      889.5015
+    ],
+    "lot_corners_px": [
+      [
+        210.6725,
+        769.8373
+      ],
+      [
+        450.0009,
+        889.5015
+      ],
+      [
+        689.3293,
+        769.8374
+      ],
+      [
+        450.001,
+        650.1731
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        13.619999885559082
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original Blender geometry; DejaVu font; no external models or textures",
+    "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+  },
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "presentation_lot_meters": [
+    8,
+    8
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "",
+  "front_feature_position_gltf": null,
+  "frontage_verification": "equipment_convention_only_no_named_entrance",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      13.739999771118164
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+  ],
+  "ui_category": "water"
+}

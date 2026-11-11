@@ -547,6 +547,1553 @@
       ],
       "garage_doors": [],
       "front_feature_node": "EntryGateBar"
+    },
+    {
+      "id": "power-coal",
+      "name": "석탄발전소",
+      "group": "power",
+      "width": 8,
+      "depth": 8,
+      "height_m": 31.30000126361847,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 26460,
+      "model": "res://assets/services/power-coal.glb",
+      "preview": "res://assets/services/power-coal.png",
+      "spec": "res://assets/services/specs/power-coal.json",
+      "source": "assets/power-study/coal/building.blend",
+      "source_metadata": {
+        "id": "power-coal",
+        "name": "석탄발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "presentation_lot_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          32,
+          32
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          875.8525
+        ],
+        "lot_corners_px": [
+          [
+            94.4266,
+            698.0656
+          ],
+          [
+            450.0003,
+            875.8525
+          ],
+          [
+            805.574,
+            698.0657
+          ],
+          [
+            450.0004,
+            520.2788
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -1.9500000476837158
+          ],
+          [
+            16.0,
+            16.0,
+            29.350000381469727
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          -1.8300000429153442
+        ],
+        [
+          16.0,
+          16.0,
+          29.470001220703125
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "original_below_ground_geometry_preserved",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "power-hydro",
+      "name": "수력발전댐",
+      "group": "power",
+      "width": 15,
+      "depth": 8,
+      "height_m": 9.770000457763672,
+      "width_m": 60.0,
+      "length_m": 32.0,
+      "triangles": 39304,
+      "model": "res://assets/services/power-hydro.glb",
+      "preview": "res://assets/services/power-hydro.png",
+      "spec": "res://assets/services/specs/power-hydro.json",
+      "source": "assets/power-study/hydro/building.blend",
+      "source_metadata": {
+        "id": "power-hydro",
+        "name": "수력발전댐",
+        "category": "power_facility",
+        "footprint_cells": null,
+        "placement_mode": "drag_across_watercourse",
+        "fixed_size_limit": false,
+        "dam_span_m": 48,
+        "gate_bays": 9,
+        "presentation_lot_cells": null,
+        "presentation_lot_meters": [
+          60,
+          32
+        ],
+        "cell_meters": 4,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          547.5758,
+          734.8869
+        ],
+        "lot_corners_px": [
+          [
+            129.3945,
+            525.7961
+          ],
+          [
+            547.5758,
+            734.8869
+          ],
+          [
+            770.6059,
+            623.3718
+          ],
+          [
+            352.4246,
+            414.2811
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -30.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            30.0,
+            16.0,
+            9.65000057220459
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original length-parametric Blender geometry; DejaVu font; no external models or textures",
+        "scope": "length-parametric dam visual prototype; gameplay dragging, terrain and hydrology checks not yet implemented",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "footprint_cells": null,
+      "presentation_lot_meters": [
+        60,
+        32
+      ],
+      "fixed_footprint": false,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "PresentationBase",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -30.0,
+          -16.0,
+          0.0
+        ],
+        [
+          30.0,
+          16.0,
+          9.770000457763672
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -30.0,
+          -16.0,
+          0.0
+        ],
+        [
+          30.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "parametric_asset_no_fixed_footprint; dimensions_are_original_presentation_only",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "power-nuclear",
+      "name": "원자력발전소",
+      "group": "power",
+      "width": 8,
+      "depth": 8,
+      "height_m": 20.55050277709961,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 28144,
+      "model": "res://assets/services/power-nuclear.glb",
+      "preview": "res://assets/services/power-nuclear.png",
+      "spec": "res://assets/services/specs/power-nuclear.json",
+      "source": "assets/power-study/nuclear/building.blend",
+      "source_metadata": {
+        "id": "power-nuclear",
+        "name": "원자력발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "presentation_lot_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          32,
+          32
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          862.0063
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            676.2588
+          ],
+          [
+            450.0003,
+            862.0063
+          ],
+          [
+            821.4952,
+            676.2589
+          ],
+          [
+            450.0004,
+            490.5114
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            20.399999618530273
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+        "revision": "stouter-cooling-tower",
+        "cooling_tower_height_m": 20,
+        "cooling_tower_base_radius_m": 6.8,
+        "cooling_tower_waist_radius_m": 5.2
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          20.55050277709961
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "power-oil",
+      "name": "석유발전소",
+      "group": "power",
+      "width": 8,
+      "depth": 8,
+      "height_m": 25.470001220703125,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 24944,
+      "model": "res://assets/services/power-oil.glb",
+      "preview": "res://assets/services/power-oil.png",
+      "spec": "res://assets/services/specs/power-oil.json",
+      "source": "assets/power-study/oil/building.blend",
+      "source_metadata": {
+        "id": "power-oil",
+        "name": "석유발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "presentation_lot_cells": [
+          8,
+          8
+        ],
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          32,
+          32
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          862.0063
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            676.2588
+          ],
+          [
+            450.0003,
+            862.0063
+          ],
+          [
+            821.4952,
+            676.2589
+          ],
+          [
+            450.0004,
+            490.5114
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            25.350000381469727
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "8x8 fixed footprint; revised visual concept; pending design approval",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          25.470001220703125
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "power-solar",
+      "name": "태양광발전소",
+      "group": "power",
+      "width": 4,
+      "depth": 4,
+      "height_m": 1.279999852180481,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 133132,
+      "model": "res://assets/services/power-solar.glb",
+      "preview": "res://assets/services/power-solar.png",
+      "spec": "res://assets/services/specs/power-solar.json",
+      "source": "assets/power-study/solar/building.blend",
+      "source_metadata": {
+        "id": "power-solar",
+        "name": "태양광발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "presentation_lot_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          16,
+          16
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0008,
+          783.0422
+        ],
+        "lot_corners_px": [
+          [
+            13.3314,
+            564.7074
+          ],
+          [
+            450.0008,
+            783.0422
+          ],
+          [
+            886.6703,
+            564.7075
+          ],
+          [
+            450.0009,
+            346.3727
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.05999999865889549
+          ],
+          [
+            8.0,
+            8.0,
+            1.21999990940094
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "user-approved solar design adapted to 4x4 footprint; game integration pending",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.05999999865889549,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          1.279999852180481
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.11999999731779099
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "power-wind",
+      "name": "풍력발전소",
+      "group": "power",
+      "width": 2,
+      "depth": 2,
+      "height_m": 37.400001525878906,
+      "width_m": 19.05255889892578,
+      "length_m": 4.887499809265137,
+      "triangles": 6272,
+      "model": "res://assets/services/power-wind.glb",
+      "preview": "res://assets/services/power-wind.png",
+      "spec": "res://assets/services/specs/power-wind.json",
+      "source": "assets/power-study/wind/building.blend",
+      "source_metadata": {
+        "id": "power-wind",
+        "name": "풍력발전소",
+        "category": "power_facility",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "presentation_lot_cells": [
+          2,
+          2
+        ],
+        "rotor_radius_m": 11,
+        "rotor_overhang_allowed": true,
+        "display_slab": false,
+        "cell_meters": 4,
+        "presentation_lot_meters": [
+          8,
+          8
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0005,
+          936.1189
+        ],
+        "lot_corners_px": [
+          [
+            325.5497,
+            873.8936
+          ],
+          [
+            450.0005,
+            936.1189
+          ],
+          [
+            574.4513,
+            873.8936
+          ],
+          [
+            450.0005,
+            811.6682
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -9.52627944946289,
+            -2.1374998092651367,
+            0.0
+          ],
+          [
+            9.52627944946289,
+            2.75,
+            37.400001525878906
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "2x2 ground occupation, no display slab; rotor overhang requires separate clearance; pending approval",
+        "revision": "requested-footprints-and-equipment-scale"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "",
+      "ground_offset_m": -0.0,
+      "full_bounds_blender": [
+        [
+          -9.52627944946289,
+          -2.1374998092651367,
+          0.0
+        ],
+        [
+          9.52627944946289,
+          2.75,
+          37.400001525878906
+        ]
+      ],
+      "ground_bounds_blender": null,
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "rotor_overhang_ground_occupation_only",
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "power"
+    },
+    {
+      "id": "water-intake",
+      "name": "취수장",
+      "group": "water",
+      "width": 4,
+      "depth": 4,
+      "height_m": 6.489999890327454,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 10512,
+      "model": "res://assets/services/water-intake.glb",
+      "preview": "res://assets/services/water-intake.png",
+      "spec": "res://assets/services/specs/water-intake.json",
+      "source": "assets/water-study/intake/building.blend",
+      "source_metadata": {
+        "id": "water-intake",
+        "name": "취수장",
+        "category": "water_utility",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "placement_surface": "shore_land",
+        "main_structure_on_land": true,
+        "water_edge_required": true,
+        "water_contact_parts_only": [
+          "intake_screen"
+        ],
+        "road_adjacency_required": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0007,
+          812.9248
+        ],
+        "lot_corners_px": [
+          [
+            61.092,
+            618.4704
+          ],
+          [
+            450.0007,
+            812.9248
+          ],
+          [
+            838.9095,
+            618.4704
+          ],
+          [
+            450.0008,
+            424.0161
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.699999988079071
+          ],
+          [
+            8.0,
+            8.0,
+            5.789999961853027
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "user-approved shoreline land design; game integration pending",
+        "revision": "shoreline-land-foundation"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoor",
+      "front_feature_position_gltf": [
+        -1.600000023841858,
+        2.504999876022339,
+        0.5400000214576721
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Context_LandSurface",
+      "ground_offset_m": -0.29499998688697815,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          -0.9950000047683716
+        ],
+        [
+          8.0,
+          8.0,
+          5.494999885559082
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -7.96999979019165,
+          -2.370000123977661,
+          5.587935447692871e-09
+        ],
+        [
+          7.96999979019165,
+          7.970000267028809,
+          0.05000000447034836
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "original_below_ground_geometry_preserved"
+      ],
+      "ui_category": "water"
+    },
+    {
+      "id": "water-sewage-outfall",
+      "name": "하수장",
+      "group": "water",
+      "width": 4,
+      "depth": 4,
+      "height_m": 5.439999580383301,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 25708,
+      "model": "res://assets/services/water-sewage-outfall.glb",
+      "preview": "res://assets/services/water-sewage-outfall.png",
+      "spec": "res://assets/services/specs/water-sewage-outfall.json",
+      "source": "assets/water-study/sewage-outfall/building.blend",
+      "source_metadata": {
+        "id": "water-sewage-outfall",
+        "name": "하수장",
+        "category": "water_utility",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "placement_surface": "shore_land",
+        "main_structure_on_land": true,
+        "water_edge_required": true,
+        "water_contact_parts_only": [
+          "outfall_mouth"
+        ],
+        "road_adjacency_required": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0007,
+          803.9937
+        ],
+        "lot_corners_px": [
+          [
+            61.092,
+            609.5393
+          ],
+          [
+            450.0007,
+            803.9937
+          ],
+          [
+            838.9095,
+            609.5393
+          ],
+          [
+            450.0008,
+            415.085
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.6000000238418579
+          ],
+          [
+            8.0,
+            8.0,
+            4.839999675750732
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "shoreline land installation; only inlet/outlet extends into water; runtime siting and water networks not implemented",
+        "revision": "shoreline-land-foundation"
+      },
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "presentation_lot_meters": [
+        16,
+        16
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoor",
+      "front_feature_position_gltf": [
+        -2.200000047683716,
+        2.2549999356269836,
+        -0.6200000047683716
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Context_LandSurface",
+      "ground_offset_m": -0.29499998688697815,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          -0.8949999809265137
+        ],
+        [
+          8.0,
+          8.0,
+          4.544999599456787
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -7.96999979019165,
+          -2.370000123977661,
+          5.587935447692871e-09
+        ],
+        [
+          7.96999979019165,
+          7.970000267028809,
+          0.05000000447034836
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "original_below_ground_geometry_preserved"
+      ],
+      "ui_category": "water"
+    },
+    {
+      "id": "water-sewage-treatment",
+      "name": "하수처리장",
+      "group": "water",
+      "width": 8,
+      "depth": 8,
+      "height_m": 4.359999656677246,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 41792,
+      "model": "res://assets/services/water-sewage-treatment.glb",
+      "preview": "res://assets/services/water-sewage-treatment.png",
+      "spec": "res://assets/services/specs/water-sewage-treatment.json",
+      "source": "assets/water-study/sewage-treatment/building.blend",
+      "source_metadata": {
+        "id": "water-sewage-treatment",
+        "name": "하수처리장",
+        "category": "water_utility",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          785.153
+        ],
+        "lot_corners_px": [
+          [
+            28.1333,
+            574.2194
+          ],
+          [
+            450.0003,
+            785.153
+          ],
+          [
+            871.8675,
+            574.2195
+          ],
+          [
+            450.0004,
+            363.2859
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            4.239999771118164
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoor",
+      "front_feature_position_gltf": [
+        9.0,
+        1.7200000286102295,
+        9.779999732971191
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          4.359999656677246
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "water"
+    },
+    {
+      "id": "water-water-tower",
+      "name": "급수탑",
+      "group": "water",
+      "width": 2,
+      "depth": 2,
+      "height_m": 13.739999771118164,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 11008,
+      "model": "res://assets/services/water-water-tower.glb",
+      "preview": "res://assets/services/water-water-tower.png",
+      "spec": "res://assets/services/specs/water-water-tower.json",
+      "source": "assets/water-study/water-tower/building.blend",
+      "source_metadata": {
+        "id": "water-water-tower",
+        "name": "급수탑",
+        "category": "water_utility",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0009,
+          889.5015
+        ],
+        "lot_corners_px": [
+          [
+            210.6725,
+            769.8373
+          ],
+          [
+            450.0009,
+            889.5015
+          ],
+          [
+            689.3293,
+            769.8374
+          ],
+          [
+            450.001,
+            650.1731
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            13.619999885559082
+          ]
+        ],
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "visual concept and placement intent only; water networks and runtime siting not implemented"
+      },
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "presentation_lot_meters": [
+        8,
+        8
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "",
+      "front_feature_position_gltf": null,
+      "frontage_verification": "equipment_convention_only_no_named_entrance",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          13.739999771118164
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [
+        "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+      ],
+      "ui_category": "water"
+    },
+    {
+      "id": "waste-incinerator",
+      "name": "쓰레기 소각장",
+      "group": "waste",
+      "width": 8,
+      "depth": 8,
+      "height_m": 22.8075008392334,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 33628,
+      "model": "res://assets/services/waste-incinerator.glb",
+      "preview": "res://assets/services/waste-incinerator.png",
+      "spec": "res://assets/services/specs/waste-incinerator.json",
+      "source": "assets/waste-study/incinerator/building.blend",
+      "source_metadata": {
+        "id": "waste-incinerator",
+        "name": "쓰레기 소각장",
+        "category": "waste_utility",
+        "revision": "white-rectangular-incinerator",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "landfill_included": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          854.8971
+        ],
+        "lot_corners_px": [
+          [
+            78.5054,
+            669.1496
+          ],
+          [
+            450.0003,
+            854.8971
+          ],
+          [
+            821.4952,
+            669.1497
+          ],
+          [
+            450.0004,
+            483.4022
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            22.6875
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "user-approved white rectangular incinerator design; game integration pending"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoor",
+      "front_feature_position_gltf": [
+        9.600000381469727,
+        1.7200000286102295,
+        9.8100004196167
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          22.8075008392334
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "environment"
+    },
+    {
+      "id": "waste-recycling-center",
+      "name": "재활용센터",
+      "group": "waste",
+      "width": 8,
+      "depth": 8,
+      "height_m": 7.559999942779541,
+      "width_m": 32.0,
+      "length_m": 32.0,
+      "triangles": 83403,
+      "model": "res://assets/services/waste-recycling-center.glb",
+      "preview": "res://assets/services/waste-recycling-center.png",
+      "spec": "res://assets/services/specs/waste-recycling-center.json",
+      "source": "assets/waste-study/recycling-center/building.blend",
+      "source_metadata": {
+        "id": "waste-recycling-center",
+        "name": "재활용센터",
+        "category": "waste_utility",
+        "footprint_cells": [
+          8,
+          8
+        ],
+        "footprint_status": "draft",
+        "cell_meters": 4,
+        "lot_meters": [
+          32,
+          32
+        ],
+        "placement_surface": "land",
+        "road_adjacency_required": true,
+        "landfill_included": false,
+        "incineration_included": false,
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0003,
+          803.1442
+        ],
+        "lot_corners_px": [
+          [
+            35.1644,
+            595.7262
+          ],
+          [
+            450.0003,
+            803.1442
+          ],
+          [
+            864.8363,
+            595.7263
+          ],
+          [
+            450.0005,
+            388.3082
+          ]
+        ],
+        "vertex_bounds_m": [
+          [
+            -16.0,
+            -16.0,
+            -0.11999999731779099
+          ],
+          [
+            16.0,
+            16.0,
+            7.440000057220459
+          ]
+        ],
+        "approval_status": "approved",
+        "game_registered": false,
+        "source": "original Blender geometry; DejaVu font; no external models or textures",
+        "scope": "user-approved recycling centre design; game integration pending"
+      },
+      "footprint_cells": [
+        8,
+        8
+      ],
+      "presentation_lot_meters": [
+        32,
+        32
+      ],
+      "fixed_footprint": true,
+      "front_axis": [
+        0,
+        1
+      ],
+      "front_marker": "ServiceFrontage",
+      "front_feature_node": "StaffDoor",
+      "front_feature_position_gltf": [
+        4.800000190734863,
+        1.7200000286102295,
+        4.670000076293945
+      ],
+      "frontage_verification": "original_named_entrance_geometry_retained",
+      "ground_reference_node": "Lot",
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          7.559999942779541
+        ]
+      ],
+      "ground_bounds_blender": [
+        [
+          -16.0,
+          -16.0,
+          0.0
+        ],
+        [
+          16.0,
+          16.0,
+          0.23999999463558197
+        ]
+      ],
+      "status": "asset_preview_only",
+      "simulation_enabled": false,
+      "growth_enabled": false,
+      "recovered_batch": "remaining_30",
+      "recovered_original": true,
+      "registration_issues": [],
+      "ui_category": "environment"
     }
   ]
 }

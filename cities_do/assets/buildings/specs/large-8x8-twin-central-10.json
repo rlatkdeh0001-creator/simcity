@@ -1,0 +1,157 @@
+{
+  "id": "large-8x8-twin-central-10",
+  "name": "NOVA CENTRAL 트윈 복합타워",
+  "group": "commercial",
+  "width": 8,
+  "depth": 8,
+  "height_m": 45.269996643066406,
+  "width_m": 32.0,
+  "length_m": 32.0,
+  "triangles": 87036,
+  "model": "res://assets/buildings/models/large-8x8-twin-central-10.glb",
+  "preview": "res://assets/buildings/large-8x8-twin-central-10.png",
+  "spec": "res://assets/buildings/specs/large-8x8-twin-central-10.json",
+  "source": "assets/commercial-study/large-8x8-twin-central-10/building.blend",
+  "source_metadata": {
+    "id": "large-8x8-twin-central-10",
+    "name": "NOVA CENTRAL 트윈 복합타워",
+    "zone": "commercial",
+    "category": "large_commercial",
+    "density": "high",
+    "retail_type": "office_with_retail",
+    "footprint_cells": [
+      8,
+      8
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      32,
+      32
+    ],
+    "occupied_storeys": 14,
+    "approval_status": "approved",
+    "game_registered": false,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0002,
+      923.6111
+    ],
+    "lot_corners_px": [
+      [
+        153.6889,
+        775.4553
+      ],
+      [
+        450.0002,
+        923.6111
+      ],
+      [
+        746.3117,
+        775.4554
+      ],
+      [
+        450.0003,
+        627.2997
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -16.0,
+        -16.0,
+        -0.11999999731779099
+      ],
+      [
+        16.0,
+        16.0,
+        45.14999771118164
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 84,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "two unequal office towers",
+      "three-floor retail podium",
+      "NOVA CENTRAL sign",
+      "planted podium roof"
+    ],
+    "scope": "user-approved large commercial design; game integration pending"
+  },
+  "footprint_cells": [
+    8,
+    8
+  ],
+  "presentation_lot_meters": [
+    32,
+    32
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    -1.649999976158142,
+    2.219999670982361,
+    9.800000190734863
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      45.269996643066406
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    [
+      16.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "large_commercial",
+  "category_name": "상업",
+  "footprint": [
+    8,
+    8
+  ],
+  "storeys": 14,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-8x8-twin-central-10.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0002,
+    923.6111
+  ],
+  "lot_width_px": 592.6228,
+  "industry": "office_with_retail"
+}

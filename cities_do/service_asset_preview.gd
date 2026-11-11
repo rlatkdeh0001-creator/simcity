@@ -19,6 +19,7 @@ func show_asset(entry: Dictionary) -> void:
  viewport.own_world_3d=true
  container.add_child(viewport)
  var model: Node3D=load(entry.model).instantiate()
+ model.name="InspectedAssetModel"
  viewport.add_child(model)
  var measured:=AABB()
  var first:=true
@@ -48,6 +49,12 @@ func show_asset(entry: Dictionary) -> void:
  camera.current=true
  var label := Label.new()
  label.text="%s · %d × %dm · 애셋" % [entry.name,entry.width*4,entry.depth*4]
+ if entry.get("recovered_batch","")=="remaining_30":
+  label.text="%s · %.2f × %.2f × %.2fm · 애셋" % [entry.name,entry.width_m,entry.length_m,entry.height_m]
+  label.clip_text=true
+  label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+  label.tooltip_text=label.text
  label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+ label.add_theme_font_size_override("font_size",18)
  column.add_child(label)
  popup_centered()

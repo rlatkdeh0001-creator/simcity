@@ -1,0 +1,155 @@
+{
+  "id": "small-4x4-cafe-diner-04",
+  "name": "식당·카페 복합상가",
+  "group": "commercial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 7.320000171661377,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 26524,
+  "model": "res://assets/buildings/models/small-4x4-cafe-diner-04.glb",
+  "preview": "res://assets/buildings/small-4x4-cafe-diner-04.png",
+  "spec": "res://assets/buildings/specs/small-4x4-cafe-diner-04.json",
+  "source": "assets/commercial-study/small-4x4-cafe-diner-04/building.blend",
+  "source_metadata": {
+    "id": "small-4x4-cafe-diner-04",
+    "name": "식당·카페 복합상가",
+    "zone": "commercial",
+    "category": "small_commercial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 2,
+    "approval_status": "approved",
+    "game_registered": true,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      860.0115
+    ],
+    "lot_corners_px": [
+      [
+        5.5328,
+        637.7779
+      ],
+      [
+        450.0,
+        860.0115
+      ],
+      [
+        894.4671,
+        637.778
+      ],
+      [
+        450.0,
+        415.5444
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        7.200000286102295
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 28,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "CAFE and DINER signs",
+      "outdoor seating",
+      "menu board",
+      "two-storey neighbourhood shops"
+    ],
+    "scope": "user-approved 4x4 small commercial asset"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "ShopDoor",
+  "front_feature_position_gltf": [
+    -1.3500000536441803,
+    1.6700000166893005,
+    3.0799999237060547
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_4x4",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      7.320000171661377
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "small_commercial",
+  "category_name": "상업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 2,
+  "min_level": 1,
+  "texture": "res://assets/buildings/small-4x4-cafe-diner-04.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    860.0115
+  ],
+  "lot_width_px": 888.9343,
+  "industry": "식음"
+}

@@ -1,0 +1,155 @@
+{
+  "id": "small-4x4-market-03",
+  "name": "동네 슈퍼마켓",
+  "group": "commercial",
+  "width": 4,
+  "depth": 4,
+  "height_m": 5.769999980926514,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 29080,
+  "model": "res://assets/buildings/models/small-4x4-market-03.glb",
+  "preview": "res://assets/buildings/small-4x4-market-03.png",
+  "spec": "res://assets/buildings/specs/small-4x4-market-03.json",
+  "source": "assets/commercial-study/small-4x4-market-03/building.blend",
+  "source_metadata": {
+    "id": "small-4x4-market-03",
+    "name": "동네 슈퍼마켓",
+    "zone": "commercial",
+    "category": "small_commercial",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "occupied_storeys": 1,
+    "approval_status": "approved",
+    "game_registered": true,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      860.0115
+    ],
+    "lot_corners_px": [
+      [
+        5.5328,
+        637.7779
+      ],
+      [
+        450.0,
+        860.0115
+      ],
+      [
+        894.4671,
+        637.778
+      ],
+      [
+        450.0,
+        415.5444
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.650000095367432
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "orthographic_scale": 28,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "cues": [
+      "FRESH MART lettering",
+      "produce stands",
+      "striped awning",
+      "cycle racks"
+    ],
+    "scope": "user-approved 4x4 small commercial asset"
+  },
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "presentation_lot_meters": [
+    16,
+    16
+  ],
+  "fixed_footprint": true,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "DoorSplit",
+  "front_feature_position_gltf": [
+    0.0,
+    1.7699999809265137,
+    3.1500000953674316
+  ],
+  "frontage_verification": "original_named_entrance_geometry_retained",
+  "ground_reference_node": "Lot_4x4",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      5.769999980926514
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [],
+  "ui_category": "",
+  "zone": "commercial",
+  "category": "small_commercial",
+  "category_name": "상업",
+  "footprint": [
+    4,
+    4
+  ],
+  "storeys": 1,
+  "min_level": 1,
+  "texture": "res://assets/buildings/small-4x4-market-03.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    860.0115
+  ],
+  "lot_width_px": 888.9343,
+  "industry": "슈퍼마켓"
+}

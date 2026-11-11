@@ -1,0 +1,551 @@
+{
+  "category": "commercial",
+  "resolution": [
+    3600,
+    2600
+  ],
+  "engine": "BLENDER_EEVEE_NEXT",
+  "device": [
+    "EEVEE Next"
+  ],
+  "assets": [
+    {
+      "id": "large-4x4-department-07",
+      "position_m": [
+        -219.20309448242188,
+        49.497467041015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        27.270000457763672
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-4x4-office-nova-08",
+      "position_m": [
+        -162.63455200195312,
+        106.06600952148438,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        30.850000381469727
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-grand-department-09",
+      "position_m": [
+        -106.06600952148438,
+        162.63455200195312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        30.220001220703125
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-twin-central-10",
+      "position_m": [
+        -49.497467041015625,
+        219.20309448242188,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        45.269996643066406
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-brick-services-06",
+      "position_m": [
+        -84.85281372070312,
+        -84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        13.869999885559082
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-office-retail-05",
+      "position_m": [
+        -28.284271240234375,
+        -28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        13.399999618530273
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-auto-02",
+      "position_m": [
+        28.284271240234375,
+        28.284271240234375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        4.444999694824219
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-mart-01",
+      "position_m": [
+        84.85281372070312,
+        84.85281372070312,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.190000057220459
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-4x4-cafe-diner-04",
+      "position_m": [
+        49.497467041015625,
+        -219.20309448242188,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        7.320000171661377
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-4x4-market-03",
+      "position_m": [
+        106.06600952148438,
+        -162.63455200195312,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        5.769999980926514
+      ],
+      "scale_changed": false
+    }
+  ],
+  "vehicle_instances": [
+    {
+      "asset": "large-4x4-department-07",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -182.4335479736328,
+        -8.106231689453125e-06,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-department-07",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -169.7056121826172,
+        12.727912902832031,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-office-nova-08",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -125.86499786376953,
+        56.56853485107422,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-office-nova-08",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -113.13707733154297,
+        69.29645538330078,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-grand-department-09",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -69.29645538330078,
+        113.13707733154297,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-grand-department-09",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -56.56853485107422,
+        125.86499786376953,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-twin-central-10",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -12.727912902832031,
+        169.7056121826172,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-twin-central-10",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        8.106231689453125e-06,
+        182.4335479736328,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-brick-services-06",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -48.08325958251953,
+        -134.3502960205078,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-brick-services-06",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -35.35533905029297,
+        -121.62236785888672,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-office-retail-05",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        8.485282897949219,
+        -77.78174591064453,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-office-retail-05",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        21.21320343017578,
+        -65.05382537841797,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-auto-02",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        65.05382537841797,
+        -21.21320343017578,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-auto-02",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        77.78174591064453,
+        -8.485282897949219,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-mart-01",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        121.62236785888672,
+        35.35533905029297,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-mart-01",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        134.3502960205078,
+        48.08325958251953,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-4x4-cafe-diner-04",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        86.26702117919922,
+        -268.7005615234375,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-4x4-cafe-diner-04",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        98.99494171142578,
+        -255.97264099121094,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-4x4-market-03",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        142.83555603027344,
+        -212.1320343017578,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-4x4-market-03",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        155.56349182128906,
+        -199.4040985107422,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "camera": {
+    "orthographic_width_m": 441.9185791015625,
+    "camera_position": [
+      882.4097900390625,
+      -875.8796997070312,
+      732.1649169921875
+    ],
+    "camera_target": [
+      14.08564281463623,
+      -7.555570602416992,
+      23.181156158447266
+    ],
+    "camera_elevation_deg": 30
+  },
+  "no_image_resizing": true,
+  "image_sha256": "c8bbe8d0c08e6d60d03bc811791c930008e0963279f9730f89192c2e1b4a6624"
+}

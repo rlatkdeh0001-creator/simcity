@@ -1,0 +1,447 @@
+{
+  "category": "industrial",
+  "resolution": [
+    3600,
+    2600
+  ],
+  "engine": "BLENDER_EEVEE_NEXT",
+  "device": [
+    "EEVEE Next"
+  ],
+  "assets": [
+    {
+      "id": "large-4x4-chemical-06",
+      "position_m": [
+        -152.0279541015625,
+        -17.67767333984375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        10.25999927520752
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-4x4-pharma-05",
+      "position_m": [
+        -95.45941162109375,
+        38.890869140625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        15.494999885559082
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-auto-assembly-07",
+      "position_m": [
+        -38.890869140625,
+        95.45941162109375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        11.420000076293945
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "large-8x8-chemical-complex-08",
+      "position_m": [
+        17.67767333984375,
+        152.0279541015625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        32.0,
+        32.0,
+        17.71000099182129
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-circuitworks-04",
+      "position_m": [
+        -17.67767333984375,
+        -152.0279541015625,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        11.929999351501465
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "medium-4x4-precision-03",
+      "position_m": [
+        38.890869140625,
+        -95.45941162109375,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        16.0,
+        16.0,
+        7.769999980926514
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-foodworks-02",
+      "position_m": [
+        95.45941162109375,
+        -38.890869140625,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.169999599456787
+      ],
+      "scale_changed": false
+    },
+    {
+      "id": "small-2x2-metalworks-01",
+      "position_m": [
+        152.0279541015625,
+        17.67767333984375,
+        0.0
+      ],
+      "measured_wdh_m": [
+        8.0,
+        8.0,
+        5.179999828338623
+      ],
+      "scale_changed": false
+    }
+  ],
+  "vehicle_instances": [
+    {
+      "asset": "large-4x4-chemical-06",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -115.2583999633789,
+        -67.1751480102539,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-chemical-06",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -102.53047943115234,
+        -54.447227478027344,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-pharma-05",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -58.689857482910156,
+        -10.606605529785156,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-4x4-pharma-05",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        -45.961936950683594,
+        2.1213154792785645,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-auto-assembly-07",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        -2.1213154792785645,
+        45.961936950683594,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-auto-assembly-07",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        10.606605529785156,
+        58.689857482910156,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-chemical-complex-08",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        54.447227478027344,
+        102.53047943115234,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "large-8x8-chemical-complex-08",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        67.1751480102539,
+        115.2583999633789,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-circuitworks-04",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        19.091880798339844,
+        -201.5254364013672,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-circuitworks-04",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        31.819801330566406,
+        -188.79750061035156,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-precision-03",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        75.6604232788086,
+        -144.95689392089844,
+        -0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "medium-4x4-precision-03",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        88.38834381103516,
+        -132.2289581298828,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-foodworks-02",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        132.2289581298828,
+        -88.38834381103516,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-foodworks-02",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        144.95689392089844,
+        -75.6604232788086,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-metalworks-01",
+      "vehicle": "car-sedan-03",
+      "position_m": [
+        188.79750061035156,
+        -31.819801330566406,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.130000114440918,
+        4.920000076293945,
+        1.4799998998641968
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "asset": "small-2x2-metalworks-01",
+      "vehicle": "truck-flatbed-02",
+      "position_m": [
+        201.5254364013672,
+        -19.091880798339844,
+        0.0
+      ],
+      "measured_wdh_m": [
+        2.557000160217285,
+        7.484999895095825,
+        2.565000057220459
+      ],
+      "instance_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "camera": {
+    "orthographic_width_m": 298.9687194824219,
+    "camera_position": [
+      786.146728515625,
+      -779.227783203125,
+      639.3469848632812
+    ],
+    "camera_target": [
+      18.585289001464844,
+      -11.666309356689453,
+      12.63562297821045
+    ],
+    "camera_elevation_deg": 30
+  },
+  "no_image_resizing": true,
+  "image_sha256": "f6cf3e7fcb6816d2f01d28922ff15ff0bb0aa6d6b472a398aa35a6b6ed0793ff"
+}

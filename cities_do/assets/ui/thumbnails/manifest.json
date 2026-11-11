@@ -284,6 +284,234 @@
     "aspect": "centered cover; no stretching",
     "round_radius_px": 14
   },
+  "power-coal": {
+    "name": "석탄발전소",
+    "source": "res://assets/services/power-coal.png",
+    "source_sha256": "936966240c4dbea18c0be747610f7352a7404d4d665c56ad2956f5ce0fc73a3f",
+    "thumbnail": "res://assets/ui/thumbnails/power-coal.png",
+    "sha256": "9d9320b95c85ccb9a0f647c6bd4e89bf4049ad63ea5d1b9419e8fe8ecb50b73f",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      58,
+      145,
+      842,
+      915
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "power-hydro": {
+    "name": "수력발전댐",
+    "source": "res://assets/services/power-hydro.png",
+    "source_sha256": "718852f7f898258969ceae7d9be2fcc3ae2e5af5e04a433b5381197718a19cb2",
+    "thumbnail": "res://assets/ui/thumbnails/power-hydro.png",
+    "sha256": "c6b2d9897c7aa13d0d7ea5b7e8d8f450220039ef6983ab3dd46fd9bd98ea746e",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      97,
+      343,
+      803,
+      757
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "power-nuclear": {
+    "name": "원자력발전소",
+    "source": "res://assets/services/power-nuclear.png",
+    "source_sha256": "4353192fbc27dfe2d0eb835f2bf6d988b31b7c7e41b7e155f44e752561467e82",
+    "thumbnail": "res://assets/ui/thumbnails/power-nuclear.png",
+    "sha256": "7bc7d2fd7a3539aa82db4ba81138429982c0415410b4bab31cf51332a5ded8ab",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      41,
+      301,
+      859,
+      893
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "power-oil": {
+    "name": "석유발전소",
+    "source": "res://assets/services/power-oil.png",
+    "source_sha256": "bf793a598de06968d3504db3f1055882a02a5aa46e9fe241f9c8e59e5984e639",
+    "thumbnail": "res://assets/ui/thumbnails/power-oil.png",
+    "sha256": "81837359ce4281dba35a482a37ec205884847a6067305e184abb30c980653180",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      41,
+      162,
+      859,
+      900
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "power-solar": {
+    "name": "태양광발전소",
+    "source": "res://assets/services/power-solar.png",
+    "source_sha256": "0875989f3c356a651ea6dfc3600e83407bd0f5650afa1872d9e1a7fa8d481f7f",
+    "thumbnail": "res://assets/ui/thumbnails/power-solar.png",
+    "sha256": "9e3261b948d4e237801809aa48d43f11d27e4467c40a6e80cd1d5bbdb8a4d755",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      323,
+      900,
+      809
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "power-wind": {
+    "name": "풍력발전소",
+    "source": "res://assets/services/power-wind.png",
+    "source_sha256": "a1f3cc6a7a4f569a900b847e7e5810989808cbf6f27ac5e580499140724bcc11",
+    "thumbnail": "res://assets/ui/thumbnails/power-wind.png",
+    "sha256": "6eb0faab82e1eb3b32a29fd0739eb31a661d342172a687eef84e4d66f37e8b48",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      256,
+      138,
+      587,
+      929
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "water-intake": {
+    "name": "취수장",
+    "source": "res://assets/services/water-intake.png",
+    "source_sha256": "fd9d78974c774960ec0a8765b3cd5cfbfcda1cf5a9f7b4913b967e8625a5d5f4",
+    "thumbnail": "res://assets/ui/thumbnails/water-intake.png",
+    "sha256": "8a32b1702011690ac750cc8a63e7f913e46a2c700e473a6317ce56046c755465",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      294,
+      879,
+      857
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "water-sewage-outfall": {
+    "name": "하수장",
+    "source": "res://assets/services/water-sewage-outfall.png",
+    "source_sha256": "e9924d3c0b4dc50130150e3447177dd4c6e85718ff29efbaf57a55b45f90adc1",
+    "thumbnail": "res://assets/ui/thumbnails/water-sewage-outfall.png",
+    "sha256": "55906f2ec5ff70a1d3f3bb810fca69ed472b1d023d2a2d950cf486f0de0da2ae",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      21,
+      312,
+      879,
+      845
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "water-sewage-treatment": {
+    "name": "하수처리장",
+    "source": "res://assets/services/water-sewage-treatment.png",
+    "source_sha256": "bf869e843f8d868deb7926bcec368a3ab897a13b10e431f60c37469805bae66b",
+    "thumbnail": "res://assets/ui/thumbnails/water-sewage-treatment.png",
+    "sha256": "8f37f363b667375d387e0626f8ce1d023ca8a3c5aac03e399450b22680977f5f",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      339,
+      900,
+      809
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "water-water-tower": {
+    "name": "급수탑",
+    "source": "res://assets/services/water-water-tower.png",
+    "source_sha256": "34c7c95405a6404f4b3fab3aada2c8c1a2e04c5f5ea2edf00c066bc918b077c6",
+    "thumbnail": "res://assets/ui/thumbnails/water-water-tower.png",
+    "sha256": "0f920acfa9e1bb8f98ff91988bb139eb2cc28161cd38015aa0d57d39ee7bbb19",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      186,
+      206,
+      714,
+      927
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "waste-incinerator": {
+    "name": "쓰레기 소각장",
+    "source": "res://assets/services/waste-incinerator.png",
+    "source_sha256": "152a24a813cfef70a6e57448d0d408ebd53676ef6e459156a4dca936bf9313ea",
+    "thumbnail": "res://assets/ui/thumbnails/waste-incinerator.png",
+    "sha256": "25b34b2a877d29e226f36382e89e12e15f5efe07ef53e5ec19dcac4774ead21d",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      40,
+      291,
+      859,
+      886
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "waste-recycling-center": {
+    "name": "재활용센터",
+    "source": "res://assets/services/waste-recycling-center.png",
+    "source_sha256": "2161eace238c9e38724a5ff3e2b6c26ad69bf2fce3148371b91c16414fdff5e9",
+    "thumbnail": "res://assets/ui/thumbnails/waste-recycling-center.png",
+    "sha256": "0ffb8e32e6757f9ac33b2d0db4b8871d1d3dc10141922ee5bcc9611e3865a88d",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      298,
+      900,
+      831
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
   "park-pocket-2x2": {
     "name": "쉼터 공원",
     "source": "res://assets/facilities/park-pocket-2x2.png",
@@ -432,6 +660,348 @@
       18,
       723,
       662
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-4x4-department-07": {
+    "name": "AUREL 백화점",
+    "source": "res://assets/buildings/large-4x4-department-07.png",
+    "source_sha256": "45491bfbb1123bd9f8f6eca089800b774abded2eb27badc3843d4ecb0e532c34",
+    "thumbnail": "res://assets/ui/thumbnails/large-4x4-department-07.png",
+    "sha256": "868215e95243d4b010654ea6cd1ead9cd07e5f8764264f98268a8913d2a6436d",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      152,
+      98,
+      748,
+      977
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-4x4-office-nova-08": {
+    "name": "NOVA 오피스 타워",
+    "source": "res://assets/buildings/large-4x4-office-nova-08.png",
+    "source_sha256": "d79bb84289e21c2b0f193953474afff996b37969e0215cc211a5c59463c41937",
+    "thumbnail": "res://assets/ui/thumbnails/large-4x4-office-nova-08.png",
+    "sha256": "1b0160f4869ddd05099199e55b31b727ef80d75392e50c1da80f047b6bbe39fd",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      175,
+      139,
+      725,
+      982
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-8x8-grand-department-09": {
+    "name": "AUREL GRAND 대형 백화점",
+    "source": "res://assets/buildings/large-8x8-grand-department-09.png",
+    "source_sha256": "fee981dd623c13cb65e19cf40bf94ea4d6cf83a1962e3e87ad96b77ce7e3b4a9",
+    "thumbnail": "res://assets/ui/thumbnails/large-8x8-grand-department-09.png",
+    "sha256": "77e1a9110baf48dd1ac6a0f1efcb15311210b5ea3c45df25d82d829415c75a74",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      41,
+      115,
+      859,
+      961
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-8x8-twin-central-10": {
+    "name": "NOVA CENTRAL 트윈 복합타워",
+    "source": "res://assets/buildings/large-8x8-twin-central-10.png",
+    "source_sha256": "0739c405057371a4e0c23eea1e3dffb2782d402d78c219865ca70166c40e5918",
+    "thumbnail": "res://assets/ui/thumbnails/large-8x8-twin-central-10.png",
+    "sha256": "3568026bd137030d5b6785f97ac955fd5a8010ecbd2a7e019bb2e65096e31579",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      123,
+      127,
+      777,
+      965
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-4x4-brick-services-06": {
+    "name": "벽돌형 식당·서비스 상가",
+    "source": "res://assets/buildings/medium-4x4-brick-services-06.png",
+    "source_sha256": "2822d61a308d6af153f4397394bc3c6c12e578d4ff8c6119383ae8a29b1ab368",
+    "thumbnail": "res://assets/ui/thumbnails/medium-4x4-brick-services-06.png",
+    "sha256": "69ae6261c2d2bcca219343eb5f3a38145d311db1a8af1a25b9e885ed6fa085c1",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      22,
+      143,
+      878,
+      949
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-4x4-office-retail-05": {
+    "name": "업무·상가 복합빌딩",
+    "source": "res://assets/buildings/medium-4x4-office-retail-05.png",
+    "source_sha256": "52548c1a43957afd539ecdacb249ec0f60aa4a4f92e09cea728bda07562d1642",
+    "thumbnail": "res://assets/ui/thumbnails/medium-4x4-office-retail-05.png",
+    "sha256": "624b0a409935de775217e9455472b8aa80ab6829c67d263abd91b3d727d692ea",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      22,
+      151,
+      878,
+      948
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-2x2-auto-02": {
+    "name": "자동차 전시장 AUTO",
+    "source": "res://assets/buildings/small-2x2-auto-02.png",
+    "source_sha256": "9901bb455b8a24af7700db404e977303afd69a6151380fdedd4a09928b880c0a",
+    "thumbnail": "res://assets/ui/thumbnails/small-2x2-auto-02.png",
+    "sha256": "a62a3224f2de34a20f5c7a897ea47c14c27a981be4fe3a879b0a4f70aea1d33b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      191,
+      900,
+      924
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-2x2-mart-01": {
+    "name": "동네 MART",
+    "source": "res://assets/buildings/small-2x2-mart-01.png",
+    "source_sha256": "31a4f0d21e27771e9a653abf5cf781203f088c6d6686669b00f4d6faa68770dc",
+    "thumbnail": "res://assets/ui/thumbnails/small-2x2-mart-01.png",
+    "sha256": "cf4353251edd56b1a95875c284efd8ad4d2d8e401e416654af0400986d676cf7",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      191,
+      900,
+      924
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-4x4-cafe-diner-04": {
+    "name": "식당·카페 복합상가",
+    "source": "res://assets/buildings/small-4x4-cafe-diner-04.png",
+    "source_sha256": "beacae0b6b7a7adf18311cd8f6ed9e51676d4aea94772bc79a1a8534b8c55bfa",
+    "thumbnail": "res://assets/ui/thumbnails/small-4x4-cafe-diner-04.png",
+    "sha256": "eb805139a0913591b548f455111406e3101cec7ff36a2468247cfc25eee45f7b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      204,
+      900,
+      900
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-4x4-market-03": {
+    "name": "동네 슈퍼마켓",
+    "source": "res://assets/buildings/small-4x4-market-03.png",
+    "source_sha256": "3924fe64f5c0d1d858ca551779aa9623ab3538efdf6a235e255ba1e5dbecd977",
+    "thumbnail": "res://assets/ui/thumbnails/small-4x4-market-03.png",
+    "sha256": "49478bae9679340836b1c78a9a1333123e4c1e48cde90c0b43590fa7efe3f088",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      268,
+      900,
+      897
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-4x4-chemical-06": {
+    "name": "화학 생산시설",
+    "source": "res://assets/buildings/large-4x4-chemical-06.png",
+    "source_sha256": "5630f2d818b9d10a027aad9c957dedd82f3b34cc911674ebadde279d148fb618",
+    "thumbnail": "res://assets/ui/thumbnails/large-4x4-chemical-06.png",
+    "sha256": "1dbfa49f46a8d9bc6eb37a79923f078bb3d53de663c30af3379d4666e6902b8e",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      22,
+      296,
+      878,
+      910
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-4x4-pharma-05": {
+    "name": "제약 생산시설",
+    "source": "res://assets/buildings/large-4x4-pharma-05.png",
+    "source_sha256": "128a3a4570b744d157db19633c9722a72c9979a489d157fc91098c69f2d32b2c",
+    "thumbnail": "res://assets/ui/thumbnails/large-4x4-pharma-05.png",
+    "sha256": "66d5544f0b6063988978bed791e66d7e683ee7e93935647dc1389ae99cb90373",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      79,
+      184,
+      821,
+      923
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-8x8-auto-assembly-07": {
+    "name": "자동차 조립공장",
+    "source": "res://assets/buildings/large-8x8-auto-assembly-07.png",
+    "source_sha256": "37bed6650b79c07e085577f5ee321c824e9d3447abf10018031158c43feda9a5",
+    "thumbnail": "res://assets/ui/thumbnails/large-8x8-auto-assembly-07.png",
+    "sha256": "d469ee45a8ba5c1e9e3ad0306f7c46d056da2d8791f4690c888ac14ae773819f",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      271,
+      900,
+      863
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-8x8-chemical-complex-08": {
+    "name": "대규모 화학 플랜트",
+    "source": "res://assets/buildings/large-8x8-chemical-complex-08.png",
+    "source_sha256": "9cd9fa3bcedab76b922951daa43cc392dd8e6fb99f82fd9f906610e3aced9d76",
+    "thumbnail": "res://assets/ui/thumbnails/large-8x8-chemical-complex-08.png",
+    "sha256": "6567bb0132e6d6ca547204d13f94f4497ef48bd0a211ceeb0a10db13df286d2b",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      28,
+      255,
+      872,
+      874
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-4x4-circuitworks-04": {
+    "name": "전자부품 공장",
+    "source": "res://assets/buildings/medium-4x4-circuitworks-04.png",
+    "source_sha256": "5cc2d0a8f28569e14f0e92312730fb08b9a8605aed19d1f15f68448e789d31dc",
+    "thumbnail": "res://assets/ui/thumbnails/medium-4x4-circuitworks-04.png",
+    "sha256": "c49e7c4db7b32a464cc0d7c686107e6cf054196e309e305b6f9bda1cf4a08a22",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      34,
+      196,
+      866,
+      919
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-4x4-precision-03": {
+    "name": "정밀기계 공장",
+    "source": "res://assets/buildings/medium-4x4-precision-03.png",
+    "source_sha256": "c60ffd13027eae5eb7448771b6eccb3c7b5da94a1c06a5cdb2a8f498317af706",
+    "thumbnail": "res://assets/ui/thumbnails/medium-4x4-precision-03.png",
+    "sha256": "ad5b0ad2a38f70b0e7d57cf7895b11e324b45fe8bb1ece5f31f3014b479569b6",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      256,
+      900,
+      886
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-2x2-foodworks-02": {
+    "name": "식품가공 작업장",
+    "source": "res://assets/buildings/small-2x2-foodworks-02.png",
+    "source_sha256": "28d034c2e8c2cf7b2c42e2fe1551310483e73a6795abb694668712aba381ee67",
+    "thumbnail": "res://assets/ui/thumbnails/small-2x2-foodworks-02.png",
+    "sha256": "331583b2ae117610815c9437ba4f9bb46d0ba32c682548dd972f9d3946853ee4",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      189,
+      900,
+      924
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-2x2-metalworks-01": {
+    "name": "금속가공 작업장",
+    "source": "res://assets/buildings/small-2x2-metalworks-01.png",
+    "source_sha256": "949208392148eeac518ebbc782de7b6260d940cb6ddb499f3ad74221f1a37563",
+    "thumbnail": "res://assets/ui/thumbnails/small-2x2-metalworks-01.png",
+    "sha256": "2cd283edb351b65381aa830aaaa4f2a94f348a145a74c512b9da1bb5397ed820",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      0,
+      217,
+      900,
+      923
     ],
     "aspect": "centered cover; no stretching",
     "round_radius_px": 14

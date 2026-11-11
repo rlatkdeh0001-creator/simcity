@@ -11,9 +11,22 @@ var same_scale := false
 var grid: GridContainer
 
 func _ready():
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--asset-group="):
+			var requested:=argument.trim_prefix("--asset-group=")
+			if requested not in ["education_medical","commercial_industrial"]:
+				push_error("Unknown exhibition asset group: "+requested)
+				get_tree().quit(2)
+				return
+			facility_group=requested
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
 	entries = doc.vehicles
-	if not facility_group.is_empty():
+	if facility_group=="commercial_industrial":
+		entries=JSON.parse_string(FileAccess.get_file_as_string("res://assets/buildings/catalog.json")).buildings.filter(func(e):return e.get("recovered_batch","")=="remaining_30" and e.zone in ["commercial","industrial"] and not e.growth_enabled)
+		var exhibition_theme:=Theme.new()
+		exhibition_theme.default_font_size=18
+		theme=exhibition_theme
+	elif not facility_group.is_empty():
 		entries = JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities.filter(func(e):return e.get("group","") in ["education","medical"])
 	elif service_only:
 		entries=entries.filter(func(e):return e.category=="service")
@@ -35,12 +48,14 @@ func _ready():
 	var title := Label.new()
 	title.text = "CITIES_DO   /   공공차량 · 화장터" if service_only else "CITIES_DO   /   차량 %d종" % entries.size()
 	if not facility_group.is_empty(): title.text="CITIES_DO   /   교육 · 의료 7종"
+	if facility_group=="commercial_industrial": title.text="CITIES_DO   /   상업 10 · 공업 8종"
 	title.add_theme_font_size_override("font_size", 32)
 	column.add_child(title)
 	var subtitle := Label.new()
 	subtitle.text = "시내버스 1 · 택시 1 · 시민차 20 · 산업차 16 · 공공차 3    |    실제 GLB · 미터 단위 · 우측통행"
 	if service_only: subtitle.text="소방차 · 경찰차 · 운구차 · 화장터    |    애셋"
 	if not facility_group.is_empty(): subtitle.text="초등학교 · 고등학교 · 전문대 · 대학교 / 진료소 · 병원 · 대형병원"
+	if facility_group=="commercial_industrial": subtitle.text="업종 메타데이터 · 실제 GLB · 미터 단위 · 보기 전용"
 	subtitle.add_theme_color_override("font_color", Color("b3c8c8"))
 	subtitle.add_theme_font_size_override("font_size", 18)
 	column.add_child(subtitle)
@@ -102,6 +117,10 @@ func add_vehicle(entry: Dictionary, index: int):
 	var heading := Label.new()
 	heading.text = "%02d   %s" % [index + 1, entry.name]
 	heading.add_theme_font_size_override("font_size", 21)
+	if facility_group=="commercial_industrial":
+		heading.clip_text=true
+		heading.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		heading.tooltip_text=entry.name
 	box.add_child(heading)
 	var container := SubViewportContainer.new()
 	container.stretch = true
@@ -137,16 +156,29 @@ func add_vehicle(entry: Dictionary, index: int):
 	viewport.add_child(camera)
 	var target := Vector3(0, float(entry.height_m) * 0.48, 0)
 	camera.position = target + Vector3(12, 9.8, 12)
+	if facility_group=="commercial_industrial":
+		var distance:=maxf(24.0,maxf(float(entry.width_m),float(entry.length_m))*1.6+float(entry.height_m)*.5)
+		camera.position=target+Vector3(distance,distance*9.8/12.0,distance)
 	camera.look_at(target)
 	camera.current = true
 	cameras.append(camera)
 	var specs := Label.new()
 	specs.text = "%.2f × %.2f × %.2f m   ·   %d tris" % [entry.length_m, entry.width_m, entry.height_m, entry.triangles]
 	if entry.get("status","")=="asset_preview_only": specs.text="%d × %dm · %d×%d칸" % [entry.width*4,entry.depth*4,entry.width,entry.depth]
+	if facility_group=="commercial_industrial":
+		specs.text="%s · %.2f × %.2f × %.2fm" % [entry.industry,entry.width_m,entry.length_m,entry.height_m]
+		specs.clip_text=true
+		specs.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		specs.tooltip_text=specs.text
 	box.add_child(specs)
 	var id_label := Label.new()
 	id_label.text = entry.id
 	id_label.add_theme_font_size_override("font_size", 14)
+	if facility_group=="commercial_industrial":
+		id_label.add_theme_font_size_override("font_size",18)
+		id_label.clip_text=true
+		id_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		id_label.tooltip_text=entry.id
 	id_label.add_theme_color_override("font_color", Color("b1c8c4"))
 	box.add_child(id_label)
 
@@ -154,11 +186,15 @@ func side_to_margin(side: String) -> int:
 	return {"left": SIDE_LEFT, "right": SIDE_RIGHT, "top": SIDE_TOP, "bottom": SIDE_BOTTOM}[side]
 
 func update_scale():
+	var common_size:=48.0
+	if facility_group=="commercial_industrial":
+		for entry: Dictionary in entries:
+			common_size=maxf(common_size,(Vector2(entry.length_m,entry.width_m).length()*.5+float(entry.height_m)*.87)*1.2)
 	for index in range(cameras.size()):
 		var entry: Dictionary = entries[index]
 		# Camera3D size is vertical when KEEP_HEIGHT; accommodate any yaw.
 		var diagonal := Vector2(float(entry.length_m), float(entry.width_m)).length()
-		cameras[index].size = (48.0 if not facility_group.is_empty() else (30.0 if service_only else 12.0)) if same_scale else (diagonal * 0.5 + float(entry.height_m) * 0.87) * 1.2
+		cameras[index].size = (common_size if not facility_group.is_empty() else (30.0 if service_only else 12.0)) if same_scale else (diagonal * 0.5 + float(entry.height_m) * 0.87) * 1.2
 
 func _process(delta: float):
 	for rig in rigs:

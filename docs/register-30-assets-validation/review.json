@@ -1,0 +1,34 @@
+{
+  "review_mode": "self-review",
+  "passed": true,
+  "security_concerns": [],
+  "source_ast_checks": [
+    "cities_do/bottom_ui.gd",
+    "cities_do/service_asset_preview.gd",
+    "cities_do/tests/test_registered_30_assets.gd",
+    "cities_do/tests/test_showcase.gd",
+    "cities_do/vehicle_showcase.gd",
+    "tools/audit_registered_delivery.py",
+    "tools/audit_remaining_asset_sources.py",
+    "tools/capture_registered_assets.py",
+    "tools/capture_registered_gallery.gd",
+    "tools/derive_asset_thumbnails.py",
+    "tools/export_remaining_assets.py",
+    "tools/render_remaining_assets.py"
+  ],
+  "baseline_commit": "12dbc38b8163a773ee384736b0219e547d1b1f6c",
+  "branch": "feature/register-30-assets",
+  "suite_passed": 26,
+  "suite_total": 26,
+  "registered_checks_passed": 635,
+  "registered_checks_total": 635,
+  "retained_catalog_entries_unchanged": true,
+  "no_simulation_core_source_changes": true,
+  "staged_count": 309,
+  "excluded_teammate_tracked_changes": [
+    "docs/design/ECONOMY_LOOP_SPEC_KO.md",
+    "mistake.md"
+  ],
+  "new_import_sidecars_only": true,
+  "old_uid_files_excluded": true
+}

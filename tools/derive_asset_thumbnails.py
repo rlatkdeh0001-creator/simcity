@@ -10,6 +10,7 @@ def main():
  rows=[]
  for kind in ['services','facilities']:
   rows.extend(json.loads((ROOT/f'cities_do/assets/{kind}/catalog.json').read_text(encoding='utf-8'))['facilities'])
+ rows.extend(e for e in json.loads((ROOT/'cities_do/assets/buildings/catalog.json').read_text(encoding='utf-8'))['buildings'] if e.get('recovered_batch')=='remaining_30')
  report={}
  for e in rows:
   source=ROOT/'cities_do'/e['preview'].removeprefix('res://')

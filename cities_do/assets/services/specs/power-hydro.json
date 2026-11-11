@@ -1,0 +1,124 @@
+{
+  "id": "power-hydro",
+  "name": "수력발전댐",
+  "group": "power",
+  "width": 15,
+  "depth": 8,
+  "height_m": 9.770000457763672,
+  "width_m": 60.0,
+  "length_m": 32.0,
+  "triangles": 39304,
+  "model": "res://assets/services/power-hydro.glb",
+  "preview": "res://assets/services/power-hydro.png",
+  "spec": "res://assets/services/specs/power-hydro.json",
+  "source": "assets/power-study/hydro/building.blend",
+  "source_metadata": {
+    "id": "power-hydro",
+    "name": "수력발전댐",
+    "category": "power_facility",
+    "footprint_cells": null,
+    "placement_mode": "drag_across_watercourse",
+    "fixed_size_limit": false,
+    "dam_span_m": 48,
+    "gate_bays": 9,
+    "presentation_lot_cells": null,
+    "presentation_lot_meters": [
+      60,
+      32
+    ],
+    "cell_meters": 4,
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      547.5758,
+      734.8869
+    ],
+    "lot_corners_px": [
+      [
+        129.3945,
+        525.7961
+      ],
+      [
+        547.5758,
+        734.8869
+      ],
+      [
+        770.6059,
+        623.3718
+      ],
+      [
+        352.4246,
+        414.2811
+      ]
+    ],
+    "vertex_bounds_m": [
+      [
+        -30.0,
+        -16.0,
+        -0.11999999731779099
+      ],
+      [
+        30.0,
+        16.0,
+        9.65000057220459
+      ]
+    ],
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original length-parametric Blender geometry; DejaVu font; no external models or textures",
+    "scope": "length-parametric dam visual prototype; gameplay dragging, terrain and hydrology checks not yet implemented",
+    "revision": "requested-footprints-and-equipment-scale"
+  },
+  "footprint_cells": null,
+  "presentation_lot_meters": [
+    60,
+    32
+  ],
+  "fixed_footprint": false,
+  "front_axis": [
+    0,
+    1
+  ],
+  "front_marker": "ServiceFrontage",
+  "front_feature_node": "",
+  "front_feature_position_gltf": null,
+  "frontage_verification": "equipment_convention_only_no_named_entrance",
+  "ground_reference_node": "PresentationBase",
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -30.0,
+      -16.0,
+      0.0
+    ],
+    [
+      30.0,
+      16.0,
+      9.770000457763672
+    ]
+  ],
+  "ground_bounds_blender": [
+    [
+      -30.0,
+      -16.0,
+      0.0
+    ],
+    [
+      30.0,
+      16.0,
+      0.23999999463558197
+    ]
+  ],
+  "status": "asset_preview_only",
+  "simulation_enabled": false,
+  "growth_enabled": false,
+  "recovered_batch": "remaining_30",
+  "recovered_original": true,
+  "registration_issues": [
+    "parametric_asset_no_fixed_footprint; dimensions_are_original_presentation_only",
+    "no_named_human_entrance_in_original; +Z_is_inspection_convention_only"
+  ],
+  "ui_category": "power"
+}
