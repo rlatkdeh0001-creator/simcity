@@ -180,3 +180,7 @@ Anthropic 공개 스킬 13개 외에 로컬 프로젝트 스킬 `cities-do-const
 ## 건물·시설 부지 크기
 
 [전체63종 크기표](docs/asset-sizes/README_KO.md) · [Excel용 CSV](docs/asset-sizes/sizes.csv). 각 항목에서 원본 metadata/spec까지 열 수 있다.
+
+## 성장 건물14종 · 애셋 전용 브랜치
+
+[승인 대기 시안·실측·층수](docs/growth-14/README_KO.md). assets/growth-14-20261111 브랜치에만 제작하며 게임 적용/성장 등록/main 병합은 하지 않는다. 소형·중형8×8 12종은 사용자 요청으로 제외했다.

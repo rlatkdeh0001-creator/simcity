@@ -1,0 +1,77 @@
+{
+  "id": "large-2x2-pencil-tower-02",
+  "name": "세트백 펜슬 주거타워",
+  "zone": "residential",
+  "category": "large_residential",
+  "density": "large",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "floors": 12,
+  "occupied_storeys": 12,
+  "storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "+Z",
+  "front_coordinate_space": "gltf/Godot",
+  "front_blender": "-Y",
+  "up_blender": "+Z",
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      39.21999740600586
+    ]
+  ],
+  "measured_dimensions_m": [
+    8.0,
+    8.0,
+    39.33999740332365
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    449.9998,
+    1012.8488
+  ],
+  "lot_corners_px": [
+    [
+      312.0369,
+      943.8673
+    ],
+    [
+      449.9998,
+      1012.8488
+    ],
+    [
+      587.9626,
+      943.8673
+    ],
+    [
+      449.9998,
+      874.8858
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 45.102996826171875,
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+  "industrial_structure_only": false
+}

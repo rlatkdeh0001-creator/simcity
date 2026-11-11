@@ -1,0 +1,77 @@
+{
+  "id": "medium-2x2-corner-villa-02",
+  "name": "코너형 원룸 빌라",
+  "zone": "residential",
+  "category": "medium_residential",
+  "density": "medium",
+  "footprint_cells": [
+    2,
+    2
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    8,
+    8
+  ],
+  "floors": 6,
+  "occupied_storeys": 6,
+  "storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "+Z",
+  "front_coordinate_space": "gltf/Godot",
+  "front_blender": "-Y",
+  "up_blender": "+Z",
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12,
+  "vertex_bounds_m": [
+    [
+      -4.0,
+      -4.0,
+      -0.11999999731779099
+    ],
+    [
+      4.0,
+      4.0,
+      20.920000076293945
+    ]
+  ],
+  "measured_dimensions_m": [
+    8.0,
+    8.0,
+    21.040000073611736
+  ],
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1031.3014
+  ],
+  "lot_corners_px": [
+    [
+      210.5597,
+      911.5813
+    ],
+    [
+      450.0,
+      1031.3014
+    ],
+    [
+      689.4402,
+      911.5813
+    ],
+    [
+      450.0,
+      791.8612
+    ]
+  ],
+  "camera_elevation_degrees": 30,
+  "camera_azimuth_degrees": -45,
+  "orthographic_scale": 25.98786163330078,
+  "approval_status": "pending-user-review",
+  "game_registered": false,
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+  "industrial_structure_only": false
+}
