@@ -1,0 +1,46 @@
+{
+  "cursor": "(28.0, 33.4)",
+  "funds": 30000,
+  "ghost": {
+    "code": "",
+    "cost": 18000.0,
+    "ok": true,
+    "reason": "",
+    "record": {
+      "capacity": {
+        "own_power_kw": 15.0,
+        "population_capacity": 5000.0,
+        "vehicle_bays": 6.0
+      },
+      "engine": "none",
+      "front_direction": "(0.0, 1.0)",
+      "front_road_id": 0,
+      "id": -1,
+      "polygon": "[(25.0, 32.0), (31.0, 32.0), (31.0, 38.0), (25.0, 38.0)]",
+      "position": "(28.0, 35.0)",
+      "public_asset_id": "police-station",
+      "turns": 0,
+      "utility_id": -1
+    }
+  },
+  "input": "real C-card and mouse events",
+  "placed": [
+    {
+      "capacity": {
+        "own_power_kw": 20.0,
+        "simultaneous_incidents": 3.0,
+        "vehicle_bays": 6.0
+      },
+      "engine": "none",
+      "front_direction": "(0.0, 1.0)",
+      "front_road_id": 0,
+      "id": 1,
+      "polygon": "[(9.0, 32.0), (15.0, 32.0), (15.0, 38.0), (9.0, 38.0)]",
+      "position": "(12.0, 35.0)",
+      "public_asset_id": "fire-station",
+      "turns": 0,
+      "utility_id": -1
+    }
+  ],
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

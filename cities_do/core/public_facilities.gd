@@ -24,7 +24,20 @@ func polygon(center: Vector2,width: int,depth: int,turns: int,base_front: Vector
  var side:=Vector2(front.y,-front.x)
  var a:=center-side*width/2.0-front*depth/2.0
  return PackedVector2Array([a,a+side*width,a+side*width+front*depth,a+front*depth])
-func preview(id: String,point: Vector2,turns: int=0) -> Dictionary:
+func road_anchor(id: String,point: Vector2) -> Dictionary:
+ # Temporary two-cell cursor-front acquisition band; actual frontage stays 0.375 cells.
+ var best: Dictionary={};var distance_squared:=4.000001
+ for road: Dictionary in city.roads:
+  if road.kind!="local":continue
+  for frame: Dictionary in city.Parcels.blocks(road.points,float(road.width)/2,int(road.get("parcel_id",-1))):
+   var offset: Vector2=point-frame.origin
+   var along: float=clampf(roundf(offset.dot(frame.along)),0,float(frame.columns))
+   var center: Vector2=frame.origin+frame.along*along+frame.outward*float(entries[id].depth)/2
+   var candidate_distance: float=point.distance_squared_to(center)
+   if candidate_distance<distance_squared:
+    distance_squared=candidate_distance;best={"center":center,"front":-Vector2(frame.outward)}
+ return best
+func preview(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) -> Dictionary:
  if not entries.has(id) or not point.is_finite():return {"ok":false,"code":"invalid_asset","reason":"invalid_asset"}
  var entry: Dictionary=entries[id];var cost:=price(id);var maintenance:=upkeep(id)
  var center:=point.round();var base_front:=Vector2.DOWN
@@ -33,6 +46,9 @@ func preview(id: String,point: Vector2,turns: int=0) -> Dictionary:
   var frame: Dictionary=parcel.frame;var offset: Vector2=point-frame.origin
   center=frame.origin+frame.along*roundf(offset.dot(frame.along))+frame.outward*roundf(offset.dot(frame.outward))
   base_front=-Vector2(frame.outward)
+ if snap_to_road:
+  var anchor:=road_anchor(id,point)
+  if not anchor.is_empty():center=anchor.center;base_front=anchor.front
  var shape:=polygon(center,int(entry.width),int(entry.depth),turns,base_front)
  var record: Dictionary={"id":-1,"public_asset_id":id,"position":center,"polygon":shape,"turns":posmod(turns,4),"front_direction":base_front.rotated(posmod(turns,4)*PI/2),"front_road_id":-1,"utility_id":-1,"engine":entry.engine,"capacity":balance.capacities(id)}
  var response: Dictionary={"ok":false,"code":"","reason":"","record":record,"cost":cost}
@@ -48,8 +64,8 @@ func preview(id: String,point: Vector2,turns: int=0) -> Dictionary:
  if city.utility_balance()<cost:response.code="insufficient_funds";response.reason=response.code;return response
  response.ok=true
  return response
-func place(id: String,point: Vector2,turns: int=0) -> Dictionary:
- var result:=preview(id,point,turns)
+func place(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) -> Dictionary:
+ var result:=preview(id,point,turns,snap_to_road)
  if not result.ok:return result
  var record: Dictionary=result.record
  record.id=city.next_id

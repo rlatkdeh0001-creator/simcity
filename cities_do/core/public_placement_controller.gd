@@ -20,7 +20,7 @@ func cancel():
  if view.mode=="public_placement":view.mode="select"
  queue_redraw()
 func preview() -> Dictionary:
- return view.city.public_facilities.preview(asset_id,view.pointer,turns) if not asset_id.is_empty() else {"ok":false}
+ return view.city.public_facilities.preview(asset_id,view.pointer,turns,true) if not asset_id.is_empty() else {"ok":false}
 func ghost_color() -> Color:
  return Color(.25,1,.45,.55) if preview().ok else Color(1,.2,.15,.55)
 func _process(_delta: float):
@@ -39,7 +39,7 @@ func _unhandled_input(event):
   if event.button_index==MOUSE_BUTTON_RIGHT:cancel();get_viewport().set_input_as_handled()
   elif event.button_index==MOUSE_BUTTON_LEFT:
    view.pointer=view.world(event.position)
-   last_result=view.city.public_facilities.place(asset_id,view.pointer,turns)
+   last_result=view.city.public_facilities.place(asset_id,view.pointer,turns,true)
    if not last_result.ok:print("PUBLIC_PLACEMENT_REJECT "+JSON.stringify({"asset":asset_id,"code":last_result.code,"reason":last_result.get("reason","")}))
    view.refresh();queue_redraw();get_viewport().set_input_as_handled()
 func asset(id: String) -> Dictionary:

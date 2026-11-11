@@ -6,7 +6,15 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 작업: 1B 공공시설 실제 배치 · 로컬 승인 대기
+## 최신 작업: 도로 스냅·이어 그리기 (승인된 두 동작만)
+
+feature/road-snap-continue, main d4530e6 기준. A: 기존 공공 배치 컨트롤러의 실제 고스트/배치에 일반도로 로컬 프레임 스냅을 적용했다.
+앞면 약2셀 획득 범위와 기존1.5m 접도 검증은 별개이며, 고속도로 제외/R은 도로 상대 방향/원격 자유 이동/기존 배치 불이동을 유지한다.
+프로필 test-driven-development/systematic-debugging/godot-windows-validation 및 프로젝트 cities-do-construction 규칙, 기존 validator/GLB 렌더 적용.
+A 관련3/3(신규22/22, 공공524/524, UI19/19). 실제 C카드·마우스 캡처/상태는 docs/road-snap-continue-validation/.
+원본 애셋·AGENTS·UI/그리기 방식/잔고 메시지 변경 없음. 외부 패키지·라이선스 추가 없음. main 푸시 금지.
+
+## 이전 작업: 1B 공공시설 실제 배치 · 로컬 승인 대기
 
 main e6d3890에서 feature/1b-public-placement. 미커밋 행복도 단계표/대출 메모2문서는40f030b에 원문 보존했다.
 추가 사용자 승인으로 기존 C카드→초록/빨강 GLB 고스트→좌클릭 배치/R90도 회전/ESC·우클릭 취소를 연결했다.

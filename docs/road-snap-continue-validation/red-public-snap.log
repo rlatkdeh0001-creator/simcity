@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL cursor-front within two cells snaps public ghost into valid road frontage
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_road_snap.gd:7)
+       [1] run (res://tests/test_public_road_snap.gd:17)
+ERROR: FAIL 6x6 ghost front sits on sidewalk edge, not rounded free cursor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_road_snap.gd:7)
+       [1] run (res://tests/test_public_road_snap.gd:18)
+PASS snapped actual model front faces road
+PASS snapping preview has no debit or placement side effect
+PUBLIC_PLACEMENT_REJECT {"asset":"fire-station","code":"geometry","reason":"도로 바로 옆 구획이 필요합니다"}
+ERROR: FAIL actual world click commits the snapped ghost instead of original cursor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_road_snap.gd:7)
+       [1] run (res://tests/test_public_road_snap.gd:24)
+ERROR: FAIL opposite sidewalk snaps and automatically reverses facing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_road_snap.gd:7)
+       [1] run (res://tests/test_public_road_snap.gd:27)
+PASS R is relative to snapped road orientation and still validates frontage
+PASS far from road stays freely movable and invalid
+RESULT 4/8 public road snap checks passed
