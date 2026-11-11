@@ -76,26 +76,68 @@ def garbage(root,L,W,H,m):
  for x in [-.52,.52]:B.box('AmberBeacon',(.22,.28,.16),(x,-2.65,2.77),m['Amber'],root,.035)
 
 def ambulance(root,L,W,H,m):
- rear=cab(root,L,W,2.22,m,True)
- B.box('MedicalBox',(W*.98,3.52,1.75),(0,1.12,1.725),m['Cream'],root,.08)
+ # Original Korean-style high-roof van silhouette; no brand or photo textures.
+ # Each station: y, half-width, roof z. The body stays one continuous van shell.
+ stations=[(-2.87,.87,1.12),(-2.55,1.00,1.32),(-1.86,1.04,1.46),(-.99,1.05,2.18),(2.67,1.05,2.18),(2.88,.97,2.08)]
+ verts=[]
+ for y,w,z in stations:
+  shoulder=min(1.36,z-.08)
+  verts.extend([(x,y,h) for x,h in [(-w+.08,.57),(w-.08,.57),(w,.67),(w,shoulder),(w-.10,z),(-w+.10,z),(-w,shoulder),(-w,.67)]])
+ faces=[tuple(range(8)),tuple(reversed(range((len(stations)-1)*8,len(stations)*8)))]
+ for i in range(len(stations)-1):
+  for j in range(8):faces.append((i*8+j,(i+1)*8+j,(i+1)*8+(j+1)%8,i*8+(j+1)%8))
+ body=B.mesh('VanBody',verts,faces,m['Cream'],root)
+ # Cut actual wheel openings instead of burying the tyres inside a solid slab.
+ for y in [-1.87,1.89]:
+  cutter=B.cylinder('WheelArchCutter',.465,3.0,(0,y,.38),m['Dark'],root,axis='X',segments=24)
+  mod=body.modifiers.new('WheelOpening','BOOLEAN');mod.operation='DIFFERENCE';mod.solver='EXACT';mod.object=cutter
+  bpy.context.view_layer.objects.active=body;bpy.ops.object.modifier_apply(modifier=mod.name);bpy.data.objects.remove(cutter,do_unlink=True)
+ B.box('Chassis',(W*.68,L*.88,.14),(0,0,.48),m['Dark'],root,.015)
+ B.mesh('Glass_Windscreen',[(-.85,-1.80,1.515),(.85,-1.80,1.515),(.85,-1.055,2.133),(-.85,-1.055,2.133)],[(0,1,2,3)],m['Glass'],root)
+ # A gently chamfered raised medical roof sits on the van, rather than a cargo truck box.
+ B.box('HighRoof',(1.87,3.72,.39),(0,.77,2.325),m['Cream'],root,.15)
+ B.box('RoofFrontFairing',(1.75,.46,.21),(0,-1.10,2.245),m['Cream'],root,.09)
+ for side,label in [(1,'L'),(-1,'R')]:
+  def glass(name,poly):
+   return B.mesh(name,[(side*(1.05-.10*(z-1.36)/.82+.012),y,z) for y,z in poly],[tuple(range(len(poly)))],m['Glass'],root)
+  glass('DriverWindow_'+label,[(-1.69,1.49),(-1.025,2.075),(-.26,2.075),(-.26,1.49)])
+  glass('MedicalSideWindow_'+label,[(-.13,1.50),(-.13,2.075),(1.04,2.075),(1.04,1.50)])
+  glass('RearSideWindow_'+label,[(1.19,1.50),(1.19,2.075),(2.53,2.075),(2.53,1.50)])
+  # Reflection band follows the body above the arches; lower small blocks stay clear of tyres.
+  B.box('ReflectorStripe_'+label,(.025,4.93,.22),(side*1.058,.20,1.22),m['Orange'],root,.004)
+  B.box('LowerReflector_'+label,(.028,2.72,.16),(side*1.054,.01,.88),m['Tail'],root,.004)
+  B.box('CabDoorSeam_'+label,(.018,.018,.78),(side*1.055,-.205,.96),m['Metal'],root,.002)
+  B.box('SlidingDoorRail_'+label,(.022,2.49,.028),(side*1.057,1.36,1.38),m['Metal'],root,.003)
+  for y in [-.42,.28]:B.box('DoorHandle_'+label,(.035,.20,.045),(side*1.075,y,1.39),m['Dark'],root,.008)
+  # Side medical symbol is on a small white panel over the window, leaving window margins visible.
+  B.box('MedicalBadgePanel_'+label,(.028,.92,.85),(side*1.043,1.83,1.78),m['Cream'],root,.025)
+  medical_mark('MedicalStarSide',(side*1.062,1.83,1.78),(0,side,0),(0,0,1),m,root)
+  # Solid mounting pad overlaps the metal door; the arm embeds into pad AND mirror housing.
+  B.box('MirrorMount_'+label,(.095,.19,.16),(side*1.035,-1.39,1.41),m['Dark'],root,.018)
+  pts=[(side*1.035,-1.39,1.41),(side*1.18,-1.42,1.48),(side*1.25,-1.47,1.55)]
+  arm=C.tube('MirrorArm_'+label,pts,.035,segments=8);B.finish(arm,m['Dark'],root);arm['mount_points_m']=[v for p in pts for v in p]
+  B.box('MirrorHousing_'+label,(.18,.31,.24),(side*1.25,-1.47,1.57),m['Dark'],root,.035)
+  B.box('MirrorGlass_'+label,(.12,.014,.17),(side*1.26,-1.308,1.58),m['Metal'],root,.012)
+ # Fictional grille, tall headlamps, bonnet seam: the reference's design cues without its branding.
+ B.box('FrontBumper',(1.88,.18,.20),(0,-2.88,.70),m['Tail'],root,.055)
+ B.box('Grille',(1.13,.035,.26),(0,-2.889,1.005),m['Dark'],root,.045)
+ for z in [.94,1.02,1.10]:B.box('GrilleSlat',(1.0,.016,.018),(0,-2.912,z),m['Metal'],root,.003)
  for side in [-1,1]:
-  B.box('ReflectorStripe',(.025,3.62,.20),(side*W*.497,1.12,1.02),m['Orange'],root,.003)
-  B.box('MedicalSideWindow',(.025,1.05,.48),(side*W*.499,.20,2.17),m['Glass'],root,.035)
-  medical_mark('MedicalStarSide',(side*W*.51,1.75,1.93),(0,side,0),(0,0,1),m,root)
-  B.box('SideServiceDoorLine',(.022,.025,1.30),(side*W*.502,2.50,1.62),m['Metal'],root,.001)
-  B.box('SideServiceHandle',(.03,.18,.04),(side*W*.507,2.3,1.44),m['Dark'],root,.002)
- # Rear doors / windows, a separate star mark and full-width reflectors.
- for x in [-W*.245,W*.245]:
-  B.box('RearDoor',(W*.46,.045,1.45),(x,2.901,1.66),m['Cream'],root,.012)
-  B.box('RearWindow',(W*.30,.03,.42),(x,2.935,2.17),m['Glass'],root,.018)
-  B.box('RearDoorHandle',(.06,.035,.19),(x*.35,2.951,1.60),m['Metal'],root,.005)
- B.box('RearReflector',(W*.96,.02,.21),(0,2.947,1.09),m['Orange'],root,.001)
- medical_mark('MedicalStarRear',(0,2.965,1.70),(-1,0,0),(0,0,1),m,root)
- B.box('RearBumper',(W*.99,.14,.16),(0,2.97,.61),m['Dark'],root,.02)
- B.wheels(root,L,W,.34,-1.94,[1.92],m)
- B.box('LightbarBase',(1.48,.35,.08),(0,-1.82,2.29),m['Metal'],root,.025)
- for x,paint in [(-.49,'Blue'),(.49,'Tail')]:B.box('EmergencyLight',(.43,.31,.16),(x,-1.82,2.40),m[paint],root,.04)
- for x in [-W*.43,W*.43]:B.box('RearEmergencyLight',(.13,.035,.15),(x,2.964,2.47),m['Tail'],root,.015)
+  B.mesh('HeadlampHousing',[(side*.62,-2.54,1.332),(side*.88,-2.54,1.332),(side*.91,-2.06,1.4294),(side*.75,-2.06,1.4294)],[(0,1,2,3)],m['Dark'],root)
+  B.mesh('Headlamp',[(side*.65,-2.51,1.3451),(side*.86,-2.51,1.3451),(side*.89,-2.09,1.4303),(side*.77,-2.09,1.4303)],[(0,1,2,3)],m['Head'],root)
+  B.box('FogLamp',(.19,.035,.075),(side*.64,-2.985,.72),m['Head'],root,.015)
+  B.box('RearTailLamp',(.13,.065,.46),(side*.90,2.905,1.11),m['Tail'],root,.025)
+ B.box('RearBumper',(1.98,.15,.15),(0,2.94,.61),m['Dark'],root,.025)
+ for x in [-.46,.46]:
+  B.box('RearWindow',(.75,.026,.54),(x,2.893,1.77),m['Glass'],root,.04)
+  B.box('RearDoorHandle',(.055,.03,.17),(x*.19,2.916,1.23),m['Metal'],root,.01)
+ B.box('RearDoorSeam',(.016,.018,1.36),(0,2.914,1.34),m['Metal'],root,.002)
+ B.box('RearReflector',(1.83,.025,.22),(0,2.922,.97),m['Orange'],root,.005)
+ medical_mark('MedicalStarRear',(0,2.933,1.74),(-1,0,0),(0,0,1),m,root)
+ B.box('LightbarBase',(1.47,.32,.065),(0,-.74,2.525),m['Metal'],root,.018)
+ for x,paint in [(-.47,'Blue'),(.47,'Tail')]:B.box('EmergencyLight',(.42,.28,.075),(x,-.74,2.5625),m[paint],root,.025)
+ for side in [-1,1]:B.box('RearEmergencyLight',(.19,.04,.10),(side*.66,2.625,2.415),m['Tail'],root,.018)
+ B.driver(root,W,-.84,.94,m);B.wheels(root,L,W,.38,-1.87,[1.89],m)
 
 def geometry():
  bpy.context.view_layer.update();dep=bpy.context.evaluated_depsgraph_get();points=[];tri=0

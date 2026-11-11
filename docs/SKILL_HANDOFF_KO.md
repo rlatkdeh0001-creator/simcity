@@ -6,6 +6,21 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+## 구급차 한국 승합형 레퍼런스 재제작 · 미러 연결 수정
+
+브랜치 assets/service-vehicles-2-20261111. 사용자 미러 부유 지적과 제공 사진에 따라 구급차만 재제작했다.
+[수정 전후·미러 확대·이번 검증](service-vehicles-2/ambulance-revision/README_KO.md). 사진은 Git에 보관하지 않는다.
+기존 cities-do-vehicles 및 vehicle rig-contract, zstack MIT/고정판74f7786e9931b9ced858a0e2df880f23e4c2430e를 계속 사용했다.
+새 upstream/라이선스/패키지/독립 에이전트 없음. 원본 common/fleet 제작기는 수정하지 않았다.
+build_service_vehicles_2.py의 ambulance만 연속 loft 승합 차체·휠 아치·높인 지붕·미러 받침/암으로 바꿨다.
+외부 모델/텍스처/생성형 이미지 없음. 명목5.9×2.1×2.6m, 전체6.0175×2.68×2.6m, 3,326삼각형.
+verify_service_vehicles_2.py는 양쪽 미러 접촉6개와 차체/높인 지붕 검사를 추가해 이번39/39 통과했다.
+Blender4.3.2 CPU Cycles로 앞/뒤 및 새 render_ambulance_mirror_review.py의 확대와 동일 축척 비교를 실제 렌더했다.
+PNG4장의 투명·프레임·해시를 갱신했다. 쓰레기차/기존 차량 원본과 게임 파일은 보존했다.
+미승인 비용·용량 제안은 그대로다. GLB/8방향 스프라이트/게임 적용/main 병합 없음.
+과거31검사/2,720삼각형 기록은 최초 버전 근거이며 현재 구급차에는 이번 수정값을 쓴다. 문 개폐/AI/실차 IoU/성능 미검증.
+수정 원본·검증·mistake M-013을 기존 별도 애셋 브랜치에 커밋·푸시한다.
+
 ## 서비스 차량2종 · 원본 전용 애셋 브랜치 (2026-11-11 KST)
 
 브랜치 `assets/service-vehicles-2-20261111`. 쓰레기차 → 구급차 순으로 제작했다.

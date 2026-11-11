@@ -25,22 +25,22 @@
     "id": "ambulance-01",
     "image": "preview.png",
     "alpha_bbox_px": [
-      182,
-      68,
-      823,
-      591
+      193,
+      96,
+      817,
+      589
     ],
-    "sha256": "4868a1f328a1e3da6b1248a62e322f309581011d1c3196e92e6a034a0b95c655"
+    "sha256": "d1c5c40a5caf8fba380d665d8665634841f0183c25ba888054ca2b5a22610672"
   },
   {
     "id": "ambulance-01",
     "image": "rear-review.png",
     "alpha_bbox_px": [
-      177,
-      127,
-      818,
-      591
+      183,
+      157,
+      807,
+      589
     ],
-    "sha256": "a410ec11f1a8cda640cd9eda38a4815303b28b176a3d5750d4d7f39e14615be4"
+    "sha256": "4909df97ee9c59864692526f590687a3e649a30c419a660a6300781859e96569"
   }
 ]

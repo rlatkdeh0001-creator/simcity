@@ -45,13 +45,21 @@
         "source_only": true,
         "no_glb": true,
         "side_and_rear_medical_marks": true,
-        "roof_lights": true
+        "roof_lights": true,
+        "mirror_mount_on_body_L": true,
+        "mirror_arm_on_mount_L": true,
+        "mirror_housing_on_arm_L": true,
+        "mirror_mount_on_body_R": true,
+        "mirror_arm_on_mount_R": true,
+        "mirror_housing_on_arm_R": true,
+        "continuous_van_body": true,
+        "raised_medical_roof": true
       },
       "passed": true,
-      "triangles": 2720,
+      "triangles": 3326,
       "measured_dimensions_m": [
-        6.0625,
-        2.3499999046325684,
+        6.017499923706055,
+        2.680000066757202,
         2.5999999046325684
       ]
     }

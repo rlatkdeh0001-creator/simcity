@@ -1,1 +1,3 @@
 Original fictional geometry built with existing fleet helpers. CPU Cycles preview and rear review rendered. Source reopened and measured including mirrors, lamps and roof accessories. No external meshes/textures/generation APIs. Door motion, waste compression, patient transport, crash, traffic AI and large-fleet performance not validated.
+
+2026-11-11 revision: user-supplied Korean high-roof van reference used for silhouette only; no brands or photo textures copied. Continuous lofted van body, raised medical roof, swept bonnet/headlamps, wheel openings and mirrors with solid mounting pads/arms. Both mirrors pass BVH surface-intersection checks body→mount→arm→housing. Front/rear renders and close-up reviewed; original budget/height/frame rules preserved.
