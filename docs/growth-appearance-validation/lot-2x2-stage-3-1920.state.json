@@ -1,0 +1,108 @@
+{
+  "authored_4x4_setup": false,
+  "buildings": [
+    {
+      "asset_id": "medium-2x2-multiplex-01",
+      "density": "medium",
+      "frontage": "(0.0, 1.0)",
+      "id": 1,
+      "lot": 2,
+      "model": "res://assets/buildings/models/medium-2x2-multiplex-01.glb",
+      "stage": 3,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "medium-2x2-cafe-building-02",
+      "density": "medium",
+      "frontage": "(0.0, 1.0)",
+      "id": 2,
+      "lot": 2,
+      "model": "res://assets/buildings/models/medium-2x2-cafe-building-02.glb",
+      "stage": 3,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "medium-2x2-electronics-02",
+      "density": "medium",
+      "frontage": "(0.0, 1.0)",
+      "id": 3,
+      "lot": 2,
+      "model": "res://assets/buildings/models/medium-2x2-electronics-02.glb",
+      "stage": 3,
+      "zone": "industrial"
+    }
+  ],
+  "funds": 50000,
+  "growth_button_actions": [
+    {
+      "asset_id": "small-2x2-a",
+      "building": 1,
+      "from_stage": 1,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 2
+    },
+    {
+      "asset_id": "medium-2x2-multiplex-01",
+      "building": 1,
+      "from_stage": 2,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 3
+    },
+    {
+      "asset_id": "small-2x2-mart-01",
+      "building": 2,
+      "from_stage": 1,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 2
+    },
+    {
+      "asset_id": "medium-2x2-cafe-building-02",
+      "building": 2,
+      "from_stage": 2,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 3
+    },
+    {
+      "asset_id": "small-2x2-foodworks-02",
+      "building": 3,
+      "from_stage": 1,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 2
+    },
+    {
+      "asset_id": "medium-2x2-electronics-02",
+      "building": 3,
+      "from_stage": 2,
+      "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+      "to_stage": 3
+    }
+  ],
+  "lot": 2,
+  "painted_setup": [
+    {
+      "id": 1,
+      "initial_asset": "small-2x2-a",
+      "initial_stage": 1,
+      "painted_cells": 4,
+      "zone": "residential"
+    },
+    {
+      "id": 2,
+      "initial_asset": "small-2x2-mart-01",
+      "initial_stage": 1,
+      "painted_cells": 4,
+      "zone": "commercial"
+    },
+    {
+      "id": 3,
+      "initial_asset": "small-2x2-foodworks-02",
+      "initial_stage": 1,
+      "painted_cells": 4,
+      "zone": "industrial"
+    }
+  ],
+  "population_gating_disabled_in_fixture_only": true,
+  "production_growth_rules_changed": false,
+  "stage": 3,
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

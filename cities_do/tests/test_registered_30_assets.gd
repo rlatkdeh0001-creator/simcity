@@ -73,11 +73,11 @@ func run():
  verify(counts=={"commercial":10,"industrial":8,"power":6,"water":4,"waste":2},"all five original groups match requested counts")
  var catalog: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/buildings/catalog.json")).buildings
  var private_entries: Array=catalog.filter(func(e):return e.get("recovered_batch","")=="remaining_30")
- verify(private_entries.size()==18 and private_entries.all(func(e):return e.growth_enabled==false),"ten commercial and eight industrial entries remain excluded from growth")
+ verify(private_entries.size()==18 and private_entries.all(func(e):return e.growth_enabled==true and not e.simulation_enabled),"approved ten commercial and eight industrial appearances enabled without applying operation/capacity")
  var building_catalog=preload("res://core/building_catalog.gd").new()
  for entry: Dictionary in private_entries:
   verify(not str(entry.industry).is_empty() and entry.storeys==entry.source_metadata.occupied_storeys,entry.id+" original industry/storey metadata retained")
-  verify(not entry.id in building_catalog.eligible({"size":int(entry.width),"level":999,"zone":entry.zone}),entry.id+" cannot be selected by automatic growth")
+  verify(entry.id in building_catalog.eligible({"size":int(entry.width),"level":{"small":1,"medium":3,"large":5}[entry.density],"zone":entry.zone}),entry.id+" approved appearance is a candidate for its original lot and density")
  var manifest: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/thumbnails/manifest.json"))
  for entry: Dictionary in entries:
   verify(manifest.has(entry.id),entry.id+" derived thumbnail exists in common manifest")
@@ -149,7 +149,7 @@ func run():
  root.add_child(gallery)
  await process_frame
  verify(gallery.entries.size()==18 and gallery.rigs.size()==18,"existing exhibition grid exposes all eighteen commercial/industrial GLBs without a new menu/layout")
- verify(gallery.entries.all(func(e):return e.get("growth_enabled",true)==false and e.get("recovered_batch","")=="remaining_30"),"exhibition uses only actual disabled-growth registered originals")
+ verify(gallery.entries.all(func(e):return e.get("growth_enabled",false)==true and not e.simulation_enabled and e.get("recovered_batch","")=="remaining_30"),"read-only exhibition remains available after appearance activation")
  gallery.same_scale=true
  gallery.update_scale()
  verify(gallery.cameras.all(func(camera):return is_equal_approx(camera.size,gallery.cameras[0].size)),"existing same-scale switch gives all eighteen models identical metre-to-pixel scale")

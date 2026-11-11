@@ -1,0 +1,65 @@
+{
+  "authored_4x4_setup": true,
+  "buildings": [
+    {
+      "asset_id": "small-4x4-a",
+      "density": "small",
+      "frontage": "(0.0, 1.0)",
+      "id": 1,
+      "lot": 4,
+      "model": "res://assets/buildings/models/small-4x4-a.glb",
+      "stage": 1,
+      "zone": "residential"
+    },
+    {
+      "asset_id": "small-4x4-cafe-diner-04",
+      "density": "small",
+      "frontage": "(0.0, 1.0)",
+      "id": 2,
+      "lot": 4,
+      "model": "res://assets/buildings/models/small-4x4-cafe-diner-04.glb",
+      "stage": 1,
+      "zone": "commercial"
+    },
+    {
+      "asset_id": "small-4x4-logistics-01",
+      "density": "small",
+      "frontage": "(0.0, 1.0)",
+      "id": 3,
+      "lot": 4,
+      "model": "res://assets/buildings/models/small-4x4-logistics-01.glb",
+      "stage": 1,
+      "zone": "industrial"
+    }
+  ],
+  "funds": 50000,
+  "growth_button_actions": [],
+  "lot": 4,
+  "painted_setup": [
+    {
+      "id": 1,
+      "initial_asset": "small-4x4-a",
+      "initial_stage": 1,
+      "painted_cells": 16,
+      "zone": "residential"
+    },
+    {
+      "id": 2,
+      "initial_asset": "small-4x4-cafe-diner-04",
+      "initial_stage": 1,
+      "painted_cells": 16,
+      "zone": "commercial"
+    },
+    {
+      "id": 3,
+      "initial_asset": "small-4x4-logistics-01",
+      "initial_stage": 1,
+      "painted_cells": 16,
+      "zone": "industrial"
+    }
+  ],
+  "population_gating_disabled_in_fixture_only": true,
+  "production_growth_rules_changed": false,
+  "stage": 1,
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

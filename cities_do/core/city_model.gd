@@ -122,6 +122,7 @@ func add_building_at(point: Vector2,zone: String="residential",score: float=0.0)
 	var origin: Vector2=parcel.polygon[0]
 	var building:={"id":next_id,"x":origin.x,"y":origin.y,"u":parcel.u,"v":parcel.v,"frame":parcel.frame.duplicate(),"size":2,"level":1,"zone":zone,"score":score,"asset_id":""}
 	orient_building(building)
+	catalog.assign(building,appearance_rng)
 	next_id+=1;buildings.append(building)
 	return {"ok":true,"building":building}
 
@@ -209,6 +210,7 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 		return {"ok": false, "reason": error}
 	var b := {"id": next_id, "x": x, "y": y, "size": 2, "level": 1, "zone": zone, "score": score, "asset_id": ""}
 	orient_building(b)
+	catalog.assign(b,appearance_rng)
 	next_id += 1
 	buildings.append(b)
 	return {"ok": true, "building": b}

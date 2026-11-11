@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS fourteen approved growth originals have a runtime registry
+PASS all fourteen source IDs registered
+PASS medium-2x2-multiplex-01 actual GLB and spec exist
+PASS medium-2x2-corner-villa-02 actual GLB and spec exist
+PASS large-2x2-slim-tower-01 actual GLB and spec exist
+PASS large-2x2-pencil-tower-02 actual GLB and spec exist
+PASS medium-2x2-neighborhood-01 actual GLB and spec exist
+PASS medium-2x2-cafe-building-02 actual GLB and spec exist
+PASS large-2x2-slim-office-01 actual GLB and spec exist
+PASS large-2x2-boutique-hotel-02 actual GLB and spec exist
+PASS medium-2x2-bakery-01 actual GLB and spec exist
+PASS medium-2x2-electronics-02 actual GLB and spec exist
+PASS large-2x2-grain-silo-01 actual GLB and spec exist
+PASS large-2x2-distillation-02 actual GLB and spec exist
+PASS small-4x4-logistics-01 actual GLB and spec exist
+PASS small-4x4-metalshop-02 actual GLB and spec exist
+RESULT 16/16 growth appearance checks passed

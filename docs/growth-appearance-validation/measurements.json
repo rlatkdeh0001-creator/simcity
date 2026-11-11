@@ -1,0 +1,590 @@
+[
+  {
+    "id": "medium-2x2-multiplex-01",
+    "source": "assets/residential-growth/medium-2x2-multiplex-01/medium-2x2-multiplex-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        17.8700008392334
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        17.990001678466797
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      17.990001678466797
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "medium-2x2-corner-villa-02",
+    "source": "assets/residential-growth/medium-2x2-corner-villa-02/medium-2x2-corner-villa-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        20.920000076293945
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        21.040000915527344
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      21.040000915527344
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-slim-tower-01",
+    "source": "assets/residential-growth/large-2x2-slim-tower-01/large-2x2-slim-tower-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        33.119998931884766
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        33.23999786376953
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      33.23999786376953
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-pencil-tower-02",
+    "source": "assets/residential-growth/large-2x2-pencil-tower-02/large-2x2-pencil-tower-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        39.21999740600586
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        39.339996337890625
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      39.339996337890625
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "medium-2x2-neighborhood-01",
+    "source": "assets/commercial-growth/medium-2x2-neighborhood-01/medium-2x2-neighborhood-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        13.269999504089355
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        13.389999389648438
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      13.389999389648438
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "medium-2x2-cafe-building-02",
+    "source": "assets/commercial-growth/medium-2x2-cafe-building-02/medium-2x2-cafe-building-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        16.31999969482422
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        16.440000534057617
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      16.440000534057617
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-slim-office-01",
+    "source": "assets/commercial-growth/large-2x2-slim-office-01/large-2x2-slim-office-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        25.469999313354492
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        25.59000015258789
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      25.59000015258789
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-boutique-hotel-02",
+    "source": "assets/commercial-growth/large-2x2-boutique-hotel-02/large-2x2-boutique-hotel-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        31.56999969482422
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        31.690000534057617
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      31.690000534057617
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "medium-2x2-bakery-01",
+    "source": "assets/industrial-growth/medium-2x2-bakery-01/medium-2x2-bakery-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        8.300000190734863
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        8.420000076293945
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      8.420000076293945
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "medium-2x2-electronics-02",
+    "source": "assets/industrial-growth/medium-2x2-electronics-02/medium-2x2-electronics-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        10.510000228881836
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        10.630000114440918
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      10.630000114440918
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "medium",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-grain-silo-01",
+    "source": "assets/industrial-growth/large-2x2-grain-silo-01/large-2x2-grain-silo-01.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        17.0
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        17.1200008392334
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      17.1200008392334
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "large-2x2-distillation-02",
+    "source": "assets/industrial-growth/large-2x2-distillation-02/large-2x2-distillation-02.blend",
+    "source_bounds": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        18.099998474121094
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -4.0,
+        -4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.0,
+        18.219999313354492
+      ]
+    ],
+    "measured_wdh_m": [
+      8.0,
+      8.0,
+      18.219999313354492
+    ],
+    "lot_cells": [
+      2,
+      2
+    ],
+    "density": "large",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "small-4x4-logistics-01",
+    "source": "assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend",
+    "source_bounds": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.410000324249268
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -8.0,
+        -8.0,
+        0.0
+      ],
+      [
+        8.0,
+        8.0,
+        5.53000020980835
+      ]
+    ],
+    "measured_wdh_m": [
+      16.0,
+      16.0,
+      5.53000020980835
+    ],
+    "lot_cells": [
+      4,
+      4
+    ],
+    "density": "small",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  },
+  {
+    "id": "small-4x4-metalshop-02",
+    "source": "assets/industrial-growth/small-4x4-metalshop-02/small-4x4-metalshop-02.blend",
+    "source_bounds": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.525000095367432
+      ]
+    ],
+    "derived_bounds": [
+      [
+        -8.0,
+        -8.0,
+        0.0
+      ],
+      [
+        8.0,
+        8.0,
+        5.644999980926514
+      ]
+    ],
+    "measured_wdh_m": [
+      16.0,
+      16.0,
+      5.644999980926514
+    ],
+    "lot_cells": [
+      4,
+      4
+    ],
+    "density": "small",
+    "ground_offset_m": 0.11999999731779099,
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "issues": []
+  }
+]

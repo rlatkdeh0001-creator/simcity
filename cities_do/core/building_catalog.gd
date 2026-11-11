@@ -19,12 +19,34 @@ func get_asset(id: String) -> Dictionary:
 			return entry
 	return {}
 
+func target_density(level: int) -> String:
+	return "small" if level<=2 else ("medium" if level<=4 else "large")
+
+func appearance_density(entry: Dictionary) -> String:
+	if int(entry.footprint[0])==8:return "large"
+	var value: String=entry.get("density",str(entry.category).get_slice("_",0))
+	return value if value in ["small","medium","large"] else str(entry.category).get_slice("_",0)
+
+func matching(building: Dictionary) -> Dictionary:
+	var target:=target_density(int(building.level))
+	var ranks: Array[String]=["small","medium","large"]
+	var desired:=ranks.find(target)
+	var best_distance:=99
+	var best_rank:=99
+	var ids: Array[String]=[]
+	for entry: Dictionary in entries:
+		if not entry.get("growth_enabled",true) or entry.zone!=building.zone or entry.footprint!=[int(building.size),int(building.size)] or int(building.level)<int(entry.min_level):continue
+		var rank:=ranks.find(appearance_density(entry))
+		if rank<0:continue
+		var distance:=absi(rank-desired)
+		# A missing density never changes the lot or simulation level. Lower wins a tie.
+		if distance<best_distance or (distance==best_distance and rank<best_rank):
+			best_distance=distance;best_rank=rank;ids.clear()
+		if distance==best_distance and rank==best_rank:ids.append(str(entry.id))
+	return {"target_density":target,"resolved_density":"" if ids.is_empty() else ranks[best_rank],"candidates":ids,"fallback":not ids.is_empty() and best_rank!=desired}
+
 func eligible(building: Dictionary) -> Array[String]:
-	var ids: Array[String] = []
-	for entry in entries:
-		if entry.get("growth_enabled", true) and entry.zone == building.zone and entry.footprint == [building.size, building.size] and building.level >= entry.min_level:
-			ids.append(entry.id)
-	return ids
+	return matching(building).candidates
 
 func assign(building: Dictionary, appearance_rng: RandomNumberGenerator):
 	var ids := eligible(building)

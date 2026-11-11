@@ -10,12 +10,16 @@
 수력발전댐은 사용자가 길이를 정하므로 고정 칸 수가 없다. 시안의 48m 댐 길이나 배경판 60×32m를 고정 필지로 쓰지 않는다.
 이 표는 규격 조회용이며 런타임 로더가 아니다. 크기를 수정할 때 원본·실제 모델·게임 카탈로그를 함께 맞춰야 한다.
 
-총 63종. 과거 archive와 차량은 중복 집계하지 않았다.
+총 77종. 과거 archive와 차량은 중복 집계하지 않았다.
 
 ## 주거
 
 | 이름 | 부지(칸) | 부지(m) | 규격 상태 | ID / 원본 규격 |
 |---|---|---|---|---|
+| 세트백 펜슬 주거타워 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-pencil-tower-02](../../assets/residential-growth/large-2x2-pencil-tower-02/metadata.json) |
+| 세로 발코니 주거타워 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-slim-tower-01](../../assets/residential-growth/large-2x2-slim-tower-01/metadata.json) |
+| 코너형 원룸 빌라 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-corner-villa-02](../../assets/residential-growth/medium-2x2-corner-villa-02/metadata.json) |
+| 필로티 다세대주택 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-multiplex-01](../../assets/residential-growth/medium-2x2-multiplex-01/metadata.json) |
 | 벽돌형 맨션 | 4×4 | 16×16 | 원본 규격 | [mansion-a-4x4-4f](../../assets/mansion-study/a-brick/metadata.json) |
 | 모던형 맨션 | 4×4 | 16×16 | 원본 규격 | [mansion-b-4x4-4f](../../assets/mansion-study/b-modern/metadata.json) |
 | 발코니 아파트 | 4×4 | 16×16 | 원본 규격 | [large-4x4-a](../../assets/residential-eight/large-4x4-a/metadata.json) |
@@ -31,6 +35,10 @@
 
 | 이름 | 부지(칸) | 부지(m) | 규격 상태 | ID / 원본 규격 |
 |---|---|---|---|---|
+| 명품매장 부티크 호텔 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-boutique-hotel-02](../../assets/commercial-growth/large-2x2-boutique-hotel-02/metadata.json) |
+| 커튼월 슬림 오피스 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-slim-office-01](../../assets/commercial-growth/large-2x2-slim-office-01/metadata.json) |
+| 층별 식당·카페 빌딩 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-cafe-building-02](../../assets/commercial-growth/medium-2x2-cafe-building-02/metadata.json) |
+| 편의점·학원 근린상가 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-neighborhood-01](../../assets/commercial-growth/medium-2x2-neighborhood-01/metadata.json) |
 | AUREL 백화점 | 4×4 | 16×16 | 원본 규격 | [large-4x4-department-07](../../assets/commercial-study/large-4x4-department-07/metadata.json) |
 | NOVA 오피스 타워 | 4×4 | 16×16 | 원본 규격 | [large-4x4-office-nova-08](../../assets/commercial-study/large-4x4-office-nova-08/metadata.json) |
 | AUREL GRAND 대형 백화점 | 8×8 | 32×32 | 원본 규격 | [large-8x8-grand-department-09](../../assets/commercial-study/large-8x8-grand-department-09/metadata.json) |
@@ -46,6 +54,12 @@
 
 | 이름 | 부지(칸) | 부지(m) | 규격 상태 | ID / 원본 규격 |
 |---|---|---|---|---|
+| 화학 증류탑 설비 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-distillation-02](../../assets/industrial-growth/large-2x2-distillation-02/metadata.json) |
+| 곡물 사일로·컨베이어 | 2×2 | 8×8 | 사용자 지정 | [large-2x2-grain-silo-01](../../assets/industrial-growth/large-2x2-grain-silo-01/metadata.json) |
+| 소형 제빵 공장 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-bakery-01](../../assets/industrial-growth/medium-2x2-bakery-01/metadata.json) |
+| 클린룸 전자부품 공장 | 2×2 | 8×8 | 사용자 지정 | [medium-2x2-electronics-02](../../assets/industrial-growth/medium-2x2-electronics-02/metadata.json) |
+| 2베이 물류창고 | 4×4 | 16×16 | 사용자 지정 | [small-4x4-logistics-01](../../assets/industrial-growth/small-4x4-logistics-01/metadata.json) |
+| 금속가공 작업장·야적장 | 4×4 | 16×16 | 사용자 지정 | [small-4x4-metalshop-02](../../assets/industrial-growth/small-4x4-metalshop-02/metadata.json) |
 | 화학 생산시설 | 4×4 | 16×16 | 원본 규격 | [large-4x4-chemical-06](../../assets/industrial-study/large-4x4-chemical-06/metadata.json) |
 | 제약 생산시설 | 4×4 | 16×16 | 원본 규격 | [large-4x4-pharma-05](../../assets/industrial-study/large-4x4-pharma-05/metadata.json) |
 | 자동차 조립공장 | 8×8 | 32×32 | 원본 규격 | [large-8x8-auto-assembly-07](../../assets/industrial-study/large-8x8-auto-assembly-07/metadata.json) |

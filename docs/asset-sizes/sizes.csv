@@ -1,4 +1,18 @@
 ﻿분류,이름,ID,가로칸,세로칸,가로m,세로m,크기상태,규격파일,규격필드
+주거,세트백 펜슬 주거타워,large-2x2-pencil-tower-02,2,2,8,8,사용자 지정,assets/residential-growth/large-2x2-pencil-tower-02/metadata.json,footprint_cells
+주거,세로 발코니 주거타워,large-2x2-slim-tower-01,2,2,8,8,사용자 지정,assets/residential-growth/large-2x2-slim-tower-01/metadata.json,footprint_cells
+주거,코너형 원룸 빌라,medium-2x2-corner-villa-02,2,2,8,8,사용자 지정,assets/residential-growth/medium-2x2-corner-villa-02/metadata.json,footprint_cells
+주거,필로티 다세대주택,medium-2x2-multiplex-01,2,2,8,8,사용자 지정,assets/residential-growth/medium-2x2-multiplex-01/metadata.json,footprint_cells
+상업,명품매장 부티크 호텔,large-2x2-boutique-hotel-02,2,2,8,8,사용자 지정,assets/commercial-growth/large-2x2-boutique-hotel-02/metadata.json,footprint_cells
+상업,커튼월 슬림 오피스,large-2x2-slim-office-01,2,2,8,8,사용자 지정,assets/commercial-growth/large-2x2-slim-office-01/metadata.json,footprint_cells
+상업,층별 식당·카페 빌딩,medium-2x2-cafe-building-02,2,2,8,8,사용자 지정,assets/commercial-growth/medium-2x2-cafe-building-02/metadata.json,footprint_cells
+상업,편의점·학원 근린상가,medium-2x2-neighborhood-01,2,2,8,8,사용자 지정,assets/commercial-growth/medium-2x2-neighborhood-01/metadata.json,footprint_cells
+공업,화학 증류탑 설비,large-2x2-distillation-02,2,2,8,8,사용자 지정,assets/industrial-growth/large-2x2-distillation-02/metadata.json,footprint_cells
+공업,곡물 사일로·컨베이어,large-2x2-grain-silo-01,2,2,8,8,사용자 지정,assets/industrial-growth/large-2x2-grain-silo-01/metadata.json,footprint_cells
+공업,소형 제빵 공장,medium-2x2-bakery-01,2,2,8,8,사용자 지정,assets/industrial-growth/medium-2x2-bakery-01/metadata.json,footprint_cells
+공업,클린룸 전자부품 공장,medium-2x2-electronics-02,2,2,8,8,사용자 지정,assets/industrial-growth/medium-2x2-electronics-02/metadata.json,footprint_cells
+공업,2베이 물류창고,small-4x4-logistics-01,4,4,16,16,사용자 지정,assets/industrial-growth/small-4x4-logistics-01/metadata.json,footprint_cells
+공업,금속가공 작업장·야적장,small-4x4-metalshop-02,4,4,16,16,사용자 지정,assets/industrial-growth/small-4x4-metalshop-02/metadata.json,footprint_cells
 주거,벽돌형 맨션,mansion-a-4x4-4f,4,4,16,16,원본 규격,assets/mansion-study/a-brick/metadata.json,footprint_cells
 주거,모던형 맨션,mansion-b-4x4-4f,4,4,16,16,원본 규격,assets/mansion-study/b-modern/metadata.json,footprint_cells
 주거,발코니 아파트,large-4x4-a,4,4,16,16,원본 규격,assets/residential-eight/large-4x4-a/metadata.json,footprint_cells

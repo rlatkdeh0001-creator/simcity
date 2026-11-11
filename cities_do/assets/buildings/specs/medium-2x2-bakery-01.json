@@ -1,0 +1,134 @@
+{
+  "id": "medium-2x2-bakery-01",
+  "name": "소형 제빵 공장",
+  "zone": "industrial",
+  "group": "industrial",
+  "category": "medium_industrial",
+  "density": "medium",
+  "category_name": "중형 공업",
+  "footprint": [
+    2,
+    2
+  ],
+  "width": 2,
+  "depth": 2,
+  "storeys": 2,
+  "min_level": 1,
+  "texture": "res://assets/buildings/medium-2x2-bakery-01.png",
+  "preview": "res://assets/buildings/medium-2x2-bakery-01.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    984.1656
+  ],
+  "lot_width_px": 801.9802,
+  "model": "res://assets/buildings/models/medium-2x2-bakery-01.glb",
+  "spec": "res://assets/buildings/specs/medium-2x2-bakery-01.json",
+  "height_m": 8.420000076293945,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 5684,
+  "source": "assets/industrial-growth/medium-2x2-bakery-01/medium-2x2-bakery-01.blend",
+  "source_metadata": {
+    "id": "medium-2x2-bakery-01",
+    "name": "소형 제빵 공장",
+    "zone": "industrial",
+    "category": "medium_industrial",
+    "density": "medium",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "floors": 2,
+    "occupied_storeys": 2,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        8.300000190734863
+      ]
+    ],
+    "measured_dimensions_m": [
+      8.0,
+      8.0,
+      8.420000188052654
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      984.1656
+    ],
+    "lot_corners_px": [
+      [
+        49.0099,
+        783.6706
+      ],
+      [
+        450.0,
+        984.1656
+      ],
+      [
+        850.9901,
+        783.6706
+      ],
+      [
+        450.0,
+        583.1756
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 15.517939567565918,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": false
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      8.420000076293945
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

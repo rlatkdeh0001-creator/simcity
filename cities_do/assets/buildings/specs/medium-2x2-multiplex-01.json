@@ -1,0 +1,134 @@
+{
+  "id": "medium-2x2-multiplex-01",
+  "name": "필로티 다세대주택",
+  "zone": "residential",
+  "group": "residential",
+  "category": "medium_residential",
+  "density": "medium",
+  "category_name": "중형 주거",
+  "footprint": [
+    2,
+    2
+  ],
+  "width": 2,
+  "depth": 2,
+  "storeys": 5,
+  "min_level": 1,
+  "texture": "res://assets/buildings/medium-2x2-multiplex-01.png",
+  "preview": "res://assets/buildings/medium-2x2-multiplex-01.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1030.2196
+  ],
+  "lot_width_px": 537.7650000000001,
+  "model": "res://assets/buildings/models/medium-2x2-multiplex-01.glb",
+  "spec": "res://assets/buildings/specs/medium-2x2-multiplex-01.json",
+  "height_m": 17.990001678466797,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 8844,
+  "source": "assets/residential-growth/medium-2x2-multiplex-01/medium-2x2-multiplex-01.blend",
+  "source_metadata": {
+    "id": "medium-2x2-multiplex-01",
+    "name": "필로티 다세대주택",
+    "zone": "residential",
+    "category": "medium_residential",
+    "density": "medium",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "floors": 5,
+    "occupied_storeys": 5,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        17.8700008392334
+      ]
+    ],
+    "measured_dimensions_m": [
+      8.0,
+      8.0,
+      17.99000083655119
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      1030.2196
+    ],
+    "lot_corners_px": [
+      [
+        181.1175,
+        895.7784
+      ],
+      [
+        450.0,
+        1030.2196
+      ],
+      [
+        718.8825,
+        895.7784
+      ],
+      [
+        450.0,
+        761.3371
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 23.14222526550293,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": false
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      17.990001678466797
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

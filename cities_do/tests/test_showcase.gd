@@ -34,7 +34,7 @@ func run():
 	check(not city.place_catalog_building("unknown",10,10).ok,"unknown scenario asset rejected")
 	check(not city.place_catalog_building("small-2x2-a",city.buildings[0].x,city.buildings[0].y).ok,"scenario asset overlap rejected")
 	check(city.buildings.size()==previous_count and city.next_id==previous_id,"failed placement is atomic")
-	check(city.catalog.eligible({"zone":"residential","size":2,"level":1}).is_empty() and city.catalog.eligible({"zone":"residential","size":8,"level":10}).is_empty(),"prototype variants are display-only until growth balance is defined")
+	check(city.catalog.eligible({"zone":"residential","size":2,"level":1}).all(func(id):return city.catalog.get_asset(id).density=="small") and city.catalog.eligible({"zone":"residential","size":8,"level":5}).all(func(id):return city.catalog.get_asset(id).density=="large"),"approved appearance activation respects small new lots and large 8x8 originals")
 	var saved_city = city
 	set_meta("construction_session",{"city":saved_city,"map_zoom":1.2,"origin":Vector2(700,150)})
 	var scene = load("res://residential_showcase.tscn").instantiate()

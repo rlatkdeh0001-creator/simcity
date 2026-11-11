@@ -6,7 +6,24 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 승인 반영: 원본30종·크기표 main 통합 (2026-11-11 KST)
+## 최신 작업: 성장 외관42종 연결 · 로컬 승인 대기
+
+현재 범위는 feature/growth-appearance의 외관 연결이다. 이전 main 통합3건과 구별한다.
+풍력 A안 문서 원문은 f660b94, 원격 성장14종 afe0bfe 병합은 3d6a4d9에 보존했다.
+신규14 GLB/spec/PNG/썸네일과 기존28을 합쳐 주거14·상업14·공업14를 활성화했다.
+용도/동일 부지/단계밀도(1·2 small,3·4 medium,5 large)로 매칭하며 같은 부지 최근접 밀도, 동률 낮은 밀도를 쓴다.
+맨션4×4/4층/min_level2 보존. 8×8 small/medium의6밀도셀은 large로 대체한다. 새 성장/신축 규칙은 구현하지 않았다.
+city_model에는 최초 외관 assign2줄만 추가했다. 행복도·경험치·부지 확률·수요·가격/용량 수치는 그대로다.
+[45조합 후보ID·실측·27/27·신규302/302·실제1920 캡처6장·검토 fixture 경계](growth-appearance-validation/README_KO.md).
+중간 범위 혼동으로 scratch 격리했던 산출물을 이번 사용자 재개 승인으로 선별 복원했다.
+캡처6장은 이전 실제 framebuffer와 상태 JSON을 그대로 복원하고 해시/현재 후보를 재검증했다. 이번 재개에서는 import와 전체27개를 두 배치로 새로 실행했다.
+도구: tools/export_growth_14.py, capture_growth_appearance.py/.gd, audit_growth_appearance.py.
+기존 emergency exporter/validator/Pillow/Blender4.3.2/Godot4.6.3, construction 규약 및 프로필 godot-windows-validation을 재사용했다.
+신규 외부 패키지/업스트림/라이선스/에이전트 없음. 기존 도구 출처·고정판·라이선스 기록은 아래 그대로 보존한다. 자체 리뷰다.
+AGENTS.md는 이번 지시대로 수정하지 않는다. 최신 사용자 승인 범위가 과거 비활성 서술보다 우선한다.
+**로컬 커밋까지만. main 병합·푸시 및 후속 범위 금지.**
+
+## 이전 승인 반영: 원본30종·크기표 main 통합 (2026-11-11 KST)
 
 사용자 승인으로 원격12d714e 크기표를 병합했다. 인계장 충돌1건은 양쪽 본문을 보존했다.
 기획9파일 원문을 보존했고 신규/변경6파일을 f3913d2에 별도 커밋했다. 기존 추적3파일은 그대로다.

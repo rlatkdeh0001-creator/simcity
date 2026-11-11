@@ -1005,5 +1005,271 @@
     ],
     "aspect": "centered cover; no stretching",
     "round_radius_px": 14
+  },
+  "medium-2x2-multiplex-01": {
+    "name": "필로티 다세대주택",
+    "source": "res://assets/buildings/medium-2x2-multiplex-01.png",
+    "source_sha256": "c565b2356b7e9f837338e2e489b161ee35ba674f145e8901edb8b19f7e56dfab",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-multiplex-01.png",
+    "sha256": "b8577b2fcd07f65b0d4f297e516f81966d489aeec75a2aa12eaab89a1ab10c5d",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      153,
+      63,
+      747,
+      1088
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-2x2-corner-villa-02": {
+    "name": "코너형 원룸 빌라",
+    "source": "res://assets/buildings/medium-2x2-corner-villa-02.png",
+    "source_sha256": "265a7910e6039ba102b66d88c72b325c5754a025a5e1e28385042d6d66bd3c5c",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-corner-villa-02.png",
+    "sha256": "c2267e09f7e53a13b93dc781e018982318dd349bbfa45af4e07079ef296002c0",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      185,
+      57,
+      715,
+      1088
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-slim-tower-01": {
+    "name": "세로 발코니 주거타워",
+    "source": "res://assets/buildings/large-2x2-slim-tower-01.png",
+    "source_sha256": "78db918e586e602e4330d8aae5cf5828c06a2940f4c6b8b4f34047e3884b11b5",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-slim-tower-01.png",
+    "sha256": "c2bccb138b69001e0f2f0702b35f7843dd4dc9176a7ce3d462f5fbccf72dc984",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      270,
+      38,
+      631,
+      1079
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-pencil-tower-02": {
+    "name": "세트백 펜슬 주거타워",
+    "source": "res://assets/buildings/large-2x2-pencil-tower-02.png",
+    "source_sha256": "de5ae54e6c2a440af7aedc2b9ec927882b08641ce71916df94b82387d0b22712",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-pencil-tower-02.png",
+    "sha256": "0d14f2081f248b5eca42aa8dfda1cb68af4f6cf332298fc941a6f9a3e471ec06",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      297,
+      44,
+      603,
+      1065
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-2x2-neighborhood-01": {
+    "name": "편의점·학원 근린상가",
+    "source": "res://assets/buildings/medium-2x2-neighborhood-01.png",
+    "source_sha256": "a935e58e1025d1b2f7967660a032786a2c2852bf011fc30285cb28d30d20b9de",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-neighborhood-01.png",
+    "sha256": "506f594271349724e719c1b02753ab7a7255ba490b81dd205fe6f9cb884f8e63",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      86,
+      40,
+      814,
+      1089
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-2x2-cafe-building-02": {
+    "name": "층별 식당·카페 빌딩",
+    "source": "res://assets/buildings/medium-2x2-cafe-building-02.png",
+    "source_sha256": "38d0a5f989075c6ac6382648f0f40326706e2812869aab9fc04effea7d0fea60",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-cafe-building-02.png",
+    "sha256": "10dcec372fb04b5e67ad80b0f7c86b46a7bdfaad016e7c53cb8f37e6b95faacf",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      133,
+      31,
+      767,
+      1089
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-slim-office-01": {
+    "name": "커튼월 슬림 오피스",
+    "source": "res://assets/buildings/large-2x2-slim-office-01.png",
+    "source_sha256": "e0fcf3475592a4de1f299621b2f6d5d515f3b64d582cc5a05d571c385f05f811",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-slim-office-01.png",
+    "sha256": "065fbd759b775173f87652f5e68cf9d88f0370111128ed04aeb968408cf4607f",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      222,
+      16,
+      678,
+      1090
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-boutique-hotel-02": {
+    "name": "명품매장 부티크 호텔",
+    "source": "res://assets/buildings/large-2x2-boutique-hotel-02.png",
+    "source_sha256": "64372f488dc569623b4fe2dd09707ffe24710c6d908bc1e25d7412d199c4187e",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-boutique-hotel-02.png",
+    "sha256": "2c00f055e549a5a0088c19c6f6357b9f1187bd5008c71ec1d8d4a50f2845dad8",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      260,
+      11,
+      639,
+      1085
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-2x2-bakery-01": {
+    "name": "소형 제빵 공장",
+    "source": "res://assets/buildings/medium-2x2-bakery-01.png",
+    "source_sha256": "9df1a3b003ecb9a21d8048cde918ce9461a76d3865215a5374f37ef95eebb49b",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-bakery-01.png",
+    "sha256": "01b0ca84192af6d0458ee9f1340763ba91fe63e4791161c459f8973373fb9ecb",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      8,
+      120,
+      892,
+      1042
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "medium-2x2-electronics-02": {
+    "name": "클린룸 전자부품 공장",
+    "source": "res://assets/buildings/medium-2x2-electronics-02.png",
+    "source_sha256": "fd435670cc4752e8bdc1028e0fa427de05b89e14a03781f5487d1a1beb155f8c",
+    "thumbnail": "res://assets/ui/thumbnails/medium-2x2-electronics-02.png",
+    "sha256": "fdec5ee2113f1c62680caa72dac5084a39caff403e088ab863fffbdced9f5fe5",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      29,
+      72,
+      872,
+      1087
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-grain-silo-01": {
+    "name": "곡물 사일로·컨베이어",
+    "source": "res://assets/buildings/large-2x2-grain-silo-01.png",
+    "source_sha256": "d15817b1594e08c196b8e5b742a20d4c8a1cdcd088e237c7847867366d5f4b4f",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-grain-silo-01.png",
+    "sha256": "157140536640e244a56562b207e61936ec370d69c8067e1585de60752d6149d0",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      142,
+      87,
+      758,
+      1086
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "large-2x2-distillation-02": {
+    "name": "화학 증류탑 설비",
+    "source": "res://assets/buildings/large-2x2-distillation-02.png",
+    "source_sha256": "a16649aa4d83da130e2b12f5d1bfa0e78265217495134f05dd92efeae401e2de",
+    "thumbnail": "res://assets/ui/thumbnails/large-2x2-distillation-02.png",
+    "sha256": "cdf67a8dcded50f0dbad305da02d7326a7e63f7bfa83702f59bbd960f58bb91c",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      155,
+      74,
+      744,
+      1087
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-4x4-logistics-01": {
+    "name": "2베이 물류창고",
+    "source": "res://assets/buildings/small-4x4-logistics-01.png",
+    "source_sha256": "67254db4c600573b06cf789f795ad135ee63cfd405cb19ecee9392d340116658",
+    "thumbnail": "res://assets/ui/thumbnails/small-4x4-logistics-01.png",
+    "sha256": "81644c759c00247adb5c1a7d2f82b7a1c0ff924a373ed05f36d4042a370c97cb",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      8,
+      266,
+      892,
+      860
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
+  },
+  "small-4x4-metalshop-02": {
+    "name": "금속가공 작업장·야적장",
+    "source": "res://assets/buildings/small-4x4-metalshop-02.png",
+    "source_sha256": "7d9e6a298e336bb0cd1fdd16f20a41b16993662ca6c2293b3718257631cb75d7",
+    "thumbnail": "res://assets/ui/thumbnails/small-4x4-metalshop-02.png",
+    "sha256": "a53baac7de5d6ac2f617eb00aef58fba9575b8f185623cedcffb7ed17ed06c21",
+    "size": [
+      256,
+      192
+    ],
+    "source_crop": [
+      8,
+      282,
+      892,
+      860
+    ],
+    "aspect": "centered cover; no stretching",
+    "round_radius_px": 14
   }
 }

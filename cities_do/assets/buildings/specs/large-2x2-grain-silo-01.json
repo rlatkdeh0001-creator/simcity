@@ -1,0 +1,134 @@
+{
+  "id": "large-2x2-grain-silo-01",
+  "name": "곡물 사일로·컨베이어",
+  "zone": "industrial",
+  "group": "industrial",
+  "category": "large_industrial",
+  "density": "large",
+  "category_name": "대형 공업",
+  "footprint": [
+    2,
+    2
+  ],
+  "width": 2,
+  "depth": 2,
+  "storeys": 0,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-2x2-grain-silo-01.png",
+  "preview": "res://assets/buildings/large-2x2-grain-silo-01.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1029.8605
+  ],
+  "lot_width_px": 557.3130000000001,
+  "model": "res://assets/buildings/models/large-2x2-grain-silo-01.glb",
+  "spec": "res://assets/buildings/specs/large-2x2-grain-silo-01.json",
+  "height_m": 17.1200008392334,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 7700,
+  "source": "assets/industrial-growth/large-2x2-grain-silo-01/large-2x2-grain-silo-01.blend",
+  "source_metadata": {
+    "id": "large-2x2-grain-silo-01",
+    "name": "곡물 사일로·컨베이어",
+    "zone": "industrial",
+    "category": "large_industrial",
+    "density": "large",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "floors": 0,
+    "occupied_storeys": 0,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        17.0
+      ]
+    ],
+    "measured_dimensions_m": [
+      8.0,
+      8.0,
+      17.11999999731779
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      1029.8605
+    ],
+    "lot_corners_px": [
+      [
+        171.3435,
+        890.5323
+      ],
+      [
+        450.0,
+        1029.8605
+      ],
+      [
+        728.6565,
+        890.5323
+      ],
+      [
+        450.0,
+        751.2041
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 22.330507278442383,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": true
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      17.1200008392334
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

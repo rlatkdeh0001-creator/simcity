@@ -1,6 +1,12 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
-## 2026-11-11 · 30종 main 통합 승인 / 크기표 동기화
+## 성장 외관42종 연결 · 로컬 승인 대기
+
+주거14·상업14·공업14의 실제 모델을 용도/부지/단계밀도로 연결했다.
+[45조합 후보ID·실측·전체27/27·신규302/302·실제1920 캡처6장](docs/growth-appearance-validation/README_KO.md).
+시뮬레이션 수치·가격/용량 변경 없음. feature/growth-appearance 로컬 커밋까지만, main 병합·푸시 금지.
+
+## 이전 기록 · 2026-11-11 30종 main 통합 승인 / 크기표 동기화
 
 원격 크기표를 병합하고 소방/경찰6종 사용자 지정 상태·풍력4×4 부지를 반영했다.
 [63종 표·30종 일치·전체26/26·30종635/635·원본 승인 필드/GLB 불변 검증](docs/register-30-assets-validation/approved-main-merge/README_KO.md).

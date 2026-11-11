@@ -1,0 +1,134 @@
+{
+  "id": "large-2x2-slim-tower-01",
+  "name": "세로 발코니 주거타워",
+  "zone": "residential",
+  "group": "residential",
+  "category": "large_residential",
+  "density": "large",
+  "category_name": "대형 주거",
+  "footprint": [
+    2,
+    2
+  ],
+  "width": 2,
+  "depth": 2,
+  "storeys": 10,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-2x2-slim-tower-01.png",
+  "preview": "res://assets/buildings/large-2x2-slim-tower-01.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1024.8632
+  ],
+  "lot_width_px": 326.7454,
+  "model": "res://assets/buildings/models/large-2x2-slim-tower-01.glb",
+  "spec": "res://assets/buildings/specs/large-2x2-slim-tower-01.json",
+  "height_m": 33.23999786376953,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 17356,
+  "source": "assets/residential-growth/large-2x2-slim-tower-01/large-2x2-slim-tower-01.blend",
+  "source_metadata": {
+    "id": "large-2x2-slim-tower-01",
+    "name": "세로 발코니 주거타워",
+    "zone": "residential",
+    "category": "large_residential",
+    "density": "large",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "floors": 10,
+    "occupied_storeys": 10,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        33.119998931884766
+      ]
+    ],
+    "measured_dimensions_m": [
+      8.0,
+      8.0,
+      33.23999892920256
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      1024.8632
+    ],
+    "lot_corners_px": [
+      [
+        286.6273,
+        943.1769
+      ],
+      [
+        450.0,
+        1024.8632
+      ],
+      [
+        613.3727,
+        943.1769
+      ],
+      [
+        450.0,
+        861.4905
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 38.08799743652344,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": false
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      33.23999786376953
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

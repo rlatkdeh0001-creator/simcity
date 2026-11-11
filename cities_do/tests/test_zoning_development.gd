@@ -27,7 +27,7 @@ func run() -> void:
  var b: Dictionary=c.buildings[0]
  verify(b.size==2 and b.zone=="residential" and b.automatically_developed,"new building records automatic origin and zoning")
  verify(c.parcel_placement_error(b.frame,b.u,b.v,2,b.id)=="" and b.front_road_id==0,"automatic placement uses shared frontage collision checks")
- verify(b.asset_id not in ["small-2x2-a","small-2x2-b"],"display-only residential concepts are not silently enabled for growth")
+ verify(b.asset_id in ["small-2x2-a","small-2x2-b"] and c.catalog.get_asset(b.asset_id).density=="small","user-approved new residential facade is a real small 2x2 original")
  var before: Dictionary=b.duplicate(true)
  paint(c,frame,0,0,4,"commercial")
  verify(c.buildings[0]==before,"repainting preserves existing building ID zone frontage and model")
@@ -43,7 +43,7 @@ func run() -> void:
  verify(mixed.advance_development(2).is_empty(),"mixed-use 2x2 cells cannot form one building")
  paint(mixed,frame,0,0,2,"industrial")
  verify(mixed.advance_development(2).size()==1 and mixed.buildings[0].zone=="industrial","industrial zones develop without residential facade substitution")
- verify(mixed.buildings[0].asset_id=="","missing industrial model uses existing procedural rendering")
+ verify(not mixed.buildings[0].asset_id.is_empty() and mixed.catalog.get_asset(mixed.buildings[0].asset_id).zone=="industrial" and mixed.catalog.get_asset(mixed.buildings[0].asset_id).density=="small","industrial development uses its own real small facade instead of a temporary block")
  var deep=town()
  frame=deep.zoning_grid.frames.values()[0]
  paint(deep,frame,0,2,2,"residential")

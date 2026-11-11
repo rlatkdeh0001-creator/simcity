@@ -1,0 +1,134 @@
+{
+  "id": "small-4x4-logistics-01",
+  "name": "2베이 물류창고",
+  "zone": "industrial",
+  "group": "industrial",
+  "category": "small_industrial",
+  "density": "small",
+  "category_name": "소형 공업",
+  "footprint": [
+    4,
+    4
+  ],
+  "width": 4,
+  "depth": 4,
+  "storeys": 1,
+  "min_level": 1,
+  "texture": "res://assets/buildings/small-4x4-logistics-01.png",
+  "preview": "res://assets/buildings/small-4x4-logistics-01.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    824.7511
+  ],
+  "lot_width_px": 801.9802,
+  "model": "res://assets/buildings/models/small-4x4-logistics-01.glb",
+  "spec": "res://assets/buildings/specs/small-4x4-logistics-01.json",
+  "height_m": 5.53000020980835,
+  "width_m": 16.0,
+  "length_m": 16.0,
+  "triangles": 8012,
+  "source": "assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend",
+  "source_metadata": {
+    "id": "small-4x4-logistics-01",
+    "name": "2베이 물류창고",
+    "zone": "industrial",
+    "category": "small_industrial",
+    "density": "small",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "occupied_storeys": 1,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.410000324249268
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      5.530000321567059
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      824.7511
+    ],
+    "lot_corners_px": [
+      [
+        49.0099,
+        624.2561
+      ],
+      [
+        450.0,
+        824.7511
+      ],
+      [
+        850.9901,
+        624.2561
+      ],
+      [
+        450.0,
+        423.7611
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 31.035879135131836,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": false
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -8.0,
+      -8.0,
+      0.0
+    ],
+    [
+      8.0,
+      8.0,
+      5.53000020980835
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

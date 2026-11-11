@@ -1,0 +1,74 @@
+{
+  "review_mode": "self-review",
+  "registered_growth": 14,
+  "total_private_appearances": 42,
+  "protected_source_count": 49,
+  "all_source_hashes_unchanged": true,
+  "existing_glb_unchanged": 104,
+  "growth_simulation_rules_unchanged": true,
+  "proposal_values_runtime_unapplied": true,
+  "matching_rows": 45,
+  "fallback_stage_rows": 12,
+  "missing_density_cells": [
+    {
+      "zone": "residential",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "small",
+      "fallback": "large"
+    },
+    {
+      "zone": "residential",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "medium",
+      "fallback": "large"
+    },
+    {
+      "zone": "commercial",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "small",
+      "fallback": "large"
+    },
+    {
+      "zone": "commercial",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "medium",
+      "fallback": "large"
+    },
+    {
+      "zone": "industrial",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "small",
+      "fallback": "large"
+    },
+    {
+      "zone": "industrial",
+      "lot": [
+        8,
+        8
+      ],
+      "density": "medium",
+      "fallback": "large"
+    }
+  ],
+  "empty_candidate_rows": [],
+  "captures": 6,
+  "tests_passed": 27,
+  "tests_total": 27,
+  "new_growth_checks": 302,
+  "geometry_anomalies": []
+}

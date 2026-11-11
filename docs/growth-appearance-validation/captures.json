@@ -1,0 +1,864 @@
+[
+  {
+    "name": "lot-2x2-stage-1-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=2",
+      "--stage=1",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-1-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.63,
+    "log": "lot-2x2-stage-1-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-1-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "efe4304b4d5b0f5a6e25c9368da520ce8f85929b0e22189b44b1873673686d4c",
+    "state": {
+      "authored_4x4_setup": false,
+      "buildings": [
+        {
+          "asset_id": "small-2x2-a",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 2,
+          "model": "res://assets/buildings/models/small-2x2-a.glb",
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-2x2-mart-01",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 2,
+          "model": "res://assets/buildings/models/small-2x2-mart-01.glb",
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-2x2-foodworks-02",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 2,
+          "model": "res://assets/buildings/models/small-2x2-foodworks-02.glb",
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [],
+      "lot": 2,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-2x2-a",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-2x2-mart-01",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-2x2-foodworks-02",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 1,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "lot-2x2-stage-3-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=2",
+      "--stage=3",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-3-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 5.15,
+    "log": "lot-2x2-stage-3-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-3-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "9538289a552948d6b84367c48a9e16fde77e2ed3f130769089be46ecd44040b5",
+    "state": {
+      "authored_4x4_setup": false,
+      "buildings": [
+        {
+          "asset_id": "medium-2x2-multiplex-01",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 2,
+          "model": "res://assets/buildings/models/medium-2x2-multiplex-01.glb",
+          "stage": 3,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "medium-2x2-cafe-building-02",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 2,
+          "model": "res://assets/buildings/models/medium-2x2-cafe-building-02.glb",
+          "stage": 3,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "medium-2x2-electronics-02",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 2,
+          "model": "res://assets/buildings/models/medium-2x2-electronics-02.glb",
+          "stage": 3,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [
+        {
+          "asset_id": "small-2x2-a",
+          "building": 1,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-multiplex-01",
+          "building": 1,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "small-2x2-mart-01",
+          "building": 2,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-cafe-building-02",
+          "building": 2,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "small-2x2-foodworks-02",
+          "building": 3,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-electronics-02",
+          "building": 3,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        }
+      ],
+      "lot": 2,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-2x2-a",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-2x2-mart-01",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-2x2-foodworks-02",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 3,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "lot-2x2-stage-5-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=2",
+      "--stage=5",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-5-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.27,
+    "log": "lot-2x2-stage-5-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-2x2-stage-5-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "a63f6879bb289ac9debe18f9c04094d5794dbeefd12beb6b334f7b2b31262067",
+    "state": {
+      "authored_4x4_setup": false,
+      "buildings": [
+        {
+          "asset_id": "large-2x2-pencil-tower-02",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 2,
+          "model": "res://assets/buildings/models/large-2x2-pencil-tower-02.glb",
+          "stage": 5,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "large-2x2-boutique-hotel-02",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 2,
+          "model": "res://assets/buildings/models/large-2x2-boutique-hotel-02.glb",
+          "stage": 5,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "large-2x2-grain-silo-01",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 2,
+          "model": "res://assets/buildings/models/large-2x2-grain-silo-01.glb",
+          "stage": 5,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [
+        {
+          "asset_id": "small-2x2-a",
+          "building": 1,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-multiplex-01",
+          "building": 1,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "medium-2x2-multiplex-01",
+          "building": 1,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-2x2-pencil-tower-02",
+          "building": 1,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        },
+        {
+          "asset_id": "small-2x2-mart-01",
+          "building": 2,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-cafe-building-02",
+          "building": 2,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "medium-2x2-cafe-building-02",
+          "building": 2,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-2x2-boutique-hotel-02",
+          "building": 2,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        },
+        {
+          "asset_id": "small-2x2-foodworks-02",
+          "building": 3,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-2x2-electronics-02",
+          "building": 3,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "medium-2x2-electronics-02",
+          "building": 3,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-2x2-grain-silo-01",
+          "building": 3,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        }
+      ],
+      "lot": 2,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-2x2-a",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-2x2-mart-01",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-2x2-foodworks-02",
+          "initial_stage": 1,
+          "painted_cells": 4,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 5,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "lot-4x4-stage-1-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=4",
+      "--stage=1",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-1-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.73,
+    "log": "lot-4x4-stage-1-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-1-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "bd1269e53978b7eafc2d8e716235e9490da3412204abfeaad112d3037442bd13",
+    "state": {
+      "authored_4x4_setup": true,
+      "buildings": [
+        {
+          "asset_id": "small-4x4-a",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 4,
+          "model": "res://assets/buildings/models/small-4x4-a.glb",
+          "stage": 1,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "small-4x4-cafe-diner-04",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 4,
+          "model": "res://assets/buildings/models/small-4x4-cafe-diner-04.glb",
+          "stage": 1,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "density": "small",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 4,
+          "model": "res://assets/buildings/models/small-4x4-logistics-01.glb",
+          "stage": 1,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [],
+      "lot": 4,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-4x4-a",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-4x4-cafe-diner-04",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-4x4-logistics-01",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 1,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "lot-4x4-stage-3-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=4",
+      "--stage=3",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-3-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 5.29,
+    "log": "lot-4x4-stage-3-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-3-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "8a27d9498ae7b70c7192a806f5ce19af8f0862fa26510c37b62a054422764d7e",
+    "state": {
+      "authored_4x4_setup": true,
+      "buildings": [
+        {
+          "asset_id": "mansion-a-4x4-4f",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 4,
+          "model": "res://assets/buildings/models/mansion-a-4x4-4f.glb",
+          "stage": 3,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "medium-4x4-office-retail-05",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 4,
+          "model": "res://assets/buildings/models/medium-4x4-office-retail-05.glb",
+          "stage": 3,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "medium-4x4-circuitworks-04",
+          "density": "medium",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 4,
+          "model": "res://assets/buildings/models/medium-4x4-circuitworks-04.glb",
+          "stage": 3,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [
+        {
+          "asset_id": "small-4x4-a",
+          "building": 1,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "mansion-a-4x4-4f",
+          "building": 1,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "small-4x4-cafe-diner-04",
+          "building": 2,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-4x4-office-retail-05",
+          "building": 2,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "building": 3,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-4x4-circuitworks-04",
+          "building": 3,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        }
+      ],
+      "lot": 4,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-4x4-a",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-4x4-cafe-diner-04",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-4x4-logistics-01",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 3,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "lot-4x4-stage-5-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_growth_appearance.gd",
+      "--",
+      "--lot=4",
+      "--stage=5",
+      "--evidence=D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-5-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.25,
+    "log": "lot-4x4-stage-5-1920.log",
+    "path": "D:\\project\\simcity\\docs\\growth-appearance-validation\\lot-4x4-stage-5-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "21673f92b9acc510b83cac416d34fffa15d186b8057a3ac88a8ca4aa89c05d8e",
+    "state": {
+      "authored_4x4_setup": true,
+      "buildings": [
+        {
+          "asset_id": "large-4x4-b",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 1,
+          "lot": 4,
+          "model": "res://assets/buildings/models/large-4x4-b.glb",
+          "stage": 5,
+          "zone": "residential"
+        },
+        {
+          "asset_id": "large-4x4-department-07",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 2,
+          "lot": 4,
+          "model": "res://assets/buildings/models/large-4x4-department-07.glb",
+          "stage": 5,
+          "zone": "commercial"
+        },
+        {
+          "asset_id": "large-4x4-pharma-05",
+          "density": "large",
+          "frontage": "(0.0, 1.0)",
+          "id": 3,
+          "lot": 4,
+          "model": "res://assets/buildings/models/large-4x4-pharma-05.glb",
+          "stage": 5,
+          "zone": "industrial"
+        }
+      ],
+      "funds": 50000,
+      "growth_button_actions": [
+        {
+          "asset_id": "small-4x4-a",
+          "building": 1,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "mansion-a-4x4-4f",
+          "building": 1,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "mansion-a-4x4-4f",
+          "building": 1,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-4x4-b",
+          "building": 1,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        },
+        {
+          "asset_id": "small-4x4-cafe-diner-04",
+          "building": 2,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-4x4-brick-services-06",
+          "building": 2,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "medium-4x4-brick-services-06",
+          "building": 2,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-4x4-department-07",
+          "building": 2,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        },
+        {
+          "asset_id": "small-4x4-logistics-01",
+          "building": 3,
+          "from_stage": 1,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 2
+        },
+        {
+          "asset_id": "medium-4x4-precision-03",
+          "building": 3,
+          "from_stage": 2,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 3
+        },
+        {
+          "asset_id": "medium-4x4-precision-03",
+          "building": 3,
+          "from_stage": 3,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 4
+        },
+        {
+          "asset_id": "large-4x4-pharma-05",
+          "building": 3,
+          "from_stage": 4,
+          "input": "actual viewport mouse press/release on existing score and upgrade buttons",
+          "to_stage": 5
+        }
+      ],
+      "lot": 4,
+      "painted_setup": [
+        {
+          "id": 1,
+          "initial_asset": "small-4x4-a",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "residential"
+        },
+        {
+          "id": 2,
+          "initial_asset": "small-4x4-cafe-diner-04",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "commercial"
+        },
+        {
+          "id": 3,
+          "initial_asset": "small-4x4-logistics-01",
+          "initial_stage": 1,
+          "painted_cells": 16,
+          "zone": "industrial"
+        }
+      ],
+      "population_gating_disabled_in_fixture_only": true,
+      "production_growth_rules_changed": false,
+      "stage": 5,
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  }
+]

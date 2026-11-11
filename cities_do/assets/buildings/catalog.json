@@ -29,7 +29,9 @@
         0,
         1
       ],
-      "height_m": 14.245
+      "height_m": 14.245,
+      "density": "medium",
+      "growth_enabled": true
     },
     {
       "id": "mansion-b-4x4-4f",
@@ -59,7 +61,9 @@
         0,
         1
       ],
-      "height_m": 14.485
+      "height_m": 14.485,
+      "density": "medium",
+      "growth_enabled": true
     },
     {
       "id": "small-2x2-a",
@@ -73,7 +77,7 @@
       ],
       "storeys": 1,
       "min_level": 1,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/small-2x2-a.png",
       "image_size": [
         900,
@@ -90,7 +94,8 @@
         0,
         1
       ],
-      "height_m": 5.2
+      "height_m": 5.2,
+      "density": "small"
     },
     {
       "id": "small-2x2-b",
@@ -104,7 +109,7 @@
       ],
       "storeys": 2,
       "min_level": 1,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/small-2x2-b.png",
       "image_size": [
         900,
@@ -121,7 +126,8 @@
         0,
         1
       ],
-      "height_m": 7.025
+      "height_m": 7.025,
+      "density": "small"
     },
     {
       "id": "small-4x4-a",
@@ -135,7 +141,7 @@
       ],
       "storeys": 2,
       "min_level": 1,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/small-4x4-a.png",
       "image_size": [
         900,
@@ -152,7 +158,8 @@
         0,
         1
       ],
-      "height_m": 8.1
+      "height_m": 8.1,
+      "density": "small"
     },
     {
       "id": "small-4x4-b",
@@ -166,7 +173,7 @@
       ],
       "storeys": 3,
       "min_level": 1,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/small-4x4-b.png",
       "image_size": [
         900,
@@ -183,7 +190,8 @@
         0,
         1
       ],
-      "height_m": 9.59
+      "height_m": 9.59,
+      "density": "small"
     },
     {
       "id": "large-4x4-a",
@@ -196,8 +204,8 @@
         4
       ],
       "storeys": 8,
-      "min_level": 3,
-      "growth_enabled": false,
+      "min_level": 1,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/large-4x4-a.png",
       "image_size": [
         900,
@@ -214,7 +222,8 @@
         0,
         1
       ],
-      "height_m": 25.8
+      "height_m": 25.8,
+      "density": "large"
     },
     {
       "id": "large-4x4-b",
@@ -227,8 +236,8 @@
         4
       ],
       "storeys": 10,
-      "min_level": 3,
-      "growth_enabled": false,
+      "min_level": 1,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/large-4x4-b.png",
       "image_size": [
         900,
@@ -245,7 +254,8 @@
         0,
         1
       ],
-      "height_m": 30.9
+      "height_m": 30.9,
+      "density": "large"
     },
     {
       "id": "large-8x8-a",
@@ -258,8 +268,8 @@
         8
       ],
       "storeys": 14,
-      "min_level": 3,
-      "growth_enabled": false,
+      "min_level": 1,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/large-8x8-a.png",
       "image_size": [
         900,
@@ -276,7 +286,8 @@
         0,
         1
       ],
-      "height_m": 44.3
+      "height_m": 44.3,
+      "density": "large"
     },
     {
       "id": "large-8x8-b",
@@ -289,8 +300,8 @@
         8
       ],
       "storeys": 18,
-      "min_level": 3,
-      "growth_enabled": false,
+      "min_level": 1,
+      "growth_enabled": true,
       "texture": "res://assets/buildings/large-8x8-b.png",
       "image_size": [
         900,
@@ -307,7 +318,8 @@
         0,
         1
       ],
-      "height_m": 56.5
+      "height_m": 56.5,
+      "density": "large"
     },
     {
       "id": "large-4x4-department-07",
@@ -441,7 +453,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -465,7 +477,8 @@
         931.2993
       ],
       "lot_width_px": 541.0904,
-      "industry": "department_store"
+      "industry": "department_store",
+      "density": "large"
     },
     {
       "id": "large-4x4-office-nova-08",
@@ -599,7 +612,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -623,7 +636,8 @@
         938.9004
       ],
       "lot_width_px": 497.80320000000006,
-      "industry": "office_with_retail"
+      "industry": "office_with_retail",
+      "density": "large"
     },
     {
       "id": "large-8x8-grand-department-09",
@@ -757,7 +771,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -781,7 +795,8 @@
         918.8796
       ],
       "lot_width_px": 742.9898000000001,
-      "industry": "department_store"
+      "industry": "department_store",
+      "density": "large"
     },
     {
       "id": "large-8x8-twin-central-10",
@@ -914,7 +929,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -938,7 +953,8 @@
         923.6111
       ],
       "lot_width_px": 592.6228,
-      "industry": "office_with_retail"
+      "industry": "office_with_retail",
+      "density": "large"
     },
     {
       "id": "medium-4x4-brick-services-06",
@@ -1069,7 +1085,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1093,7 +1109,8 @@
         904.6151
       ],
       "lot_width_px": 777.8175,
-      "industry": "식음·서비스"
+      "industry": "식음·서비스",
+      "density": "medium"
     },
     {
       "id": "medium-4x4-office-retail-05",
@@ -1224,7 +1241,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1248,7 +1265,8 @@
         904.6151
       ],
       "lot_width_px": 777.8175,
-      "industry": "업무·상가"
+      "industry": "업무·상가",
+      "density": "medium"
     },
     {
       "id": "small-2x2-auto-02",
@@ -1379,7 +1397,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1403,7 +1421,8 @@
         876.8141
       ],
       "lot_width_px": 829.672,
-      "industry": "자동차 전시"
+      "industry": "자동차 전시",
+      "density": "small"
     },
     {
       "id": "small-2x2-mart-01",
@@ -1536,7 +1555,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1560,7 +1579,8 @@
         876.8141
       ],
       "lot_width_px": 829.672,
-      "industry": "마트"
+      "industry": "마트",
+      "density": "small"
     },
     {
       "id": "small-4x4-cafe-diner-04",
@@ -1691,7 +1711,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1715,7 +1735,8 @@
         860.0115
       ],
       "lot_width_px": 888.9343,
-      "industry": "식음"
+      "industry": "식음",
+      "density": "small"
     },
     {
       "id": "small-4x4-market-03",
@@ -1846,7 +1867,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -1870,7 +1891,8 @@
         860.0115
       ],
       "lot_width_px": 888.9343,
-      "industry": "슈퍼마켓"
+      "industry": "슈퍼마켓",
+      "density": "small"
     },
     {
       "id": "large-4x4-chemical-06",
@@ -2003,7 +2025,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2027,7 +2049,8 @@
         874.8454
       ],
       "lot_width_px": 777.8175,
-      "industry": "화학"
+      "industry": "화학",
+      "density": "large"
     },
     {
       "id": "large-4x4-pharma-05",
@@ -2160,7 +2183,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2184,7 +2207,8 @@
         882.4408
       ],
       "lot_width_px": 672.7070000000001,
-      "industry": "제약"
+      "industry": "제약",
+      "density": "large"
     },
     {
       "id": "large-8x8-auto-assembly-07",
@@ -2319,7 +2343,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2343,7 +2367,8 @@
         831.6541
       ],
       "lot_width_px": 843.7342,
-      "industry": "자동차 조립"
+      "industry": "자동차 조립",
+      "density": "large"
     },
     {
       "id": "large-8x8-chemical-complex-08",
@@ -2477,7 +2502,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2501,7 +2526,8 @@
         842.2949
       ],
       "lot_width_px": 765.851,
-      "industry": "화학"
+      "industry": "화학",
+      "density": "large"
     },
     {
       "id": "medium-4x4-circuitworks-04",
@@ -2634,7 +2660,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2658,7 +2684,8 @@
         879.4354
       ],
       "lot_width_px": 754.2472,
-      "industry": "전자부품"
+      "industry": "전자부품",
+      "density": "medium"
     },
     {
       "id": "medium-4x4-precision-03",
@@ -2793,7 +2820,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2817,7 +2844,8 @@
         848.8704
       ],
       "lot_width_px": 829.672,
-      "industry": "정밀기계"
+      "industry": "정밀기계",
+      "density": "medium"
     },
     {
       "id": "small-2x2-foodworks-02",
@@ -2950,7 +2978,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -2974,7 +3002,8 @@
         876.8141
       ],
       "lot_width_px": 829.672,
-      "industry": "식품가공"
+      "industry": "식품가공",
+      "density": "small"
     },
     {
       "id": "small-2x2-metalworks-01",
@@ -3107,7 +3136,7 @@
       ],
       "status": "asset_preview_only",
       "simulation_enabled": false,
-      "growth_enabled": false,
+      "growth_enabled": true,
       "recovered_batch": "remaining_30",
       "recovered_original": true,
       "registration_issues": [],
@@ -3131,7 +3160,1884 @@
         876.8141
       ],
       "lot_width_px": 829.672,
-      "industry": "금속가공"
+      "industry": "금속가공",
+      "density": "small"
+    },
+    {
+      "id": "medium-2x2-multiplex-01",
+      "name": "필로티 다세대주택",
+      "zone": "residential",
+      "group": "residential",
+      "category": "medium_residential",
+      "density": "medium",
+      "category_name": "중형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 5,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-multiplex-01.png",
+      "preview": "res://assets/buildings/medium-2x2-multiplex-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1030.2196
+      ],
+      "lot_width_px": 537.7650000000001,
+      "model": "res://assets/buildings/models/medium-2x2-multiplex-01.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-multiplex-01.json",
+      "height_m": 17.990001678466797,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 8844,
+      "source": "assets/residential-growth/medium-2x2-multiplex-01/medium-2x2-multiplex-01.blend",
+      "source_metadata": {
+        "id": "medium-2x2-multiplex-01",
+        "name": "필로티 다세대주택",
+        "zone": "residential",
+        "category": "medium_residential",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 5,
+        "occupied_storeys": 5,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            17.8700008392334
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          17.99000083655119
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1030.2196
+        ],
+        "lot_corners_px": [
+          [
+            181.1175,
+            895.7784
+          ],
+          [
+            450.0,
+            1030.2196
+          ],
+          [
+            718.8825,
+            895.7784
+          ],
+          [
+            450.0,
+            761.3371
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 23.14222526550293,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          17.990001678466797
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "medium-2x2-corner-villa-02",
+      "name": "코너형 원룸 빌라",
+      "zone": "residential",
+      "group": "residential",
+      "category": "medium_residential",
+      "density": "medium",
+      "category_name": "중형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 6,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-corner-villa-02.png",
+      "preview": "res://assets/buildings/medium-2x2-corner-villa-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1031.3014
+      ],
+      "lot_width_px": 478.8805,
+      "model": "res://assets/buildings/models/medium-2x2-corner-villa-02.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-corner-villa-02.json",
+      "height_m": 21.040000915527344,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 9796,
+      "source": "assets/residential-growth/medium-2x2-corner-villa-02/medium-2x2-corner-villa-02.blend",
+      "source_metadata": {
+        "id": "medium-2x2-corner-villa-02",
+        "name": "코너형 원룸 빌라",
+        "zone": "residential",
+        "category": "medium_residential",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 6,
+        "occupied_storeys": 6,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            20.920000076293945
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          21.040000073611736
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1031.3014
+        ],
+        "lot_corners_px": [
+          [
+            210.5597,
+            911.5813
+          ],
+          [
+            450.0,
+            1031.3014
+          ],
+          [
+            689.4402,
+            911.5813
+          ],
+          [
+            450.0,
+            791.8612
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 25.98786163330078,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          21.040000915527344
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-slim-tower-01",
+      "name": "세로 발코니 주거타워",
+      "zone": "residential",
+      "group": "residential",
+      "category": "large_residential",
+      "density": "large",
+      "category_name": "대형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 10,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-slim-tower-01.png",
+      "preview": "res://assets/buildings/large-2x2-slim-tower-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1024.8632
+      ],
+      "lot_width_px": 326.7454,
+      "model": "res://assets/buildings/models/large-2x2-slim-tower-01.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-slim-tower-01.json",
+      "height_m": 33.23999786376953,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 17356,
+      "source": "assets/residential-growth/large-2x2-slim-tower-01/large-2x2-slim-tower-01.blend",
+      "source_metadata": {
+        "id": "large-2x2-slim-tower-01",
+        "name": "세로 발코니 주거타워",
+        "zone": "residential",
+        "category": "large_residential",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 10,
+        "occupied_storeys": 10,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            33.119998931884766
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          33.23999892920256
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1024.8632
+        ],
+        "lot_corners_px": [
+          [
+            286.6273,
+            943.1769
+          ],
+          [
+            450.0,
+            1024.8632
+          ],
+          [
+            613.3727,
+            943.1769
+          ],
+          [
+            450.0,
+            861.4905
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 38.08799743652344,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          33.23999786376953
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-pencil-tower-02",
+      "name": "세트백 펜슬 주거타워",
+      "zone": "residential",
+      "group": "residential",
+      "category": "large_residential",
+      "density": "large",
+      "category_name": "대형 주거",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 12,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-pencil-tower-02.png",
+      "preview": "res://assets/buildings/large-2x2-pencil-tower-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        449.9998,
+        1012.8488
+      ],
+      "lot_width_px": 275.92569999999995,
+      "model": "res://assets/buildings/models/large-2x2-pencil-tower-02.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-pencil-tower-02.json",
+      "height_m": 39.339996337890625,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 14828,
+      "source": "assets/residential-growth/large-2x2-pencil-tower-02/large-2x2-pencil-tower-02.blend",
+      "source_metadata": {
+        "id": "large-2x2-pencil-tower-02",
+        "name": "세트백 펜슬 주거타워",
+        "zone": "residential",
+        "category": "large_residential",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 12,
+        "occupied_storeys": 12,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            39.21999740600586
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          39.33999740332365
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          449.9998,
+          1012.8488
+        ],
+        "lot_corners_px": [
+          [
+            312.0369,
+            943.8673
+          ],
+          [
+            449.9998,
+            1012.8488
+          ],
+          [
+            587.9626,
+            943.8673
+          ],
+          [
+            449.9998,
+            874.8858
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 45.102996826171875,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          39.339996337890625
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "medium-2x2-neighborhood-01",
+      "name": "편의점·학원 근린상가",
+      "zone": "commercial",
+      "group": "commercial",
+      "category": "medium_commercial",
+      "density": "medium",
+      "category_name": "중형 상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 4,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-neighborhood-01.png",
+      "preview": "res://assets/buildings/medium-2x2-neighborhood-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1027.9704
+      ],
+      "lot_width_px": 660.2013999999999,
+      "model": "res://assets/buildings/models/medium-2x2-neighborhood-01.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-neighborhood-01.json",
+      "height_m": 13.389999389648438,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 11924,
+      "source": "assets/commercial-growth/medium-2x2-neighborhood-01/medium-2x2-neighborhood-01.blend",
+      "source_metadata": {
+        "id": "medium-2x2-neighborhood-01",
+        "name": "편의점·학원 근린상가",
+        "zone": "commercial",
+        "category": "medium_commercial",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 4,
+        "occupied_storeys": 4,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            13.269999504089355
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          13.389999501407146
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1027.9704
+        ],
+        "lot_corners_px": [
+          [
+            119.8993,
+            862.92
+          ],
+          [
+            450.0,
+            1027.9704
+          ],
+          [
+            780.1007,
+            862.92
+          ],
+          [
+            450.0,
+            697.8697
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 18.85042953491211,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          13.389999389648438
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "medium-2x2-cafe-building-02",
+      "name": "층별 식당·카페 빌딩",
+      "zone": "commercial",
+      "group": "commercial",
+      "category": "medium_commercial",
+      "density": "medium",
+      "category_name": "중형 상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 5,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-cafe-building-02.png",
+      "preview": "res://assets/buildings/medium-2x2-cafe-building-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1029.5611
+      ],
+      "lot_width_px": 573.6099999999999,
+      "model": "res://assets/buildings/models/medium-2x2-cafe-building-02.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-cafe-building-02.json",
+      "height_m": 16.440000534057617,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 20780,
+      "source": "assets/commercial-growth/medium-2x2-cafe-building-02/medium-2x2-cafe-building-02.blend",
+      "source_metadata": {
+        "id": "medium-2x2-cafe-building-02",
+        "name": "층별 식당·카페 빌딩",
+        "zone": "commercial",
+        "category": "medium_commercial",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 5,
+        "occupied_storeys": 5,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            16.31999969482422
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          16.43999969214201
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1029.5611
+        ],
+        "lot_corners_px": [
+          [
+            163.195,
+            886.1586
+          ],
+          [
+            450.0,
+            1029.5611
+          ],
+          [
+            736.805,
+            886.1587
+          ],
+          [
+            450.0,
+            742.7562
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 21.69606590270996,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          16.440000534057617
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-slim-office-01",
+      "name": "커튼월 슬림 오피스",
+      "zone": "commercial",
+      "group": "commercial",
+      "category": "large_commercial",
+      "density": "large",
+      "category_name": "대형 상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 8,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-slim-office-01.png",
+      "preview": "res://assets/buildings/large-2x2-slim-office-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1032.5367
+      ],
+      "lot_width_px": 411.6389,
+      "model": "res://assets/buildings/models/large-2x2-slim-office-01.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-slim-office-01.json",
+      "height_m": 25.59000015258789,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 8900,
+      "source": "assets/commercial-growth/large-2x2-slim-office-01/large-2x2-slim-office-01.blend",
+      "source_metadata": {
+        "id": "large-2x2-slim-office-01",
+        "name": "커튼월 슬림 오피스",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 8,
+        "occupied_storeys": 8,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            25.469999313354492
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          25.589999310672283
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1032.5367
+        ],
+        "lot_corners_px": [
+          [
+            244.1805,
+            929.627
+          ],
+          [
+            450.0,
+            1032.5367
+          ],
+          [
+            655.8194,
+            929.627
+          ],
+          [
+            450.0,
+            826.7173
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 30.233003616333008,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          25.59000015258789
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-boutique-hotel-02",
+      "name": "명품매장 부티크 호텔",
+      "zone": "commercial",
+      "group": "commercial",
+      "category": "large_commercial",
+      "density": "large",
+      "category_name": "대형 상업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 10,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-boutique-hotel-02.png",
+      "preview": "res://assets/buildings/large-2x2-boutique-hotel-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1028.6555
+      ],
+      "lot_width_px": 342.7878,
+      "model": "res://assets/buildings/models/large-2x2-boutique-hotel-02.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-boutique-hotel-02.json",
+      "height_m": 31.690000534057617,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 14708,
+      "source": "assets/commercial-growth/large-2x2-boutique-hotel-02/large-2x2-boutique-hotel-02.blend",
+      "source_metadata": {
+        "id": "large-2x2-boutique-hotel-02",
+        "name": "명품매장 부티크 호텔",
+        "zone": "commercial",
+        "category": "large_commercial",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 10,
+        "occupied_storeys": 10,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            31.56999969482422
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          31.68999969214201
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1028.6555
+        ],
+        "lot_corners_px": [
+          [
+            278.6061,
+            942.9586
+          ],
+          [
+            450.0,
+            1028.6555
+          ],
+          [
+            621.3939,
+            942.9586
+          ],
+          [
+            450.0,
+            857.2617
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 36.30550003051758,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          31.690000534057617
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "medium-2x2-bakery-01",
+      "name": "소형 제빵 공장",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "medium_industrial",
+      "density": "medium",
+      "category_name": "중형 공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 2,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-bakery-01.png",
+      "preview": "res://assets/buildings/medium-2x2-bakery-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        984.1656
+      ],
+      "lot_width_px": 801.9802,
+      "model": "res://assets/buildings/models/medium-2x2-bakery-01.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-bakery-01.json",
+      "height_m": 8.420000076293945,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 5684,
+      "source": "assets/industrial-growth/medium-2x2-bakery-01/medium-2x2-bakery-01.blend",
+      "source_metadata": {
+        "id": "medium-2x2-bakery-01",
+        "name": "소형 제빵 공장",
+        "zone": "industrial",
+        "category": "medium_industrial",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 2,
+        "occupied_storeys": 2,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            8.300000190734863
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          8.420000188052654
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          984.1656
+        ],
+        "lot_corners_px": [
+          [
+            49.0099,
+            783.6706
+          ],
+          [
+            450.0,
+            984.1656
+          ],
+          [
+            850.9901,
+            783.6706
+          ],
+          [
+            450.0,
+            583.1756
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 15.517939567565918,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          8.420000076293945
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "medium-2x2-electronics-02",
+      "name": "클린룸 전자부품 공장",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "medium_industrial",
+      "density": "medium",
+      "category_name": "중형 공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 3,
+      "min_level": 1,
+      "texture": "res://assets/buildings/medium-2x2-electronics-02.png",
+      "preview": "res://assets/buildings/medium-2x2-electronics-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1026.0513
+      ],
+      "lot_width_px": 764.6581,
+      "model": "res://assets/buildings/models/medium-2x2-electronics-02.glb",
+      "spec": "res://assets/buildings/specs/medium-2x2-electronics-02.json",
+      "height_m": 10.630000114440918,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 8560,
+      "source": "assets/industrial-growth/medium-2x2-electronics-02/medium-2x2-electronics-02.blend",
+      "source_metadata": {
+        "id": "medium-2x2-electronics-02",
+        "name": "클린룸 전자부품 공장",
+        "zone": "industrial",
+        "category": "medium_industrial",
+        "density": "medium",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 3,
+        "occupied_storeys": 3,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            10.510000228881836
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          10.630000226199627
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1026.0513
+        ],
+        "lot_corners_px": [
+          [
+            67.6709,
+            834.8868
+          ],
+          [
+            450.0,
+            1026.0513
+          ],
+          [
+            832.329,
+            834.8869
+          ],
+          [
+            450.0,
+            643.7223
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 16.275352478027344,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          10.630000114440918
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-grain-silo-01",
+      "name": "곡물 사일로·컨베이어",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "large_industrial",
+      "density": "large",
+      "category_name": "대형 공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 0,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-grain-silo-01.png",
+      "preview": "res://assets/buildings/large-2x2-grain-silo-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1029.8605
+      ],
+      "lot_width_px": 557.3130000000001,
+      "model": "res://assets/buildings/models/large-2x2-grain-silo-01.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-grain-silo-01.json",
+      "height_m": 17.1200008392334,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 7700,
+      "source": "assets/industrial-growth/large-2x2-grain-silo-01/large-2x2-grain-silo-01.blend",
+      "source_metadata": {
+        "id": "large-2x2-grain-silo-01",
+        "name": "곡물 사일로·컨베이어",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 0,
+        "occupied_storeys": 0,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            17.0
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          17.11999999731779
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1029.8605
+        ],
+        "lot_corners_px": [
+          [
+            171.3435,
+            890.5323
+          ],
+          [
+            450.0,
+            1029.8605
+          ],
+          [
+            728.6565,
+            890.5323
+          ],
+          [
+            450.0,
+            751.2041
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 22.330507278442383,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": true
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          17.1200008392334
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "large-2x2-distillation-02",
+      "name": "화학 증류탑 설비",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "large_industrial",
+      "density": "large",
+      "category_name": "대형 공업",
+      "footprint": [
+        2,
+        2
+      ],
+      "width": 2,
+      "depth": 2,
+      "storeys": 0,
+      "min_level": 1,
+      "texture": "res://assets/buildings/large-2x2-distillation-02.png",
+      "preview": "res://assets/buildings/large-2x2-distillation-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        1030.3104
+      ],
+      "lot_width_px": 532.8244,
+      "model": "res://assets/buildings/models/large-2x2-distillation-02.glb",
+      "spec": "res://assets/buildings/specs/large-2x2-distillation-02.json",
+      "height_m": 18.219999313354492,
+      "width_m": 8.0,
+      "length_m": 8.0,
+      "triangles": 11128,
+      "source": "assets/industrial-growth/large-2x2-distillation-02/large-2x2-distillation-02.blend",
+      "source_metadata": {
+        "id": "large-2x2-distillation-02",
+        "name": "화학 증류탑 설비",
+        "zone": "industrial",
+        "category": "large_industrial",
+        "density": "large",
+        "footprint_cells": [
+          2,
+          2
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          8,
+          8
+        ],
+        "floors": 0,
+        "occupied_storeys": 0,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -4.0,
+            -4.0,
+            -0.11999999731779099
+          ],
+          [
+            4.0,
+            4.0,
+            18.099998474121094
+          ]
+        ],
+        "measured_dimensions_m": [
+          8.0,
+          8.0,
+          18.219998471438885
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          1030.3104
+        ],
+        "lot_corners_px": [
+          [
+            183.5878,
+            897.1043
+          ],
+          [
+            450.0,
+            1030.3104
+          ],
+          [
+            716.4122,
+            897.1043
+          ],
+          [
+            450.0,
+            763.8981
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 23.356809616088867,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": true
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -4.0,
+          -4.0,
+          0.0
+        ],
+        [
+          4.0,
+          4.0,
+          18.219999313354492
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "small-4x4-logistics-01",
+      "name": "2베이 물류창고",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "small_industrial",
+      "density": "small",
+      "category_name": "소형 공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "width": 4,
+      "depth": 4,
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-4x4-logistics-01.png",
+      "preview": "res://assets/buildings/small-4x4-logistics-01.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        824.7511
+      ],
+      "lot_width_px": 801.9802,
+      "model": "res://assets/buildings/models/small-4x4-logistics-01.glb",
+      "spec": "res://assets/buildings/specs/small-4x4-logistics-01.json",
+      "height_m": 5.53000020980835,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 8012,
+      "source": "assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend",
+      "source_metadata": {
+        "id": "small-4x4-logistics-01",
+        "name": "2베이 물류창고",
+        "zone": "industrial",
+        "category": "small_industrial",
+        "density": "small",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "floors": 1,
+        "occupied_storeys": 1,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            5.410000324249268
+          ]
+        ],
+        "measured_dimensions_m": [
+          16.0,
+          16.0,
+          5.530000321567059
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          824.7511
+        ],
+        "lot_corners_px": [
+          [
+            49.0099,
+            624.2561
+          ],
+          [
+            450.0,
+            824.7511
+          ],
+          [
+            850.9901,
+            624.2561
+          ],
+          [
+            450.0,
+            423.7611
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 31.035879135131836,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          5.53000020980835
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
+    },
+    {
+      "id": "small-4x4-metalshop-02",
+      "name": "금속가공 작업장·야적장",
+      "zone": "industrial",
+      "group": "industrial",
+      "category": "small_industrial",
+      "density": "small",
+      "category_name": "소형 공업",
+      "footprint": [
+        4,
+        4
+      ],
+      "width": 4,
+      "depth": 4,
+      "storeys": 1,
+      "min_level": 1,
+      "texture": "res://assets/buildings/small-4x4-metalshop-02.png",
+      "preview": "res://assets/buildings/small-4x4-metalshop-02.png",
+      "image_size": [
+        900,
+        1100
+      ],
+      "anchor_px": [
+        450.0,
+        826.4454
+      ],
+      "lot_width_px": 801.9802,
+      "model": "res://assets/buildings/models/small-4x4-metalshop-02.glb",
+      "spec": "res://assets/buildings/specs/small-4x4-metalshop-02.json",
+      "height_m": 5.644999980926514,
+      "width_m": 16.0,
+      "length_m": 16.0,
+      "triangles": 7404,
+      "source": "assets/industrial-growth/small-4x4-metalshop-02/small-4x4-metalshop-02.blend",
+      "source_metadata": {
+        "id": "small-4x4-metalshop-02",
+        "name": "금속가공 작업장·야적장",
+        "zone": "industrial",
+        "category": "small_industrial",
+        "density": "small",
+        "footprint_cells": [
+          4,
+          4
+        ],
+        "cell_meters": 4,
+        "lot_meters": [
+          16,
+          16
+        ],
+        "floors": 1,
+        "occupied_storeys": 1,
+        "storey_height_m": 3.05,
+        "footprint_status": "user-specified",
+        "front": "+Z",
+        "front_coordinate_space": "gltf/Godot",
+        "front_blender": "-Y",
+        "up_blender": "+Z",
+        "floor_reference_m": 0.12,
+        "plinth_min_z_m": -0.12,
+        "vertex_bounds_m": [
+          [
+            -8.0,
+            -8.0,
+            -0.11999999731779099
+          ],
+          [
+            8.0,
+            8.0,
+            5.525000095367432
+          ]
+        ],
+        "measured_dimensions_m": [
+          16.0,
+          16.0,
+          5.645000092685223
+        ],
+        "image_size": [
+          900,
+          1100
+        ],
+        "anchor_px": [
+          450.0,
+          826.4454
+        ],
+        "lot_corners_px": [
+          [
+            49.0099,
+            625.9504
+          ],
+          [
+            450.0,
+            826.4454
+          ],
+          [
+            850.9901,
+            625.9504
+          ],
+          [
+            450.0,
+            425.4553
+          ]
+        ],
+        "camera_elevation_degrees": 30,
+        "camera_azimuth_degrees": -45,
+        "orthographic_scale": 31.035879135131836,
+        "approval_status": "pending-user-review",
+        "game_registered": false,
+        "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+        "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+        "industrial_structure_only": false
+      },
+      "front_axis": [
+        0,
+        1
+      ],
+      "ground_offset_m": 0.11999999731779099,
+      "full_bounds_blender": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          5.644999980926514
+        ]
+      ],
+      "recovered_batch": "growth_14",
+      "growth_enabled": true,
+      "simulation_enabled": false,
+      "status": "appearance_registered",
+      "registration_issues": []
     }
   ]
 }

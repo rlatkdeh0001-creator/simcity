@@ -19,21 +19,24 @@ func make_city(seed_value: int = 42):
 func run():
 	var city = make_city()
 	verify(not city.catalog.get_asset("mansion-a-4x4-4f").is_empty() and not city.catalog.get_asset("mansion-b-4x4-4f").is_empty(), "both mansion designs registered")
-	verify(city.buildings[0].asset_id == "", "2x2 new construction does not use medium asset")
+	verify(city.catalog.get_asset(city.buildings[0].asset_id).density == "small", "2x2 new construction uses small, never medium asset")
 	city.upgrade_chain(1)
 	var b: Dictionary = city.buildings[0]
-	verify(b.size == 4 and not b.asset_id.is_empty(), "4x4 residential growth assigns mansion asset")
+	verify(b.size == 4 and city.catalog.get_asset(b.asset_id).density=="small", "4x4 stage2 uses approved small facade; stage3 selects mansions")
 	var original_id: String = b.asset_id
 	city.upgrade_chain(1)
-	verify(b.asset_id == original_id, "same-size growth preserves facade")
+	verify(b.asset_id != original_id and city.catalog.get_asset(b.asset_id).density=="medium", "stage2 to3 rematches density on the same lot")
+	original_id=b.asset_id
+	city.upgrade_chain(1)
+	verify(b.asset_id == original_id, "same-density same-size growth preserves facade")
 	city.config.size_weights = {8:0.0,4:0.0,2:1.0}
 	city.upgrade_chain(1)
-	verify(b.size == 2 and b.asset_id == "", "smaller lot clears oversized asset")
+	verify(b.size == 2 and city.catalog.get_asset(b.asset_id).footprint==[2,2], "smaller lot rematches without stretching the old mansion")
 	city.config.size_weights = {8:1.0,4:0.0,2:0.0}
 	city.upgrade_chain(1)
-	verify(b.size == 8 and b.asset_id == "", "8x8 growth does not stretch medium mansion")
+	verify(b.size == 8 and city.catalog.get_asset(b.asset_id).density=="large" and city.catalog.get_asset(b.asset_id).footprint==[8,8], "8x8 uses its original large model, not a stretched mansion")
 	for zone in ["commercial", "industrial"]:
-		verify(city.catalog.eligible({"zone":zone,"size":4,"level":3}).is_empty(), "mansion excluded from " + zone)
+		verify(city.catalog.eligible({"zone":zone,"size":4,"level":3}).all(func(id):return city.catalog.get_asset(id).zone==zone), "mansion excluded from " + zone)
 	var variants := {}
 	var replay_equal := true
 	for seed_value in range(100):
@@ -55,7 +58,7 @@ func run():
 	root.add_child(scene)
 	scene.map_zoom = 1.0
 	await process_frame
-	for asset in city.catalog.entries.filter(func(entry): return entry.category == "medium_residential"):
+	for asset in city.catalog.entries.filter(func(entry): return entry.id.begins_with("mansion-")):
 		verify(asset.category == "medium_residential" and asset.storeys == 4 and asset.footprint == [4,4], asset.id + " classified as 4-floor medium residential")
 		verify(scene.building_textures.has(asset.id), asset.id + " Godot texture imported")
 		scene.city = make_city()

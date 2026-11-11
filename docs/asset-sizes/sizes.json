@@ -3,6 +3,230 @@
   "assets": [
     {
       "group": "주거",
+      "id": "large-2x2-pencil-tower-02",
+      "name": "세트백 펜슬 주거타워",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/residential-growth/large-2x2-pencil-tower-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "large-2x2-slim-tower-01",
+      "name": "세로 발코니 주거타워",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/residential-growth/large-2x2-slim-tower-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "medium-2x2-corner-villa-02",
+      "name": "코너형 원룸 빌라",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/residential-growth/medium-2x2-corner-villa-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
+      "id": "medium-2x2-multiplex-01",
+      "name": "필로티 다세대주택",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/residential-growth/medium-2x2-multiplex-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-2x2-boutique-hotel-02",
+      "name": "명품매장 부티크 호텔",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/commercial-growth/large-2x2-boutique-hotel-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "large-2x2-slim-office-01",
+      "name": "커튼월 슬림 오피스",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/commercial-growth/large-2x2-slim-office-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "medium-2x2-cafe-building-02",
+      "name": "층별 식당·카페 빌딩",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/commercial-growth/medium-2x2-cafe-building-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "상업",
+      "id": "medium-2x2-neighborhood-01",
+      "name": "편의점·학원 근린상가",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/commercial-growth/medium-2x2-neighborhood-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-2x2-distillation-02",
+      "name": "화학 증류탑 설비",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/large-2x2-distillation-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "large-2x2-grain-silo-01",
+      "name": "곡물 사일로·컨베이어",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/large-2x2-grain-silo-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "medium-2x2-bakery-01",
+      "name": "소형 제빵 공장",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/medium-2x2-bakery-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "medium-2x2-electronics-02",
+      "name": "클린룸 전자부품 공장",
+      "footprint_cells": [
+        2,
+        2
+      ],
+      "lot_metres": [
+        8,
+        8
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/medium-2x2-electronics-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "small-4x4-logistics-01",
+      "name": "2베이 물류창고",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/small-4x4-logistics-01/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "공업",
+      "id": "small-4x4-metalshop-02",
+      "name": "금속가공 작업장·야적장",
+      "footprint_cells": [
+        4,
+        4
+      ],
+      "lot_metres": [
+        16,
+        16
+      ],
+      "dimension_status": "사용자 지정",
+      "spec_file": "assets/industrial-growth/small-4x4-metalshop-02/metadata.json",
+      "spec_field": "footprint_cells"
+    },
+    {
+      "group": "주거",
       "id": "mansion-a-4x4-4f",
       "name": "벽돌형 맨션",
       "footprint_cells": [

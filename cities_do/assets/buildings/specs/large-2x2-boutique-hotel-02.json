@@ -1,0 +1,134 @@
+{
+  "id": "large-2x2-boutique-hotel-02",
+  "name": "명품매장 부티크 호텔",
+  "zone": "commercial",
+  "group": "commercial",
+  "category": "large_commercial",
+  "density": "large",
+  "category_name": "대형 상업",
+  "footprint": [
+    2,
+    2
+  ],
+  "width": 2,
+  "depth": 2,
+  "storeys": 10,
+  "min_level": 1,
+  "texture": "res://assets/buildings/large-2x2-boutique-hotel-02.png",
+  "preview": "res://assets/buildings/large-2x2-boutique-hotel-02.png",
+  "image_size": [
+    900,
+    1100
+  ],
+  "anchor_px": [
+    450.0,
+    1028.6555
+  ],
+  "lot_width_px": 342.7878,
+  "model": "res://assets/buildings/models/large-2x2-boutique-hotel-02.glb",
+  "spec": "res://assets/buildings/specs/large-2x2-boutique-hotel-02.json",
+  "height_m": 31.690000534057617,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "triangles": 14708,
+  "source": "assets/commercial-growth/large-2x2-boutique-hotel-02/large-2x2-boutique-hotel-02.blend",
+  "source_metadata": {
+    "id": "large-2x2-boutique-hotel-02",
+    "name": "명품매장 부티크 호텔",
+    "zone": "commercial",
+    "category": "large_commercial",
+    "density": "large",
+    "footprint_cells": [
+      2,
+      2
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      8,
+      8
+    ],
+    "floors": 10,
+    "occupied_storeys": 10,
+    "storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "+Z",
+    "front_coordinate_space": "gltf/Godot",
+    "front_blender": "-Y",
+    "up_blender": "+Z",
+    "floor_reference_m": 0.12,
+    "plinth_min_z_m": -0.12,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -4.0,
+        -0.11999999731779099
+      ],
+      [
+        4.0,
+        4.0,
+        31.56999969482422
+      ]
+    ],
+    "measured_dimensions_m": [
+      8.0,
+      8.0,
+      31.68999969214201
+    ],
+    "image_size": [
+      900,
+      1100
+    ],
+    "anchor_px": [
+      450.0,
+      1028.6555
+    ],
+    "lot_corners_px": [
+      [
+        278.6061,
+        942.9586
+      ],
+      [
+        450.0,
+        1028.6555
+      ],
+      [
+        621.3939,
+        942.9586
+      ],
+      [
+        450.0,
+        857.2617
+      ]
+    ],
+    "camera_elevation_degrees": 30,
+    "camera_azimuth_degrees": -45,
+    "orthographic_scale": 36.30550003051758,
+    "approval_status": "pending-user-review",
+    "game_registered": false,
+    "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+    "scope": "asset-only preview; 8x8 removed by user; no runtime/game catalog changes",
+    "industrial_structure_only": false
+  },
+  "front_axis": [
+    0,
+    1
+  ],
+  "ground_offset_m": 0.11999999731779099,
+  "full_bounds_blender": [
+    [
+      -4.0,
+      -4.0,
+      0.0
+    ],
+    [
+      4.0,
+      4.0,
+      31.690000534057617
+    ]
+  ],
+  "recovered_batch": "growth_14",
+  "growth_enabled": true,
+  "simulation_enabled": false,
+  "status": "appearance_registered",
+  "registration_issues": []
+}

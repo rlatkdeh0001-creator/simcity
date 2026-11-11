@@ -22,7 +22,7 @@ func _ready():
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
 	entries = doc.vehicles
 	if facility_group=="commercial_industrial":
-		entries=JSON.parse_string(FileAccess.get_file_as_string("res://assets/buildings/catalog.json")).buildings.filter(func(e):return e.get("recovered_batch","")=="remaining_30" and e.zone in ["commercial","industrial"] and not e.growth_enabled)
+		entries=JSON.parse_string(FileAccess.get_file_as_string("res://assets/buildings/catalog.json")).buildings.filter(func(e):return e.get("recovered_batch","")=="remaining_30" and e.zone in ["commercial","industrial"])
 		var exhibition_theme:=Theme.new()
 		exhibition_theme.default_font_size=18
 		theme=exhibition_theme
