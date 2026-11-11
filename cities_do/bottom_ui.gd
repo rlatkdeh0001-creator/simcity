@@ -511,6 +511,7 @@ func on_city_name_input(event: InputEvent):
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ if public_controller!=null:public_controller.cancel()
  if utility_popup.visible: utility_popup.hide()
  cancel_zoning_drag()
  drawing=false
@@ -595,20 +596,20 @@ func select_category(key: String):
   drawer_box.add_child(lanes)
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
   if entry.ui_category!=key:continue
-  var registered_button:=make_asset_button(entry,open_registered_asset.bind(str(entry.id)))
+  var registered_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
   registered_button.name="Registered_"+str(entry.id)
   registered_button.set_meta("registered_asset_id",str(entry.id))
   drawer_box.add_child(registered_button)
  if key=="park":
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
-   var facility_button:=make_asset_button(entry,open_facility_asset.bind(str(entry.id)))
+   var facility_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
    facility_button.name="Facility_"+str(entry.id)
    drawer_box.add_child(facility_button)
  for slot in service_slots():
   if slot.category!=key:continue
   var entry:=slot_asset(slot)
   var slot_button: Button
-  if not entry.is_empty():slot_button=make_asset_button(entry,open_service_slot.bind(str(slot.id)))
+  if not entry.is_empty():slot_button=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
   else:
    slot_button=Button.new()
    slot_button.text=slot.name
@@ -633,6 +634,7 @@ func show_zoning_tiles() -> bool:
  return chosen in ["build","road"] and mode!="demolish"
 
 func toggle_demolition():
+ if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  mode="select" if mode=="demolish" else "demolish"
  drawing=false
@@ -668,6 +670,16 @@ func fit_preview():
    rect=city.catalog.sprite_rect(asset,anchor,tile.x*2)
   bounds=rect if first else bounds.merge(rect)
   first=false
+ for record: Dictionary in city.public_facilities.lots:
+  var rect:=Rect2()
+  var first_point:=true
+  for point in record.polygon:
+   var projected:=Vector2((point.x-point.y)*tile.x,(point.x+point.y)*tile.y)
+   rect=Rect2(projected,Vector2.ZERO) if first_point else rect.expand(projected)
+   first_point=false
+  var height: float=public_controller.asset(record.public_asset_id).height_m*tile.x/4*sqrt(1.5)
+  rect.position.y-=height;rect.size.y+=height
+  bounds=rect if first else bounds.merge(rect);first=false
  if first:
   bounds=Rect2(Vector2(-city.height*tile.x,0),Vector2((city.width+city.height)*tile.x,(city.width+city.height)*tile.y))
  map_zoom=minf(available.size.x/bounds.size.x,available.size.y/bounds.size.y)
@@ -697,6 +709,7 @@ func capture():
 
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
   drawer.hide()
@@ -709,6 +722,10 @@ func make_asset_button(entry: Dictionary,action: Callable) -> Button:
  item.pressed.connect(func():
   if not item.disabled:action.call())
  return item
+
+func select_public_asset(id: String) -> bool:
+ if city.public_facilities.entries.has(id):return public_controller.begin(id)
+ return open_registered_asset(id) # Hydro stays inspection-only.
 
 func open_registered_asset(id: String) -> bool:
  # Inspection only: never dispatch a placement tool or touch the simulation.
@@ -780,15 +797,10 @@ func layout_bottom_hud():
  queue_redraw()
 
 func activate_tool(tool: String):
+ if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  if SERVICE_TOOLS.has(tool):
-  var entries: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities
-  var matches: Array=entries.filter(func(e):return e.id==SERVICE_TOOLS[tool])
-  if matches.is_empty(): return
-  var preview=preload("res://service_asset_preview.gd").new()
-  preview.name="ServiceAssetPreview"
-  add_child(preview)
-  preview.show_asset(matches[0])
+  select_public_asset(SERVICE_TOOLS[tool])
   return
  if tool in ["power_settings","water_settings"]:
   open_utility_settings("power" if tool=="power_settings" else "water")

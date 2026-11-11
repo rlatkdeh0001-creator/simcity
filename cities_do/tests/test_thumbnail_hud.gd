@@ -44,7 +44,7 @@ func check_cards(game):
    card.pressed.emit()
    await process_frame
    var windows: Array=game.find_children("ServiceAssetPreview","Window",true,false)
-   verify(windows.size()==1 and not windows[0].find_children("*","MeshInstance3D",true,false).is_empty(),str(card.name)+" opens only its real geometry inspector")
+   verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==card.get_meta("thumbnail_asset_id") and ResourceLoader.exists(game.city.public_facilities.entries[game.public_controller.asset_id].model),str(card.name)+" selects its actual GLB world ghost without changing the C card")
    for window in windows:window.close_requested.emit()
    await process_frame
  verify(total==23,"all 23 existing PNG-backed facilities use C cards")

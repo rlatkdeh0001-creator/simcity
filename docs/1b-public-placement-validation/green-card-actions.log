@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS existing game owns public world placement interaction, without a new panel
+PASS actual C-card mouse click starts the selected world ghost
+PASS no new panel or old inspection modal is opened by placement card
+PASS valid frontage and cash produce green translucent ghost
+PASS R rotates 90 degrees and wrong front becomes red
+PASS ESC cancels without placing or charging
+PASS right click cancels world placement
+PASS actual world click places and charges once
+PASS existing bulldozer removes public building without invented refund
+PASS cash shortage is recorded in validation, not a new HUD explanation
+PUBLIC_PLACEMENT_REJECT {"asset":"fire-station","code":"insufficient_funds","reason":"insufficient_funds"}
+PASS cash rejection creates no building, debit or explanatory HUD text
+PASS clinic existing medical/education/crematorium card selects placement instead of inspection
+PASS hospital existing medical/education/crematorium card selects placement instead of inspection
+PASS large_hospital existing medical/education/crematorium card selects placement instead of inspection
+PASS elementary existing medical/education/crematorium card selects placement instead of inspection
+PASS high_school existing medical/education/crematorium card selects placement instead of inspection
+PASS college existing medical/education/crematorium card selects placement instead of inspection
+PASS university existing medical/education/crematorium card selects placement instead of inspection
+PASS crematorium existing medical/education/crematorium card selects placement instead of inspection
+RESULT 19/19 public UI checks passed

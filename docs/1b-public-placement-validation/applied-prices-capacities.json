@@ -1,0 +1,1072 @@
+[
+  {
+    "id": "crematorium-4x4",
+    "name": "화장터",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 12000,
+    "monthly_upkeep": 180,
+    "price_key": "service.crematorium-4x4.purchase",
+    "upkeep_key": "service.crematorium-4x4.upkeep",
+    "engine": "none",
+    "capacities": {
+      "storage": {
+        "value": 20.0,
+        "unit": "구",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "rated_throughput": {
+        "value": 12.0,
+        "unit": "구/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_throughput": {
+        "value": 6.0,
+        "unit": "구/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 35.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "elementary-school",
+    "name": "초등학교",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 5000,
+    "monthly_upkeep": 80,
+    "price_key": "education.primary.construction",
+    "upkeep_key": "education.primary.upkeep",
+    "engine": "none",
+    "capacities": {
+      "students": {
+        "value": 240.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 10.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "high-school",
+    "name": "고등학교",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 9000,
+    "monthly_upkeep": 140,
+    "price_key": "education.high.construction",
+    "upkeep_key": "education.high.upkeep",
+    "engine": "none",
+    "capacities": {
+      "students": {
+        "value": 480.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 18.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "technical-college",
+    "name": "전문대",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 25000,
+    "monthly_upkeep": 350,
+    "price_key": "education.college.construction",
+    "upkeep_key": "education.college.upkeep",
+    "engine": "none",
+    "capacities": {
+      "students": {
+        "value": 800.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 40.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "university",
+    "name": "대학교",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 60000,
+    "monthly_upkeep": 800,
+    "price_key": "education.university.construction",
+    "upkeep_key": "education.university.upkeep",
+    "engine": "none",
+    "capacities": {
+      "students": {
+        "value": 2400.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 100.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "medical-clinic",
+    "name": "진료소",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 6000,
+    "monthly_upkeep": 100,
+    "price_key": "health.clinic.construction",
+    "upkeep_key": "health.clinic.upkeep",
+    "engine": "none",
+    "capacities": {
+      "outpatient_day": {
+        "value": 30.0,
+        "unit": "명/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "beds": {
+        "value": 0.0,
+        "unit": "병상",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 10.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "medical-hospital",
+    "name": "병원",
+    "lot": [
+      6,
+      6
+    ],
+    "construction": 25000,
+    "monthly_upkeep": 400,
+    "price_key": "health.hospital.construction",
+    "upkeep_key": "health.hospital.upkeep",
+    "engine": "none",
+    "capacities": {
+      "outpatient_day": {
+        "value": 150.0,
+        "unit": "명/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "beds": {
+        "value": 80.0,
+        "unit": "병상",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 50.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "medical-large-hospital",
+    "name": "대형병원",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 65000,
+    "monthly_upkeep": 900,
+    "price_key": "health.regional.construction",
+    "upkeep_key": "health.regional.upkeep",
+    "engine": "none",
+    "capacities": {
+      "outpatient_day": {
+        "value": 400.0,
+        "unit": "명/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "beds": {
+        "value": 240.0,
+        "unit": "병상",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 130.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "small-fire-station",
+    "name": "소형소방서",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 8000,
+    "monthly_upkeep": 120,
+    "price_key": "fire.small.construction",
+    "upkeep_key": "fire.small.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 2.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "simultaneous_incidents": {
+        "value": 1.0,
+        "unit": "건",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 8.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "fire-station",
+    "name": "소방서",
+    "lot": [
+      6,
+      6
+    ],
+    "construction": 20000,
+    "monthly_upkeep": 300,
+    "price_key": "fire.standard.construction",
+    "upkeep_key": "fire.standard.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 6.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "simultaneous_incidents": {
+        "value": 3.0,
+        "unit": "건",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 20.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "regional-fire-station",
+    "name": "광역소방서",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 50000,
+    "monthly_upkeep": 700,
+    "price_key": "fire.regional.construction",
+    "upkeep_key": "fire.regional.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 16.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "simultaneous_incidents": {
+        "value": 8.0,
+        "unit": "건",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 45.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "small-police-station",
+    "name": "파출소",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 6000,
+    "monthly_upkeep": 100,
+    "price_key": "police.small.construction",
+    "upkeep_key": "police.small.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 2.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "population_capacity": {
+        "value": 1000.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 5.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "police-station",
+    "name": "경찰서",
+    "lot": [
+      6,
+      6
+    ],
+    "construction": 18000,
+    "monthly_upkeep": 250,
+    "price_key": "police.standard.construction",
+    "upkeep_key": "police.standard.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 6.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "population_capacity": {
+        "value": 5000.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 15.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "regional-police-station",
+    "name": "경찰본부",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 45000,
+    "monthly_upkeep": 600,
+    "price_key": "police.headquarters.construction",
+    "upkeep_key": "police.headquarters.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicle_bays": {
+        "value": 16.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "population_capacity": {
+        "value": 15000.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 40.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "prison-8x8",
+    "name": "교도소",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 45000,
+    "monthly_upkeep": 500,
+    "price_key": "police.prison.construction",
+    "upkeep_key": "police.prison.upkeep",
+    "engine": "none",
+    "capacities": {
+      "inmates": {
+        "value": 300.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 50.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "power-coal",
+    "name": "석탄발전소",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 35000,
+    "monthly_upkeep": 600,
+    "price_key": "power.coal.construction",
+    "upkeep_key": "power.coal.upkeep",
+    "engine": "power",
+    "capacities": {
+      "rated_output_kw": {
+        "value": 8000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_output_kw": {
+        "value": 8000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      }
+    },
+    "active_capacity_fields": [
+      "average_output_kw"
+    ]
+  },
+  {
+    "id": "power-nuclear",
+    "name": "원자력발전소",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 200000,
+    "monthly_upkeep": 2500,
+    "price_key": "power.nuclear.construction",
+    "upkeep_key": "power.nuclear.upkeep",
+    "engine": "power",
+    "capacities": {
+      "rated_output_kw": {
+        "value": 80000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_output_kw": {
+        "value": 80000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      }
+    },
+    "active_capacity_fields": [
+      "average_output_kw"
+    ]
+  },
+  {
+    "id": "power-oil",
+    "name": "석유발전소",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 60000,
+    "monthly_upkeep": 1000,
+    "price_key": "power.oil.construction",
+    "upkeep_key": "power.oil.upkeep",
+    "engine": "power",
+    "capacities": {
+      "rated_output_kw": {
+        "value": 16000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_output_kw": {
+        "value": 16000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      }
+    },
+    "active_capacity_fields": [
+      "average_output_kw"
+    ]
+  },
+  {
+    "id": "power-solar",
+    "name": "태양광발전소",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 12000,
+    "monthly_upkeep": 50,
+    "price_key": "power.solar.construction",
+    "upkeep_key": "power.solar.upkeep",
+    "engine": "power",
+    "capacities": {
+      "rated_output_kw": {
+        "value": 1800.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_output_kw": {
+        "value": 450.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      }
+    },
+    "active_capacity_fields": [
+      "average_output_kw"
+    ]
+  },
+  {
+    "id": "power-wind",
+    "name": "풍력발전소",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 15000,
+    "monthly_upkeep": 200,
+    "price_key": "power.wind.construction",
+    "upkeep_key": "power.wind.upkeep",
+    "engine": "power",
+    "capacities": {
+      "rated_output_kw": {
+        "value": 2000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "average_output_kw": {
+        "value": 1000.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      }
+    },
+    "active_capacity_fields": [
+      "average_output_kw"
+    ]
+  },
+  {
+    "id": "water-intake",
+    "name": "취수장",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 8000,
+    "monthly_upkeep": 120,
+    "price_key": "water.intake.construction",
+    "upkeep_key": "water.intake.upkeep",
+    "engine": "water",
+    "capacities": {
+      "supply_m3_day": {
+        "value": 1000.0,
+        "unit": "m³/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      },
+      "own_power_kw": {
+        "value": 20.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": [
+      "supply_m3_day"
+    ]
+  },
+  {
+    "id": "water-sewage-outfall",
+    "name": "하수장",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 6000,
+    "monthly_upkeep": 100,
+    "price_key": "sewage.outfall.construction",
+    "upkeep_key": "sewage.outfall.upkeep",
+    "engine": "sewage",
+    "capacities": {
+      "sewage_m3_day": {
+        "value": 800.0,
+        "unit": "m³/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      },
+      "own_power_kw": {
+        "value": 8.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": [
+      "sewage_m3_day"
+    ]
+  },
+  {
+    "id": "water-sewage-treatment",
+    "name": "하수처리장",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 18000,
+    "monthly_upkeep": 250,
+    "price_key": "sewage.treatment.construction",
+    "upkeep_key": "sewage.treatment.upkeep",
+    "engine": "sewage",
+    "capacities": {
+      "sewage_m3_day": {
+        "value": 2400.0,
+        "unit": "m³/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": true
+      },
+      "pollutant_removal_percent": {
+        "value": 95.0,
+        "unit": "%",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 60.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": [
+      "sewage_m3_day"
+    ]
+  },
+  {
+    "id": "water-water-tower",
+    "name": "급수탑",
+    "lot": [
+      2,
+      2
+    ],
+    "construction": 4000,
+    "monthly_upkeep": 40,
+    "price_key": "water.tower.construction",
+    "upkeep_key": "water.tower.upkeep",
+    "engine": "none",
+    "capacities": {
+      "storage_m3": {
+        "value": 1000.0,
+        "unit": "m³",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "inflow_m3_day": {
+        "value": 500.0,
+        "unit": "m³/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "outflow_m3_day": {
+        "value": 500.0,
+        "unit": "m³/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 2.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "waste-incinerator",
+    "name": "쓰레기 소각장",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 25000,
+    "monthly_upkeep": 350,
+    "price_key": "waste.incinerator.construction",
+    "upkeep_key": "waste.incinerator.upkeep",
+    "engine": "none",
+    "capacities": {
+      "throughput_t_day": {
+        "value": 20.0,
+        "unit": "톤/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "rated_generation_kw": {
+        "value": 200.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "residue_percent": {
+        "value": 15.0,
+        "unit": "%",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "waste-recycling-center",
+    "name": "재활용센터",
+    "lot": [
+      8,
+      8
+    ],
+    "construction": 12000,
+    "monthly_upkeep": 150,
+    "price_key": "waste.recycling.construction",
+    "upkeep_key": "waste.recycling.upkeep",
+    "engine": "none",
+    "capacities": {
+      "throughput_t_day": {
+        "value": 8.0,
+        "unit": "톤/게임일",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "recovery_percent": {
+        "value": 60.0,
+        "unit": "%",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "residue_percent": {
+        "value": 40.0,
+        "unit": "%",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 25.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "park-pocket-2x2",
+    "name": "쉼터 공원",
+    "lot": [
+      2,
+      2
+    ],
+    "construction": 300,
+    "monthly_upkeep": 5,
+    "price_key": "park-pocket-2x2.construction",
+    "upkeep_key": "park-pocket-2x2.upkeep",
+    "engine": "none",
+    "capacities": {
+      "visitors": {
+        "value": 12.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.2,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "park-garden-2x2",
+    "name": "꽃정원 공원",
+    "lot": [
+      2,
+      2
+    ],
+    "construction": 450,
+    "monthly_upkeep": 8,
+    "price_key": "park-garden-2x2.construction",
+    "upkeep_key": "park-garden-2x2.upkeep",
+    "engine": "none",
+    "capacities": {
+      "visitors": {
+        "value": 20.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.3,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "park-plaza-4x4",
+    "name": "분수 광장 공원",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 1500,
+    "monthly_upkeep": 25,
+    "price_key": "park-plaza-4x4.construction",
+    "upkeep_key": "park-plaza-4x4.upkeep",
+    "engine": "none",
+    "capacities": {
+      "visitors": {
+        "value": 80.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 2.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "park-play-4x4",
+    "name": "놀이터 공원",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 1200,
+    "monthly_upkeep": 20,
+    "price_key": "park-play-4x4.construction",
+    "upkeep_key": "park-play-4x4.upkeep",
+    "engine": "none",
+    "capacities": {
+      "visitors": {
+        "value": 60.0,
+        "unit": "명",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.5,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "parking-small-2x4",
+    "name": "소형 주차장",
+    "lot": [
+      2,
+      4
+    ],
+    "construction": 800,
+    "monthly_upkeep": 8,
+    "price_key": "parking-small-2x4.construction",
+    "upkeep_key": "parking-small-2x4.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicles": {
+        "value": 4.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.2,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "parking-medium-4x4",
+    "name": "중형 주차장",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 1600,
+    "monthly_upkeep": 16,
+    "price_key": "parking-medium-4x4.construction",
+    "upkeep_key": "parking-medium-4x4.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicles": {
+        "value": 8.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.4,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "parking-large-4x8",
+    "name": "대형 주차장",
+    "lot": [
+      4,
+      8
+    ],
+    "construction": 3200,
+    "monthly_upkeep": 32,
+    "price_key": "parking-large-4x8.construction",
+    "upkeep_key": "parking-large-4x8.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicles": {
+        "value": 16.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 0.8,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  },
+  {
+    "id": "parking-tower-4x4-4f",
+    "name": "4층 주차타워",
+    "lot": [
+      4,
+      4
+    ],
+    "construction": 16000,
+    "monthly_upkeep": 160,
+    "price_key": "parking-tower-4x4-4f.construction",
+    "upkeep_key": "parking-tower-4x4-4f.upkeep",
+    "engine": "none",
+    "capacities": {
+      "vehicles": {
+        "value": 16.0,
+        "unit": "대",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      },
+      "own_power_kw": {
+        "value": 4.0,
+        "unit": "kW",
+        "status": "임시 승인 2026-11-11",
+        "active_in_existing_engine": false
+      }
+    },
+    "active_capacity_fields": []
+  }
+]

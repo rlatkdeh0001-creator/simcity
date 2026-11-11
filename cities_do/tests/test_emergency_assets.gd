@@ -48,6 +48,8 @@ func run():
   var buttons: Array=game.drawer_box.get_children().filter(func(b):return b is Button and b.get_meta("slot_id","")==slot.id)
   verify(buttons.size()==1 and not buttons[0].disabled,str(slot.id)+" enabled actual button")
   if buttons.size()==1: buttons[0].pressed.emit()
+  verify(game.mode=="public_placement" and game.public_controller.asset_id==entry.id,str(slot.id)+" card selects its approved placement ghost")
+  game.open_service_slot(slot.id) # Explicit historical inspection API remains available.
   await process_frame
   var windows=game.find_children("ServiceAssetPreview","Window",true,false)
   verify(windows.size()==1 and windows[0].title==slot.name+" · 애셋",str(slot.id)+" opens matching inspector")

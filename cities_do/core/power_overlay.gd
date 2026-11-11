@@ -198,6 +198,7 @@ func finish_wire():
 func _draw():
  if view==null: return
  for plant in view.city.power.plants:
+  if plant.has("public_lot_id"):continue
   var p: Vector2=plant.position/4-Vector2.ONE
   var base: PackedVector2Array=view.polygon(p.x,p.y,2)
   var top: PackedVector2Array=view.polygon(p.x,p.y,2,22)

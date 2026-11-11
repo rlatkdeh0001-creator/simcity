@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "asset": "power-wind",
+      "funds_after": 35000,
+      "funds_before": 50000,
+      "input": "real C-card and world mouse press/release"
+    },
+    {
+      "input": "real world wire drag",
+      "powered": true
+    }
+  ],
+  "funds": 35000,
+  "ghost": {
+
+  },
+  "ghost_color": "",
+  "initial_fixture_budget": 50000,
+  "monthly_upkeep": 200,
+  "network": {
+    "consumer": {
+      "connected": true,
+      "demand_kw": 1.6,
+      "group": 0,
+      "node": 3,
+      "powered": true,
+      "ratio": 1.0,
+      "supplied_kw": 1.6
+    },
+    "plants": [
+      {
+        "enabled": true,
+        "id": 1,
+        "output_kw": 1000.0,
+        "position": "(40.0, 144.0)",
+        "public_lot_id": 1,
+        "public_polygon": "[(8.0, 34.0), (12.0, 34.0), (12.0, 38.0), (8.0, 38.0)]"
+      }
+    ],
+    "wire_count": 1
+  },
+  "normal_starting_funds_unchanged": 50000,
+  "population_gate_disabled_in_fixture_only": true,
+  "public_lots": [
+    {
+      "capacity": {
+        "average_output_kw": 1000.0,
+        "rated_output_kw": 2000.0
+      },
+      "engine": "power",
+      "front_direction": "(0.0, 1.0)",
+      "front_road_id": 0,
+      "id": 1,
+      "polygon": "[(8.0, 34.0), (12.0, 34.0), (12.0, 38.0), (8.0, 38.0)]",
+      "position": "(10.0, 36.0)",
+      "public_asset_id": "power-wind",
+      "turns": 0,
+      "utility_id": 1
+    }
+  ],
+  "scenario": "power",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

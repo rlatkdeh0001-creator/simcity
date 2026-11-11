@@ -1,0 +1,242 @@
+{
+  "facilities": [
+    {
+      "id": "crematorium-4x4",
+      "price_key": "service.crematorium-4x4.purchase",
+      "upkeep_key": "service.crematorium-4x4.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "elementary-school",
+      "price_key": "education.primary.construction",
+      "upkeep_key": "education.primary.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "high-school",
+      "price_key": "education.high.construction",
+      "upkeep_key": "education.high.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "technical-college",
+      "price_key": "education.college.construction",
+      "upkeep_key": "education.college.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "university",
+      "price_key": "education.university.construction",
+      "upkeep_key": "education.university.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "medical-clinic",
+      "price_key": "health.clinic.construction",
+      "upkeep_key": "health.clinic.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "medical-hospital",
+      "price_key": "health.hospital.construction",
+      "upkeep_key": "health.hospital.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "medical-large-hospital",
+      "price_key": "health.regional.construction",
+      "upkeep_key": "health.regional.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "small-fire-station",
+      "price_key": "fire.small.construction",
+      "upkeep_key": "fire.small.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "fire-station",
+      "price_key": "fire.standard.construction",
+      "upkeep_key": "fire.standard.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "regional-fire-station",
+      "price_key": "fire.regional.construction",
+      "upkeep_key": "fire.regional.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "small-police-station",
+      "price_key": "police.small.construction",
+      "upkeep_key": "police.small.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "police-station",
+      "price_key": "police.standard.construction",
+      "upkeep_key": "police.standard.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "regional-police-station",
+      "price_key": "police.headquarters.construction",
+      "upkeep_key": "police.headquarters.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "prison-8x8",
+      "price_key": "police.prison.construction",
+      "upkeep_key": "police.prison.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "power-coal",
+      "price_key": "power.coal.construction",
+      "upkeep_key": "power.coal.upkeep",
+      "catalog": "services",
+      "engine": "power"
+    },
+    {
+      "id": "power-nuclear",
+      "price_key": "power.nuclear.construction",
+      "upkeep_key": "power.nuclear.upkeep",
+      "catalog": "services",
+      "engine": "power"
+    },
+    {
+      "id": "power-oil",
+      "price_key": "power.oil.construction",
+      "upkeep_key": "power.oil.upkeep",
+      "catalog": "services",
+      "engine": "power"
+    },
+    {
+      "id": "power-solar",
+      "price_key": "power.solar.construction",
+      "upkeep_key": "power.solar.upkeep",
+      "catalog": "services",
+      "engine": "power"
+    },
+    {
+      "id": "power-wind",
+      "price_key": "power.wind.construction",
+      "upkeep_key": "power.wind.upkeep",
+      "catalog": "services",
+      "engine": "power"
+    },
+    {
+      "id": "water-intake",
+      "price_key": "water.intake.construction",
+      "upkeep_key": "water.intake.upkeep",
+      "catalog": "services",
+      "engine": "water"
+    },
+    {
+      "id": "water-sewage-outfall",
+      "price_key": "sewage.outfall.construction",
+      "upkeep_key": "sewage.outfall.upkeep",
+      "catalog": "services",
+      "engine": "sewage"
+    },
+    {
+      "id": "water-sewage-treatment",
+      "price_key": "sewage.treatment.construction",
+      "upkeep_key": "sewage.treatment.upkeep",
+      "catalog": "services",
+      "engine": "sewage"
+    },
+    {
+      "id": "water-water-tower",
+      "price_key": "water.tower.construction",
+      "upkeep_key": "water.tower.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "waste-incinerator",
+      "price_key": "waste.incinerator.construction",
+      "upkeep_key": "waste.incinerator.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "waste-recycling-center",
+      "price_key": "waste.recycling.construction",
+      "upkeep_key": "waste.recycling.upkeep",
+      "catalog": "services",
+      "engine": "none"
+    },
+    {
+      "id": "park-pocket-2x2",
+      "price_key": "park-pocket-2x2.construction",
+      "upkeep_key": "park-pocket-2x2.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "park-garden-2x2",
+      "price_key": "park-garden-2x2.construction",
+      "upkeep_key": "park-garden-2x2.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "park-plaza-4x4",
+      "price_key": "park-plaza-4x4.construction",
+      "upkeep_key": "park-plaza-4x4.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "park-play-4x4",
+      "price_key": "park-play-4x4.construction",
+      "upkeep_key": "park-play-4x4.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "parking-small-2x4",
+      "price_key": "parking-small-2x4.construction",
+      "upkeep_key": "parking-small-2x4.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "parking-medium-4x4",
+      "price_key": "parking-medium-4x4.construction",
+      "upkeep_key": "parking-medium-4x4.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "parking-large-4x8",
+      "price_key": "parking-large-4x8.construction",
+      "upkeep_key": "parking-large-4x8.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "price_key": "parking-tower-4x4-4f.construction",
+      "upkeep_key": "parking-tower-4x4-4f.upkeep",
+      "catalog": "facilities",
+      "engine": "none"
+    }
+  ]
+}

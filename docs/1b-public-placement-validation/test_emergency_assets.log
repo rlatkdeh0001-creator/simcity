@@ -1,0 +1,89 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS seven emergency slots
+PASS fire.small ready spec path
+PASS fire.small valid real service spec
+PASS fire.small approved name and lot
+PASS fire.small preview only and +Z frontage
+PASS fire.small GLB footprint is metres
+PASS fire.small GLB ground and height
+PASS fire.small exported front marker faces +Z
+PASS fire.small actual original entrance/door geometry faces +Z
+PASS fire.small enabled actual button
+PASS fire.small card selects its approved placement ghost
+PASS fire.small opens matching inspector
+PASS fire.small inspector contains real meshes
+PASS fire.standard ready spec path
+PASS fire.standard valid real service spec
+PASS fire.standard approved name and lot
+PASS fire.standard preview only and +Z frontage
+PASS fire.standard GLB footprint is metres
+PASS fire.standard GLB ground and height
+PASS fire.standard exported front marker faces +Z
+PASS fire.standard actual original entrance/door geometry faces +Z
+PASS fire.standard enabled actual button
+PASS fire.standard card selects its approved placement ghost
+PASS fire.standard opens matching inspector
+PASS fire.standard inspector contains real meshes
+PASS fire.regional ready spec path
+PASS fire.regional valid real service spec
+PASS fire.regional approved name and lot
+PASS fire.regional preview only and +Z frontage
+PASS fire.regional GLB footprint is metres
+PASS fire.regional GLB ground and height
+PASS fire.regional exported front marker faces +Z
+PASS fire.regional actual original entrance/door geometry faces +Z
+PASS fire.regional enabled actual button
+PASS fire.regional card selects its approved placement ghost
+PASS fire.regional opens matching inspector
+PASS fire.regional inspector contains real meshes
+PASS police.small ready spec path
+PASS police.small valid real service spec
+PASS police.small approved name and lot
+PASS police.small preview only and +Z frontage
+PASS police.small GLB footprint is metres
+PASS police.small GLB ground and height
+PASS police.small exported front marker faces +Z
+PASS police.small actual original entrance/door geometry faces +Z
+PASS police.small enabled actual button
+PASS police.small card selects its approved placement ghost
+PASS police.small opens matching inspector
+PASS police.small inspector contains real meshes
+PASS police.standard ready spec path
+PASS police.standard valid real service spec
+PASS police.standard approved name and lot
+PASS police.standard preview only and +Z frontage
+PASS police.standard GLB footprint is metres
+PASS police.standard GLB ground and height
+PASS police.standard exported front marker faces +Z
+PASS police.standard actual original entrance/door geometry faces +Z
+PASS police.standard enabled actual button
+PASS police.standard card selects its approved placement ghost
+PASS police.standard opens matching inspector
+PASS police.standard inspector contains real meshes
+PASS police.headquarters ready spec path
+PASS police.headquarters valid real service spec
+PASS police.headquarters approved name and lot
+PASS police.headquarters preview only and +Z frontage
+PASS police.headquarters GLB footprint is metres
+PASS police.headquarters GLB ground and height
+PASS police.headquarters exported front marker faces +Z
+PASS police.headquarters actual original entrance/door geometry faces +Z
+PASS police.headquarters enabled actual button
+PASS police.headquarters card selects its approved placement ghost
+PASS police.headquarters opens matching inspector
+PASS police.headquarters inspector contains real meshes
+PASS police.prison ready spec path
+PASS police.prison valid real service spec
+PASS police.prison approved name and lot
+PASS police.prison preview only and +Z frontage
+PASS police.prison GLB footprint is metres
+PASS police.prison GLB ground and height
+PASS police.prison exported front marker faces +Z
+PASS police.prison actual original entrance/door geometry faces +Z
+PASS police.prison enabled actual button
+PASS police.prison card selects its approved placement ghost
+PASS police.prison opens matching inspector
+PASS police.prison inspector contains real meshes
+PASS inspection never constructs or charges
+RESULT 86/86 emergency asset checks passed

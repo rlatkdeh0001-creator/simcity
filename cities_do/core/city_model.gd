@@ -48,6 +48,8 @@ const PowerGrid = preload("res://core/power_grid.gd")
 var power
 const WaterGrid = preload("res://core/water_grid.gd")
 var water
+const PublicFacilities=preload("res://core/public_facilities.gd")
+var public_facilities
 const PROTOTYPE_POWER_LOADS := {"residential":1.6,"commercial":1.5,"industrial":3.0}
 
 func _init(w: int = 40, h: int = 40, seed_value: int = 42):
@@ -58,6 +60,8 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	appearance_rng.seed = seed_value ^ 0x5f3759df
 	power = PowerGrid.new(Vector2(w,h)*4.0)
 	water = WaterGrid.new(Vector2(w,h)*4.0)
+	public_facilities=PublicFacilities.new(self)
+	clock.day_changed.connect(public_facilities.bill_months)
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -66,6 +70,7 @@ func _point_segment(p: Vector2, a: Vector2, b: Vector2) -> float:
 	return p.distance_to(Geometry2D.get_closest_point_to_segment(p, a, b))
 
 func footprint(b: Dictionary) -> PackedVector2Array:
+	if b.has("public_asset_id"):return b.polygon
 	if b.has("frame"):return Parcels.polygon(b.frame,b.u,b.v,b.size)
 	var r:=_rect(b)
 	return PackedVector2Array([r.position,Vector2(r.end.x,r.position.y),r.end,Vector2(r.position.x,r.end.y)])
@@ -87,11 +92,16 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 	for point in polygon_value:
 		if point.x< -0.0005 or point.y< -0.0005 or point.x>width+0.0005 or point.y>height+0.0005:return "지도 경계 밖입니다"
 	if check_buildings:
+		if public_facilities!=null:
+			for record: Dictionary in public_facilities.lots:
+				if record.id!=ignore_id and Parcels.overlap(polygon_value,record.polygon):return "공공시설과 충돌합니다"
 		for b in buildings:
 			if b.id!=ignore_id and Parcels.overlap(polygon_value,footprint(b)):return "다른 건물이 있습니다"
 		for plant in power.plants:
+			if plant.get("public_lot_id",-2)==ignore_id:continue
 			if Parcels.overlap(polygon_value,power_plant_footprint(plant)):return "발전소가 있습니다"
 		for facility in water.facilities:
+			if facility.get("public_lot_id",-2)==ignore_id:continue
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
 	for junction in junctions:
 		if Parcels.overlap(polygon_value,RoadJunctions.patch(junction)):return "교차로와 충돌합니다"
@@ -237,6 +247,8 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for b in buildings:
 		if _polygon_road_distance(footprint(b), road) < -0.0005:
 			return {"ok": false, "reason": "건물과 충돌합니다"}
+	for record: Dictionary in public_facilities.lots:
+		if _polygon_road_distance(record.polygon,road)<-0.0005:return {"ok":false,"reason":"공공시설과 충돌합니다"}
 	for plant in power.plants:
 		if _polygon_road_distance(power_plant_footprint(plant),road)<-0.0005:
 			return {"ok":false,"reason":"발전소와 충돌합니다"}
@@ -245,6 +257,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
 	var occupied := []
 	for building in buildings: occupied.append(footprint(building))
+	for record: Dictionary in public_facilities.lots:occupied.append(record.polygon)
 	for facility in power.plants+water.facilities: occupied.append(power_plant_footprint(facility))
 	if not occupied.is_empty():
 		for junction in RoadJunctions.analyze(roads+[road]).junctions:
@@ -262,6 +275,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 func demolish(kind: String, id: int) -> Dictionary:
 	var removed := false
 	match kind:
+		"public_facility":removed=public_facilities.remove(id)
 		"building":
 			for i in range(buildings.size()):
 				if buildings[i].id==id:
@@ -317,6 +331,7 @@ func regional_exchange() -> Dictionary:
 	return RegionalExchange.evaluate(width,height,roads,links)
 
 func power_plant_footprint(plant: Dictionary) -> PackedVector2Array:
+	if plant.has("public_polygon"):return plant.public_polygon
 	var p: Vector2 = plant.position/4.0-Vector2.ONE
 	return footprint({"x":p.x,"y":p.y,"size":2})
 

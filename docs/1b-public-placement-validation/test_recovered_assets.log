@@ -1,0 +1,62 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS seven approved recovered education/medical assets
+PASS elementary-school has actual imported geometry
+PASS elementary-school preserves metre footprint
+PASS elementary-school does not claim operational services
+PASS high-school has actual imported geometry
+PASS high-school preserves metre footprint
+PASS high-school does not claim operational services
+PASS technical-college has actual imported geometry
+PASS technical-college preserves metre footprint
+PASS technical-college does not claim operational services
+PASS university has actual imported geometry
+PASS university preserves metre footprint
+PASS university does not claim operational services
+PASS medical-clinic has actual imported geometry
+PASS medical-clinic preserves metre footprint
+PASS medical-clinic does not claim operational services
+PASS medical-hospital has actual imported geometry
+PASS medical-hospital preserves metre footprint
+PASS medical-hospital does not claim operational services
+PASS medical-large-hospital has actual imported geometry
+PASS medical-large-hospital preserves metre footprint
+PASS medical-large-hospital does not claim operational services
+PASS education and medical gallery loads all seven models
+PASS empty other tab remains removed
+PASS education has exactly its four facilities
+PASS elementary has a visible category button
+PASS elementary is available
+PASS elementary selects its approved city-placement model
+PASS elementary placement source contains real geometry
+PASS high_school has a visible category button
+PASS high_school is available
+PASS high_school selects its approved city-placement model
+PASS high_school placement source contains real geometry
+PASS college has a visible category button
+PASS college is available
+PASS college selects its approved city-placement model
+PASS college placement source contains real geometry
+PASS university has a visible category button
+PASS university is available
+PASS university selects its approved city-placement model
+PASS university placement source contains real geometry
+PASS health has exactly its four facilities
+PASS hospital has a visible category button
+PASS hospital is available
+PASS hospital selects its approved city-placement model
+PASS hospital placement source contains real geometry
+PASS clinic has a visible category button
+PASS clinic is available
+PASS clinic selects its approved city-placement model
+PASS clinic placement source contains real geometry
+PASS large_hospital has a visible category button
+PASS large_hospital is available
+PASS large_hospital selects its approved city-placement model
+PASS large_hospital placement source contains real geometry
+PASS crematorium has a visible category button
+PASS crematorium is available
+PASS crematorium selects its approved city-placement model
+PASS crematorium placement source contains real geometry
+PASS asset inspectors preserve city and do not fake service placement
+RESULT 59/59 recovered asset checks passed

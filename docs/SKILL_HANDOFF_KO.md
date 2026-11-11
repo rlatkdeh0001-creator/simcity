@@ -6,7 +6,27 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 승인: 결정적 신축·성장 부지 규칙 / main 통합
+## 최신 작업: 1B 공공시설 실제 배치 · 로컬 승인 대기
+
+main e6d3890에서 feature/1b-public-placement. 미커밋 행복도 단계표/대출 메모2문서는40f030b에 원문 보존했다.
+추가 사용자 승인으로 기존 C카드→초록/빨강 GLB 고스트→좌클릭 배치/R90도 회전/ESC·우클릭 취소를 연결했다.
+새 HUD/패널/카드 레이아웃 없음. 공원·주차 포함34종, 수력댐은 검사창 유지다.
+단일 원본 docs/economy-balance/ECONOMY_BALANCE.csv의 기존 가격68행은 수치 보존/임시 승인 상태로,
+CAPACITY의 용량85행은 임시 승인2026-11-11·단위·출처와 함께 추가했다. 런타임이 원본 CSV를 직접 읽는다.
+tools/sync_public_economy.py의 생성 복사본은 내보내기용 fallback이며 별도 편집하지 않는다. 내보내기 패키지 검증은 하지 않았다.
+core/public_balance.gd / public_facilities.gd / public_placement_controller.gd와 기존 도시/방향 GLB 렌더/불도저를 재사용했다.
+공공 모델은 민간 인구·성장 배열과 분리하고 WeakRef로 도시를 참조한다. 공통 접도/충돌/정면,6×6·직사각·대각선 도로 지원.
+배치 시 건설비, 게임 하루(=1달) 경계 유지비 실제 차감. 발전5/취수/하수2만 기존 공급 엔진 연결.
+급수탑/쓰레기2·서비스/공원/주차는 배치·비용·용량 등록만. 저장·쓰레기·서비스 효과/연료·대출 엔진 없음.
+[적용34종 가격/용량표·전체30/30·신규524/524+19/19·실제1920 3장·원본848 보존·기존 도구 중복/한계](1b-public-placement-validation/README_KO.md).
+기존 무료 power_plant/water_supply/water_treatment 프로토타입 도구는 삭제하지 않았다. 유료 실제 C카드와 병존하며 통합은 사용자 결정 대기.
+프로필 TDD/Windows validation/systematic-debugging/자체 리뷰, 프로젝트 modular-facilities 규약 및 기존 validator 도구 적용.
+추가 외부 패키지·업스트림·라이선스·독립 에이전트 없음. 기존 출처·라이선스 기록은 아래 유지한다.
+배포 CSV 복사본은.csv.txt로 두어 Godot 번역 자동 임포트를 피한다. fallback 가격/용량 일치까지 실제 검사했다.
+검증 도구 tools/capture_public_placement.py/.gd, audit_public_placement.py. 원본 제작기/Blender 재실행 없음.
+**AGENTS.md 수정 금지 준수. 로컬 커밋까지만이며 main 병합·푸시 금지. 이후 추가 범위 없음.**
+
+## 이전 승인: 결정적 신축·성장 부지 규칙 / main 통합
 
 성장 외관4077e44 사용자 승인 후 같은 feature/growth-appearance에서 부지 규칙2개를 구현했다.
 기획4파일은 원문 보존, 실제 변경2파일은02f505c docs 커밋이며 이미 추적된 의미 불변2파일은 그대로다.

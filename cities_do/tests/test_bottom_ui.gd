@@ -63,7 +63,7 @@ func run():
    tools[3].pressed.emit()
    await process_frame
    var windows=preview.find_children("ServiceAssetPreview","Window",true,false)
-   verify(windows.size()==1,"crematorium opens actual model inspector")
+   verify(windows.is_empty() and preview.mode=="public_placement" and preview.public_controller.asset_id=="crematorium-4x4","crematorium C card selects actual city placement without an inspection modal")
    if not windows.is_empty(): windows[0].close_requested.emit()
    await process_frame
    verify(preview.city==saved_city and preview.city.buildings.size()==34,"inspector preserves city")

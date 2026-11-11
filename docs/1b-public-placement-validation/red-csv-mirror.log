@@ -1,0 +1,531 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS public placements have a separate real city model, not inspection scenes
+PASS all thirty-four approved service/infrastructure/park cards are placeable, excluding hydro
+PASS public placement commits real geometry and charges construction cost
+PASS 6x6 fire station places adjacent to local road
+PASS fire station immediately charges approved CSV 20000 doth
+PASS crematorium-4x4 rejects disconnected frontage
+PASS crematorium-4x4 rejects model front away from road
+PASS crematorium-4x4 cannot build without cash
+PASS crematorium-4x4 ghost validation has no city or money side effects
+PASS crematorium-4x4 real placement charges CSV once
+PASS crematorium-4x4 overlapping public building rejected
+PASS crematorium-4x4 private building cannot occupy public lot
+PASS crematorium-4x4 new road cannot cut public footprint
+PASS crematorium-4x4 no monthly charge before game-day boundary
+PASS crematorium-4x4 approved upkeep charged at game-day/month boundary
+PASS crematorium-4x4 crossed month boundaries each charge exactly once
+PASS crematorium-4x4 road deletion never relocates or turns placed public model
+PASS crematorium-4x4 common bulldozer removes public building
+PASS crematorium-4x4 demolished facility no longer bills maintenance
+PASS elementary-school rejects disconnected frontage
+PASS elementary-school rejects model front away from road
+PASS elementary-school cannot build without cash
+PASS elementary-school ghost validation has no city or money side effects
+PASS elementary-school real placement charges CSV once
+PASS elementary-school overlapping public building rejected
+PASS elementary-school private building cannot occupy public lot
+PASS elementary-school new road cannot cut public footprint
+PASS elementary-school no monthly charge before game-day boundary
+PASS elementary-school approved upkeep charged at game-day/month boundary
+PASS elementary-school crossed month boundaries each charge exactly once
+PASS elementary-school road deletion never relocates or turns placed public model
+PASS elementary-school common bulldozer removes public building
+PASS elementary-school demolished facility no longer bills maintenance
+PASS high-school rejects disconnected frontage
+PASS high-school rejects model front away from road
+PASS high-school cannot build without cash
+PASS high-school ghost validation has no city or money side effects
+PASS high-school real placement charges CSV once
+PASS high-school overlapping public building rejected
+PASS high-school private building cannot occupy public lot
+PASS high-school new road cannot cut public footprint
+PASS high-school no monthly charge before game-day boundary
+PASS high-school approved upkeep charged at game-day/month boundary
+PASS high-school crossed month boundaries each charge exactly once
+PASS high-school road deletion never relocates or turns placed public model
+PASS high-school common bulldozer removes public building
+PASS high-school demolished facility no longer bills maintenance
+PASS technical-college rejects disconnected frontage
+PASS technical-college rejects model front away from road
+PASS technical-college cannot build without cash
+PASS technical-college ghost validation has no city or money side effects
+PASS technical-college real placement charges CSV once
+PASS technical-college overlapping public building rejected
+PASS technical-college private building cannot occupy public lot
+PASS technical-college new road cannot cut public footprint
+PASS technical-college no monthly charge before game-day boundary
+PASS technical-college approved upkeep charged at game-day/month boundary
+PASS technical-college crossed month boundaries each charge exactly once
+PASS technical-college road deletion never relocates or turns placed public model
+PASS technical-college common bulldozer removes public building
+PASS technical-college demolished facility no longer bills maintenance
+PASS university rejects disconnected frontage
+PASS university rejects model front away from road
+PASS university cannot build without cash
+PASS university ghost validation has no city or money side effects
+PASS university real placement charges CSV once
+PASS university overlapping public building rejected
+PASS university private building cannot occupy public lot
+PASS university new road cannot cut public footprint
+PASS university no monthly charge before game-day boundary
+PASS university approved upkeep charged at game-day/month boundary
+PASS university crossed month boundaries each charge exactly once
+PASS university road deletion never relocates or turns placed public model
+PASS university common bulldozer removes public building
+PASS university demolished facility no longer bills maintenance
+PASS medical-clinic rejects disconnected frontage
+PASS medical-clinic rejects model front away from road
+PASS medical-clinic cannot build without cash
+PASS medical-clinic ghost validation has no city or money side effects
+PASS medical-clinic real placement charges CSV once
+PASS medical-clinic overlapping public building rejected
+PASS medical-clinic private building cannot occupy public lot
+PASS medical-clinic new road cannot cut public footprint
+PASS medical-clinic no monthly charge before game-day boundary
+PASS medical-clinic approved upkeep charged at game-day/month boundary
+PASS medical-clinic crossed month boundaries each charge exactly once
+PASS medical-clinic road deletion never relocates or turns placed public model
+PASS medical-clinic common bulldozer removes public building
+PASS medical-clinic demolished facility no longer bills maintenance
+PASS medical-hospital rejects disconnected frontage
+PASS medical-hospital rejects model front away from road
+PASS medical-hospital cannot build without cash
+PASS medical-hospital ghost validation has no city or money side effects
+PASS medical-hospital real placement charges CSV once
+PASS medical-hospital overlapping public building rejected
+PASS medical-hospital private building cannot occupy public lot
+PASS medical-hospital new road cannot cut public footprint
+PASS medical-hospital no monthly charge before game-day boundary
+PASS medical-hospital approved upkeep charged at game-day/month boundary
+PASS medical-hospital crossed month boundaries each charge exactly once
+PASS medical-hospital road deletion never relocates or turns placed public model
+PASS medical-hospital common bulldozer removes public building
+PASS medical-hospital demolished facility no longer bills maintenance
+PASS medical-large-hospital rejects disconnected frontage
+PASS medical-large-hospital rejects model front away from road
+PASS medical-large-hospital cannot build without cash
+PASS medical-large-hospital ghost validation has no city or money side effects
+PASS medical-large-hospital real placement charges CSV once
+PASS medical-large-hospital overlapping public building rejected
+PASS medical-large-hospital private building cannot occupy public lot
+PASS medical-large-hospital new road cannot cut public footprint
+PASS medical-large-hospital no monthly charge before game-day boundary
+PASS medical-large-hospital approved upkeep charged at game-day/month boundary
+PASS medical-large-hospital crossed month boundaries each charge exactly once
+PASS medical-large-hospital road deletion never relocates or turns placed public model
+PASS medical-large-hospital common bulldozer removes public building
+PASS medical-large-hospital demolished facility no longer bills maintenance
+PASS small-fire-station rejects disconnected frontage
+PASS small-fire-station rejects model front away from road
+PASS small-fire-station cannot build without cash
+PASS small-fire-station ghost validation has no city or money side effects
+PASS small-fire-station real placement charges CSV once
+PASS small-fire-station overlapping public building rejected
+PASS small-fire-station private building cannot occupy public lot
+PASS small-fire-station new road cannot cut public footprint
+PASS small-fire-station no monthly charge before game-day boundary
+PASS small-fire-station approved upkeep charged at game-day/month boundary
+PASS small-fire-station crossed month boundaries each charge exactly once
+PASS small-fire-station road deletion never relocates or turns placed public model
+PASS small-fire-station common bulldozer removes public building
+PASS small-fire-station demolished facility no longer bills maintenance
+PASS fire-station rejects disconnected frontage
+PASS fire-station rejects model front away from road
+PASS fire-station cannot build without cash
+PASS fire-station ghost validation has no city or money side effects
+PASS fire-station real placement charges CSV once
+PASS fire-station overlapping public building rejected
+PASS fire-station private building cannot occupy public lot
+PASS fire-station new road cannot cut public footprint
+PASS fire-station no monthly charge before game-day boundary
+PASS fire-station approved upkeep charged at game-day/month boundary
+PASS fire-station crossed month boundaries each charge exactly once
+PASS fire-station road deletion never relocates or turns placed public model
+PASS fire-station common bulldozer removes public building
+PASS fire-station demolished facility no longer bills maintenance
+PASS regional-fire-station rejects disconnected frontage
+PASS regional-fire-station rejects model front away from road
+PASS regional-fire-station cannot build without cash
+PASS regional-fire-station ghost validation has no city or money side effects
+PASS regional-fire-station real placement charges CSV once
+PASS regional-fire-station overlapping public building rejected
+PASS regional-fire-station private building cannot occupy public lot
+PASS regional-fire-station new road cannot cut public footprint
+PASS regional-fire-station no monthly charge before game-day boundary
+PASS regional-fire-station approved upkeep charged at game-day/month boundary
+PASS regional-fire-station crossed month boundaries each charge exactly once
+PASS regional-fire-station road deletion never relocates or turns placed public model
+PASS regional-fire-station common bulldozer removes public building
+PASS regional-fire-station demolished facility no longer bills maintenance
+PASS small-police-station rejects disconnected frontage
+PASS small-police-station rejects model front away from road
+PASS small-police-station cannot build without cash
+PASS small-police-station ghost validation has no city or money side effects
+PASS small-police-station real placement charges CSV once
+PASS small-police-station overlapping public building rejected
+PASS small-police-station private building cannot occupy public lot
+PASS small-police-station new road cannot cut public footprint
+PASS small-police-station no monthly charge before game-day boundary
+PASS small-police-station approved upkeep charged at game-day/month boundary
+PASS small-police-station crossed month boundaries each charge exactly once
+PASS small-police-station road deletion never relocates or turns placed public model
+PASS small-police-station common bulldozer removes public building
+PASS small-police-station demolished facility no longer bills maintenance
+PASS police-station rejects disconnected frontage
+PASS police-station rejects model front away from road
+PASS police-station cannot build without cash
+PASS police-station ghost validation has no city or money side effects
+PASS police-station real placement charges CSV once
+PASS police-station overlapping public building rejected
+PASS police-station private building cannot occupy public lot
+PASS police-station new road cannot cut public footprint
+PASS police-station no monthly charge before game-day boundary
+PASS police-station approved upkeep charged at game-day/month boundary
+PASS police-station crossed month boundaries each charge exactly once
+PASS police-station road deletion never relocates or turns placed public model
+PASS police-station common bulldozer removes public building
+PASS police-station demolished facility no longer bills maintenance
+PASS regional-police-station rejects disconnected frontage
+PASS regional-police-station rejects model front away from road
+PASS regional-police-station cannot build without cash
+PASS regional-police-station ghost validation has no city or money side effects
+PASS regional-police-station real placement charges CSV once
+PASS regional-police-station overlapping public building rejected
+PASS regional-police-station private building cannot occupy public lot
+PASS regional-police-station new road cannot cut public footprint
+PASS regional-police-station no monthly charge before game-day boundary
+PASS regional-police-station approved upkeep charged at game-day/month boundary
+PASS regional-police-station crossed month boundaries each charge exactly once
+PASS regional-police-station road deletion never relocates or turns placed public model
+PASS regional-police-station common bulldozer removes public building
+PASS regional-police-station demolished facility no longer bills maintenance
+PASS prison-8x8 rejects disconnected frontage
+PASS prison-8x8 rejects model front away from road
+PASS prison-8x8 cannot build without cash
+PASS prison-8x8 ghost validation has no city or money side effects
+PASS prison-8x8 real placement charges CSV once
+PASS prison-8x8 overlapping public building rejected
+PASS prison-8x8 private building cannot occupy public lot
+PASS prison-8x8 new road cannot cut public footprint
+PASS prison-8x8 no monthly charge before game-day boundary
+PASS prison-8x8 approved upkeep charged at game-day/month boundary
+PASS prison-8x8 crossed month boundaries each charge exactly once
+PASS prison-8x8 road deletion never relocates or turns placed public model
+PASS prison-8x8 common bulldozer removes public building
+PASS prison-8x8 demolished facility no longer bills maintenance
+PASS power-coal rejects disconnected frontage
+PASS power-coal rejects model front away from road
+PASS power-coal cannot build without cash
+PASS power-coal ghost validation has no city or money side effects
+PASS power-coal real placement charges CSV once
+PASS power-coal overlapping public building rejected
+PASS power-coal private building cannot occupy public lot
+PASS power-coal new road cannot cut public footprint
+PASS power-coal no monthly charge before game-day boundary
+PASS power-coal approved upkeep charged at game-day/month boundary
+PASS power-coal crossed month boundaries each charge exactly once
+PASS power-coal road deletion never relocates or turns placed public model
+PASS power-coal common bulldozer removes public building
+PASS power-coal demolished facility no longer bills maintenance
+PASS power-nuclear rejects disconnected frontage
+PASS power-nuclear rejects model front away from road
+PASS power-nuclear cannot build without cash
+PASS power-nuclear ghost validation has no city or money side effects
+PASS power-nuclear real placement charges CSV once
+PASS power-nuclear overlapping public building rejected
+PASS power-nuclear private building cannot occupy public lot
+PASS power-nuclear new road cannot cut public footprint
+PASS power-nuclear no monthly charge before game-day boundary
+PASS power-nuclear approved upkeep charged at game-day/month boundary
+PASS power-nuclear crossed month boundaries each charge exactly once
+PASS power-nuclear road deletion never relocates or turns placed public model
+PASS power-nuclear common bulldozer removes public building
+PASS power-nuclear demolished facility no longer bills maintenance
+PASS power-oil rejects disconnected frontage
+PASS power-oil rejects model front away from road
+PASS power-oil cannot build without cash
+PASS power-oil ghost validation has no city or money side effects
+PASS power-oil real placement charges CSV once
+PASS power-oil overlapping public building rejected
+PASS power-oil private building cannot occupy public lot
+PASS power-oil new road cannot cut public footprint
+PASS power-oil no monthly charge before game-day boundary
+PASS power-oil approved upkeep charged at game-day/month boundary
+PASS power-oil crossed month boundaries each charge exactly once
+PASS power-oil road deletion never relocates or turns placed public model
+PASS power-oil common bulldozer removes public building
+PASS power-oil demolished facility no longer bills maintenance
+PASS power-solar rejects disconnected frontage
+PASS power-solar rejects model front away from road
+PASS power-solar cannot build without cash
+PASS power-solar ghost validation has no city or money side effects
+PASS power-solar real placement charges CSV once
+PASS power-solar overlapping public building rejected
+PASS power-solar private building cannot occupy public lot
+PASS power-solar new road cannot cut public footprint
+PASS power-solar no monthly charge before game-day boundary
+PASS power-solar approved upkeep charged at game-day/month boundary
+PASS power-solar crossed month boundaries each charge exactly once
+PASS power-solar road deletion never relocates or turns placed public model
+PASS power-solar common bulldozer removes public building
+PASS power-solar demolished facility no longer bills maintenance
+PASS power-wind rejects disconnected frontage
+PASS power-wind rejects model front away from road
+PASS power-wind cannot build without cash
+PASS power-wind ghost validation has no city or money side effects
+PASS power-wind real placement charges CSV once
+PASS power-wind overlapping public building rejected
+PASS power-wind private building cannot occupy public lot
+PASS power-wind new road cannot cut public footprint
+PASS power-wind no monthly charge before game-day boundary
+PASS power-wind approved upkeep charged at game-day/month boundary
+PASS power-wind crossed month boundaries each charge exactly once
+PASS power-wind road deletion never relocates or turns placed public model
+PASS power-wind common bulldozer removes public building
+PASS power-wind demolished facility no longer bills maintenance
+PASS water-intake rejects disconnected frontage
+PASS water-intake rejects model front away from road
+PASS water-intake cannot build without cash
+PASS water-intake ghost validation has no city or money side effects
+PASS water-intake real placement charges CSV once
+PASS water-intake overlapping public building rejected
+PASS water-intake private building cannot occupy public lot
+PASS water-intake new road cannot cut public footprint
+PASS water-intake no monthly charge before game-day boundary
+PASS water-intake approved upkeep charged at game-day/month boundary
+PASS water-intake crossed month boundaries each charge exactly once
+PASS water-intake road deletion never relocates or turns placed public model
+PASS water-intake common bulldozer removes public building
+PASS water-intake demolished facility no longer bills maintenance
+PASS water-sewage-outfall rejects disconnected frontage
+PASS water-sewage-outfall rejects model front away from road
+PASS water-sewage-outfall cannot build without cash
+PASS water-sewage-outfall ghost validation has no city or money side effects
+PASS water-sewage-outfall real placement charges CSV once
+PASS water-sewage-outfall overlapping public building rejected
+PASS water-sewage-outfall private building cannot occupy public lot
+PASS water-sewage-outfall new road cannot cut public footprint
+PASS water-sewage-outfall no monthly charge before game-day boundary
+PASS water-sewage-outfall approved upkeep charged at game-day/month boundary
+PASS water-sewage-outfall crossed month boundaries each charge exactly once
+PASS water-sewage-outfall road deletion never relocates or turns placed public model
+PASS water-sewage-outfall common bulldozer removes public building
+PASS water-sewage-outfall demolished facility no longer bills maintenance
+PASS water-sewage-treatment rejects disconnected frontage
+PASS water-sewage-treatment rejects model front away from road
+PASS water-sewage-treatment cannot build without cash
+PASS water-sewage-treatment ghost validation has no city or money side effects
+PASS water-sewage-treatment real placement charges CSV once
+PASS water-sewage-treatment overlapping public building rejected
+PASS water-sewage-treatment private building cannot occupy public lot
+PASS water-sewage-treatment new road cannot cut public footprint
+PASS water-sewage-treatment no monthly charge before game-day boundary
+PASS water-sewage-treatment approved upkeep charged at game-day/month boundary
+PASS water-sewage-treatment crossed month boundaries each charge exactly once
+PASS water-sewage-treatment road deletion never relocates or turns placed public model
+PASS water-sewage-treatment common bulldozer removes public building
+PASS water-sewage-treatment demolished facility no longer bills maintenance
+PASS water-water-tower rejects disconnected frontage
+PASS water-water-tower rejects model front away from road
+PASS water-water-tower cannot build without cash
+PASS water-water-tower ghost validation has no city or money side effects
+PASS water-water-tower real placement charges CSV once
+PASS water-water-tower overlapping public building rejected
+PASS water-water-tower private building cannot occupy public lot
+PASS water-water-tower new road cannot cut public footprint
+PASS water-water-tower no monthly charge before game-day boundary
+PASS water-water-tower approved upkeep charged at game-day/month boundary
+PASS water-water-tower crossed month boundaries each charge exactly once
+PASS water-water-tower road deletion never relocates or turns placed public model
+PASS water-water-tower common bulldozer removes public building
+PASS water-water-tower demolished facility no longer bills maintenance
+PASS waste-incinerator rejects disconnected frontage
+PASS waste-incinerator rejects model front away from road
+PASS waste-incinerator cannot build without cash
+PASS waste-incinerator ghost validation has no city or money side effects
+PASS waste-incinerator real placement charges CSV once
+PASS waste-incinerator overlapping public building rejected
+PASS waste-incinerator private building cannot occupy public lot
+PASS waste-incinerator new road cannot cut public footprint
+PASS waste-incinerator no monthly charge before game-day boundary
+PASS waste-incinerator approved upkeep charged at game-day/month boundary
+PASS waste-incinerator crossed month boundaries each charge exactly once
+PASS waste-incinerator road deletion never relocates or turns placed public model
+PASS waste-incinerator common bulldozer removes public building
+PASS waste-incinerator demolished facility no longer bills maintenance
+PASS waste-recycling-center rejects disconnected frontage
+PASS waste-recycling-center rejects model front away from road
+PASS waste-recycling-center cannot build without cash
+PASS waste-recycling-center ghost validation has no city or money side effects
+PASS waste-recycling-center real placement charges CSV once
+PASS waste-recycling-center overlapping public building rejected
+PASS waste-recycling-center private building cannot occupy public lot
+PASS waste-recycling-center new road cannot cut public footprint
+PASS waste-recycling-center no monthly charge before game-day boundary
+PASS waste-recycling-center approved upkeep charged at game-day/month boundary
+PASS waste-recycling-center crossed month boundaries each charge exactly once
+PASS waste-recycling-center road deletion never relocates or turns placed public model
+PASS waste-recycling-center common bulldozer removes public building
+PASS waste-recycling-center demolished facility no longer bills maintenance
+PASS park-pocket-2x2 rejects disconnected frontage
+PASS park-pocket-2x2 rejects model front away from road
+PASS park-pocket-2x2 cannot build without cash
+PASS park-pocket-2x2 ghost validation has no city or money side effects
+PASS park-pocket-2x2 real placement charges CSV once
+PASS park-pocket-2x2 overlapping public building rejected
+PASS park-pocket-2x2 private building cannot occupy public lot
+PASS park-pocket-2x2 new road cannot cut public footprint
+PASS park-pocket-2x2 no monthly charge before game-day boundary
+PASS park-pocket-2x2 approved upkeep charged at game-day/month boundary
+PASS park-pocket-2x2 crossed month boundaries each charge exactly once
+PASS park-pocket-2x2 road deletion never relocates or turns placed public model
+PASS park-pocket-2x2 common bulldozer removes public building
+PASS park-pocket-2x2 demolished facility no longer bills maintenance
+PASS park-garden-2x2 rejects disconnected frontage
+PASS park-garden-2x2 rejects model front away from road
+PASS park-garden-2x2 cannot build without cash
+PASS park-garden-2x2 ghost validation has no city or money side effects
+PASS park-garden-2x2 real placement charges CSV once
+PASS park-garden-2x2 overlapping public building rejected
+PASS park-garden-2x2 private building cannot occupy public lot
+PASS park-garden-2x2 new road cannot cut public footprint
+PASS park-garden-2x2 no monthly charge before game-day boundary
+PASS park-garden-2x2 approved upkeep charged at game-day/month boundary
+PASS park-garden-2x2 crossed month boundaries each charge exactly once
+PASS park-garden-2x2 road deletion never relocates or turns placed public model
+PASS park-garden-2x2 common bulldozer removes public building
+PASS park-garden-2x2 demolished facility no longer bills maintenance
+PASS park-plaza-4x4 rejects disconnected frontage
+PASS park-plaza-4x4 rejects model front away from road
+PASS park-plaza-4x4 cannot build without cash
+PASS park-plaza-4x4 ghost validation has no city or money side effects
+PASS park-plaza-4x4 real placement charges CSV once
+PASS park-plaza-4x4 overlapping public building rejected
+PASS park-plaza-4x4 private building cannot occupy public lot
+PASS park-plaza-4x4 new road cannot cut public footprint
+PASS park-plaza-4x4 no monthly charge before game-day boundary
+PASS park-plaza-4x4 approved upkeep charged at game-day/month boundary
+PASS park-plaza-4x4 crossed month boundaries each charge exactly once
+PASS park-plaza-4x4 road deletion never relocates or turns placed public model
+PASS park-plaza-4x4 common bulldozer removes public building
+PASS park-plaza-4x4 demolished facility no longer bills maintenance
+PASS park-play-4x4 rejects disconnected frontage
+PASS park-play-4x4 rejects model front away from road
+PASS park-play-4x4 cannot build without cash
+PASS park-play-4x4 ghost validation has no city or money side effects
+PASS park-play-4x4 real placement charges CSV once
+PASS park-play-4x4 overlapping public building rejected
+PASS park-play-4x4 private building cannot occupy public lot
+PASS park-play-4x4 new road cannot cut public footprint
+PASS park-play-4x4 no monthly charge before game-day boundary
+PASS park-play-4x4 approved upkeep charged at game-day/month boundary
+PASS park-play-4x4 crossed month boundaries each charge exactly once
+PASS park-play-4x4 road deletion never relocates or turns placed public model
+PASS park-play-4x4 common bulldozer removes public building
+PASS park-play-4x4 demolished facility no longer bills maintenance
+PASS parking-small-2x4 rejects disconnected frontage
+PASS parking-small-2x4 rejects model front away from road
+PASS parking-small-2x4 cannot build without cash
+PASS parking-small-2x4 ghost validation has no city or money side effects
+PASS parking-small-2x4 real placement charges CSV once
+PASS parking-small-2x4 overlapping public building rejected
+PASS parking-small-2x4 private building cannot occupy public lot
+PASS parking-small-2x4 new road cannot cut public footprint
+PASS parking-small-2x4 no monthly charge before game-day boundary
+PASS parking-small-2x4 approved upkeep charged at game-day/month boundary
+PASS parking-small-2x4 crossed month boundaries each charge exactly once
+PASS parking-small-2x4 road deletion never relocates or turns placed public model
+PASS parking-small-2x4 common bulldozer removes public building
+PASS parking-small-2x4 demolished facility no longer bills maintenance
+PASS parking-medium-4x4 rejects disconnected frontage
+PASS parking-medium-4x4 rejects model front away from road
+PASS parking-medium-4x4 cannot build without cash
+PASS parking-medium-4x4 ghost validation has no city or money side effects
+PASS parking-medium-4x4 real placement charges CSV once
+PASS parking-medium-4x4 overlapping public building rejected
+PASS parking-medium-4x4 private building cannot occupy public lot
+PASS parking-medium-4x4 new road cannot cut public footprint
+PASS parking-medium-4x4 no monthly charge before game-day boundary
+PASS parking-medium-4x4 approved upkeep charged at game-day/month boundary
+PASS parking-medium-4x4 crossed month boundaries each charge exactly once
+PASS parking-medium-4x4 road deletion never relocates or turns placed public model
+PASS parking-medium-4x4 common bulldozer removes public building
+PASS parking-medium-4x4 demolished facility no longer bills maintenance
+PASS parking-large-4x8 rejects disconnected frontage
+PASS parking-large-4x8 rejects model front away from road
+PASS parking-large-4x8 cannot build without cash
+PASS parking-large-4x8 ghost validation has no city or money side effects
+PASS parking-large-4x8 real placement charges CSV once
+PASS parking-large-4x8 overlapping public building rejected
+PASS parking-large-4x8 private building cannot occupy public lot
+PASS parking-large-4x8 new road cannot cut public footprint
+PASS parking-large-4x8 no monthly charge before game-day boundary
+PASS parking-large-4x8 approved upkeep charged at game-day/month boundary
+PASS parking-large-4x8 crossed month boundaries each charge exactly once
+PASS parking-large-4x8 road deletion never relocates or turns placed public model
+PASS parking-large-4x8 common bulldozer removes public building
+PASS parking-large-4x8 demolished facility no longer bills maintenance
+PASS parking-tower-4x4-4f rejects disconnected frontage
+PASS parking-tower-4x4-4f rejects model front away from road
+PASS parking-tower-4x4-4f cannot build without cash
+PASS parking-tower-4x4-4f ghost validation has no city or money side effects
+PASS parking-tower-4x4-4f real placement charges CSV once
+PASS parking-tower-4x4-4f overlapping public building rejected
+PASS parking-tower-4x4-4f private building cannot occupy public lot
+PASS parking-tower-4x4-4f new road cannot cut public footprint
+PASS parking-tower-4x4-4f no monthly charge before game-day boundary
+PASS parking-tower-4x4-4f approved upkeep charged at game-day/month boundary
+PASS parking-tower-4x4-4f crossed month boundaries each charge exactly once
+PASS parking-tower-4x4-4f road deletion never relocates or turns placed public model
+PASS parking-tower-4x4-4f common bulldozer removes public building
+PASS parking-tower-4x4-4f demolished facility no longer bills maintenance
+PASS power-wind joins real power engine
+PASS power-wind actual average generation comes from CSV, rated output remains separate
+PASS generation without connected wire cannot supply houses
+PASS power-wind actual wire supplies a real private building
+PASS power-wind demolition removes source and service
+PASS power-solar joins real power engine
+PASS power-solar actual average generation comes from CSV, rated output remains separate
+PASS generation without connected wire cannot supply houses
+PASS power-solar actual wire supplies a real private building
+PASS power-solar demolition removes source and service
+PASS power-coal joins real power engine
+PASS power-coal actual average generation comes from CSV, rated output remains separate
+PASS generation without connected wire cannot supply houses
+PASS power-coal actual wire supplies a real private building
+PASS power-coal demolition removes source and service
+PASS power-oil joins real power engine
+PASS power-oil actual average generation comes from CSV, rated output remains separate
+PASS generation without connected wire cannot supply houses
+PASS power-oil actual wire supplies a real private building
+PASS power-oil demolition removes source and service
+PASS power-nuclear joins real power engine
+PASS power-nuclear actual average generation comes from CSV, rated output remains separate
+PASS generation without connected wire cannot supply houses
+PASS power-nuclear actual wire supplies a real private building
+PASS power-nuclear demolition removes source and service
+PASS water-sewage-outfall actual intake and sewage sink are registered
+PASS water/sewage real capacities read approved CSV
+PASS water-sewage-outfall paired real pipes deliver water and handle sewage
+PASS bulldozing sink removes its actual treatment capacity
+PASS water-sewage-treatment actual intake and sewage sink are registered
+PASS water/sewage real capacities read approved CSV
+PASS water-sewage-treatment paired real pipes deliver water and handle sewage
+PASS bulldozing sink removes its actual treatment capacity
+PASS water-water-tower places and stores approved capacity data
+PASS water-water-tower creates no infinite water or unfuelled generation/processing
+PASS waste-incinerator places and stores approved capacity data
+PASS waste-incinerator creates no infinite water or unfuelled generation/processing
+PASS waste-recycling-center places and stores approved capacity data
+PASS waste-recycling-center creates no infinite water or unfuelled generation/processing
+PASS public 6x6 snaps to a diagonal road-local frame without warping its square lot
+PASS actual +Z model front faces diagonal road and lot area remains 6x6
+PASS diagonal geometry fixture has a full roadside block
+ERROR: FAIL packaged plain-text CSV mirror loads the same approved prices and capacities without translation importing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] run (res://tests/test_public_placement.gd:24)
+RESULT 523/524 public placement checks passed

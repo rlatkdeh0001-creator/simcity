@@ -1,0 +1,35 @@
+{
+  "review_mode": "self-review",
+  "public_placeable": 34,
+  "excluded_hydro": true,
+  "capacity_rows": 85,
+  "tests_passed": 30,
+  "tests_total": 30,
+  "new_test_summaries": {
+    "test_public_placement": [
+      "RESULT 524/524 public placement checks passed"
+    ],
+    "test_public_ui": [
+      "RESULT 19/19 public UI checks passed"
+    ]
+  },
+  "captures": 3,
+  "original_model_image_files_unchanged": 848,
+  "growth_source_hashes_unchanged": 49,
+  "protected_rules_and_agents_unchanged": true,
+  "new_layout_panels": 0,
+  "runtime_csv_sha256": "2fe892408dd85e832b470294028dd2874f628c6d06819536480ef421d6e43e65",
+  "no_storage_waste_service_fuel_or_loan_engine": true,
+  "legacy_overlap": [
+    "power_plant adjustable 300kW prototype",
+    "water_supply adjustable intake prototype",
+    "water_treatment adjustable sewage prototype"
+  ],
+  "known_limits": [
+    "upkeep uses whole-day boundary; no proration/refund",
+    "negative cash after mandatory upkeep is recorded; no loan is created",
+    "water/sewage continue existing engine behavior; no new electrical interlock",
+    "non-generation capacity and own-load values are registered data only",
+    "CSV export fallback must be synchronized via tools/sync_public_economy.py"
+  ]
+}

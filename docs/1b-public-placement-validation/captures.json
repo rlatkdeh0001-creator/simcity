@@ -1,0 +1,359 @@
+[
+  {
+    "name": "power-wire-supply-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_public_placement.gd",
+      "--",
+      "--case=power",
+      "--evidence=D:\\project\\simcity\\docs\\1b-public-placement-validation\\power-wire-supply-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 3.49,
+    "log": "power-wire-supply-1920.log",
+    "path": "D:\\project\\simcity\\docs\\1b-public-placement-validation\\power-wire-supply-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "ea124a5b1ef931f8539df57eb75d6dfb4ae4ac2144d3c63dda53dfad1dee4cda",
+    "state": {
+      "actions": [
+        {
+          "asset": "power-wind",
+          "funds_after": 35000,
+          "funds_before": 50000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "input": "real world wire drag",
+          "powered": true
+        }
+      ],
+      "funds": 35000,
+      "ghost": {},
+      "ghost_color": "",
+      "initial_fixture_budget": 50000,
+      "monthly_upkeep": 200,
+      "network": {
+        "consumer": {
+          "connected": true,
+          "demand_kw": 1.6,
+          "group": 0,
+          "node": 3,
+          "powered": true,
+          "ratio": 1.0,
+          "supplied_kw": 1.6
+        },
+        "plants": [
+          {
+            "enabled": true,
+            "id": 1,
+            "output_kw": 1000.0,
+            "position": "(40.0, 144.0)",
+            "public_lot_id": 1,
+            "public_polygon": "[(8.0, 34.0), (12.0, 34.0), (12.0, 38.0), (8.0, 38.0)]"
+          }
+        ],
+        "wire_count": 1
+      },
+      "normal_starting_funds_unchanged": 50000,
+      "population_gate_disabled_in_fixture_only": true,
+      "public_lots": [
+        {
+          "capacity": {
+            "average_output_kw": 1000.0,
+            "rated_output_kw": 2000.0
+          },
+          "engine": "power",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 1,
+          "polygon": "[(8.0, 34.0), (12.0, 34.0), (12.0, 38.0), (8.0, 38.0)]",
+          "position": "(10.0, 36.0)",
+          "public_asset_id": "power-wind",
+          "turns": 0,
+          "utility_id": 1
+        }
+      ],
+      "scenario": "power",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "insufficient-funds-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_public_placement.gd",
+      "--",
+      "--case=insufficient",
+      "--evidence=D:\\project\\simcity\\docs\\1b-public-placement-validation\\insufficient-funds-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 3.55,
+    "log": "insufficient-funds-1920.log",
+    "path": "D:\\project\\simcity\\docs\\1b-public-placement-validation\\insufficient-funds-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "bbeb403e57a414d776339161a732ac5cc84a1cc505081bcc26afb086e78f8521",
+    "state": {
+      "actions": [
+        {
+          "asset": "fire-station",
+          "funds_after": 30000,
+          "funds_before": 50000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "asset": "police-station",
+          "funds_after": 12000,
+          "funds_before": 30000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "asset": "medical-hospital",
+          "cost": 25000.0,
+          "funds": 12000,
+          "rejection": "insufficient_funds"
+        }
+      ],
+      "funds": 12000,
+      "ghost": {
+        "code": "insufficient_funds",
+        "cost": 25000.0,
+        "ok": false,
+        "reason": "insufficient_funds",
+        "record": {
+          "capacity": {
+            "beds": 80.0,
+            "outpatient_day": 150.0,
+            "own_power_kw": 50.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": -1,
+          "polygon": "[(39.0, 32.0), (45.0, 32.0), (45.0, 38.0), (39.0, 38.0)]",
+          "position": "(42.0, 35.0)",
+          "public_asset_id": "medical-hospital",
+          "turns": 0,
+          "utility_id": -1
+        }
+      },
+      "ghost_color": "(1.0, 0.2, 0.15, 0.55)",
+      "initial_fixture_budget": 50000,
+      "monthly_upkeep": 550,
+      "network": {},
+      "normal_starting_funds_unchanged": 50000,
+      "population_gate_disabled_in_fixture_only": true,
+      "public_lots": [
+        {
+          "capacity": {
+            "own_power_kw": 20.0,
+            "simultaneous_incidents": 3.0,
+            "vehicle_bays": 6.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 1,
+          "polygon": "[(7.0, 32.0), (13.0, 32.0), (13.0, 38.0), (7.0, 38.0)]",
+          "position": "(10.0, 35.0)",
+          "public_asset_id": "fire-station",
+          "turns": 0,
+          "utility_id": -1
+        },
+        {
+          "capacity": {
+            "own_power_kw": 15.0,
+            "population_capacity": 5000.0,
+            "vehicle_bays": 6.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 2,
+          "polygon": "[(23.0, 32.0), (29.0, 32.0), (29.0, 38.0), (23.0, 38.0)]",
+          "position": "(26.0, 35.0)",
+          "public_asset_id": "police-station",
+          "turns": 0,
+          "utility_id": -1
+        }
+      ],
+      "scenario": "insufficient",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  },
+  {
+    "name": "services-placed-1920",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "1920x1080",
+      "--position",
+      "0,0",
+      "--fullscreen",
+      "--script",
+      "D:\\project\\simcity\\tools\\capture_public_placement.gd",
+      "--",
+      "--case=services",
+      "--evidence=D:\\project\\simcity\\docs\\1b-public-placement-validation\\services-placed-1920.png"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 4.05,
+    "log": "services-placed-1920.log",
+    "path": "D:\\project\\simcity\\docs\\1b-public-placement-validation\\services-placed-1920.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "bdc53c47739af75aa536c9576a8adeeabfe34d42e0127d261ae9e59eeef6ae88",
+    "state": {
+      "actions": [
+        {
+          "asset": "fire-station",
+          "funds_after": 80000,
+          "funds_before": 100000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "asset": "police-station",
+          "funds_after": 62000,
+          "funds_before": 80000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "asset": "medical-hospital",
+          "funds_after": 37000,
+          "funds_before": 62000,
+          "input": "real C-card and world mouse press/release"
+        },
+        {
+          "asset": "elementary-school",
+          "funds_after": 32000,
+          "funds_before": 37000,
+          "input": "real C-card and world mouse press/release"
+        }
+      ],
+      "funds": 32000,
+      "ghost": {},
+      "ghost_color": "",
+      "initial_fixture_budget": 100000,
+      "monthly_upkeep": 1030,
+      "network": {},
+      "normal_starting_funds_unchanged": 50000,
+      "population_gate_disabled_in_fixture_only": true,
+      "public_lots": [
+        {
+          "capacity": {
+            "own_power_kw": 20.0,
+            "simultaneous_incidents": 3.0,
+            "vehicle_bays": 6.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 1,
+          "polygon": "[(7.0, 32.0), (13.0, 32.0), (13.0, 38.0), (7.0, 38.0)]",
+          "position": "(10.0, 35.0)",
+          "public_asset_id": "fire-station",
+          "turns": 0,
+          "utility_id": -1
+        },
+        {
+          "capacity": {
+            "own_power_kw": 15.0,
+            "population_capacity": 5000.0,
+            "vehicle_bays": 6.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 2,
+          "polygon": "[(23.0, 32.0), (29.0, 32.0), (29.0, 38.0), (23.0, 38.0)]",
+          "position": "(26.0, 35.0)",
+          "public_asset_id": "police-station",
+          "turns": 0,
+          "utility_id": -1
+        },
+        {
+          "capacity": {
+            "beds": 80.0,
+            "outpatient_day": 150.0,
+            "own_power_kw": 50.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 3,
+          "polygon": "[(39.0, 32.0), (45.0, 32.0), (45.0, 38.0), (39.0, 38.0)]",
+          "position": "(42.0, 35.0)",
+          "public_asset_id": "medical-hospital",
+          "turns": 0,
+          "utility_id": -1
+        },
+        {
+          "capacity": {
+            "own_power_kw": 10.0,
+            "students": 240.0
+          },
+          "engine": "none",
+          "front_direction": "(0.0, 1.0)",
+          "front_road_id": 0,
+          "id": 4,
+          "polygon": "[(56.0, 34.0), (60.0, 34.0), (60.0, 38.0), (56.0, 38.0)]",
+          "position": "(58.0, 36.0)",
+          "public_asset_id": "elementary-school",
+          "turns": 0,
+          "utility_id": -1
+        }
+      ],
+      "scenario": "services",
+      "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+    }
+  }
+]

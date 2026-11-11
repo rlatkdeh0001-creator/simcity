@@ -21,6 +21,7 @@ var building_textures := {}
 var building_images := {}
 const BuildingViews = preload("res://core/building_views.gd")
 var building_views
+var public_controller
 var mode := "select"
 var demolition_hover := {}
 var zone := "residential"
@@ -66,6 +67,9 @@ func _ready():
 	building_views = BuildingViews.new()
 	add_child(building_views)
 	building_views.changed.connect(queue_redraw)
+	public_controller=preload("res://core/public_placement_controller.gd").new()
+	public_controller.view=self
+	add_child(public_controller)
 
 	var layer := CanvasLayer.new()
 	add_child(layer)
@@ -502,10 +506,13 @@ func visible_zoning_parcels() -> Array[Dictionary]:
 	return empty
 
 func demolition_target(position: Vector2) -> Dictionary:
+	var public_record: Dictionary=public_controller.target(position)
+	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
 	for kind in ["power_plant","water_facility"]:
 		var facilities: Array=city.power.plants if kind=="power_plant" else city.water.facilities
 		for facility in facilities:
+			if facility.has("public_lot_id"):continue
 			var point: Vector2=facility.position/4-Vector2.ONE
 			var top := polygon(point.x,point.y,2,22)
 			var base := polygon(point.x,point.y,2)
@@ -595,8 +602,13 @@ func _draw():
 				offset+=.28
 	draw_traffic()
 	var sorted: Array = city.buildings.duplicate()
+	sorted.append_array(city.public_facilities.lots)
 	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))
 	for b in sorted:
+		if b.has("public_asset_id"):
+			var public_visual: Dictionary=public_controller.visual(b)
+			if not public_visual.is_empty():draw_texture_rect(public_visual.texture,public_visual.rect,false)
+			continue
 		var visual:=building_visual(b)
 		if not visual.is_empty():
 			draw_texture_rect(visual.texture,visual.rect,false)

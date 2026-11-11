@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS both mansion designs registered
+PASS 2x2 new construction uses small, never medium asset
+PASS 4x4 stage2 uses approved small facade; stage3 selects mansions
+PASS stage2 to3 rematches density on the same lot
+PASS same-density same-size growth preserves facade
+PASS stage5 expands to the largest legal lot without shrinking
+PASS final stage cannot grow into stage6
+PASS 8x8 uses its original large model, not a stretched mansion
+PASS mansion excluded from commercial
+PASS mansion excluded from industrial
+PASS seeded growth can select either facade
+PASS facade assignment reproducible for same seed
+PASS appearance choice does not consume growth RNG
+PASS mansion-a-4x4-4f classified as 4-floor medium residential
+PASS mansion-a-4x4-4f Godot texture imported
+PASS mansion-a-4x4-4f ground pivot aligns to lot corner
+PASS mansion-a-4x4-4f projected footprint matches 4x4 grid
+PASS mansion-a-4x4-4f visible facade can be selected
+PASS mansion-a-4x4-4f transparent sprite margin does not capture clicks
+PASS mansion-a-4x4-4f selection info shows category, variant, floors
+PASS mansion-b-4x4-4f classified as 4-floor medium residential
+PASS mansion-b-4x4-4f Godot texture imported
+PASS mansion-b-4x4-4f ground pivot aligns to lot corner
+PASS mansion-b-4x4-4f projected footprint matches 4x4 grid
+PASS mansion-b-4x4-4f visible facade can be selected
+PASS mansion-b-4x4-4f transparent sprite margin does not capture clicks
+PASS mansion-b-4x4-4f selection info shows category, variant, floors
+RESULT 27/27 asset checks passed

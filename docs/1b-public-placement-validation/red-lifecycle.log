@@ -1,0 +1,1338 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS public placements have a separate real city model, not inspection scenes
+PASS all thirty-four approved service/infrastructure/park cards are placeable, excluding hydro
+PASS public placement commits real geometry and charges construction cost
+PASS 6x6 fire station places adjacent to local road
+PASS fire station immediately charges approved CSV 20000 doth
+PASS crematorium-4x4 rejects disconnected frontage
+PASS crematorium-4x4 rejects model front away from road
+PASS crematorium-4x4 cannot build without cash
+PASS crematorium-4x4 ghost validation has no city or money side effects
+PASS crematorium-4x4 real placement charges CSV once
+ERROR: FAIL crematorium-4x4 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL crematorium-4x4 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS crematorium-4x4 new road cannot cut public footprint
+PASS crematorium-4x4 no monthly charge before game-day boundary
+ERROR: FAIL crematorium-4x4 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL crematorium-4x4 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS crematorium-4x4 road deletion never relocates or turns placed public model
+ERROR: FAIL crematorium-4x4 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS crematorium-4x4 demolished facility no longer bills maintenance
+PASS elementary-school rejects disconnected frontage
+PASS elementary-school rejects model front away from road
+PASS elementary-school cannot build without cash
+PASS elementary-school ghost validation has no city or money side effects
+PASS elementary-school real placement charges CSV once
+ERROR: FAIL elementary-school overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL elementary-school private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS elementary-school new road cannot cut public footprint
+PASS elementary-school no monthly charge before game-day boundary
+ERROR: FAIL elementary-school approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL elementary-school crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS elementary-school road deletion never relocates or turns placed public model
+ERROR: FAIL elementary-school common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS elementary-school demolished facility no longer bills maintenance
+PASS high-school rejects disconnected frontage
+PASS high-school rejects model front away from road
+PASS high-school cannot build without cash
+PASS high-school ghost validation has no city or money side effects
+PASS high-school real placement charges CSV once
+ERROR: FAIL high-school overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL high-school private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS high-school new road cannot cut public footprint
+PASS high-school no monthly charge before game-day boundary
+ERROR: FAIL high-school approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL high-school crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS high-school road deletion never relocates or turns placed public model
+ERROR: FAIL high-school common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS high-school demolished facility no longer bills maintenance
+PASS technical-college rejects disconnected frontage
+PASS technical-college rejects model front away from road
+PASS technical-college cannot build without cash
+PASS technical-college ghost validation has no city or money side effects
+PASS technical-college real placement charges CSV once
+ERROR: FAIL technical-college overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL technical-college private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS technical-college new road cannot cut public footprint
+PASS technical-college no monthly charge before game-day boundary
+ERROR: FAIL technical-college approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL technical-college crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS technical-college road deletion never relocates or turns placed public model
+ERROR: FAIL technical-college common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS technical-college demolished facility no longer bills maintenance
+PASS university rejects disconnected frontage
+PASS university rejects model front away from road
+PASS university cannot build without cash
+PASS university ghost validation has no city or money side effects
+PASS university real placement charges CSV once
+ERROR: FAIL university overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL university private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS university new road cannot cut public footprint
+PASS university no monthly charge before game-day boundary
+ERROR: FAIL university approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL university crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS university road deletion never relocates or turns placed public model
+ERROR: FAIL university common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS university demolished facility no longer bills maintenance
+PASS medical-clinic rejects disconnected frontage
+PASS medical-clinic rejects model front away from road
+PASS medical-clinic cannot build without cash
+PASS medical-clinic ghost validation has no city or money side effects
+PASS medical-clinic real placement charges CSV once
+ERROR: FAIL medical-clinic overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-clinic private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-clinic new road cannot cut public footprint
+PASS medical-clinic no monthly charge before game-day boundary
+ERROR: FAIL medical-clinic approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-clinic crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-clinic road deletion never relocates or turns placed public model
+ERROR: FAIL medical-clinic common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-clinic demolished facility no longer bills maintenance
+PASS medical-hospital rejects disconnected frontage
+PASS medical-hospital rejects model front away from road
+PASS medical-hospital cannot build without cash
+PASS medical-hospital ghost validation has no city or money side effects
+PASS medical-hospital real placement charges CSV once
+ERROR: FAIL medical-hospital overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-hospital private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-hospital new road cannot cut public footprint
+PASS medical-hospital no monthly charge before game-day boundary
+ERROR: FAIL medical-hospital approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-hospital crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-hospital road deletion never relocates or turns placed public model
+ERROR: FAIL medical-hospital common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-hospital demolished facility no longer bills maintenance
+PASS medical-large-hospital rejects disconnected frontage
+PASS medical-large-hospital rejects model front away from road
+PASS medical-large-hospital cannot build without cash
+PASS medical-large-hospital ghost validation has no city or money side effects
+PASS medical-large-hospital real placement charges CSV once
+ERROR: FAIL medical-large-hospital overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-large-hospital private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-large-hospital new road cannot cut public footprint
+PASS medical-large-hospital no monthly charge before game-day boundary
+ERROR: FAIL medical-large-hospital approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL medical-large-hospital crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-large-hospital road deletion never relocates or turns placed public model
+ERROR: FAIL medical-large-hospital common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS medical-large-hospital demolished facility no longer bills maintenance
+PASS small-fire-station rejects disconnected frontage
+PASS small-fire-station rejects model front away from road
+PASS small-fire-station cannot build without cash
+PASS small-fire-station ghost validation has no city or money side effects
+PASS small-fire-station real placement charges CSV once
+ERROR: FAIL small-fire-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL small-fire-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-fire-station new road cannot cut public footprint
+PASS small-fire-station no monthly charge before game-day boundary
+ERROR: FAIL small-fire-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL small-fire-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-fire-station road deletion never relocates or turns placed public model
+ERROR: FAIL small-fire-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-fire-station demolished facility no longer bills maintenance
+PASS fire-station rejects disconnected frontage
+PASS fire-station rejects model front away from road
+PASS fire-station cannot build without cash
+PASS fire-station ghost validation has no city or money side effects
+PASS fire-station real placement charges CSV once
+ERROR: FAIL fire-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL fire-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS fire-station new road cannot cut public footprint
+PASS fire-station no monthly charge before game-day boundary
+ERROR: FAIL fire-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL fire-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS fire-station road deletion never relocates or turns placed public model
+ERROR: FAIL fire-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS fire-station demolished facility no longer bills maintenance
+PASS regional-fire-station rejects disconnected frontage
+PASS regional-fire-station rejects model front away from road
+PASS regional-fire-station cannot build without cash
+PASS regional-fire-station ghost validation has no city or money side effects
+PASS regional-fire-station real placement charges CSV once
+ERROR: FAIL regional-fire-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL regional-fire-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-fire-station new road cannot cut public footprint
+PASS regional-fire-station no monthly charge before game-day boundary
+ERROR: FAIL regional-fire-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL regional-fire-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-fire-station road deletion never relocates or turns placed public model
+ERROR: FAIL regional-fire-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-fire-station demolished facility no longer bills maintenance
+PASS small-police-station rejects disconnected frontage
+PASS small-police-station rejects model front away from road
+PASS small-police-station cannot build without cash
+PASS small-police-station ghost validation has no city or money side effects
+PASS small-police-station real placement charges CSV once
+ERROR: FAIL small-police-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL small-police-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-police-station new road cannot cut public footprint
+PASS small-police-station no monthly charge before game-day boundary
+ERROR: FAIL small-police-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL small-police-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-police-station road deletion never relocates or turns placed public model
+ERROR: FAIL small-police-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS small-police-station demolished facility no longer bills maintenance
+PASS police-station rejects disconnected frontage
+PASS police-station rejects model front away from road
+PASS police-station cannot build without cash
+PASS police-station ghost validation has no city or money side effects
+PASS police-station real placement charges CSV once
+ERROR: FAIL police-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL police-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS police-station new road cannot cut public footprint
+PASS police-station no monthly charge before game-day boundary
+ERROR: FAIL police-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL police-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS police-station road deletion never relocates or turns placed public model
+ERROR: FAIL police-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS police-station demolished facility no longer bills maintenance
+PASS regional-police-station rejects disconnected frontage
+PASS regional-police-station rejects model front away from road
+PASS regional-police-station cannot build without cash
+PASS regional-police-station ghost validation has no city or money side effects
+PASS regional-police-station real placement charges CSV once
+ERROR: FAIL regional-police-station overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL regional-police-station private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-police-station new road cannot cut public footprint
+PASS regional-police-station no monthly charge before game-day boundary
+ERROR: FAIL regional-police-station approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL regional-police-station crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-police-station road deletion never relocates or turns placed public model
+ERROR: FAIL regional-police-station common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS regional-police-station demolished facility no longer bills maintenance
+PASS prison-8x8 rejects disconnected frontage
+PASS prison-8x8 rejects model front away from road
+PASS prison-8x8 cannot build without cash
+PASS prison-8x8 ghost validation has no city or money side effects
+PASS prison-8x8 real placement charges CSV once
+ERROR: FAIL prison-8x8 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL prison-8x8 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS prison-8x8 new road cannot cut public footprint
+PASS prison-8x8 no monthly charge before game-day boundary
+ERROR: FAIL prison-8x8 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL prison-8x8 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS prison-8x8 road deletion never relocates or turns placed public model
+ERROR: FAIL prison-8x8 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS prison-8x8 demolished facility no longer bills maintenance
+PASS power-coal rejects disconnected frontage
+PASS power-coal rejects model front away from road
+PASS power-coal cannot build without cash
+PASS power-coal ghost validation has no city or money side effects
+PASS power-coal real placement charges CSV once
+ERROR: FAIL power-coal overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-coal private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-coal new road cannot cut public footprint
+PASS power-coal no monthly charge before game-day boundary
+ERROR: FAIL power-coal approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-coal crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-coal road deletion never relocates or turns placed public model
+ERROR: FAIL power-coal common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-coal demolished facility no longer bills maintenance
+PASS power-nuclear rejects disconnected frontage
+PASS power-nuclear rejects model front away from road
+PASS power-nuclear cannot build without cash
+PASS power-nuclear ghost validation has no city or money side effects
+PASS power-nuclear real placement charges CSV once
+ERROR: FAIL power-nuclear overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-nuclear private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-nuclear new road cannot cut public footprint
+PASS power-nuclear no monthly charge before game-day boundary
+ERROR: FAIL power-nuclear approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-nuclear crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-nuclear road deletion never relocates or turns placed public model
+ERROR: FAIL power-nuclear common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-nuclear demolished facility no longer bills maintenance
+PASS power-oil rejects disconnected frontage
+PASS power-oil rejects model front away from road
+PASS power-oil cannot build without cash
+PASS power-oil ghost validation has no city or money side effects
+PASS power-oil real placement charges CSV once
+ERROR: FAIL power-oil overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-oil private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-oil new road cannot cut public footprint
+PASS power-oil no monthly charge before game-day boundary
+ERROR: FAIL power-oil approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-oil crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-oil road deletion never relocates or turns placed public model
+ERROR: FAIL power-oil common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-oil demolished facility no longer bills maintenance
+PASS power-solar rejects disconnected frontage
+PASS power-solar rejects model front away from road
+PASS power-solar cannot build without cash
+PASS power-solar ghost validation has no city or money side effects
+PASS power-solar real placement charges CSV once
+ERROR: FAIL power-solar overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-solar private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-solar new road cannot cut public footprint
+PASS power-solar no monthly charge before game-day boundary
+ERROR: FAIL power-solar approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-solar crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-solar road deletion never relocates or turns placed public model
+ERROR: FAIL power-solar common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-solar demolished facility no longer bills maintenance
+PASS power-wind rejects disconnected frontage
+PASS power-wind rejects model front away from road
+PASS power-wind cannot build without cash
+PASS power-wind ghost validation has no city or money side effects
+PASS power-wind real placement charges CSV once
+ERROR: FAIL power-wind overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-wind private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-wind new road cannot cut public footprint
+PASS power-wind no monthly charge before game-day boundary
+ERROR: FAIL power-wind approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL power-wind crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-wind road deletion never relocates or turns placed public model
+ERROR: FAIL power-wind common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS power-wind demolished facility no longer bills maintenance
+PASS water-intake rejects disconnected frontage
+PASS water-intake rejects model front away from road
+PASS water-intake cannot build without cash
+PASS water-intake ghost validation has no city or money side effects
+PASS water-intake real placement charges CSV once
+ERROR: FAIL water-intake overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-intake private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-intake new road cannot cut public footprint
+PASS water-intake no monthly charge before game-day boundary
+ERROR: FAIL water-intake approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-intake crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-intake road deletion never relocates or turns placed public model
+ERROR: FAIL water-intake common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-intake demolished facility no longer bills maintenance
+PASS water-sewage-outfall rejects disconnected frontage
+PASS water-sewage-outfall rejects model front away from road
+PASS water-sewage-outfall cannot build without cash
+PASS water-sewage-outfall ghost validation has no city or money side effects
+PASS water-sewage-outfall real placement charges CSV once
+ERROR: FAIL water-sewage-outfall overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-sewage-outfall private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-outfall new road cannot cut public footprint
+PASS water-sewage-outfall no monthly charge before game-day boundary
+ERROR: FAIL water-sewage-outfall approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-sewage-outfall crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-outfall road deletion never relocates or turns placed public model
+ERROR: FAIL water-sewage-outfall common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-outfall demolished facility no longer bills maintenance
+PASS water-sewage-treatment rejects disconnected frontage
+PASS water-sewage-treatment rejects model front away from road
+PASS water-sewage-treatment cannot build without cash
+PASS water-sewage-treatment ghost validation has no city or money side effects
+PASS water-sewage-treatment real placement charges CSV once
+ERROR: FAIL water-sewage-treatment overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-sewage-treatment private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-treatment new road cannot cut public footprint
+PASS water-sewage-treatment no monthly charge before game-day boundary
+ERROR: FAIL water-sewage-treatment approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-sewage-treatment crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-treatment road deletion never relocates or turns placed public model
+ERROR: FAIL water-sewage-treatment common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-sewage-treatment demolished facility no longer bills maintenance
+PASS water-water-tower rejects disconnected frontage
+PASS water-water-tower rejects model front away from road
+PASS water-water-tower cannot build without cash
+PASS water-water-tower ghost validation has no city or money side effects
+PASS water-water-tower real placement charges CSV once
+ERROR: FAIL water-water-tower overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-water-tower private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-water-tower new road cannot cut public footprint
+PASS water-water-tower no monthly charge before game-day boundary
+ERROR: FAIL water-water-tower approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL water-water-tower crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-water-tower road deletion never relocates or turns placed public model
+ERROR: FAIL water-water-tower common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS water-water-tower demolished facility no longer bills maintenance
+PASS waste-incinerator rejects disconnected frontage
+PASS waste-incinerator rejects model front away from road
+PASS waste-incinerator cannot build without cash
+PASS waste-incinerator ghost validation has no city or money side effects
+PASS waste-incinerator real placement charges CSV once
+ERROR: FAIL waste-incinerator overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL waste-incinerator private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-incinerator new road cannot cut public footprint
+PASS waste-incinerator no monthly charge before game-day boundary
+ERROR: FAIL waste-incinerator approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL waste-incinerator crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-incinerator road deletion never relocates or turns placed public model
+ERROR: FAIL waste-incinerator common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-incinerator demolished facility no longer bills maintenance
+PASS waste-recycling-center rejects disconnected frontage
+PASS waste-recycling-center rejects model front away from road
+PASS waste-recycling-center cannot build without cash
+PASS waste-recycling-center ghost validation has no city or money side effects
+PASS waste-recycling-center real placement charges CSV once
+ERROR: FAIL waste-recycling-center overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL waste-recycling-center private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-recycling-center new road cannot cut public footprint
+PASS waste-recycling-center no monthly charge before game-day boundary
+ERROR: FAIL waste-recycling-center approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL waste-recycling-center crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-recycling-center road deletion never relocates or turns placed public model
+ERROR: FAIL waste-recycling-center common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS waste-recycling-center demolished facility no longer bills maintenance
+PASS park-pocket-2x2 rejects disconnected frontage
+PASS park-pocket-2x2 rejects model front away from road
+PASS park-pocket-2x2 cannot build without cash
+PASS park-pocket-2x2 ghost validation has no city or money side effects
+PASS park-pocket-2x2 real placement charges CSV once
+ERROR: FAIL park-pocket-2x2 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-pocket-2x2 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-pocket-2x2 new road cannot cut public footprint
+PASS park-pocket-2x2 no monthly charge before game-day boundary
+ERROR: FAIL park-pocket-2x2 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-pocket-2x2 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-pocket-2x2 road deletion never relocates or turns placed public model
+ERROR: FAIL park-pocket-2x2 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-pocket-2x2 demolished facility no longer bills maintenance
+PASS park-garden-2x2 rejects disconnected frontage
+PASS park-garden-2x2 rejects model front away from road
+PASS park-garden-2x2 cannot build without cash
+PASS park-garden-2x2 ghost validation has no city or money side effects
+PASS park-garden-2x2 real placement charges CSV once
+ERROR: FAIL park-garden-2x2 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-garden-2x2 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-garden-2x2 new road cannot cut public footprint
+PASS park-garden-2x2 no monthly charge before game-day boundary
+ERROR: FAIL park-garden-2x2 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-garden-2x2 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-garden-2x2 road deletion never relocates or turns placed public model
+ERROR: FAIL park-garden-2x2 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-garden-2x2 demolished facility no longer bills maintenance
+PASS park-plaza-4x4 rejects disconnected frontage
+PASS park-plaza-4x4 rejects model front away from road
+PASS park-plaza-4x4 cannot build without cash
+PASS park-plaza-4x4 ghost validation has no city or money side effects
+PASS park-plaza-4x4 real placement charges CSV once
+ERROR: FAIL park-plaza-4x4 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-plaza-4x4 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-plaza-4x4 new road cannot cut public footprint
+PASS park-plaza-4x4 no monthly charge before game-day boundary
+ERROR: FAIL park-plaza-4x4 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-plaza-4x4 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-plaza-4x4 road deletion never relocates or turns placed public model
+ERROR: FAIL park-plaza-4x4 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-plaza-4x4 demolished facility no longer bills maintenance
+PASS park-play-4x4 rejects disconnected frontage
+PASS park-play-4x4 rejects model front away from road
+PASS park-play-4x4 cannot build without cash
+PASS park-play-4x4 ghost validation has no city or money side effects
+PASS park-play-4x4 real placement charges CSV once
+ERROR: FAIL park-play-4x4 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-play-4x4 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-play-4x4 new road cannot cut public footprint
+PASS park-play-4x4 no monthly charge before game-day boundary
+ERROR: FAIL park-play-4x4 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL park-play-4x4 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-play-4x4 road deletion never relocates or turns placed public model
+ERROR: FAIL park-play-4x4 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS park-play-4x4 demolished facility no longer bills maintenance
+PASS parking-small-2x4 rejects disconnected frontage
+PASS parking-small-2x4 rejects model front away from road
+PASS parking-small-2x4 cannot build without cash
+PASS parking-small-2x4 ghost validation has no city or money side effects
+PASS parking-small-2x4 real placement charges CSV once
+ERROR: FAIL parking-small-2x4 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-small-2x4 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-small-2x4 new road cannot cut public footprint
+PASS parking-small-2x4 no monthly charge before game-day boundary
+ERROR: FAIL parking-small-2x4 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-small-2x4 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-small-2x4 road deletion never relocates or turns placed public model
+ERROR: FAIL parking-small-2x4 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-small-2x4 demolished facility no longer bills maintenance
+PASS parking-medium-4x4 rejects disconnected frontage
+PASS parking-medium-4x4 rejects model front away from road
+PASS parking-medium-4x4 cannot build without cash
+PASS parking-medium-4x4 ghost validation has no city or money side effects
+PASS parking-medium-4x4 real placement charges CSV once
+ERROR: FAIL parking-medium-4x4 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-medium-4x4 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-medium-4x4 new road cannot cut public footprint
+PASS parking-medium-4x4 no monthly charge before game-day boundary
+ERROR: FAIL parking-medium-4x4 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-medium-4x4 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-medium-4x4 road deletion never relocates or turns placed public model
+ERROR: FAIL parking-medium-4x4 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-medium-4x4 demolished facility no longer bills maintenance
+PASS parking-large-4x8 rejects disconnected frontage
+PASS parking-large-4x8 rejects model front away from road
+PASS parking-large-4x8 cannot build without cash
+PASS parking-large-4x8 ghost validation has no city or money side effects
+PASS parking-large-4x8 real placement charges CSV once
+ERROR: FAIL parking-large-4x8 overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-large-4x8 private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-large-4x8 new road cannot cut public footprint
+PASS parking-large-4x8 no monthly charge before game-day boundary
+ERROR: FAIL parking-large-4x8 approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-large-4x8 crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-large-4x8 road deletion never relocates or turns placed public model
+ERROR: FAIL parking-large-4x8 common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-large-4x8 demolished facility no longer bills maintenance
+PASS parking-tower-4x4-4f rejects disconnected frontage
+PASS parking-tower-4x4-4f rejects model front away from road
+PASS parking-tower-4x4-4f cannot build without cash
+PASS parking-tower-4x4-4f ghost validation has no city or money side effects
+PASS parking-tower-4x4-4f real placement charges CSV once
+ERROR: FAIL parking-tower-4x4-4f overlapping public building rejected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:43)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-tower-4x4-4f private building cannot occupy public lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:44)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-tower-4x4-4f new road cannot cut public footprint
+PASS parking-tower-4x4-4f no monthly charge before game-day boundary
+ERROR: FAIL parking-tower-4x4-4f approved upkeep charged at game-day/month boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:50)
+       [2] run (res://tests/test_public_placement.gd:20)
+ERROR: FAIL parking-tower-4x4-4f crossed month boundaries each charge exactly once
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:52)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-tower-4x4-4f road deletion never relocates or turns placed public model
+ERROR: FAIL parking-tower-4x4-4f common bulldozer removes public building
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_placement.gd:7)
+       [1] check_lifecycle (res://tests/test_public_placement.gd:56)
+       [2] run (res://tests/test_public_placement.gd:20)
+PASS parking-tower-4x4-4f demolished facility no longer bills maintenance
+RESULT 311/481 public placement checks passed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 10 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

@@ -1,0 +1,12 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS public placements have a separate real city model, not inspection scenes
+PASS all thirty-four approved service/infrastructure/park cards are placeable, excluding hydro
+PASS public placement commits real geometry and charges construction cost
+PASS 6x6 fire station places adjacent to local road
+PASS fire station immediately charges approved CSV 20000 doth
+RESULT 5/5 public placement checks passed
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 10 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)

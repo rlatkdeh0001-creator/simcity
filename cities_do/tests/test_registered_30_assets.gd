@@ -111,15 +111,19 @@ func run():
     verify(matches.size()==1,entry.id+" C-card is bound to the real registered entry")
     if matches.size()!=1:continue
     var card: Button=matches[0]
+    hud.public_controller.cancel()
+    hud.drawer.show()
     verify(card.has_node("AssetThumbnail") and card.has_node("NameBand/AssetName") and card.custom_minimum_size==Vector2(128,96),entry.id+" unchanged approved C-card layout")
     var before:=city_state(hud.city)
     var mode: String=hud.mode
     card.pressed.emit()
     var preview: Window=hud.get_node_or_null("ServiceAssetPreview")
-    verify(preview!=null and preview.get_meta("asset_id","")==entry.id,entry.id+" actual card click opens its GLB inspector")
+    verify((preview!=null and preview.get_meta("asset_id","")==entry.id) if entry.id=="power-hydro" else (preview==null and hud.mode=="public_placement" and hud.public_controller.asset_id==entry.id),entry.id+" actual card chooses approved placement, except hydro inspection")
     if preview:preview.queue_free()
     await process_frame
-    verify(city_state(hud.city)==before and hud.mode==mode,entry.id+" card click never places or charges anything")
+    verify(city_state(hud.city)==before and hud.city.public_facilities.lots.is_empty(),entry.id+" card selection alone never commits or charges")
+    hud.public_controller.cancel()
+    hud.drawer.show()
     var scroll=card.get_parent().get_parent()
     verify(scroll is ScrollContainer,entry.id+" existing horizontal scroll hosts the new card")
     if scroll is ScrollContainer:scroll.ensure_control_visible(card)
@@ -134,10 +138,10 @@ func run():
      event.pressed=down
      root.push_input(event,true)
     preview=hud.get_node_or_null("ServiceAssetPreview")
-    verify(preview!=null and preview.get_meta("asset_id","")==entry.id,entry.id+" real viewport mouse press/release opens the correct inspector")
+    verify((preview!=null and preview.get_meta("asset_id","")==entry.id) if entry.id=="power-hydro" else (preview==null and hud.mode=="public_placement" and hud.public_controller.asset_id==entry.id),entry.id+" real viewport mouse chooses approved placement or hydro inspection")
     if preview:preview.queue_free()
     await process_frame
-    verify(city_state(hud.city)==before and hud.mode==mode,entry.id+" real mouse activation is also read-only")
+    verify(city_state(hud.city)==before and hud.city.public_facilities.lots.is_empty(),entry.id+" real mouse card selection alone does not place or charge")
    var original_tools: Array={"power":["power_plant","power_wire"],"water":["water_supply","water_treatment","water_pipe"],"environment":[]}[tab]
    for tool: String in original_tools:
     var old: Button=hud.drawer_box.get_node_or_null("Tool_"+tool)

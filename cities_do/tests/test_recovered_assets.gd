@@ -62,11 +62,10 @@ func run() -> void:
 			button.pressed.emit()
 			await process_frame
 			var windows:Array=scene.find_children("ServiceAssetPreview","Window",true,false)
-			verify(windows.size()==1 and windows[0].title==entry.name+" · 애셋",tool+" opens its matching facility")
-			if not windows.is_empty():
-				var meshes: Array=windows[0].find_children("*","MeshInstance3D",true,false)
-				verify(not meshes.is_empty(),tool+" inspector contains real geometry")
-				windows[0].close_requested.emit()
+			verify(windows.is_empty() and scene.mode=="public_placement" and scene.public_controller.asset_id==entry.id,tool+" selects its approved city-placement model")
+			var placed_model=load(entry.model).instantiate()
+			verify(not placed_model.find_children("*","MeshInstance3D",true,false).is_empty(),tool+" placement source contains real geometry")
+			placed_model.free()
 			await process_frame
 	verify(scene.city==city_before and scene.city.buildings.size()==buildings_before,"asset inspectors preserve city and do not fake service placement")
 	scene.queue_free()

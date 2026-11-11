@@ -185,6 +185,7 @@ func _draw():
  var sewage_color := Color("aa6737")
  var grid=view.city.water.geometry
  for facility in view.city.water.facilities:
+  if facility.has("public_lot_id"):continue
   var p: Vector2=facility.position/4-Vector2.ONE
   var base: PackedVector2Array=view.polygon(p.x,p.y,2)
   var top: PackedVector2Array=view.polygon(p.x,p.y,2,20)
