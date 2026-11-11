@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS two real freehand strokes remain two original road records
+ERROR: FAIL near-start snaps exactly to previous road endpoint
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:32)
+       [2] draw (res://tests/test_road_continue.gd:17)
+ERROR: FAIL endpoint continuation is actually routed both ways by traffic network
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:33)
+       [2] draw (res://tests/test_road_continue.gd:17)
+PASS continued road contributes real roadside parcels
+ERROR: FAIL near road middle snaps onto centerline and creates actual T junction
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:37)
+       [2] draw (res://tests/test_road_continue.gd:17)
+ERROR: FAIL existing analyzer splits traffic sections without replacing stable original road IDs
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:38)
+       [2] draw (res://tests/test_road_continue.gd:17)
+ERROR: FAIL traffic route enters newly connected T branch
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:39)
+       [2] draw (res://tests/test_road_continue.gd:17)
+ERROR: FAIL second opposite branch reuses same snapped junction to form a cross
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:42)
+       [2] draw (res://tests/test_road_continue.gd:17)
+PASS road snapping preserves prior IDs and normal demolition boundaries
+RESULT 3/9 road continuation checks passed

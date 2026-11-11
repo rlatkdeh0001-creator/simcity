@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS two real freehand strokes remain two original road records
+PASS near-start snaps exactly to previous road endpoint
+PASS endpoint continuation is actually routed both ways by traffic network
+PASS continued road contributes real roadside parcels
+PASS near road middle snaps onto centerline and creates actual T junction
+PASS existing analyzer splits traffic sections without replacing stable original road IDs
+PASS traffic route enters newly connected T branch
+PASS second opposite branch reuses same snapped junction to form a cross
+PASS road snapping preserves prior IDs and normal demolition boundaries
+ERROR: FAIL gentle-angle or 2-to-4-lane continuation must remain routable both ways
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:50)
+ERROR: FAIL gentle-angle or 2-to-4-lane continuation must remain routable both ways
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_continue.gd:8)
+       [1] run (res://tests/test_road_continue.gd:50)
+PASS connected preview never mutates road topology, parcels or IDs
+PASS endpoint projection never edits caller's freehand input
+PASS release/end endpoint snaps as exactly as start endpoint
+PASS outside one-cell acquisition band remains unchanged
+PASS collapsed zero-length snapped stroke is rejected without mutation
+PASS freehand interior control points and drawing mode stay unchanged
+RESULT 15/17 road continuation checks passed

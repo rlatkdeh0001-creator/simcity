@@ -12,6 +12,26 @@ static func merged_key(point: Vector2, nodes: Dictionary) -> Vector2i:
    var candidate := base+Vector2i(x,y)
    if nodes.has(candidate) and nodes[candidate].position.distance_to(point)<=EPS*2:return candidate
  return base
+static func snap_point(point: Vector2,roads: Array,distance: float=1.0) -> Vector2:
+ if not point.is_finite():return point
+ var best:=point;var nearest:=distance+.000001;var found:=false
+ # Prefer an authored endpoint over a nearby interior projection.
+ for road in roads:
+  for candidate in [road.points[0],road.points[-1]]:
+   var gap: float=point.distance_to(candidate)
+   if gap<nearest:nearest=gap;best=candidate;found=true
+ if found:return best
+ for road in roads:
+  for index in range(road.points.size()-1):
+   var candidate:=Geometry2D.get_closest_point_to_segment(point,road.points[index],road.points[index+1])
+   var gap:=point.distance_to(candidate)
+   if gap<nearest:nearest=gap;best=candidate
+ return best
+static func snap_path(points: PackedVector2Array,roads: Array) -> PackedVector2Array:
+ var result:=points.duplicate()
+ if result.size()>=2:
+  result[0]=snap_point(result[0],roads);result[-1]=snap_point(result[-1],roads)
+ return result
 static func length_of(points: PackedVector2Array) -> float:
  var result := 0.0
  for i in range(1,points.size()): result+=points[i-1].distance_to(points[i])
@@ -76,8 +96,9 @@ static func analyze(roads: Array) -> Dictionary:
    var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end}
    sections.append(section)
    for pair in [[start,points[0],(points[1]-points[0]).normalized()],[end,points[-1],(points[-2]-points[-1]).normalized()]]:
-    if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"arms":[],"junction":-1}
+    if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"arms":[],"road_ids":[],"junction":-1}
     var node: Dictionary=nodes[pair[0]]
+    if not road_id in node.road_ids:node.road_ids.append(road_id)
     var duplicate := false
     for arm in node.arms:
      if arm.direction.dot(pair[2])>.9999: duplicate=true
@@ -85,12 +106,17 @@ static func analyze(roads: Array) -> Dictionary:
  var junctions := []
  for node in nodes.values():
   var is_junction: bool=node.arms.size()>=3
-  if node.arms.size()==2: is_junction=absf(node.arms[0].direction.dot(node.arms[1].direction))<.95
+  if node.arms.size()==2:
+   # Even gentle bends and lane-width transitions need a real connector: lane
+   # offsets no longer meet exactly, despite the shared centerline endpoint.
+   var dot: float=absf(node.arms[0].direction.dot(node.arms[1].direction))
+   is_junction=dot<.95 or (node.road_ids.size()>1 and (dot<.9999 or node.arms[0].lanes!=node.arms[1].lanes or absf(node.arms[0].width-node.arms[1].width)>.0001))
   if not is_junction: continue
   node.junction=junctions.size()
   var radius := 0.0
   for arm in node.arms:radius=maxf(radius,arm.width/2+1.0)
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
+  junction.transition=node.arms.size()==2 and absf(node.arms[0].direction.dot(node.arms[1].direction))>=.95
   junction.footprint=patch(junction)
   junction.asphalt=patch(junction,true)
   junctions.append(junction)

@@ -415,7 +415,7 @@ func _unhandled_input(event):
 		if event.pressed:
 			if mode == "road":
 				drawing = true
-				stroke = PackedVector2Array([pointer])
+				stroke = PackedVector2Array([city.RoadJunctions.snap_point(pointer,city.roads)])
 			elif mode == "build":
 				zoning_start=event.position
 				zoning_end=event.position
@@ -443,12 +443,15 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE and not event.pressed:
 		panning = false
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and drawing:
+		if get_viewport().gui_get_hovered_control()==null:
+			pointer=world(event.position)
+			if stroke.is_empty() or stroke[-1].distance_to(pointer)>.00001:stroke.append(pointer)
 		call_deferred("finish_road")
 
 func finish_road():
 	if not drawing: return
 	drawing = false
-	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes)
+	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes, true)
 	if result.ok: stop_traffic()
 	message = "자유 도로 건설 완료" if result.ok else result.reason
 	stroke.clear()
@@ -573,9 +576,13 @@ func _draw():
 		draw_colored_polygon(outline,tint)
 		outline.append(outline[0])
 		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
+	# Paint all sidewalks before any asphalt: a later stroke's round end cap
+	# must not cut a pale curb across the already-connected carriageway.
 	for road in city.roads:
 		draw_ribbon(road.points,road.width,Color("c8cbc3"))
+	for road in city.roads:
 		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"))
+	for road in city.roads:
 		var points := PackedVector2Array()
 		for p in road.points: points.append(screen(p))
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
@@ -586,6 +593,8 @@ func _draw():
 			var outline := PackedVector2Array()
 			for point in city.RoadJunctions.patch(junction,asphalt): outline.append(screen(point))
 			if outline.size()>=3: draw_colored_polygon(outline,Color("4c5659") if asphalt else Color("c8cbc3"))
+		# Gentle endpoint/lane transitions connect traffic without new zebra crossings.
+		if junction.get("transition",false):continue
 		for arm in junction.arms:
 			var direction: Vector2=arm.direction
 			var normal := Vector2(-direction.y,direction.x)
@@ -641,10 +650,11 @@ func _draw():
 			tint.a=.3
 			draw_colored_polygon(preview,tint)
 	if stroke.size() > 1:
+		var snapped: PackedVector2Array=city.RoadJunctions.snap_path(stroke,city.roads)
 		var points := PackedVector2Array()
-		for p in stroke: points.append(screen(p))
-		var valid: bool = city.add_road(stroke, "local", false, road_lanes).ok
-		draw_ribbon(stroke, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
+		for p in snapped: points.append(screen(p))
+		var valid: bool = city.add_road(snapped, "local", false, road_lanes).ok
+		draw_ribbon(snapped, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
 	if mode=="demolish" and not demolition_hover.is_empty():
 		var tint := Color(1,.35,.20,.65)

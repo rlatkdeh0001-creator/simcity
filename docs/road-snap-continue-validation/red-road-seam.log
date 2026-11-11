@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+ERROR: Joined road sidewalk cap covers existing asphalt: (0.7843, 0.7961, 0.7647, 1.0)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] run (D:/project/simcity/tools/capture_road_continue.gd:31)

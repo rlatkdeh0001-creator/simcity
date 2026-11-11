@@ -1,0 +1,65 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight city road imports
+PASS two lanes represent opposite directions
+PASS city cells convert to metres; forward lane stays right
+PASS reverse lane stays on its own right side
+PASS opposite lane tangents
+PASS local speed ceiling 80 km/h
+PASS AStar lane route follows connected road endpoint despite reversed input
+PASS routing cannot turn into oncoming lane
+PASS disconnected roads have no fabricated route
+PASS crossing roads form a controlled junction
+PASS overlapping duplicate roads rejected
+PASS four lanes generated
+PASS highway speed ceiling 160 km/h
+PASS overlapping spawn refused
+PASS fast car never enters slow leader's protected gap
+PASS fast follower matches slow leader without overtaking
+PASS red stop line respected with bumper clearance
+PASS green releases stopped car with acceleration
+PASS open route stops at destination instead of wrapping
+PASS closed curved road produces valid lanes
+PASS spawn checks protected spacing across loop seam
+SCRIPT ERROR: Invalid access to property or key 'progress' on a base object of type 'Dictionary'.
+   at: test_loop (res://tests/test_traffic.gd:105)
+   GDScript backtrace (most recent call first):
+       [0] test_loop (res://tests/test_traffic.gd:105)
+       [1] run (res://tests/test_traffic.gd:36)
+ERROR: FAIL test_loop finished without runtime errors
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_traffic.gd:17)
+       [1] run (res://tests/test_traffic.gd:36)
+PASS closed curved road produces valid lanes
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array[Dictionary]')
+   at: test_timing (res://tests/test_traffic.gd:144)
+   GDScript backtrace (most recent call first):
+       [0] test_timing (res://tests/test_traffic.gd:144)
+       [1] run (res://tests/test_traffic.gd:36)
+ERROR: FAIL test_timing finished without runtime errors
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_traffic.gd:17)
+       [1] run (res://tests/test_traffic.gd:36)
+PASS closed curved road produces valid lanes
+ERROR: FAIL 100 vehicle fixture spawns with valid spacing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_traffic.gd:17)
+       [1] test_fleet (res://tests/test_traffic.gd:120)
+       [2] run (res://tests/test_traffic.gd:36)
+BENCHMARK 100 vehicles / 300 fixed ticks: 1.04 ms total, 0.003 ms per tick
+PASS 100 vehicle fixture preserves gaps and finite states
+PASS closed curved road produces valid lanes
+SCRIPT ERROR: Invalid access to property or key 'id' on a base object of type 'Dictionary'.
+   at: test_bridge_and_ui (res://tests/test_traffic.gd:162)
+   GDScript backtrace (most recent call first):
+       [0] test_bridge_and_ui (res://tests/test_traffic.gd:162)
+       [1] run (res://tests/test_traffic.gd:37)
+ERROR: FAIL bridge/UI test finished
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_traffic.gd:17)
+       [1] run (res://tests/test_traffic.gd:37)
+RESULT 25/29 traffic checks passed

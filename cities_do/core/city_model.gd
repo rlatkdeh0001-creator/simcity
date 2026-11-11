@@ -231,9 +231,11 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	buildings.append(b)
 	return {"ok": true, "building": b}
 
-func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2) -> Dictionary:
+func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false) -> Dictionary:
 	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in [2, 4]:
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
+	# Player strokes opt in; authored scenarios retain exact supplied geometry.
+	if connect_ends:points=RoadJunctions.snap_path(points,roads)
 	var total := 0.0
 	for i in range(points.size()):
 		var p := points[i]
