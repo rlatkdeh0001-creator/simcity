@@ -3,21 +3,27 @@ extends RefCounted
 const Paths=preload("res://core/road_junctions.gd")
 const Angles=preload("res://core/road_angle_snap.gd")
 const BUILD:=2.0
+const CONNECT:=1.0
 const REMOVE:=1.0
 const EPS:=.0005
-static func is_build_length(length: float) -> bool:
- return length>=BUILD-EPS and absf(length-roundf(length/BUILD)*BUILD)<=EPS
-static func fit(points: PackedVector2Array,roads: Array) -> Dictionary:
+static func is_build_length(length: float,step: float=BUILD) -> bool:
+ return length>=step-EPS and absf(length-roundf(length/step)*step)<=EPS
+static func build_step(points: PackedVector2Array,roads: Array) -> float:
+ if points.size()>=2 and (not Angles.connection(points[0],roads).is_empty() or not Angles.connection(points[-1],roads).is_empty()):return CONNECT
+ return BUILD
+static func fit(points: PackedVector2Array,roads: Array,step_override: float=0.0) -> Dictionary:
  var result:={"ok":false,"points":points.duplicate(),"reason":"도로는 8m 단위로 건설해야 합니다"}
  if points.size()<2:return result
+ var step:=step_override if step_override>0 else build_step(points,roads)
+ if step==CONNECT:result.reason="기존 도로 연결은 4m 단위로 건설해야 합니다"
  var length:=Paths.length_of(points)
  if length<EPS:return result
- if is_build_length(length):result.ok=true;return result
+ if is_build_length(length,step):result.ok=true;return result
  var start_fixed:=not Angles.connection(points[0],roads).is_empty()
  var end_fixed:=not Angles.connection(points[-1],roads).is_empty()
  if start_fixed and end_fixed:
   if points.size()<5:return result # Approved: incompatible fixed straight contacts stay red.
-  var target:=maxf(BUILD,ceilf((length-EPS)/BUILD)*BUILD)
+  var target:=maxf(step,ceilf((length-EPS)/step)*step)
   var chord: Vector2=(points[-1]-points[0]).normalized()
   if chord==Vector2.ZERO:return result
   var normal:=Vector2(-chord.y,chord.x)
@@ -38,7 +44,7 @@ static func fit(points: PackedVector2Array,roads: Array) -> Dictionary:
   var ordered:=points.duplicate()
   # A free start may move when the destination is an existing contact; never detach it.
   if end_fixed:ordered.reverse()
-  var target:=maxf(BUILD,roundf(length/BUILD)*BUILD)
+  var target:=maxf(step,roundf(length/step)*step)
   if target<length:ordered=Paths.slice(ordered,0,target)
   else:
    var prior:=ordered.size()-2
@@ -47,7 +53,7 @@ static func fit(points: PackedVector2Array,roads: Array) -> Dictionary:
    ordered[-1]+=(ordered[-1]-ordered[prior]).normalized()*(target-length)
   if end_fixed:ordered.reverse()
   result.points=ordered
- result.ok=is_build_length(Paths.length_of(result.points))
+ result.ok=is_build_length(Paths.length_of(result.points),step)
  return result
 static func bend(points: PackedVector2Array,normal: Vector2,amount: float) -> PackedVector2Array:
  var result:=points.duplicate()

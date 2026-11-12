@@ -21,6 +21,10 @@ func set_kind(value: String):
  if view.has_method("update_road_modes"):view.update_road_modes()
  view.queue_redraw()
 func snap(point: Vector2) -> Vector2:return view.city.RoadJunctions.snap_point(point,view.city.roads)
+func destination(point: Vector2,first: Vector2) -> Vector2:
+ var result:=snap(point)
+ # The one-cell snap radius must not collapse an intentional four-metre extension.
+ return point if result.distance_to(first)<LengthUnits.EPS and point.distance_to(first)>=LengthUnits.CONNECT/2 else result
 func tangent_at(point: Vector2) -> Vector2:
  var roads: Array=view.city.roads.duplicate();roads.reverse()
  for road in roads:
@@ -33,7 +37,7 @@ func tangent_at(point: Vector2) -> Vector2:
  return Vector2.ZERO
 func raw_path() -> PackedVector2Array:
  if anchors.is_empty():return PackedVector2Array()
- var first:=anchors[0];var last:=snap(view.pointer)
+ var first:=anchors[0];var last:=destination(view.pointer,first)
  if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
  if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads)
  var control: Vector2=anchors[1] if kind=="curve" else first+start_tangent*first.distance_to(last)/2
@@ -45,11 +49,13 @@ func raw_path() -> PackedVector2Array:
  for i in range(steps+1):
   var t:=float(i)/steps;var u:=1-t
   points.append(first*u*u+control*2*u*t+last*t*t)
- return AngleSnap.apply(view.city.RoadJunctions.snap_path(points,view.city.roads),view.city.roads)
+ points=view.city.RoadJunctions.snap_path(points,view.city.roads)
+ points[-1]=last
+ return AngleSnap.apply(points,view.city.roads)
 func resolved_path() -> Dictionary:
  var points:=raw_path()
- # A control handle is not a road contact. Its guide still uses eight-metre steps.
- if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[])
+ # Control handles are not destination contacts; follow the start road's build step.
+ if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),view.city.roads) if not anchors.is_empty() else LengthUnits.BUILD)
  return LengthUnits.fit(points,view.city.roads)
 func path() -> PackedVector2Array:return resolved_path().points
 func joins_routable(network,points: PackedVector2Array) -> bool:

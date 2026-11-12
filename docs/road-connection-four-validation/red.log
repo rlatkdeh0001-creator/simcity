@@ -1,0 +1,73 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight connected preview permits four-metre increments
+PASS length preview preserves existing endpoint and authored roads
+PASS straight saved construction exactly equals quantized green preview
+PASS curve connected preview permits four-metre increments
+PASS length preview preserves existing endpoint and authored roads
+PASS curve saved construction exactly equals quantized green preview
+PASS free connected preview permits four-metre increments
+PASS length preview preserves existing endpoint and authored roads
+PASS free saved construction exactly equals quantized green preview
+PASS connected quantization preserves exact 90-degree assistance
+ERROR: FAIL straight offers a four-metre extension without building until the player clicks
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:40)
+ERROR: FAIL straight player can confirm exactly four metres matching its preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:42)
+ERROR: FAIL curve offers a four-metre extension without building until the player clicks
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:40)
+ERROR: FAIL curve player can confirm exactly four metres matching its preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:42)
+ERROR: FAIL free offers a four-metre extension without building until the player clicks
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:40)
+ERROR: FAIL free player can confirm exactly four metres matching its preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:42)
+ERROR: FAIL player may reconnect a four-metre gap without moving either authored endpoint
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:12)
+       [1] run (res://tests/test_road_length_units.gd:45)
+PASS non-four-metre straight between fixed contacts remains red without moving endpoints
+PASS invalid pinned straight cannot be committed
+PASS curve adjusts internal arc length while retaining both existing contacts
+PASS pinned curved quantization preserves angle-snapped first and final sampled tangents
+PASS free adjusts internal arc length while retaining both existing contacts
+PASS pinned curved quantization preserves angle-snapped first and final sampled tangents
+PASS minimum isolated new road remains one eight-metre construction unit
+PASS connected curve control guide and stored handle share four-metre snapped geometry
+PASS free approach start adjusts without detaching its pinned perpendicular destination
+PASS model guard rejects non-unit player construction without rewriting authored legacy paths
+PASS model supports a four-metre bulldozer interval
+PASS middle click removes exactly one four-metre centreline interval
+PASS cut retains left ID and allocates a fresh right-fragment ID
+PASS surviving zoning IDs/colors never shift to another world location
+PASS cut interval leaves no phantom roadside cells
+PASS flat pavement caps cannot paint back over the four-metre demolition gap
+PASS lane graph rebuilds after a split
+PASS traffic graph does not bridge demolished road interval
+PASS out-of-range demolition is nonmutating and no new refund or fee is invented
+PASS repeated deletion uses original one-cell arc grid and leaves unrelated fragment intact
+PASS curved-road demolition measures arc length, not chord length
+PASS closed-loop cut retains remaining arc geometry and a valid lane graph
+PASS old terminal shorter than four metres can be removed without leaving an undeletable stub
+PASS bulldozer hover selects only the actual four-metre interval
+PASS actual player bulldozer uses partial removal rather than whole-object deletion
+RESULT 35/42 road length unit checks passed

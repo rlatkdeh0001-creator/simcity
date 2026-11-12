@@ -10,9 +10,9 @@ func verify(value: bool,label: String):
  checks+=1
  if value:print("PASS "+label)
  else:failures+=1;push_error("FAIL "+label)
-func length_ok(points: PackedVector2Array) -> bool:
+func length_ok(points: PackedVector2Array,step: float=1.0) -> bool:
  var length:=Paths.length_of(points)
- return length>=2-.001 and absf(length-roundf(length/2)*2)<.001
+ return length>=step-.001 and absf(length-roundf(length/step)*step)<.001
 func reset(game):
  game.activate_tool("reset");game.activate_tool("road")
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(30,30)]))
@@ -26,16 +26,26 @@ func run():
   game.pointer=Vector2(51.3,42.7) if kind!="straight" else Vector2(43.3,31.2)
   var original:=var_to_str(game.city.roads)
   var candidate: Dictionary=drawing.preview()
-  verify(candidate.ok and length_ok(candidate.points),kind+" green preview uses actual path length in eight-metre units")
+  verify(candidate.ok and length_ok(candidate.points),kind+" connected preview permits four-metre increments")
   verify(candidate.points[0]==Vector2(30,30) and var_to_str(game.city.roads)==original,"length preview preserves existing endpoint and authored roads")
   var expected: PackedVector2Array=candidate.points.duplicate();drawing.click(game.pointer)
   verify(game.city.roads.size()==2 and game.city.roads[-1].points==expected,kind+" saved construction exactly equals quantized green preview")
  reset(game);drawing.set_kind("straight");drawing.click(Vector2(20,30));game.pointer=Vector2(22,43.3)
  var perpendicular: Dictionary=drawing.preview()
- verify(perpendicular.ok and length_ok(perpendicular.points) and absf((perpendicular.points[-1]-perpendicular.points[0]).normalized().dot(Vector2.RIGHT))<.00001,"eight-metre quantization preserves exact 90-degree assistance")
- reset(game);game.city.add_road(PackedVector2Array([Vector2(30,45),Vector2(50,45)]));drawing.set_kind("straight");drawing.click(Vector2(30,30));game.pointer=Vector2(30,45)
+ verify(perpendicular.ok and length_ok(perpendicular.points) and absf((perpendicular.points[-1]-perpendicular.points[0]).normalized().dot(Vector2.RIGHT))<.00001,"connected quantization preserves exact 90-degree assistance")
+ for kind in ["straight","curve","free"]:
+  reset(game);drawing.set_kind(kind);drawing.click(Vector2(30,30))
+  if kind=="curve":drawing.click(Vector2(31.1,30))
+  game.pointer=Vector2(31,30);var short: Dictionary=drawing.preview()
+  verify(short.ok and absf(Paths.length_of(short.points)-1)<.001 and game.city.roads.size()==1,kind+" offers a four-metre extension without building until the player clicks")
+  var expected: PackedVector2Array=short.points.duplicate();drawing.click(game.pointer)
+  verify(game.city.roads.size()==2 and game.city.roads[-1].points==expected,kind+" player can confirm exactly four metres matching its preview")
+ reset(game);game.city.add_road(PackedVector2Array([Vector2(31,30),Vector2(50,30)]));drawing.set_kind("straight");drawing.click(Vector2(30,30));game.pointer=Vector2(31,30)
+ var bridge: Dictionary=drawing.preview();drawing.click(game.pointer)
+ verify(bridge.ok and game.city.roads.size()==3 and game.city.roads[-1].points==PackedVector2Array([Vector2(30,30),Vector2(31,30)]),"player may reconnect a four-metre gap without moving either authored endpoint")
+ reset(game);game.city.add_road(PackedVector2Array([Vector2(30,45.25),Vector2(50,45.25)]));drawing.set_kind("straight");drawing.click(Vector2(30,30));game.pointer=Vector2(30,45.25)
  var fixed_before:=var_to_str(game.city.roads);var incompatible: Dictionary=drawing.preview()
- verify(not incompatible.ok and incompatible.points[0]==Vector2(30,30) and incompatible.points[-1]==Vector2(30,45),"non-unit straight between fixed contacts is red without moving endpoints")
+ verify(not incompatible.ok and incompatible.points[0]==Vector2(30,30) and incompatible.points[-1]==Vector2(30,45.25),"non-four-metre straight between fixed contacts remains red without moving endpoints")
  drawing.click(game.pointer);verify(game.city.roads.size()==2 and var_to_str(game.city.roads)==fixed_before,"invalid pinned straight cannot be committed")
  for kind in ["curve","free"]:
   reset(game);game.city.add_road(PackedVector2Array([Vector2(30,45),Vector2(50,45)]));drawing.set_kind(kind);drawing.click(Vector2(30,30))
@@ -44,10 +54,10 @@ func run():
   verify(candidate.ok and length_ok(candidate.points) and candidate.points[0]==Vector2(30,30) and candidate.points[-1]==Vector2(30,45),kind+" adjusts internal arc length while retaining both existing contacts")
   verify(candidate.points[1]==raw[1] and candidate.points[-2]==raw[-2],"pinned curved quantization preserves angle-snapped first and final sampled tangents")
  reset(game);drawing.set_kind("straight");drawing.click(Vector2(50,50));game.pointer=Vector2(50.2,50)
- verify(length_ok(drawing.preview().points),"minimum new road is one eight-metre construction unit")
+ verify(length_ok(drawing.preview().points,2.0),"minimum isolated new road remains one eight-metre construction unit")
  reset(game);drawing.set_kind("curve");drawing.click(Vector2(30,30));game.pointer=Vector2(42.3,38.2)
  var guide: Dictionary=drawing.preview();drawing.click(game.pointer)
- verify(length_ok(guide.points) and drawing.anchors.size()==2 and drawing.anchors[1]==guide.points[-1],"curve control guide and stored handle share eight-metre snapped geometry")
+ verify(length_ok(guide.points) and drawing.anchors.size()==2 and drawing.anchors[1]==guide.points[-1],"connected curve control guide and stored handle share four-metre snapped geometry")
  reset(game);drawing.set_kind("straight");drawing.click(Vector2(30.2,18.7));game.pointer=Vector2(30,30)
  var arrival: Dictionary=drawing.preview()
  verify(arrival.ok and length_ok(arrival.points) and arrival.points[-1]==Vector2(30,30) and absf((arrival.points[-1]-arrival.points[-2]).normalized().dot(Vector2.RIGHT))<.00001,"free approach start adjusts without detaching its pinned perpendicular destination")

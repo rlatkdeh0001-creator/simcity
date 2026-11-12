@@ -257,7 +257,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	if enforce_units and not RoadUnits.is_build_length(total):return {"ok":false,"reason":"도로는 8m 단위로 건설해야 합니다"}
+	if enforce_units and not RoadUnits.is_build_length(total,RoadUnits.build_step(points,roads)):return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
 	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0}
 	for b in buildings:
 		if _polygon_road_distance(footprint(b), road) < -0.0005:
