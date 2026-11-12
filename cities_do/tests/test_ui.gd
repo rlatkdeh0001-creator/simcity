@@ -18,7 +18,7 @@ func run():
 	root.add_child(scene)
 	await process_frame
 	verify(scene.city.difficulty == "normal" and scene.city.funds == 50000, "normal difficulty starts with 50000 doth")
-	verify(scene.money.text == "50,000 ₫", "bottom treasury displays confirmed currency and starting amount")
+	verify(scene.money.text == "50,000 \uFFFC", "bottom treasury displays confirmed currency and starting amount")
 	verify(scene.city.width == 100 and scene.city.height == 100 and scene.city.buildings.is_empty() and scene.city.roads.is_empty() and scene.city.zoning_grid.count() == 0, "100x100 scene starts empty with no zoning grid")
 	scene.map_zoom = 1.0
 	scene.city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
@@ -55,9 +55,9 @@ func run():
 	verify(scene.city.roads.size() == 2 and scene.city.roads[1].points.size() == 4, "free road pointer stroke retains fractional geometry")
 	scene.city.funds = 12345
 	scene.refresh()
-	verify(scene.money.text == "12,345 ₫", "bottom treasury reflects current city balance")
+	verify(scene.money.text == "12,345 \uFFFC", "bottom treasury reflects current city balance")
 	scene.drawer_box.find_children("Tool_reset","Button",true,false)[0].pressed.emit()
-	verify(scene.city.funds == 50000 and scene.money.text == "50,000 ₫", "city reset restores normal starting funds")
+	verify(scene.city.funds == 50000 and scene.money.text == "50,000 \uFFFC", "city reset restores normal starting funds")
 	await process_frame
 	scene.queue_free()
 	await process_frame

@@ -1,7 +1,7 @@
 extends RefCounted
 ## Confirmed economy rules. Construction/upkeep and taxes remain proposed; trade rates live in utility configs.
 const CURRENCY_CODE := "doth"
-const CURRENCY_SYMBOL := "₫"
+const CURRENCY_SYMBOL := "\uFFFC" # Internal image slot, not a displayed currency glyph.
 const CURRENCY_NAME_KO := "도쓰"
 const DEFAULT_DIFFICULTY := "normal"
 const NORMAL_STARTING_FUNDS := 50000

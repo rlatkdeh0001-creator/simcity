@@ -13,15 +13,15 @@ static func rows(city,id: String) -> Array[Dictionary]:
  if not city.public_facilities.entries.has(id):return result
  var public=city.public_facilities
  var cost: float=public.price(id);var upkeep: float=public.upkeep(id)
- if is_finite(cost):result.append({"id":"construction","label":"건설비","value":cost,"text":city.Economy.format_amount(int(cost))})
- if is_finite(upkeep):result.append({"id":"upkeep","label":"유지비","value":upkeep,"text":"−"+city.Economy.format_amount(int(upkeep))+"/월"})
+ if is_finite(cost):result.append({"id":"construction","label":"건설비","value":cost,"number":city.Economy.format_number(int(cost)),"unit":city.Economy.CURRENCY_SYMBOL,"text":city.Economy.format_amount(int(cost))})
+ if is_finite(upkeep):result.append({"id":"upkeep","label":"유지비","value":upkeep,"number":"−"+city.Economy.format_number(int(upkeep)),"unit":city.Economy.CURRENCY_SYMBOL+"/월","text":"−"+city.Economy.format_amount(int(upkeep))+"/월"})
  var values: Dictionary=public.balance.capacities(id);var count:=0
  for pair in CAPACITY_LABELS:
   if not values.has(pair[0]) or not is_finite(float(values[pair[0]])):continue
   var value: float=values[pair[0]]
   var number: String=city.Economy.format_number(int(value)) if is_equal_approx(value,roundf(value)) else str(value)
   var unit: String=public.balance.units.get("public."+id+".capacity."+pair[0],"")
-  result.append({"id":pair[0],"label":pair[1],"value":value,"text":number+(" "+unit if not unit.is_empty() else "")})
+  result.append({"id":pair[0],"label":pair[1],"value":value,"number":number,"unit":unit,"text":number+(" "+unit if not unit.is_empty() else "")})
   count+=1
   if count>=3:break
  return result

@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS rejected currency glyph and internal unit are absent from HUD text
+PASS treasury uses an actual approved SVG image instead of a currency font glyph
+ERROR: FAIL native treasury image/text reserves enough layout width and never overlaps monthly balance
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_currency_icon.gd:7)
+       [1] run (res://tests/test_currency_icon.gd:16)
+PASS approved wind hover is a genuine three-column table with separate number and unit controls
+PASS all numeric last digits share the same right-aligned column edge
+PASS actual numeric font has equal advance for every digit
+PASS only alignment and icon presentation change, not CSV values
+PASS unit column is independently left aligned
+RESULT 7/8 custom currency icon checks passed

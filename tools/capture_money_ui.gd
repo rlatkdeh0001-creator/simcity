@@ -9,11 +9,12 @@ func run():
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--evidence="):path=arg.trim_prefix("--evidence=")
   if arg.begins_with("--case="):scenario=arg.trim_prefix("--case=")
- if path.is_empty() or scenario not in ["poor","hover"]:quit(1);return
+ if path.is_empty() or scenario not in ["poor","hover","icon"]:quit(1);return
  game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
  if scenario=="poor":game.city.funds=3200
  root.add_child(game);current_scene=game
  for frame in range(5):await process_frame
+ if scenario=="icon":game.set_monthly_balance(1200) # Approved mockup amount: display-only fixture, not new simulated revenue.
  await click(game.categories[2].get_global_rect().get_center())
  for frame in range(5):await process_frame
  var cards: Array=game.drawer_box.get_children().filter(func(b):return b is Button and b.get_meta("thumbnail_asset_id","")=="power-wind")
@@ -28,6 +29,7 @@ func run():
   if game.asset_info==null or not game.asset_info.visible:quit(1);return
  for frame in range(10):await process_frame
  await RenderingServer.frame_post_draw
- var state:={"scenario":scenario,"input":"actual power-category and C-card mouse input","viewport":str(root.get_visible_rect()),"funds":game.city.funds,"money_text":game.money.text,"currency_glyph_supported":game.money.glyph_supported(),"font":game.money.get_theme_font("font").get_font_name(),"currency_color":str(game.money.ICON_COLOR),"mode":game.mode,"ghost_asset":game.public_controller.asset_id,"card_dimmed":card.unaffordable,"card_border":str(card.get_theme_stylebox("normal").border_color),"toast":str(game.money_toast.get_global_rect()) if game.money_toast!=null and game.money_toast.visible else "","hover_rows":game.asset_info.get_meta("rows",[]) if game.asset_info!=null and game.asset_info.visible else []}
+ var state:={"scenario":scenario,"input":"actual power-category and C-card mouse input","viewport":str(root.get_visible_rect()),"funds":game.city.funds,"money_text":game.money.text,"currency_icon_ready":game.money.icon_ready(),"icon_path":game.money.ICON_PATH,"currency_color":str(game.money.ICON_COLOR),"mode":game.mode,"ghost_asset":game.public_controller.asset_id,"card_dimmed":card.unaffordable,"card_border":str(card.get_theme_stylebox("normal").border_color),"toast":str(game.money_toast.get_global_rect()) if game.money_toast!=null and game.money_toast.visible else "","hover_rows":game.asset_info.get_meta("rows",[]) if game.asset_info!=null and game.asset_info.visible else [],"monthly_balance_display_fixture":1200 if scenario=="icon" else null,"monthly_balance_text":game.balance_label.text}
+ if scenario=="icon":state.numeric_columns=game.asset_info.find_children("InfoNumber_*","Label",true,false).map(func(n):return {"number":n.text,"rect":str(n.get_global_rect()),"font":n.get_theme_font("font").get_font_name()})
  var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  ")+"\n");file.close()
  quit(0 if root.get_texture().get_image().save_png(path)==OK else 1)

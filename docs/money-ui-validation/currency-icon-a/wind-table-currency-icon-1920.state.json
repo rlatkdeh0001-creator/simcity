@@ -1,0 +1,73 @@
+{
+  "card_border": "(0.2196, 0.3176, 0.3686, 1.0)",
+  "card_dimmed": false,
+  "currency_color": "(0.2118, 0.7176, 1.0, 1.0)",
+  "currency_icon_ready": true,
+  "funds": 50000,
+  "ghost_asset": "",
+  "hover_rows": [
+    {
+      "id": "construction",
+      "label": "건설비",
+      "number": "15,000",
+      "text": "15,000 ￼",
+      "unit": "￼",
+      "value": 15000.0
+    },
+    {
+      "id": "upkeep",
+      "label": "유지비",
+      "number": "−200",
+      "text": "−200 ￼/월",
+      "unit": "￼/월",
+      "value": 200.0
+    },
+    {
+      "id": "average_output_kw",
+      "label": "평균 발전량",
+      "number": "1,000",
+      "text": "1,000 kW",
+      "unit": "kW",
+      "value": 1000.0
+    },
+    {
+      "id": "rated_output_kw",
+      "label": "정격 발전량",
+      "number": "2,000",
+      "text": "2,000 kW",
+      "unit": "kW",
+      "value": 2000.0
+    }
+  ],
+  "icon_path": "res://assets/ui/currency-icon-A.svg",
+  "input": "actual power-category and C-card mouse input",
+  "mode": "power_wire",
+  "money_text": "50,000 ￼",
+  "monthly_balance_display_fixture": 1200,
+  "monthly_balance_text": "+1,200 ￼/월",
+  "numeric_columns": [
+    {
+      "font": "Consolas",
+      "number": "15,000",
+      "rect": "[P: (1616.5, 619.0), S: (105.0, 19.0)]"
+    },
+    {
+      "font": "Consolas",
+      "number": "−200",
+      "rect": "[P: (1616.5, 651.0), S: (105.0, 19.0)]"
+    },
+    {
+      "font": "Consolas",
+      "number": "1,000",
+      "rect": "[P: (1616.5, 683.0), S: (105.0, 19.0)]"
+    },
+    {
+      "font": "Consolas",
+      "number": "2,000",
+      "rect": "[P: (1616.5, 715.0), S: (105.0, 19.0)]"
+    }
+  ],
+  "scenario": "icon",
+  "toast": "",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

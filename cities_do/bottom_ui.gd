@@ -800,10 +800,15 @@ func show_asset_info(card):
  picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
  picture.custom_minimum_size=Vector2(270,90 if get_viewport_rect().size.y<760 else 150);body.add_child(picture)
  var rows:=asset_info_rows(card.get_meta("thumbnail_asset_id",""));asset_info.set_meta("rows",rows)
+ var table:=GridContainer.new();table.name="AssetInfoTable";table.columns=3;table.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ table.add_theme_constant_override("h_separation",8);table.add_theme_constant_override("v_separation",6);body.add_child(table)
+ var numeric_font:=SystemFont.new();numeric_font.font_names=PackedStringArray(["Consolas","Courier New"])
  for data in rows:
-  var row:=HBoxContainer.new();row.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_theme_constant_override("separation",16);body.add_child(row)
-  var key:=label(data.label,18);key.add_theme_color_override("font_color",Color("edf4f5"));key.size_flags_horizontal=Control.SIZE_EXPAND_FILL;key.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(key)
-  var value:=CurrencyLabel.new();value.text=data.text;value.add_theme_font_size_override("font_size",18);value.add_theme_color_override("font_color",Color("edf4f5"));row.add_child(value)
+  var key:=label(data.label,18);key.add_theme_color_override("font_color",Color("edf4f5"));key.size_flags_horizontal=Control.SIZE_EXPAND_FILL;key.mouse_filter=Control.MOUSE_FILTER_IGNORE;table.add_child(key)
+  var value:=label(data.number,18);value.name="InfoNumber_"+data.id;value.add_theme_color_override("font_color",Color("edf4f5"));value.add_theme_font_override("font",numeric_font)
+  value.custom_minimum_size.x=100;value.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;value.size_flags_horizontal=Control.SIZE_EXPAND_FILL;value.mouse_filter=Control.MOUSE_FILTER_IGNORE;table.add_child(value)
+  var unit:=CurrencyLabel.new();unit.name="InfoUnit_"+data.id;unit.text=data.unit;unit.add_theme_font_size_override("font_size",18);unit.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT;table.add_child(unit)
+  key.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;value.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;unit.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
  asset_info.size=asset_info.get_combined_minimum_size();position_asset_info();asset_info.show();fit_asset_info.call_deferred()
 
 func update_asset_affordability():
@@ -933,7 +938,8 @@ func layout_bottom_hud():
  date_label.add_theme_font_size_override("font_size",18 if narrow else 24)
  happiness_label.add_theme_font_size_override("font_size",22 if narrow else 28)
  balance_label.add_theme_font_size_override("font_size",18 if narrow else 24)
- status_left.add_theme_constant_override("separation",6 if narrow else 12)
+ status_left.add_theme_constant_override("separation",2 if narrow else 12)
+ money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
  var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2

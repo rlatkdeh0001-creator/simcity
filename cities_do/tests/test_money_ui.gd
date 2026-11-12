@@ -9,7 +9,7 @@ func _initialize():run.call_deferred()
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
- verify(game.money.text=="50,000 ₫","approved currency symbol replaces player-facing doth without changing funds")
+ verify(game.money.text=="50,000 \uFFFC","approved currency symbol replaces player-facing doth without changing funds")
  game.city.funds=1000;game.select_category("power")
  for frame in range(5):await process_frame
  var cards: Array=game.drawer_box.get_children().filter(func(b):return b is Button and b.get_meta("thumbnail_asset_id","")=="power-wind")
@@ -35,8 +35,8 @@ func run():
   game.city.power.pending_doth=0;game.refresh_status()
   verify(game.select_public_asset("power-wind") and game.mode=="public_placement" and game.city.funds==15000,"affordable selection opens ghost without charging or changing price")
   game.public_controller.cancel()
-  verify(game.city.Economy.format_fraction(-12345.125,6)=="−12,345.125000 ₫","fractional utility money keeps decimal precision and thousand grouping")
-  game.set_monthly_balance(1200);verify(game.balance_label.text=="+1,200 ₫/월","monthly HUD keeps positive sign and official icon")
-  game.set_monthly_balance(-200);verify(game.balance_label.text=="−200 ₫/월","monthly HUD keeps negative sign and official icon")
+  verify(game.city.Economy.format_fraction(-12345.125,6)=="−12,345.125000 \uFFFC","fractional utility money keeps decimal precision and thousand grouping")
+  game.set_monthly_balance(1200);verify(game.balance_label.text=="+1,200 \uFFFC/월","monthly HUD keeps positive sign and official icon")
+  game.set_monthly_balance(-200);verify(game.balance_label.text=="−200 \uFFFC/월","monthly HUD keeps negative sign and official icon")
  game.queue_free();await process_frame
  print("RESULT %d/%d money UI checks passed" % [checks-failures,checks]);quit(1 if failures else 0)

@@ -31,7 +31,7 @@ func run():
 func check_status(game):
  verify(game.city.city_name=="CITIESDO" and game.city_name_button.text=="CITIESDO","default city identity matches A2")
  verify(game.happiness_label.text=="—" and game.balance_label.text=="—","unimplemented happiness and cash flow stay unknown")
- verify(game.money.text=="50,000 ₫" and game.population_label.text=="0","real initial funds and population, no made-up mockup values")
+ verify(game.money.text=="50,000 \uFFFC" and game.population_label.text=="0","real initial funds and population, no made-up mockup values")
  verify(game.demand_bars.size()==3 and game.demand_bars[0].value>0 and game.demand_bars[1].value==0 and game.demand_bars[2].value==0,"RCI reflects existing empty-city residential-only demand")
  game.city_name_button.pressed.emit()
  await process_frame
@@ -58,7 +58,7 @@ func check_status(game):
  for i in range(10):game._process(0)
  verify(game.hud_refresh_count==before,"idle frames do not poll/rewrite status HUD")
  game.city.funds=48730
- verify(game.money.text=="48,730 ₫" and game.hud_refresh_count>before,"funds-change event updates formatted money immediately")
+ verify(game.money.text=="48,730 \uFFFC" and game.hud_refresh_count>before,"funds-change event updates formatted money immediately")
  before=game.hud_refresh_count
  game.city.funds=48730
  verify(game.hud_refresh_count==before,"identical funds assignment emits no HUD update")
@@ -70,9 +70,9 @@ func check_status(game):
  game.city.clock.advance_real(3600)
  verify(closed==[0] and game.balance_label.text=="—","one game day closes one game month, no fake cash flow")
  game.set_monthly_balance(1200)
- verify(game.balance_label.text=="+1,200 ₫/월" and game.balance_label.get_theme_color("font_color")==Color("5fd38a"),"future positive monthly value includes sign, unit and green")
+ verify(game.balance_label.text=="+1,200 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("5fd38a"),"future positive monthly value includes sign, unit and green")
  game.set_monthly_balance(-350)
- verify(game.balance_label.text=="−350 ₫/월" and game.balance_label.get_theme_color("font_color")==Color("ff6b6b"),"future negative monthly value includes minus and red")
+ verify(game.balance_label.text=="−350 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("ff6b6b"),"future negative monthly value includes minus and red")
  game.set_monthly_balance(null)
  verify(game.balance_label.text=="—","unknown monthly data restores dash")
  game.speed_button.pressed.emit()
