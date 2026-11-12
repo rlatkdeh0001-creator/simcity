@@ -31,11 +31,11 @@ func key(code: int):
 func check_input(scene):
  var controller=scene.public_controller
  scene.select_category("fire");await process_frame;await process_frame
- var panels: int=scene.find_children("*","PanelContainer",true,false).size()
+ var panels: int=scene.find_children("*","PanelContainer",true,false).filter(func(n):return n.name not in ["AssetMoneyInfo","InsufficientFundsBubble"]).size()
  var button: Button=scene.drawer_box.get_node("Slot_fire_standard")
  await mouse(button.get_global_rect().get_center())
  verify(scene.mode=="public_placement" and controller.asset_id=="fire-station","actual C-card mouse click starts the selected world ghost")
- verify(scene.find_children("*","PanelContainer",true,false).size()==panels and scene.get_node_or_null("ServiceAssetPreview")==null,"no new panel or old inspection modal is opened by placement card")
+ verify(scene.find_children("*","PanelContainer",true,false).filter(func(n):return n.name not in ["AssetMoneyInfo","InsufficientFundsBubble"]).size()==panels and scene.get_node_or_null("ServiceAssetPreview")==null,"no extra construction panel/modal beyond approved hover and cash bubbles")
  var position: Vector2=scene.screen(Vector2(12,35))
  await move(position)
  verify(controller.preview().ok and controller.ghost_color().g>controller.ghost_color().r,"valid frontage and cash produce green translucent ghost")
@@ -56,5 +56,8 @@ func check_input(scene):
  verify(scene.city.funds==0 and scene.city.public_facilities.lots.is_empty() and scene.message==previous_message,"cash rejection creates no building, debit or explanatory HUD text")
  for tool: String in scene.SERVICE_TOOLS:
   scene.activate_tool(tool)
-  verify(scene.mode=="public_placement" and controller.asset_id==scene.SERVICE_TOOLS[tool],tool+" existing medical/education/crematorium card selects placement instead of inspection")
+  if scene.city.public_facilities.price(scene.SERVICE_TOOLS[tool])>scene.city.utility_balance():
+   verify(scene.mode!="public_placement" and controller.asset_id.is_empty(),tool+" approved insufficient-funds gate prevents ghost")
+  else:
+   verify(scene.mode=="public_placement" and controller.asset_id==scene.SERVICE_TOOLS[tool],tool+" affordable existing medical/education/crematorium card selects actual placement")
  controller.cancel()

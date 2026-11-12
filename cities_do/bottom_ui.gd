@@ -35,6 +35,12 @@ var utility_content: Control
 var utility_owner: PanelContainer
 var road_modes: PanelContainer
 var road_mode_buttons: Array[Button]=[]
+const CurrencyLabel=preload("res://core/currency_label.gd")
+var money_toast: PanelContainer
+var money_toast_timer: Timer
+var rejected_card: WeakRef
+var asset_info: PanelContainer
+var hovered_card: WeakRef
 const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육","fire":"소방","police":"경찰"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
@@ -452,11 +458,11 @@ func build_status_row(box: VBoxContainer) -> Control:
  population_label=label("0",22)
  population_label.name="PopulationValue"
  population_box.add_child(population_label)
- money=label(city.Economy.format_amount(city.funds),34)
+ money=CurrencyLabel.new();money.text=city.Economy.format_amount(city.funds);money.add_theme_font_size_override("font_size",34)
  money.name="MoneyValue"
- money.add_theme_color_override("font_color",Color("efcd7c"))
+ money.add_theme_color_override("font_color",Color("edf4f5"))
  finance.add_child(money)
- balance_label=label("—",24)
+ balance_label=CurrencyLabel.new();balance_label.text="—";balance_label.add_theme_font_size_override("font_size",24)
  balance_label.name="MonthlyBalanceValue"
  finance.add_child(balance_label)
  var right_margin:=MarginContainer.new()
@@ -499,14 +505,14 @@ func refresh_status():
  if money==null:return
  var stats: Dictionary=city.population.stats()
  var demand: Dictionary=city.population.demand(city.buildings)
- var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance}
+ var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance}
  if snapshot==status_cache:return
  hud_refresh_count+=1
  if snapshot.name!=status_cache.get("name"):city_name_button.text=snapshot.name
  if snapshot.funds!=status_cache.get("funds"):money.text=city.Economy.format_amount(city.funds)
  if snapshot.date!=status_cache.get("date"):date_label.text=snapshot.date
  if snapshot.stats!=status_cache.get("stats") or snapshot.demand!=status_cache.get("demand"):
-  population_label.text=city.Economy.format_amount(stats.population).trim_suffix(" doth")
+  population_label.text=city.Economy.format_number(stats.population)
   population_label.tooltip_text="취업 %d · 미취업 %d · 주 %d 상 %d 공 %d" % [stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial]
   for bar in demand_bars:
    var key: String=bar.get_meta("demand_key")
@@ -514,9 +520,10 @@ func refresh_status():
    bar.value=maxf(0,float(demand[key]))
    bar.tooltip_text={"residential":"주거","commercial":"상업","industrial":"공업"}[key]+" "+str(demand[key])
  if snapshot.balance!=status_cache.get("balance") or status_cache.is_empty():
-  balance_label.text="—" if monthly_balance==null else ("−" if monthly_balance<0 else "+")+city.Economy.format_amount(absi(monthly_balance)).trim_suffix(" doth")+"/월"
+  balance_label.text="—" if monthly_balance==null else ("−" if monthly_balance<0 else "+")+city.Economy.format_amount(absi(monthly_balance))+"/월"
   balance_label.add_theme_color_override("font_color",INK if monthly_balance==null else (Color("ff6b6b") if monthly_balance<0 else Color("5fd38a")))
  status_cache=snapshot.duplicate(true)
+ update_asset_affordability()
 
 func set_monthly_balance(value: Variant):
  # Future economic producer publishes the closed game day's (= game month's) total.
@@ -551,6 +558,8 @@ func on_city_name_input(event: InputEvent):
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ hide_asset_info()
+ clear_money_toast()
  if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  if utility_popup.visible: utility_popup.hide()
@@ -676,6 +685,7 @@ func show_zoning_tiles() -> bool:
  return chosen in ["build","road"] and mode!="demolish"
 
 func toggle_demolition():
+ hide_asset_info();clear_money_toast()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  mode="select" if mode=="demolish" else "demolish"
@@ -751,22 +761,114 @@ func capture():
 
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  hide_asset_info();clear_money_toast()
   if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
   drawer.hide()
+
+func asset_info_rows(id: String) -> Array[Dictionary]:return preload("res://core/asset_money_info.gd").rows(city,id)
+func hide_asset_info():
+ if asset_info!=null:asset_info.hide()
+ hovered_card=null
+func position_asset_info():
+ if asset_info==null or hovered_card==null:return
+ var card=hovered_card.get_ref()
+ if not is_instance_valid(card) or not card.is_inside_tree():hide_asset_info();return
+ var rect: Rect2=card.get_global_rect();var viewport_size:=get_viewport_rect().size
+ asset_info.global_position=Vector2(clampf(rect.get_center().x-asset_info.size.x/2,8,viewport_size.x-asset_info.size.x-8),clampf(rect.position.y-asset_info.size.y-12,8,maxf(8,viewport_size.y-asset_info.size.y-8)))
+func fit_asset_info():
+ if asset_info==null or not asset_info.visible:return
+ var minimum:=asset_info.get_combined_minimum_size()
+ if asset_info.size!=minimum:asset_info.size=minimum
+ position_asset_info()
+func show_asset_info(card):
+ if not is_instance_valid(card) or not card.is_inside_tree() or card.disabled:return
+ if money_toast!=null and money_toast.visible:return
+ hovered_card=weakref(card)
+ if asset_info==null:
+  asset_info=PanelContainer.new();asset_info.name="AssetMoneyInfo";asset_info.mouse_filter=Control.MOUSE_FILTER_IGNORE
+  asset_info.custom_minimum_size.x=290;drawer.get_parent().add_child(asset_info)
+  var skin:=style(Color("142b37"),Color("38515e"))
+  skin.content_margin_left=10;skin.content_margin_right=10;skin.content_margin_top=10;skin.content_margin_bottom=10
+  asset_info.add_theme_stylebox_override("panel",skin);asset_info.resized.connect(position_asset_info)
+  asset_info.minimum_size_changed.connect(func():fit_asset_info.call_deferred())
+ for child in asset_info.get_children():asset_info.remove_child(child);child.queue_free()
+ var body:=VBoxContainer.new();body.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_theme_constant_override("separation",6);asset_info.add_child(body)
+ var title:=label(card.get_meta("asset_name",""),20);title.add_theme_color_override("font_color",Color("edf4f5"));title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;title.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_child(title)
+ var picture:=TextureRect.new();picture.texture=load(card.get_meta("source_preview",""));picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+ picture.custom_minimum_size=Vector2(270,90 if get_viewport_rect().size.y<760 else 150);body.add_child(picture)
+ var rows:=asset_info_rows(card.get_meta("thumbnail_asset_id",""));asset_info.set_meta("rows",rows)
+ for data in rows:
+  var row:=HBoxContainer.new();row.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_theme_constant_override("separation",16);body.add_child(row)
+  var key:=label(data.label,18);key.add_theme_color_override("font_color",Color("edf4f5"));key.size_flags_horizontal=Control.SIZE_EXPAND_FILL;key.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(key)
+  var value:=CurrencyLabel.new();value.text=data.text;value.add_theme_font_size_override("font_size",18);value.add_theme_color_override("font_color",Color("edf4f5"));row.add_child(value)
+ asset_info.size=asset_info.get_combined_minimum_size();position_asset_info();asset_info.show();fit_asset_info.call_deferred()
+
+func update_asset_affordability():
+ if drawer_box==null:return
+ for card in drawer_box.get_children():
+  var id: String=str(card.get_meta("thumbnail_asset_id",""))
+  if card is ThumbnailButton and city.public_facilities.entries.has(id):card.set_unaffordable(city.public_facilities.price(id)>city.utility_balance())
+func clear_money_toast():
+ if money_toast!=null:money_toast.hide()
+ if money_toast_timer!=null:money_toast_timer.stop()
+ if rejected_card!=null:
+  var previous=rejected_card.get_ref()
+  if is_instance_valid(previous):previous.set_rejected(false)
+ rejected_card=null
+func show_money_toast(card):
+ hide_asset_info()
+ clear_money_toast()
+ if money_toast==null:
+  money_toast=PanelContainer.new();money_toast.name="InsufficientFundsBubble";money_toast.mouse_filter=Control.MOUSE_FILTER_IGNORE
+  drawer.get_parent().add_child(money_toast)
+  money_toast.add_theme_stylebox_override("panel",style(Color("142b37"),Color("ff5a5a")))
+  var text_value:=label("잔고가 부족합니다.",18);text_value.add_theme_color_override("font_color",Color("edf4f5"));text_value.mouse_filter=Control.MOUSE_FILTER_IGNORE;money_toast.add_child(text_value)
+  money_toast.set_meta("message",text_value.text)
+  money_toast.draw.connect(func():
+   var x: float=money_toast.get_meta("tail_x",money_toast.size.x/2);var y: float=money_toast.size.y
+   money_toast.draw_colored_polygon(PackedVector2Array([Vector2(x-7,y-1),Vector2(x+7,y-1),Vector2(x,y+8)]),Color("ff5a5a")))
+  money_toast_timer=Timer.new();money_toast_timer.one_shot=true;money_toast_timer.wait_time=2;money_toast_timer.ignore_time_scale=true
+  money_toast_timer.process_mode=Node.PROCESS_MODE_ALWAYS
+  add_child(money_toast_timer);money_toast_timer.timeout.connect(clear_money_toast)
+ rejected_card=weakref(card);card.set_rejected(true)
+ money_toast.size=money_toast.get_combined_minimum_size()
+ position_money_toast()
+ money_toast.show();money_toast_timer.start()
+
+func position_money_toast():
+ if money_toast==null or rejected_card==null:return
+ var card=rejected_card.get_ref()
+ if not is_instance_valid(card) or not card.is_inside_tree():clear_money_toast();return
+ var rect: Rect2=card.get_global_rect();var viewport_size:=get_viewport_rect().size
+ money_toast.global_position=Vector2(clampf(rect.get_center().x-money_toast.size.x/2,8,viewport_size.x-money_toast.size.x-8),maxf(8,rect.position.y-money_toast.size.y-10))
+ money_toast.set_meta("tail_x",clampf(rect.get_center().x-money_toast.global_position.x,10,money_toast.size.x-10));money_toast.queue_redraw()
 
 func make_asset_button(entry: Dictionary,action: Callable) -> Button:
  if thumbnail_manifest.is_empty():thumbnail_manifest=JSON.parse_string(FileAccess.get_file_as_string("res://assets/ui/thumbnails/manifest.json"))
  var item=ThumbnailButton.new()
  var preview_path: String=thumbnail_manifest.get(str(entry.id),{}).get("thumbnail",str(entry.preview))
  item.set_asset(entry,preview_path)
+ item.tooltip_text="" # Approved image/CSV bubble below replaces the old native text tooltip.
+ item.mouse_entered.connect(show_asset_info.bind(item))
+ item.mouse_exited.connect(hide_asset_info)
+ if city.public_facilities.entries.has(str(entry.id)):
+  item.set_unaffordable(city.public_facilities.price(str(entry.id))>city.utility_balance())
  item.pressed.connect(func():
   if not item.disabled:action.call())
  return item
 
 func select_public_asset(id: String) -> bool:
- if city.public_facilities.entries.has(id):return public_controller.begin(id)
+ if city.public_facilities.entries.has(id):
+  if city.public_facilities.price(id)>city.utility_balance():
+   public_controller.cancel();road_drawer.cancel();mode="select"
+   for card in drawer_box.get_children():
+    if card is Button and card.get_meta("thumbnail_asset_id","")==id:show_money_toast(card);break
+   return false
+  clear_money_toast()
+  return public_controller.begin(id)
  return open_registered_asset(id) # Hydro stays inspection-only.
 
 func open_registered_asset(id: String) -> bool:
@@ -840,9 +942,14 @@ func layout_bottom_hud():
   var margin:=344 if drawer.visible and (get_viewport_rect().size.x-width_value)/2<188 else 206
   road_modes.offset_left=16;road_modes.offset_right=172
   road_modes.offset_top=-margin-56;road_modes.offset_bottom=-margin
+ if asset_info!=null and asset_info.visible and hovered_card!=null:
+  var card=hovered_card.get_ref()
+  if is_instance_valid(card):show_asset_info.call_deferred(card)
+ position_money_toast.call_deferred()
  queue_redraw()
 
 func activate_tool(tool: String):
+ hide_asset_info();clear_money_toast()
  if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()

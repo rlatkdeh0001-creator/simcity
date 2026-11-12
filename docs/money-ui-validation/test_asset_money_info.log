@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS asset hover exposes real CSV rows rather than hardcoded mockup values
+PASS wind construction row uses existing approved CSV value
+PASS upkeep preserves minus and monthly unit
+PASS actual average and rated wind output are distinctly labeled, no fake generation
+PASS missing data produces no invented price or capacity rows
+PASS actual mouse hover opens approved preview bubble
+PASS bubble uses actual registered asset preview image
+PASS hover bubble is wholly inside viewport
+PASS actual current/fallback font includes U+20AB currency glyph
+PASS approved hover bubble remains wholly inside (1280, 820)
+PASS approved hover bubble remains wholly inside (960, 640)
+PASS medical-hospital exposes only existing finite CSV capacities and official money display
+PASS elementary-school exposes only existing finite CSV capacities and official money display
+PASS prison-8x8 exposes only existing finite CSV capacities and official money display
+PASS water-intake exposes only existing finite CSV capacities and official money display
+PASS water-sewage-treatment exposes only existing finite CSV capacities and official money display
+PASS water-water-tower exposes only existing finite CSV capacities and official money display
+PASS waste-recycling-center exposes only existing finite CSV capacities and official money display
+CURRENCY_FONT Open Sans SemiBold U+20AB=true
+PASS existing electricity settings currency is converted without changing metering
+PASS existing water settings currency is converted without changing tariffs
+RESULT 20/20 asset money info checks passed

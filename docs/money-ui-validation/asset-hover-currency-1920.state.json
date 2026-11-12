@@ -1,0 +1,41 @@
+{
+  "card_border": "(0.2196, 0.3176, 0.3686, 1.0)",
+  "card_dimmed": false,
+  "currency_color": "(0.2118, 0.7176, 1.0, 1.0)",
+  "currency_glyph_supported": true,
+  "font": "Open Sans SemiBold",
+  "funds": 50000,
+  "ghost_asset": "",
+  "hover_rows": [
+    {
+      "id": "construction",
+      "label": "건설비",
+      "text": "15,000 ₫",
+      "value": 15000.0
+    },
+    {
+      "id": "upkeep",
+      "label": "유지비",
+      "text": "−200 ₫/월",
+      "value": 200.0
+    },
+    {
+      "id": "average_output_kw",
+      "label": "평균 발전량",
+      "text": "1,000 kW",
+      "value": 1000.0
+    },
+    {
+      "id": "rated_output_kw",
+      "label": "정격 발전량",
+      "text": "2,000 kW",
+      "value": 2000.0
+    }
+  ],
+  "input": "actual power-category and C-card mouse input",
+  "mode": "power_wire",
+  "money_text": "50,000 ₫",
+  "scenario": "hover",
+  "toast": "",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

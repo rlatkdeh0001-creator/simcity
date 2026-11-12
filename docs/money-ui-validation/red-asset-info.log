@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL asset hover exposes real CSV rows rather than hardcoded mockup values
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_asset_money_info.gd:7)
+       [1] run (res://tests/test_asset_money_info.gd:12)
+RESULT 0/1 asset money info checks passed

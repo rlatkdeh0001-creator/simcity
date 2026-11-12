@@ -1,0 +1,68 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS existing game owns public world placement interaction, without a new panel
+PASS actual C-card mouse click starts the selected world ghost
+ERROR: FAIL no new panel or old inspection modal is opened by placement card
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:38)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+PASS valid frontage and cash produce green translucent ghost
+PASS R rotates 90 degrees and wrong front becomes red
+PASS ESC cancels without placing or charging
+PASS right click cancels world placement
+PASS actual world click places and charges once
+PASS existing bulldozer removes public building without invented refund
+PASS cash shortage is recorded in validation, not a new HUD explanation
+PUBLIC_PLACEMENT_REJECT {"asset":"fire-station","code":"insufficient_funds","reason":"insufficient_funds"}
+PASS cash rejection creates no building, debit or explanatory HUD text
+ERROR: FAIL clinic existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL hospital existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL large_hospital existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL elementary existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL high_school existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL college existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL university existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+ERROR: FAIL crematorium existing medical/education/crematorium card selects placement instead of inspection
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_public_ui.gd:7)
+       [1] check_input (res://tests/test_public_ui.gd:59)
+       [2] mouse (res://tests/test_public_ui.gd:24)
+RESULT 10/19 public UI checks passed

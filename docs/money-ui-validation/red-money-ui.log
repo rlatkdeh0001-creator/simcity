@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL approved currency symbol replaces player-facing doth without changing funds
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_money_ui.gd:7)
+       [1] run (res://tests/test_money_ui.gd:12)
+PASS existing wind C-card is present
+ERROR: FAIL unaffordable card is dim but still receives rejection clicks
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_money_ui.gd:7)
+       [1] run (res://tests/test_money_ui.gd:20)
+ERROR: FAIL real poor-card click cannot open any placement ghost or debit funds
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_money_ui.gd:7)
+       [1] run (res://tests/test_money_ui.gd:23)
+ERROR: FAIL approved card-anchored insufficient-funds bubble exists
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_money_ui.gd:7)
+       [1] run (res://tests/test_money_ui.gd:24)
+RESULT 1/5 money UI checks passed

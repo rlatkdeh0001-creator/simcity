@@ -44,7 +44,11 @@ func check_cards(game):
    card.pressed.emit()
    await process_frame
    var windows: Array=game.find_children("ServiceAssetPreview","Window",true,false)
-   verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==card.get_meta("thumbnail_asset_id") and ResourceLoader.exists(game.city.public_facilities.entries[game.public_controller.asset_id].model),str(card.name)+" selects its actual GLB world ghost without changing the C card")
+   var id: String=card.get_meta("thumbnail_asset_id")
+   if game.city.public_facilities.price(id)>game.city.utility_balance():
+    verify(windows.is_empty() and game.mode!="public_placement" and game.public_controller.asset_id.is_empty() and game.money_toast.visible,str(card.name)+" insufficient funds blocks ghost and shows approved card bubble")
+   else:
+    verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==id and ResourceLoader.exists(game.city.public_facilities.entries[id].model),str(card.name)+" selects its actual affordable GLB ghost without changing the C card")
    for window in windows:window.close_requested.emit()
    await process_frame
  verify(total==23,"all 23 existing PNG-backed facilities use C cards")

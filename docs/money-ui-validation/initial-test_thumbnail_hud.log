@@ -1,0 +1,154 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS startup has no blue selected category
+PASS approved C cards exist for all four police assets
+PASS fire has every PNG-backed building/park/parking card
+PASS Slot_fire_small real image covers the whole button without distortion
+PASS Slot_fire_small C card minimum size
+PASS Slot_fire_small bottom name band and readable real name
+PASS Slot_fire_small dark translucent name band
+PASS Slot_fire_small selects its actual GLB world ghost without changing the C card
+PASS Slot_fire_standard real image covers the whole button without distortion
+PASS Slot_fire_standard C card minimum size
+PASS Slot_fire_standard bottom name band and readable real name
+PASS Slot_fire_standard dark translucent name band
+PASS Slot_fire_standard selects its actual GLB world ghost without changing the C card
+PASS Slot_fire_regional real image covers the whole button without distortion
+PASS Slot_fire_regional C card minimum size
+PASS Slot_fire_regional bottom name band and readable real name
+PASS Slot_fire_regional dark translucent name band
+PASS Slot_fire_regional selects its actual GLB world ghost without changing the C card
+PASS police has every PNG-backed building/park/parking card
+PASS Slot_police_small real image covers the whole button without distortion
+PASS Slot_police_small C card minimum size
+PASS Slot_police_small bottom name band and readable real name
+PASS Slot_police_small dark translucent name band
+PASS Slot_police_small selects its actual GLB world ghost without changing the C card
+PASS Slot_police_standard real image covers the whole button without distortion
+PASS Slot_police_standard C card minimum size
+PASS Slot_police_standard bottom name band and readable real name
+PASS Slot_police_standard dark translucent name band
+PASS Slot_police_standard selects its actual GLB world ghost without changing the C card
+PASS Slot_police_headquarters real image covers the whole button without distortion
+PASS Slot_police_headquarters C card minimum size
+PASS Slot_police_headquarters bottom name band and readable real name
+PASS Slot_police_headquarters dark translucent name band
+PASS Slot_police_headquarters selects its actual GLB world ghost without changing the C card
+PASS Slot_police_prison real image covers the whole button without distortion
+PASS Slot_police_prison C card minimum size
+PASS Slot_police_prison bottom name band and readable real name
+PASS Slot_police_prison dark translucent name band
+PASS Slot_police_prison selects its actual GLB world ghost without changing the C card
+PASS health has every PNG-backed building/park/parking card
+PASS Tool_hospital real image covers the whole button without distortion
+PASS Tool_hospital C card minimum size
+PASS Tool_hospital bottom name band and readable real name
+PASS Tool_hospital dark translucent name band
+PASS Tool_hospital selects its actual GLB world ghost without changing the C card
+PASS Tool_clinic real image covers the whole button without distortion
+PASS Tool_clinic C card minimum size
+PASS Tool_clinic bottom name band and readable real name
+PASS Tool_clinic dark translucent name band
+PASS Tool_clinic selects its actual GLB world ghost without changing the C card
+PASS Tool_large_hospital real image covers the whole button without distortion
+PASS Tool_large_hospital C card minimum size
+PASS Tool_large_hospital bottom name band and readable real name
+PASS Tool_large_hospital dark translucent name band
+ERROR: FAIL Tool_large_hospital selects its actual GLB world ghost without changing the C card
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_thumbnail_hud.gd:8)
+       [1] check_cards (res://tests/test_thumbnail_hud.gd:47)
+PASS Tool_crematorium real image covers the whole button without distortion
+PASS Tool_crematorium C card minimum size
+PASS Tool_crematorium bottom name band and readable real name
+PASS Tool_crematorium dark translucent name band
+PASS Tool_crematorium selects its actual GLB world ghost without changing the C card
+PASS education has every PNG-backed building/park/parking card
+PASS Tool_elementary real image covers the whole button without distortion
+PASS Tool_elementary C card minimum size
+PASS Tool_elementary bottom name band and readable real name
+PASS Tool_elementary dark translucent name band
+PASS Tool_elementary selects its actual GLB world ghost without changing the C card
+PASS Tool_high_school real image covers the whole button without distortion
+PASS Tool_high_school C card minimum size
+PASS Tool_high_school bottom name band and readable real name
+PASS Tool_high_school dark translucent name band
+PASS Tool_high_school selects its actual GLB world ghost without changing the C card
+PASS Tool_college real image covers the whole button without distortion
+PASS Tool_college C card minimum size
+PASS Tool_college bottom name band and readable real name
+PASS Tool_college dark translucent name band
+PASS Tool_college selects its actual GLB world ghost without changing the C card
+PASS Tool_university real image covers the whole button without distortion
+PASS Tool_university C card minimum size
+PASS Tool_university bottom name band and readable real name
+PASS Tool_university dark translucent name band
+ERROR: FAIL Tool_university selects its actual GLB world ghost without changing the C card
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_thumbnail_hud.gd:8)
+       [1] check_cards (res://tests/test_thumbnail_hud.gd:47)
+PASS park has every PNG-backed building/park/parking card
+PASS Facility_park-pocket-2x2 real image covers the whole button without distortion
+PASS Facility_park-pocket-2x2 C card minimum size
+PASS Facility_park-pocket-2x2 bottom name band and readable real name
+PASS Facility_park-pocket-2x2 dark translucent name band
+PASS Facility_park-pocket-2x2 selects its actual GLB world ghost without changing the C card
+PASS Facility_park-garden-2x2 real image covers the whole button without distortion
+PASS Facility_park-garden-2x2 C card minimum size
+PASS Facility_park-garden-2x2 bottom name band and readable real name
+PASS Facility_park-garden-2x2 dark translucent name band
+PASS Facility_park-garden-2x2 selects its actual GLB world ghost without changing the C card
+PASS Facility_park-plaza-4x4 real image covers the whole button without distortion
+PASS Facility_park-plaza-4x4 C card minimum size
+PASS Facility_park-plaza-4x4 bottom name band and readable real name
+PASS Facility_park-plaza-4x4 dark translucent name band
+PASS Facility_park-plaza-4x4 selects its actual GLB world ghost without changing the C card
+PASS Facility_park-play-4x4 real image covers the whole button without distortion
+PASS Facility_park-play-4x4 C card minimum size
+PASS Facility_park-play-4x4 bottom name band and readable real name
+PASS Facility_park-play-4x4 dark translucent name band
+PASS Facility_park-play-4x4 selects its actual GLB world ghost without changing the C card
+PASS Facility_parking-small-2x4 real image covers the whole button without distortion
+PASS Facility_parking-small-2x4 C card minimum size
+PASS Facility_parking-small-2x4 bottom name band and readable real name
+PASS Facility_parking-small-2x4 dark translucent name band
+PASS Facility_parking-small-2x4 selects its actual GLB world ghost without changing the C card
+PASS Facility_parking-medium-4x4 real image covers the whole button without distortion
+PASS Facility_parking-medium-4x4 C card minimum size
+PASS Facility_parking-medium-4x4 bottom name band and readable real name
+PASS Facility_parking-medium-4x4 dark translucent name band
+PASS Facility_parking-medium-4x4 selects its actual GLB world ghost without changing the C card
+PASS Facility_parking-large-4x8 real image covers the whole button without distortion
+PASS Facility_parking-large-4x8 C card minimum size
+PASS Facility_parking-large-4x8 bottom name band and readable real name
+PASS Facility_parking-large-4x8 dark translucent name band
+PASS Facility_parking-large-4x8 selects its actual GLB world ghost without changing the C card
+PASS Facility_parking-tower-4x4-4f real image covers the whole button without distortion
+PASS Facility_parking-tower-4x4-4f C card minimum size
+PASS Facility_parking-tower-4x4-4f bottom name band and readable real name
+PASS Facility_parking-tower-4x4-4f dark translucent name band
+PASS Facility_parking-tower-4x4-4f selects its actual GLB world ghost without changing the C card
+PASS all 23 existing PNG-backed facilities use C cards
+PASS thumbnail inspection never builds or charges
+PASS category activation moves keyboard focus to clicked category
+PASS exactly one blue selection outline
+PASS keyboard focus has a distinct bright dashed shape, not the blue selected outline
+PASS focus texture contains real dashed gaps
+PASS pause icon is centered like the speed caption
+PASS actual mouse press/release selects health and transfers keyboard focus
+PASS disabled thumbnail cannot be forced into activation
+PASS Slot_police_small complete card fits (1920, 1080)
+PASS Slot_police_standard complete card fits (1920, 1080)
+PASS Slot_police_headquarters complete card fits (1920, 1080)
+PASS Slot_police_prison complete card fits (1920, 1080)
+PASS Slot_police_small complete card fits (1280, 820)
+PASS Slot_police_standard complete card fits (1280, 820)
+PASS Slot_police_headquarters complete card fits (1280, 820)
+PASS Slot_police_prison complete card fits (1280, 820)
+PASS Slot_police_small complete card fits (960, 640)
+PASS Slot_police_standard complete card fits (960, 640)
+PASS Slot_police_headquarters complete card fits (960, 640)
+PASS Slot_police_prison complete card fits (960, 640)
+RESULT 141/143 thumbnail HUD checks passed

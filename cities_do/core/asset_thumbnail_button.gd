@@ -2,6 +2,8 @@ extends Button
 ## One physical PNG-based C-card, inspection-only; original art stays untouched.
 var picture: TextureRect
 var caption: Label
+var unaffordable:=false
+var normal_borders: Dictionary={}
 func set_asset(entry: Dictionary,thumbnail_path: String):
  custom_minimum_size=Vector2(128,96)
  set_meta("thumbnail_asset_id",str(entry.id))
@@ -48,6 +50,7 @@ func set_asset(entry: Dictionary,thumbnail_path: String):
   outline.border_color=Color("39b7ff") if state in ["hover","pressed"] else Color("38515e")
   outline.set_border_width_all(2)
   outline.set_corner_radius_all(8)
+  normal_borders[state]=outline.border_color
   add_theme_stylebox_override(state,outline)
  var focus_overlay:=Control.new()
  focus_overlay.name="FocusOverlay"
@@ -58,7 +61,16 @@ func set_asset(entry: Dictionary,thumbnail_path: String):
   if has_focus():focus_overlay.draw_style_box(get_theme_stylebox("focus"),Rect2(Vector2.ZERO,size)))
  focus_entered.connect(focus_overlay.queue_redraw)
  focus_exited.connect(focus_overlay.queue_redraw)
+func set_unaffordable(value: bool):
+ if value==unaffordable and has_meta("unaffordable"):return
+ unaffordable=value;set_meta("unaffordable",value);queue_redraw()
+func set_rejected(active: bool):
+ for state in normal_borders:
+  var outline: StyleBoxFlat=get_theme_stylebox(state).duplicate()
+  outline.border_color=Color("ff5a5a") if active else normal_borders[state]
+  add_theme_stylebox_override(state,outline)
+ queue_redraw()
 func _notification(what: int):
  if what==NOTIFICATION_DRAW and is_instance_valid(picture):
-  picture.modulate=Color(.45,.45,.45,.7) if disabled else Color.WHITE
-  caption.modulate=Color(.65,.65,.65,1) if disabled else Color.WHITE
+  picture.modulate=Color(.45,.45,.45,.7) if disabled or unaffordable else Color.WHITE
+  caption.modulate=Color(.65,.65,.65,1) if disabled or unaffordable else Color.WHITE

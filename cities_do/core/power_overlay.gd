@@ -90,7 +90,7 @@ func setup(owner_view, layer: CanvasLayer):
  instruction=Label.new()
  instruction.text=""
  box.add_child(instruction)
- summary=Label.new()
+ summary=preload("res://core/currency_label.gd").new()
  summary.name="PowerSummary"
  box.add_child(summary)
  var close := Button.new()
@@ -130,7 +130,7 @@ func update_state(delta: float):
    generation+=float(group.generation_kw)
    demand+=float(group.demand_kw)
    supplied+=float(group.supplied_kw)
-  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %+.6f doth" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),view.city.power.imported_kwh,view.city.power.exported_kwh,view.city.power.pending_doth]
+  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %s" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),view.city.power.imported_kwh,view.city.power.exported_kwh,view.city.Economy.format_fraction(view.city.power.pending_doth,6,true)]
  if tab_open or not view.city.power.plants.is_empty(): queue_redraw()
 
 func finish_capture(event):

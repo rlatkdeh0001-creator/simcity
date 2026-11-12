@@ -73,7 +73,7 @@ func setup(owner_view, layer: CanvasLayer):
  instruction=Label.new()
  instruction.text=""
  box.add_child(instruction)
- summary=Label.new()
+ summary=preload("res://core/currency_label.gd").new()
  summary.name="WaterSummary"
  box.add_child(summary)
  var close := Button.new()
@@ -108,7 +108,7 @@ func update_state(delta: float):
  if tab_open:
   var state: Dictionary=view.water_snapshot
   summary.text="상수 수요 %.1f / 공급 %.1f m³/일\n상수 수입 %.1f / 잉여 수출 %.1f\n하수 발생 %.1f / 내부 처리 %.1f\n하수 외부 위탁 %.1f / 미처리 %.1f\n누적 급수 %.4f / 내부 처리 %.4f m³" % [state.get("demand_m3_day",0),state.get("water_supplied_m3_day",0),state.get("water_import_m3_day",0),state.get("water_export_m3_day",0),state.get("sewage_generated_m3_day",0),state.get("sewage_treated_m3_day",0),state.get("sewage_export_m3_day",0),state.get("unhandled_sewage_m3_day",0),view.city.water.supplied_m3,view.city.water.treated_m3]
-  summary.text+="\n외부 요금 %.4f doth/일\n수출 수익 %.4f doth/일\n수도 미정산 잔액 %+.6f doth" % [state.get("expense_doth_day",0),state.get("revenue_doth_day",0),view.city.water.pending_doth]
+  summary.text+="\n외부 요금 %s/일\n수출 수익 %s/일\n수도 미정산 잔액 %s" % [view.city.Economy.format_fraction(state.get("expense_doth_day",0),4),view.city.Economy.format_fraction(state.get("revenue_doth_day",0),4),view.city.Economy.format_fraction(view.city.water.pending_doth,6,true)]
  if tab_open or not view.city.water.facilities.is_empty(): queue_redraw()
 
 func finish_capture(event):

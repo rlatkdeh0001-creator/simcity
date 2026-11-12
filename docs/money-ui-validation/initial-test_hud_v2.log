@@ -1,0 +1,92 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS v2 has eleven categories, no correction tab
+PASS water compatibility key has approved short caption
+PASS police contains all four real inspector slots including prison
+PASS default city identity matches A2
+PASS unimplemented happiness and cash flow stay unknown
+ERROR: FAIL real initial funds and population, no made-up mockup values
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] check_status (res://tests/test_hud_v2.gd:34)
+       [2] run (res://tests/test_hud_v2.gd:24)
+PASS RCI reflects existing empty-city residential-only demand
+PASS city title is keyboard-editable after activation
+PASS Enter commits trimmed Unicode name to city model
+PASS empty name is rejected without losing previous name
+PASS real Escape key cancels editing
+PASS idle frames do not poll/rewrite status HUD
+ERROR: FAIL funds-change event updates formatted money immediately
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] check_status (res://tests/test_hud_v2.gd:61)
+PASS identical funds assignment emits no HUD update
+PASS clock minute event updates date without polling
+PASS one game day closes one game month, no fake cash flow
+ERROR: FAIL future positive monthly value includes sign, unit and green
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] check_status (res://tests/test_hud_v2.gd:73)
+ERROR: FAIL future negative monthly value includes minus and red
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_hud_v2.gd:10)
+       [1] check_status (res://tests/test_hud_v2.gd:75)
+PASS unknown monthly data restores dash
+PASS speed button changes real multiplier and caption
+PASS speed button cycles back to one
+PASS pause button resumes actual model clock
+PASS pause button pauses actual model clock
+PASS real immigration event updates population and both job demand bars
+PASS playback pair matches actual date text width at (1920, 1080)
+PASS both playback buttons are 32px tall at (1920, 1080)
+PASS city title stays at exact viewport center at (1920, 1080)
+PASS GameDate fits (1920, 1080)
+PASS HappinessValue fits (1920, 1080)
+PASS PopulationValue fits (1920, 1080)
+PASS MoneyValue fits (1920, 1080)
+PASS MonthlyBalanceValue fits (1920, 1080)
+PASS CityNameButton fits (1920, 1080)
+PASS PauseButton fits (1920, 1080)
+PASS SpeedButton fits (1920, 1080)
+PASS left instruments never overlap center at (1920, 1080)
+PASS money is larger than cash flow at (1920, 1080)
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+PASS playback pair matches actual date text width at (1280, 820)
+PASS both playback buttons are 32px tall at (1280, 820)
+PASS city title stays at exact viewport center at (1280, 820)
+PASS GameDate fits (1280, 820)
+PASS HappinessValue fits (1280, 820)
+PASS PopulationValue fits (1280, 820)
+PASS MoneyValue fits (1280, 820)
+PASS MonthlyBalanceValue fits (1280, 820)
+PASS CityNameButton fits (1280, 820)
+PASS PauseButton fits (1280, 820)
+PASS SpeedButton fits (1280, 820)
+PASS left instruments never overlap center at (1280, 820)
+PASS money is larger than cash flow at (1280, 820)
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+PASS playback pair matches actual date text width at (960, 640)
+PASS both playback buttons are 32px tall at (960, 640)
+PASS city title stays at exact viewport center at (960, 640)
+PASS GameDate fits (960, 640)
+PASS HappinessValue fits (960, 640)
+PASS PopulationValue fits (960, 640)
+PASS MoneyValue fits (960, 640)
+PASS MonthlyBalanceValue fits (960, 640)
+PASS CityNameButton fits (960, 640)
+PASS PauseButton fits (960, 640)
+PASS SpeedButton fits (960, 640)
+PASS left instruments never overlap center at (960, 640)
+PASS money is larger than cash flow at (960, 640)
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+PASS demand bars have no written percentage/label
+RESULT 68/72 HUD v2 checks passed

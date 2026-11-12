@@ -107,7 +107,7 @@ func _build_controls(layer: CanvasLayer):
 	title.text = "CITIES_DO · 건설 실험실"
 	title.add_theme_font_size_override("font_size", 22)
 	box.add_child(title)
-	treasury_label = Label.new()
+	treasury_label = preload("res://core/currency_label.gd").new()
 	treasury_label.name = "TreasuryLabel"
 	treasury_label.add_theme_font_size_override("font_size", 18)
 	box.add_child(treasury_label)
