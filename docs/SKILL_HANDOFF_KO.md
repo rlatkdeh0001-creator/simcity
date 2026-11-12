@@ -6,7 +6,11 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 검사 G: 주차장 차량은 병합 메시 — 제거 미적용
+## 최신 수정 H: 구획 완료 칸 수 문구 숨김
+
+main.gd의 finish_zoning은 성공 시 HUD message를 비우고 실패 이유는 보존한다. 모델의 changed/reason 데이터·칠하기/해제·반투명 범위 그리기는 그대로다. test_grid_zoning_drag의 실제 완료 경로에서 텍스트가 비는 회귀6개를 RED 확인 후 적용했고 관련2/2(격자32/32·덧칠22/22) 통과했다. docs/zoning-count-hidden-validation/에 결과 보존. TDD/자체 리뷰 적용, 요청대로 캡처 없음·main 푸시 없음.
+
+## 이전 검사 G: 주차장 차량은 병합 메시 — 제거 미적용
 
 F9586278 후속. 소형/중형/대형/타워4종 GLB가 모두 FacilityCombinedMesh 하나이며 실제 Godot MeshInstance3D도1개다. 차량별 노드는 없고 car색/glass/metal material surface로 합쳐져 있다. 사용자 조건에 따라 숨김/표면 마스킹/메시 분해/원본 재생성을 적용하지 않았다. 사용자의 빈 원본 또는 차량 분리 노드 제공 대기이며 제거 완료가 아니다.
 tools/inspect_parking_models.gd 읽기 전용9/9, 기존 관련3/3(시설70·공공배치524·가림15) 통과. tools/capture_parking_inspection.gd는 실제4건 배치 후 현재 차량이 남은 상태를1920으로 캡처했다. docs/parking-vehicle-inspection/REPORT_KO.md·structure.json·current-parking-models-1920.png/state/log가 증거다.

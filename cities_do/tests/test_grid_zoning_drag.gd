@@ -27,6 +27,7 @@ func run():
     verify(actual.size()==4 and actual[0].is_equal_approx(expected[0]) and actual[1].is_equal_approx(expected[1]) and actual[2].is_equal_approx(expected[2]) and actual[3].is_equal_approx(expected[3]),"preview is inclusive 3x2 rectangle on anchor road axes reverse="+str(reverse))
     verify(game.city.zone_designations.size()==1,"grid preview does not paint before release")
     game.finish_zoning(game.zoning_end)
+    verify(game.message.is_empty() and game.hud.text.is_empty(),"successful zoning hides cell-count status text while retaining range preview")
     verify(game.city.zone_designations.size()==6 and game.city.zone_designations.values().count("residential")==1 and game.city.zone_designations.values().count("commercial")==5,"release paints exactly six grid cells and preserves existing different use")
    if points.size()>2:
     var others: Array=game.city.zoning_grid.parcels.values().filter(func(p):return absf(p.frame.along.cross(f.along))>.1)

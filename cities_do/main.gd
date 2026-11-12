@@ -364,7 +364,7 @@ func finish_zoning(position: Vector2,over_hud: bool=false) -> void:
 		cancel_zoning_drag()
 		return
 	var result: Dictionary=city.paint_zones(zoning_selection(),zoning_brush)
-	message=result.reason
+	message="" if result.ok else result.reason
 	cancel_zoning_drag()
 	refresh()
 
