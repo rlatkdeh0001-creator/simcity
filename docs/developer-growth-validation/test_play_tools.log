@@ -1,0 +1,32 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS build contains only retained play tools: ["build", "build_commercial", "build_erase", "build_industrial", "select"]
+PASS build removes free prototypes and demonstration UI connections
+PASS retained select still activates real mode
+PASS road contains only retained play tools: ["road", "select"]
+PASS road removes free prototypes and demonstration UI connections
+PASS retained select still activates real mode
+PASS power contains only retained play tools: ["power_wire"]
+PASS power removes free prototypes and demonstration UI connections
+PASS retained power_wire still activates real mode
+PASS water contains only retained play tools: ["water_pipe", "water_select"]
+PASS water removes free prototypes and demonstration UI connections
+PASS retained water_pipe still activates real mode
+PASS environment contains only retained play tools: []
+PASS environment removes free prototypes and demonstration UI connections
+PASS park contains only retained play tools: []
+PASS park removes free prototypes and demonstration UI connections
+PASS transport contains only retained play tools: []
+PASS transport removes free prototypes and demonstration UI connections
+PASS health contains only retained play tools: ["clinic", "crematorium", "hospital", "large_hospital"]
+PASS health removes free prototypes and demonstration UI connections
+PASS education contains only retained play tools: ["college", "elementary", "high_school", "university"]
+PASS education removes free prototypes and demonstration UI connections
+PASS fire contains only retained play tools: []
+PASS fire removes free prototypes and demonstration UI connections
+PASS police contains only retained play tools: []
+PASS police removes free prototypes and demonstration UI connections
+PASS road simulation starts without mechanics explanation text
+PASS three road modes lane selector and bulldozer preserved
+PLAY_TOOL_INVENTORY {"build":{"cards":[],"tools":["build","build_commercial","build_erase","build_industrial","select"]},"education":{"cards":["elementary-school","high-school","technical-college","university"],"tools":["college","elementary","high_school","university"]},"environment":{"cards":["waste-incinerator","waste-recycling-center"],"tools":[]},"fire":{"cards":["small-fire-station","fire-station","regional-fire-station"],"tools":[]},"health":{"cards":["medical-hospital","medical-clinic","medical-large-hospital","crematorium-4x4"],"tools":["clinic","crematorium","hospital","large_hospital"]},"park":{"cards":["park-pocket-2x2","park-garden-2x2","park-plaza-4x4","park-play-4x4","parking-small-2x4","parking-medium-4x4","parking-large-4x8","parking-tower-4x4-4f"],"tools":[]},"police":{"cards":["small-police-station","police-station","regional-police-station","prison-8x8"],"tools":[]},"power":{"cards":["power-coal","power-hydro","power-nuclear","power-oil","power-solar","power-wind"],"tools":["power_wire"]},"road":{"cards":[],"tools":["road","select"]},"transport":{"cards":[],"tools":[]},"water":{"cards":["water-intake","water-sewage-outfall","water-sewage-treatment","water-water-tower"],"tools":["water_pipe","water_select"]}}
+RESULT 28/28 play tool checks passed

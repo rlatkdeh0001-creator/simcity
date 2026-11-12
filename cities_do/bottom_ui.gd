@@ -571,6 +571,12 @@ func on_city_name_input(event: InputEvent):
   city_name_edit.accept_event()
   finish_city_name_edit(false)
 
+static func developer_tools_allowed(debug_build: bool,arguments: PackedStringArray) -> bool:
+ return debug_build and arguments.has("--developer-tools")
+
+func developer_tools_enabled() -> bool:
+ return developer_tools_allowed(OS.is_debug_build(),OS.get_cmdline_user_args())
+
 func select_category(key: String):
  if not NAMES.has(key): return
  hide_asset_info()
@@ -609,6 +615,7 @@ func select_category(key: String):
 
   _:
    pass
+ if key=="build" and developer_tools_enabled():choices.append(["건물 성장","upgrade"])
  for choice in choices:
   if SERVICE_TOOLS.has(choice[1]):
    var service_entries: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/services/catalog.json")).facilities

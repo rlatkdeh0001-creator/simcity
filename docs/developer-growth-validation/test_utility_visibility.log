@@ -1,0 +1,56 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS real authored city has connected consumers for display-independent supply checks
+PASS closing initially open utility tray hides both networks
+PASS build displays only its own network
+PASS build supply ranges follow utility tab
+PASS build visual switching leaves actual service and connectivity unchanged
+PASS road displays only its own network
+PASS road supply ranges follow utility tab
+PASS road visual switching leaves actual service and connectivity unchanged
+PASS power displays only its own network
+PASS power supply ranges follow utility tab
+PASS power visual switching leaves actual service and connectivity unchanged
+PASS water displays only its own network
+PASS water supply ranges follow utility tab
+PASS water visual switching leaves actual service and connectivity unchanged
+PASS environment displays only its own network
+PASS environment supply ranges follow utility tab
+PASS environment visual switching leaves actual service and connectivity unchanged
+PASS park displays only its own network
+PASS park supply ranges follow utility tab
+PASS park visual switching leaves actual service and connectivity unchanged
+PASS transport displays only its own network
+PASS transport supply ranges follow utility tab
+PASS transport visual switching leaves actual service and connectivity unchanged
+PASS health displays only its own network
+PASS health supply ranges follow utility tab
+PASS health visual switching leaves actual service and connectivity unchanged
+PASS education displays only its own network
+PASS education supply ranges follow utility tab
+PASS education visual switching leaves actual service and connectivity unchanged
+PASS fire displays only its own network
+PASS fire supply ranges follow utility tab
+PASS fire visual switching leaves actual service and connectivity unchanged
+PASS police displays only its own network
+PASS police supply ranges follow utility tab
+PASS police visual switching leaves actual service and connectivity unchanged
+PASS power real connection placement keeps its network and range visible
+PASS power direct tray close clears hidden connection preview and both networks
+PASS power toolbar reopen restores only chosen network
+PASS power Escape hides networks
+PASS power tray close button hides networks
+PASS power bulldozer hides both networks
+PASS facility placement starts
+PASS power facility-card tray closure hides networks without cancelling facility ghost
+PASS water real connection placement keeps its network and range visible
+PASS water direct tray close clears hidden connection preview and both networks
+PASS water toolbar reopen restores only chosen network
+PASS water Escape hides networks
+PASS water tray close button hides networks
+PASS water bulldozer hides both networks
+PASS facility placement starts
+PASS water facility-card tray closure hides networks without cancelling facility ghost
+PASS equal elapsed time meters identical nonzero water volume hidden and shown
+PASS normal initial main screen hides both networks
+RESULT 53/53 utility tab visibility checks passed

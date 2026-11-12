@@ -1,0 +1,24 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS build keeps the other four removed buttons absent
+PASS road keeps the other four removed buttons absent
+PASS power keeps the other four removed buttons absent
+PASS water keeps the other four removed buttons absent
+PASS environment keeps the other four removed buttons absent
+PASS park keeps the other four removed buttons absent
+PASS transport keeps the other four removed buttons absent
+PASS health keeps the other four removed buttons absent
+PASS education keeps the other four removed buttons absent
+PASS fire keeps the other four removed buttons absent
+PASS police keeps the other four removed buttons absent
+RESULT 11/13 developer UI checks passed
+ERROR: FAIL explicit opt-in developer UI policy exists
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_developer_tools.gd:8)
+       [1] run (res://tests/test_developer_tools.gd:11)
+ERROR: FAIL growth button follows actual process developer opt-in: true
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_developer_tools.gd:8)
+       [1] run (res://tests/test_developer_tools.gd:20)

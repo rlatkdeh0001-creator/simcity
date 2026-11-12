@@ -1,0 +1,22 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS explicit opt-in developer UI policy exists
+PASS release builds reject developer UI even with opt-in flag
+PASS ordinary debug play hides developer tools by default
+PASS debug engine with exact opt-in flag enables developer tools
+PASS nonmatching flag never enables developer UI
+PASS growth button follows actual process developer opt-in: true
+PASS real growth fixture has valid frontage
+PASS developer-only button still executes existing growth simulation
+PASS build keeps the other four removed buttons absent
+PASS road keeps the other four removed buttons absent
+PASS power keeps the other four removed buttons absent
+PASS water keeps the other four removed buttons absent
+PASS environment keeps the other four removed buttons absent
+PASS park keeps the other four removed buttons absent
+PASS transport keeps the other four removed buttons absent
+PASS health keeps the other four removed buttons absent
+PASS education keeps the other four removed buttons absent
+PASS fire keeps the other four removed buttons absent
+PASS police keeps the other four removed buttons absent
+RESULT 19/19 developer UI checks passed

@@ -12,6 +12,8 @@ func run():
  var forbidden:=["power_plant","power_settings","power_demo","water_supply","water_treatment","water_demo","score","residential_gallery","parcel_demo","facilities_gallery","vehicles_gallery","traffic_demo","water_settings","traffic","upgrade","reset","power_select"]
  var retained:={"power":["power_wire"],"water":["water_pipe","water_select"],"build":["build","build_commercial","build_industrial","build_erase","select"],"road":["road","select"],"park":[],"transport":[],"health":["hospital","clinic","large_hospital","crematorium"],"education":["elementary","high_school","college","university"],"environment":[],"fire":[],"police":[]}
  var inventory:={}
+ if game.developer_tools_enabled():
+  forbidden.erase("upgrade");retained.build.append("upgrade")
  for tab in game.NAMES:
   game.select_category(tab);await process_frame
   var tools: Array=game.drawer_box.get_children().filter(func(n):return n is Button and n.name.begins_with("Tool_"))
