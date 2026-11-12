@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS approved 1-B floating road mode palette exists
+PASS palette is hidden outside road category
+PASS road tab shows exactly three mode buttons and activates drawing
+PASS three real icons only, no explanatory labels
+PASS old freehand drag is retained internally but has no player-facing button
+PASS straight default has exact approved blue selection
+PASS anchored palette stays onscreen at (1920, 1080)
+PASS palette never overlaps drawer/dock at (1920, 1080)
+PASS anchored palette stays onscreen at (1280, 820)
+PASS palette never overlaps drawer/dock at (1280, 820)
+PASS anchored palette stays onscreen at (960, 640)
+PASS palette never overlaps drawer/dock at (960, 640)
+PASS keyboard focus and Enter select quadratic mode
+PASS tab change hides palette and cancels pending construction
+RESULT 14/14 road mode UI checks passed

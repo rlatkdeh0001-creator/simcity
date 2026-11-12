@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정: 정보 말풍선 숫자 폰트 복구 (로컬 전용)
+## 최신 수정: 사용자 확정 잔여 버튼5개 삭제 (로컬 전용)
+
+feature/money-ui의c504c58 후속. 하단 choices에서 상하수도 설정·도로 주행·건물 성장·도시 초기화·전력 탭 시설 선택5개만 제거했다. 수도 탭 시설 선택과 실제 연결/구획/도로/건물 C카드는 유지했다.
+버튼을 만들지 않아 해당 pressed UI 바인딩도 생성되지 않는다. 코어 소스 및 내부 activate_tool 성장/초기화/주행·설정 helper는 그대로 유지했고, 삭제 버튼을 누르던 검사는 내부 fixture 호출과 버튼 부재 검사로 전환했다.
+관련 UI·영향 검사14/14, 전 탭 inventory28/28, 실제 전력1920 캡처1장(전력선 도구1개+실제 카드6개): docs/remove-five-buttons-validation/. 성장·초기화 실행 및 도로 reset fixture도 실제 통과했다.
+TDD·자체 리뷰·game-ui-ux·godot-windows-validation 적용. 가격/원본/아이콘/숫자 폰트/망 표시 정책 불변. 외부 설치·전체 회귀·main 푸시 없음.
+
+## 이전 수정: 정보 말풍선 숫자 폰트 복구 (로컬 전용)
 
 feature/money-ui의f777aec 후속. bottom_ui.gd의 숫자 전용 Consolas/Courier New SystemFont 생성과 override만 제거하여 기존 HUD Open Sans SemiBold를 그대로 상속한다.3열/숫자 우측·단위 좌측 정렬/최소18px/자체 SVG는 유지했다.
 실제18px HUD 폰트의0~9 advance가 모두11px임을 확인했으므로 별도 폰트·OpenType override를 추가하지 않았다. 폰트가 달라져도 같은 HUD 폰트와 우측 정렬을 우선한다.

@@ -47,8 +47,8 @@ func run():
   game.select_category("fire")
   verify(game.map_zoom==zoom_before and game.origin==origin_before,"tab changes never reset the player camera")
   game.select_category("build")
-  verify(game.drawer_box.find_children("Tool_reset","Button",true,false).size()==1,"city reset remains reachable from the bottom tools")
-  verify(game.drawer_box.find_children("Tool_upgrade","Button",true,false).size()==1,"existing selected-building upgrade remains reachable")
+  verify(game.drawer_box.find_children("Tool_reset","Button",true,false).is_empty(),"city reset button removed without removing reset logic")
+  verify(game.drawer_box.find_children("Tool_upgrade","Button",true,false).is_empty(),"manual building growth button removed without removing growth logic")
   verify(game.find_children("PowerTabButton","Button",true,false).is_empty(),"main never creates the legacy side buttons")
   game.paused=true
   for size_value in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:
@@ -85,17 +85,13 @@ func run():
   for kind in ["power","water"]:
    game.select_category(kind)
    var settings: Array=game.drawer_box.find_children("Tool_"+kind+"_settings","Button",true,false)
-   if kind=="power":
-    verify(settings.is_empty(),"prototype electricity settings button removed")
-    continue
-   verify(settings.size()==1,kind+" retains existing output and display controls in a bottom-launched popup")
-   if settings.size()==1:
-    settings[0].pressed.emit()
-    verify(game.utility_popup.visible,kind+" settings popup opens")
-    var overlay=game.power_overlay if kind=="power" else game.water_overlay
-    verify(game.utility_popup.is_ancestor_of(overlay.output),kind+" popup uses the actual existing capacity input")
-    game.utility_popup.hide()
-    verify(not overlay.panel.visible and overlay.panel.is_ancestor_of(overlay.output),kind+" settings close returns controls to hidden owner")
+   verify(settings.is_empty(),kind+" settings button absent from player HUD")
+   game.open_utility_settings(kind) # Internal test fixture only; no player-facing button.
+   verify(game.utility_popup.visible,kind+" internal settings helper preserved")
+   var overlay=game.power_overlay if kind=="power" else game.water_overlay
+   verify(game.utility_popup.is_ancestor_of(overlay.output),kind+" internal helper still owns actual capacity input")
+   game.utility_popup.hide()
+   verify(not overlay.panel.visible and overlay.panel.is_ancestor_of(overlay.output),kind+" internal close restores hidden control owner")
   game.select_category("fire")
   var escape := InputEventKey.new()
   escape.keycode=KEY_ESCAPE

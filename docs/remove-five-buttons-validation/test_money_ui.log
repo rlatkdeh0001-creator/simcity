@@ -1,0 +1,18 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS approved currency symbol replaces player-facing doth without changing funds
+PASS existing wind C-card is present
+PASS unaffordable card is dim but still receives rejection clicks
+PASS real poor-card click cannot open any placement ghost or debit funds
+PASS approved card-anchored insufficient-funds bubble exists
+PASS exact approved bubble copy appears
+PASS rejected card has a red outline
+PASS bubble is directly above the actual scrolled card
+PASS real-time two-second expiry removes bubble and red border
+PASS funds-change event undims card exactly at approved CSV price
+PASS fractional pending utility charge uses same available balance as real construction
+PASS affordable selection opens ghost without charging or changing price
+PASS fractional utility money keeps decimal precision and thousand grouping
+PASS monthly HUD keeps positive sign and official icon
+PASS monthly HUD keeps negative sign and official icon
+RESULT 15/15 money UI checks passed

@@ -31,8 +31,9 @@ func run():
 	click(scene, Vector2(10.5,17.5))
 	verify(scene.selected == 1 and "120" in scene.info.text, "isometric click selects building and displays score")
 	scene.select_category("build")
-	scene.drawer_box.find_children("Tool_upgrade","Button",true,false)[0].pressed.emit()
-	verify(scene.city.find_building(1).level == 2, "upgrade button calls simulation")
+	verify(scene.drawer_box.find_children("Tool_upgrade","Button",true,false).is_empty(),"manual upgrade button absent")
+	scene.activate_tool("upgrade") # Retained internal helper exercises growth, not player UI.
+	verify(scene.city.find_building(1).level == 2, "internal upgrade path still calls simulation")
 	# This fixture tests pointer geometry after growing a large authored home.
 	scene.city.population_enabled = false
 	scene.mode = "build"
@@ -56,7 +57,8 @@ func run():
 	scene.city.funds = 12345
 	scene.refresh()
 	verify(scene.money.text == "12,345 \uFFFC", "bottom treasury reflects current city balance")
-	scene.drawer_box.find_children("Tool_reset","Button",true,false)[0].pressed.emit()
+	verify(scene.drawer_box.find_children("Tool_reset","Button",true,false).is_empty(),"reset button absent")
+	scene.activate_tool("reset") # Retained initialization helper, not player UI.
 	verify(scene.city.funds == 50000 and scene.money.text == "50,000 \uFFFC", "city reset restores normal starting funds")
 	await process_frame
 	scene.queue_free()

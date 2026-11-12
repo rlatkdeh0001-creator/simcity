@@ -9,8 +9,8 @@ func verify(ok: bool,description: String):
 func run():
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game)
  await process_frame;await process_frame
- var forbidden:=["power_plant","power_settings","power_demo","water_supply","water_treatment","water_demo","score","residential_gallery","parcel_demo","facilities_gallery","vehicles_gallery","traffic_demo"]
- var retained:={"power":["power_wire","power_select"],"water":["water_pipe","water_select","water_settings"],"build":["build","build_commercial","build_industrial","build_erase","select","upgrade","reset"],"road":["road","select"],"park":[],"transport":["traffic"],"health":["hospital","clinic","large_hospital","crematorium"],"education":["elementary","high_school","college","university"],"environment":[],"fire":[],"police":[]}
+ var forbidden:=["power_plant","power_settings","power_demo","water_supply","water_treatment","water_demo","score","residential_gallery","parcel_demo","facilities_gallery","vehicles_gallery","traffic_demo","water_settings","traffic","upgrade","reset","power_select"]
+ var retained:={"power":["power_wire"],"water":["water_pipe","water_select"],"build":["build","build_commercial","build_industrial","build_erase","select"],"road":["road","select"],"park":[],"transport":[],"health":["hospital","clinic","large_hospital","crematorium"],"education":["elementary","high_school","college","university"],"environment":[],"fire":[],"police":[]}
  var inventory:={}
  for tab in game.NAMES:
   game.select_category(tab);await process_frame

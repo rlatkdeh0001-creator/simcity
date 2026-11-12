@@ -1,0 +1,20 @@
+{
+  "cards": [
+    "power-coal",
+    "power-hydro",
+    "power-nuclear",
+    "power-oil",
+    "power-solar",
+    "power-wind"
+  ],
+  "hud_text": "",
+  "input": "actual category mouse press/release",
+  "road_modes": 3,
+  "road_modes_visible": false,
+  "tab": "power",
+  "tools": [
+    "Tool_power_wire"
+  ],
+  "traffic_running": true,
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

@@ -600,13 +600,13 @@ func select_category(key: String):
  drawer_box.add_child(heading)
  var choices := []
  match key:
-  "power": choices=[["지중 전력선","power_wire"],["시설 선택","power_select"]]
-  "water": choices=[["상하수관 함께","water_pipe"],["시설 선택","water_select"],["상하수도 설정","water_settings"]]
-  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"],["건물 성장","upgrade"],["도시 초기화","reset"]]
+  "power": choices=[["지중 전력선","power_wire"]]
+  "water": choices=[["상하수관 함께","water_pipe"],["시설 선택","water_select"]]
+  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
-  "transport": choices=[["도로 주행","traffic"]]
+
   _:
    pass
  for choice in choices:
