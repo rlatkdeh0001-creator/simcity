@@ -1,5 +1,6 @@
 extends Node2D
 const RoadGeometry = preload("res://core/road_geometry.gd")
+const BoundaryLinks = preload("res://core/boundary_links.gd")
 const Traffic = preload("res://core/traffic_controller.gd")
 const PowerOverlay = preload("res://core/power_overlay.gd")
 var power_overlay
@@ -517,7 +518,7 @@ func visible_world_bounds() -> Rect2i:
 	return Rect2i(first,Vector2i(maxi(0,last.x-first.x),maxi(0,last.y-first.y)))
 
 func draw_ribbon(points: PackedVector2Array, width: float, color: Color):
-	for shape in RoadGeometry.ribbons(points,width):
+	for shape in RoadGeometry.clipped_ribbons(points,width,Vector2(city.width,city.height)):
 		var projected := PackedVector2Array()
 		for point in shape: projected.append(screen(point))
 		draw_colored_polygon(projected,color)
@@ -609,7 +610,8 @@ func _draw():
 		for p in road.points: points.append(screen(p))
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
 		for dash in RoadGeometry.lane_marks(road):
-			draw_line(screen(dash[0]),screen(dash[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
+			var clipped: PackedVector2Array=RoadGeometry.clipped_segment(dash[0],dash[1],Vector2(city.width,city.height))
+			if clipped.size()==2:draw_line(screen(clipped[0]),screen(clipped[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
 	for junction in city.junctions:
 		for asphalt in [false,true]:
 			var outline := PackedVector2Array()
@@ -631,6 +633,7 @@ func _draw():
 				for corner in corners:projected.append(screen(corner))
 				draw_colored_polygon(projected,Color("e8e7dc"))
 				offset+=.28
+	BoundaryLinks.draw_links(self,self,BoundaryLinks.road_links(city))
 	draw_traffic()
 	var sorted: Array = building_draw_order()
 	for b in sorted:

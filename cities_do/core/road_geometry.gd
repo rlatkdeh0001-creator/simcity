@@ -2,6 +2,29 @@ extends RefCounted
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float) -> Array[PackedVector2Array]:
 	return Geometry2D.offset_polyline(points,width/2.0,Geometry2D.JOIN_ROUND,Geometry2D.END_ROUND)
+static func clipped_ribbons(points: PackedVector2Array,width: float,bounds: Vector2) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	var border:=PackedVector2Array([Vector2.ZERO,Vector2(bounds.x,0),bounds,Vector2(0,bounds.y)])
+	for shape in ribbons(points,width):
+		for clipped in Geometry2D.intersect_polygons(shape,border):
+			for i in range(clipped.size()):clipped[i]=clipped[i].clamp(Vector2.ZERO,bounds)
+			result.append(clipped)
+	return result
+static func clipped_segment(a: Vector2,b: Vector2,bounds: Vector2) -> PackedVector2Array:
+	var first:=0.0
+	var last:=1.0
+	var delta:=b-a
+	for axis in [0,1]:
+		if absf(delta[axis])<.000001:
+			if a[axis]<0 or a[axis]>bounds[axis]:return PackedVector2Array()
+			continue
+		var near: float=(0-a[axis])/delta[axis]
+		var far: float=(bounds[axis]-a[axis])/delta[axis]
+		first=maxf(first,minf(near,far))
+		last=minf(last,maxf(near,far))
+		if last<first:return PackedVector2Array()
+	return PackedVector2Array([a.lerp(b,first).clamp(Vector2.ZERO,bounds),a.lerp(b,last).clamp(Vector2.ZERO,bounds)])
+
 static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 	# Derived render-only chains. Construction IDs, zoning and authored points stay intact.
 	if topology.is_empty():topology=preload("res://core/road_junctions.gd").analyze(roads)

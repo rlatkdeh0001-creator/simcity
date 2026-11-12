@@ -211,6 +211,7 @@ func _draw():
    draw_polyline(path,Color("19323b"),7,true)
    draw_polyline(path,pair[0].darkened(.3),5,true)
    draw_polyline(path,pair[0],2,true)
+ preload("res://core/boundary_links.gd").draw_links(self,view,preload("res://core/boundary_links.gd").utility_links(grid,tab_open))
  for node in grid.nodes:
   if node.service and not grid.adjacency[node.id].is_empty():
    for pair in [[water_color,Vector2(0,-4)],[sewage_color,Vector2(0,4)]]:

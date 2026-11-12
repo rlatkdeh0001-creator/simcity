@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정 E: 교차로 없는 도로 이음 (로컬 전용)
+## 최신 수정 F: 이웃 연결 양방향 화살표 (로컬 전용)
+
+E9af4fc4 후속. core/boundary_links.gd의 표시 전용 기하를 main.gd 도로/기존 power_overlay.gd·water_overlay.gd에 연결했다. 도로는 RegionalExchange의 실제 맵 경계 끝점, 지하는 연결된 이웃 포트 adjacency만 표시하며 해당 탭에서만 보인다. 흰색 반투명 노면 양방향 화살표 외 새 글자는 없다.
+road_geometry.gd가 보도/노면과 offset 차선 dash를 맵 경계로 잘라 둥근 외부 cap을 제거한다. 원본 도로·교통·서비스/계량 규칙은 불변. 지역 교류/상하수 관련 문서를 읽고 기존 포트·표시 gating을 재사용했다.
+신규49/49·관련8/8. docs/boundary-links-validation/neighbor-arrows-1920.png 실제1920 및 state/log: 실제 power/water 탭 클릭에서 각 glyph 흰 픽셀8개, 닫힘0개, 양수 전력/급수 공급 불변, 도로 화살표 상시/경계 밖 노면 없음 확인. E 이음30/30도 재검증했다.
+godot-windows-validation/requesting-code-review 자체 리뷰. 적용 스킬의 Road continuity evidence에 2-arm 분리/경계 clip/utility 실제 픽셀 검사 절차를 보완했다. AGENTS/원본/프로젝트 설정 불변, import churn 제외, main 푸시 없음. 상세: REGIONAL_BOUNDARY_MARKS_KO.md.
+
+## 이전 수정 E: 교차로 없는 도로 이음 (로컬 전용)
 
 b10709d 후속. road_junctions.gd는 2-arm joins와 3+ junctions를 분리한다. traffic_network.gd는 꺾임/차로변경 연결은 유지하되 joins의 connector에는 junction=-1을 주어 교차로 예약/신호 없이 통과한다. 직선 동폭 이음과 단일 닫힌 루프는 기존 직접 연결을 유지한다.
 road_geometry.gd의 연속 렌더 경로를 도로 변경 때 city_model.gd에 캐시한다. main.gd는 이를 사용해 보도·노면·중앙선·점선 위상을 이어 그리며 실제 건설 객체·철거 ID·원본 점은 보존한다. 이음부의 기존 충돌/구획 제외 패치는 보존한다.

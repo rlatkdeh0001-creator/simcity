@@ -223,6 +223,7 @@ func _draw():
   for p in wire.points: path.append(view.screen(p/4.0))
   draw_polyline(path,Color("12659a"),maxf(2,5*view.map_zoom),true)
   draw_polyline(path,Color("38b7ff"),maxf(1,2*view.map_zoom),true)
+ preload("res://core/boundary_links.gd").draw_links(self,view,preload("res://core/boundary_links.gd").utility_links(grid,tab_open))
  for node in grid.nodes:
   if node.service and not grid.adjacency[node.id].is_empty():
    var p: Vector2=view.screen(node.position/4)

@@ -1,0 +1,48 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS one genuine edge terminal receives a neighbor marking
+PASS glyph follows road progress rather than screen vertical
+PASS white bidirectional marking consists of two opposed filled arrows
+PASS inset glyph stays inside map without changing road data
+ERROR: FAIL road ribbon terminates flat at exact boundary with no round cap outside map
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_boundary_links.gd:11)
+       [1] run (res://tests/test_boundary_links.gd:32)
+PASS one genuine edge terminal receives a neighbor marking
+PASS glyph follows road progress rather than screen vertical
+PASS white bidirectional marking consists of two opposed filled arrows
+PASS inset glyph stays inside map without changing road data
+ERROR: FAIL road ribbon terminates flat at exact boundary with no round cap outside map
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_boundary_links.gd:11)
+       [1] run (res://tests/test_boundary_links.gd:32)
+PASS one genuine edge terminal receives a neighbor marking
+PASS glyph follows road progress rather than screen vertical
+PASS white bidirectional marking consists of two opposed filled arrows
+PASS inset glyph stays inside map without changing road data
+PASS road ribbon terminates flat at exact boundary with no round cap outside map
+PASS one genuine edge terminal receives a neighbor marking
+PASS glyph follows road progress rather than screen vertical
+PASS white bidirectional marking consists of two opposed filled arrows
+PASS inset glyph stays inside map without changing road data
+PASS road ribbon terminates flat at exact boundary with no round cap outside map
+PASS interior road, edge-parallel touch or ambiguous corner never claims external connection
+PASS interior road, edge-parallel touch or ambiguous corner never claims external connection
+PASS interior road, edge-parallel touch or ambiguous corner never claims external connection
+PASS unused neighbor utility ports have no connection arrow
+PASS real power and paired water/sewage connections build
+PASS power connection arrow follows its tab gate
+PASS water/sewage pair shares one tab-gated bidirectional icon
+PASS power connection arrow follows its tab gate
+PASS water/sewage pair shares one tab-gated bidirectional icon
+PASS power connection arrow follows its tab gate
+PASS water/sewage pair shares one tab-gated bidirectional icon
+PASS arrow queries never change real utility supply or metering
+PASS demolishing final connection removes utility markers
+PASS actual category switches gate connected arrows: power
+PASS actual category switches gate connected arrows: water
+PASS actual category switches gate connected arrows: road
+PASS closing actual tray hides both utility arrow layers
+RESULT 35/37 boundary link checks passed

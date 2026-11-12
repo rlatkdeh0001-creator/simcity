@@ -1,0 +1,188 @@
+{
+  "recorded_at": "2026-11-12T15:51:31.427025+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.29,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_boundary_links",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_boundary_links.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 49/49 boundary link checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.05,
+      "log": "test_boundary_links.log"
+    },
+    {
+      "name": "test_demolition",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_demolition.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 48/48 demolition checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 14.27,
+      "log": "test_demolition.log"
+    },
+    {
+      "name": "test_power",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_power.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 41/41 power checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.36,
+      "log": "test_power.log"
+    },
+    {
+      "name": "test_regional_exchange",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_regional_exchange.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 38/38 regional checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.01,
+      "log": "test_regional_exchange.log"
+    },
+    {
+      "name": "test_road_seams",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_seams.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 30/30 seam checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.62,
+      "log": "test_road_seams.log"
+    },
+    {
+      "name": "test_roads_zoning",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_roads_zoning.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road/zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.29,
+      "log": "test_roads_zoning.log"
+    },
+    {
+      "name": "test_utility_visibility",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_utility_visibility.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 53/53 utility tab visibility checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 12.43,
+      "log": "test_utility_visibility.log"
+    },
+    {
+      "name": "test_water",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_water.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 80/80 water checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.6,
+      "log": "test_water.log"
+    }
+  ],
+  "total": 8,
+  "passed": 8,
+  "failed": 0
+}

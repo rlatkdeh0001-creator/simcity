@@ -215,6 +215,13 @@
 - 예방/수정: 교통 곡선 연결과 교차로 제어/표시를 분리한다. 2-arm는 uncontrolled join, 3+만 junction으로 두고 같은 도로의 보도·노면·차선은 연속 렌더 경로로 그린다. 원본 ID·교통 연결은 유지한다.
 - 검증/상태: 관련7/7·신규30/30 및 docs/road-seams-validation/continuous-seams-1920.png 실제 두 꺾임의 연속 노면/중앙선/차선 확인. 기존 T/X와 닫힌 루프 교통 회귀 통과.
 
+### M-018. 맵 가장자리 도로 끝이 뭉개져 보임
+
+- 사용자 지적: 이웃 연결 표시와 함께 맵 가장자리 도로 끝을 가장자리까지 곧게 정리하도록 요청했다.
+- 확인 원인: 기존 RoadGeometry의 END_ROUND ribbon과 offset 차선이 맵 bounds로 잘리지 않아 경계 밖으로 끝 cap이 남을 수 있었다.
+- 예방/수정: 보도/아스팔트 polygon과 차선 segment를 world map bounds로 clip한다. 내부 막다른 길의 cap·교통 원본 데이터는 건드리지 않는다. 이웃 표시는 실제 지역 끝점/유틸 포트 연결만 사용한다.
+- 검증/상태: 관련8/8·신규49/49, 사방/사선 경계와 잘린 차선 검사. docs/boundary-links-validation/neighbor-arrows-1920.png 실제 평평한 맵 끝 확인 및 native 외부 노면 픽셀 없음 검사 통과.
+
 ## 새 기록 양식
 
 ```markdown

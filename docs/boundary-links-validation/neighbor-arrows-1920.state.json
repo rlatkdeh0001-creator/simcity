@@ -1,0 +1,24 @@
+{
+  "closed_utility_arrow_white_pixels": 0,
+  "flat_boundary_no_pavement_outside": true,
+  "input": "actual utility category mouse press/release, then actual tray closure",
+  "road_arrow_always_visible": true,
+  "road_probe": "(749, 449)",
+  "tabs": [
+    {
+      "power_arrow": 1,
+      "tab": "power",
+      "water_arrow": 0,
+      "white_utility_pixels": 8
+    },
+    {
+      "power_arrow": 0,
+      "tab": "water",
+      "water_arrow": 1,
+      "white_utility_pixels": 8
+    }
+  ],
+  "utility_probe": "(1066, 610)",
+  "utility_supply_unchanged": true,
+  "viewport": "(1920, 1080)"
+}
