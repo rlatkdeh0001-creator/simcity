@@ -24,7 +24,7 @@ func _initialize():
 	city.config.size_weights = {8: 1.0, 4: 0.0, 2: 0.0}
 	a.score = 120
 	for stage in range(2,6):city.upgrade_chain(a.id)
-	check(a.level==5 and a.size == 8, "8x8 expansion searches valid free footprint only on reaching stage5")
+	check(a.level==5 and a.size == 4, "single fractional road reaches stage5 without inventing unsupported 8x8 zoning")
 	var chain = Model.new()
 	chain.add_road(PackedVector2Array([Vector2(0, 20), Vector2(39, 20)]))
 	for x in [10, 12, 14, 16]: chain.add_building(x, 17, "residential", 0)

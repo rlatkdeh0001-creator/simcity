@@ -2,6 +2,7 @@ extends RefCounted
 ## Sparse world buckets containing road-local square cells, not axis-aligned world cells.
 const Parcels = preload("res://core/road_parcels.gd")
 const CHUNK_SIZE := 32
+const DEPTH := preload("res://core/growth_config.gd").MAX_ZONING_DEPTH
 var chunks := {}
 var frames := {}
 var parcels := {}
@@ -41,6 +42,38 @@ func parcel_at(point: Vector2) -> Dictionary:
 		if Geometry2D.is_point_in_polygon(point,parcel.polygon):return parcel
 	return {}
 func has_cell(cell: Vector2i) -> bool:return not parcel_at(Vector2(cell)+Vector2(0.5,0.5)).is_empty()
+func aligned_cell(frame: Dictionary,u: int,v: int) -> Dictionary:
+	var wanted:=Parcels.polygon(frame,u,v)
+	var actual:=parcel_at((wanted[0]+wanted[2])/2)
+	if actual.is_empty():return {}
+	# A centre-only lookup would accept shifted/rotated cells and hide real gaps.
+	for corner in wanted:
+		var matched:=false
+		for point in actual.polygon:
+			if point.distance_to(corner)<.0005:matched=true;break
+		if not matched:return {}
+	return actual
+
+func opposing_lot_cells(frame: Dictionary,u: int,v: int) -> Array[Dictionary]:
+	var result: Array[Dictionary]=[]
+	var span:=DEPTH*2
+	for x in range(span):
+		for y in range(span):
+			var cell:=aligned_cell(frame,u+x,v+y)
+			if cell.is_empty():return []
+			var sign_value:=1.0 if y<DEPTH else -1.0
+			var row:=y if y<DEPTH else span-1-y
+			if cell.v!=row or cell.frame.outward.dot(frame.outward)*sign_value<.99999 or absf(cell.frame.along.dot(frame.along))<.99999:return []
+			result.append(cell)
+	return result
+
+func has_opposing_lot(polygon: PackedVector2Array) -> bool:
+	var span:=DEPTH*2
+	for i in range(4):
+		var frame:={"origin":polygon[i],"along":(polygon[(i+1)%4]-polygon[i])/span,"outward":(polygon[(i+3)%4]-polygon[i])/span}
+		if opposing_lot_cells(frame,0,0).size()==span*span:return true
+	return false
+
 func cells_in(bounds: Rect2i) -> Array[Vector2i]:
 	# Compatibility query for world-coordinate diagnostics; rendering uses full polygons.
 	var unique := {}

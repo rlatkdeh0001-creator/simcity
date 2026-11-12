@@ -30,6 +30,7 @@ func run():
 	city.upgrade_chain(1)
 	verify(b.asset_id == original_id, "same-density same-size growth preserves facade")
 	city.config.size_weights = {8:0.0,4:0.0,2:1.0}
+	city.add_road(PackedVector2Array([Vector2(1,10),Vector2(39,10)])) # Opposing four-cell strip for the stage5 8x8.
 	city.upgrade_chain(1)
 	verify(b.size == 8 and b.level==5 and city.catalog.get_asset(b.asset_id).footprint==[8,8], "stage5 expands to the largest legal lot without shrinking")
 	city.config.size_weights = {8:1.0,4:0.0,2:0.0}

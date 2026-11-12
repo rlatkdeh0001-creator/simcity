@@ -116,10 +116,15 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 
 func placement_error(x: int,y: int,size: int,ignore_id: int=-1) -> String:
 	if size not in [2,4,8]:return "크기는 2·4·8만 가능합니다"
-	return _polygon_error(footprint({"x":x,"y":y,"size":size}),ignore_id)
+	var shape:=footprint({"x":x,"y":y,"size":size})
+	if size==8 and not zoning_grid.has_opposing_lot(shape):return "8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다"
+	return _polygon_error(shape,ignore_id)
 
 func parcel_placement_error(frame: Dictionary,u: int,v: int,size: int,ignore_id: int=-1) -> String:
 	if size not in [2,4,8]:return "크기는 2·4·8만 가능합니다"
+	if size==8:
+		if zoning_grid.opposing_lot_cells(frame,u,v).size()!=64:return "8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다"
+		return _polygon_error(Parcels.polygon(frame,u,v,size),ignore_id)
 	for x in range(u,u+size):
 		for y in range(v,v+size):
 			if not zoning_grid.has_parcel(frame.id,x,y):return "한 도로 블록 안에 반듯한 부지가 필요합니다"
@@ -154,6 +159,9 @@ func paint_zones(selection: PackedVector2Array, zone_type: String) -> Dictionary
 	return {"ok":true,"changed":changed,"reason":"%d칸 %s" % [changed,"해제" if zone_type.is_empty() else "지정"]}
 
 func zoned_lot_matches(frame: Dictionary,u: int,v: int,size: int,zone_type: String) -> bool:
+	if size==8:
+		var cells: Array[Dictionary]=zoning_grid.opposing_lot_cells(frame,u,v)
+		return cells.size()==64 and cells.all(func(cell):return zone_designations.get(cell.id,"")==zone_type)
 	for x in range(u,u+size):
 		for y in range(v,v+size):
 			if zone_designations.get(zoning_grid.key(frame.id,x,y),"")!=zone_type:return false
@@ -547,7 +555,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		if road.kind!="local":continue
 		for frame in Parcels.blocks(road.points,road.width/2,int(road.get("parcel_id",road_index)),config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation):
 			for u in range(frame.columns):
-				for v in range(int(config.zoning_depth)):
+				for v in range(clampi(int(config.zoning_depth),0,Config.MAX_ZONING_DEPTH)):
 					var polygon_value:=Parcels.polygon(frame,u,v)
 					if _polygon_error(polygon_value,-1,false)=="":zoning_grid.add_parcel(frame,u,v)
 

@@ -1,0 +1,100 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL default roadside depth is four cells
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:25)
+ERROR: FAIL no road side generates rows four through seven
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:26)
+ERROR: FAIL legacy prototype config cannot restore eight-deep strips
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:28)
+ERROR: FAIL one road cannot supply a new 8x8 lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:30)
+PASS opposed aligned four-deep strips support 8x8 reverse=false
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS opposed aligned four-deep strips support 8x8 reverse=true
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+ERROR: FAIL default roadside depth is four cells
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:25)
+ERROR: FAIL no road side generates rows four through seven
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:26)
+ERROR: FAIL legacy prototype config cannot restore eight-deep strips
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:28)
+ERROR: FAIL one road cannot supply a new 8x8 lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:30)
+PASS opposed aligned four-deep strips support 8x8 reverse=false
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS opposed aligned four-deep strips support 8x8 reverse=true
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS non-eight-cell road spacing cannot silently fill a gap: 7.0
+ERROR: FAIL non-eight-cell road spacing cannot silently fill a gap: 8.25
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:44)
+ERROR: FAIL non-eight-cell road spacing cannot silently fill a gap: 9.0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:44)
+ERROR: FAIL a four-wide rear strip cannot support an eight-wide lot
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:46)
+PASS one rear-road cell of another use blocks 8x8 growth
+PASS missing opposite road keeps existing 4x4 at final stage
+ERROR: FAIL authored placement cannot bypass two-road 8x8 geometry
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_depth_four.gd:9)
+       [1] run (res://tests/test_zoning_depth_four.gd:56)
+PASS authored final-stage 8x8 accepts real opposed strips
+PASS rebuilding four-deep zoning preserves stored 8x8 footprint ID stage facade and score
+RESULT 37/49 four-cell zoning checks passed

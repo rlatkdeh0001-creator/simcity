@@ -9,6 +9,9 @@ func _ready():
 func make_town():
  for y in [30,50,70]:
   city.add_road(PackedVector2Array([Vector2(15,y),Vector2(85,y)]),"local",true,4 if y==50 else 2)
+ # Existing review examples retain their positions, now with real opposite frontage.
+ # Claim their aligned strips before perpendicular review roads, using normal ownership rules.
+ for x in [24,55]:city.add_road(PackedVector2Array([Vector2(x,40),Vector2(x+8,40)]))
  for x in [20,50,80]: city.add_road(PackedVector2Array([Vector2(x,20),Vector2(x,80)]))
  var examples := [
   ["small-4x4-a",24,25],["small-4x4-b",32,25],["mansion-a-4x4-4f",40,25],

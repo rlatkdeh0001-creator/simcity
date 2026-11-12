@@ -28,6 +28,7 @@ func run():
 func check_growth():
  for zone in ["residential","commercial","industrial"]:
   var city=make_city()
+  city.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
   paint(city,2,8,8,zone)
   var building: Dictionary=city.advance_development(2)[0]
   for stage in range(2,6):
@@ -46,6 +47,7 @@ func check_growth():
   b.score=100;hold.upgrade_chain(b.id)
   verify(b.size==4 and b.level==stage,"insufficient same-use expansion space preserves existing 4x4 without shrinking")
  var blocked=make_city()
+ blocked.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
  paint(blocked,2,8,8)
  var first: Dictionary=blocked.advance_development(2)[0]
  var neighbor: Dictionary=blocked.add_building_at(Vector2(8.5,37.5)).building
@@ -54,6 +56,7 @@ func check_growth():
  verify(blocked.upgrade_chain(first.id).ok and first.level==5 and first.size==4,"stage5 8x8 collision falls back to existing 4x4")
  verify(blocked.buildings.size()==2 and neighbor==snapshot,"no automatic merging or demolition of another building")
  var legacy=make_city()
+ legacy.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
  var old: Dictionary=legacy.place_catalog_building("large-8x8-a",2,30).building
  verify(old.level==5,"new authored 8x8 also starts at final stage; only existing legacy data may be earlier")
  old.level=2;old.score=100

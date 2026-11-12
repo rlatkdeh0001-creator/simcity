@@ -6,7 +6,15 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정 I: 화면 축 키보드 카메라 이동
+## 최신 수정 J: 구획 깊이4 · 두 도로4+4에서만 신규8×8
+
+I64973b0 후속. 복구 원본39~40행을 확인했다. 최초 프로토타입1591a93에서 들어온 zoning_depth8이 그대로 남은 것이 원인이다. growth_config.gd 기본/상한을4로 바꾸고 city_model.gd 생성도 상한을 적용했다.
+zoning_grid.gd는 실제 셀의 네 꼭짓점과 앞/뒤 도로의 반대 outward·0~3 깊이 행으로8×8을 검사한다. 한 frame에64칸이 있어야 한다는 종전 제한 대신 양쪽4칸 띠의 실제 셀을 모으며, 작은 공백/반 칸 shift/1°왜곡을 허용하지 않는다. geometry frame 생성·충돌·정렬/소유 규칙·경제/수요 수치는 그대로다. 성장/직접 카탈로그 새8×8도 공통 검사한다.
+기존8×8 건물 기록은 보존한다. main.gd는 오래된8깊이 캐시가 있는 장면 복귀 시 격자만 재구성한다. 기존 한 도로8칸 fixture는 맞은편 도로로 보정했고 bottom_ui_preview의 두8×8 예시는 기존 위치를 유지한 채 실제 뒤쪽 도로를 추가했다(플레이 도시 초기 상태 변경 없음).
+신규52/52·관련9/9(부지86·구획38·도로로컬18·외관27·기존도시24 포함). docs/zoning-depth-four-validation/four-depth-opposed-eight-1920.png 실제1920:4칸 띠/맞닿은8칸/실제8×8 드래그 미리보기. native는 확정64=앞32+뒤32 및 신축4×4→5단계8×8을 확인했다. 원본/AGENTS/프로젝트 설정 불변·main 푸시 없음.
+TDD/godot-windows-validation/requesting-code-review 자체 리뷰. RED·기존 fixture 초기 실패·복귀 캐시 RED와 최종 로그 보존. 캡처 최초 실패는 카테고리 layout 대기/칠하기 도구 클릭을 보완해 해결했다. 새 파일 저장/불러오기 구현은 범위 밖이다.
+
+## 이전 수정 I: 화면 축 키보드 카메라 이동
 
 H2dcfe19 후속. core/keyboard_camera.gd를 main.gd의 독립 real-time 자식 Node로 연결했다. WASD/방향키는 화면 축 이동, 대각선 정규화, Shift2배다. ‘멀리 볼 때 빠르게’ 요구에 따라 zoom1 기준400 screen px/s를 줌으로 나눈다. UI 일시정지/배속의 simulated delta는 카메라에 전달하지 않는다.
 LineEdit/TextEdit(조상 포함) 포커스와 Ctrl/Alt/Meta 조합은 차단하지 않고 이동키 상태만 비운다. 창 focus_exited에서도 상태를 비우며, 입력창을 나온 뒤 이미 눌린 Shift modifier도 인식한다. R/ESC와 마우스 팬/휠은 원래 처리에 전달한다. 기존 플레이 WASD 바인딩은 없었다. 방향키는 텍스트 밖에서 HUD 포커스 이동보다 카메라를 우선한다(Tab/Enter 유지).

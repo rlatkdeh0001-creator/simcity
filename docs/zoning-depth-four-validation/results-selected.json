@@ -1,0 +1,208 @@
+{
+  "recorded_at": "2026-11-12T16:42:06.261982+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.6,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_building_assets",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_building_assets.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 27/27 asset checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 17.13,
+      "log": "test_building_assets.log"
+    },
+    {
+      "name": "test_city",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_city.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 24/24 passed"
+      ],
+      "passed": true,
+      "elapsed_s": 9.69,
+      "log": "test_city.log"
+    },
+    {
+      "name": "test_grid_zoning_drag",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_grid_zoning_drag.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 32/32 grid-axis zoning drag checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.84,
+      "log": "test_grid_zoning_drag.log"
+    },
+    {
+      "name": "test_lot_rules",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_lot_rules.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 86/86 lot rule checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.47,
+      "log": "test_lot_rules.log"
+    },
+    {
+      "name": "test_road_parcels",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_parcels.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road-local checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.03,
+      "log": "test_road_parcels.log"
+    },
+    {
+      "name": "test_roads_zoning",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_roads_zoning.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road/zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.56,
+      "log": "test_roads_zoning.log"
+    },
+    {
+      "name": "test_zoning_depth_four",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_depth_four.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 four-cell zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 6.01,
+      "log": "test_zoning_depth_four.log"
+    },
+    {
+      "name": "test_zoning_development",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_development.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 38/38 zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.55,
+      "log": "test_zoning_development.log"
+    },
+    {
+      "name": "test_zoning_no_overpaint",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_no_overpaint.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 22/22 non-overpaint checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.65,
+      "log": "test_zoning_no_overpaint.log"
+    }
+  ],
+  "total": 9,
+  "passed": 9,
+  "failed": 0
+}

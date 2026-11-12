@@ -1,0 +1,16 @@
+{
+  "actual_release_painted_cells": 64,
+  "capture_phase": "actual 8x8 drag preview spanning two opposing roads; third isolated road shows four-deep strips",
+  "front_cells": 32,
+  "growth_after_capture": {
+    "asset_id": "large-8x8-a",
+    "id": 1,
+    "level": 5,
+    "size": 8
+  },
+  "input": "actual category click and mouse press/motion/release; then deterministic existing development/growth APIs",
+  "interior_gap_cells": 8,
+  "max_depth_rows": 4,
+  "rear_cells": 32,
+  "viewport": "(1920, 1080)"
+}

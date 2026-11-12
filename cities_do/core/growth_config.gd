@@ -7,7 +7,8 @@ var neighbor_chance := 0.55
 var max_chain := 8
 var road_access_distance := 1.5 / 4.0 # 1.5 metres from sidewalk-inclusive road edge to lot front.
 var road_width := 2.0
-var zoning_depth := 8.0
+const MAX_ZONING_DEPTH := 4
+var zoning_depth := float(MAX_ZONING_DEPTH)
 
 var parcel_block_length := 8.0
 var parcel_turn_degrees := 10.0

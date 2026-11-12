@@ -62,6 +62,8 @@ func _ready():
 		map_zoom = session.map_zoom
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
+	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
+	if city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for asset in city.catalog.entries:
 		var texture: Texture2D = load(asset.texture)

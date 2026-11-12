@@ -1,0 +1,224 @@
+{
+  "recorded_at": "2026-11-12T16:31:05.743407+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 7.11,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_building_assets",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_building_assets.gd"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "errors": [
+        "ERROR: stage5 expands to the largest legal lot without shrinking",
+        "ERROR: 8x8 uses its original large model, not a stretched mansion"
+      ],
+      "summaries": [
+        "RESULT 25/27 asset checks passed"
+      ],
+      "passed": false,
+      "elapsed_s": 17.7,
+      "log": "test_building_assets.log"
+    },
+    {
+      "name": "test_city",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_city.gd"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "errors": [
+        "ERROR: 8x8 expansion searches valid free footprint only on reaching stage5"
+      ],
+      "summaries": [
+        "RESULT 23/24 passed"
+      ],
+      "passed": false,
+      "elapsed_s": 10.58,
+      "log": "test_city.log"
+    },
+    {
+      "name": "test_grid_zoning_drag",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_grid_zoning_drag.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 32/32 grid-axis zoning drag checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.31,
+      "log": "test_grid_zoning_drag.log"
+    },
+    {
+      "name": "test_lot_rules",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_lot_rules.gd"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "errors": [
+        "ERROR: FAIL residential largest legal lot at stage5",
+        "ERROR: FAIL commercial largest legal lot at stage5",
+        "ERROR: FAIL industrial largest legal lot at stage5",
+        "SCRIPT ERROR: Invalid access to property or key 'building' on a base object of type 'Dictionary'."
+      ],
+      "summaries": [
+        "RESULT 81/84 lot rule checks passed"
+      ],
+      "passed": false,
+      "elapsed_s": 5.46,
+      "log": "test_lot_rules.log"
+    },
+    {
+      "name": "test_road_parcels",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_parcels.gd"
+      ],
+      "exit_code": 1,
+      "timed_out": false,
+      "errors": [
+        "ERROR: 8x8 upgrade stays square within the same road-local block",
+        "ERROR: road-local eight-cell lots also fit at 1024-map coordinates"
+      ],
+      "summaries": [
+        "RESULT 16/18 road-local checks passed"
+      ],
+      "passed": false,
+      "elapsed_s": 1.51,
+      "log": "test_road_parcels.log"
+    },
+    {
+      "name": "test_roads_zoning",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_roads_zoning.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 18/18 road/zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.92,
+      "log": "test_roads_zoning.log"
+    },
+    {
+      "name": "test_zoning_depth_four",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_depth_four.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 49/49 four-cell zoning checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.59,
+      "log": "test_zoning_depth_four.log"
+    },
+    {
+      "name": "test_zoning_development",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_development.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [
+        "ERROR: Invalid UI preview lot: large-8x8-a 8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다",
+        "ERROR: Invalid UI preview lot: large-8x8-b 8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다"
+      ],
+      "summaries": [
+        "RESULT 38/38 zoning checks passed"
+      ],
+      "passed": false,
+      "elapsed_s": 6.63,
+      "log": "test_zoning_development.log"
+    },
+    {
+      "name": "test_zoning_no_overpaint",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_zoning_no_overpaint.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 22/22 non-overpaint checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.85,
+      "log": "test_zoning_no_overpaint.log"
+    }
+  ],
+  "total": 9,
+  "passed": 4,
+  "failed": 5
+}
