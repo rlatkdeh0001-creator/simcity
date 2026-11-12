@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+:root{--d:#142b37;--m:#38515e;--l:#edf4f5;--a:#36b7ff}
+body{margin:0;padding:6px 0}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.opt{width:300px}
+.tag{font-size:18px;font-weight:700;margin:0 0 6px}
+.tag span{font-weight:400;font-size:15px;color:var(--muted-foreground,#666)}
+.big{height:110px;background:var(--d);border-radius:10px;display:flex;align-items:center;justify-content:center;gap:26px}
+.big svg{width:72px;height:72px}
+.big .s svg{width:26px;height:26px}
+.tip{margin-top:8px;background:var(--d);color:var(--l);border-radius:8px;padding:10px 12px;font-size:18px;border:1px solid var(--m)}
+.tip .t{font-weight:700;margin-bottom:6px}
+.r{display:grid;grid-template-columns:1fr auto 52px;column-gap:6px;line-height:28px;align-items:center}
+.k{color:#a9c3cc}.v{text-align:right;font-variant-numeric:tabular-nums}
+.u{display:flex;align-items:center;gap:2px;color:var(--l)}
+.u svg{width:17px;height:17px}
+.neg{color:#ff8f8f}.pos{color:#7fe0a5}
+.hud{margin-top:8px;background:var(--d);color:var(--l);border-radius:8px;padding:8px 12px;font-size:18px;display:flex;gap:18px;align-items:center}
+.hud span{display:flex;align-items:center;gap:4px}
+.hud svg{width:18px;height:18px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <!-- A: D + stem bar -->
+  <symbol id="A" viewBox="0 0 32 32"><path d="M9 5h7a11 11 0 0 1 0 22H9z" fill="none" stroke="#36b7ff" stroke-width="3.6" stroke-linejoin="round"/><path d="M4 16h10" stroke="#36b7ff" stroke-width="3.6" stroke-linecap="round"/></symbol>
+  <!-- B: D + two horizontal bars through the whole letter (coin style) -->
+  <symbol id="B" viewBox="0 0 32 32"><path d="M10 5h6a11 11 0 0 1 0 22h-6z" fill="none" stroke="#36b7ff" stroke-width="3.4" stroke-linejoin="round"/><path d="M5 12.5h22M5 19.5h22" stroke="#36b7ff" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <!-- C: coin circle with bold D -->
+  <symbol id="C" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#36b7ff"/><path d="M12 9h4a7 7 0 0 1 0 14h-4z" fill="none" stroke="#142b37" stroke-width="3.4" stroke-linejoin="round"/></symbol>
+ </defs>
+</svg>
+
+<div class="row">
+<!-- one block per option -->
+<div class="opt"><p class="tag">A <span>D + 가로 한 줄 (₫ 느낌 유지)</span></p>
+ <div class="big"><svg><use href="#A"/></svg><span class="s"><svg><use href="#A"/></svg></span></div>
+ <div class="tip"><div class="t">풍력발전소</div>
+  <div class="r"><span class="k">건설비</span><span class="v">15,000</span><span class="u"><svg><use href="#A"/></svg></span></div>
+  <div class="r"><span class="k">유지비</span><span class="v neg">−200</span><span class="u"><svg><use href="#A"/></svg>/월</span></div>
+  <div class="r"><span class="k">평균 발전량</span><span class="v">1,000</span><span class="u">kW</span></div>
+  <div class="r"><span class="k">정격 발전량</span><span class="v">2,000</span><span class="u">kW</span></div></div>
+ <div class="hud"><span>50,000 <svg><use href="#A"/></svg></span><span class="pos">+1,200 <svg><use href="#A"/></svg>/월</span></div>
+</div>
+
+<div class="opt"><p class="tag">B <span>D + 가로 두 줄 (통화 기호 느낌)</span></p>
+ <div class="big"><svg><use href="#B"/></svg><span class="s"><svg><use href="#B"/></svg></span></div>
+ <div class="tip"><div class="t">풍력발전소</div>
+  <div class="r"><span class="k">건설비</span><span class="v">15,000</span><span class="u"><svg><use href="#B"/></svg></span></div>
+  <div class="r"><span class="k">유지비</span><span class="v neg">−200</span><span class="u"><svg><use href="#B"/></svg>/월</span></div>
+  <div class="r"><span class="k">평균 발전량</span><span class="v">1,000</span><span class="u">kW</span></div>
+  <div class="r"><span class="k">정격 발전량</span><span class="v">2,000</span><span class="u">kW</span></div></div>
+ <div class="hud"><span>50,000 <svg><use href="#B"/></svg></span><span class="pos">+1,200 <svg><use href="#B"/></svg>/월</span></div>
+</div>
+
+<div class="opt"><p class="tag">C <span>동전 모양 원 안의 D</span></p>
+ <div class="big"><svg><use href="#C"/></svg><span class="s"><svg><use href="#C"/></svg></span></div>
+ <div class="tip"><div class="t">풍력발전소</div>
+  <div class="r"><span class="k">건설비</span><span class="v">15,000</span><span class="u"><svg><use href="#C"/></svg></span></div>
+  <div class="r"><span class="k">유지비</span><span class="v neg">−200</span><span class="u"><svg><use href="#C"/></svg>/월</span></div>
+  <div class="r"><span class="k">평균 발전량</span><span class="v">1,000</span><span class="u">kW</span></div>
+  <div class="r"><span class="k">정격 발전량</span><span class="v">2,000</span><span class="u">kW</span></div></div>
+ <div class="hud"><span>50,000 <svg><use href="#C"/></svg></span><span class="pos">+1,200 <svg><use href="#C"/></svg>/월</span></div>
+</div>
+</div>
+</body></html>
