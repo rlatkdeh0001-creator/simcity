@@ -10,6 +10,7 @@ func verify(ok: bool,label: String):
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);await process_frame
+ game.road_grid_enabled=false # Free-position cursor/ring contract; quantized contacts are tested separately.
  var drawing=game.road_drawer
  verify(drawing.has_method("cursor_preview"),"road tool exposes its pre-click ground cursor state")
  if drawing.has_method("cursor_preview"):

@@ -243,7 +243,7 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	buildings.append(b)
 	return {"ok": true, "building": b}
 
-func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1) -> Dictionary:
+func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1, grid_frame: Dictionary = {}) -> Dictionary:
 	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in (preload("res://core/road_profile.gd").LOCAL_LANES if kind=="local" else [2,4]) or major_side not in [-1,1]:
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
 	# Player strokes opt in; authored scenarios retain exact supplied geometry.
@@ -257,8 +257,11 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	if enforce_units and not RoadUnits.is_build_length(total,RoadUnits.build_step(points,roads)):return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
+	if enforce_units:
+		var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(total,RoadUnits.build_step(points,roads))
+		if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
 	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0,"major_side":major_side}
+	if not grid_frame.is_empty():road.grid_frame=grid_frame.duplicate(true)
 	for b in buildings:
 		if _polygon_road_distance(footprint(b), road) < -0.0005:
 			return {"ok": false, "reason": "건물과 충돌합니다"}
@@ -581,7 +584,8 @@ func _update_zoning_for_road(_road: Dictionary):
 		if road.kind!="local":continue
 		var source: PackedVector2Array=road.get("zoning_source_points",road.points)
 		var source_id: int=road.get("zoning_source_id",road.get("parcel_id",road_index))
-		for frame in Parcels.blocks(source,road.width/2,source_id,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation):
+		var frames: Array[Dictionary]=Parcels.blocks(source,road.width/2,source_id,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation)
+		for frame in preload("res://core/road_grid_snap.gd").aligned_blocks(frames,road.get("grid_frame",{})):
 			for u in range(frame.columns):
 				if not RoadUnits.supports_column(road,frame,u):continue
 				for v in range(clampi(int(config.zoning_depth),0,Config.MAX_ZONING_DEPTH)):

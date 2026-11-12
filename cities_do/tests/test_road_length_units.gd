@@ -19,6 +19,7 @@ func reset(game):
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
+ game.road_grid_enabled=false # This suite is the unchanged grid-OFF 8m/4m contract.
  var drawing=game.road_drawer
  for kind in ["straight","curve","free"]:
   reset(game);drawing.set_kind(kind);drawing.click(Vector2(30,30))

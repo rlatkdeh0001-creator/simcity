@@ -11,7 +11,7 @@ static func is_build_length(length: float,step: float=BUILD) -> bool:
 static func build_step(points: PackedVector2Array,roads: Array) -> float:
  if points.size()>=2 and (not Angles.connection(points[0],roads).is_empty() or not Angles.connection(points[-1],roads).is_empty()):return CONNECT
  return BUILD
-static func fit(points: PackedVector2Array,roads: Array,step_override: float=0.0) -> Dictionary:
+static func fit(points: PackedVector2Array,roads: Array,step_override: float=0.0,lock_contacts: bool=false) -> Dictionary:
  var result:={"ok":false,"points":points.duplicate(),"reason":"도로는 8m 단위로 건설해야 합니다"}
  if points.size()<2:return result
  var step:=step_override if step_override>0 else build_step(points,roads)
@@ -19,8 +19,8 @@ static func fit(points: PackedVector2Array,roads: Array,step_override: float=0.0
  var length:=Paths.length_of(points)
  if length<EPS:return result
  if is_build_length(length,step):result.ok=true;return result
- var start_fixed:=not Angles.connection(points[0],roads).is_empty()
- var end_fixed:=not Angles.connection(points[-1],roads).is_empty()
+ var start_fixed:=lock_contacts or not Angles.connection(points[0],roads).is_empty()
+ var end_fixed:=lock_contacts or not Angles.connection(points[-1],roads).is_empty()
  if start_fixed and end_fixed:
   if points.size()<5:return result # Approved: incompatible fixed straight contacts stay red.
   var target:=maxf(step,ceilf((length-EPS)/step)*step)

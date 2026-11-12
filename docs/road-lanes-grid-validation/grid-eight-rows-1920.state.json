@@ -1,0 +1,36 @@
+{
+  "edge_gap_cells": 8,
+  "grid": true,
+  "input": "real category/card and world mouse press/release",
+  "lanes": [
+    4,
+    2
+  ],
+  "opposed_cells": 64,
+  "painted_cells": 64,
+  "preview_equals_commit": true,
+  "roads": [
+    {
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 0,
+      "points": "[(24.0, 30.0), (72.0, 30.0)]",
+      "width": 4.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(24.0, 32.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 2,
+      "major_side": 1,
+      "parcel_id": 1,
+      "points": "[(24.0, 41.0), (72.0, 41.0)]",
+      "width": 2.0
+    }
+  ],
+  "valid_8x8_placement": true
+}

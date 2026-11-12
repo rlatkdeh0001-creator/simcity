@@ -15,6 +15,7 @@ func move(game,p: Vector2):
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
+ game.road_grid_enabled=false # Preserve original free-position/8m policy; grid ON has its own three-mode suite.
  root.add_child(game);await process_frame;game.map_zoom=.75;game.origin=Vector2(850,20);game.activate_tool("road")
  verify(game.get("road_drawer")!=null,"approved default click-based road drawing controller exists")
  if game.get("road_drawer")!=null:

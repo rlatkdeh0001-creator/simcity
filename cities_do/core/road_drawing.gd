@@ -3,6 +3,8 @@ extends RefCounted
 const Network=preload("res://core/traffic_network.gd")
 const AngleSnap=preload("res://core/road_angle_snap.gd")
 const LengthUnits=preload("res://core/road_length_units.gd")
+const Grid=preload("res://core/road_grid_snap.gd")
+var grid_frame: Dictionary={}
 var owner_reference: WeakRef
 var view:
  get:return owner_reference.get_ref()
@@ -14,6 +16,7 @@ var cursor_armed:=false
 var measurement_boxes: Array[Dictionary]=[]
 func _init(owner):owner_reference=weakref(owner)
 func cancel():
+ grid_frame.clear()
  cursor_armed=false
  anchors.clear();start_tangent=Vector2.ZERO
  view.drawing=false;view.stroke.clear();view.queue_redraw()
@@ -24,7 +27,10 @@ func set_kind(value: String):
  arm_cursor()
  if view.has_method("update_road_modes"):view.update_road_modes()
  view.queue_redraw()
-func snap(point: Vector2) -> Vector2:return view.city.RoadJunctions.snap_point(point,view.city.roads)
+func grid_on() -> bool:return view.road_grid_enabled and kind!="legacy"
+func grid_reference(point: Vector2) -> Dictionary:return grid_frame if not grid_frame.is_empty() else Grid.frame_near(view.city,point)
+func snap(point: Vector2) -> Vector2:
+ return Grid.start(view.city,point,view.city.config.road_width*view.road_lanes/2.0,grid_reference(point)) if grid_on() else view.city.RoadJunctions.snap_point(point,view.city.roads)
 func arm_cursor():cursor_armed=true;view.queue_redraw()
 func cursor_preview() -> Dictionary:
  if not cursor_armed or view.mode!="road" or kind=="legacy" or not anchors.is_empty() or not view.pointer.is_finite():return {}
@@ -53,7 +59,7 @@ func draw_cursor(state: Dictionary):
   var ring:=cursor_ring(state.center,state.radius*1.33)
   for i in range(0,64,4):view.draw_polyline(ring.slice(i,i+3),Color("36b7ff"),2,true)
 func destination(point: Vector2,first: Vector2) -> Vector2:
- var result:=snap(point)
+ var result: Vector2=view.city.RoadJunctions.snap_point(point,view.city.roads)
  # The one-cell snap radius must not collapse an intentional four-metre extension.
  return point if result.distance_to(first)<LengthUnits.EPS and point.distance_to(first)>=LengthUnits.CONNECT/2 else result
 func tangent_at(point: Vector2) -> Vector2:
@@ -69,8 +75,14 @@ func tangent_at(point: Vector2) -> Vector2:
 func raw_path() -> PackedVector2Array:
  if anchors.is_empty():return PackedVector2Array()
  var first:=anchors[0];var last:=destination(view.pointer,first)
+ if grid_on():
+  if kind=="curve" and anchors.size()<2:last=view.pointer
+  else:
+   var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
+   var ends:=Grid.ends(view.city,assisted[0],assisted[-1],view.city.config.road_width*view.road_lanes/2.0,grid_reference(first))
+   first=ends[0];last=ends[-1]
  if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
- if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads)
+ if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last]) if grid_on() else AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads)
  var control: Vector2=anchors[1] if kind=="curve" else first+start_tangent*first.distance_to(last)/2
  if kind=="free":
   var assisted:=AngleSnap.axis(last-first,AngleSnap.connection(first,view.city.roads))
@@ -80,11 +92,19 @@ func raw_path() -> PackedVector2Array:
  for i in range(steps+1):
   var t:=float(i)/steps;var u:=1-t
   points.append(first*u*u+control*2*u*t+last*t*t)
- points=view.city.RoadJunctions.snap_path(points,view.city.roads)
+ if not grid_on():points=view.city.RoadJunctions.snap_path(points,view.city.roads)
  points[-1]=last
- return AngleSnap.apply(points,view.city.roads)
+ points=AngleSnap.apply(points,view.city.roads)
+ if grid_on():
+  points[0]=first;points[-1]=last
+  points[1]=AngleSnap.constrain_point(first,points[1],view.city.roads)
+  points[-2]=AngleSnap.constrain_point(last,points[-2],view.city.roads)
+ return points
 func resolved_path() -> Dictionary:
  var points:=raw_path()
+ if grid_on():
+  if kind=="curve" and anchors.size()<2:return {"ok":points.size()>=2,"points":points,"reason":""}
+  return Grid.fit(points,view.city.roads)
  # Control handles are not destination contacts; follow the start road's build step.
  if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),view.city.roads) if not anchors.is_empty() else LengthUnits.BUILD)
  return LengthUnits.fit(points,view.city.roads)
@@ -108,7 +128,7 @@ func preview() -> Dictionary:
  var resolved:=resolved_path()
  var points: PackedVector2Array=resolved.points
  var complete: bool=kind!="curve" or anchors.size()>=2
- var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false,complete,view.road_major_side)
+ var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false,complete,view.road_major_side,grid_reference(points[0]) if grid_on() and points.size()>0 else {})
  result.points=points
  if not resolved.ok:result.ok=false;result.reason=resolved.reason
  if result.ok:
@@ -120,6 +140,7 @@ func preview() -> Dictionary:
 func click(point: Vector2):
  view.pointer=point
  if anchors.is_empty():
+  if grid_on():grid_frame=Grid.frame_near(view.city,point).duplicate(true)
   anchors.append(snap(point));start_tangent=tangent_at(anchors[0]);view.queue_redraw();return
  if kind=="curve" and anchors.size()==1:
   var guide:=resolved_path()
@@ -128,11 +149,13 @@ func click(point: Vector2):
  last_result=preview()
  if not last_result.ok:view.queue_redraw();return
  var points: PackedVector2Array=last_result.points
- last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true,view.road_major_side)
+ var committed_grid: Dictionary=grid_reference(points[0]).duplicate(true) if grid_on() else {}
+ last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true,view.road_major_side,committed_grid)
  if last_result.ok:
   view.stop_traffic();cancel()
   arm_cursor()
   if kind=="straight":anchors.append(points[-1]);start_tangent=tangent_at(points[-1])
+  if kind=="straight":grid_frame=Grid.frame_near(view.city,points[-1]).duplicate(true) if grid_on() else {}
   view.refresh()
 func handle_input(event: InputEvent) -> bool:
  if view.mode!="road" or kind=="legacy":return false
@@ -155,7 +178,8 @@ func measurements(result: Dictionary={}) -> Dictionary:
  if points.size()<2:return {}
  var length:=LengthUnits.Paths.length_of(points)
  if length<.0001:return {}
- var data:={"length_m":length*4,"length_text":"%d m"%roundi(length*4),"midpoint":LengthUnits.Paths.sample(points,length/2),"angles":[]}
+ var text: String="%d m"%roundi(length*4) if absf(length*4-roundf(length*4))<.01 else "%.1f m"%(length*4)
+ var data:={"length_m":length*4,"length_text":text,"midpoint":LengthUnits.Paths.sample(points,length/2),"angles":[]}
  for pair in [[0,1],[points.size()-1,points.size()-2]]:
   var center: Vector2=points[pair[0]]
   var host:=AngleSnap.connection(center,view.city.roads)

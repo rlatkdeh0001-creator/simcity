@@ -11,6 +11,7 @@ func reset(game):
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(70,30)]))
 func run():
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
+ game.road_grid_enabled=false # Retain exact free-position threshold expectations when the grid is OFF.
  var drawing=game.road_drawer
  for kind in ["straight","curve","free"]:
   reset(game);drawing.set_kind(kind);drawing.click(Vector2(30,30))
