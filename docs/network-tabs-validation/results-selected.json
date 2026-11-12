@@ -1,0 +1,228 @@
+{
+  "recorded_at": "2026-11-12T13:42:16.788466+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 6.1,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_bottom_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_bottom_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 43/43 bottom UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 11.97,
+      "log": "test_bottom_ui.log"
+    },
+    {
+      "name": "test_demolition",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_demolition.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 48/48 demolition checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 16.97,
+      "log": "test_demolition.log"
+    },
+    {
+      "name": "test_hud_v2",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_hud_v2.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 72/72 HUD v2 checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.27,
+      "log": "test_hud_v2.log"
+    },
+    {
+      "name": "test_main_bottom_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_main_bottom_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 137/137 main bottom UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.01,
+      "log": "test_main_bottom_ui.log"
+    },
+    {
+      "name": "test_play_tools",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_play_tools.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 28/28 play tool checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.09,
+      "log": "test_play_tools.log"
+    },
+    {
+      "name": "test_power",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_power.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 41/41 power checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.18,
+      "log": "test_power.log"
+    },
+    {
+      "name": "test_public_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_public_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 19/19 public UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.18,
+      "log": "test_public_ui.log"
+    },
+    {
+      "name": "test_thumbnail_hud",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_thumbnail_hud.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 143/143 thumbnail HUD checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 2.28,
+      "log": "test_thumbnail_hud.log"
+    },
+    {
+      "name": "test_utility_visibility",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_utility_visibility.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 53/53 utility tab visibility checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 11.59,
+      "log": "test_utility_visibility.log"
+    },
+    {
+      "name": "test_water",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_water.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 80/80 water checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.67,
+      "log": "test_water.log"
+    }
+  ],
+  "total": 10,
+  "passed": 10,
+  "failed": 0
+}

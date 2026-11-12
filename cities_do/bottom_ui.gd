@@ -293,6 +293,21 @@ func build_bottom_hud():
  drawer_box.add_theme_constant_override("separation",16)
  drawer_scroll.add_child(drawer_box)
  build_road_modes(root)
+ drawer.visibility_changed.connect(sync_utility_visibility)
+
+func sync_utility_visibility():
+ # Keep above-ground facility models; only their tab-gated network drawing changes.
+ var tray_open:=drawer.is_visible_in_tree()
+ for pair in [["power",power_overlay],["water",water_overlay]]:
+  var overlay=pair[1]
+  var active: bool=tray_open and chosen==pair[0]
+  overlay.tab_open=active
+  overlay.show_ranges=active
+  if not active:
+   overlay.drawing=false
+   overlay.stroke.clear()
+  overlay.queue_redraw()
+ if not tray_open and mode in ["power_wire","power_select","water_pipe","water_select"]:mode="select"
 
 func road_mode_icon(key: String,selected: bool) -> Texture2D:
  var paths:={"straight":'<path d="M5 27 L27 5"/>',"curve":'<path d="M5 27 Q5 5 27 5"/>',"free":'<path d="M4 24 C10 4 16 30 28 8"/>'}
@@ -573,12 +588,8 @@ func select_category(key: String):
  for child in drawer_box.get_children():
   drawer_box.remove_child(child)
   child.queue_free()
- power_overlay.tab_open=key=="power"
- water_overlay.tab_open=key=="water"
  power_overlay.panel.hide()
  water_overlay.panel.hide()
- power_overlay.show_ranges=false
- water_overlay.show_ranges=false
  power_overlay.drawing=false
  water_overlay.drawing=false
  power_overlay.stroke.clear()
@@ -677,6 +688,7 @@ func select_category(key: String):
  close.pressed.connect(func():drawer.hide();layout_bottom_hud())
  drawer_box.add_child(close)
  drawer.show()
+ sync_utility_visibility()
  layout_bottom_hud()
  queue_redraw()
 

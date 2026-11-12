@@ -1,0 +1,305 @@
+{
+  "above_ground_utility_structures_retained": true,
+  "input": "actual category mouse press/release; fixed same-city test fixture",
+  "power_probe_rgb": "(0.1373, 0.6235, 0.9412, 1.0)",
+  "power_ranges": true,
+  "power_state": {
+    "billing_active": false,
+    "consumers": {
+      "1": {
+        "connected": true,
+        "demand_kw": 1.6,
+        "group": 0,
+        "node": 2,
+        "powered": true,
+        "ratio": 1.0,
+        "supplied_kw": 1.6
+      }
+    },
+    "cost_doth": 0.0,
+    "export_kw": 0.0,
+    "groups": [
+      {
+        "active_sources": [
+          0
+        ],
+        "consumers": [
+          1
+        ],
+        "demand_kw": 1.6,
+        "export_kw": 0.0,
+        "generation_kw": 300.0,
+        "id": 0,
+        "import_kw": 0.0,
+        "nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "plants": [
+          {
+            "enabled": true,
+            "id": 1,
+            "output_kw": 300.0,
+            "position": "(84.0, 168.0)"
+          }
+        ],
+        "ports": [],
+        "ratio": 1.0,
+        "supplied_kw": 1.6,
+        "trade_port": {
+
+        }
+      },
+      {
+        "active_sources": [],
+        "consumers": [],
+        "demand_kw": 0.0,
+        "export_kw": 0.0,
+        "generation_kw": 0.0,
+        "id": 1,
+        "import_kw": 0.0,
+        "nodes": [
+          8
+        ],
+        "plants": [],
+        "ports": [],
+        "ratio": 1.0,
+        "supplied_kw": 0.0,
+        "trade_port": {
+
+        }
+      },
+      {
+        "active_sources": [],
+        "consumers": [],
+        "demand_kw": 0.0,
+        "export_kw": 0.0,
+        "generation_kw": 0.0,
+        "id": 2,
+        "import_kw": 0.0,
+        "nodes": [
+          9
+        ],
+        "plants": [],
+        "ports": [],
+        "ratio": 1.0,
+        "supplied_kw": 0.0,
+        "trade_port": {
+
+        }
+      },
+      {
+        "active_sources": [],
+        "consumers": [],
+        "demand_kw": 0.0,
+        "export_kw": 0.0,
+        "generation_kw": 0.0,
+        "id": 3,
+        "import_kw": 0.0,
+        "nodes": [
+          10
+        ],
+        "plants": [],
+        "ports": [],
+        "ratio": 1.0,
+        "supplied_kw": 0.0,
+        "trade_port": {
+
+        }
+      },
+      {
+        "active_sources": [],
+        "consumers": [],
+        "demand_kw": 0.0,
+        "export_kw": 0.0,
+        "generation_kw": 0.0,
+        "id": 4,
+        "import_kw": 0.0,
+        "nodes": [
+          11
+        ],
+        "plants": [],
+        "ports": [],
+        "ratio": 1.0,
+        "supplied_kw": 0.0,
+        "trade_port": {
+
+        }
+      }
+    ],
+    "import_kw": 0.0,
+    "revenue_doth": 0.0,
+    "routes": [
+      {
+        "length": 216.0,
+        "points": "[(84.0, 168.0), (116.0, 168.0), (148.0, 168.0), (180.0, 168.0), (212.0, 168.0), (244.0, 168.0), (276.0, 168.0), (300.0, 168.0)]"
+      }
+    ]
+  },
+  "power_visible": true,
+  "tab": "power",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+  "water_probe_rgb": "(0.4588, 0.5804, 0.5098, 1.0)",
+  "water_ranges": false,
+  "water_state": {
+    "consumers": {
+      "1": {
+        "connected": true,
+        "demand_m3_day": 1.6,
+        "group": 0,
+        "has_sewage": true,
+        "has_water": true,
+        "node": 2,
+        "return_ratio": 0.8,
+        "sewage_generated_m3_day": 1.28,
+        "sewage_handled_m3_day": 1.28,
+        "sewage_ratio": 1.0,
+        "water_ratio": 1.0,
+        "water_supplied_m3_day": 1.6
+      }
+    },
+    "cost_doth": 0.0,
+    "demand_m3_day": 1.6,
+    "expense_doth_day": 0.0,
+    "groups": [
+      {
+        "consumers": [
+          1
+        ],
+        "demand": 1.6,
+        "id": 0,
+        "nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "ports": [],
+        "sewage_capacity": 1000.0,
+        "sewage_export": 0.0,
+        "sewage_generated": 1.28,
+        "sewage_sinks": [
+          6
+        ],
+        "sewage_treated": 1.28,
+        "water_capacity": 1000.0,
+        "water_export": 0.0,
+        "water_import": 0.0,
+        "water_sources": [
+          0
+        ],
+        "water_supplied": 1.6
+      },
+      {
+        "consumers": [],
+        "demand": 0.0,
+        "id": 1,
+        "nodes": [
+          7
+        ],
+        "ports": [],
+        "sewage_capacity": 0.0,
+        "sewage_export": 0.0,
+        "sewage_generated": 0.0,
+        "sewage_sinks": [],
+        "sewage_treated": 0.0,
+        "water_capacity": 0.0,
+        "water_export": 0.0,
+        "water_import": 0.0,
+        "water_sources": [],
+        "water_supplied": 0.0
+      },
+      {
+        "consumers": [],
+        "demand": 0.0,
+        "id": 2,
+        "nodes": [
+          8
+        ],
+        "ports": [],
+        "sewage_capacity": 0.0,
+        "sewage_export": 0.0,
+        "sewage_generated": 0.0,
+        "sewage_sinks": [],
+        "sewage_treated": 0.0,
+        "water_capacity": 0.0,
+        "water_export": 0.0,
+        "water_import": 0.0,
+        "water_sources": [],
+        "water_supplied": 0.0
+      },
+      {
+        "consumers": [],
+        "demand": 0.0,
+        "id": 3,
+        "nodes": [
+          9
+        ],
+        "ports": [],
+        "sewage_capacity": 0.0,
+        "sewage_export": 0.0,
+        "sewage_generated": 0.0,
+        "sewage_sinks": [],
+        "sewage_treated": 0.0,
+        "water_capacity": 0.0,
+        "water_export": 0.0,
+        "water_import": 0.0,
+        "water_sources": [],
+        "water_supplied": 0.0
+      },
+      {
+        "consumers": [],
+        "demand": 0.0,
+        "id": 4,
+        "nodes": [
+          10
+        ],
+        "ports": [],
+        "sewage_capacity": 0.0,
+        "sewage_export": 0.0,
+        "sewage_generated": 0.0,
+        "sewage_sinks": [],
+        "sewage_treated": 0.0,
+        "water_capacity": 0.0,
+        "water_export": 0.0,
+        "water_import": 0.0,
+        "water_sources": [],
+        "water_supplied": 0.0
+      }
+    ],
+    "revenue_doth": 0.0,
+    "revenue_doth_day": 0.0,
+    "sewage_disposal_doth": 0.0,
+    "sewage_export_m3_day": 0.0,
+    "sewage_generated_m3_day": 1.28,
+    "sewage_routes": [
+      {
+        "length": 112.0,
+        "points": "[(172.0, 168.0), (204.0, 168.0), (236.0, 168.0), (268.0, 168.0), (284.0, 168.0)]"
+      }
+    ],
+    "sewage_treated_m3_day": 1.28,
+    "unhandled_sewage_m3_day": 0.0,
+    "water_export_m3_day": 0.0,
+    "water_import_m3_day": 0.0,
+    "water_purchase_doth": 0.0,
+    "water_routes": [
+      {
+        "length": 64.0,
+        "points": "[(108.0, 168.0), (140.0, 168.0), (172.0, 168.0)]"
+      }
+    ],
+    "water_sales_doth": 0.0,
+    "water_supplied_m3_day": 1.6
+  },
+  "water_visible": false
+}
