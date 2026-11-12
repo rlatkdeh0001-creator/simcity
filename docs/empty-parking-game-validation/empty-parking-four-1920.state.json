@@ -1,0 +1,30 @@
+{
+  "approved_source_commit": "8f6d8d541867297f92c85d8b282f5efb74aa467e",
+  "capture": "four genuinely placed empty parking facilities",
+  "facilities": [
+    {
+      "id": "parking-small-2x4",
+      "model": "res://assets/facilities/parking-small-2x4.glb",
+      "position": "(20.0, 43.0)"
+    },
+    {
+      "id": "parking-medium-4x4",
+      "model": "res://assets/facilities/parking-medium-4x4.glb",
+      "position": "(35.0, 43.0)"
+    },
+    {
+      "id": "parking-large-4x8",
+      "model": "res://assets/facilities/parking-large-4x8.glb",
+      "position": "(55.0, 45.0)"
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "model": "res://assets/facilities/parking-tower-4x4-4f.glb",
+      "position": "(74.0, 43.0)"
+    }
+  ],
+  "original_assets_modified": false,
+  "placement": "four actual successful public_facilities.place calls; fixture funds equal summed real construction prices plus 1000",
+  "status": "COMPLETE: approved empty parking sources exported and integrated",
+  "viewport": "(1920, 1080)"
+}

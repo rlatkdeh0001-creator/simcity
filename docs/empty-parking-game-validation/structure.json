@@ -1,0 +1,71 @@
+{
+  "mode": "read-only; approved empty sources integrated; no runtime hiding or original edits",
+  "parking": [
+    {
+      "id": "parking-small-2x4",
+      "mesh_instance_count": 1,
+      "mesh_node": "FacilityCombinedMesh",
+      "model": "res://assets/facilities/parking-small-2x4.glb",
+      "removal_applied": true,
+      "separate_vehicle_node": false,
+      "surfaces": [
+        "asphalt",
+        "paint",
+        "curb"
+      ]
+    },
+    {
+      "id": "parking-medium-4x4",
+      "mesh_instance_count": 1,
+      "mesh_node": "FacilityCombinedMesh",
+      "model": "res://assets/facilities/parking-medium-4x4.glb",
+      "removal_applied": true,
+      "separate_vehicle_node": false,
+      "surfaces": [
+        "asphalt",
+        "paint",
+        "curb"
+      ]
+    },
+    {
+      "id": "parking-large-4x8",
+      "mesh_instance_count": 1,
+      "mesh_node": "FacilityCombinedMesh",
+      "model": "res://assets/facilities/parking-large-4x8.glb",
+      "removal_applied": true,
+      "separate_vehicle_node": false,
+      "surfaces": [
+        "asphalt",
+        "paint",
+        "curb"
+      ]
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "mesh_instance_count": 1,
+      "mesh_node": "FacilityCombinedMesh",
+      "model": "res://assets/facilities/parking-tower-4x4-4f.glb",
+      "removal_applied": true,
+      "separate_vehicle_node": false,
+      "surfaces": [
+        "curb",
+        "concrete",
+        "accent",
+        "paint",
+        "asphalt",
+        "roof",
+        "cream",
+        "glass"
+      ]
+    }
+  ],
+  "solar": {
+    "base_depth_m": 16.0,
+    "base_matches_declared_footprint": true,
+    "base_width_m": 16.0,
+    "declared_cells": "(4, 4)",
+    "existing_order_fix": "14177349d8d4762c914616c55b588f00c09e49b4",
+    "lot_bounds_local_m": "[P: (-8.0, 0.0, -8.0), S: (16.0, 0.12, 16.0)]",
+    "screenshot_road_encroachment": "unconfirmed without original world positions; local base is within declared lot"
+  }
+}

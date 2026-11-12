@@ -1,0 +1,97 @@
+{
+  "assets": [
+    {
+      "id": "parking-small-2x4",
+      "checks": {
+        "glb_reimports": true,
+        "triangle_count_matches": true,
+        "bounds_and_axes_match": true,
+        "finite_glb_bounds": true
+      },
+      "passed": true,
+      "triangles": 792,
+      "bounds_blender_m": [
+        [
+          -4.0,
+          -8.0,
+          0.0
+        ],
+        [
+          4.0,
+          8.0,
+          0.375
+        ]
+      ]
+    },
+    {
+      "id": "parking-medium-4x4",
+      "checks": {
+        "glb_reimports": true,
+        "triangle_count_matches": true,
+        "bounds_and_axes_match": true,
+        "finite_glb_bounds": true
+      },
+      "passed": true,
+      "triangles": 1408,
+      "bounds_blender_m": [
+        [
+          -8.0,
+          -8.0,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          0.375
+        ]
+      ]
+    },
+    {
+      "id": "parking-large-4x8",
+      "checks": {
+        "glb_reimports": true,
+        "triangle_count_matches": true,
+        "bounds_and_axes_match": true,
+        "finite_glb_bounds": true
+      },
+      "passed": true,
+      "triangles": 2640,
+      "bounds_blender_m": [
+        [
+          -8.0,
+          -16.0,
+          0.0
+        ],
+        [
+          8.0,
+          16.0,
+          0.375
+        ]
+      ]
+    },
+    {
+      "id": "parking-tower-4x4-4f",
+      "checks": {
+        "glb_reimports": true,
+        "triangle_count_matches": true,
+        "bounds_and_axes_match": true,
+        "finite_glb_bounds": true
+      },
+      "passed": true,
+      "triangles": 4796,
+      "bounds_blender_m": [
+        [
+          -8.0,
+          -8.5,
+          0.0
+        ],
+        [
+          8.0,
+          8.0,
+          12.99000072479248
+        ]
+      ]
+    }
+  ],
+  "passed": true
+}

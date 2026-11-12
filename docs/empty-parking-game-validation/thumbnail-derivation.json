@@ -1,0 +1,11 @@
+{
+  "original_pipeline": "tools\\derive_asset_thumbnails.py",
+  "pipeline_sha256": "e111fda43a7224483419dbbace368144a73733ec847a9c716f3362fd0a9a3e5d",
+  "changed_thumbnails": [
+    "parking-large-4x8",
+    "parking-medium-4x4",
+    "parking-small-2x4",
+    "parking-tower-4x4-4f"
+  ],
+  "original_inputs_unchanged": 1462
+}

@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS parking-small-2x4 retains its single visible facility mesh
+PASS parking-small-2x4 has no baked parked-car material geometry
+PASS parking-small-2x4 retains its metre footprint and ground datum
+PASS parking-small-2x4 retains front orientation and coordinate transforms
+PASS parking-medium-4x4 retains its single visible facility mesh
+PASS parking-medium-4x4 has no baked parked-car material geometry
+PASS parking-medium-4x4 retains its metre footprint and ground datum
+PASS parking-medium-4x4 retains front orientation and coordinate transforms
+PASS parking-large-4x8 retains its single visible facility mesh
+PASS parking-large-4x8 has no baked parked-car material geometry
+PASS parking-large-4x8 retains its metre footprint and ground datum
+PASS parking-large-4x8 retains front orientation and coordinate transforms
+PASS parking-tower-4x4-4f retains its single visible facility mesh
+PASS parking-tower-4x4-4f has no baked parked-car material geometry
+PASS parking-tower-4x4-4f retains its metre footprint and ground datum
+PASS parking-tower-4x4-4f retains front orientation and coordinate transforms
+RESULT 16/16 empty parking checks passed

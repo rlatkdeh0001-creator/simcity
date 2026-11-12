@@ -1,0 +1,27 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS parking-small-2x4 retains its single visible facility mesh
+ERROR: FAIL parking-small-2x4 has no baked parked-car material geometry
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_empty_parking.gd:9)
+       [1] run (res://tests/test_empty_parking.gd:23)
+PASS parking-medium-4x4 retains its single visible facility mesh
+ERROR: FAIL parking-medium-4x4 has no baked parked-car material geometry
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_empty_parking.gd:9)
+       [1] run (res://tests/test_empty_parking.gd:23)
+PASS parking-large-4x8 retains its single visible facility mesh
+ERROR: FAIL parking-large-4x8 has no baked parked-car material geometry
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_empty_parking.gd:9)
+       [1] run (res://tests/test_empty_parking.gd:23)
+PASS parking-tower-4x4-4f retains its single visible facility mesh
+ERROR: FAIL parking-tower-4x4-4f has no baked parked-car material geometry
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_empty_parking.gd:9)
+       [1] run (res://tests/test_empty_parking.gd:23)
+RESULT 4/8 empty parking checks passed
