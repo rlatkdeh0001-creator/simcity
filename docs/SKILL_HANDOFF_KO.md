@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정 F: 이웃 연결 양방향 화살표 (로컬 전용)
+## 최신 검사 G: 주차장 차량은 병합 메시 — 제거 미적용
+
+F9586278 후속. 소형/중형/대형/타워4종 GLB가 모두 FacilityCombinedMesh 하나이며 실제 Godot MeshInstance3D도1개다. 차량별 노드는 없고 car색/glass/metal material surface로 합쳐져 있다. 사용자 조건에 따라 숨김/표면 마스킹/메시 분해/원본 재생성을 적용하지 않았다. 사용자의 빈 원본 또는 차량 분리 노드 제공 대기이며 제거 완료가 아니다.
+tools/inspect_parking_models.gd 읽기 전용9/9, 기존 관련3/3(시설70·공공배치524·가림15) 통과. tools/capture_parking_inspection.gd는 실제4건 배치 후 현재 차량이 남은 상태를1920으로 캡처했다. docs/parking-vehicle-inspection/REPORT_KO.md·structure.json·current-parking-models-1920.png/state/log가 증거다.
+추가 태양광 자료도 확인했다. 기존 A의 평면 시설 정렬 오류 수정은 유지하며, 실제 Lot 범위16x16m는4x4부지와 일치했다. 사용자 원래 장면 좌표가 없으므로 그 장면의 실제 도로 침범/잔여 가림은 미확정이다. 원본·게임 런타임·AGENTS·프로젝트 설정 변경 없음, main 푸시 없음.
+systematic-debugging/godot-windows-validation/requesting-code-review의 구조 조사·실제 로드·native 검사·자체 리뷰를 적용했다. 이 기록과 도구는 기능 구현이 아닌 보류 근거다.
+
+## 이전 수정 F: 이웃 연결 양방향 화살표 (로컬 전용)
 
 E9af4fc4 후속. core/boundary_links.gd의 표시 전용 기하를 main.gd 도로/기존 power_overlay.gd·water_overlay.gd에 연결했다. 도로는 RegionalExchange의 실제 맵 경계 끝점, 지하는 연결된 이웃 포트 adjacency만 표시하며 해당 탭에서만 보인다. 흰색 반투명 노면 양방향 화살표 외 새 글자는 없다.
 road_geometry.gd가 보도/노면과 offset 차선 dash를 맵 경계로 잘라 둥근 외부 cap을 제거한다. 원본 도로·교통·서비스/계량 규칙은 불변. 지역 교류/상하수 관련 문서를 읽고 기존 포트·표시 gating을 재사용했다.

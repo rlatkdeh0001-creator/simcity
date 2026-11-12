@@ -1,0 +1,18 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS repro solar and foreground garden have equal old far-corner sort key
+PASS shared geometry-aware painter order exists
+PASS rear solar drawn before actual foreground garden independent of tied old depth
+PASS creation order cannot flip front and rear
+PASS power-wind uses shared footprint occlusion, not oversized forward corner
+PASS power-wind remains stable after inventory reorder
+PASS parking-large-4x8 uses shared footprint occlusion, not oversized forward corner
+PASS parking-large-4x8 remains stable after inventory reorder
+PASS park-play-4x4 uses shared footprint occlusion, not oversized forward corner
+PASS park-play-4x4 remains stable after inventory reorder
+PASS render sorting never mutates placement inventory or original geometry
+PASS cached indices resolve replacement city records instead of stale dictionary references
+PASS ray ordering supports rotated convex lots angle=0.2
+PASS ray ordering supports rotated convex lots angle=0.78539816339745
+PASS ray ordering supports rotated convex lots angle=1.5707963267949
+RESULT 15/15 facility depth checks passed
