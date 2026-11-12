@@ -85,15 +85,38 @@ def headframe(x,y):
 
 def mine(kind):
  base();portal(-3.8,2.1);headframe(2.6,3.3);hall('MineOffice',-4.2,-4.8,4.8,3.3,1,'cream','roof')
- mat='ironrock' if kind=='iron' else 'coalrock'
- box('OreApron',(4.4,-3.4,.16),(5.4,4.5,.08),'soil')
- for x,y,r,h in [(3.5,-3.1,1.2,1.65),(5.25,-3.7,.95,1.1),(4.8,-1.85,.72,.85)]:W.rock('OreStock',x,y,.20,r,h,mat)
- if kind=='coal':
-  a=Vector((3.25,-2.6,1.25));b=Vector((2.5,2.2,4.3));d=b-a
-  belt=box('ConveyorBelt',(a+b)/2,(1.20,.15,d.length),'black');belt.rotation_euler=d.to_track_quat('Z','Y').to_euler()
-  for dx in [-.68,.68]:bar('ConveyorRail',a+Vector((dx,0,0)),b+Vector((dx,0,0)),.10,'metal')
-  for t in [.15,.7]:
-   q=a+d*t;bar('ConveyorSupport',(q.x,q.y,.15),(q.x,q.y,q.z-.1),.14,'metal')
+ if kind=='iron':
+  # A broad red equipment hall dominates the iron mine instead of another pile-only yard.
+  box('CrusherBuilding',(2.5,-1.55,3.17),(7.3,5.7,6.10),'red')
+  P.gable('CrusherRoof',2.5,-1.55,7.55,5.95,6.22,7.20,'metal')
+  box('CrusherDoorFrame',(1.0,-4.48,1.60),(2.9,.16,2.94),'metal')
+  box('CrusherDoor',(1.0,-4.58,1.57),(2.6,.035,2.74),'roof')
+  for z in [.55,1.15,1.75,2.35]:box('CrusherShutterSlat',(1.0,-4.615,z),(2.55,.02,.035),'stone')
+  # External angular feed hopper and dust filter make the processing function readable.
+  vs=[(4.0,-4.5,3.0),(5.0,-4.5,3.0),(5.0,-3.6,3.0),(4.0,-3.6,3.0),
+      (3.4,-4.9,5.15),(5.6,-4.9,5.15),(5.6,-3.3,5.15),(3.4,-3.3,5.15)]
+  W.mesh('CrusherFeedHopper',vs,[(0,3,2,1),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)],'metal')
+  box('CrusherHopperRim',(4.5,-4.08,5.17),(2.34,1.74,.12),'red')
+  box('CrusherHopperOpening',(4.5,-4.08,5.239),(2.07,1.46,.025),'black')
+  cyl('CrusherDustFilter',(6.86,.3,2.50),.50,4.72,'roof',12)
+  bar('CrusherDustDuct',(6.86,.3,4.85),(5.80,.3,4.85),.32,'metal')
+  box('CrusherFascia',(1.2,-4.48,4.85),(3.25,.16,.65),'metal');G.text('CRUSHER',(1.2,-4.575,4.85),2.85,.39)
+  marker=bpy.data.objects.new('Access_CrusherBuilding',None);bpy.context.scene.collection.objects.link(marker);marker.location=(1.0,-4.65,.12);marker['outward_blender']=[0,-1,0]
+  for x,y,r,h in [(5.80,-6.0,1.22,2.10),(2.35,-6.65,.92,1.35),(-.1,-6.35,.78,1.0)]:W.rock('OreStock',x,y,.18,r,h,'ironrock')
+ else:
+  # Coal reads as a large low black stockyard with a high, wide open conveyor.
+  box('CoalStockApron',(3.35,-3.75,.16),(7.1,7.3,.08),'soil')
+  for x,y,r,h in [(3.35,-2.9,2.20,3.70),(5.15,-4.7,1.65,2.65),(1.25,-5.9,1.35,1.95)]:W.rock('OreStock',x,y,.20,r,h,'coalrock')
+  a=Vector((4.1,-3.0,3.45));b=Vector((2.3,2.5,6.15));d=b-a
+  belt=box('ConveyorBelt',(a+b)/2,(1.85,.18,d.length),'black');belt.rotation_euler=d.to_track_quat('Z','Y').to_euler()
+  for dx in [-1.0,1.0]:
+   bar('ConveyorRail',a+Vector((dx,0,.08)),b+Vector((dx,0,.08)),.14,'ochre')
+   bar('ConveyorLowerChord',a+Vector((dx,0,-.50)),b+Vector((dx,0,-.50)),.13,'metal')
+  for t in [.10,.25,.40,.55,.70,.85,.96]:
+   q=a+d*t;bar('ConveyorRoller',q+Vector((-1,0,-.05)),q+Vector((1,0,-.05)),.09,'metal')
+  for t in [.2,.55,.88]:
+   q=a+d*t
+   for dx in [-.8,.8]:bar('ConveyorSupport',(q.x+dx,q.y,.15),(q.x+dx,q.y,q.z-.4),.16,'metal')
 
 def oil():
  base();hall('OilOffice',-4.6,-3.5,4.8,4.4,2,'cream','metal')
@@ -149,8 +172,10 @@ def build(row):
  assert all(bb[0][i]>=-8-.0001 and bb[1][i]<=8+.0001 for i in [0,1]),(ident,bb)
  marker=bpy.data.objects.new('RoadFront_BlenderMinusY',None);bpy.context.scene.collection.objects.link(marker);marker.location=(0,-8,.12)
  cam=P.studio(pts,(900,1100));scene=bpy.context.scene;out=P.OUT/ident;out.mkdir(parents=True,exist_ok=True)
- meta=dict(id=ident,name=name,kind='primary_main',industry=industry,footprint_cells=[4,4],cell_meters=4,lot_meters=[16,16],floors=2 if style in ['vegetable','oil'] else 1,main_storey_height_m=3.05,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bb,measured_dimensions_m=[bb[1][i]-bb[0][i] for i in range(3)],triangles=tri,camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',source='original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs')
+ meta=dict(id=ident,name=name,kind='primary_main',industry=industry,footprint_cells=[4,4],cell_meters=4,lot_meters=[16,16],floors=2 if style in ['vegetable','oil'] else 1,main_storey_height_m=3.05,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bb,measured_dimensions_m=[bb[1][i]-bb[0][i] for i in range(3)],triangles=tri,camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',source=('original scripted Blender geometry; packed system DejaVu font; no external models, textures or generation APIs' if style=='iron' else 'original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs'))
  if style=='fishing':meta.update(waterfront_blender='+Y',shoreline_y_m=2,water_surface_included=False,boat_count=2,pier_within_lot=True)
+ for font in bpy.data.fonts:
+  if font.filepath and Path(font.filepath).is_file():font.pack()
  (out/'metadata.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n');bpy.ops.wm.save_as_mainfile(filepath=str(out/(ident+'.blend')))
  scene.render.filepath=str(out/'building.png');bpy.ops.render.render(write_still=True)
  if style=='fishing':

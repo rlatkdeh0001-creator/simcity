@@ -111,10 +111,13 @@
         "not_registered": true,
         "storey_height_305": true,
         "portal_and_headframe": true,
-        "ore_stock": true
+        "ore_stock": true,
+        "red_crusher_hall": true,
+        "crusher_hopper_filter": true,
+        "crusher_font_packed": true
       },
       "passed": true,
-      "triangles": 2136,
+      "triangles": 6850,
       "measured_dimensions_m": [
         16.0,
         16.0,
@@ -143,10 +146,13 @@
         "storey_height_305": true,
         "portal_and_headframe": true,
         "ore_stock": true,
-        "coal_conveyor": true
+        "coal_conveyor": true,
+        "large_coal_stock": true,
+        "coal_has_no_crusher": true,
+        "wide_coal_conveyor": true
       },
       "passed": true,
-      "triangles": 2292,
+      "triangles": 2448,
       "measured_dimensions_m": [
         16.0,
         16.0,

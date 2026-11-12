@@ -8,7 +8,7 @@ ids=['primary-farm-vegetable-01','primary-farm-livestock-01','primary-forestry-0
 for ident in ids:
  p=ROOT/'assets/primary-industry'/ident;m=json.loads((p/'metadata.json').read_text());bpy.ops.wm.open_mainfile(filepath=str(p/(ident+'.blend')));scene=bpy.context.scene;bpy.context.view_layer.update();dep=bpy.context.evaluated_depsgraph_get();points=[];tri=0;object_points={}
  for o in scene.objects:
-  if o.type!='MESH':continue
+  if o.type not in ['MESH','FONT']:continue
   e=o.evaluated_get(dep);me=e.to_mesh();vs=[e.matrix_world@v.co for v in me.vertices];points.extend(vs);tri+=sum(len(poly.vertices)-2 for poly in me.polygons);object_points[o.name]=vs;e.to_mesh_clear()
  lo=[min(v[i] for v in points) for i in range(3)];hi=[max(v[i] for v in points) for i in range(3)];cam=scene.camera;d=cam.location-Vector(cam['target_m']);ps=[world_to_camera_view(scene,cam,p) for p in points]
  def count(prefix):return sum(n==prefix or n.startswith(prefix+'.') for n in object_points)
@@ -19,7 +19,15 @@ for ident in ids:
  elif ident in ['primary-mine-iron-01','primary-mine-coal-01']:
   checks['portal_and_headframe']=count('MinePortalOpening')==1 and count('HeadframeLeg')==4 and count('HoistWheel')==1
   checks['ore_stock']=count('OreStock')==3
-  if 'coal' in ident:checks['coal_conveyor']=count('ConveyorBelt')==1
+  if 'coal' in ident:
+   checks['coal_conveyor']=count('ConveyorBelt')==1
+   checks['large_coal_stock']=max(v.z for name,vs in object_points.items() if name.startswith('OreStock') for v in vs)>3.5
+   checks['coal_has_no_crusher']=count('CrusherBuilding')==0
+   checks['wide_coal_conveyor']=bpy.data.objects['ConveyorBelt'].dimensions.x>1.7
+  else:
+   checks['red_crusher_hall']=count('CrusherBuilding')==1 and bpy.data.objects['CrusherBuilding'].dimensions.z>6
+   checks['crusher_hopper_filter']=count('CrusherFeedHopper')==1 and count('CrusherDustFilter')==1
+   checks['crusher_font_packed']=all(not f.filepath or f.filepath=='<builtin>' or f.packed_file is not None for f in bpy.data.fonts)
  elif ident=='primary-oil-01':checks['office_two_tanks_pumpjack']=count('OilOffice')==1 and count('OilStorageTank')==2 and count('PumpHorseHead')==1
  elif ident=='primary-mine-uranium-01':checks['portal_store_radiation_fence']=count('MinePortalOpening')==1 and count('SealedUraniumStore')==1 and count('WarningPlate')==2 and count('FenceMesh')>0
  elif ident=='primary-fishing-01':
