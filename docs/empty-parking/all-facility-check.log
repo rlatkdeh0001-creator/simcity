@@ -1,0 +1,12 @@
+SOURCE_CHECK True 8
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/facilities/park-garden-2x2/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/park-play-4x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/park-plaza-4x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/park-pocket-2x2/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-large-4x8/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-medium-4x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-small-2x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-tower-4x4-4f/facility.blend"
+
+Blender quit

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "parking-small-2x4",
+    "size_px": [
+      800,
+      680
+    ],
+    "alpha_bbox_px": [
+      54,
+      193,
+      746,
+      552
+    ],
+    "sha256": "28cce600daed98b5e7ce2200a67d99351213fc6ecaaf7f63440f28f1dedb6609"
+  },
+  {
+    "id": "parking-medium-4x4",
+    "size_px": [
+      800,
+      680
+    ],
+    "alpha_bbox_px": [
+      54,
+      187,
+      746,
+      543
+    ],
+    "sha256": "0768c28d3f49d2da08a366ac366ed68132e0ba239a430019fce58cf56afb9d6d"
+  },
+  {
+    "id": "parking-large-4x8",
+    "size_px": [
+      800,
+      680
+    ],
+    "alpha_bbox_px": [
+      54,
+      180,
+      746,
+      533
+    ],
+    "sha256": "adc28fcce60bfa64f63942cc3a7ec96a26e3e21976b808e3d9ae2030775d04fe"
+  },
+  {
+    "id": "parking-tower-4x4-4f",
+    "size_px": [
+      800,
+      680
+    ],
+    "alpha_bbox_px": [
+      106,
+      47,
+      694,
+      633
+    ],
+    "sha256": "8cf54b8b4ecee88c12ab88798d9a1de036b4041d03453894af144a3d120299d6"
+  }
+]

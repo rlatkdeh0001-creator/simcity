@@ -1,0 +1,28 @@
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+12:02:52 | INFO: Data are loaded, start creating Blender stuff
+12:02:52 | INFO: Blender create Mesh node Asphalt
+12:02:52 | INFO: glTF import finished in 0.01s
+GLB_VERIFY parking-small-2x4 {'glb_reimports': True, 'triangle_count_matches': True, 'bounds_and_axes_match': True, 'finite_glb_bounds': True}
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+12:02:52 | INFO: Data are loaded, start creating Blender stuff
+12:02:52 | INFO: Blender create Mesh node Asphalt
+12:02:52 | INFO: glTF import finished in 0.01s
+GLB_VERIFY parking-medium-4x4 {'glb_reimports': True, 'triangle_count_matches': True, 'bounds_and_axes_match': True, 'finite_glb_bounds': True}
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+12:02:52 | INFO: Data are loaded, start creating Blender stuff
+12:02:52 | INFO: Blender create Mesh node Asphalt
+12:02:52 | INFO: glTF import finished in 0.01s
+GLB_VERIFY parking-large-4x8 {'glb_reimports': True, 'triangle_count_matches': True, 'bounds_and_axes_match': True, 'finite_glb_bounds': True}
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+12:02:52 | INFO: Data are loaded, start creating Blender stuff
+12:02:52 | INFO: Blender create Mesh node TowerBase
+12:02:52 | INFO: glTF import finished in 0.02s
+GLB_VERIFY parking-tower-4x4-4f {'glb_reimports': True, 'triangle_count_matches': True, 'bounds_and_axes_match': True, 'finite_glb_bounds': True}
+RESULT 16 GLB reimport checks passed
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/facilities/parking-small-2x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-medium-4x4/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-large-4x8/facility.blend"
+Read blend: "/workspace/simcity/assets/facilities/parking-tower-4x4-4f/facility.blend"
+
+Blender quit
