@@ -1,0 +1,43 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight commit uses identical angle-snapped preview geometry
+PASS curve commit uses identical angle-snapped preview geometry
+PASS free commit uses identical angle-snapped preview geometry
+PASS temporary threshold includes10 and preserves11 degrees: 11.0
+PASS unconnected path is not forced onto global cardinal axes
+RESULT 5/12 road angle snap checks passed
+ERROR: FAIL straight near-perpendicular first segment snaps exactly 90 degrees with green preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:20)
+ERROR: FAIL curve near-perpendicular first segment snaps exactly 90 degrees with green preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:20)
+ERROR: FAIL free near-perpendicular first segment snaps exactly 90 degrees with green preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:20)
+ERROR: FAIL near-parallel extension at authored endpoint snaps exactly 0 degrees
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:24)
+ERROR: FAIL ending at existing middle preserves contact and snaps arriving direction 90 degrees
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:27)
+ERROR: FAIL temporary threshold includes10 and preserves11 degrees: 10.0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:32)
+ERROR: FAIL both connected endpoints remain on host centerlines while orthogonal alignment is solved
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_angle_snap.gd:8)
+       [1] run (res://tests/test_road_angle_snap.gd:35)

@@ -1,6 +1,7 @@
 extends RefCounted
 ## Approved click modes; original main.gd drag path remains opt-in as hidden "legacy".
 const Network=preload("res://core/traffic_network.gd")
+const AngleSnap=preload("res://core/road_angle_snap.gd")
 var owner_reference: WeakRef
 var view:
  get:return owner_reference.get_ref()
@@ -32,14 +33,18 @@ func tangent_at(point: Vector2) -> Vector2:
 func path() -> PackedVector2Array:
  if anchors.is_empty():return PackedVector2Array()
  var first:=anchors[0];var last:=snap(view.pointer)
- if kind=="straight" or (kind=="curve" and anchors.size()<2) or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last])
+ if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
+ if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads)
  var control: Vector2=anchors[1] if kind=="curve" else first+start_tangent*first.distance_to(last)/2
+ if kind=="free":
+  var assisted:=AngleSnap.axis(last-first,AngleSnap.connection(first,view.city.roads))
+  if assisted!=Vector2.ZERO and absf(assisted.dot(start_tangent))<.5:control=first+assisted*first.distance_to(last)/2
  var steps:=clampi(ceili((first.distance_to(control)+control.distance_to(last))*2),8,128)
  var points:=PackedVector2Array()
  for i in range(steps+1):
   var t:=float(i)/steps;var u:=1-t
   points.append(first*u*u+control*2*u*t+last*t*t)
- return view.city.RoadJunctions.snap_path(points,view.city.roads)
+ return AngleSnap.apply(view.city.RoadJunctions.snap_path(points,view.city.roads),view.city.roads)
 func joins_routable(network,points: PackedVector2Array) -> bool:
  # Surface the existing traffic graph's no-U-turn rule, rather than showing a
  # green road whose snapped endpoint cannot enter any new outgoing lane.
@@ -57,7 +62,7 @@ func joins_routable(network,points: PackedVector2Array) -> bool:
  return true
 func preview() -> Dictionary:
  var points:=path()
- var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,true)
+ var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false)
  result.points=points
  if result.ok:
   var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0}
@@ -69,11 +74,11 @@ func click(point: Vector2):
  view.pointer=point
  if anchors.is_empty():
   anchors.append(snap(point));start_tangent=tangent_at(anchors[0]);view.queue_redraw();return
- if kind=="curve" and anchors.size()==1:anchors.append(point);view.queue_redraw();return
+ if kind=="curve" and anchors.size()==1:anchors.append(AngleSnap.constrain_point(anchors[0],snap(point),view.city.roads));view.queue_redraw();return
  last_result=preview()
  if not last_result.ok:view.queue_redraw();return
  var points: PackedVector2Array=last_result.points
- last_result=view.city.add_road(points,"local",true,view.road_lanes,true)
+ last_result=view.city.add_road(points,"local",true,view.road_lanes,false)
  if last_result.ok:
   view.stop_traffic();cancel()
   if kind=="straight":anchors.append(points[-1]);start_tangent=tangent_at(points[-1])

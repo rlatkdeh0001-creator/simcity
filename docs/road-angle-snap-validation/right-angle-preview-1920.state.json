@@ -1,0 +1,10 @@
+{
+  "after_click_committed_points": "[(35.0, 40.0), (35.0, 60.0)]",
+  "angle_dot_existing_tangent": 0.0,
+  "capture_phase": "green preview before commit",
+  "input": "actual road-category click, snapped middle start click, near-90 cursor preview and end click",
+  "junctions": 1,
+  "raw_cursor": "(38.0, 60.0)",
+  "snapped_points": "[(35.0, 40.0), (35.0, 60.0)]",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}
