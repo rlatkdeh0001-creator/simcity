@@ -10,17 +10,47 @@ var kind:="straight"
 var anchors: Array[Vector2]=[]
 var start_tangent:=Vector2.ZERO
 var last_result: Dictionary={}
+var cursor_armed:=false
 func _init(owner):owner_reference=weakref(owner)
 func cancel():
+ cursor_armed=false
  anchors.clear();start_tangent=Vector2.ZERO
  view.drawing=false;view.stroke.clear();view.queue_redraw()
 func set_kind(value: String):
  if value not in ["straight","curve","free","legacy"]:return
  if value!=kind:cancel()
  kind=value;view.mode="road"
+ arm_cursor()
  if view.has_method("update_road_modes"):view.update_road_modes()
  view.queue_redraw()
 func snap(point: Vector2) -> Vector2:return view.city.RoadJunctions.snap_point(point,view.city.roads)
+func arm_cursor():cursor_armed=true;view.queue_redraw()
+func cursor_preview() -> Dictionary:
+ if not cursor_armed or view.mode!="road" or kind=="legacy" or not anchors.is_empty() or not view.pointer.is_finite():return {}
+ var center:=snap(view.pointer)
+ var width: float=view.city.config.road_width*view.road_lanes/2.0
+ var valid: bool=center.x>=0 and center.y>=0 and center.x<=view.city.width and center.y<=view.city.height
+ var probe:={"points":PackedVector2Array([center,center]),"width":width}
+ var occupied: Array=[]
+ for b in view.city.buildings:occupied.append(view.city.footprint(b))
+ for b in view.city.public_facilities.lots:occupied.append(b.polygon)
+ for b in view.city.power.plants+view.city.water.facilities:occupied.append(view.city.power_plant_footprint(b))
+ for shape in occupied:
+  if view.city._polygon_road_distance(shape,probe)<-.0005:valid=false;break
+ return {"center":center,"radius":width/2,"ok":valid,"snapped":not AngleSnap.connection(center,view.city.roads).is_empty()}
+func cursor_ring(center: Vector2,radius: float) -> PackedVector2Array:
+ var points:=PackedVector2Array()
+ for i in range(65):points.append(view.screen(center+Vector2.from_angle(TAU*i/64.0)*radius))
+ return points
+func draw_cursor(state: Dictionary):
+ if state.is_empty():return
+ var edge:=Color("3ddc84") if state.ok else Color("ef5350")
+ var fill:=edge;fill.a=.35
+ var disc:=cursor_ring(state.center,state.radius)
+ view.draw_colored_polygon(disc,fill);view.draw_polyline(disc,edge,2,true)
+ if state.snapped:
+  var ring:=cursor_ring(state.center,state.radius*1.33)
+  for i in range(0,64,4):view.draw_polyline(ring.slice(i,i+3),Color("36b7ff"),2,true)
 func destination(point: Vector2,first: Vector2) -> Vector2:
  var result:=snap(point)
  # The one-cell snap radius must not collapse an intentional four-metre extension.
@@ -100,6 +130,7 @@ func click(point: Vector2):
  last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true)
  if last_result.ok:
   view.stop_traffic();cancel()
+  arm_cursor()
   if kind=="straight":anchors.append(points[-1]);start_tangent=tangent_at(points[-1])
   view.refresh()
 func handle_input(event: InputEvent) -> bool:
@@ -117,7 +148,8 @@ func handle_input(event: InputEvent) -> bool:
    return true
  return false
 func draw_preview():
- if view.mode!="road" or kind=="legacy" or anchors.is_empty() or view.get_viewport().gui_get_hovered_control()!=null:return
+ if view.mode!="road" or kind=="legacy" or view.get_viewport().gui_get_hovered_control()!=null:return
+ if anchors.is_empty():draw_cursor(cursor_preview());return
  var result:=preview()
  if result.points.size()<2:return
  view.draw_ribbon(result.points,view.road_lanes,Color(.3,.9,.5,.55) if result.ok else Color(.95,.3,.25,.55))

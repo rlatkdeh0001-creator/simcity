@@ -1,0 +1,11 @@
+{
+  "blue_pixels": 0,
+  "center": "(40.0, 40.0)",
+  "green_pixels": 900,
+  "input": "real category/mode button and map motion",
+  "ok": true,
+  "radius": 1.0,
+  "roads_unchanged": true,
+  "snapped": false,
+  "viewport": "(1920, 1080)"
+}

@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "path" variable because the value doesn't have a set type.
+   at: GDScript::reload (D:/project/simcity/tools/capture_road_cursor.gd:34)
+ERROR: Failed to load script "D:/project/simcity/tools/capture_road_cursor.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

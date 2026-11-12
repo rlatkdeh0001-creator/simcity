@@ -997,6 +997,7 @@ func activate_tool(tool: String):
   _:
    zone="" if tool=="build_erase" else ("commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential"))
    mode="build" if tool.begins_with("build") else tool
+ if tool=="road" and road_drawer!=null:road_drawer.arm_cursor()
  refresh()
 
 func refresh():
