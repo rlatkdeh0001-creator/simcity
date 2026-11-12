@@ -1,0 +1,54 @@
+{
+  "id": "primary-tile-grain-01",
+  "name": "곡물 밭",
+  "kind": "primary_work_tile",
+  "industry": "farm_grain",
+  "footprint_cells": [
+    1,
+    1
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    4,
+    4
+  ],
+  "floors": 0,
+  "footprint_status": "user-specified",
+  "front": "-Y (Blender) / +Z (Godot)",
+  "front_blender": "-Y",
+  "front_godot": "+Z",
+  "vertex_bounds_m": [
+    [
+      -2.0,
+      -2.0,
+      -0.11999999731779099
+    ],
+    [
+      2.0,
+      2.0,
+      0.9599999785423279
+    ]
+  ],
+  "measured_dimensions_m": [
+    4.0,
+    4.0,
+    1.0799999758601189
+  ],
+  "triangles": 1464,
+  "camera_elevation_degrees": 30,
+  "game_registered": false,
+  "approval_status": "pending-user-review",
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "edge_period_m": [
+    4,
+    4
+  ],
+  "soil_surface_z_m": 0,
+  "furrow_surface_z_m": 0.003,
+  "base_min_z_m": -0.12,
+  "crop_counts": {
+    "rows": 6,
+    "plants_per_row": 8
+  },
+  "growth_building": false
+}

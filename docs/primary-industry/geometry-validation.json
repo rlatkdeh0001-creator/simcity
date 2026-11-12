@@ -1,0 +1,367 @@
+{
+  "assets": [
+    {
+      "id": "primary-farm-grain-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "exact_footprint": true,
+        "within_lot": true,
+        "ground_plinth": true,
+        "bounds_metadata": true,
+        "triangle_metadata": true,
+        "camera_orthographic": true,
+        "camera_elevation_30": true,
+        "camera_frame_margin": true,
+        "image_size": true,
+        "transparent": true,
+        "no_external_textures": true,
+        "fonts_packed": true,
+        "source_only": true,
+        "front_metadata": true,
+        "silo_count": true,
+        "road_front": true,
+        "front_door": true,
+        "front_garage": true,
+        "storey_height": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        7.679999940097332
+      ],
+      "triangles": 14704
+    },
+    {
+      "id": "primary-tile-grain-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "exact_footprint": true,
+        "within_lot": true,
+        "ground_plinth": true,
+        "bounds_metadata": true,
+        "triangle_metadata": true,
+        "camera_orthographic": true,
+        "camera_elevation_30": true,
+        "camera_frame_margin": true,
+        "image_size": true,
+        "transparent": true,
+        "no_external_textures": true,
+        "fonts_packed": true,
+        "source_only": true,
+        "front_metadata": true,
+        "opposite_edge_profile_0": true,
+        "opposite_edge_profile_1": true,
+        "crop_period_0": true,
+        "crop_period_1": true,
+        "tile_triangle_budget": true,
+        "single_tile_in_source": true,
+        "no_border_objects": true
+      },
+      "passed": true,
+      "measured_dimensions_m": [
+        4.0,
+        4.0,
+        1.0799999758601189
+      ],
+      "triangles": 1464,
+      "edge_signatures": {
+        "0": [
+          [
+            [
+              -2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ]
+          ],
+          [
+            [
+              -2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ]
+          ]
+        ],
+        "1": [
+          [
+            [
+              -2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -1.74667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -1.58667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -1.08,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.92,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.41333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.25333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.25333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.41333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.92,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.08,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.58667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.74667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ]
+          ],
+          [
+            [
+              -2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ],
+            [
+              -1.74667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -1.58667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -1.08,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.92,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.41333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              -0.25333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.25333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.41333,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              0.92,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.08,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.58667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              1.74667,
+              0.003,
+              [
+                "furrow"
+              ]
+            ],
+            [
+              2.0,
+              -0.12,
+              [
+                "soil"
+              ]
+            ],
+            [
+              2.0,
+              0.0,
+              [
+                "soil"
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

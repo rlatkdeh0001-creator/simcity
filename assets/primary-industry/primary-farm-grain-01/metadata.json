@@ -1,0 +1,49 @@
+{
+  "id": "primary-farm-grain-01",
+  "name": "곡물 농장",
+  "kind": "primary_main",
+  "industry": "farm_grain",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "floors": 2,
+  "footprint_status": "user-specified",
+  "front": "-Y (Blender) / +Z (Godot)",
+  "front_blender": "-Y",
+  "front_godot": "+Z",
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      7.559999942779541
+    ]
+  ],
+  "measured_dimensions_m": [
+    16.0,
+    16.0,
+    7.679999940097332
+  ],
+  "triangles": 14704,
+  "camera_elevation_degrees": 30,
+  "game_registered": false,
+  "approval_status": "pending-user-review",
+  "source": "original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs",
+  "main_storey_height_m": 3.05,
+  "main_floors": 2,
+  "garage_floors": 1,
+  "silo_count": 2,
+  "silo_floors": 0,
+  "floor_reference_m": 0.12,
+  "plinth_min_z_m": -0.12
+}

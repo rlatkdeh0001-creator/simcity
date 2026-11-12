@@ -1,0 +1,500 @@
+Blender 4.3.2
+Fra:1 Mem:22.24M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LotPlinth
+Fra:1 Mem:22.25M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway
+Fra:1 Mem:22.25M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Farmhouse
+Fra:1 Mem:22.26M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EntranceFrame
+Fra:1 Mem:22.26M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | EntranceGlass
+Fra:1 Mem:22.28M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | DoorHandle
+Fra:1 Mem:22.29M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FarmhouseWindow
+Fra:1 Mem:22.30M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WindowSill
+Fra:1 Mem:22.31M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sign_GRAIN
+Fra:1 Mem:22.33M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WindowMullion
+Fra:1 Mem:22.33M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FarmhouseWindow.001
+Fra:1 Mem:22.40M (Peak 22.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WindowSill.001
+Fra:1 Mem:22.43M (Peak 22.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FarmhouseWindow.002
+Fra:1 Mem:22.43M (Peak 22.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WindowSill.002
+Fra:1 Mem:22.47M (Peak 22.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FarmhouseWindow.003
+Fra:1 Mem:22.47M (Peak 22.47M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WindowSill.003
+Fra:1 Mem:22.50M (Peak 22.50M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideWindow
+Fra:1 Mem:22.50M (Peak 22.50M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideWindow.001
+Fra:1 Mem:22.51M (Peak 22.51M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PorchCanopy
+Fra:1 Mem:22.52M (Peak 22.52M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PorchPost
+Fra:1 Mem:22.53M (Peak 22.53M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PorchPost.001
+Fra:1 Mem:22.54M (Peak 22.54M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageSideWall
+Fra:1 Mem:22.54M (Peak 22.54M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageSideWall.001
+Fra:1 Mem:22.58M (Peak 22.58M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageRearWall
+Fra:1 Mem:22.59M (Peak 22.59M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageLintel
+Fra:1 Mem:22.62M (Peak 22.62M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageSlab
+Fra:1 Mem:22.63M (Peak 22.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageRoof
+Fra:1 Mem:22.61M (Peak 22.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GarageFascia
+Fra:1 Mem:22.62M (Peak 22.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorHood
+Fra:1 Mem:22.62M (Peak 22.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorSeat
+Fra:1 Mem:22.63M (Peak 22.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorRoof
+Fra:1 Mem:22.64M (Peak 22.64M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorRoofPost
+Fra:1 Mem:22.66M (Peak 22.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorRoofPost.001
+Fra:1 Mem:22.66M (Peak 22.66M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorHub
+Fra:1 Mem:22.69M (Peak 22.69M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorTyre.001
+Fra:1 Mem:22.69M (Peak 22.69M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorTyre.002
+Fra:1 Mem:22.71M (Peak 22.71M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorHub.002
+Fra:1 Mem:22.73M (Peak 22.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorTyre.003
+Fra:1 Mem:22.74M (Peak 22.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TractorHub.003
+Fra:1 Mem:22.74M (Peak 22.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloConicalCap
+Fra:1 Mem:22.77M (Peak 22.77M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand
+Fra:1 Mem:22.78M (Peak 22.78M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.001
+Fra:1 Mem:22.80M (Peak 22.80M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.002
+Fra:1 Mem:22.81M (Peak 22.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.003
+Fra:1 Mem:22.82M (Peak 22.82M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.004
+Fra:1 Mem:22.82M (Peak 22.82M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRail
+Fra:1 Mem:22.85M (Peak 22.85M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRail.001
+Fra:1 Mem:22.85M (Peak 22.85M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung
+Fra:1 Mem:22.87M (Peak 22.87M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.001
+Fra:1 Mem:22.88M (Peak 22.88M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.002
+Fra:1 Mem:22.89M (Peak 22.89M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.003
+Fra:1 Mem:22.89M (Peak 22.89M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.005
+Fra:1 Mem:22.92M (Peak 22.92M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.006
+Fra:1 Mem:22.93M (Peak 22.93M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.007
+Fra:1 Mem:22.95M (Peak 22.95M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.009
+Fra:1 Mem:22.96M (Peak 22.96M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.010
+Fra:1 Mem:22.97M (Peak 22.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.011
+Fra:1 Mem:22.97M (Peak 22.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.012
+Fra:1 Mem:23.00M (Peak 23.00M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.013
+Fra:1 Mem:23.01M (Peak 23.01M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.014
+Fra:1 Mem:23.02M (Peak 23.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainSilo.001
+Fra:1 Mem:23.02M (Peak 23.02M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.005
+Fra:1 Mem:23.05M (Peak 23.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.006
+Fra:1 Mem:23.05M (Peak 23.05M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.007
+Fra:1 Mem:23.08M (Peak 23.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.008
+Fra:1 Mem:23.08M (Peak 23.08M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloBand.009
+Fra:1 Mem:23.10M (Peak 23.10M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRail.002
+Fra:1 Mem:23.12M (Peak 23.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRail.003
+Fra:1 Mem:23.12M (Peak 23.12M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.015
+Fra:1 Mem:23.13M (Peak 23.13M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.016
+Fra:1 Mem:23.14M (Peak 23.14M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.017
+Fra:1 Mem:23.16M (Peak 23.16M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.018
+Fra:1 Mem:23.16M (Peak 23.16M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.019
+Fra:1 Mem:23.17M (Peak 23.17M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.020
+Fra:1 Mem:23.19M (Peak 23.19M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.021
+Fra:1 Mem:23.20M (Peak 23.20M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.022
+Fra:1 Mem:23.22M (Peak 23.22M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.023
+Fra:1 Mem:23.21M (Peak 23.22M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.024
+Fra:1 Mem:23.23M (Peak 23.23M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.025
+Fra:1 Mem:23.23M (Peak 23.23M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.026
+Fra:1 Mem:23.25M (Peak 23.25M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.027
+Fra:1 Mem:23.26M (Peak 23.26M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.028
+Fra:1 Mem:23.27M (Peak 23.27M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SiloLadderRung.029
+Fra:1 Mem:23.29M (Peak 23.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainLoadingApron
+Fra:1 Mem:23.28M (Peak 23.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Pallet
+Fra:1 Mem:23.29M (Peak 23.29M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainSack
+Fra:1 Mem:23.30M (Peak 23.30M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainSack.001
+Fra:1 Mem:23.31M (Peak 23.31M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainSack.002
+Fra:1 Mem:23.32M (Peak 23.32M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | GrainSack.003
+Fra:1 Mem:23.32M (Peak 23.32M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost
+Fra:1 Mem:23.34M (Peak 23.34M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.001
+Fra:1 Mem:23.35M (Peak 23.35M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.002
+Fra:1 Mem:23.35M (Peak 23.35M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.003
+Fra:1 Mem:23.37M (Peak 23.37M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideFence
+Fra:1 Mem:23.38M (Peak 23.38M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideFence.001
+Fra:1 Mem:23.39M (Peak 23.39M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.004
+Fra:1 Mem:23.39M (Peak 23.39M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.005
+Fra:1 Mem:23.40M (Peak 23.40M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.006
+Fra:1 Mem:23.41M (Peak 23.41M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FencePost.007
+Fra:1 Mem:23.42M (Peak 23.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideFence.002
+Fra:1 Mem:23.42M (Peak 23.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SideFence.003
+Fra:1 Mem:23.44M (Peak 23.44M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:18.20M (Peak 23.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.20M (Peak 23.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:18.20M (Peak 23.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.20M (Peak 23.44M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:18.29M (Peak 23.44M) | Time:00:00.02 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:18.32M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:18.32M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:18.32M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:18.32M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:18.54M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:18.66M (Peak 23.44M) | Time:00:00.02 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Geometry BVH WindowMullion 1/1 | Building BVH
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Geometry BVH WindowMullion 1/1 | Building BVH 0%
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:1.13M, Peak:1.57M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:18.65M (Peak 23.44M) | Time:00:00.02 | Mem:1.13M, Peak:1.57M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.13M, Peak:1.57M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.74M, Peak:1.74M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.74M, Peak:1.74M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.74M, Peak:1.74M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:19.18M (Peak 23.44M) | Time:00:00.03 | Mem:1.74M, Peak:1.74M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:19.19M (Peak 23.44M) | Time:00:00.03 | Mem:1.66M, Peak:1.74M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:19.19M (Peak 23.44M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:19.19M (Peak 23.44M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:19.19M (Peak 23.44M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:53.19M (Peak 53.19M) | Time:00:00.27 | Remaining:00:11.60 | Mem:35.74M, Peak:35.74M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:68.30M (Peak 98.51M) | Time:00:07.98 | Mem:35.74M, Peak:35.74M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:68.30M (Peak 98.51M) | Time:00:07.98 | Mem:35.74M, Peak:35.74M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-farm-grain-01/building.png'
+Time: 00:08.25 (Saving: 00:00.27)
+
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+Info: Saved "primary-farm-grain-01.blend"
+PRIMARY_DONE primary-farm-grain-01 [16.0, 16.0, 7.679999940097332] 14704
+Fra:1 Mem:19.94M (Peak 19.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TileSoil
+Fra:1 Mem:19.94M (Peak 19.94M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatStem
+Fra:1 Mem:19.95M (Peak 19.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead
+Fra:1 Mem:19.95M (Peak 19.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.001
+Fra:1 Mem:19.95M (Peak 19.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.001
+Fra:1 Mem:19.95M (Peak 19.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.002
+Fra:1 Mem:19.95M (Peak 19.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.002
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.003
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.003
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.004
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.004
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.005
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.006
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.006
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.007
+Fra:1 Mem:19.96M (Peak 19.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatStem.008
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.008
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.008
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.009
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.009
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.010
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.010
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.011
+Fra:1 Mem:19.97M (Peak 19.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.011
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.012
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.012
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.013
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.014
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.015
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.015
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.016
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.017
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.018
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.019
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.019
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.020
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.021
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.021
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.022
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.022
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.023
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.023
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.024
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.024
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.025
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.025
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.026
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.026
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.027
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.027
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.028
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.028
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.029
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.029
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.030
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.030
+Fra:1 Mem:20.01M (Peak 20.01M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.031
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.031
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.032
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.033
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.033
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.034
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.034
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.035
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.035
+Fra:1 Mem:20.02M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.036
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.036
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.037
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.038
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.038
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.039
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.039
+Fra:1 Mem:20.03M (Peak 20.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.040
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.040
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.041
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.042
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.043
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.047
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.044
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.047
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.044
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.045
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.046
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.045
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.046
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:15.66M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:15.66M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:15.66M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:15.66M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:15.75M (Peak 20.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:15.78M (Peak 20.05M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:15.78M (Peak 20.05M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:15.78M (Peak 20.05M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:15.78M (Peak 20.05M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:15.79M (Peak 20.05M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:15.82M (Peak 20.05M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH WheatStem 2/3 | Building BVH
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH WheatStem.001 3/3 | Building BVH
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH WheatStem.001 3/3 | Building BVH 0%
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.10M, Peak:0.12M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:15.81M (Peak 20.05M) | Time:00:00.00 | Mem:0.10M, Peak:0.12M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.10M, Peak:0.12M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.14M, Peak:0.22M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.84M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.85M (Peak 20.05M) | Time:00:00.00 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:43.67M (Peak 43.67M) | Time:00:00.16 | Remaining:00:07.10 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:56.03M (Peak 80.75M) | Time:00:05.15 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:56.03M (Peak 80.75M) | Time:00:05.15 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-grain-01/tile.png'
+Time: 00:05.23 (Saving: 00:00.08)
+
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TileSoil
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatStem
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.001
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.001
+Fra:1 Mem:65.31M (Peak 65.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.002
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.003
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.003
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.004
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.005
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.005
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.006
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.007
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.007
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.008
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.008
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.009
+Fra:1 Mem:65.32M (Peak 65.32M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.009
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.010
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.011
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.011
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.012
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.012
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.013
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.013
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.014
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.014
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.015
+Fra:1 Mem:65.33M (Peak 65.33M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.016
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.017
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.017
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.018
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.018
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.019
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.019
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.020
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.020
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.021
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.021
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.022
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.022
+Fra:1 Mem:65.34M (Peak 65.34M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.023
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.023
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.024
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.024
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.025
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.025
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.026
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.026
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.027
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.027
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.028
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.028
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.029
+Fra:1 Mem:65.35M (Peak 65.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.029
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.030
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.030
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.031
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.031
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.032
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.032
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.033
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.033
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.034
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.034
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.035
+Fra:1 Mem:65.36M (Peak 65.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.035
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.036
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.036
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.037
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.037
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.038
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.038
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.039
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.039
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.040
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.040
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.041
+Fra:1 Mem:65.37M (Peak 65.37M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.041
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.042
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.042
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.043
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.044
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.044
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.045
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.045
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.046
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.046
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatHead.047
+Fra:1 Mem:65.38M (Peak 65.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WheatLeaves.047
+Fra:1 Mem:65.71M (Peak 65.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:39.40M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:39.41M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:39.41M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:39.41M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:39.49M (Peak 65.71M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:39.81M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:39.81M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:39.81M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:39.81M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:39.82M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:39.94M (Peak 65.71M) | Time:00:00.07 | Mem:0.32M, Peak:0.32M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH TileSoil 1/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatStem 3/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.047 100/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.047 100/100 | Building BVH 0%
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.047 100/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves 5/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatHead.001 6/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatHead.047 99/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.33M, Peak:0.33M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.001 7/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.046 98/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatHead.046 97/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatHead.002 8/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.045 96/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.002 9/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatHead.003 10/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.003 11/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatHead.004 12/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.34M, Peak:0.34M | Scene, ViewLayer | Updating Geometry BVH WheatHead.045 95/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.004 13/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.005 15/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatHead.006 16/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.044 94/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatHead.007 18/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.007 19/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.35M, Peak:0.35M | Scene, ViewLayer | Updating Geometry BVH WheatStem.001 20/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatHead.008 21/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatHead.009 23/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.009 24/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatHead.010 25/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.010 26/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatHead.011 27/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.011 28/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.36M, Peak:0.36M | Scene, ViewLayer | Updating Geometry BVH WheatHead.012 29/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.012 30/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatHead.013 31/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.013 32/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatHead.014 33/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.014 34/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatHead.015 35/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatHead.044 93/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.37M, Peak:0.37M | Scene, ViewLayer | Updating Geometry BVH WheatHead.016 37/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.043 92/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.016 38/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatHead.043 91/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.042 90/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatHead.042 89/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.041 88/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatHead.017 39/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Geometry BVH WheatHead.041 87/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.38M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatHead.018 41/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.018 42/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.040 86/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatHead.040 85/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.019 44/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.39M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.039 84/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.39M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatHead.020 45/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatHead.021 47/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.038 82/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatHead.022 49/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.022 50/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatHead.023 51/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.40M, Peak:0.40M | Scene, ViewLayer | Updating Geometry BVH WheatHead.024 53/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatHead.038 81/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.024 54/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.037 80/100 | Building BVH
+Fra:1 Mem:39.83M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatHead.025 55/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.025 56/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatHead.026 57/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.026 58/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.41M, Peak:0.41M | Scene, ViewLayer | Updating Geometry BVH WheatHead.027 59/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.027 60/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatHead.028 61/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.028 62/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatHead.029 63/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.029 64/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.030 66/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatHead.031 67/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.42M, Peak:0.42M | Scene, ViewLayer | Updating Geometry BVH WheatHead.036 77/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.031 68/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.035 76/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatHead.035 75/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.032 70/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatHead.033 71/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.034 74/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatHead.034 73/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.43M, Peak:0.43M | Scene, ViewLayer | Updating Geometry BVH WheatLeaves.033 72/100 | Building BVH
+Fra:1 Mem:39.84M (Peak 65.71M) | Time:00:00.07 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:39.85M (Peak 65.71M) | Time:00:00.07 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:39.85M (Peak 65.71M) | Time:00:00.07 | Mem:0.88M, Peak:0.92M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:39.85M (Peak 65.71M) | Time:00:00.07 | Mem:0.88M, Peak:0.92M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.88M, Peak:0.92M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.90M, Peak:0.92M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.91M, Peak:0.92M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.92M, Peak:0.92M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.92M, Peak:0.92M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:0.92M, Peak:0.92M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:39.88M (Peak 65.71M) | Time:00:00.07 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:39.89M (Peak 65.71M) | Time:00:00.07 | Mem:1.01M, Peak:1.01M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:39.89M (Peak 65.71M) | Time:00:00.07 | Mem:1.01M, Peak:1.01M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:39.90M (Peak 65.71M) | Time:00:00.07 | Mem:0.93M, Peak:1.01M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:39.90M (Peak 65.71M) | Time:00:00.07 | Mem:1.02M, Peak:1.02M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:39.90M (Peak 65.71M) | Time:00:00.07 | Mem:1.02M, Peak:1.02M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:39.92M (Peak 65.71M) | Time:00:00.07 | Mem:1.02M, Peak:1.02M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:67.74M (Peak 67.74M) | Time:00:00.21 | Remaining:00:06.49 | Mem:28.82M, Peak:28.82M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:80.10M (Peak 104.82M) | Time:00:05.19 | Mem:28.82M, Peak:28.82M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:80.10M (Peak 104.82M) | Time:00:05.19 | Mem:28.82M, Peak:28.82M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-grain-01/tile-3x3.png'
+Time: 00:05.28 (Saving: 00:00.08)
+
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+Info: Saved "primary-tile-grain-01.blend"
+PRIMARY_DONE primary-tile-grain-01 [4.0, 4.0, 0.9100000187754631] 1140
+
+Blender quit

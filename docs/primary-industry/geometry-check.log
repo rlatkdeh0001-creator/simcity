@@ -1,0 +1,8 @@
+VERIFY primary-farm-grain-01 {'metres': True, 'finite': True, 'exact_footprint': True, 'within_lot': True, 'ground_plinth': True, 'bounds_metadata': True, 'triangle_metadata': True, 'camera_orthographic': True, 'camera_elevation_30': True, 'camera_frame_margin': True, 'image_size': True, 'transparent': True, 'no_external_textures': True, 'fonts_packed': True, 'source_only': True, 'front_metadata': True, 'silo_count': True, 'road_front': True, 'front_door': True, 'front_garage': True, 'storey_height': True}
+VERIFY primary-tile-grain-01 {'metres': True, 'finite': True, 'exact_footprint': True, 'within_lot': True, 'ground_plinth': True, 'bounds_metadata': True, 'triangle_metadata': True, 'camera_orthographic': True, 'camera_elevation_30': True, 'camera_frame_margin': True, 'image_size': True, 'transparent': True, 'no_external_textures': True, 'fonts_packed': True, 'source_only': True, 'front_metadata': True, 'opposite_edge_profile_0': True, 'opposite_edge_profile_1': True, 'crop_period_0': True, 'crop_period_1': True, 'tile_triangle_budget': True, 'single_tile_in_source': True, 'no_border_objects': True}
+RESULT 44 checks passed
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/primary-industry/primary-farm-grain-01/primary-farm-grain-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-grain-01/primary-tile-grain-01.blend"
+
+Blender quit

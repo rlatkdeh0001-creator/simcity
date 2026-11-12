@@ -1,0 +1,47 @@
+[
+  {
+    "id": "primary-farm-grain-01",
+    "image": "building.png",
+    "size_px": [
+      900,
+      1100
+    ],
+    "alpha_bbox_px": [
+      57,
+      326,
+      843,
+      858
+    ],
+    "sha256": "8948c3d1e1f089ca13d6559eee2598df666b765d53c4c0d6d74c2c961e70d548"
+  },
+  {
+    "id": "primary-tile-grain-01",
+    "image": "tile.png",
+    "size_px": [
+      900,
+      900
+    ],
+    "alpha_bbox_px": [
+      57,
+      217,
+      843,
+      710
+    ],
+    "sha256": "d9a8dcf1ee3eb920a657a574ed181d5423ec67d075e6c472497ca5cdd4eea343"
+  },
+  {
+    "id": "primary-tile-grain-01",
+    "image": "tile-3x3.png",
+    "size_px": [
+      900,
+      900
+    ],
+    "alpha_bbox_px": [
+      57,
+      241,
+      843,
+      668
+    ],
+    "sha256": "700c614dac3b13da15dbd10e402520b07e4c42014a9c2ef6515b3336a2df09aa"
+  }
+]
