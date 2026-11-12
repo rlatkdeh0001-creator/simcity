@@ -23,11 +23,11 @@
     ],
     "alpha_bbox_px": [
       57,
-      227,
+      230,
       843,
-      697
+      700
     ],
-    "sha256": "40f184a1ad8b6a45665b4727dacc83751e8ee7abe76bf0f34b5cebeef20dac32"
+    "sha256": "0d93f74a51c39632588cf29a9c018caab4d6fa6dc1366670b22810ca77a256b3"
   },
   {
     "id": "primary-tile-grain-01",
@@ -38,10 +38,10 @@
     ],
     "alpha_bbox_px": [
       57,
-      244,
-      844,
-      664
+      245,
+      843,
+      665
     ],
-    "sha256": "be17b303404b97b1dc5d2ab4a43d6f42cb1b5dafb7b06b38c97852c0c0b3ef85"
+    "sha256": "acde2172e1665a1221c0557140d70a7bc606afa1b1f2e821de0ce0260a56eca9"
   }
 ]

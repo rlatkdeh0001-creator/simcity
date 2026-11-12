@@ -1,5 +1,5 @@
 """Read-only 100-tile Blender review. Not a Godot runtime performance benchmark."""
-import bpy,math
+import bpy,math,json
 from pathlib import Path
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,4 +15,5 @@ for ix in range(10):
 cam=scene.camera;cam.data.ortho_scale*=10
 scene.render.filepath=str(ROOT/'docs/primary-industry/grain-ribbons/field-10x10.png');scene.cycles.samples=32
 bpy.ops.render.render(write_still=True)
-print('FIELD_REVIEW: 100 tiles, 40x40m, 14000 triangles; source unchanged; not a runtime benchmark')
+meta=json.loads((ROOT/'assets/primary-industry/primary-tile-grain-01/metadata.json').read_text())
+print(f"FIELD_REVIEW: 100 tiles, 40x40m, {meta['triangles']*100} triangles; source unchanged; not a runtime benchmark")
