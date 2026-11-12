@@ -8,9 +8,9 @@
     57,
     251,
     843,
-    653
+    652
   ],
-  "sha256": "7156d7e40b53e3b2964575197b2c7303662c51dc959cda3957bbbf1ef13d92d7",
+  "sha256": "3157f2a5a6fbfdc09b08006a54ff20b73fa30acf2272d7bb3ae48e602afd4358",
   "tiles": 100,
-  "source_triangles_per_tile": 284
+  "source_triangles_per_tile": 140
 }

@@ -1,0 +1,51 @@
+{
+  "id": "primary-tile-pasture-01",
+  "name": "목초지",
+  "kind": "primary_work_tile",
+  "industry": "farm_livestock",
+  "footprint_cells": [
+    1,
+    1
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    4,
+    4
+  ],
+  "floors": 0,
+  "footprint_status": "user-specified",
+  "front": "-Y (Blender) / +Z (Godot)",
+  "front_blender": "-Y",
+  "front_godot": "+Z",
+  "vertex_bounds_m": [
+    [
+      -2.0,
+      -2.0,
+      -0.11999999731779099
+    ],
+    [
+      2.0,
+      2.0,
+      1.2899999618530273
+    ]
+  ],
+  "measured_dimensions_m": [
+    4.0,
+    4.0,
+    1.4099999591708183
+  ],
+  "triangles": 216,
+  "mesh_objects": 18,
+  "camera_elevation_degrees": 30,
+  "game_registered": false,
+  "approval_status": "pending-user-review",
+  "style_reference": "6afefd8 smooth grain ribbon tile",
+  "edge_period_m": [
+    4,
+    4
+  ],
+  "ground_surface_z_m": 0,
+  "water_surface_included": false,
+  "minimum_terrain_z_m": 0,
+  "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+}

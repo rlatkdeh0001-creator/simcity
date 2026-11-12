@@ -26,15 +26,15 @@
     [
       2.0,
       2.0,
-      0.7979999780654907
+      0.7400000095367432
     ]
   ],
   "measured_dimensions_m": [
     4.0,
     4.0,
-    0.9179999753832817
+    0.8600000068545341
   ],
-  "triangles": 284,
+  "triangles": 140,
   "camera_elevation_degrees": 30,
   "game_registered": false,
   "approval_status": "pending-user-review",
@@ -56,25 +56,8 @@
   "furrow_width_m": 0.06,
   "ground_coverage_fraction": 0.94,
   "crop_height_range_m": [
-    0.678,
-    0.798
-  ],
-  "longitudinal_wave_amplitude_m": 0.04,
-  "cross_profile_tooth_offsets_m": [
-    0,
-    0.008,
-    -0.012,
-    0.018,
-    -0.012,
-    0.008,
-    0
-  ],
-  "brightness_space": "linear RGB scale; fixed hue",
-  "row_brightness_factors": [
-    0.92,
-    1.06,
-    0.97,
-    1.1
+    0.7,
+    0.74
   ],
   "growth_building": false
 }

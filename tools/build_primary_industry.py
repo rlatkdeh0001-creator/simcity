@@ -73,38 +73,27 @@ def farmhouse():
 
 
 def grain_tile():
- G.box('TileSoil',(0,0,-.06),(4,4,.12),'wheat_soil',0)
- # Four broad crop masses, each with four longitudinal stations: 284 triangles total.
- # Periodic low waves and shallow crosswise teeth suggest ears without per-plant meshes.
- brightness=[.92,1.06,.97,1.10]
+ G.box('TileSoil',(0,0,-.06),(4,4,.12),'soil',0)
+ # Four broad, low, closed, extruded canopies. No stems, ears, texture or per-plant meshes.
+ # Each row is constant along Y, so profiles AND lighting normals meet at tile edges.
  for ix in range(4):
-  mat=bpy.data.materials.new('WheatRow_%02d'%ix);mat.use_nodes=True
-  base=G.rgb('e2b94f');mat.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=tuple(v*brightness[ix] for v in base[:3])+(1,)
-  mat.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=.76
-  key='row_%02d'%ix;G.M[key]=mat
-  x=-2+(ix+.5);radius=.47;rise=.60+.04*(ix%2);sign=1 if ix%2==0 else -1
-  waves=[0,.04*sign,-.04*sign,0];ys=[-2,-2/3,2/3,2]
-  teeth=[0,.008,-.012,.018,-.012,.008,0];sections=[]
-  for wave in waves:
-   sections.append([(-radius,.006)]+[(-radius*math.cos(j*math.pi/6),.10+(rise+wave)*math.sin(j*math.pi/6)+teeth[j]) for j in range(7)]+[(radius,.006)])
-  n=len(sections[0]);vs=[(x+xx,y,z) for y,section in zip(ys,sections) for xx,z in section]
-  faces=[tuple(reversed(range(n))),tuple(range(3*n,4*n))]
-  faces += [(k*n+j,k*n+(j+1)%n,(k+1)*n+(j+1)%n,(k+1)*n+j) for k in range(3) for j in range(n)]
-  ob=mesh('WheatRibbon_%02d'%ix,vs,faces,key);ob['row_center_x_m']=x;ob['row_width_m']=radius*2;ob['crop_height_m']=max(z for _,_,z in vs);ob['brightness_factor']=brightness[ix];ob['wave_amplitude_m']=.04
-  # Both edge profiles and edge tangents repeat. Cap faces never affect canopy normals.
-  slopes=[.03*sign,-.015*sign,-.015*sign,.03*sign];normals=[]
+  x=-2+(ix+.5);radius=.47;rise=.60+.04*(ix%2)
+  section=[(-radius,.006)]+[(-radius*math.cos(j*math.pi/6),.10+rise*math.sin(j*math.pi/6)) for j in range(7)]+[(radius,.006)]
+  n=len(section);vs=[(x+xx,y,z) for y in [-2,2] for xx,z in section]
+  faces=[tuple(reversed(range(n))),tuple(range(n,2*n))]+[(j,(j+1)%n,(j+1)%n+n,j+n) for j in range(n)]
+  ob=mesh('WheatRibbon_%02d'%ix,vs,faces,'wheat_light' if ix%2 else 'wheat_gold');ob['row_center_x_m']=x;ob['row_width_m']=radius*2;ob['crop_height_m']=.10+rise
+  # Explicit loop normals prevent cap faces from causing transverse shading seams.
+  normals=[]
   for poly in ob.data.polygons:
    poly.use_smooth=True
    for loop_index in poly.loop_indices:
-    vertex=ob.data.loops[loop_index].vertex_index;station,vi=divmod(vertex,n)
-    side=(poly.index-2)%n
+    vi=ob.data.loops[loop_index].vertex_index%n
     if poly.index<2:normal=(0,-1 if poly.index==0 else 1,0)
-    elif side==0:normal=(-1,0,0)
-    elif side==n-2:normal=(1,0,0)
-    elif side==n-1:normal=(0,0,-1)
+    elif poly.index==2:normal=(-1,0,0)
+    elif poly.index==n:normal=(1,0,0)
+    elif poly.index==n+1:normal=(0,0,-1)
     else:
-     angle=max(0,min(6,vi-1))*math.pi/6
-     normal=Vector((-(rise+waves[station])*math.cos(angle),-radius*math.sin(angle)**2*slopes[station],radius*math.sin(angle))).normalized()
+     angle=max(0,min(6,vi-1))*math.pi/6;normal=Vector((-rise*math.cos(angle),0,radius*math.sin(angle))).normalized()
     normals.append(normal)
   ob.data.normals_split_custom_set(normals)
 
@@ -131,15 +120,15 @@ def studio(points,size):
  return cam
 
 def build(ident,name,tile):
- G.COLORS.update(soil='a69b7c',furrow='968a6d',grain='c4ae6b',straw='a4a16c',wheat_gold='e2b94f',wheat_light='ebc96b',wheat_soil='786342');G.reset();scene=bpy.context.scene
+ G.COLORS.update(soil='a69b7c',furrow='968a6d',grain='c4ae6b',straw='a4a16c',wheat_gold='e2b94f',wheat_light='ebc96b');G.reset();scene=bpy.context.scene
  (grain_tile if tile else farmhouse)();points,bb,tri=bounds();width=4 if tile else 16
  assert all(bb[0][i]>=-width/2-.001 and bb[1][i]<=width/2+.001 for i in [0,1])
- assert not tile or 0<tri<=300,tri  # User approved lower counts for repeated ribbon tiles.
+ assert not tile or 0<tri<=200,tri  # User approved lower counts for repeated ribbon tiles.
  if not tile:
   marker=bpy.data.objects.new('RoadFront_BlenderMinusY',None);scene.collection.objects.link(marker);marker.location=(0,-8,.12)
  cam=studio(points,(900,900) if tile else (900,1100));out=OUT/ident;out.mkdir(parents=True,exist_ok=True)
  meta=dict(id=ident,name=name,kind='primary_work_tile' if tile else 'primary_main',industry='farm_grain',footprint_cells=[1,1] if tile else [4,4],cell_meters=4,lot_meters=[width,width],floors=0 if tile else 2,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bb,measured_dimensions_m=[bb[1][i]-bb[0][i] for i in range(3)],triangles=tri,camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',source='original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs')
- if tile:meta.update(edge_period_m=[4,4],soil_surface_z_m=0,furrow_surface_z_m=0,base_min_z_m=-.12,crop_representation='continuous rounded row ribbons',crop_counts={'rows':4,'individual_plants':0},row_pitch_m=1,row_width_m=.94,furrow_width_m=.06,ground_coverage_fraction=.94,crop_height_range_m=[.678,.798],longitudinal_wave_amplitude_m=.04,cross_profile_tooth_offsets_m=[0,.008,-.012,.018,-.012,.008,0],brightness_space='linear RGB scale; fixed hue',row_brightness_factors=[.92,1.06,.97,1.10],growth_building=False)
+ if tile:meta.update(edge_period_m=[4,4],soil_surface_z_m=0,furrow_surface_z_m=0,base_min_z_m=-.12,crop_representation='continuous rounded row ribbons',crop_counts={'rows':4,'individual_plants':0},row_pitch_m=1,row_width_m=.94,furrow_width_m=.06,ground_coverage_fraction=.94,crop_height_range_m=[.70,.74],growth_building=False)
  else:meta.update(main_storey_height_m=3.05,main_floors=2,garage_floors=1,silo_count=2,silo_floors=0,floor_reference_m=.12,plinth_min_z_m=-.12)
  (out/'metadata.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n')
  for f in bpy.data.fonts:

@@ -1,0 +1,24 @@
+VERIFY primary-tile-grain-01 True 140
+VERIFY primary-tile-vegetable-01 True 200
+VERIFY primary-tile-pasture-01 True 216
+VERIFY primary-tile-forestry-01 True 212
+VERIFY primary-tile-mine-iron-01 True 74
+VERIFY primary-tile-mine-coal-01 True 74
+VERIFY primary-tile-oil-01 True 152
+VERIFY primary-tile-oil-02 True 76
+VERIFY primary-tile-mine-uranium-01 True 92
+VERIFY primary-tile-fishing-01 True 162
+RESULT 179 checks passed; 10 work tiles including byte-identical grain rollback
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-grain-01/primary-tile-grain-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-vegetable-01/primary-tile-vegetable-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-pasture-01/primary-tile-pasture-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-forestry-01/primary-tile-forestry-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-mine-iron-01/primary-tile-mine-iron-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-mine-coal-01/primary-tile-mine-coal-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-oil-01/primary-tile-oil-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-oil-02/primary-tile-oil-02.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-mine-uranium-01/primary-tile-mine-uranium-01.blend"
+Read blend: "/workspace/simcity/assets/primary-industry/primary-tile-fishing-01/primary-tile-fishing-01.blend"
+
+Blender quit

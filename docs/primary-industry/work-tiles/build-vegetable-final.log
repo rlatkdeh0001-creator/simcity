@@ -1,0 +1,116 @@
+Blender 4.3.2
+Fra:1 Mem:12.33M (Peak 12.33M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TileGround
+Fra:1 Mem:12.33M (Peak 12.33M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardFruit.001
+Fra:1 Mem:14.34M (Peak 14.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardFruit
+Fra:1 Mem:14.34M (Peak 14.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardCrown
+Fra:1 Mem:14.34M (Peak 14.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TreeTrunk
+Fra:1 Mem:14.34M (Peak 14.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_03
+Fra:1 Mem:14.34M (Peak 14.34M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_01
+Fra:1 Mem:14.36M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_02
+Fra:1 Mem:14.35M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:13.72M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:13.72M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:13.72M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:13.72M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:13.81M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Scene BVH | Building BVH 0%
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:13.82M (Peak 14.36M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.04M, Peak:0.12M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:13.83M (Peak 14.36M) | Time:00:00.00 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:41.66M (Peak 41.66M) | Time:00:00.17 | Remaining:00:07.77 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:54.02M (Peak 78.74M) | Time:00:09.23 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:54.02M (Peak 78.74M) | Time:00:09.23 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-vegetable-01/tile.png'
+Time: 00:09.57 (Saving: 00:00.33)
+
+Fra:1 Mem:17.04M (Peak 17.04M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardFruit.001
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardFruit
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OrchardCrown
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TreeTrunk
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_03
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_02
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_01
+Fra:1 Mem:17.05M (Peak 17.05M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | VegetableRibbon_00
+Fra:1 Mem:17.06M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TileGround
+Fra:1 Mem:17.06M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:15.13M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:15.13M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:15.13M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:15.13M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:15.22M (Peak 17.06M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.02M, Peak:0.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH OrchardFruit.001 9/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH TileGround 1/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH TileGround 1/9 | Building BVH 0%
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH OrchardFruit 8/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH VegetableRibbon_00 2/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Geometry BVH Icosphere 7/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Geometry BVH Cylinder 6/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Geometry BVH VegetableRibbon_01 3/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Geometry BVH VegetableRibbon_03 5/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Geometry BVH VegetableRibbon_02 4/9 | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:15.24M (Peak 17.06M) | Time:00:00.00 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.08M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.25M (Peak 17.06M) | Time:00:00.00 | Mem:0.16M, Peak:0.16M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.17M, Peak:0.17M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.17M, Peak:0.17M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.08M, Peak:0.17M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.17M, Peak:0.17M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.17M, Peak:0.17M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.26M (Peak 17.06M) | Time:00:00.00 | Mem:0.17M, Peak:0.17M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:43.08M (Peak 43.08M) | Time:00:00.28 | Remaining:00:12.98 | Mem:27.98M, Peak:27.98M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:55.45M (Peak 80.16M) | Time:00:05.62 | Mem:27.98M, Peak:27.98M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:55.45M (Peak 80.16M) | Time:00:05.62 | Mem:27.98M, Peak:27.98M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-vegetable-01/tile-3x3.png'
+Time: 00:05.72 (Saving: 00:00.09)
+
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+Info: Saved "primary-tile-vegetable-01.blend"
+WORK_TILE_DONE primary-tile-vegetable-01 [4.0, 4.0, 2.0800000354647636] 200
+
+Blender quit

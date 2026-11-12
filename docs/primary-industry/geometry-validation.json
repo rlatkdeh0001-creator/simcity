@@ -62,19 +62,15 @@
         "crop_height_06_to_08": true,
         "narrow_furrows": true,
         "matching_y_boundary_shading_normals": true,
-        "low_wave_geometry": true,
-        "brightness_within_10_percent": true,
-        "material_brightness_matches": true,
-        "dark_furrow_contrast": true,
         "no_border_objects": true
       },
       "passed": true,
       "measured_dimensions_m": [
         4.0,
         4.0,
-        0.9179999753832817
+        0.8600000068545341
       ],
-      "triangles": 284,
+      "triangles": 140,
       "edge_signatures": {
         "0": [
           [
@@ -82,28 +78,28 @@
               -2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ]
           ],
@@ -112,28 +108,28 @@
               -2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ]
           ]
@@ -144,280 +140,280 @@
               -2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -1.97,
               0.006,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.97,
               0.1,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.90703,
-              0.408,
+              0.4,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.735,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.5,
-              0.718,
+              0.7,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.265,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.09297,
-              0.408,
+              0.4,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.03,
               0.006,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.03,
               0.1,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -0.97,
               0.006,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.97,
               0.1,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.90703,
-              0.428,
+              0.42,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.735,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.5,
-              0.758,
+              0.74,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.265,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.09297,
-              0.428,
+              0.42,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.03,
               0.006,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.03,
               0.1,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               0.03,
               0.006,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.03,
               0.1,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.09297,
-              0.408,
+              0.4,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.265,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.5,
-              0.718,
+              0.7,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.735,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.90703,
-              0.408,
+              0.4,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.97,
               0.006,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.97,
               0.1,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               1.03,
               0.006,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.03,
               0.1,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.09297,
-              0.428,
+              0.42,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.265,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.5,
-              0.758,
+              0.74,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.735,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.90703,
-              0.428,
+              0.42,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.97,
               0.006,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.97,
               0.1,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ]
           ],
@@ -426,287 +422,285 @@
               -2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               -1.97,
               0.006,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.97,
               0.1,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.90703,
-              0.408,
+              0.4,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.735,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.5,
-              0.718,
+              0.7,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.265,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.09297,
-              0.408,
+              0.4,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.03,
               0.006,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -1.03,
               0.1,
               [
-                "WheatRow_00"
+                "wheat_gold"
               ]
             ],
             [
               -0.97,
               0.006,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.97,
               0.1,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.90703,
-              0.428,
+              0.42,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.735,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.5,
-              0.758,
+              0.74,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.265,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.09297,
-              0.428,
+              0.42,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.03,
               0.006,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               -0.03,
               0.1,
               [
-                "WheatRow_01"
+                "wheat_light"
               ]
             ],
             [
               0.03,
               0.006,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.03,
               0.1,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.09297,
-              0.408,
+              0.4,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.265,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.5,
-              0.718,
+              0.7,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.735,
-              0.60762,
+              0.61962,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.90703,
-              0.408,
+              0.4,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.97,
               0.006,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               0.97,
               0.1,
               [
-                "WheatRow_02"
+                "wheat_gold"
               ]
             ],
             [
               1.03,
               0.006,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.03,
               0.1,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.09297,
-              0.428,
+              0.42,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.265,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.5,
-              0.758,
+              0.74,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.735,
-              0.64226,
+              0.65426,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.90703,
-              0.428,
+              0.42,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.97,
               0.006,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               1.97,
               0.1,
               [
-                "WheatRow_03"
+                "wheat_light"
               ]
             ],
             [
               2.0,
               -0.12,
               [
-                "wheat_soil"
+                "soil"
               ]
             ],
             [
               2.0,
               0.0,
               [
-                "wheat_soil"
+                "soil"
               ]
             ]
           ]
         ]
-      },
-      "max_y_boundary_normal_error_degrees": 0.04423465961263638,
-      "normal_quantization_tolerance_degrees": 0.1
+      }
     }
   ],
   "passed": true

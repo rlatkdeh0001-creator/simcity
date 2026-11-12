@@ -1,0 +1,147 @@
+Blender 4.3.2
+Fra:1 Mem:12.95M (Peak 12.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyFlag.001
+Fra:1 Mem:12.95M (Peak 12.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyFlag
+Fra:1 Mem:12.95M (Peak 12.95M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyMast
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.003
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.003
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.002
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.002
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.001
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.001
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap
+Fra:1 Mem:12.96M (Peak 12.96M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.003
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.003
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.002
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.002
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.001
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.001
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY
+Fra:1 Mem:12.97M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:12.06M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:12.06M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:12.06M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:12.06M (Peak 12.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:12.15M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Geometry BVH BuoyMast 1/1 | Building BVH
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Geometry BVH BuoyMast 1/1 | Building BVH 0%
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.11M, Peak:0.11M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:12.16M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:12.17M (Peak 12.97M) | Time:00:00.01 | Mem:0.03M, Peak:0.12M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:12.17M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:12.17M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:12.17M (Peak 12.97M) | Time:00:00.01 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:39.99M (Peak 39.99M) | Time:00:00.14 | Remaining:00:06.28 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:52.35M (Peak 77.07M) | Time:00:04.09 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:52.35M (Peak 77.07M) | Time:00:04.09 | Mem:27.93M, Peak:27.93M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-fishing-01/tile.png'
+Time: 00:04.52 (Saving: 00:00.41)
+
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyFlag.001
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyFlag
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyMast
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.003
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.003
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.002
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.002
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap.001
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy.001
+Fra:1 Mem:19.03M (Peak 19.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | BuoyCap
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | FishingBuoy
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.003
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.003
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.002
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.002
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX.001
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY.001
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongX
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | NetAlongY
+Fra:1 Mem:19.04M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:15.23M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:15.23M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:15.23M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:15.23M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:15.32M (Peak 19.04M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:15.36M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:15.36M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:15.36M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:15.36M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:15.36M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH NetAlongY 1/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH BuoyFlag.001 19/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH BuoyFlag.001 19/19 | Building BVH 0%
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH NetAlongX 2/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH BuoyFlag 18/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH NetAlongY.001 3/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH BuoyMast 17/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.05M, Peak:0.05M | Scene, ViewLayer | Updating Geometry BVH Cone.003 16/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH NetAlongY.002 5/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH Cylinder.003 15/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH NetAlongX.002 6/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH Cone.002 14/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH NetAlongY.003 7/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH Cylinder.002 13/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH NetAlongX.003 8/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Geometry BVH Cone.001 12/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Geometry BVH Cylinder 9/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Geometry BVH Cylinder.001 11/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Geometry BVH Cone 10/19 | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.07M, Peak:0.07M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.13M, Peak:0.13M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.14M, Peak:0.14M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.37M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.14M, Peak:0.22M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.38M (Peak 19.04M) | Time:00:00.01 | Mem:0.22M, Peak:0.22M | Scene, ViewLayer | Sample 0/48
+Fra:1 Mem:43.21M (Peak 43.21M) | Time:00:00.19 | Remaining:00:08.49 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Sample 1/48
+Fra:1 Mem:55.57M (Peak 80.29M) | Time:00:04.06 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Sample 48/48
+Fra:1 Mem:55.57M (Peak 80.29M) | Time:00:04.06 | Mem:28.03M, Peak:28.03M | Scene, ViewLayer | Finished
+Saved: '/workspace/simcity/assets/primary-industry/primary-tile-fishing-01/tile-3x3.png'
+Time: 00:04.19 (Saving: 00:00.12)
+
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+Info: Saved "primary-tile-fishing-01.blend"
+WORK_TILE_DONE primary-tile-fishing-01 [4.0, 4.0, 0.8049999810755253] 162
+
+Blender quit
