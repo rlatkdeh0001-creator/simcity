@@ -145,6 +145,7 @@ func paint_zones(selection: PackedVector2Array, zone_type: String) -> Dictionary
 	for parcel in zoning_grid.parcels_in(Rect2i(Vector2i(bounds.position.floor())-Vector2i.ONE,Vector2i(bounds.size.ceil())+Vector2i(3,3))):
 		if not Geometry2D.is_point_in_polygon(parcel.center,selection):continue
 		if zone_designations.get(parcel.id,"")==zone_type:continue
+		if not zone_type.is_empty() and not str(zone_designations.get(parcel.id,"")).is_empty():continue
 		if zone_type.is_empty():zone_designations.erase(parcel.id)
 		else:zone_designations[parcel.id]=zone_type
 		changed+=1

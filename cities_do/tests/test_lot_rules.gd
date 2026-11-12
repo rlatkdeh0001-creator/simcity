@@ -74,6 +74,7 @@ func check_fallback_and_capacity():
  verify(none.advance_development(2).is_empty() and none.buildings.is_empty(),"neither valid size means no construction")
  var mixed=make_city()
  paint(mixed,4,2,2)
+ paint(mixed,4,1,1,"") # Explicitly clear this cell before constructing a mixed-use fixture.
  paint(mixed,4,1,1,"industrial")
  verify(mixed.advance_development(2).is_empty(),"mixed-use 2x2 cannot construct")
  var crossed=make_city()

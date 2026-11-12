@@ -1,0 +1,73 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS initial free designation fills four cells diagonal=false
+PASS existing eraser explicitly clears chosen four cells
+PASS erase then repaint allows intended zone change
+PASS erase clears mixed types without changing other city data
+PASS painting never charges or constructs
+PASS initial free designation fills four cells diagonal=true
+PASS existing eraser explicitly clears chosen four cells
+PASS erase then repaint allows intended zone change
+PASS erase clears mixed types without changing other city data
+PASS painting never charges or constructs
+RESULT 10/22 non-overpaint checks passed
+ERROR: FAIL occupied cells never change on brush commercial
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL occupied cells never change on brush industrial
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL occupied cells never change on brush residential
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL mixed drag skips four existing cells and paints twelve empty cells
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:21)
+ERROR: FAIL original residential patch is preserved inside commercial drag
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:22)
+ERROR: FAIL fully zoned mixed range rejects all different-zone repaint
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:23)
+ERROR: FAIL occupied cells never change on brush commercial
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL occupied cells never change on brush industrial
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL occupied cells never change on brush residential
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:19)
+ERROR: FAIL mixed drag skips four existing cells and paints twelve empty cells
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:21)
+ERROR: FAIL original residential patch is preserved inside commercial drag
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:22)
+ERROR: FAIL fully zoned mixed range rejects all different-zone repaint
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_zoning_no_overpaint.gd:9)
+       [1] run (res://tests/test_zoning_no_overpaint.gd:23)

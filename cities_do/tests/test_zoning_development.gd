@@ -39,8 +39,11 @@ func run() -> void:
  var mixed=town()
  frame=mixed.zoning_grid.frames.values()[0]
  paint(mixed,frame,0,0,2,"commercial")
+ paint(mixed,frame,1,0,1,"") # Mixed fixture must erase before changing an existing designation.
  paint(mixed,frame,1,0,1,"industrial")
  verify(mixed.advance_development(2).is_empty(),"mixed-use 2x2 cells cannot form one building")
+ verify(paint(mixed,frame,0,0,2,"industrial").changed==0,"mixed existing designations cannot be overwritten to force uniform development")
+ paint(mixed,frame,0,0,2,"")
  paint(mixed,frame,0,0,2,"industrial")
  verify(mixed.advance_development(2).size()==1 and mixed.buildings[0].zone=="industrial","industrial zones develop without residential facade substitution")
  verify(not mixed.buildings[0].asset_id.is_empty() and mixed.catalog.get_asset(mixed.buildings[0].asset_id).zone=="industrial" and mixed.catalog.get_asset(mixed.buildings[0].asset_id).density=="small","industrial development uses its own real small facade instead of a temporary block")

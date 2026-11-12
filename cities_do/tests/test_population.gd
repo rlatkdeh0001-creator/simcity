@@ -24,6 +24,7 @@ func run():
  var f: Dictionary=c.zoning_grid.frames.values()[0]
  c.paint_zones(c.Parcels.polygon(f,0,0,2),"commercial")
  check(c.advance_development(2).is_empty(),"commercial zoning waits for real residents")
+ c.paint_zones(c.Parcels.polygon(f,0,0,2),"") # Zone changes require explicit erasure.
  c.paint_zones(c.Parcels.polygon(f,0,0,2),"residential")
  c.advance_society(2)
  check(c.buildings.size()==1 and c.population.people.is_empty(),"house construction precedes immigration")
