@@ -34,6 +34,7 @@ var zoning_drag := false
 var zoning_start := Vector2.ZERO
 var zoning_end := Vector2.ZERO
 var zoning_brush := "residential"
+var zoning_anchor: Dictionary={}
 const ZONE_COLORS := {"residential":Color("65b77a"),"commercial":Color("629dce"),"industrial":Color("dfb552")}
 var pointer := Vector2.ZERO
 var message := ""
@@ -342,14 +343,18 @@ func refresh():
 
 func cancel_zoning_drag() -> void:
 	zoning_drag=false
+	zoning_anchor.clear()
 	queue_redraw()
 
 func zoning_selection() -> PackedVector2Array:
-	if zoning_start.distance_to(zoning_end)<4:
-		var parcel: Dictionary=city.zoning_grid.parcel_at(world(zoning_end))
-		return parcel.get("polygon",PackedVector2Array())
-	var rect := Rect2(zoning_start,zoning_end-zoning_start).abs()
-	return PackedVector2Array([world(rect.position),world(Vector2(rect.end.x,rect.position.y)),world(rect.end),world(Vector2(rect.position.x,rect.end.y))])
+	if zoning_anchor.is_empty():return PackedVector2Array()
+	var frame: Dictionary=zoning_anchor.frame
+	var offset: Vector2=world(zoning_end)-Vector2(frame.origin)
+	var u:=floori(offset.dot(frame.along)+.00001);var v:=floori(offset.dot(frame.outward)+.00001)
+	var first_u:=mini(int(zoning_anchor.u),u);var first_v:=mini(int(zoning_anchor.v),v)
+	var width:=absi(u-int(zoning_anchor.u))+1;var depth:=absi(v-int(zoning_anchor.v))+1
+	var first: Vector2=frame.origin+frame.along*first_u+frame.outward*first_v
+	return PackedVector2Array([first,first+frame.along*width,first+frame.along*width+frame.outward*depth,first+frame.outward*depth])
 
 func finish_zoning(position: Vector2,over_hud: bool=false) -> void:
 	if not zoning_drag:return
@@ -424,6 +429,9 @@ func _unhandled_input(event):
 				drawing = true
 				stroke = PackedVector2Array([city.RoadJunctions.snap_point(pointer,city.roads)])
 			elif mode == "build":
+				var parcel: Dictionary=city.zoning_grid.parcel_at(pointer)
+				if parcel.is_empty():return
+				zoning_anchor=parcel.duplicate(true)
 				zoning_start=event.position
 				zoning_end=event.position
 				zoning_brush=zone

@@ -98,8 +98,8 @@ func run() -> void:
  var poly: PackedVector2Array=scene.city.Parcels.polygon(frame,0,0,4)
  var selection_rect := Rect2(scene.screen(poly[0]),Vector2.ZERO)
  for corner in poly:selection_rect=selection_rect.expand(scene.screen(corner))
- var first: Vector2=selection_rect.position-Vector2.ONE
- var last: Vector2=selection_rect.end+Vector2.ONE
+ var first: Vector2=scene.screen(frame.origin+(frame.along+frame.outward)*.5)
+ var last: Vector2=scene.screen(frame.origin+(frame.along+frame.outward)*3.5)
  var press := InputEventMouseButton.new()
  press.button_index=MOUSE_BUTTON_LEFT;press.pressed=true;press.position=first
  scene._unhandled_input(press)

@@ -1,0 +1,87 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS real local road grid fixture exists
+PASS grid preview does not paint before release
+PASS grid preview does not paint before release
+PASS real local road grid fixture exists
+PASS grid preview does not paint before release
+PASS grid preview does not paint before release
+PASS real local road grid fixture exists
+PASS grid preview does not paint before release
+PASS grid preview does not paint before release
+RESULT 9/24 grid-axis zoning drag checks passed
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=false
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=true
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL press outside all grid cells does not invent an anchor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:30)
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=false
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=true
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL press outside all grid cells does not invent an anchor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:30)
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=false
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL preview is inclusive 3x2 rectangle on anchor road axes reverse=true
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:26)
+ERROR: FAIL release paints exactly six grid cells and preserves existing different use
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:29)
+ERROR: FAIL press outside all grid cells does not invent an anchor
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_grid_zoning_drag.gd:8)
+       [1] run (res://tests/test_grid_zoning_drag.gd:30)

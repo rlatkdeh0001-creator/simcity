@@ -1,0 +1,17 @@
+{
+  "after_release_commercial": 20,
+  "after_release_residential": 4,
+  "capture_phase": "uncommitted translucent 6x4 grid preview",
+  "frame": {
+    "along": "(0.948683, 0.316228)",
+    "columns": 8,
+    "id": "0:0:-1",
+    "origin": "(20.31623, 34.05132)",
+    "outward": "(0.316228, -0.948683)",
+    "road_index": 0,
+    "side": -1
+  },
+  "input": "actual category/tool clicks and held diagonal-local-grid drag",
+  "preview_polygon": "[(21.26491, 34.36754), (26.95701, 36.26491), (28.22192, 32.47018), (22.52982, 30.57281)]",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}
