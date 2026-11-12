@@ -25,6 +25,7 @@ func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
  root.add_child(game);await process_frame;game.activate_tool("road")
+ game.road_drawer.set_kind("legacy") # Preserve prior freehand regression; hidden in approved player UI.
  await draw(game,PackedVector2Array([Vector2(10,40),Vector2(30,40)]))
  await draw(game,PackedVector2Array([Vector2(30.6,40.3),Vector2(60,40)]))
  verify(game.city.roads.size()==2,"two real freehand strokes remain two original road records")

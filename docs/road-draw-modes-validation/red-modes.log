@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL approved default click-based road drawing controller exists
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_draw_modes.gd:7)
+       [1] run (res://tests/test_road_draw_modes.gd:19)
+RESULT 0/1 road draw mode checks passed

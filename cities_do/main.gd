@@ -22,6 +22,7 @@ var building_images := {}
 const BuildingViews = preload("res://core/building_views.gd")
 var building_views
 var public_controller
+var road_drawer
 var mode := "select"
 var demolition_hover := {}
 var zone := "residential"
@@ -70,6 +71,7 @@ func _ready():
 	public_controller=preload("res://core/public_placement_controller.gd").new()
 	public_controller.view=self
 	add_child(public_controller)
+	road_drawer=preload("res://core/road_drawing.gd").new(self)
 
 	var layer := CanvasLayer.new()
 	add_child(layer)
@@ -321,6 +323,7 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if road_drawer!=null and mode!="road":road_drawer.cancel()
 	if labor_panel!=null:
 		labor_panel.visible=city.population.workplaces.has(selected)
 		labor_rings.work=city.population.workplaces.get(selected,{})
@@ -362,6 +365,9 @@ func _unhandled_key_input(event):
 	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_zoning_drag()
 
 func _unhandled_input(event):
+	if road_drawer!=null and road_drawer.handle_input(event):
+		get_viewport().set_input_as_handled()
+		return
 	if zoning_drag and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
 		cancel_zoning_drag()
 		return
@@ -656,6 +662,7 @@ func _draw():
 		var valid: bool = city.add_road(snapped, "local", false, road_lanes).ok
 		draw_ribbon(snapped, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
+	if road_drawer!=null:road_drawer.draw_preview()
 	if mode=="demolish" and not demolition_hover.is_empty():
 		var tint := Color(1,.35,.20,.65)
 		if demolition_hover.has("polygon"):

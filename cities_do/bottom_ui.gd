@@ -33,6 +33,8 @@ var hud_refresh_count:=0
 var utility_popup: PopupPanel
 var utility_content: Control
 var utility_owner: PanelContainer
+var road_modes: PanelContainer
+var road_mode_buttons: Array[Button]=[]
 const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수도","environment":"환경","park":"공원","transport":"교통","health":"보건","education":"교육","fire":"소방","police":"경찰"}
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
@@ -284,6 +286,44 @@ func build_bottom_hud():
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
  drawer_scroll.add_child(drawer_box)
+ build_road_modes(root)
+
+func road_mode_icon(key: String,selected: bool) -> Texture2D:
+ var paths:={"straight":'<path d="M5 27 L27 5"/>',"curve":'<path d="M5 27 Q5 5 27 5"/>',"free":'<path d="M4 24 C10 4 16 30 28 8"/>'}
+ var color:="#142b37" if selected else "#edf4f5"
+ var image:=Image.new()
+ image.load_svg_from_string('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g stroke="'+color+'" stroke-width="3" stroke-linecap="round" fill="none">'+paths[key]+'</g></svg>')
+ return ImageTexture.create_from_image(image)
+func build_road_modes(root: Control):
+ # Approved mockups.html 1-B; only these three controls are new.
+ road_modes=PanelContainer.new();road_modes.name="RoadModePalette"
+ root.add_child(road_modes);road_modes.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+ var background:=style(Color("142b37"))
+ background.content_margin_left=6;background.content_margin_right=6;background.content_margin_top=6;background.content_margin_bottom=6
+ road_modes.add_theme_stylebox_override("panel",background)
+ var row:=HBoxContainer.new();row.add_theme_constant_override("separation",6);road_modes.add_child(row)
+ var group:=ButtonGroup.new()
+ for key: String in ["straight","curve","free"]:
+  var button:=Button.new();button.name="RoadMode_"+key;button.set_meta("road_kind",key)
+  button.custom_minimum_size=Vector2(44,44);button.toggle_mode=true;button.button_group=group
+  button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;button.expand_icon=true
+  button.add_theme_constant_override("icon_max_width",28);button.add_theme_font_size_override("font_size",18)
+  button.tooltip_text={"straight":"직선","curve":"곡선","free":"자유 곡선"}[key]
+  for state in ["normal","hover","pressed"]:
+   var skin:=style(Color("36b7ff") if state=="pressed" else Color("38515e"))
+   skin.content_margin_left=6;skin.content_margin_right=6;skin.content_margin_top=6;skin.content_margin_bottom=6
+   button.add_theme_stylebox_override(state,skin)
+  button.pressed.connect(road_drawer.set_kind.bind(key));row.add_child(button);road_mode_buttons.append(button)
+ for i in range(road_mode_buttons.size()):
+  road_mode_buttons[i].focus_neighbor_left=road_mode_buttons[posmod(i-1,3)].get_path()
+  road_mode_buttons[i].focus_neighbor_right=road_mode_buttons[(i+1)%3].get_path()
+ update_road_modes()
+func update_road_modes():
+ if road_modes==null:return
+ road_modes.visible=chosen=="road"
+ for button in road_mode_buttons:
+  var active: bool=button.get_meta("road_kind")==road_drawer.kind
+  button.set_pressed_no_signal(active);button.icon=road_mode_icon(button.get_meta("road_kind"),active)
 
 func build_status_row(box: VBoxContainer) -> Control:
  var status_line:=Control.new()
@@ -511,6 +551,7 @@ func on_city_name_input(event: InputEvent):
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  if utility_popup.visible: utility_popup.hide()
  cancel_zoning_drag()
@@ -618,13 +659,14 @@ func select_category(key: String):
   slot_button.name="Slot_"+slot.id.replace(".","_")
   slot_button.set_meta("slot_id",slot.id)
   drawer_box.add_child(slot_button)
- mode="power_wire" if key=="power" else ("water_pipe" if key=="water" else "select")
+ mode="road" if key=="road" else ("power_wire" if key=="power" else ("water_pipe" if key=="water" else "select"))
+ update_road_modes()
  bulldozer.set_pressed_no_signal(false)
  demolition_hover.clear()
  var close := Button.new()
  close.text="⌄"
  close.custom_minimum_size.x=42
- close.pressed.connect(func():drawer.hide())
+ close.pressed.connect(func():drawer.hide();layout_bottom_hud())
  drawer_box.add_child(close)
  drawer.show()
  layout_bottom_hud()
@@ -794,9 +836,14 @@ func layout_bottom_hud():
  var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
+ if road_modes!=null:
+  var margin:=344 if drawer.visible and (get_viewport_rect().size.x-width_value)/2<188 else 206
+  road_modes.offset_left=16;road_modes.offset_right=172
+  road_modes.offset_top=-margin-56;road_modes.offset_bottom=-margin
  queue_redraw()
 
 func activate_tool(tool: String):
+ if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  if SERVICE_TOOLS.has(tool):

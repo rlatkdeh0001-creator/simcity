@@ -1,0 +1,30 @@
+{
+  "buttons": [
+    {
+      "name": "RoadMode_straight",
+      "rect": "[P: (22.0, 824.0), S: (44.0, 44.0)]",
+      "selected": false
+    },
+    {
+      "name": "RoadMode_curve",
+      "rect": "[P: (72.0, 824.0), S: (44.0, 44.0)]",
+      "selected": false
+    },
+    {
+      "name": "RoadMode_free",
+      "rect": "[P: (122.0, 824.0), S: (44.0, 44.0)]",
+      "selected": true
+    }
+  ],
+  "funds": 50000,
+  "input": "real category/mode buttons and world clicks",
+  "mode": "free",
+  "palette": "[P: (16.0, 818.0), S: (156.0, 56.0)]",
+  "pending": [],
+  "preview": {
+
+  },
+  "road_count": 2,
+  "scenario": "buttons",
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

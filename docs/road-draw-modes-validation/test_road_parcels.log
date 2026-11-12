@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS diagonal road creates square cells orthogonal in world space
+PASS no road-local cell crosses road or map boundary
+PASS diagonal straight blocks retain full eight-cell frontage
+PASS new building snaps to road-local 2x2 lot
+PASS rotated building footprint is used for picking
+PASS rotated lot overlap rejected
+PASS 8x8 upgrade stays square within the same road-local block
+PASS rotated growth preserves road/neighbor/boundary clearance
+PASS new road cannot cut rotated building
+PASS fixed-view asset is not falsely warped to represent rotated architecture
+PASS curved road produces several locally straight orientations
+PASS curve-inside and block intersections leave gaps instead of overlapping lots
+PASS right-angle bend changes local grid direction on each leg
+PASS road-local preview remains non-mutating
+PASS collinear mouse samples do not multiply tiny blocks
+PASS rotated lots sharing a full edge are adjacent
+PASS neighbor score bypass also works in road-local coordinates
+PASS road-local eight-cell lots also fit at 1024-map coordinates
+RESULT 18/18 road-local checks passed
