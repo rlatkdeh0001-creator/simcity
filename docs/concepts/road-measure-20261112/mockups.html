@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}.row{display:flex;gap:14px;flex-wrap:wrap}
+.o{width:330px}.t{font-size:18px;font-weight:700;margin:0 0 6px}.t span{font-weight:400;font-size:15px;color:var(--muted-foreground,#666)}
+svg{width:330px;height:240px;border-radius:10px;background:#86b07f;display:block}
+text{font-family:inherit;font-size:18px;font-weight:700}
+</style></head><body><div class="row">
+
+<div class="o"><p class="t">A <span>커서 옆 말풍선 하나에 길이·각도</span></p>
+<svg viewBox="0 0 330 240">
+ <polygon points="0,170 150,85 185,105 35,190" fill="#4d5357"/>
+ <polygon points="150,85 250,145 220,163 120,103" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="2.5"/>
+ <path d="M238 150 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+ <rect x="252" y="112" width="74" height="54" rx="7" fill="#142b37"/>
+ <text x="262" y="134" fill="#edf4f5">48 m</text><text x="262" y="158" fill="#36b7ff">90°</text>
+</svg></div>
+
+<div class="o"><p class="t">B <span>길이는 도로 중간에, 각도는 꺾이는 지점에 호(arc)와 함께</span></p>
+<svg viewBox="0 0 330 240">
+ <polygon points="0,170 150,85 185,105 35,190" fill="#4d5357"/>
+ <polygon points="150,85 250,145 220,163 120,103" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="2.5"/>
+ <path d="M168 96 A22 14 0 0 0 140 98" fill="none" stroke="#36b7ff" stroke-width="3"/>
+ <rect x="112" y="60" width="52" height="28" rx="6" fill="#142b37"/><text x="119" y="81" fill="#36b7ff">90°</text>
+ <rect x="190" y="118" width="62" height="28" rx="6" fill="#142b37"/><text x="197" y="139" fill="#edf4f5">48 m</text>
+ <path d="M238 150 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+</svg></div>
+
+<div class="o"><p class="t">C <span>B + 스냅 순간에만 각도 표시, 평소에는 길이만</span></p>
+<svg viewBox="0 0 330 240">
+ <polygon points="0,170 150,85 185,105 35,190" fill="#4d5357"/>
+ <polygon points="150,85 240,128 215,146 125,103" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="2.5"/>
+ <rect x="185" y="104" width="62" height="28" rx="6" fill="#142b37"/><text x="192" y="125" fill="#edf4f5">40 m</text>
+ <path d="M228 134 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+ <text x="12" y="228" fill="#142b37" style="font-size:15px;font-weight:400">비스듬할 때: 길이만 · 90°/180°에 붙으면 B처럼 각도 등장</text>
+</svg></div>
+</div></body></html>
