@@ -1,5 +1,5 @@
 extends SceneTree
-## Capture current blocked state, not an empty-parking implementation.
+## Native capture of the four integrated empty parking models.
 func _initialize():run.call_deferred()
 func run():
  var path:=""
@@ -28,6 +28,6 @@ func run():
  for i in range(5):await process_frame
  await RenderingServer.frame_post_draw
  var image:=root.get_texture().get_image();assert(image.get_size()==Vector2i(1920,1080));assert(image.save_png(path)==OK)
- var state:={"status":"BLOCKED: vehicles are in the single combined facility mesh; no removal applied","capture":"current unchanged parking models, NOT empty-parking result","viewport":str(image.get_size()),"placement":"four actual successful public_facilities.place calls; fixture funds equal summed real construction prices plus 1000","facilities":records,"original_assets_modified":false}
+ var state:={"status":"COMPLETE: approved empty parking sources exported and integrated","capture":"four genuinely placed empty parking facilities","viewport":str(image.get_size()),"placement":"four actual successful public_facilities.place calls; fixture funds equal summed real construction prices plus 1000","facilities":records,"original_assets_modified":false,"approved_source_commit":"8f6d8d541867297f92c85d8b282f5efb74aa467e"}
  var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
- print("NATIVE_PARKING_INSPECTION_PASS four current models captured; VEHICLE_REMOVAL_NOT_APPLIED");quit()
+ print("NATIVE_EMPTY_PARKING_PASS four integrated facilities captured; no traffic or decorative vehicles spawned");quit()

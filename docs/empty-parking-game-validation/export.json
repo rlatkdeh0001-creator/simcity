@@ -1,0 +1,66 @@
+[
+  {
+    "id": "parking-small-2x4",
+    "source_sha256": "64b8e5f1e7e18eb575681a9d9f83f4faade39919bcb4f727ac158d6bcd663a04",
+    "source_unchanged": true,
+    "remaining_source_meshes": 18,
+    "calibration": {
+      "resolution": [
+        800,
+        680
+      ],
+      "pixels_per_metre": 40.64445770521008,
+      "camera_elevation_deg": 30
+    },
+    "model_sha256": "98505f38babb19d116df9d07043a0f51c4e2d84a7843aebb20cb2321c6ce4a97",
+    "preview_sha256": "8bcf2ee848c5aee3658a958529d034fe4cda7970c5a9bc973fbfce6ddd5bc7f4"
+  },
+  {
+    "id": "parking-medium-4x4",
+    "source_sha256": "cb5bb94fe4bb00d2d60b2b65642f80c697871e5b03497b53ee1bb512396c9520",
+    "source_unchanged": true,
+    "remaining_source_meshes": 32,
+    "calibration": {
+      "resolution": [
+        800,
+        680
+      ],
+      "pixels_per_metre": 30.483344755885643,
+      "camera_elevation_deg": 30
+    },
+    "model_sha256": "e873f4ab6a05f94232143c0beed63a10a8aadf45e09451cbb48b01bb66ebc685",
+    "preview_sha256": "08e8f71fe144c0333f80bf33da823a58b69d9eee9524a4e3d6b1cf6b19cbf625"
+  },
+  {
+    "id": "parking-large-4x8",
+    "source_sha256": "a577847aca876b8095cc5aff0f96d1dfac7203b5e48504776ac7d0adce3d0edb",
+    "source_unchanged": true,
+    "remaining_source_meshes": 60,
+    "calibration": {
+      "resolution": [
+        800,
+        680
+      ],
+      "pixels_per_metre": 20.32222885260504,
+      "camera_elevation_deg": 30
+    },
+    "model_sha256": "36f576618dd3102fff7723e403f6849063b4f2580f1a2731c27962f95c47c91a",
+    "preview_sha256": "ef55cd86c5276c0c24a0bb6315b0badd4578648fca2b37027d8ff6f156a6efdc"
+  },
+  {
+    "id": "parking-tower-4x4-4f",
+    "source_sha256": "b8c6e4f0fbdc57b575f148a49495f90f9221c56bc8d8087a161f97850918e289",
+    "source_unchanged": true,
+    "remaining_source_meshes": 109,
+    "calibration": {
+      "resolution": [
+        800,
+        680
+      ],
+      "pixels_per_metre": 25.95443550750022,
+      "camera_elevation_deg": 30
+    },
+    "model_sha256": "fe743711cc3804e42de16d8e94c06835a7b1f53c4ec8c50fff6e99b1037d738a",
+    "preview_sha256": "c8d3884d86082c37096b2c0834f62cac8e87e9206f3a3cb03b28e9930baaa294"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "parking-large-4x8": {
+    "depth": 32.0,
+    "mesh_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "root_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "width": 16.0,
+    "x": -8.0,
+    "y": 0.0,
+    "z": -16.0
+  },
+  "parking-medium-4x4": {
+    "depth": 16.0,
+    "mesh_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "root_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "width": 16.0,
+    "x": -8.0,
+    "y": 0.0,
+    "z": -8.0
+  },
+  "parking-small-2x4": {
+    "depth": 16.0,
+    "mesh_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "root_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "width": 8.0,
+    "x": -4.0,
+    "y": 0.0,
+    "z": -8.0
+  },
+  "parking-tower-4x4-4f": {
+    "depth": 16.5,
+    "mesh_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "root_transform": "Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)",
+    "width": 16.0,
+    "x": -8.0,
+    "y": 0.0,
+    "z": -8.0
+  }
+}

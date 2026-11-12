@@ -591,9 +591,9 @@
   "parking-small-2x4": {
     "name": "소형 주차장",
     "source": "res://assets/facilities/parking-small-2x4.png",
-    "source_sha256": "e802edb3792c19a761a7d0b3116d8f26b3028ebab284df653168389d3c718909",
+    "source_sha256": "8bcf2ee848c5aee3658a958529d034fe4cda7970c5a9bc973fbfce6ddd5bc7f4",
     "thumbnail": "res://assets/ui/thumbnails/parking-small-2x4.png",
-    "sha256": "44b00cb0ce2107b3f207e950eda0a21620e761863266e69fc7d5c6e793b843e1",
+    "sha256": "5a51d3506cade4c6dcfdd97b3142753f5eeb8f96cd3e08ac5c5941322fbb68e9",
     "size": [
       256,
       192
@@ -610,9 +610,9 @@
   "parking-medium-4x4": {
     "name": "중형 주차장",
     "source": "res://assets/facilities/parking-medium-4x4.png",
-    "source_sha256": "7a9ce4e1883236b0e265d4509802e4ec6aab8022669f9f8633ec7efa58db50a1",
+    "source_sha256": "08e8f71fe144c0333f80bf33da823a58b69d9eee9524a4e3d6b1cf6b19cbf625",
     "thumbnail": "res://assets/ui/thumbnails/parking-medium-4x4.png",
-    "sha256": "47e9d8d9a33ec850a0e0904bd1b80ebfa7c68035f80171d35856f0b170dd4a38",
+    "sha256": "2fd1e35d67acfb3285f26d2c83924ee399a79bcd9adae45a649bd6228935bc7a",
     "size": [
       256,
       192
@@ -629,9 +629,9 @@
   "parking-large-4x8": {
     "name": "대형 주차장",
     "source": "res://assets/facilities/parking-large-4x8.png",
-    "source_sha256": "eb21b5217ac23ca282dd93c6312f4f88df1141f98c4248d6f57d619566d39115",
+    "source_sha256": "ef55cd86c5276c0c24a0bb6315b0badd4578648fca2b37027d8ff6f156a6efdc",
     "thumbnail": "res://assets/ui/thumbnails/parking-large-4x8.png",
-    "sha256": "7de8d25a688a655dae6d8f068da4418233cd4079ba8e146258679b0b4b9171a3",
+    "sha256": "f651c4e8e03e8e7f00c681b55fae4950d0389296e2e74528381103452d98d0c4",
     "size": [
       256,
       192
@@ -648,9 +648,9 @@
   "parking-tower-4x4-4f": {
     "name": "4층 주차타워",
     "source": "res://assets/facilities/parking-tower-4x4-4f.png",
-    "source_sha256": "8007c5d6b0324d797e11da33fb43412799a05edccd16d7b706587d9a268a316b",
+    "source_sha256": "c8d3884d86082c37096b2c0834f62cac8e87e9206f3a3cb03b28e9930baaa294",
     "thumbnail": "res://assets/ui/thumbnails/parking-tower-4x4-4f.png",
-    "sha256": "0c4189356d06701d9dc6b28b471233bd67d541e1d3dbddb6eeaa0a48007cf844",
+    "sha256": "024a7b5263be7ec8daa26f513e65eabc8872313605f04b81f8e81f2268c452f0",
     "size": [
       256,
       192

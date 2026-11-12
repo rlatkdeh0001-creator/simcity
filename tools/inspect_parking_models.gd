@@ -7,7 +7,7 @@ func run():
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--report="):path=arg.trim_prefix("--report=")
  var catalog: Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities
- var report:={"mode":"read-only; removal blocked by single combined mesh; original assets unchanged","parking":[],"solar":{}}
+ var report:={"mode":"read-only; approved empty sources integrated; no runtime hiding or original edits","parking":[],"solar":{}}
  var checks:=0
  for id in IDS:
   var entry: Dictionary=catalog.filter(func(e):return e.id==id)[0]
@@ -19,8 +19,8 @@ func run():
   for i in range(mesh.get_surface_count()):
    var material: Material=mesh.surface_get_material(i)
    surfaces.append(material.resource_name if material!=null else "")
-  assert(surfaces.any(func(n):return str(n).begins_with("car")));checks+=1
-  report.parking.append({"id":id,"model":entry.model,"mesh_instance_count":meshes.size(),"mesh_node":str(meshes[0].name),"surfaces":surfaces,"separate_vehicle_node":false,"removal_applied":false})
+  assert(surfaces.all(func(n):return not str(n).begins_with("car")));checks+=1
+  report.parking.append({"id":id,"model":entry.model,"mesh_instance_count":meshes.size(),"mesh_node":str(meshes[0].name),"surfaces":surfaces,"separate_vehicle_node":false,"removal_applied":true})
   model.free()
  var solar=load("res://assets/services/power-solar.glb").instantiate()
  var lot: MeshInstance3D=solar.find_child("Lot",true,false)
@@ -30,4 +30,4 @@ func run():
  report.solar={"lot_bounds_local_m":str(bounds),"base_width_m":bounds.size.x,"base_depth_m":bounds.size.z,"declared_cells":Vector2i(4,4),"base_matches_declared_footprint":true,"screenshot_road_encroachment":"unconfirmed without original world positions; local base is within declared lot","existing_order_fix":"14177349d8d4762c914616c55b588f00c09e49b4"}
  solar.free()
  var file:=FileAccess.open(path,FileAccess.WRITE);assert(file!=null);file.store_string(JSON.stringify(report,"  "));file.close()
- print("RESULT %d/%d read-only asset structure checks passed; PARKING_REMOVAL_BLOCKED_COMBINED_MESH" % [checks,checks]);quit()
+ print("RESULT %d/%d read-only asset structure checks passed; EMPTY_PARKING_INTEGRATED" % [checks,checks]);quit()

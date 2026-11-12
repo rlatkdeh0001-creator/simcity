@@ -88,9 +88,6 @@ def tower():
    box('AccentBand',(8,y+.35,z),(15.9,.16,.20),'accent')
   for x in [.28,15.72]:box('SideGuardRail',(x,y+.75,8),(.18,.38,15.7),'curb')
   for z in [3.8,6.4,9.0,11.6,14.2]:box('BayLine',(3.1,y+.14,z),(5,.025,.055),'paint')
-  for z in [5.1,10.3]:
-   box('CarBody',(3,y+.65,z),(3.8,.65,1.6),'car'+str(level%3),.12)
-   box('CarCabin',(3,y+1.15,z),(1.9,.45,1.3),'glass',.08)
   if level<3:
    ramp=box('Ramp_'+str(level+1),(13,y+1.55,8),(2.9,.18,12.4),'asphalt')
    tilt(ramp,math.atan2(3.1,12.0)*(1 if level%2 else -1),'X')
@@ -131,8 +128,6 @@ for spec in SPECS:
   layout=parking_layout([(x,z) for x in range(spec['width']//2) for z in range(spec['depth']//2)])
   for item in layout['boxes']:box(item['name'],item['pos'],item['size'],item['mat'],.008)
   capacity=layout['capacity']
-  for i,(x,z) in enumerate(layout['blocks']):
-   if i%2==0:car(x*8+2.6,z*8+4.25,i)
  folder=ROOT/'assets/facilities'/spec['id'];folder.mkdir(parents=True,exist_ok=True)
  bpy.ops.wm.save_as_mainfile(filepath=str(folder/'facility.blend'),compress=False)
  # Export as a single combined mesh (multiple material surfaces retained).
