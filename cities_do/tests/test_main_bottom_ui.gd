@@ -41,7 +41,7 @@ func run():
    verify(before==after,"asset browsing preserves city, funds and clock")
    verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
-  verify(game.drawer_box.find_children("RoadLanes","OptionButton",true,false).size()==1,"bottom road tools expose existing lane width choice")
+  verify(game.road_lane_cards.size()==5 and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools expose five actual-render lane cards and the grid toggle instead of the old selector")
   var zoom_before: float=game.map_zoom
   var origin_before: Vector2=game.origin
   game.select_category("fire")

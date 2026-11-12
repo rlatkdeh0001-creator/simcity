@@ -14,6 +14,8 @@ var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("
 const Model = preload("res://core/city_model.gd")
 var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed))
 var road_lanes := 2
+var road_major_side := 1
+var road_grid_enabled := true
 var map_zoom := 0.65
 var panning := false
 var keyboard_camera
@@ -613,10 +615,10 @@ func _draw():
 	for road in city.road_visuals:
 		draw_ribbon(road.points,road.width,Color("c8cbc3"),road.get("flat_start",false),road.get("flat_end",false))
 	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"),road.get("flat_start",false),road.get("flat_end",false))
+		draw_ribbon(road.points,preload("res://core/road_profile.gd").asphalt_width(road),Color("4c5659"),road.get("flat_start",false),road.get("flat_end",false))
 	for road in city.road_visuals:
 		var points := PackedVector2Array()
-		for p in road.points: points.append(screen(p))
+		for p in preload("res://core/road_profile.gd").offset_path(road.points,preload("res://core/road_profile.gd").median_offset(road)): points.append(screen(p))
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
 		for dash in RoadGeometry.lane_marks(road):
 			var clipped: PackedVector2Array=RoadGeometry.clipped_segment(dash[0],dash[1],Vector2(city.width,city.height))
@@ -631,7 +633,7 @@ func _draw():
 		for arm in junction.arms:
 			var direction: Vector2=arm.direction
 			var normal := Vector2(-direction.y,direction.x)
-			var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
+			var half: float=preload("res://core/road_profile.gd").asphalt_width(arm)/2
 			var centre: Vector2=junction.position+direction*city.RoadJunctions.crosswalk_distance(junction,arm)
 			var stripe_half: float=city.RoadJunctions.CROSSWALK_HALF_LENGTH
 			var offset := -half+.12

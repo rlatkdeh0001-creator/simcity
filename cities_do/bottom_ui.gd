@@ -35,6 +35,8 @@ var utility_content: Control
 var utility_owner: PanelContainer
 var road_modes: PanelContainer
 var road_mode_buttons: Array[Button]=[]
+var road_lane_cards: Array[Button]=[]
+var road_grid_button: Button
 const CurrencyLabel=preload("res://core/currency_label.gd")
 var money_toast: PanelContainer
 var money_toast_timer: Timer
@@ -579,6 +581,9 @@ func developer_tools_enabled() -> bool:
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ road_lane_cards.clear();road_grid_button=null
+ drawer_box.add_theme_constant_override("separation",8 if key=="road" else 16)
+ drawer_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL if key=="road" else Control.SIZE_FILL
  hide_asset_info()
  clear_money_toast()
  if road_drawer!=null:road_drawer.cancel()
@@ -601,7 +606,7 @@ func select_category(key: String):
  power_overlay.stroke.clear()
  water_overlay.stroke.clear()
  var heading := VBoxContainer.new()
- heading.custom_minimum_size.x=140
+ heading.custom_minimum_size.x=60 if key=="road" else 140
  heading.add_child(label(NAMES[key],22))
  drawer_box.add_child(heading)
  var choices := []
@@ -628,7 +633,7 @@ func select_category(key: String):
   var button := Button.new()
   button.name="Tool_"+choice[1]
   button.tooltip_text=choice[0]
-  button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+  button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN if key=="road" else Control.SIZE_EXPAND_FILL
   button.custom_minimum_size=Vector2(112,84)
   var content := VBoxContainer.new()
   button.add_child(content)
@@ -654,13 +659,20 @@ func select_category(key: String):
   button.pressed.connect(activate_tool.bind(tool))
   drawer_box.add_child(button)
  if key=="road":
-  var lanes := OptionButton.new()
-  lanes.name="RoadLanes"
-  lanes.add_item("왕복 2차로")
-  lanes.add_item("왕복 4차로")
-  lanes.select(0 if road_lanes==2 else 1)
-  lanes.item_selected.connect(func(index):road_lanes=2 if index==0 else 4;queue_redraw())
-  drawer_box.add_child(lanes)
+  var group:=ButtonGroup.new()
+  for count in preload("res://core/road_profile.gd").LOCAL_LANES:
+   var path: String="res://assets/ui/roads/local-%d.png"%count
+   var card:=ThumbnailButton.new();card.name="RoadLane_%d"%count
+   card.set_asset({"id":"road-local-%d"%count,"name":"%d차선"%count,"preview":path},path)
+   card.custom_minimum_size=Vector2(96,84);card.set_meta("lanes",count);card.tooltip_text="%d차선"%count
+   card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
+   drawer_box.add_child(card);road_lane_cards.append(card)
+  var spacer:=Control.new();spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL;drawer_box.add_child(spacer)
+  road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
+  road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
+  road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
+  road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
+  update_road_lane_cards();update_road_grid_button()
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
   if entry.ui_category!=key:continue
   var registered_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
@@ -972,6 +984,26 @@ func layout_bottom_hud():
  position_money_toast.call_deferred()
  queue_redraw()
 
+func select_road_lanes(count: int):
+ if count not in preload("res://core/road_profile.gd").LOCAL_LANES:return
+ road_lanes=count;mode="road";road_drawer.arm_cursor();update_road_lane_cards();queue_redraw()
+func update_road_lane_cards():
+ for card in road_lane_cards:
+  var active: bool=int(card.get_meta("lanes"))==road_lanes
+  card.set_pressed_no_signal(active)
+  for state in ["normal","hover","pressed"]:
+   var outline: StyleBoxFlat=card.get_theme_stylebox(state).duplicate()
+   outline.border_color=Color("36b7ff") if active else Color("38515e")
+   card.add_theme_stylebox_override(state,outline)
+func toggle_road_grid():
+ road_grid_enabled=not road_grid_enabled;update_road_grid_button();queue_redraw()
+func update_road_grid_button():
+ if road_grid_button==null:return
+ road_grid_button.set_pressed_no_signal(road_grid_enabled)
+ var image:=Image.new();var ink:="#142b37" if road_grid_enabled else "#edf4f5"
+ image.load_svg_from_string('<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><path d="M6 6h24v24H6zM14 6v24M22 6v24M6 14h24M6 22h24" fill="none" stroke="'+ink+'" stroke-width="2.5"/></svg>')
+ road_grid_button.icon=ImageTexture.create_from_image(image)
+ for state in ["normal","hover","pressed"]:road_grid_button.add_theme_stylebox_override(state,style(Color("36b7ff") if road_grid_enabled else Color("38515e")))
 func activate_tool(tool: String):
  hide_asset_info();clear_money_toast()
  if road_drawer!=null:road_drawer.cancel()

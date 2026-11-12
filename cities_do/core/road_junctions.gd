@@ -1,6 +1,7 @@
 extends RefCounted
 ## Shared centreline topology in city cells. Curves retain their authored geometry.
 const EPS := .0001
+const Profile=preload("res://core/road_profile.gd")
 const CROSSWALK_HALF_LENGTH := .22
 const CROSSWALK_EDGE_GAP := .03
 static func key(point: Vector2) -> Vector2i:
@@ -132,7 +133,7 @@ static func connection(node: Dictionary, topology: Dictionary) -> Dictionary:
 static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
  # Measure the far edge of the crossing road, not a shared maximum road radius.
  var direction: Vector2=arm.direction
- var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
+ var half: float=Profile.asphalt_width(arm)/2
  var edge := 0.0
  for other in junction.arms:
   var crossing: float=absf(direction.cross(other.direction))
@@ -151,7 +152,7 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
  for arm in junction.arms:
   var direction: Vector2=arm.direction
   var normal := Vector2(-direction.y,direction.x)
-  var factor := (.75 if arm.lanes==2 else .8125) if asphalt else 1.0
+  var factor: float=Profile.asphalt_width(arm)/arm.width if asphalt else 1.0
   var distance: float=junction.radius+(.02 if asphalt else 0)
   var side: Vector2=normal*arm.width/2*factor
   var start: Vector2=junction.position-direction*EPS*2

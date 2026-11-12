@@ -1,0 +1,33 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS two-arm seam is never a controlled intersection (65.0, 40.0)
+PASS lane connection builds with no traffic-control junction
+PASS both carriageways stay routed through seam
+PASS lane connector endpoints meet without teleportation
+PASS traffic completes seam without intersection reservation or signal stop
+PASS derived seam preserves authored road records
+PASS two-arm seam is never a controlled intersection (65.0, 42.0)
+PASS lane connection builds with no traffic-control junction
+PASS both carriageways stay routed through seam
+PASS lane connector endpoints meet without teleportation
+PASS traffic completes seam without intersection reservation or signal stop
+PASS derived seam preserves authored road records
+PASS two-arm seam is never a controlled intersection (65.0, 53.0)
+PASS lane connection builds with no traffic-control junction
+PASS both carriageways stay routed through seam
+PASS lane connector endpoints meet without teleportation
+PASS traffic completes seam without intersection reservation or signal stop
+PASS derived seam preserves authored road records
+PASS two-arm seam is never a controlled intersection (40.0, 70.0)
+PASS lane connection builds with no traffic-control junction
+PASS both carriageways stay routed through seam
+PASS lane connector endpoints meet without teleportation
+PASS traffic completes seam without intersection reservation or signal stop
+PASS derived seam preserves authored road records
+PASS three separately drawn matching roads form one visual stroke
+PASS reverse-authored continuation retains chain endpoints
+PASS bent joins are sampled as smooth tangent curves
+PASS dash phase continues across separately drawn collinear seam
+PASS three-arm branch remains a true intersection
+PASS lane-width transition stays bidirectional without intersection control
+RESULT 30/30 seam checks passed

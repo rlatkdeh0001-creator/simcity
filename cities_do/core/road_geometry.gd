@@ -1,4 +1,5 @@
 extends RefCounted
+const Profile=preload("res://core/road_profile.gd")
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
@@ -57,6 +58,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				if next.is_empty():break
 				var road: Dictionary=roads[next.road]
 				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
+				if int(road.lanes)%2 and int(road.get("major_side",1))*(1 if next.end==0 else -1)!=int(roads[i].get("major_side",1))*(1 if side==0 else -1):break
 				var extension: PackedVector2Array=road.points.duplicate()
 				if next.end==1:extension.reverse()
 				seams.append(chain[-1]);used[next.road]=true
@@ -83,7 +85,8 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 
 static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 	var lines: Array[PackedVector2Array] = []
-	if road.lanes != 4: return lines
+	var offsets:=Profile.separators(road)
+	if offsets.is_empty(): return lines
 	var phase := 0.0
 	for i in range(road.points.size()-1):
 		var a: Vector2 = road.points[i]
@@ -97,8 +100,8 @@ static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 			var cycle := fposmod(phase+start,1.25)
 			var end := minf(length,start+(0.75-cycle if cycle<0.75 else 1.25-cycle))
 			if cycle < 0.75:
-				for sign_value in [-1,1]:
-					var shift: Vector2 = normal*road.width*(3.25/16.0)*sign_value
+				for offset in offsets:
+					var shift: Vector2 = normal*offset
 					lines.append(PackedVector2Array([a+direction*start+shift,a+direction*end+shift]))
 			start = end+0.00001
 		phase += length

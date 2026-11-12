@@ -2,6 +2,7 @@ extends RefCounted
 ## Directed, metre-based lane graph derived from the existing city road data.
 ## At-grade crossings use turn connectors and simulation reservations.
 const Junctions = preload("res://core/road_junctions.gd")
+const Profile = preload("res://core/road_profile.gd")
 var junctions: Array = []
 const METRES_PER_CELL := 4.0
 var lanes: Array[Dictionary] = []
@@ -43,13 +44,13 @@ func build(roads: Array) -> bool:
 		for point in cells:points.append(point*METRES_PER_CELL)
 		if points.size()<2:continue
 		var closed: bool=first_connection.is_empty() and last_connection.is_empty() and points[0].distance_to(points[-1])<.01
-		var count := int(road.lanes)/2
-		var lane_width := minf(3.5,(float(road.width)*METRES_PER_CELL-2)/int(road.lanes))
+		var lane_width := Profile.lane_width_metres(road)
 		for direction in [1,-1]:
+			var count:=Profile.direction_count(road,direction)
 			var ordered := points.duplicate()
 			if direction==-1:ordered.reverse()
 			for index in range(count):
-				var lane := _add_lane(_offset(ordered,(index+.5)*lane_width,closed))
+				var lane := _add_lane(_offset(ordered,(index+.5)*lane_width+Profile.median_offset(road)*METRES_PER_CELL*direction,closed))
 				lane.merge({"road":road_id,"section":section.id,"direction":direction,"index":index,"closed":closed,"junction":-1,
 					"start":original[0 if direction==1 else -1]*METRES_PER_CELL,"end":original[-1 if direction==1 else 0]*METRES_PER_CELL,
 					"start_node":section.start_node if direction==1 else section.end_node,"end_node":section.end_node if direction==1 else section.start_node,
@@ -71,7 +72,7 @@ func build(roads: Array) -> bool:
 				if sample(i,a.length).distance_to(sample(j,0))<.1:a.next.append(j)
 				continue
 			if incoming.dot(outgoing)<-.95:continue # No U-turn into the incoming carriageway.
-			var outgoing_count: int=int(roads[b.road].lanes)/2
+			var outgoing_count: int=Profile.direction_count(roads[b.road],b.direction)
 			if b.index!=mini(a.index,outgoing_count-1):continue
 			var points := PackedVector2Array()
 			var start := sample(i,a.length)

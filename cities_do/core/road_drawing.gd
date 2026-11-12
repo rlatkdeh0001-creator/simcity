@@ -108,11 +108,11 @@ func preview() -> Dictionary:
  var resolved:=resolved_path()
  var points: PackedVector2Array=resolved.points
  var complete: bool=kind!="curve" or anchors.size()>=2
- var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false,complete)
+ var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false,complete,view.road_major_side)
  result.points=points
  if not resolved.ok:result.ok=false;result.reason=resolved.reason
  if result.ok:
-  var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0}
+  var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0,"major_side":view.road_major_side}
   var network=Network.new()
   if not network.build(view.city.roads+[candidate]):result.ok=false;result.reason=network.errors[0] if not network.errors.is_empty() else "도로 경로를 확인해 주세요"
   elif not joins_routable(network,points):result.ok=false;result.reason="급격한 되돌림 도로는 주행할 수 없습니다"
@@ -128,7 +128,7 @@ func click(point: Vector2):
  last_result=preview()
  if not last_result.ok:view.queue_redraw();return
  var points: PackedVector2Array=last_result.points
- last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true)
+ last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true,view.road_major_side)
  if last_result.ok:
   view.stop_traffic();cancel()
   arm_cursor()

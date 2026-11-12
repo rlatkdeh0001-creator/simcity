@@ -1,0 +1,47 @@
+[
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "camera_size": 36.65087890625,
+    "lanes": 2,
+    "major_side": 1,
+    "separators": 0,
+    "size": "(256, 192)",
+    "studio": "building_views.gd camera/light/environment"
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "camera_size": 41.2322387695313,
+    "lanes": 3,
+    "major_side": 1,
+    "separators": 1,
+    "size": "(256, 192)",
+    "studio": "building_views.gd camera/light/environment"
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "camera_size": 45.8135986328125,
+    "lanes": 4,
+    "major_side": 1,
+    "separators": 2,
+    "size": "(256, 192)",
+    "studio": "building_views.gd camera/light/environment"
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "camera_size": 50.3949584960938,
+    "lanes": 5,
+    "major_side": 1,
+    "separators": 3,
+    "size": "(256, 192)",
+    "studio": "building_views.gd camera/light/environment"
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "camera_size": 64.1390380859375,
+    "lanes": 8,
+    "major_side": 1,
+    "separators": 6,
+    "size": "(256, 192)",
+    "studio": "building_views.gd camera/light/environment"
+  }
+]

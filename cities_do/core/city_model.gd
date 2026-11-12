@@ -243,8 +243,8 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	buildings.append(b)
 	return {"ok": true, "building": b}
 
-func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false) -> Dictionary:
-	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in [2, 4]:
+func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1) -> Dictionary:
+	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in (preload("res://core/road_profile.gd").LOCAL_LANES if kind=="local" else [2,4]) or major_side not in [-1,1]:
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
 	# Player strokes opt in; authored scenarios retain exact supplied geometry.
 	if connect_ends:points=RoadJunctions.snap_path(points,roads)
@@ -258,7 +258,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
 	if enforce_units and not RoadUnits.is_build_length(total,RoadUnits.build_step(points,roads)):return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
-	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0}
+	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0,"major_side":major_side}
 	for b in buildings:
 		if _polygon_road_distance(footprint(b), road) < -0.0005:
 			return {"ok": false, "reason": "건물과 충돌합니다"}
