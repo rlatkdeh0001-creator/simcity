@@ -237,7 +237,7 @@ func _draw():
   var p: Vector2=view.screen(port.position/4)
   draw_circle(p,8,Color("219df0"))
   draw_arc(p,8,0,TAU,24,Color.WHITE,1.5,true)
-  draw_string(ThemeDB.fallback_font,p+Vector2(10,0),port.name,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color.WHITE)
+
  for building in view.city.buildings:
   var supply: Dictionary=view.power_snapshot.get("consumers",{}).get(building.id,{})
   var color := Color("6bdfbc") if supply.get("powered",false) else Color("ebaa69")

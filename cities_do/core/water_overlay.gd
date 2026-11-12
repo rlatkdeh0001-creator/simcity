@@ -222,7 +222,7 @@ func _draw():
   var p: Vector2=view.screen(anchor.position/4)
   draw_circle(p+Vector2(0,-4),5,water_color)
   draw_circle(p+Vector2(0,4),5,sewage_color)
-  if anchor.has("name"): draw_string(ThemeDB.fallback_font,p+Vector2(10,0),anchor.name,HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+
  for building in view.city.buildings:
   var service: Dictionary=view.water_snapshot.get("consumers",{}).get(building.id,{})
   var p: Vector2=view.screen(Vector2(building.x+building.size/2.0,building.y+building.size/2.0))-Vector2(0,15)*view.map_zoom

@@ -14,6 +14,13 @@ func run():
  var city := City.new(100,80,42)
  var towns: Array = city.regional_exchange().neighbors
  verify(towns.size()==4,"four neighbors exist on new map")
+ var expected: Array=[['y_min','neighbor_advanced','Brightvale'],['x_max','neighbor_developed','Kindbrook'],['y_max','neighbor_peer_a','Ironfield'],['x_min','neighbor_peer_b','Fairwater']]
+ for i in range(expected.size()):
+  var spec: Array=expected[i]
+  verify(towns[i].edge==spec[0] and towns[i].id==spec[1] and towns[i].development_name==spec[2],"approved town name matches its fixed map edge without changing identity: "+str(spec[0]))
+  var power: Dictionary=city.power.ports.filter(func(p):return p.edge==spec[0])[0]
+  var water: Dictionary=city.water.geometry.ports.filter(func(p):return p.edge==spec[0])[0]
+  verify(power.name==spec[2] and water.name==spec[2],"power and water port data share the approved town name: "+str(spec[0]))
  verify(towns[0].development=="highly_developed" and towns[1].development=="developed" and towns[2].development=="peer" and towns[3].development=="peer","one very advanced, one developed and two distinct peers")
  for town in towns:
   verify(not town.exchange_available and town.channels.size()==6,"all six channels initially disconnected: "+town.edge)

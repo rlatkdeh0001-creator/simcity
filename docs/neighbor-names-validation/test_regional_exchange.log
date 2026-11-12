@@ -1,0 +1,49 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS four neighbors exist on new map
+PASS approved town name matches its fixed map edge without changing identity: y_min
+PASS power and water port data share the approved town name: y_min
+PASS approved town name matches its fixed map edge without changing identity: x_max
+PASS power and water port data share the approved town name: x_max
+PASS approved town name matches its fixed map edge without changing identity: y_max
+PASS power and water port data share the approved town name: y_max
+PASS approved town name matches its fixed map edge without changing identity: x_min
+PASS power and water port data share the approved town name: x_min
+PASS one very advanced, one developed and two distinct peers
+PASS all six channels initially disconnected: y_min
+PASS all six channels initially disconnected: x_max
+PASS all six channels initially disconnected: y_max
+PASS all six channels initially disconnected: x_min
+PASS road preview cannot open exchange
+PASS boundary road automatically opens its neighbor road channel
+PASS road does not enable utilities or other town
+PASS one remaining road preserves connection
+PASS removing last road closes exchange
+PASS utility preview nonmutating: rail
+PASS independent infrastructure terminal: rail
+PASS removal closes infrastructure channel: rail
+PASS utility preview nonmutating: power
+PASS independent infrastructure terminal: power
+PASS removal closes infrastructure channel: power
+PASS utility preview nonmutating: metro
+PASS independent infrastructure terminal: metro
+PASS removal closes infrastructure channel: metro
+PASS utility preview nonmutating: water
+PASS independent infrastructure terminal: water
+PASS removal closes infrastructure channel: water
+PASS utility preview nonmutating: sewage
+PASS independent infrastructure terminal: sewage
+PASS removal closes infrastructure channel: sewage
+PASS unknown infrastructure rejected
+PASS outside path rejected
+PASS non-finite coordinate rejected
+PASS degenerate connection rejected
+PASS corner does not silently connect two neighbors
+PASS road along boundary is not an outward terminal
+PASS near-boundary road cannot open exchange by visual width alone
+PASS intermediate boundary touch is not a terminal
+PASS opposite endpoints connect both appropriate sides; highway counts as road
+PASS water and sewage stay independent
+PASS peer towns remain separate identities
+PASS connection flags do not claim an economy or free utility supply
+RESULT 46/46 regional checks passed

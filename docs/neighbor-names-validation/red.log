@@ -1,0 +1,81 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS four neighbors exist on new map
+ERROR: FAIL approved town name matches its fixed map edge without changing identity: y_min
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:20)
+ERROR: FAIL power and water port data share the approved town name: y_min
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:23)
+ERROR: FAIL approved town name matches its fixed map edge without changing identity: x_max
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:20)
+ERROR: FAIL power and water port data share the approved town name: x_max
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:23)
+ERROR: FAIL approved town name matches its fixed map edge without changing identity: y_max
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:20)
+ERROR: FAIL power and water port data share the approved town name: y_max
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:23)
+ERROR: FAIL approved town name matches its fixed map edge without changing identity: x_min
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:20)
+ERROR: FAIL power and water port data share the approved town name: x_min
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_regional_exchange.gd:12)
+       [1] run (res://tests/test_regional_exchange.gd:23)
+PASS one very advanced, one developed and two distinct peers
+PASS all six channels initially disconnected: y_min
+PASS all six channels initially disconnected: x_max
+PASS all six channels initially disconnected: y_max
+PASS all six channels initially disconnected: x_min
+PASS road preview cannot open exchange
+PASS boundary road automatically opens its neighbor road channel
+PASS road does not enable utilities or other town
+PASS one remaining road preserves connection
+PASS removing last road closes exchange
+PASS utility preview nonmutating: rail
+PASS independent infrastructure terminal: rail
+PASS removal closes infrastructure channel: rail
+PASS utility preview nonmutating: power
+PASS independent infrastructure terminal: power
+PASS removal closes infrastructure channel: power
+PASS utility preview nonmutating: metro
+PASS independent infrastructure terminal: metro
+PASS removal closes infrastructure channel: metro
+PASS utility preview nonmutating: water
+PASS independent infrastructure terminal: water
+PASS removal closes infrastructure channel: water
+PASS utility preview nonmutating: sewage
+PASS independent infrastructure terminal: sewage
+PASS removal closes infrastructure channel: sewage
+PASS unknown infrastructure rejected
+PASS outside path rejected
+PASS non-finite coordinate rejected
+PASS degenerate connection rejected
+PASS corner does not silently connect two neighbors
+PASS road along boundary is not an outward terminal
+PASS near-boundary road cannot open exchange by visual width alone
+PASS intermediate boundary touch is not a terminal
+PASS opposite endpoints connect both appropriate sides; highway counts as road
+PASS water and sewage stay independent
+PASS peer towns remain separate identities
+PASS connection flags do not claim an economy or free utility supply
+RESULT 38/46 regional checks passed

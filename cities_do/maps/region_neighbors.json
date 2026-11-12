@@ -2,9 +2,9 @@
   "version": 1,
   "placement_status": "provisional_clockwise_from_screen_upper_right",
   "neighbors": [
-    {"id": "neighbor_advanced", "edge": "y_min", "screen_side": "오른쪽 위", "development": "highly_developed", "development_name": "엄청 발전한 마을"},
-    {"id": "neighbor_developed", "edge": "x_max", "screen_side": "오른쪽 아래", "development": "developed", "development_name": "발전한 마을"},
-    {"id": "neighbor_peer_a", "edge": "y_max", "screen_side": "왼쪽 아래", "development": "peer", "development_name": "우리와 비슷한 마을 A"},
-    {"id": "neighbor_peer_b", "edge": "x_min", "screen_side": "왼쪽 위", "development": "peer", "development_name": "우리와 비슷한 마을 B"}
+    {"id": "neighbor_advanced", "edge": "y_min", "screen_side": "오른쪽 위", "development": "highly_developed", "development_name": "Brightvale"},
+    {"id": "neighbor_developed", "edge": "x_max", "screen_side": "오른쪽 아래", "development": "developed", "development_name": "Kindbrook"},
+    {"id": "neighbor_peer_a", "edge": "y_max", "screen_side": "왼쪽 아래", "development": "peer", "development_name": "Ironfield"},
+    {"id": "neighbor_peer_b", "edge": "x_min", "screen_side": "왼쪽 위", "development": "peer", "development_name": "Fairwater"}
   ]
 }
