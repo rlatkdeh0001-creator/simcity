@@ -34,13 +34,15 @@ func build(roads: Array) -> bool:
 		var length: float=Junctions.length_of(original)
 		var first: Dictionary=topology.nodes[section.start_node]
 		var last: Dictionary=topology.nodes[section.end_node]
-		var trim_start: float=minf(length*.4,junctions[first.junction].radius) if first.junction>=0 else 0.0
-		var trim_end: float=minf(length*.4,junctions[last.junction].radius) if last.junction>=0 else 0.0
+		var first_connection: Dictionary=Junctions.connection(first,topology)
+		var last_connection: Dictionary=Junctions.connection(last,topology)
+		var trim_start: float=minf(length*.4,first_connection.radius) if not first_connection.is_empty() else 0.0
+		var trim_end: float=minf(length*.4,last_connection.radius) if not last_connection.is_empty() else 0.0
 		var cells: PackedVector2Array=Junctions.slice(original,trim_start,length-trim_end)
 		var points := PackedVector2Array()
 		for point in cells:points.append(point*METRES_PER_CELL)
 		if points.size()<2:continue
-		var closed: bool=first.junction<0 and last.junction<0 and points[0].distance_to(points[-1])<.01
+		var closed: bool=first_connection.is_empty() and last_connection.is_empty() and points[0].distance_to(points[-1])<.01
 		var count := int(road.lanes)/2
 		var lane_width := minf(3.5,(float(road.width)*METRES_PER_CELL-2)/int(road.lanes))
 		for direction in [1,-1]:
@@ -63,7 +65,8 @@ func build(roads: Array) -> bool:
 			if i==j or b.closed or a.end_node!=b.start_node:continue
 			var incoming := tangent(i,a.length)
 			var outgoing := tangent(j,0)
-			if node.junction<0:
+			var connection: Dictionary=Junctions.connection(node,topology)
+			if connection.is_empty():
 				if a.road==b.road or a.index!=b.index or incoming.dot(outgoing)<.95:continue
 				if sample(i,a.length).distance_to(sample(j,0))<.1:a.next.append(j)
 				continue
@@ -73,7 +76,7 @@ func build(roads: Array) -> bool:
 			var points := PackedVector2Array()
 			var start := sample(i,a.length)
 			var finish := sample(j,0)
-			var handle := minf(start.distance_to(finish)*.5,float(junctions[node.junction].radius)*METRES_PER_CELL*.8)
+			var handle := minf(start.distance_to(finish)*.5,float(connection.radius)*METRES_PER_CELL*.8)
 			var c1 := start+incoming*handle
 			var c2 := finish-outgoing*handle
 			# Keep turns inside the rectangular road union instead of cutting
@@ -92,7 +95,7 @@ func build(roads: Array) -> bool:
 				var u := 1-t
 				points.append(start*u*u*u+c1*3*u*u*t+c2*3*u*t*t+finish*t*t*t)
 			var connector := _add_lane(points)
-			connector.merge({"road":-1,"section":-1,"direction":0,"index":a.index,"closed":false,"junction":node.junction,"from":i,"to":j,"speed_limit":30.0/3.6})
+			connector.merge({"road":-1,"section":-1,"direction":0,"index":a.index,"closed":false,"junction":node.junction,"transition":node.join>=0,"from":i,"to":j,"start":start,"end":finish,"speed_limit":minf(a.speed_limit,b.speed_limit) if node.join>=0 else 30.0/3.6})
 			a.next.append(connector.id)
 			connector.next.append(j)
 	for lane in lanes:

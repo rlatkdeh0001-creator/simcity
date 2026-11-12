@@ -41,6 +41,8 @@ var next_id := 1
 var next_road_id := 0
 const RoadJunctions = preload("res://core/road_junctions.gd")
 var junctions: Array = []
+var road_joins: Array = []
+var road_visuals: Array = []
 const RegionalExchange = preload("res://core/regional_exchange.gd")
 var external_infrastructure: Array[Dictionary] = []
 var next_external_link_id := 1
@@ -103,7 +105,7 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 		for facility in water.facilities:
 			if facility.get("public_lot_id",-2)==ignore_id:continue
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
-	for junction in junctions:
+	for junction in junctions+road_joins:
 		if Parcels.overlap(polygon_value,RoadJunctions.patch(junction)):return "교차로와 충돌합니다"
 	for road in roads:
 		var distance:=_polygon_road_distance(polygon_value,road)
@@ -263,7 +265,8 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for record: Dictionary in public_facilities.lots:occupied.append(record.polygon)
 	for facility in power.plants+water.facilities: occupied.append(power_plant_footprint(facility))
 	if not occupied.is_empty():
-		for junction in RoadJunctions.analyze(roads+[road]).junctions:
+		var topology: Dictionary=RoadJunctions.analyze(roads+[road])
+		for junction in topology.junctions+topology.joins:
 			var polygon_value: PackedVector2Array=RoadJunctions.patch(junction)
 			for existing in occupied:
 				if Parcels.overlap(existing,polygon_value):return {"ok":false,"reason":"교차로가 기존 건물과 충돌합니다"}
@@ -533,7 +536,10 @@ func upgrade_chain(id: int) -> Dictionary:
 
 
 func _update_zoning_for_road(_road: Dictionary):
-	junctions=RoadJunctions.analyze(roads).junctions
+	var topology: Dictionary=RoadJunctions.analyze(roads)
+	junctions=topology.junctions
+	road_joins=topology.joins
+	road_visuals=preload("res://core/road_geometry.gd").continuous_roads(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()
 	for road_index in range(roads.size()):

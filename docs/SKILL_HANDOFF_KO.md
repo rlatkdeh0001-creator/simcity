@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정 D: 로컬 도로 접선 각도 스냅 (로컬 전용)
+## 최신 수정 E: 교차로 없는 도로 이음 (로컬 전용)
+
+b10709d 후속. road_junctions.gd는 2-arm joins와 3+ junctions를 분리한다. traffic_network.gd는 꺾임/차로변경 연결은 유지하되 joins의 connector에는 junction=-1을 주어 교차로 예약/신호 없이 통과한다. 직선 동폭 이음과 단일 닫힌 루프는 기존 직접 연결을 유지한다.
+road_geometry.gd의 연속 렌더 경로를 도로 변경 때 city_model.gd에 캐시한다. main.gd는 이를 사용해 보도·노면·중앙선·점선 위상을 이어 그리며 실제 건설 객체·철거 ID·원본 점은 보존한다. 이음부의 기존 충돌/구획 제외 패치는 보존한다.
+신규30/30·관련7/7(교차로52·교통44·이어그리기20 포함), 실제1920 캡처 docs/road-seams-validation/continuous-seams-1920.png 확인. 초기 straight seam에 불필요한 connector가 생긴 회귀는 직선 직접 연결 보존으로 수정했고 초기 실패 로그를 따로 남겼다.
+godot-windows-validation/requesting-code-review 적용, 자체 리뷰(독립 에이전트 미사용). 원본/AGENTS/프로젝트 설정 불변, import churn 제외, 푸시 없음.
+
+## 이전 수정 D: 로컬 도로 접선 각도 스냅 (로컬 전용)
 
 Cf72a58a 후속. core/road_angle_snap.gd의 임시10° 보조를 road_drawing.gd 경로 생성에 연결했다. 기존 선분 접선 기준 직각/끝점 바깥쪽 평행 연장만 보조하며, 곡선/자유곡선의 실제 첫·끝 샘플도 맞춘다. 범위 밖/비접속 사선은 보존한다.
 커브 제어점은 미리보기와 같은 점으로 저장하며, 보조 후 다시 임의 위치 스냅하지 않도록 이미 완성된 경로를 preview/commit 양쪽에 동일하게 넘긴다. 기존 거리 스냅·차로/교통 검사는 재사용한다.

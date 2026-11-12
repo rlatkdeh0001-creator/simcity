@@ -104,23 +104,30 @@ static func analyze(roads: Array) -> Dictionary:
      if arm.direction.dot(pair[2])>.9999: duplicate=true
     if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"lanes":int(roads[road_id].lanes)})
  var junctions := []
+ var joins := []
  for node in nodes.values():
-  var is_junction: bool=node.arms.size()>=3
-  if node.arms.size()==2:
-   # Even gentle bends and lane-width transitions need a real connector: lane
-   # offsets no longer meet exactly, despite the shared centerline endpoint.
-   var dot: float=absf(node.arms[0].direction.dot(node.arms[1].direction))
-   is_junction=dot<.95 or (node.road_ids.size()>1 and (dot<.9999 or node.arms[0].lanes!=node.arms[1].lanes or absf(node.arms[0].width-node.arms[1].width)>.0001))
-  if not is_junction: continue
-  node.junction=junctions.size()
+  node.join=-1
+  if node.arms.size()<2:continue
+  var transition: bool=node.arms.size()==2
+  # A single closed stroke already has continuous offset lanes at its seam.
+  if transition and node.road_ids.size()==1:continue
+  if transition and node.arms[0].direction.dot(node.arms[1].direction)<-.99999 and node.arms[0].lanes==node.arms[1].lanes and is_equal_approx(node.arms[0].width,node.arms[1].width):continue
+  if transition:node.join=joins.size()
+  else:node.junction=junctions.size()
   var radius := 0.0
   for arm in node.arms:radius=maxf(radius,arm.width/2+1.0)
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
-  junction.transition=node.arms.size()==2 and absf(node.arms[0].direction.dot(node.arms[1].direction))>=.95
+  junction.transition=transition
   junction.footprint=patch(junction)
   junction.asphalt=patch(junction,true)
-  junctions.append(junction)
- return {"nodes":nodes,"sections":sections,"junctions":junctions,"errors":errors}
+  if transition:joins.append(junction)
+  else:junctions.append(junction)
+ return {"nodes":nodes,"sections":sections,"junctions":junctions,"joins":joins,"errors":errors}
+
+static func connection(node: Dictionary, topology: Dictionary) -> Dictionary:
+ if node.junction>=0:return topology.junctions[node.junction]
+ if node.join>=0:return topology.joins[node.join]
+ return {}
 
 static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
  # Measure the far edge of the crossing road, not a shared maximum road radius.

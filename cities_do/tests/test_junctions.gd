@@ -47,7 +47,7 @@ func test_topology() -> bool:
  data=Topology.analyze(tee)
  verify(data.junctions.size()==1 and data.junctions[0].arms.size()==3 and data.sections.size()==3,"T endpoint joins interior of the through road")
  data=Topology.analyze([road([Vector2(10,50),Vector2(50,50)]),road([Vector2(50,50),Vector2(50,90)])])
- verify(data.junctions.size()==1 and data.junctions[0].arms.size()==2,"separate right-angle road endpoints form a turn junction")
+ verify(data.junctions.is_empty() and data.joins.size()==1,"separate right-angle endpoints form an uncontrolled continuous seam")
  data=Topology.analyze([road([Vector2(10,50),Vector2(50,50),Vector2(90,50)]),road([Vector2(50,10),Vector2(50,50),Vector2(50,90)])])
  verify(data.junctions.size()==1 and data.sections.size()==4,"crossing at sampled vertices is deduplicated")
  data=Topology.analyze([road([Vector2(10,10),Vector2(90,90)]),road([Vector2(10,90),Vector2(90,10)])])

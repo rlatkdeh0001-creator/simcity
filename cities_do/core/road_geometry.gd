@@ -2,6 +2,56 @@ extends RefCounted
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float) -> Array[PackedVector2Array]:
 	return Geometry2D.offset_polyline(points,width/2.0,Geometry2D.JOIN_ROUND,Geometry2D.END_ROUND)
+static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
+	# Derived render-only chains. Construction IDs, zoning and authored points stay intact.
+	if topology.is_empty():topology=preload("res://core/road_junctions.gd").analyze(roads)
+	var links := {}
+	for i in range(roads.size()):
+		for end in [0,1]:
+			var p: Vector2=roads[i].points[0 if end==0 else -1]
+			var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes)
+			if not links.has(key):links[key]=[]
+			links[key].append({"road":i,"end":end})
+	var used := {}
+	var result := []
+	for i in range(roads.size()):
+		if used.has(i):continue
+		used[i]=true
+		var chain: PackedVector2Array=roads[i].points.duplicate()
+		var seams: Array[Vector2]=[]
+		for side in [0,1]:
+			if side==1:chain.reverse()
+			while true:
+				var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes)
+				if topology.nodes[key].arms.size()!=2 or links[key].size()!=2:break
+				var next: Dictionary={}
+				for entry in links[key]:
+					if not used.has(entry.road):next=entry
+				if next.is_empty():break
+				var road: Dictionary=roads[next.road]
+				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
+				var extension: PackedVector2Array=road.points.duplicate()
+				if next.end==1:extension.reverse()
+				seams.append(chain[-1]);used[next.road]=true
+				for j in range(1,extension.size()):chain.append(extension[j])
+		chain.reverse()
+		var smooth := PackedVector2Array()
+		for j in range(chain.size()):
+			if j==0 or j==chain.size()-1 or not seams.has(chain[j]):smooth.append(chain[j]);continue
+			var before: Vector2=(chain[j]-chain[j-1]).normalized()
+			var after: Vector2=(chain[j+1]-chain[j]).normalized()
+			if before.dot(after)>.99999:smooth.append(chain[j]);continue
+			var inset: float=minf(float(roads[i].width)*.6,minf(chain[j].distance_to(chain[j-1]),chain[j].distance_to(chain[j+1]))*.24)
+			var a: Vector2=chain[j]-before*inset
+			var b: Vector2=chain[j]+after*inset
+			for step in range(13):
+				var t:=step/12.0
+				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
+		var visual: Dictionary=roads[i].duplicate()
+		visual.points=smooth
+		result.append(visual)
+	return result
+
 static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 	var lines: Array[PackedVector2Array] = []
 	if road.lanes != 4: return lines

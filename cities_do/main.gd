@@ -600,11 +600,11 @@ func _draw():
 		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
 	# Paint all sidewalks before any asphalt: a later stroke's round end cap
 	# must not cut a pale curb across the already-connected carriageway.
-	for road in city.roads:
+	for road in city.road_visuals:
 		draw_ribbon(road.points,road.width,Color("c8cbc3"))
-	for road in city.roads:
+	for road in city.road_visuals:
 		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"))
-	for road in city.roads:
+	for road in city.road_visuals:
 		var points := PackedVector2Array()
 		for p in road.points: points.append(screen(p))
 		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)

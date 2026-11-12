@@ -51,7 +51,7 @@ func run():
   city.add_road(PackedVector2Array([Vector2(30.4,40.2),lanes_and_end[1]]),"local",true,lanes_and_end[0],true)
   network=Network.new()
   verify(network.build(city.roads) and connected(network,0,1) and connected(network,1,0),"gentle-angle or 2-to-4-lane continuation must remain routable both ways")
-  verify(network.junctions.size()==1 and network.junctions[0].get("transition",false),"shallow/lane seams use existing traffic connectors without adding crosswalks")
+  verify(network.junctions.is_empty() and city.road_joins.size()==1,"shallow/lane seams connect without intersection controls or crosswalks")
  var city=preload("res://core/city_model.gd").new(100,100,42)
  city.add_road(PackedVector2Array([Vector2(10,40),Vector2(30,40)]))
  var original:=PackedVector2Array([Vector2(60,40),Vector2(30.6,40.2)])
