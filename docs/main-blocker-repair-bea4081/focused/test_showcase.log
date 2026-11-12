@@ -1,0 +1,31 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS showcase has ten residential buildings
+PASS shared four-lane road plus two genuine opposite-frontage roads
+PASS both original 8x8 lots satisfy the production two-road 4+4 rule
+PASS small-2x2-a on shared baseline, valid lot and road access
+PASS small-2x2-b on shared baseline, valid lot and road access
+PASS small-4x4-a on shared baseline, valid lot and road access
+PASS small-4x4-b on shared baseline, valid lot and road access
+PASS mansion-a-4x4-4f on shared baseline, valid lot and road access
+PASS mansion-b-4x4-4f on shared baseline, valid lot and road access
+PASS large-4x4-a on shared baseline, valid lot and road access
+PASS large-4x4-b on shared baseline, valid lot and road access
+PASS large-8x8-a on shared baseline, valid lot and road access
+PASS large-8x8-b on shared baseline, valid lot and road access
+PASS all ten unique assets and exact categories
+PASS unknown scenario asset rejected
+PASS scenario asset overlap rejected
+PASS failed placement is atomic
+PASS approved appearance activation respects small new lots and large 8x8 originals
+PASS actual showcase retains all ten original residential textures and buildings
+PASS texture cache includes the complete expanded catalogue without placing the new inspection assets
+PASS opening showcase preserves the original construction session
+PASS all buildings fit viewport at one uniform scale
+PASS each of ten visible buildings accepts actual input events
+PASS each selection displays the matching name and storeys
+PASS small/medium close-up increases zoom and selects matching building
+PASS large close-up increases zoom and selects matching building
+PASS overview button restores full-row framing
+PASS return restores previous city and camera, consumes saved session
+RESULT 28/28 showcase checks passed

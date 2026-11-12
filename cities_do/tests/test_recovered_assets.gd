@@ -39,6 +39,7 @@ func run() -> void:
 	gallery.queue_free()
 	await process_frame
 	var scene=load("res://bottom_ui_preview.tscn").instantiate()
+	scene.paused=true
 	root.add_child(scene)
 	current_scene=scene
 	root.gui_embed_subwindows=true
@@ -48,6 +49,12 @@ func run() -> void:
 	var buildings_before:int=scene.city.buildings.size()
 	verify(not scene.NAMES.has("other"),"empty other tab remains removed")
 	var groups:={"education":["elementary","high_school","college","university"],"health":["hospital","clinic","large_hospital","crematorium"]}
+	# This exercises successful asset selection, not the separately tested cash rejection.
+	var required_balance:=0.0
+	for group in groups:
+		for tool in groups[group]:required_balance=maxf(required_balance,scene.city.public_facilities.price(scene.SERVICE_TOOLS[tool]))
+	scene.city.funds=maxi(scene.city.funds,ceili(required_balance))
+	var funds_before: int=scene.city.funds
 	for group in groups:
 		scene.select_category(group)
 		var expected: Array=groups[group]
@@ -67,7 +74,7 @@ func run() -> void:
 			verify(not placed_model.find_children("*","MeshInstance3D",true,false).is_empty(),tool+" placement source contains real geometry")
 			placed_model.free()
 			await process_frame
-	verify(scene.city==city_before and scene.city.buildings.size()==buildings_before,"asset inspectors preserve city and do not fake service placement")
+	verify(scene.city==city_before and scene.city.buildings.size()==buildings_before and scene.city.funds==funds_before,"asset selection preserves city and funds without fake service placement")
 	scene.queue_free()
 	await process_frame
 	print("RESULT %d/%d recovered asset checks passed"%[checks-failures,checks])

@@ -16,7 +16,7 @@ func run():
  await process_frame
  verify(preview.city.buildings.size()==34,"preview uses 34 validated catalog buildings")
  verify(preview.city.buildings.all(func(b):return not b.asset_id.is_empty()),"every preview building comes from actual game catalog")
- verify(preview.city.roads.size()==6,"preview uses six actual model roads")
+ verify(preview.city.roads.size()==8,"preview uses six review roads plus two opposite-frontage roads for its 8x8 lots")
  verify(preview.city.power.plants.size()==1 and preview.city.water.facilities.size()==2,"preview contains actual utility sources")
  verify(preview.categories.size()==11,"eleven real category buttons created")
  var no_instructions := true

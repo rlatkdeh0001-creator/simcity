@@ -17,7 +17,8 @@ func _initialize():
 func run():
 	var city = Showcase.create_city()
 	check(city.buildings.size() == 10,"showcase has ten residential buildings")
-	check(city.roads.size() == 1 and city.roads[0].lanes == 4,"shared four-lane road")
+	check(city.roads.size() == 3 and city.roads[0].lanes == 4,"shared four-lane road plus two genuine opposite-frontage roads")
+	check(city.buildings.filter(func(b):return b.size==8).all(func(b):return city.zoning_grid.has_opposing_lot(city.footprint(b))),"both original 8x8 lots satisfy the production two-road 4+4 rule")
 	var groups := {}
 	var ids := {}
 	var baseline_sum := -1

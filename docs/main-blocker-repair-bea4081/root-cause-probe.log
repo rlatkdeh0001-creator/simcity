@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PROBE roads=8 balance=50000.0
+PROBE tool=university price=60000.0 mode=select selected=
+PROBE tool=large_hospital price=65000.0 mode=select selected=
+PROBE before_back_road=large-8x8-a error=8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다
+PROBE after_back_road=large-8x8-a road_ok=true error=
+PROBE before_back_road=large-8x8-b error=8×8 부지는 마주 보는 두 도로의 4칸 구획이 필요합니다
+PROBE after_back_road=large-8x8-b road_ok=true error=
