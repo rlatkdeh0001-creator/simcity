@@ -1,0 +1,53 @@
+{
+  "angle": "90°",
+  "input": "real category and first point clicks, actual map motion",
+  "layouts": [
+    {
+      "boxes": [
+        {
+          "font_size": 20,
+          "rect": "[P: (458.0, 169.2), S: (68.0, 40.0)]",
+          "text": "48 m"
+        },
+        {
+          "font_size": 20,
+          "rect": "[P: (518.3217, 123.2), S: (52.0, 40.0)]",
+          "text": "90°"
+        }
+      ],
+      "viewport": "(1920, 1080)"
+    },
+    {
+      "boxes": [
+        {
+          "font_size": 20,
+          "rect": "[P: (458.0, 169.2), S: (68.0, 40.0)]",
+          "text": "48 m"
+        },
+        {
+          "font_size": 20,
+          "rect": "[P: (518.3217, 123.2), S: (52.0, 40.0)]",
+          "text": "90°"
+        }
+      ],
+      "viewport": "(1280, 820)"
+    },
+    {
+      "boxes": [
+        {
+          "font_size": 20,
+          "rect": "[P: (458.0, 169.2), S: (68.0, 40.0)]",
+          "text": "48 m"
+        },
+        {
+          "font_size": 20,
+          "rect": "[P: (518.3217, 123.2), S: (52.0, 40.0)]",
+          "text": "90°"
+        }
+      ],
+      "viewport": "(960, 640)"
+    }
+  ],
+  "length": "48 m",
+  "road_count": 1
+}

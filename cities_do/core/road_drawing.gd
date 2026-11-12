@@ -11,6 +11,7 @@ var anchors: Array[Vector2]=[]
 var start_tangent:=Vector2.ZERO
 var last_result: Dictionary={}
 var cursor_armed:=false
+var measurement_boxes: Array[Dictionary]=[]
 func _init(owner):owner_reference=weakref(owner)
 func cancel():
  cursor_armed=false
@@ -147,9 +148,55 @@ func handle_input(event: InputEvent) -> bool:
    if event.pressed:click(view.world(event.position))
    return true
  return false
+func measurements(result: Dictionary={}) -> Dictionary:
+ if view.mode!="road" or kind=="legacy" or anchors.is_empty():return {}
+ if result.is_empty():result=preview()
+ var points: PackedVector2Array=result.points
+ if points.size()<2:return {}
+ var length:=LengthUnits.Paths.length_of(points)
+ if length<.0001:return {}
+ var data:={"length_m":length*4,"length_text":"%d m"%roundi(length*4),"midpoint":LengthUnits.Paths.sample(points,length/2),"angles":[]}
+ for pair in [[0,1],[points.size()-1,points.size()-2]]:
+  var center: Vector2=points[pair[0]]
+  var host:=AngleSnap.connection(center,view.city.roads)
+  if host.is_empty():continue
+  var ray: Vector2=(points[pair[1]]-center).normalized()
+  if ray==Vector2.ZERO:continue
+  var base: Vector2=-host.outward if host.endpoint else host.tangent
+  if not host.endpoint and base.dot(ray)<0:base=-base
+  var turn:=base.angle_to(ray)
+  var degrees:=absf(rad_to_deg(turn))
+  var radius: float=maxf(.6,view.city.config.road_width*view.road_lanes/2.0*.8)
+  var arc:=PackedVector2Array()
+  for i in range(25):arc.append(view.screen(center+Vector2.from_angle(base.angle()+turn*i/24.0)*radius))
+  data.angles.append({"center":center,"degrees":degrees,"text":"%d°"%roundi(degrees),"arc":arc})
+ return data
+func draw_measure_badge(text: String,center: Vector2,color: Color):
+ var font: Font=view.money.get_theme_font("font")
+ var size:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,20)+Vector2(20,12)
+ var screen_size: Vector2=view.get_viewport_rect().size
+ var bottom: float=(view.drawer.global_position.y if view.drawer.visible else view.dock.global_position.y)-8
+ var rect:=Rect2(center-size/2,size)
+ rect.position.x=clampf(rect.position.x,8,maxf(8,screen_size.x-size.x-8))
+ rect.position.y=clampf(rect.position.y,8,maxf(8,bottom-size.y))
+ for prior in measurement_boxes:
+  if rect.intersects(prior.rect):rect.position.y=maxf(8,prior.rect.position.y-size.y-6)
+ var box:=StyleBoxFlat.new();box.bg_color=Color("142b37");box.set_corner_radius_all(6)
+ box.draw(view.get_canvas_item(),rect)
+ view.draw_string(font,rect.position+Vector2(10,6+font.get_ascent(20)),text,HORIZONTAL_ALIGNMENT_LEFT,-1,20,color)
+ measurement_boxes.append({"text":text,"rect":rect,"font_size":20})
+func draw_measurements(result: Dictionary):
+ var data:=measurements(result)
+ if data.is_empty():return
+ draw_measure_badge(data.length_text,view.screen(data.midpoint)+Vector2(0,-32),Color("edf4f5"))
+ for angle in data.angles:
+  if angle.degrees>.001:view.draw_polyline(angle.arc,Color("36b7ff"),2,true)
+  draw_measure_badge(angle.text,angle.arc[12]+Vector2(0,-28),Color("36b7ff"))
 func draw_preview():
+ measurement_boxes.clear()
  if view.mode!="road" or kind=="legacy" or view.get_viewport().gui_get_hovered_control()!=null:return
  if anchors.is_empty():draw_cursor(cursor_preview());return
  var result:=preview()
  if result.points.size()<2:return
  view.draw_ribbon(result.points,view.road_lanes,Color(.3,.9,.5,.55) if result.ok else Color(.95,.3,.25,.55))
+ draw_measurements(result)
