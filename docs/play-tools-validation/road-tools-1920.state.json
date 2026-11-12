@@ -1,0 +1,14 @@
+{
+  "cards": [],
+  "hud_text": "",
+  "input": "actual category mouse press/release",
+  "road_modes": 3,
+  "road_modes_visible": true,
+  "tab": "road",
+  "tools": [
+    "Tool_road",
+    "Tool_select"
+  ],
+  "traffic_running": true,
+  "viewport": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]"
+}

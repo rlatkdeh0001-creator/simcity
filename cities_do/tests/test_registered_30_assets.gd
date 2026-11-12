@@ -86,6 +86,10 @@ func run():
    verify(image.get_size()==Vector2i(256,192),entry.id+" uses existing 256x192 thumbnail convention")
  var hud=load("res://bottom_ui_preview.tscn").instantiate()
  hud.paused=true
+ # This suite exercises affordable card selection; cash rejection has its own UI suite.
+ for entry: Dictionary in entries:
+  var cost: float=hud.city.public_facilities.price(str(entry.id))
+  if is_finite(cost):hud.city.funds=maxi(hud.city.funds,int(ceilf(cost)))
  root.add_child(hud)
  await process_frame
  await process_frame
@@ -142,7 +146,7 @@ func run():
     if preview:preview.queue_free()
     await process_frame
     verify(city_state(hud.city)==before and hud.city.public_facilities.lots.is_empty(),entry.id+" real mouse card selection alone does not place or charge")
-   var original_tools: Array={"power":["power_plant","power_wire"],"water":["water_supply","water_treatment","water_pipe"],"environment":[]}[tab]
+   var original_tools: Array={"power":["power_wire"],"water":["water_pipe"],"environment":[]}[tab]
    for tool: String in original_tools:
     var old: Button=hud.drawer_box.get_node_or_null("Tool_"+tool)
     verify(old!=null and not old.has_node("AssetThumbnail"),tool+" original placement/drawing tool remains separate from preview cards")

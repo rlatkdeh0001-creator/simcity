@@ -74,12 +74,13 @@ func run():
 	var saved_city = main.city
 	main.select_category("transport")
 	var buttons := main.find_children("Tool_vehicles_gallery", "Button", true, false)
-	verify(buttons.size() == 1 and buttons[0].visible, "main screen offers vehicle showcase button")
-	buttons[0].pressed.emit()
+	verify(buttons.is_empty(), "vehicle demonstration button removed from player HUD")
+	set_meta("construction_session",{"city":main.city,"map_zoom":main.map_zoom,"origin":main.origin})
+	change_scene_to_file("res://vehicle_showcase.tscn") # Standalone test fixture, not a player-facing route.
 	await process_frame
 	await process_frame
 	var showcase = current_scene
-	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "button opens actual vehicle showcase scene")
+	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "standalone vehicle showcase fixture remains usable")
 	verify(showcase.rigs.size() == 41 and showcase.cameras.size() == 41, "showcase creates forty-one real model viewports")
 	showcase.same_scale = true
 	showcase.update_scale()

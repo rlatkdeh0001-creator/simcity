@@ -85,6 +85,9 @@ func run():
   for kind in ["power","water"]:
    game.select_category(kind)
    var settings: Array=game.drawer_box.find_children("Tool_"+kind+"_settings","Button",true,false)
+   if kind=="power":
+    verify(settings.is_empty(),"prototype electricity settings button removed")
+    continue
    verify(settings.size()==1,kind+" retains existing output and display controls in a bottom-launched popup")
    if settings.size()==1:
     settings[0].pressed.emit()

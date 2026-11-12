@@ -1,0 +1,197 @@
+{
+  "removed_buttons": [
+    {
+      "id": "facilities_gallery",
+      "tab": "park",
+      "label": "공원·주차 전시"
+    },
+    {
+      "id": "parcel_demo",
+      "tab": "road",
+      "label": "도로 구획 예시"
+    },
+    {
+      "id": "power_demo",
+      "tab": "power",
+      "label": "전력 실습"
+    },
+    {
+      "id": "power_plant",
+      "tab": "power",
+      "label": "발전시설"
+    },
+    {
+      "id": "power_settings",
+      "tab": "power",
+      "label": "전력 설정"
+    },
+    {
+      "id": "residential_gallery",
+      "tab": "build",
+      "label": "주거 전시"
+    },
+    {
+      "id": "score",
+      "tab": "build",
+      "label": "성장 수치 +100"
+    },
+    {
+      "id": "traffic_demo",
+      "tab": "transport",
+      "label": "주행 시험장"
+    },
+    {
+      "id": "vehicles_gallery",
+      "tab": "transport",
+      "label": "차량 전시"
+    },
+    {
+      "id": "water_demo",
+      "tab": "water",
+      "label": "상하수도 실습"
+    },
+    {
+      "id": "water_supply",
+      "tab": "water",
+      "label": "취수장"
+    },
+    {
+      "id": "water_treatment",
+      "tab": "water",
+      "label": "하수처리장"
+    }
+  ],
+  "retained_inventory": {
+    "build": {
+      "cards": [],
+      "tools": [
+        "build",
+        "build_commercial",
+        "build_erase",
+        "build_industrial",
+        "reset",
+        "select",
+        "upgrade"
+      ]
+    },
+    "education": {
+      "cards": [
+        "elementary-school",
+        "high-school",
+        "technical-college",
+        "university"
+      ],
+      "tools": [
+        "college",
+        "elementary",
+        "high_school",
+        "university"
+      ]
+    },
+    "environment": {
+      "cards": [
+        "waste-incinerator",
+        "waste-recycling-center"
+      ],
+      "tools": []
+    },
+    "fire": {
+      "cards": [
+        "small-fire-station",
+        "fire-station",
+        "regional-fire-station"
+      ],
+      "tools": []
+    },
+    "health": {
+      "cards": [
+        "medical-hospital",
+        "medical-clinic",
+        "medical-large-hospital",
+        "crematorium-4x4"
+      ],
+      "tools": [
+        "clinic",
+        "crematorium",
+        "hospital",
+        "large_hospital"
+      ]
+    },
+    "park": {
+      "cards": [
+        "park-pocket-2x2",
+        "park-garden-2x2",
+        "park-plaza-4x4",
+        "park-play-4x4",
+        "parking-small-2x4",
+        "parking-medium-4x4",
+        "parking-large-4x8",
+        "parking-tower-4x4-4f"
+      ],
+      "tools": []
+    },
+    "police": {
+      "cards": [
+        "small-police-station",
+        "police-station",
+        "regional-police-station",
+        "prison-8x8"
+      ],
+      "tools": []
+    },
+    "power": {
+      "cards": [
+        "power-coal",
+        "power-hydro",
+        "power-nuclear",
+        "power-oil",
+        "power-solar",
+        "power-wind"
+      ],
+      "tools": [
+        "power_select",
+        "power_wire"
+      ]
+    },
+    "road": {
+      "cards": [],
+      "tools": [
+        "road",
+        "select"
+      ]
+    },
+    "transport": {
+      "cards": [],
+      "tools": [
+        "traffic"
+      ]
+    },
+    "water": {
+      "cards": [
+        "water-intake",
+        "water-sewage-outfall",
+        "water-sewage-treatment",
+        "water-water-tower"
+      ],
+      "tools": [
+        "water_pipe",
+        "water_select",
+        "water_settings"
+      ]
+    }
+  },
+  "ambiguous_retained": [
+    "water_settings",
+    "upgrade",
+    "reset",
+    "traffic"
+  ],
+  "review_mode": "self-review",
+  "new_play_tool_checks": "28/28",
+  "related_tests": "15/15",
+  "scope_excluded": [
+    "network display policy",
+    "numeric font restoration",
+    "main push"
+  ]
+}

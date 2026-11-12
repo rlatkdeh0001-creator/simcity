@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS rejected currency glyph and internal unit are absent from HUD text
+PASS treasury uses an actual approved SVG image instead of a currency font glyph
+PASS native treasury image/text reserves enough layout width and never overlaps monthly balance
+PASS approved wind hover is a genuine three-column table with separate number and unit controls
+PASS all numeric last digits share the same right-aligned column edge
+PASS actual numeric font has equal advance for every digit
+PASS only alignment and icon presentation change, not CSV values
+PASS unit column is independently left aligned
+PASS currency image HUD fits (1280, 820)
+PASS positive monthly balance remains separated from cash and left instruments at (1280, 820)
+PASS currency image HUD fits (960, 640)
+PASS positive monthly balance remains separated from cash and left instruments at (960, 640)
+RESULT 12/12 custom currency icon checks passed

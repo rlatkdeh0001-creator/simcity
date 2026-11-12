@@ -76,11 +76,13 @@ func run():
  var saved_city=scene.city
  scene.map_zoom=1.17
  scene.select_category("park")
- scene.find_children("Tool_facilities_gallery","Button",true,false)[0].pressed.emit()
+ verify(scene.find_children("Tool_facilities_gallery","Button",true,false).is_empty(),"facilities demonstration button removed from player HUD")
+ set_meta("construction_session",{"city":scene.city,"map_zoom":scene.map_zoom,"origin":scene.origin})
+ change_scene_to_file("res://facilities_showcase.tscn") # Test fixture only: retain standalone scene and return-path coverage.
  await process_frame
  await process_frame
  var showcase=current_scene
- verify(showcase.scene_file_path=="res://facilities_showcase.tscn","construction button opens facilities scene")
+ verify(showcase.scene_file_path=="res://facilities_showcase.tscn","standalone facilities fixture remains usable without a player HUD button")
  verify(showcase.parking.groups().size()==1,"runtime starts with merged L shape")
  showcase.act("merge")
  verify(showcase.merge_view.visible,"merge mode shows runtime geometry")

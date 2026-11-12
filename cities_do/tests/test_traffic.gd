@@ -197,11 +197,13 @@ func test_bridge_and_ui() -> bool:
 	main.map_zoom = 1.14
 	main.origin = Vector2(412,230)
 	main.select_category("transport")
-	main.find_children("Tool_traffic_demo","Button",true,false)[0].pressed.emit()
+	verify(main.find_children("Tool_traffic_demo","Button",true,false).is_empty(),"traffic demonstration button removed from player HUD")
+	set_meta("construction_session",{"city":main.city,"map_zoom":main.map_zoom,"origin":main.origin})
+	change_scene_to_file("res://traffic_demo.tscn") # Standalone fixture preserves traffic and return tests.
 	await process_frame
 	await process_frame
 	var demo = current_scene
-	verify(demo.scene_file_path == "res://traffic_demo.tscn" and demo.traffic.simulation.vehicles.size() >= 20, "demo button opens live fleet on curved road")
+	verify(demo.scene_file_path == "res://traffic_demo.tscn" and demo.traffic.simulation.vehicles.size() >= 20, "standalone traffic fixture runs live fleet on curved road")
 	demo.find_children("PauseTraffic","Button",true,false)[0].pressed.emit()
 	verify(demo.traffic.simulation.paused, "demo pause control works")
 	var old: bool = demo.manual_red

@@ -31,7 +31,7 @@ func rebuild(roads: Array) -> bool:
 	add_child(bridge)
 	bridge.setup(network)
 	running = true
-	status = "우측통행 · 앞차 간격 유지"
+	status = "" # Successful driving needs no explanatory HUD text.
 	return true
 
 func seed_traffic():

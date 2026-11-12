@@ -589,14 +589,13 @@ func select_category(key: String):
  drawer_box.add_child(heading)
  var choices := []
  match key:
-  "power": choices=[["지중 전력선","power_wire"],["발전시설","power_plant"],["시설 선택","power_select"],["전력 설정","power_settings"],["전력 실습","power_demo"]]
-  "water": choices=[["상하수관 함께","water_pipe"],["취수장","water_supply"],["하수처리장","water_treatment"],["시설 선택","water_select"],["상하수도 설정","water_settings"],["상하수도 실습","water_demo"]]
-  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"],["건물 성장","upgrade"],["성장 수치 +100","score"],["주거 전시","residential_gallery"],["도시 초기화","reset"]]
+  "power": choices=[["지중 전력선","power_wire"],["시설 선택","power_select"]]
+  "water": choices=[["상하수관 함께","water_pipe"],["시설 선택","water_select"],["상하수도 설정","water_settings"]]
+  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"],["건물 성장","upgrade"],["도시 초기화","reset"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[["도로 그리기","road"],["건물 선택","select"],["도로 구획 예시","parcel_demo"]]
-  "park": choices=[["공원·주차 전시","facilities_gallery"]]
-  "transport": choices=[["차량 전시","vehicles_gallery"],["도로 주행","traffic"],["주행 시험장","traffic_demo"]]
+  "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
+  "transport": choices=[["도로 주행","traffic"]]
   _:
    pass
  for choice in choices:
@@ -962,13 +961,8 @@ func activate_tool(tool: String):
  if SERVICE_TOOLS.has(tool):
   select_public_asset(SERVICE_TOOLS[tool])
   return
- if tool in ["power_settings","water_settings"]:
-  open_utility_settings("power" if tool=="power_settings" else "water")
-  return
- var destinations := {"residential_gallery":"residential_showcase","vehicles_gallery":"vehicle_showcase","facilities_gallery":"facilities_showcase","parcel_demo":"road_parcel_demo","traffic_demo":"traffic_demo","power_demo":"power_demo","water_demo":"water_demo"}
- if destinations.has(tool):
-  get_tree().set_meta("construction_session",{"city":city,"map_zoom":map_zoom,"origin":origin})
-  get_tree().change_scene_to_file("res://%s.tscn" % destinations[tool])
+ if tool=="water_settings":
+  open_utility_settings("water")
   return
  match tool:
   "reset":
@@ -979,9 +973,7 @@ func activate_tool(tool: String):
   "upgrade":
    var result: Dictionary=city.upgrade_chain(selected)
    message="성장 %d개" % result.events.size() if result.ok else result.reason
-  "score":
-   var building: Dictionary=city.find_building(selected)
-   if not building.is_empty(): building.score+=100.0
+
   "traffic": toggle_traffic()
   _:
    zone="" if tool=="build_erase" else ("commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential"))
