@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정 H: 구획 완료 칸 수 문구 숨김
+## 최신 수정 I: 화면 축 키보드 카메라 이동
+
+H2dcfe19 후속. core/keyboard_camera.gd를 main.gd의 독립 real-time 자식 Node로 연결했다. WASD/방향키는 화면 축 이동, 대각선 정규화, Shift2배다. ‘멀리 볼 때 빠르게’ 요구에 따라 zoom1 기준400 screen px/s를 줌으로 나눈다. UI 일시정지/배속의 simulated delta는 카메라에 전달하지 않는다.
+LineEdit/TextEdit(조상 포함) 포커스와 Ctrl/Alt/Meta 조합은 차단하지 않고 이동키 상태만 비운다. 창 focus_exited에서도 상태를 비우며, 입력창을 나온 뒤 이미 눌린 Shift modifier도 인식한다. R/ESC와 마우스 팬/휠은 원래 처리에 전달한다. 기존 플레이 WASD 바인딩은 없었다. 방향키는 텍스트 밖에서 HUD 포커스 이동보다 카메라를 우선한다(Tab/Enter 유지).
+기존 main에는 팬 경계 clamp가 없었다. 새 키보드 경로에만 viewport 중심을 맵 world 범위 안으로 제한하고 기존 마우스 팬/줌 정책은 변경하지 않았다. InputMap/프로젝트 설정/원본 변경 없음.
+신규36/36·관련5/5(HUD72·공공UI19·도로29·구획32) 통과. 실제 root 키 입력, 입력창 문자 전달, 포커스 상실, 실제 독립 process의 일시정지 중 이동, R회전/ESC취소를 검사했다. docs/keyboard-camera-validation/에 RED/Shift회귀/최종 로그 보존. TDD/godot-windows-validation/requesting-code-review 자체 리뷰 적용, 요청대로 캡처/푸시 없음.
+
+## 이전 수정 H: 구획 완료 칸 수 문구 숨김
 
 main.gd의 finish_zoning은 성공 시 HUD message를 비우고 실패 이유는 보존한다. 모델의 changed/reason 데이터·칠하기/해제·반투명 범위 그리기는 그대로다. test_grid_zoning_drag의 실제 완료 경로에서 텍스트가 비는 회귀6개를 RED 확인 후 적용했고 관련2/2(격자32/32·덧칠22/22) 통과했다. docs/zoning-count-hidden-validation/에 결과 보존. TDD/자체 리뷰 적용, 요청대로 캡처 없음·main 푸시 없음.
 

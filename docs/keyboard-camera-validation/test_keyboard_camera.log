@@ -1,0 +1,39 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS playable scene installs real-time keyboard camera
+PASS screen-space camera direction 87
+PASS all movement aliases share speed
+PASS screen-space camera direction 4194320
+PASS all movement aliases share speed
+PASS screen-space camera direction 83
+PASS all movement aliases share speed
+PASS screen-space camera direction 4194322
+PASS all movement aliases share speed
+PASS screen-space camera direction 65
+PASS all movement aliases share speed
+PASS screen-space camera direction 4194319
+PASS all movement aliases share speed
+PASS screen-space camera direction 68
+PASS all movement aliases share speed
+PASS screen-space camera direction 4194321
+PASS all movement aliases share speed
+PASS diagonal input is normalized
+PASS W plus Up never doubles axis speed
+PASS opposite movement keys cancel
+PASS Shift doubles speed
+PASS held Shift modifier works even after entering/leaving text input cleared old key state
+PASS zooming out speeds screen travel according to inverse zoom
+PASS actual city-name LineEdit keeps typing without camera movement
+PASS movement key reaches actual text editor instead of being swallowed
+PASS entering text input clears previously held movement
+PASS TextEdit retains cursor arrows without camera movement
+PASS middle-mouse panning takes precedence over keyboard movement
+PASS focus-loss clear cannot leave a stuck movement key
+PASS outside text entry arrow pans without also moving HUD focus
+PASS large keyboard movement keeps viewport center within map bounds
+PASS camera remains usable while simulation is paused
+PASS actual independent process moves camera during paused simulation
+PASS facility placement begins for shortcut regression
+PASS R still rotates facility without panning
+PASS ESC still cancels placement without panning
+RESULT 36/36 keyboard camera checks passed

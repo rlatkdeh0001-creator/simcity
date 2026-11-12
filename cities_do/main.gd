@@ -16,6 +16,7 @@ var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cell
 var road_lanes := 2
 var map_zoom := 0.65
 var panning := false
+var keyboard_camera
 var showcase_view := false
 var controls_panel: PanelContainer
 var building_textures := {}
@@ -75,6 +76,8 @@ func _ready():
 	public_controller.view=self
 	add_child(public_controller)
 	road_drawer=preload("res://core/road_drawing.gd").new(self)
+	keyboard_camera=preload("res://core/keyboard_camera.gd").new(self)
+	add_child(keyboard_camera)
 
 	var layer := CanvasLayer.new()
 	add_child(layer)
@@ -447,6 +450,9 @@ func _unhandled_input(event):
 			finish_road()
 
 func _input(event):
+	if keyboard_camera!=null and keyboard_camera.handle_input(event):
+		get_viewport().set_input_as_handled()
+		return
 	if zoning_drag:
 		if event is InputEventMouseMotion:
 			zoning_end=event.position
