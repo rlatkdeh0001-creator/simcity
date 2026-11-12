@@ -29,7 +29,8 @@ func run():
   var font: Font=numbers[0].get_theme_font("font");var pixels: int=numbers[0].get_theme_font_size("font_size")
   var widths: Array=[]
   for digit in "0123456789":widths.append(font.get_string_size(digit,HORIZONTAL_ALIGNMENT_LEFT,-1,pixels).x)
-  verify(widths.all(func(w):return absf(w-widths[0])<.01),"actual numeric font has equal advance for every digit")
+  verify(numbers.all(func(n):return n.get_theme_font("font")==game.money.get_theme_font("font") and not n.has_theme_font_override("font")),"numeric cells inherit the same existing HUD font without a separate monospace override")
+  print("HOVER_NUMERIC_FONT "+font.get_font_name()+" digit_advances="+str(widths))
   verify(numbers.map(func(n):return n.text)==["15,000","−200","1,000","2,000"],"only alignment and icon presentation change, not CSV values")
  if units.size()==4:verify(units.all(func(n):return n.horizontal_alignment==HORIZONTAL_ALIGNMENT_LEFT),"unit column is independently left aligned")
  for size_value in [Vector2i(1280,820),Vector2i(960,640)]:

@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS rejected currency glyph and internal unit are absent from HUD text
+PASS treasury uses an actual approved SVG image instead of a currency font glyph
+PASS native treasury image/text reserves enough layout width and never overlaps monthly balance
+PASS approved wind hover is a genuine three-column table with separate number and unit controls
+PASS all numeric last digits share the same right-aligned column edge
+HOVER_NUMERIC_FONT Consolas digit_advances=[10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+PASS only alignment and icon presentation change, not CSV values
+PASS unit column is independently left aligned
+PASS currency image HUD fits (1280, 820)
+PASS positive monthly balance remains separated from cash and left instruments at (1280, 820)
+PASS currency image HUD fits (960, 640)
+PASS positive monthly balance remains separated from cash and left instruments at (960, 640)
+RESULT 11/12 custom currency icon checks passed
+ERROR: FAIL numeric cells inherit the same existing HUD font without a separate monospace override
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_currency_icon.gd:7)
+       [1] run (res://tests/test_currency_icon.gd:32)

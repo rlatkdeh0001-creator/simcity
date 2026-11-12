@@ -6,7 +6,14 @@
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
-## 최신 수정: 전력·수도망 탭별 표시 (로컬 전용)
+## 최신 수정: 정보 말풍선 숫자 폰트 복구 (로컬 전용)
+
+feature/money-ui의f777aec 후속. bottom_ui.gd의 숫자 전용 Consolas/Courier New SystemFont 생성과 override만 제거하여 기존 HUD Open Sans SemiBold를 그대로 상속한다.3열/숫자 우측·단위 좌측 정렬/최소18px/자체 SVG는 유지했다.
+실제18px HUD 폰트의0~9 advance가 모두11px임을 확인했으므로 별도 폰트·OpenType override를 추가하지 않았다. 폰트가 달라져도 같은 HUD 폰트와 우측 정렬을 우선한다.
+관련 UI9/9·아이콘/폰트12/12,1920/1280/960 경계 검사, 실제 풍력1920 캡처1장/숫자4칸 Open Sans SemiBold 메타데이터: docs/hover-font-validation/.
+적용: test-driven-development, requesting-code-review(자체), game-ui-ux, godot-windows-validation. 새 폰트 설치·수치/아이콘/망 표시 정책 변경·전체 회귀·main 푸시 없음.
+
+## 이전 수정: 전력·수도망 탭별 표시 (로컬 전용)
 
 feature/money-ui의1a72be2 후속. 기획2문서는30002f3에 원문 보존했다.
 bottom_ui.gd의 sync_utility_visibility를 선택 변경과 실제 drawer.visibility_changed에 연결했다. 열린 전력/수도 탭의 망·연결점·범위만 표시하고 다른 탭/닫힘/ESC/접기/불도저/시설카드로 닫힐 때 양쪽을 즉시 숨긴다. 기존 CanvasItem 명령도 queue_redraw로 지운다.

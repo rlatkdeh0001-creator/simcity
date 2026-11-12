@@ -813,10 +813,10 @@ func show_asset_info(card):
  var rows:=asset_info_rows(card.get_meta("thumbnail_asset_id",""));asset_info.set_meta("rows",rows)
  var table:=GridContainer.new();table.name="AssetInfoTable";table.columns=3;table.mouse_filter=Control.MOUSE_FILTER_IGNORE
  table.add_theme_constant_override("h_separation",8);table.add_theme_constant_override("v_separation",6);body.add_child(table)
- var numeric_font:=SystemFont.new();numeric_font.font_names=PackedStringArray(["Consolas","Courier New"])
+
  for data in rows:
   var key:=label(data.label,18);key.add_theme_color_override("font_color",Color("edf4f5"));key.size_flags_horizontal=Control.SIZE_EXPAND_FILL;key.mouse_filter=Control.MOUSE_FILTER_IGNORE;table.add_child(key)
-  var value:=label(data.number,18);value.name="InfoNumber_"+data.id;value.add_theme_color_override("font_color",Color("edf4f5"));value.add_theme_font_override("font",numeric_font)
+  var value:=label(data.number,18);value.name="InfoNumber_"+data.id;value.add_theme_color_override("font_color",Color("edf4f5"))
   value.custom_minimum_size.x=100;value.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;value.size_flags_horizontal=Control.SIZE_EXPAND_FILL;value.mouse_filter=Control.MOUSE_FILTER_IGNORE;table.add_child(value)
   var unit:=CurrencyLabel.new();unit.name="InfoUnit_"+data.id;unit.text=data.unit;unit.add_theme_font_size_override("font_size",18);unit.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT;table.add_child(unit)
   key.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;value.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;unit.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
