@@ -1,4 +1,4 @@
-# 목초지
+# 목초지·빈 풀밭
 
-실측 W×D×H: 4.000×4.000×1.410m. 삼각형216. 원본 `primary-tile-pasture-01.blend`.
-[전체 타일·3×3 검수·제약·미승인 용량](../../../docs/primary-industry/work-tiles/README_KO.md). 게임 적용 없음.
+실측 W×D×H=4.000×4.000×0.120m, 삼각형12.
+[현재 시안/기하 검사/게임 미적용 범위](../../../docs/primary-industry/completion/README_KO.md).

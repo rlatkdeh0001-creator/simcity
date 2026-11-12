@@ -21,20 +21,20 @@
     [
       -2.0,
       -2.0,
-      -0.4000000059604645
+      -0.42000001668930054
     ],
     [
       2.0,
       2.0,
-      0.13500000536441803
+      -0.17000000178813934
     ]
   ],
   "measured_dimensions_m": [
     4.0,
     4.0,
-    0.5350000113248825
+    0.2500000149011612
   ],
-  "triangles": 74,
+  "triangles": 52,
   "mesh_objects": 4,
   "camera_elevation_degrees": 30,
   "game_registered": false,
@@ -44,8 +44,10 @@
     4,
     4
   ],
-  "ground_surface_z_m": 0,
+  "ground_surface_z_m": -0.3,
   "water_surface_included": false,
   "minimum_terrain_z_m": -0.3,
-  "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+  "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+  "floor_mode": "uniform low floor; edge-continuous open benches",
+  "requires_outer_boundary_transition": true
 }

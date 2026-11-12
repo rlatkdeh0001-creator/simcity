@@ -49,6 +49,457 @@
     "plinth_min_z_m": -0.12
   },
   {
+    "id": "primary-farm-livestock-01",
+    "name": "축산 농장",
+    "kind": "primary_main",
+    "industry": "farm_livestock",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        6.519999980926514
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      6.639999978244305
+    ],
+    "triangles": 4318,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-farm-vegetable-01",
+    "name": "채소·과수 농장",
+    "kind": "primary_main",
+    "industry": "farm_vegetable",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 2,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        7.320000171661377
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      7.440000168979168
+    ],
+    "triangles": 3980,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-fishing-01",
+    "name": "어항",
+    "kind": "primary_main",
+    "industry": "fishing",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        4.269999980926514
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      4.389999978244305
+    ],
+    "triangles": 3912,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs",
+    "waterfront_blender": "+Y",
+    "shoreline_y_m": 2,
+    "water_surface_included": false,
+    "boat_count": 2,
+    "pier_within_lot": true
+  },
+  {
+    "id": "primary-forestry-01",
+    "name": "벌목장",
+    "kind": "primary_main",
+    "industry": "forestry",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.319488525390625
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      5.439488522708416
+    ],
+    "triangles": 2068,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-mine-coal-01",
+    "name": "석탄 광산",
+    "kind": "primary_main",
+    "industry": "mine_coal",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        9.279999732971191
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      9.399999730288982
+    ],
+    "triangles": 2292,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-mine-iron-01",
+    "name": "철광산",
+    "kind": "primary_main",
+    "industry": "mine_iron",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        9.279999732971191
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      9.399999730288982
+    ],
+    "triangles": 2136,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-mine-uranium-01",
+    "name": "우라늄 광산",
+    "kind": "primary_main",
+    "industry": "mine_uranium",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 1,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        4.269999980926514
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      4.389999978244305
+    ],
+    "triangles": 6118,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-oil-01",
+    "name": "유정 본부",
+    "kind": "primary_main",
+    "industry": "oil",
+    "footprint_cells": [
+      4,
+      4
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      16,
+      16
+    ],
+    "floors": 2,
+    "main_storey_height_m": 3.05,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        7.320000171661377
+      ]
+    ],
+    "measured_dimensions_m": [
+      16.0,
+      16.0,
+      7.440000168979168
+    ],
+    "triangles": 2708,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+  },
+  {
+    "id": "primary-tile-fishing-01",
+    "name": "어장",
+    "kind": "primary_work_tile",
+    "industry": "fishing",
+    "footprint_cells": [
+      1,
+      1
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      4,
+      4
+    ],
+    "floors": 0,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.03500000014901161
+      ],
+      [
+        2.0,
+        2.0,
+        0.7699999809265137
+      ]
+    ],
+    "measured_dimensions_m": [
+      4.0,
+      4.0,
+      0.8049999810755253
+    ],
+    "triangles": 162,
+    "mesh_objects": 20,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "style_reference": "6afefd8 smooth grain ribbon tile",
+    "edge_period_m": [
+      4,
+      4
+    ],
+    "ground_surface_z_m": null,
+    "water_surface_included": false,
+    "minimum_terrain_z_m": 0,
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+  },
+  {
+    "id": "primary-tile-forestry-01",
+    "name": "벌목지",
+    "kind": "primary_work_tile",
+    "industry": "forestry",
+    "footprint_cells": [
+      1,
+      1
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      4,
+      4
+    ],
+    "floors": 0,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.11999999731779099
+      ],
+      [
+        2.0,
+        2.0,
+        2.384999990463257
+      ]
+    ],
+    "measured_dimensions_m": [
+      4.0,
+      4.0,
+      2.504999987781048
+    ],
+    "triangles": 212,
+    "mesh_objects": 14,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "style_reference": "6afefd8 smooth grain ribbon tile",
+    "edge_period_m": [
+      4,
+      4
+    ],
+    "ground_surface_z_m": 0,
+    "water_surface_included": false,
+    "minimum_terrain_z_m": 0,
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+  },
+  {
     "id": "primary-tile-grain-01",
     "name": "곡물 밭",
     "kind": "primary_work_tile",
@@ -112,10 +563,10 @@
     "growth_building": false
   },
   {
-    "id": "primary-tile-vegetable-01",
-    "name": "채소·과수 밭",
+    "id": "primary-tile-mine-coal-01",
+    "name": "석탄 채굴지",
     "kind": "primary_work_tile",
-    "industry": "farm_vegetable",
+    "industry": "mine_coal",
     "footprint_cells": [
       1,
       1
@@ -134,21 +585,21 @@
       [
         -2.0,
         -2.0,
-        -0.11999999731779099
+        -0.42000001668930054
       ],
       [
         2.0,
         2.0,
-        1.9600000381469727
+        -0.17000000178813934
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      2.0800000354647636
+      0.2500000149011612
     ],
-    "triangles": 200,
-    "mesh_objects": 9,
+    "triangles": 52,
+    "mesh_objects": 4,
     "camera_elevation_degrees": 30,
     "game_registered": false,
     "approval_status": "pending-user-review",
@@ -157,112 +608,12 @@
       4,
       4
     ],
-    "ground_surface_z_m": 0,
+    "ground_surface_z_m": -0.3,
     "water_surface_included": false,
-    "minimum_terrain_z_m": 0,
-    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
-  },
-  {
-    "id": "primary-tile-pasture-01",
-    "name": "목초지",
-    "kind": "primary_work_tile",
-    "industry": "farm_livestock",
-    "footprint_cells": [
-      1,
-      1
-    ],
-    "cell_meters": 4,
-    "lot_meters": [
-      4,
-      4
-    ],
-    "floors": 0,
-    "footprint_status": "user-specified",
-    "front": "-Y (Blender) / +Z (Godot)",
-    "front_blender": "-Y",
-    "front_godot": "+Z",
-    "vertex_bounds_m": [
-      [
-        -2.0,
-        -2.0,
-        -0.11999999731779099
-      ],
-      [
-        2.0,
-        2.0,
-        1.2899999618530273
-      ]
-    ],
-    "measured_dimensions_m": [
-      4.0,
-      4.0,
-      1.4099999591708183
-    ],
-    "triangles": 216,
-    "mesh_objects": 18,
-    "camera_elevation_degrees": 30,
-    "game_registered": false,
-    "approval_status": "pending-user-review",
-    "style_reference": "6afefd8 smooth grain ribbon tile",
-    "edge_period_m": [
-      4,
-      4
-    ],
-    "ground_surface_z_m": 0,
-    "water_surface_included": false,
-    "minimum_terrain_z_m": 0,
-    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
-  },
-  {
-    "id": "primary-tile-forestry-01",
-    "name": "벌목지",
-    "kind": "primary_work_tile",
-    "industry": "forestry",
-    "footprint_cells": [
-      1,
-      1
-    ],
-    "cell_meters": 4,
-    "lot_meters": [
-      4,
-      4
-    ],
-    "floors": 0,
-    "footprint_status": "user-specified",
-    "front": "-Y (Blender) / +Z (Godot)",
-    "front_blender": "-Y",
-    "front_godot": "+Z",
-    "vertex_bounds_m": [
-      [
-        -2.0,
-        -2.0,
-        -0.11999999731779099
-      ],
-      [
-        2.0,
-        2.0,
-        2.384999990463257
-      ]
-    ],
-    "measured_dimensions_m": [
-      4.0,
-      4.0,
-      2.504999987781048
-    ],
-    "triangles": 212,
-    "mesh_objects": 14,
-    "camera_elevation_degrees": 30,
-    "game_registered": false,
-    "approval_status": "pending-user-review",
-    "style_reference": "6afefd8 smooth grain ribbon tile",
-    "edge_period_m": [
-      4,
-      4
-    ],
-    "ground_surface_z_m": 0,
-    "water_surface_included": false,
-    "minimum_terrain_z_m": 0,
-    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+    "minimum_terrain_z_m": -0.3,
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+    "floor_mode": "uniform low floor; edge-continuous open benches",
+    "requires_outer_boundary_transition": true
   },
   {
     "id": "primary-tile-mine-iron-01",
@@ -287,20 +638,20 @@
       [
         -2.0,
         -2.0,
-        -0.4000000059604645
+        -0.42000001668930054
       ],
       [
         2.0,
         2.0,
-        0.13500000536441803
+        -0.17000000178813934
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      0.5350000113248825
+      0.2500000149011612
     ],
-    "triangles": 74,
+    "triangles": 52,
     "mesh_objects": 4,
     "camera_elevation_degrees": 30,
     "game_registered": false,
@@ -310,16 +661,18 @@
       4,
       4
     ],
-    "ground_surface_z_m": 0,
+    "ground_surface_z_m": -0.3,
     "water_surface_included": false,
     "minimum_terrain_z_m": -0.3,
-    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+    "floor_mode": "uniform low floor; edge-continuous open benches",
+    "requires_outer_boundary_transition": true
   },
   {
-    "id": "primary-tile-mine-coal-01",
-    "name": "석탄 채굴지",
+    "id": "primary-tile-mine-uranium-01",
+    "name": "우라늄 채굴지",
     "kind": "primary_work_tile",
-    "industry": "mine_coal",
+    "industry": "mine_uranium",
     "footprint_cells": [
       1,
       1
@@ -338,21 +691,21 @@
       [
         -2.0,
         -2.0,
-        -0.4000000059604645
+        -0.11999999731779099
       ],
       [
         2.0,
         2.0,
-        0.13500000536441803
+        1.0700000524520874
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      0.5350000113248825
+      1.1900000497698784
     ],
-    "triangles": 74,
-    "mesh_objects": 4,
+    "triangles": 92,
+    "mesh_objects": 13,
     "camera_elevation_degrees": 30,
     "game_registered": false,
     "approval_status": "pending-user-review",
@@ -363,7 +716,7 @@
     ],
     "ground_surface_z_m": 0,
     "water_surface_included": false,
-    "minimum_terrain_z_m": -0.3,
+    "minimum_terrain_z_m": 0,
     "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
   },
   {
@@ -469,10 +822,10 @@
     "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
   },
   {
-    "id": "primary-tile-mine-uranium-01",
-    "name": "우라늄 채굴지",
+    "id": "primary-tile-pasture-01",
+    "name": "목초지·빈 풀밭",
     "kind": "primary_work_tile",
-    "industry": "mine_uranium",
+    "industry": "farm_livestock",
     "footprint_cells": [
       1,
       1
@@ -496,16 +849,16 @@
       [
         2.0,
         2.0,
-        1.0700000524520874
+        0.0
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      1.1900000497698784
+      0.11999999731779099
     ],
-    "triangles": 92,
-    "mesh_objects": 13,
+    "triangles": 12,
+    "mesh_objects": 1,
     "camera_elevation_degrees": 30,
     "game_registered": false,
     "approval_status": "pending-user-review",
@@ -517,13 +870,16 @@
     "ground_surface_z_m": 0,
     "water_surface_included": false,
     "minimum_terrain_z_m": 0,
-    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+    "variant_family": "pasture",
+    "cow_count": 0,
+    "cow_pose": "none"
   },
   {
-    "id": "primary-tile-fishing-01",
-    "name": "어장",
+    "id": "primary-tile-pasture-02",
+    "name": "목초지·소 좌측",
     "kind": "primary_work_tile",
-    "industry": "fishing",
+    "industry": "farm_livestock",
     "footprint_cells": [
       1,
       1
@@ -542,21 +898,21 @@
       [
         -2.0,
         -2.0,
-        -0.03500000014901161
+        -0.11999999731779099
       ],
       [
         2.0,
         2.0,
-        0.7699999809265137
+        1.2899999618530273
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      0.8049999810755253
+      1.4099999591708183
     ],
-    "triangles": 162,
-    "mesh_objects": 20,
+    "triangles": 216,
+    "mesh_objects": 18,
     "camera_elevation_degrees": 30,
     "game_registered": false,
     "approval_status": "pending-user-review",
@@ -565,7 +921,115 @@
       4,
       4
     ],
-    "ground_surface_z_m": null,
+    "ground_surface_z_m": 0,
+    "water_surface_included": false,
+    "minimum_terrain_z_m": 0,
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+    "variant_family": "pasture",
+    "cow_count": 1,
+    "cow_pose": "left, yaw28"
+  },
+  {
+    "id": "primary-tile-pasture-03",
+    "name": "목초지·소 우측",
+    "kind": "primary_work_tile",
+    "industry": "farm_livestock",
+    "footprint_cells": [
+      1,
+      1
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      4,
+      4
+    ],
+    "floors": 0,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.11999999731779099
+      ],
+      [
+        2.0,
+        2.0,
+        1.2899999618530273
+      ]
+    ],
+    "measured_dimensions_m": [
+      4.0,
+      4.0,
+      1.4099999591708183
+    ],
+    "triangles": 216,
+    "mesh_objects": 18,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "style_reference": "6afefd8 smooth grain ribbon tile",
+    "edge_period_m": [
+      4,
+      4
+    ],
+    "ground_surface_z_m": 0,
+    "water_surface_included": false,
+    "minimum_terrain_z_m": 0,
+    "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+    "variant_family": "pasture",
+    "cow_count": 1,
+    "cow_pose": "right, yaw-66"
+  },
+  {
+    "id": "primary-tile-vegetable-01",
+    "name": "채소·과수 밭",
+    "kind": "primary_work_tile",
+    "industry": "farm_vegetable",
+    "footprint_cells": [
+      1,
+      1
+    ],
+    "cell_meters": 4,
+    "lot_meters": [
+      4,
+      4
+    ],
+    "floors": 0,
+    "footprint_status": "user-specified",
+    "front": "-Y (Blender) / +Z (Godot)",
+    "front_blender": "-Y",
+    "front_godot": "+Z",
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.11999999731779099
+      ],
+      [
+        2.0,
+        2.0,
+        1.9600000381469727
+      ]
+    ],
+    "measured_dimensions_m": [
+      4.0,
+      4.0,
+      2.0800000354647636
+    ],
+    "triangles": 200,
+    "mesh_objects": 9,
+    "camera_elevation_degrees": 30,
+    "game_registered": false,
+    "approval_status": "pending-user-review",
+    "style_reference": "6afefd8 smooth grain ribbon tile",
+    "edge_period_m": [
+      4,
+      4
+    ],
+    "ground_surface_z_m": 0,
     "water_surface_included": false,
     "minimum_terrain_z_m": 0,
     "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"

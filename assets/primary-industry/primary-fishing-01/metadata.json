@@ -1,0 +1,48 @@
+{
+  "id": "primary-fishing-01",
+  "name": "어항",
+  "kind": "primary_main",
+  "industry": "fishing",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "floors": 1,
+  "main_storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "-Y (Blender) / +Z (Godot)",
+  "front_blender": "-Y",
+  "front_godot": "+Z",
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      4.269999980926514
+    ]
+  ],
+  "measured_dimensions_m": [
+    16.0,
+    16.0,
+    4.389999978244305
+  ],
+  "triangles": 3912,
+  "camera_elevation_degrees": 30,
+  "game_registered": false,
+  "approval_status": "pending-user-review",
+  "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs",
+  "waterfront_blender": "+Y",
+  "shoreline_y_m": 2,
+  "water_surface_included": false,
+  "boat_count": 2,
+  "pier_within_lot": true
+}

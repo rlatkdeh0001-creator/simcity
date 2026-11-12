@@ -1,0 +1,130 @@
+{
+  "baseline": "473d6e0",
+  "files": [
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/primary-tile-grain-01.blend",
+      "sha256": "dd418317cdb603e0ee46720833a0759bbe8ccca1b2874443409ba3687b823a94"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/metadata.json",
+      "sha256": "e88e951b6b27330def7550d9dbf0f65a0e60cc8e0eb687fbe0503983f3f0fa6b"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/tile.png",
+      "sha256": "40f184a1ad8b6a45665b4727dacc83751e8ee7abe76bf0f34b5cebeef20dac32"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/tile-3x3.png",
+      "sha256": "be17b303404b97b1dc5d2ab4a43d6f42cb1b5dafb7b06b38c97852c0c0b3ef85"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-vegetable-01/primary-tile-vegetable-01.blend",
+      "sha256": "fbe53a0ca199697a3ec72c41b5109a3c17da19c2959d9ef38e9d2cbbd99975c6"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-vegetable-01/metadata.json",
+      "sha256": "3fad121d406aa2be82fb0e8828118ac619c4edd9c5a57650135ed77ffe5b8104"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-vegetable-01/tile.png",
+      "sha256": "ad1d48514039ae994b319b2bea0086e3585f0560bb9b9a62144de6a8b43ac4fc"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-vegetable-01/tile-3x3.png",
+      "sha256": "5b73b35a8f983e937f56b3032e5560db48e1be8a9b64a3fc78055be1ca45ae2f"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-forestry-01/primary-tile-forestry-01.blend",
+      "sha256": "53c3ccedebaefade0568b100b76dca9874772eb1b3aaec4f44394eab115de795"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-forestry-01/metadata.json",
+      "sha256": "8bd4a185816248868099894d32595d692f2e9e70d3e2015c137b04e2f7a1d811"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-forestry-01/tile.png",
+      "sha256": "5666a7a7ee6235144d391368b21cb85e14a35134269b90d6001a47d3f0d6e401"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-forestry-01/tile-3x3.png",
+      "sha256": "2bb50e9a0ba3f316b6f5afc49db758df5b1ca20657dfde852342d7ef3b5cb1d4"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-01/primary-tile-oil-01.blend",
+      "sha256": "09651b1ea6e40316535d4e325fd889b8b3f8cbcb028bed64a42dfdf2497b52b7"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-01/metadata.json",
+      "sha256": "55c721de2582719c587471151a652adce0a19289305cecbd76c6e59ad4396f31"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-01/tile.png",
+      "sha256": "c6bd5cefaf96649c9fc792323cf8e29a99ef33cae6641ad8150da1f31a3c956e"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-01/tile-3x3.png",
+      "sha256": "693bd90c98197162bc0d82f1bd4518e4eee37f90cf2929bc164a1bc3a4c8ae87"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-02/primary-tile-oil-02.blend",
+      "sha256": "0a97181f08a77d00383020ac065746924d0d068fae0655603f092d28a0b01535"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-02/metadata.json",
+      "sha256": "a4b749d75ba25073604224f2e183bdf939438a4c75ac6a72fb800b6133fa9010"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-02/tile.png",
+      "sha256": "c758e28a8d245c42a4e9a967b348cfb12c676de6d07759f43e57fe6fd98d3332"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-oil-02/tile-3x3.png",
+      "sha256": "f6db9e8cf413acc82a6cfe9973390bc3e6bd59d6bcd8e49f3c2be49f0dbf0243"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-mine-uranium-01/primary-tile-mine-uranium-01.blend",
+      "sha256": "07174646114471381ee14541c578b5dfb850c9376a1202dddaa000157745a8f1"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-mine-uranium-01/metadata.json",
+      "sha256": "32a95228185d04f3b6846aca549e2b15d70f677fe9193753f80c9e43b81c6f00"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-mine-uranium-01/tile.png",
+      "sha256": "e64f384d1ffbf473a0d77dfb5e137729e10f84f4c00f33560780bc912b722b7e"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-mine-uranium-01/tile-3x3.png",
+      "sha256": "c10ed744a031fdd17052207e8a2c9bf3a214b9f56e01cbae4c9747132ea15bef"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-fishing-01/primary-tile-fishing-01.blend",
+      "sha256": "4395a5bf6e44f778bfb71c66af3717194a55562bfa56940c55dae9c457095989"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-fishing-01/metadata.json",
+      "sha256": "144b89e66e48dc5266baa82de916bab8b02a4be187b9a429b17e12196dd09638"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-fishing-01/tile.png",
+      "sha256": "da7a5f0fbadd9ec6df54eccdc24909ab63820ba2eb8bac6d4eeedfcab9f1ae96"
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-fishing-01/tile-3x3.png",
+      "sha256": "fa31f259c8388b4abef3608865c1638e39a55becafc565a8fbce45029ff646af"
+    },
+    {
+      "path": "assets/primary-industry/primary-farm-grain-01/primary-farm-grain-01.blend",
+      "sha256": "64f49fb54fbb6c7daf76b9937f7bf4044143b4df61661c0bfa824ec1b54e949d"
+    },
+    {
+      "path": "assets/primary-industry/primary-farm-grain-01/metadata.json",
+      "sha256": "902969d96eb78df59c2c4041e25fbff593861780f3042946f213f659acebacb5"
+    },
+    {
+      "path": "assets/primary-industry/primary-farm-grain-01/building.png",
+      "sha256": "8948c3d1e1f089ca13d6559eee2598df666b765d53c4c0d6d74c2c961e70d548"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,251 @@
+{
+  "assets": [
+    {
+      "id": "primary-farm-vegetable-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "two_greenhouses_and_sorting": true
+      },
+      "passed": true,
+      "triangles": 3980,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        7.440000168979168
+      ]
+    },
+    {
+      "id": "primary-farm-livestock-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "barn_silo_fenced_yard": true
+      },
+      "passed": true,
+      "triangles": 4318,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        6.639999978244305
+      ]
+    },
+    {
+      "id": "primary-forestry-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "sawmill_logs_crane": true
+      },
+      "passed": true,
+      "triangles": 2068,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        5.439488522708416
+      ]
+    },
+    {
+      "id": "primary-mine-iron-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "portal_and_headframe": true,
+        "ore_stock": true
+      },
+      "passed": true,
+      "triangles": 2136,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        9.399999730288982
+      ]
+    },
+    {
+      "id": "primary-mine-coal-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "portal_and_headframe": true,
+        "ore_stock": true,
+        "coal_conveyor": true
+      },
+      "passed": true,
+      "triangles": 2292,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        9.399999730288982
+      ]
+    },
+    {
+      "id": "primary-oil-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "office_two_tanks_pumpjack": true
+      },
+      "passed": true,
+      "triangles": 2708,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        7.440000168979168
+      ]
+    },
+    {
+      "id": "primary-mine-uranium-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "portal_store_radiation_fence": true
+      },
+      "passed": true,
+      "triangles": 6118,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        4.389999978244305
+      ]
+    },
+    {
+      "id": "primary-fishing-01",
+      "checks": {
+        "metres": true,
+        "finite": true,
+        "whole_lot_exact_16m": true,
+        "all_geometry_within_lot": true,
+        "ground_plinth": true,
+        "bounds_match_metadata": true,
+        "triangles_match_metadata": true,
+        "main_4x4_not_growth_8x8": true,
+        "front_metadata": true,
+        "road_front_anchor": true,
+        "front_access": true,
+        "camera_30_orthographic": true,
+        "transparent_900x1100": true,
+        "not_clipped": true,
+        "no_external_texture": true,
+        "not_registered": true,
+        "storey_height_305": true,
+        "processing_and_two_boats": true,
+        "waterfront_plus_y": true,
+        "shoreline_land_ends_y2": true,
+        "no_water_plane": true
+      },
+      "passed": true,
+      "triangles": 3912,
+      "measured_dimensions_m": [
+        16.0,
+        16.0,
+        4.389999978244305
+      ]
+    }
+  ],
+  "passed": true
+}

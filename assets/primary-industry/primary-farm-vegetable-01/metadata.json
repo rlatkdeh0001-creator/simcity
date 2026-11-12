@@ -1,0 +1,43 @@
+{
+  "id": "primary-farm-vegetable-01",
+  "name": "채소·과수 농장",
+  "kind": "primary_main",
+  "industry": "farm_vegetable",
+  "footprint_cells": [
+    4,
+    4
+  ],
+  "cell_meters": 4,
+  "lot_meters": [
+    16,
+    16
+  ],
+  "floors": 2,
+  "main_storey_height_m": 3.05,
+  "footprint_status": "user-specified",
+  "front": "-Y (Blender) / +Z (Godot)",
+  "front_blender": "-Y",
+  "front_godot": "+Z",
+  "vertex_bounds_m": [
+    [
+      -8.0,
+      -8.0,
+      -0.11999999731779099
+    ],
+    [
+      8.0,
+      8.0,
+      7.320000171661377
+    ]
+  ],
+  "measured_dimensions_m": [
+    16.0,
+    16.0,
+    7.440000168979168
+  ],
+  "triangles": 3980,
+  "camera_elevation_degrees": 30,
+  "game_registered": false,
+  "approval_status": "pending-user-review",
+  "source": "original scripted Blender geometry; system font supported but no font used; no external models, textures or generation APIs"
+}

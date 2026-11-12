@@ -4,10 +4,10 @@ Grain sources are preserved byte-for-byte from 6afefd8, not rebuilt here.
 """
 from pathlib import Path
 import bpy,sys,math,json,importlib.util,argparse
-from mathutils import Vector
+from mathutils import Vector,Matrix
 ROOT=Path(__file__).resolve().parents[1]
 sp=importlib.util.spec_from_file_location('primary_helpers',ROOT/'tools/build_primary_industry.py');P=importlib.util.module_from_spec(sp);sp.loader.exec_module(P);G=P.G
-ROWS=[('primary-tile-vegetable-01','채소·과수 밭','farm_vegetable','vegetable'),('primary-tile-pasture-01','목초지','farm_livestock','pasture'),('primary-tile-forestry-01','벌목지','forestry','forestry'),('primary-tile-mine-iron-01','철 채굴지','mine_iron','iron'),('primary-tile-mine-coal-01','석탄 채굴지','mine_coal','coal'),('primary-tile-oil-01','시추지·펌프잭','oil','oil'),('primary-tile-oil-02','시추지·빈 작업면','oil','oil_empty'),('primary-tile-mine-uranium-01','우라늄 채굴지','mine_uranium','uranium'),('primary-tile-fishing-01','어장','fishing','fishing')]
+ROWS=[('primary-tile-vegetable-01','채소·과수 밭','farm_vegetable','vegetable'),('primary-tile-pasture-01','목초지·빈 풀밭','farm_livestock','pasture'),('primary-tile-pasture-02','목초지·소 좌측','farm_livestock','pasture_left'),('primary-tile-pasture-03','목초지·소 우측','farm_livestock','pasture_right'),('primary-tile-forestry-01','벌목지','forestry','forestry'),('primary-tile-mine-iron-01','철 채굴지','mine_iron','iron'),('primary-tile-mine-coal-01','석탄 채굴지','mine_coal','coal'),('primary-tile-oil-01','시추지·펌프잭','oil','oil'),('primary-tile-oil-02','시추지·빈 작업면','oil','oil_empty'),('primary-tile-mine-uranium-01','우라늄 채굴지','mine_uranium','uranium'),('primary-tile-fishing-01','어장','fishing','fishing')]
 COLORS={'soil':'a69b7c','grass':'819362','cropgreen':'608a45','croplight':'7c9a56','orchard':'779554','bark':'89684b','cream':'ece5cc','cowdark':'49463e','ironsoil':'a7775b','ironrock':'9b533c','coalsoil':'65615a','coalrock':'333b39','oilsoil':'9e947c','steel':'596b66','yellow':'cfb45c','uransoil':'8f9388','net':'6b8883','buoy':'c98043','fruit':'bc8254'}
 
 def box(name,loc,size,mat):return G.box(name,loc,size,mat,0)
@@ -57,8 +57,10 @@ def vegetable():
  bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1,radius=1,location=(1.28,.95,1.35));crown=bpy.context.object;crown.name='OrchardCrown';crown.scale=(.52,.52,.61);crown.data.materials.append(G.M['orchard'])
  for x,y in [(1.02,.91),(1.41,.72)]:rock('OrchardFruit',x,y,1.28,.07,.10,'fruit')
 
-def pasture():
+def pasture(variant=0):
  ground('grass')
+ if variant==0:return
+ before=set(bpy.context.scene.objects)
  # One original, simple block cow. Four legs and distinct dark patches establish the type.
  box('CowBody',(-.25,0,.93),(1.35,.65,.60),'cream')
  for x in [-.72,.23]:
@@ -69,6 +71,11 @@ def pasture():
  box('CowBackPatch',(-.38,0,1.235),(.46,.45,.01),'cowdark')
  bar('CowTail',(-.94,.05,1.13),(-1.04,.08,.49),.055,'cowdark')
 
+ offset,angle=([-.60,.50,0],math.radians(28)) if variant==1 else ([.55,-.48,0],math.radians(-66))
+ bpy.context.view_layer.update()
+ transform=Matrix.Translation(Vector(offset))@Matrix.Rotation(angle,4,'Z')
+ for ob in set(bpy.context.scene.objects)-before:ob.matrix_world=transform@ob.matrix_world
+
 def forestry():
  ground('grass');tree(-.98,.82,2.25,.60);tree(.83,1.06,1.74,.52);tree(.97,-.93,.72,.27,True)
  for x,y in [(-.94,-.94),(.02,-.22)]:
@@ -77,18 +84,14 @@ def forestry():
 
 def pit(kind):
  mat='ironsoil' if kind=='iron' else 'coalsoil';ore='ironrock' if kind=='iron' else 'coalrock'
- # Closed stepped terrain: all outer edges at z=0, shallow interior at -.30m.
- rings=[(2,0),(1.30,0),(1.30,-.15),(.73,-.15),(.73,-.30)]
- vs=[]
- for r,z in rings:vs.extend([(-r,-r,z),(r,-r,z),(r,r,z),(-r,r,z)])
- faces=[]
- for k in range(4):
-  for j in range(4):faces.append((4*k+j,4*k+(j+1)%4,4*(k+1)+(j+1)%4,4*(k+1)+j))
- faces.append((16,17,18,19))
- vs.extend([(-2,-2,-.40),(2,-2,-.40),(2,2,-.40),(-2,2,-.40)])
- for j in range(4):faces.append((j,20+j,20+(j+1)%4,(j+1)%4))
- faces.append((23,22,21,20));mesh('ShallowTerraceGround',vs,faces,mat)
- for x,y,r,h in [(-.28,.18,.37,.43),(.37,-.24,.26,.28),(-.36,-.35,.22,.23)]:rock('OreMass',x,y,-.295,r,h,ore)
+ # One constant low floor, not a per-tile hole. Parallel open benches cross +/-Y.
+ box('MineFloor',(0,0,-.36),(4,4,.12),mat)
+ box('ContinuousBench',(.86,0,-.267),(.66,4,.066),mat)
+ box('ContinuousBenchTop',(.91,0,-.218),(.38,4,.032),mat)
+ # Low ore ridge continues through the tile edge; it never encloses a crater.
+ section=[(-.39,-.30),(-.25,-.255),(0,-.17),(.22,-.235),(.39,-.30)]
+ vs=[(x-.86,y,z) for y in [-2,2] for x,z in section];n=len(section)
+ mesh('ContinuousOreBerm',vs,[tuple(reversed(range(n))),tuple(range(n,2*n))]+[(j,(j+1)%n,(j+1)%n+n,j+n) for j in range(n)],ore)
 
 def oil(empty=False):
  ground('oilsoil')
@@ -136,14 +139,16 @@ def fishing():
   box('BuoyMast',(x,y,.50),(.025,.025,.54),'steel')
   mesh('BuoyFlag',[(x,y,.76),(x+.27,y,.67),(x,y,.59)],[(0,1,2)],'yellow')
 
-BUILDERS={'vegetable':vegetable,'pasture':pasture,'forestry':forestry,'iron':lambda:pit('iron'),'coal':lambda:pit('coal'),'oil':oil,'oil_empty':lambda:oil(True),'uranium':uranium,'fishing':fishing}
+BUILDERS={'vegetable':vegetable,'pasture':pasture,'pasture_left':lambda:pasture(1),'pasture_right':lambda:pasture(2),'forestry':forestry,'iron':lambda:pit('iron'),'coal':lambda:pit('coal'),'oil':oil,'oil_empty':lambda:oil(True),'uranium':uranium,'fishing':fishing}
 
 def build(row):
  ident,name,industry,style=row;G.COLORS.update(COLORS);G.reset();BUILDERS[style]();points,bounds,tri=P.bounds()
  assert all(bounds[0][i]>=-2-.0001 and bounds[1][i]<=2+.0001 for i in [0,1]),(ident,bounds)
  assert 0<tri<=300,(ident,tri)
  cam=P.studio(points,(900,900));out=P.OUT/ident;out.mkdir(parents=True,exist_ok=True)
- m=dict(id=ident,name=name,kind='primary_work_tile',industry=industry,footprint_cells=[1,1],cell_meters=4,lot_meters=[4,4],floors=0,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bounds,measured_dimensions_m=[bounds[1][i]-bounds[0][i] for i in range(3)],triangles=tri,mesh_objects=sum(o.type=='MESH' for o in bpy.context.scene.objects),camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',style_reference='6afefd8 smooth grain ribbon tile',edge_period_m=[4,4],ground_surface_z_m=None if style=='fishing' else 0,water_surface_included=False,minimum_terrain_z_m=-.30 if style in ['iron','coal'] else 0,source='original scripted Blender geometry; no external models, textures, fonts or generation APIs')
+ m=dict(id=ident,name=name,kind='primary_work_tile',industry=industry,footprint_cells=[1,1],cell_meters=4,lot_meters=[4,4],floors=0,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bounds,measured_dimensions_m=[bounds[1][i]-bounds[0][i] for i in range(3)],triangles=tri,mesh_objects=sum(o.type=='MESH' for o in bpy.context.scene.objects),camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',style_reference='6afefd8 smooth grain ribbon tile',edge_period_m=[4,4],ground_surface_z_m=None if style=='fishing' else (-.30 if style in ['iron','coal'] else 0),water_surface_included=False,minimum_terrain_z_m=-.30 if style in ['iron','coal'] else 0,source='original scripted Blender geometry; no external models, textures, fonts or generation APIs')
+ if style in ['iron','coal']:m.update(floor_mode='uniform low floor; edge-continuous open benches',requires_outer_boundary_transition=True)
+ if style.startswith('pasture'):m.update(variant_family='pasture',cow_count=0 if style=='pasture' else 1,cow_pose='none' if style=='pasture' else ('left, yaw28' if style=='pasture_left' else 'right, yaw-66'))
  (out/'metadata.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n')
  bpy.ops.wm.save_as_mainfile(filepath=str(out/(ident+'.blend')))
  scene=bpy.context.scene;scene.render.filepath=str(out/'tile.png');bpy.ops.render.render(write_still=True)

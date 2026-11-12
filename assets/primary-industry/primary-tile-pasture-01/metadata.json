@@ -1,6 +1,6 @@
 {
   "id": "primary-tile-pasture-01",
-  "name": "목초지",
+  "name": "목초지·빈 풀밭",
   "kind": "primary_work_tile",
   "industry": "farm_livestock",
   "footprint_cells": [
@@ -26,16 +26,16 @@
     [
       2.0,
       2.0,
-      1.2899999618530273
+      0.0
     ]
   ],
   "measured_dimensions_m": [
     4.0,
     4.0,
-    1.4099999591708183
+    0.11999999731779099
   ],
-  "triangles": 216,
-  "mesh_objects": 18,
+  "triangles": 12,
+  "mesh_objects": 1,
   "camera_elevation_degrees": 30,
   "game_registered": false,
   "approval_status": "pending-user-review",
@@ -47,5 +47,8 @@
   "ground_surface_z_m": 0,
   "water_surface_included": false,
   "minimum_terrain_z_m": 0,
-  "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs"
+  "source": "original scripted Blender geometry; no external models, textures, fonts or generation APIs",
+  "variant_family": "pasture",
+  "cow_count": 0,
+  "cow_pose": "none"
 }
