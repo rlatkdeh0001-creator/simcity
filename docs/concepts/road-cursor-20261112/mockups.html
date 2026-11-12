@@ -1,0 +1,32 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.o{width:330px}.t{font-size:18px;font-weight:700;margin:0 0 6px}.t span{font-weight:400;font-size:15px;color:var(--muted-foreground,#666)}
+svg{width:330px;height:230px;border-radius:10px;background:#86b07f;display:block}
+</style></head><body>
+<div class="row">
+<div class="o"><p class="t">A <span>커서 아래 초록 원판 (도로 폭 크기)</span></p>
+<svg viewBox="0 0 330 230">
+ <polygon points="0,150 160,60 200,82 40,172" fill="#4d5357"/>
+ <ellipse cx="230" cy="140" rx="30" ry="17" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="3"/>
+ <circle cx="230" cy="140" r="3" fill="#fff"/>
+ <path d="M236 128 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+</svg></div>
+
+<div class="o"><p class="t">B <span>커서 아래 반투명 초록 도로 조각 (도로 방향 미리보기)</span></p>
+<svg viewBox="0 0 330 230">
+ <polygon points="0,150 160,60 200,82 40,172" fill="#4d5357"/>
+ <polygon points="200,128 240,105 262,118 222,141" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="2.5"/>
+ <path d="M236 128 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+</svg></div>
+
+<div class="o"><p class="t">C <span>A + 기존 도로 끝에 가까우면 스냅 링이 붙음</span></p>
+<svg viewBox="0 0 330 230">
+ <polygon points="0,150 160,60 200,82 40,172" fill="#4d5357"/>
+ <ellipse cx="180" cy="71" rx="30" ry="17" fill="rgba(61,220,132,.45)" stroke="#3ddc84" stroke-width="3"/>
+ <ellipse cx="180" cy="71" rx="40" ry="23" fill="none" stroke="#36b7ff" stroke-width="3" stroke-dasharray="6 5"/>
+ <path d="M192 78 l10 22 l4 -8 l9 -2z" fill="#fff" stroke="#142b37" stroke-width="1.5"/>
+</svg></div>
+</div>
+<p style="font-size:15px;margin:8px 0 0;color:var(--muted-foreground,#666)">공통: 지을 수 없는 위치면 빨강. 첫 클릭 후에는 기존 초록 도로 미리보기로 이어짐.</p>
+</body></html>
