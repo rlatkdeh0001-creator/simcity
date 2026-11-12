@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight green preview uses actual path length in eight-metre units
+PASS length preview preserves existing endpoint and authored roads
+PASS straight saved construction exactly equals quantized green preview
+PASS curve green preview uses actual path length in eight-metre units
+PASS length preview preserves existing endpoint and authored roads
+PASS curve saved construction exactly equals quantized green preview
+PASS free green preview uses actual path length in eight-metre units
+PASS length preview preserves existing endpoint and authored roads
+PASS free saved construction exactly equals quantized green preview
+PASS eight-metre quantization preserves exact 90-degree assistance
+PASS non-unit straight between fixed contacts is red without moving endpoints
+PASS invalid pinned straight cannot be committed
+PASS curve adjusts internal arc length while retaining both existing contacts
+PASS free adjusts internal arc length while retaining both existing contacts
+PASS minimum new road is one eight-metre construction unit
+PASS model supports a four-metre bulldozer interval
+PASS middle click removes exactly one four-metre centreline interval
+PASS cut retains left ID and allocates a fresh right-fragment ID
+PASS surviving zoning IDs/colors never shift to another world location
+PASS cut interval leaves no phantom roadside cells
+PASS lane graph rebuilds after a split
+PASS traffic graph does not bridge demolished road interval
+PASS repeated deletion uses original one-cell arc grid and leaves unrelated fragment intact
+PASS curved-road demolition measures arc length, not chord length
+PASS old terminal shorter than four metres can be removed without leaving an undeletable stub
+PASS bulldozer hover selects only the actual four-metre interval
+PASS actual player bulldozer uses partial removal rather than whole-object deletion
+RESULT 27/27 road length unit checks passed

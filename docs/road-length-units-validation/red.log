@@ -1,0 +1,59 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL straight green preview uses actual path length in eight-metre units
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:28)
+PASS length preview preserves existing endpoint and authored roads
+PASS straight saved construction exactly equals quantized green preview
+ERROR: FAIL curve green preview uses actual path length in eight-metre units
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:28)
+PASS length preview preserves existing endpoint and authored roads
+PASS curve saved construction exactly equals quantized green preview
+ERROR: FAIL free green preview uses actual path length in eight-metre units
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:28)
+PASS length preview preserves existing endpoint and authored roads
+PASS free saved construction exactly equals quantized green preview
+ERROR: FAIL eight-metre quantization preserves exact 90-degree assistance
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:34)
+ERROR: FAIL non-unit straight between fixed contacts is red without moving endpoints
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:37)
+ERROR: FAIL invalid pinned straight cannot be committed
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:38)
+ERROR: FAIL curve adjusts internal arc length while retaining both existing contacts
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:43)
+ERROR: FAIL free adjusts internal arc length while retaining both existing contacts
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:43)
+ERROR: FAIL minimum new road is one eight-metre construction unit
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:45)
+ERROR: FAIL model supports a four-metre bulldozer interval
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_length_units.gd:11)
+       [1] run (res://tests/test_road_length_units.gd:46)
+RESULT 6/16 road length unit checks passed

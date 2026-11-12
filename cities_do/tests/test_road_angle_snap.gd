@@ -34,7 +34,8 @@ func run():
  var both: PackedVector2Array=drawing.path()
  verify(both[0]==Vector2(30,30) and both[-1].is_equal_approx(Vector2(30,60)) and drawing.preview().ok,"both connected endpoints remain on host centerlines while orthogonal alignment is solved")
  reset(game);drawing.set_kind("straight");drawing.click(Vector2(20,10));game.pointer=Vector2(23,25)
- verify(drawing.path()==PackedVector2Array([Vector2(20,10),Vector2(23,25)]),"unconnected path is not forced onto global cardinal axes")
+ var unconnected: PackedVector2Array=drawing.path()
+ verify(unconnected[0]==Vector2(20,10) and (unconnected[-1]-unconnected[0]).normalized().dot(Vector2(3,15).normalized())>.99999 and drawing.LengthUnits.is_build_length(game.city.RoadJunctions.length_of(unconnected)),"unconnected path retains its oblique heading while snapping length to eight-metre units")
  for kind in ["curve","free"]:
   reset(game);drawing.set_kind(kind);drawing.click(Vector2(33,10))
   if kind=="curve":drawing.click(Vector2(30,15))

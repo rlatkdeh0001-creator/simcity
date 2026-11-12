@@ -1,11 +1,12 @@
 extends RefCounted
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
-static func ribbons(points: PackedVector2Array, width: float) -> Array[PackedVector2Array]:
-	return Geometry2D.offset_polyline(points,width/2.0,Geometry2D.JOIN_ROUND,Geometry2D.END_ROUND)
-static func clipped_ribbons(points: PackedVector2Array,width: float,bounds: Vector2) -> Array[PackedVector2Array]:
+static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
+	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
+	return Geometry2D.offset_polyline(points,width/2.0,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT if flat_start or flat_end else Geometry2D.END_ROUND)
+static func clipped_ribbons(points: PackedVector2Array,width: float,bounds: Vector2,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array]=[]
 	var border:=PackedVector2Array([Vector2.ZERO,Vector2(bounds.x,0),bounds,Vector2(0,bounds.y)])
-	for shape in ribbons(points,width):
+	for shape in ribbons(points,width,flat_start,flat_end):
 		for clipped in Geometry2D.intersect_polygons(shape,border):
 			for i in range(clipped.size()):clipped[i]=clipped[i].clamp(Vector2.ZERO,bounds)
 			result.append(clipped)
@@ -29,7 +30,10 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 	# Derived render-only chains. Construction IDs, zoning and authored points stay intact.
 	if topology.is_empty():topology=preload("res://core/road_junctions.gd").analyze(roads)
 	var links := {}
+	var flat_points: Array[Vector2]=[]
 	for i in range(roads.size()):
+		if roads[i].get("flat_start",false):flat_points.append(roads[i].points[0])
+		if roads[i].get("flat_end",false):flat_points.append(roads[i].points[-1])
 		for end in [0,1]:
 			var p: Vector2=roads[i].points[0 if end==0 else -1]
 			var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes)
@@ -72,6 +76,8 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
+		visual.flat_start=flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
+		visual.flat_end=flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
 		result.append(visual)
 	return result
 

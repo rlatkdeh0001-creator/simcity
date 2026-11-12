@@ -397,7 +397,7 @@ func _unhandled_input(event):
 				if event.pressed:
 					var target := demolition_target(event.position)
 					if not target.is_empty():
-						var result: Dictionary=city.demolish(target.kind,target.id)
+						var result: Dictionary=city.demolish_road_unit(target.id,target.world_point) if target.kind=="road" else city.demolish(target.kind,target.id)
 						message=result.reason
 						if result.ok:
 							if target.kind=="road": stop_traffic()
@@ -525,8 +525,8 @@ func visible_world_bounds() -> Rect2i:
 	var last := Vector2i(mini(city.width,ceili(high.x)+1),mini(city.height,ceili(high.y)+1))
 	return Rect2i(first,Vector2i(maxi(0,last.x-first.x),maxi(0,last.y-first.y)))
 
-func draw_ribbon(points: PackedVector2Array, width: float, color: Color):
-	for shape in RoadGeometry.clipped_ribbons(points,width,Vector2(city.width,city.height)):
+func draw_ribbon(points: PackedVector2Array, width: float, color: Color,flat_start: bool=false,flat_end: bool=false):
+	for shape in RoadGeometry.clipped_ribbons(points,width,Vector2(city.width,city.height),flat_start,flat_end):
 		var projected := PackedVector2Array()
 		for point in shape: projected.append(screen(point))
 		draw_colored_polygon(projected,color)
@@ -576,7 +576,8 @@ func demolition_target(position: Vector2) -> Dictionary:
 		var road: Dictionary=city.roads[i]
 		for j in range(road.points.size()-1):
 			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
-				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":road}
+				var selected: Dictionary=city.RoadUnits.cut_target(road,point)
+				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":selected.road,"world_point":point}
 	return {}
 
 func draw_front_door(b: Dictionary):
@@ -610,9 +611,9 @@ func _draw():
 	# Paint all sidewalks before any asphalt: a later stroke's round end cap
 	# must not cut a pale curb across the already-connected carriageway.
 	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width,Color("c8cbc3"))
+		draw_ribbon(road.points,road.width,Color("c8cbc3"),road.get("flat_start",false),road.get("flat_end",false))
 	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"))
+		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"),road.get("flat_start",false),road.get("flat_end",false))
 	for road in city.road_visuals:
 		var points := PackedVector2Array()
 		for p in road.points: points.append(screen(p))
@@ -695,4 +696,4 @@ func _draw():
 		elif demolition_hover.has("line"):
 			draw_polyline(demolition_hover.line,tint,10,true)
 		elif demolition_hover.has("road"):
-			draw_ribbon(demolition_hover.road.points,demolition_hover.road.width,tint)
+			draw_ribbon(demolition_hover.road.points,demolition_hover.road.width,tint,true,true)

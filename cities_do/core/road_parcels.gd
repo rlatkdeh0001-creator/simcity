@@ -39,15 +39,18 @@ static func blocks(points: PackedVector2Array, half_width: float, road_index: in
 			else:current.append(candidate)
 	if current.size()>1:spans.append(current)
 	var result: Array[Dictionary] = []
+	var travelled:=0.0
 	for index in range(spans.size()):
 		var span := spans[index]
+		var arc_start:=travelled
+		for i in range(1,span.size()):travelled+=span[i-1].distance_to(span[i])
 		var length := span[0].distance_to(span[-1])
 		var columns := floori(length+0.0005)
 		if columns<1:continue
 		var tangent := (span[-1]-span[0]).normalized()
 		for side in [-1,1]:
 			var normal: Vector2 = Vector2(-tangent.y,tangent.x)*side
-			result.append({"id":"%d:%d:%d" % [road_index,index,side],"road_index":road_index,"side":side,"origin":span[0]+normal*half_width,"along":tangent,"outward":normal,"columns":columns})
+			result.append({"id":"%d:%d:%d" % [road_index,index,side],"road_index":road_index,"side":side,"origin":span[0]+normal*half_width,"along":tangent,"outward":normal,"columns":columns,"arc_start":arc_start,"centerline":span.duplicate()})
 	return result
 
 static func polygon(frame: Dictionary, u: int, v: int, size: int = 1) -> PackedVector2Array:
