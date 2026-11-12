@@ -1,4 +1,5 @@
-# 곡물 밭
+# 곡물 밭 · 이랑 덩어리형
 
-원본 `primary-tile-grain-01.blend`와 metadata.json. 실측 W×D×H: 4.000 × 4.000 × 1.080m, 평가 삼각형 1,464.
-[전체 시안·규격·검증·미적용 제안](../../../docs/primary-industry/README_KO.md).
+4×4m 타일. 작물 최고점0.70~0.74m, 바닥판 포함 전체4×4×0.86m. 삼각형140개.
+개별 작물 없이 폭0.94m의 둥근 작물 띠4개와 폭0.06m 고랑. 전후/Y 음영 경계가 이어진다.
+[실제 3×3·100칸·수정 검증](../../../docs/primary-industry/grain-ribbons/README_KO.md). 게임 적용 없음.

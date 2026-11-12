@@ -1,0 +1,16 @@
+{
+  "image": "field-10x10.png",
+  "size_px": [
+    900,
+    900
+  ],
+  "alpha_bbox_px": [
+    57,
+    251,
+    843,
+    652
+  ],
+  "sha256": "3157f2a5a6fbfdc09b08006a54ff20b73fa30acf2272d7bb3ae48e602afd4358",
+  "tiles": 100,
+  "source_triangles_per_tile": 140
+}

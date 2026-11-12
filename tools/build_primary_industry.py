@@ -74,19 +74,28 @@ def farmhouse():
 
 def grain_tile():
  G.box('TileSoil',(0,0,-.06),(4,4,.12),'soil',0)
- # Rows go all the way through +/-Y and repeat with an exact 4m period.
- for ix in range(6):
-  x=-2+(ix+.5)*4/6
-  mesh('Furrow',[(x-.08,-2,.003),(x+.08,-2,.003),(x+.08,2,.003),(x-.08,2,.003)],[(0,1,2,3)],'furrow')
-  for iy in range(8):
-   y=-2+(iy+.5)*.5;h=.63+.04*(ix%2)
-   G.box('WheatStem',(x,y,h/2+.012),(.035,.035,h),'straw',0)
-   # Two faceted ears and two broad leaves; 1,464 triangles including soil/rows.
-   for offset in [-.07,.07]:
-    xx=x+offset
-    vs=[(xx-.09,y,h+.10),(xx+.09,y,h+.10),(xx,y-.065,h+.10),(xx,y+.065,h+.10),(xx,y,h+.29),(xx,y,h-.035)]
-    mesh('WheatHead',vs,[(0,2,4),(2,1,4),(1,3,4),(3,0,4),(2,0,5),(1,2,5),(3,1,5),(0,3,5)],'grain' if ix%2 else 'ochre')
-   mesh('WheatLeaves',[(x,y,.30),(x-.21,y,.55),(x-.04,y,.39),(x,y,.25),(x+.21,y,.48),(x+.04,y,.34)],[(0,1,2),(3,4,5)],'straw')
+ # Four broad, low, closed, extruded canopies. No stems, ears, texture or per-plant meshes.
+ # Each row is constant along Y, so profiles AND lighting normals meet at tile edges.
+ for ix in range(4):
+  x=-2+(ix+.5);radius=.47;rise=.60+.04*(ix%2)
+  section=[(-radius,.006)]+[(-radius*math.cos(j*math.pi/6),.10+rise*math.sin(j*math.pi/6)) for j in range(7)]+[(radius,.006)]
+  n=len(section);vs=[(x+xx,y,z) for y in [-2,2] for xx,z in section]
+  faces=[tuple(reversed(range(n))),tuple(range(n,2*n))]+[(j,(j+1)%n,(j+1)%n+n,j+n) for j in range(n)]
+  ob=mesh('WheatRibbon_%02d'%ix,vs,faces,'wheat_light' if ix%2 else 'wheat_gold');ob['row_center_x_m']=x;ob['row_width_m']=radius*2;ob['crop_height_m']=.10+rise
+  # Explicit loop normals prevent cap faces from causing transverse shading seams.
+  normals=[]
+  for poly in ob.data.polygons:
+   poly.use_smooth=True
+   for loop_index in poly.loop_indices:
+    vi=ob.data.loops[loop_index].vertex_index%n
+    if poly.index<2:normal=(0,-1 if poly.index==0 else 1,0)
+    elif poly.index==2:normal=(-1,0,0)
+    elif poly.index==n:normal=(1,0,0)
+    elif poly.index==n+1:normal=(0,0,-1)
+    else:
+     angle=max(0,min(6,vi-1))*math.pi/6;normal=Vector((-rise*math.cos(angle),0,radius*math.sin(angle))).normalized()
+    normals.append(normal)
+  ob.data.normals_split_custom_set(normals)
 
 
 def bounds():
@@ -111,15 +120,15 @@ def studio(points,size):
  return cam
 
 def build(ident,name,tile):
- G.COLORS.update(soil='a69b7c',furrow='968a6d',grain='c4ae6b',straw='a4a16c');G.reset();scene=bpy.context.scene
+ G.COLORS.update(soil='a69b7c',furrow='968a6d',grain='c4ae6b',straw='a4a16c',wheat_gold='e2b94f',wheat_light='ebc96b');G.reset();scene=bpy.context.scene
  (grain_tile if tile else farmhouse)();points,bb,tri=bounds();width=4 if tile else 16
  assert all(bb[0][i]>=-width/2-.001 and bb[1][i]<=width/2+.001 for i in [0,1])
- assert not tile or 300<=tri<=1500,tri
+ assert not tile or 0<tri<=200,tri  # User approved lower counts for repeated ribbon tiles.
  if not tile:
   marker=bpy.data.objects.new('RoadFront_BlenderMinusY',None);scene.collection.objects.link(marker);marker.location=(0,-8,.12)
  cam=studio(points,(900,900) if tile else (900,1100));out=OUT/ident;out.mkdir(parents=True,exist_ok=True)
  meta=dict(id=ident,name=name,kind='primary_work_tile' if tile else 'primary_main',industry='farm_grain',footprint_cells=[1,1] if tile else [4,4],cell_meters=4,lot_meters=[width,width],floors=0 if tile else 2,footprint_status='user-specified',front='-Y (Blender) / +Z (Godot)',front_blender='-Y',front_godot='+Z',vertex_bounds_m=bb,measured_dimensions_m=[bb[1][i]-bb[0][i] for i in range(3)],triangles=tri,camera_elevation_degrees=30,game_registered=False,approval_status='pending-user-review',source='original scripted Blender geometry; system DejaVu font; no external models, textures or generation APIs')
- if tile:meta.update(edge_period_m=[4,4],soil_surface_z_m=0,furrow_surface_z_m=.003,base_min_z_m=-.12,crop_counts={'rows':6,'plants_per_row':8},growth_building=False)
+ if tile:meta.update(edge_period_m=[4,4],soil_surface_z_m=0,furrow_surface_z_m=0,base_min_z_m=-.12,crop_representation='continuous rounded row ribbons',crop_counts={'rows':4,'individual_plants':0},row_pitch_m=1,row_width_m=.94,furrow_width_m=.06,ground_coverage_fraction=.94,crop_height_range_m=[.70,.74],growth_building=False)
  else:meta.update(main_storey_height_m=3.05,main_floors=2,garage_floors=1,silo_count=2,silo_floors=0,floor_reference_m=.12,plinth_min_z_m=-.12)
  (out/'metadata.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n')
  for f in bpy.data.fonts:

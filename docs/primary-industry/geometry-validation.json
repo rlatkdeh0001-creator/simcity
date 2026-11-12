@@ -54,19 +54,23 @@
         "front_metadata": true,
         "opposite_edge_profile_0": true,
         "opposite_edge_profile_1": true,
-        "crop_period_0": true,
-        "crop_period_1": true,
+        "row_period_x": true,
+        "ribbons_span_y": true,
+        "no_individual_plants": true,
         "tile_triangle_budget": true,
         "single_tile_in_source": true,
+        "crop_height_06_to_08": true,
+        "narrow_furrows": true,
+        "matching_y_boundary_shading_normals": true,
         "no_border_objects": true
       },
       "passed": true,
       "measured_dimensions_m": [
         4.0,
         4.0,
-        1.0799999758601189
+        0.8600000068545341
       ],
-      "triangles": 1464,
+      "triangles": 140,
       "edge_signatures": {
         "0": [
           [
@@ -147,87 +151,255 @@
               ]
             ],
             [
-              -1.74667,
-              0.003,
+              -1.97,
+              0.006,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -1.58667,
-              0.003,
+              -1.97,
+              0.1,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -1.08,
-              0.003,
+              -1.90703,
+              0.4,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.92,
-              0.003,
+              -1.735,
+              0.61962,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.41333,
-              0.003,
+              -1.5,
+              0.7,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.25333,
-              0.003,
+              -1.265,
+              0.61962,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.25333,
-              0.003,
+              -1.09297,
+              0.4,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.41333,
-              0.003,
+              -1.03,
+              0.006,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.92,
-              0.003,
+              -1.03,
+              0.1,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              1.08,
-              0.003,
+              -0.97,
+              0.006,
               [
-                "furrow"
+                "wheat_light"
               ]
             ],
             [
-              1.58667,
-              0.003,
+              -0.97,
+              0.1,
               [
-                "furrow"
+                "wheat_light"
               ]
             ],
             [
-              1.74667,
-              0.003,
+              -0.90703,
+              0.42,
               [
-                "furrow"
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.735,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.5,
+              0.74,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.265,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.09297,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.03,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.03,
+              0.1,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              0.03,
+              0.006,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.03,
+              0.1,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.09297,
+              0.4,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.265,
+              0.61962,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.5,
+              0.7,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.735,
+              0.61962,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.90703,
+              0.4,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.97,
+              0.006,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.97,
+              0.1,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              1.03,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.03,
+              0.1,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.09297,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.265,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.5,
+              0.74,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.735,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.90703,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.97,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.97,
+              0.1,
+              [
+                "wheat_light"
               ]
             ],
             [
@@ -261,87 +433,255 @@
               ]
             ],
             [
-              -1.74667,
-              0.003,
+              -1.97,
+              0.006,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -1.58667,
-              0.003,
+              -1.97,
+              0.1,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -1.08,
-              0.003,
+              -1.90703,
+              0.4,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.92,
-              0.003,
+              -1.735,
+              0.61962,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.41333,
-              0.003,
+              -1.5,
+              0.7,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              -0.25333,
-              0.003,
+              -1.265,
+              0.61962,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.25333,
-              0.003,
+              -1.09297,
+              0.4,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.41333,
-              0.003,
+              -1.03,
+              0.006,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              0.92,
-              0.003,
+              -1.03,
+              0.1,
               [
-                "furrow"
+                "wheat_gold"
               ]
             ],
             [
-              1.08,
-              0.003,
+              -0.97,
+              0.006,
               [
-                "furrow"
+                "wheat_light"
               ]
             ],
             [
-              1.58667,
-              0.003,
+              -0.97,
+              0.1,
               [
-                "furrow"
+                "wheat_light"
               ]
             ],
             [
-              1.74667,
-              0.003,
+              -0.90703,
+              0.42,
               [
-                "furrow"
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.735,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.5,
+              0.74,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.265,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.09297,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.03,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              -0.03,
+              0.1,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              0.03,
+              0.006,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.03,
+              0.1,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.09297,
+              0.4,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.265,
+              0.61962,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.5,
+              0.7,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.735,
+              0.61962,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.90703,
+              0.4,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.97,
+              0.006,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              0.97,
+              0.1,
+              [
+                "wheat_gold"
+              ]
+            ],
+            [
+              1.03,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.03,
+              0.1,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.09297,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.265,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.5,
+              0.74,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.735,
+              0.65426,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.90703,
+              0.42,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.97,
+              0.006,
+              [
+                "wheat_light"
+              ]
+            ],
+            [
+              1.97,
+              0.1,
+              [
+                "wheat_light"
               ]
             ],
             [

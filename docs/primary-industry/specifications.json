@@ -76,15 +76,15 @@
       [
         2.0,
         2.0,
-        0.9599999785423279
+        0.7400000095367432
       ]
     ],
     "measured_dimensions_m": [
       4.0,
       4.0,
-      1.0799999758601189
+      0.8600000068545341
     ],
-    "triangles": 1464,
+    "triangles": 140,
     "camera_elevation_degrees": 30,
     "game_registered": false,
     "approval_status": "pending-user-review",
@@ -94,12 +94,21 @@
       4
     ],
     "soil_surface_z_m": 0,
-    "furrow_surface_z_m": 0.003,
+    "furrow_surface_z_m": 0,
     "base_min_z_m": -0.12,
+    "crop_representation": "continuous rounded row ribbons",
     "crop_counts": {
-      "rows": 6,
-      "plants_per_row": 8
+      "rows": 4,
+      "individual_plants": 0
     },
+    "row_pitch_m": 1,
+    "row_width_m": 0.94,
+    "furrow_width_m": 0.06,
+    "ground_coverage_fraction": 0.94,
+    "crop_height_range_m": [
+      0.7,
+      0.74
+    ],
     "growth_building": false
   }
 ]

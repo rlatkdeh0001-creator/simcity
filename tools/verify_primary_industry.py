@@ -24,11 +24,29 @@ for ident,tile in [('primary-farm-grain-01',False),('primary-tile-grain-01',True
        edge.add((round(point[1-axis],5),round(point.z,5),tuple(item['materials'])))
     edges.append(sorted(edge))
    checks['opposite_edge_profile_'+str(axis)]=bool(edges[0]) and edges[0]==edges[1];signatures[str(axis)]=edges
-  stems=[o for o in scene.objects if o.name.startswith('WheatStem')]
-  for axis,count in [(0,6),(1,8)]:
-   positions=sorted(set(round(o.location[axis],5) for o in stems));gaps=[b-a for a,b in zip(positions,positions[1:])]+[positions[0]+4-positions[-1]]
-   checks['crop_period_'+str(axis)]=len(positions)==count and all(abs(gap-4/count)<.0001 for gap in gaps)
-  checks['tile_triangle_budget']=300<=tri<=1500;checks['single_tile_in_source']=len(stems)==48;checks['no_border_objects']=not any('curb' in name.lower() or 'fence' in name.lower() for name in objects)
+  ribbons=[o for o in scene.objects if o.name.startswith('WheatRibbon_')]
+  positions=sorted(o['row_center_x_m'] for o in ribbons);gaps=[b-a for a,b in zip(positions,positions[1:])]+[positions[0]+4-positions[-1]]
+  checks['row_period_x']=len(positions)==4 and all(abs(gap-1)<.0001 for gap in gaps)
+  checks['ribbons_span_y']=all(abs(min(v.y for v in objects[o.name]['vertices'])+2)<.00001 and abs(max(v.y for v in objects[o.name]['vertices'])-2)<.00001 for o in ribbons)
+  checks['no_individual_plants']=not any(name.startswith(('WheatStem','WheatHead','WheatLeaves')) for name in objects)
+  checks['tile_triangle_budget']=0<tri<=200
+  checks['single_tile_in_source']=len(ribbons)==4 and len(objects)==5
+  checks['crop_height_06_to_08']=len(ribbons)==4 and all(.6<=max(v.z for v in objects[o.name]['vertices'])<=.8 for o in ribbons)
+  coverage=sum(o['row_width_m']*4 for o in ribbons)/16
+  checks['narrow_furrows']=.90<=coverage<=.96 and abs(coverage-m['ground_coverage_fraction'])<.0001
+  normal_edges=[set(),set()]
+  for o in scene.objects:
+   if o.type!='MESH':continue
+   e=o.evaluated_get(dep);me=e.to_mesh()
+   for loop in me.loops:
+    v=e.matrix_world@me.vertices[loop.vertex_index].co;n=me.corner_normals[loop.index].vector
+    if abs(n.y)>.999:continue  # End caps are hidden when tiles abut.
+    for k,side in enumerate([-1,1]):
+     if abs(v.y-side*2)<.00001:normal_edges[k].add(tuple(round(a,4) for a in [v.x,v.z,*n]))
+   e.to_mesh_clear()
+  checks['matching_y_boundary_shading_normals']=bool(normal_edges[0]) and normal_edges[0]==normal_edges[1]
+  checks['no_border_objects']=not any('curb' in name.lower() or 'fence' in name.lower() for name in objects)
+
  else:
   checks['silo_count']=len([o for o in scene.objects if o.name=='GrainSilo' or o.name.startswith('GrainSilo.')])==2
   checks['road_front']=abs(bpy.data.objects['RoadFront_BlenderMinusY'].location.y+8)<.001
