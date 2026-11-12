@@ -1,0 +1,39 @@
+{
+  "depths": [
+    70.0,
+    70.0
+  ],
+  "lots": [
+    {
+      "capacity": {
+        "own_power_kw": 0.3,
+        "visitors": 20.0
+      },
+      "engine": "none",
+      "front_direction": "(0.0, 1.0)",
+      "front_road_id": -1,
+      "id": 1,
+      "polygon": "[(32.0, 34.0), (34.0, 34.0), (34.0, 36.0), (32.0, 36.0)]",
+      "position": "(33.0, 35.0)",
+      "public_asset_id": "park-garden-2x2",
+      "turns": 0,
+      "utility_id": -1
+    },
+    {
+      "capacity": {
+        "average_output_kw": 450.0,
+        "rated_output_kw": 1800.0
+      },
+      "engine": "power",
+      "front_direction": "(0.0, 1.0)",
+      "front_road_id": -1,
+      "id": 2,
+      "polygon": "[(28.0, 34.0), (32.0, 34.0), (32.0, 38.0), (28.0, 38.0)]",
+      "position": "(30.0, 36.0)",
+      "public_asset_id": "power-solar",
+      "turns": 0,
+      "utility_id": -1
+    }
+  ],
+  "rendered": 2
+}

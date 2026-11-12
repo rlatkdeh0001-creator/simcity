@@ -63,8 +63,8 @@ func visual(record: Dictionary) -> Dictionary:
  var factor: float=view.tile.x/4*sqrt(2.0)*view.map_zoom/rendered.ppm
  return {"texture":rendered.texture,"image":rendered.image,"rect":Rect2(view.screen(record.position)-rendered.anchor*factor,Vector2(rendered.image.get_size())*factor)}
 func target(position: Vector2) -> Dictionary:
- var ordered: Array=view.city.public_facilities.lots.duplicate()
- ordered.sort_custom(func(a,b):return view.building_depth(a)>view.building_depth(b))
+ var ordered: Array=view.building_draw_order().filter(func(record):return record.has("public_asset_id"))
+ ordered.reverse()
  for record: Dictionary in ordered:
   var rendered:=visual(record)
   if not rendered.is_empty() and rendered.rect.has_point(position):

@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS repro solar and foreground garden have equal old far-corner sort key
+ERROR: FAIL shared geometry-aware painter order exists
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_facility_depth.gd:8)
+       [1] run (res://tests/test_facility_depth.gd:15)
+RESULT 1/2 facility depth checks passed

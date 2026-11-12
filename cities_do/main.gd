@@ -20,6 +20,7 @@ var controls_panel: PanelContainer
 var building_textures := {}
 var building_images := {}
 const BuildingViews = preload("res://core/building_views.gd")
+var painter_order=preload("res://core/isometric_order.gd").new()
 var building_views
 var public_controller
 var road_drawer
@@ -299,8 +300,8 @@ func building_visual(b: Dictionary) -> Dictionary:
 		"rect":Rect2(screen(center)-view.anchor*scale_factor,Vector2(view.image.get_size())*scale_factor)}
 
 func pick_rendered_building(position: Vector2) -> Dictionary:
-	var ordered: Array = city.buildings.duplicate()
-	ordered.sort_custom(func(a, b): return building_depth(a) > building_depth(b))
+	var ordered: Array = building_draw_order().filter(func(record):return not record.has("public_asset_id"))
+	ordered.reverse()
 	for b in ordered:
 		var visual:=building_visual(b)
 		if not visual.is_empty():
@@ -469,6 +470,13 @@ func polygon(x: float, y: float, size: float, lift: float = 0.0) -> PackedVector
 		points.append(screen(p) - Vector2(0, lift * map_zoom))
 	return points
 
+func building_draw_order() -> Array:
+	var records: Array=city.buildings.duplicate()
+	records.append_array(city.public_facilities.lots)
+	var polygons: Array=[]
+	for record: Dictionary in records:polygons.append(city.footprint(record))
+	return painter_order.sorted(records,polygons)
+
 func building_depth(building: Dictionary) -> float:
 	var depth: float=-INF
 	for point in city.footprint(building):depth=maxf(depth,point.x+point.y)
@@ -616,9 +624,7 @@ func _draw():
 				draw_colored_polygon(projected,Color("e8e7dc"))
 				offset+=.28
 	draw_traffic()
-	var sorted: Array = city.buildings.duplicate()
-	sorted.append_array(city.public_facilities.lots)
-	sorted.sort_custom(func(a, b): return building_depth(a) < building_depth(b))
+	var sorted: Array = building_draw_order()
 	for b in sorted:
 		if b.has("public_asset_id"):
 			var public_visual: Dictionary=public_controller.visual(b)
