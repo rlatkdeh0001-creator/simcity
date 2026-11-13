@@ -154,3 +154,23 @@ Before reporting a requested feature or asset as absent, compare the local commi
 with origin/main (fetch when available) and read the latest handoff. A stale checkout
 is not evidence that work is missing. Preserve completed models and distinguish
 asset registration/inspection from city placement and operational simulation.
+
+## 작업 원칙 (전역 지침 요약, 사용자 승인 2026-11-13)
+
+- 권위 순서: 사용자 현재 지시 > 확정 기획 문서 > 저장소 규칙 > 실제 코드·실행 > 테스트·fixture. 하위가 상위를 바꾸지 않는다.
+- 에이전트 제안·추정은 사용자가 승인하기 전까지 임시다.
+- 낡은 기대값으로 새 규칙을 막는 테스트는 TEST DRIFT — 규칙을 되돌리지 말고 테스트를 고친다.
+- 완료 = 실제 게임 화면에서 의도한 조작 흐름으로 동작이 확인됨. 테스트·대체 경로만 통과했으면 완료라 하지 않는다.
+- 필요한 범위를 빠짐없이, 그 이상은 하지 않는다. 관계없는 발견은 따로 보고한다.
+- 이미 승인된 작업은 다시 묻지 않는다. 막힌 부분만 멈추고 나머지는 진행한다.
+- 실제로 한 일과 증거만 보고한다. 확인 못 한 것은 그대로 말한다.
+- 결론부터, 결론에 영향 없는 단서·뻔한 예외는 쓰지 않는다.
+
+## 검수 수준 (사용량 절약, 사용자 승인 2026-11-13)
+
+- 작업 브랜치 검증은 "제대로 작동하는지"만 본다: 바뀐 기능의 관련 테스트 + 요청한 캡처만.
+- 애셋 등록·교체: 게임에서 로드되고 크기·정면이 맞는지 1회 확인 + 캡처 1장. 원본 해시 전수 대조·삼각형/재질 상세 감사·이미지 검증 JSON은 하지 않는다.
+- 전체 회귀 테스트·원본 보호 파일 대조는 main 병합 직전 1회만.
+- 보고는 5줄 이내: 브랜치·SHA·통과 수·캡처 경로·막힌 점. README·검증 폴더 긴 문서는 main 병합 때만.
+- 같은 테스트를 이유 없이 반복 실행하지 않는다. 다시 돌리는 건 코드가 바뀌었거나 실패했을 때만.
+- RED 로그·중간 결과 파일은 남기지 않는다(최종 결과만).
