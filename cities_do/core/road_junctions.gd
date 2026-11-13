@@ -105,14 +105,19 @@ static func analyze(roads: Array) -> Dictionary:
    var end := merged_key(points[-1],nodes)
    var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end}
    sections.append(section)
-   for pair in [[start,points[0],(points[1]-points[0]).normalized()],[end,points[-1],(points[-2]-points[-1]).normalized()]]:
+   for pair in [[start,points[0],(points[1]-points[0]).normalized(),false],[end,points[-1],(points[-2]-points[-1]).normalized(),true]]:
     if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"arms":[],"road_ids":[],"junction":-1}
     var node: Dictionary=nodes[pair[0]]
     if not road_id in node.road_ids:node.road_ids.append(road_id)
+    var outgoing:=points.duplicate()
+    if pair[3]:outgoing.reverse()
+    var available:=length_of(outgoing)
     var duplicate := false
     for arm in node.arms:
-     if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:duplicate=true
-    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"lanes":int(roads[road_id].lanes)})
+     if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:
+      duplicate=true
+      if available>arm.length:arm.length=available;arm.points=outgoing
+    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"lanes":int(roads[road_id].lanes),"length":available,"points":outgoing})
  var junctions := []
  var joins := []
  for node in nodes.values():
@@ -152,6 +157,24 @@ static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
   edge=maxf(edge,(other.width/2+half*skew)/crossing)
  return edge+CROSSWALK_HALF_LENGTH+CROSSWALK_EDGE_GAP
 
+static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+ var result: Array[PackedVector2Array]=[]
+ if junction.get("transition",false):return result
+ for arm in junction.arms:
+  var distance:=crosswalk_distance(junction,arm)
+  if not arm.has("points") or distance+CROSSWALK_HALF_LENGTH>arm.length+EPS:continue
+  var centre:=sample(arm.points,distance)
+  var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
+  var normal:=Vector2(-direction.y,direction.x)
+  var half:=Profile.asphalt_width(arm)/2;var offset:=-half+.12
+  while offset<half-.12:
+   var p:=centre+normal*offset
+   var corners:=PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14])
+   for surface in surfaces:
+    for clipped in Geometry2D.intersect_polygons(corners,surface):
+     if clipped.size()>=3:result.append(clipped)
+   offset+=.28
+ return result
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:
  var cache_key := "asphalt" if asphalt else "footprint"
  if junction.has(cache_key):return junction[cache_key]
@@ -162,7 +185,7 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
   var direction: Vector2=arm.direction
   var normal := Vector2(-direction.y,direction.x)
   var factor: float=Profile.asphalt_width(arm)/arm.width if asphalt else 1.0
-  var distance: float=junction.radius+(.02 if asphalt else 0)
+  var distance: float=minf(junction.radius+(.02 if asphalt else 0),arm.get("length",INF))
   var side: Vector2=normal*arm.width/2*factor
   var start: Vector2=junction.position-direction*EPS*2
   var finish: Vector2=junction.position+direction*distance

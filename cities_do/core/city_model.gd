@@ -19,6 +19,7 @@ const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
 var zoning_grid = ZoningGrid.new()
 var zoning_lattices: Array[Dictionary]=[]
+var road_crosswalks: Array[PackedVector2Array]=[]
 const Catalog = preload("res://core/building_catalog.gd")
 var catalog = Catalog.new()
 var appearance_rng := RandomNumberGenerator.new()
@@ -582,6 +583,11 @@ func _update_zoning_for_road(_road: Dictionary):
 	junctions=topology.junctions
 	road_joins=topology.joins
 	road_visuals=preload("res://core/road_geometry.gd").continuous_roads(roads,topology)
+	road_crosswalks.clear()
+	var asphalt: Array[PackedVector2Array]=[]
+	for visual in road_visuals:
+		asphalt.append_array(preload("res://core/road_geometry.gd").clipped_ribbons(visual.points,preload("res://core/road_profile.gd").asphalt_width(visual),Vector2(width,height),visual.flat_start,visual.flat_end))
+	for junction in junctions:road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,asphalt))
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()
