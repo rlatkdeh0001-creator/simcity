@@ -85,13 +85,23 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		result.append(visual)
 	return result
 
+static func clean_polygon(source:PackedVector2Array)->PackedVector2Array:
+	var polygon:=source.duplicate();var changed:=true
+	while changed and polygon.size()>=3:
+		changed=false
+		for i in range(polygon.size()):
+			var before:Vector2=polygon[posmod(i-1,polygon.size())];var point:Vector2=polygon[i];var after:Vector2=polygon[(i+1)%polygon.size()];var axis:=after-before
+			if point.distance_to(before)<.00001 or (axis.length()>.00001 and absf((point-before).cross(axis))/axis.length()<.00001):
+				polygon.remove_at(i);changed=true;break
+	return polygon
 static func outside_regions(shapes: Array[PackedVector2Array],regions: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array]=shapes.duplicate()
 	for region in regions:
 		var next: Array[PackedVector2Array]=[]
 		for shape in result:
 			for piece in Geometry2D.clip_polygons(shape,region):
-				if piece.size()>=3:next.append(piece)
+				piece=clean_polygon(piece)
+				if piece.size()>=3 and preload("res://core/road_parcels.gd").area(piece)>.00001 and not Geometry2D.triangulate_polygon(piece).is_empty():next.append(piece)
 		result=next
 	return result
 

@@ -119,7 +119,7 @@ static func analyze(roads: Array) -> Dictionary:
      if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:
       duplicate=true
       if available>arm.length:arm.length=available;arm.points=outgoing
-    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"lanes":int(roads[road_id].lanes),"major_side":int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1),"length":available,"points":outgoing})
+    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"kind":str(roads[road_id].get("kind","local")),"lanes":int(roads[road_id].lanes),"major_side":int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1),"length":available,"points":outgoing})
  var junctions := []
  var joins := []
  for node in nodes.values():
@@ -135,7 +135,7 @@ static func analyze(roads: Array) -> Dictionary:
   for arm in node.arms:radius=maxf(radius,arm.width/2+1.0)
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
   junction.transition=transition
-  if not transition or not is_equal_approx(node.arms[0].width,node.arms[1].width):
+  if (not transition or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
    var widest: Dictionary=node.arms[0]
    for arm in node.arms:
     if arm.width>widest.width:widest=arm
@@ -255,6 +255,7 @@ static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector
  return result
 
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:
+ if junction.get("taper",false):return junction.taper_asphalt if asphalt else junction.taper_pavement
  var cache_key := "asphalt" if asphalt else "footprint"
  if junction.has(cache_key):return junction[cache_key]
  if junction.has("box"):

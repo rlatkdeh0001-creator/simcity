@@ -25,7 +25,10 @@ func run():
    await select_lanes(8);await click(game.screen(Vector2(30,40)));await click(game.screen(Vector2(46,40)));await settle()
    verify(game.city.roads.size()==1,spec[0]+" builds its eight-lane host through real mouse input")
   var before:=var_to_str(game.city.roads);var count: int=game.city.roads.size()
-  await select_lanes(spec[6] if spec.size()>6 else 2);await click(game.screen(spec[2]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);root.push_input(motion,true);await process_frame
+  await select_lanes(spec[6] if spec.size()>6 else 2)
+  # New odd-width lattice can leave a half-cell gap here; pin the literal curb contact.
+  if spec[0]=="legacy widened box boundary":game.road_grid_enabled=false
+  await click(game.screen(spec[2]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);root.push_input(motion,true);await process_frame
   var result: Dictionary=game.road_drawer.preview()
   verify(result.ok==spec[4],spec[0]+" preview rejects surface-only contact but permits actual crossings")
   await click(game.screen(spec[3]));await settle()

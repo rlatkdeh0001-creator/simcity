@@ -111,8 +111,38 @@ static func centre_contact_in_patch(road: Dictionary,junction: Dictionary) -> bo
     for i in range(junction.footprint.size()):
      if point.distance_to(Geometry2D.get_closest_point_to_segment(point,junction.footprint[i],junction.footprint[(i+1)%junction.footprint.size()]))<=Paths.EPS:return true
  return false
+
+static func joins_crossing(candidate:Dictionary,old:Dictionary,roads:Array)->bool:
+ var found:=false
+ for first in segments(candidate.points):
+  for second in segments(old.points):
+   if absf(first.direction.cross(second.direction))>=.000001:continue
+   var point=Paths.intersection(first.a,first.b,second.a,second.b)
+   if point==null:continue
+   found=true
+   var crossing:=false
+   for other in roads:
+    for hit in contact_hits(candidate,other):
+     if Paths.sample(candidate.points,hit.a).distance_to(point)<=Paths.EPS:crossing=true
+   if not crossing:return false
+ return found
+static func endpoint_remainder(shapes:Array[PackedVector2Array],a:Dictionary,b:Dictionary)->Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=shapes.duplicate()
+ for first in [0,-1]:
+  for last in [0,-1]:
+   var p:Vector2=a.points[first];var q:Vector2=b.points[last]
+   if p.distance_to(q)>Paths.EPS:continue
+   var da:Vector2=(a.points[1 if first==0 else -2]-p).normalized();var db:Vector2=(b.points[1 if last==0 else -2]-q).normalized()
+   if da.dot(db)>=0 or absf(da.cross(db))>=.000001:continue
+   var normal:=Vector2(-da.y,da.x);var half:float=maxf(a.width,b.width)/2+Paths.EPS;var reach:Vector2=da*Paths.EPS*2
+   var regions:Array[PackedVector2Array]=[PackedVector2Array([p-reach-normal*half,p+reach-normal*half,p+reach+normal*half,p-reach+normal*half])]
+   result=Geometry.outside_regions(result,regions)
+ var filtered:Array[PackedVector2Array]=[]
+ for shape in result:
+  if absf(Parcels.area(shape))>EPS:filtered.append(shape)
+ return filtered
 static func overlap_allowed(a: Dictionary,b: Dictionary) -> bool:
- var remaining:=intersections(a,b)
+ var remaining:=endpoint_remainder(intersections(a,b),a,b)
  if remaining.is_empty():
   var touching:=false
   for polygon in outlines(b):
@@ -191,7 +221,7 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   var candidate:=road.duplicate(true);candidate.points=points
   if not self_clear(candidate):return {"ok":false,"reason":"도로가 스스로 겹칩니다"}
   for old in roads+additions:
-   if not same_profile(candidate,old) and collinear_contact(candidate,old):return {"ok":false,"reason":"직선 연장은 같은 종류·차로의 도로만 가능합니다"}
+   if collinear_contact(candidate,old) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,roads+additions):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
    if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
   for junction in existing.junctions+existing.joins:
    if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
