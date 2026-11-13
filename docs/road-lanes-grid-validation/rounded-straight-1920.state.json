@@ -1,0 +1,12 @@
+{
+  "committed_roads": 0,
+  "first_disc_radius": 4.0,
+  "grid": true,
+  "input": "real card click, world first-click press/release, then mouse move without confirming construction",
+  "length_text": "88 m",
+  "outline_vertices": 74,
+  "points": "[(32.0, 42.0), (54.0, 42.0)]",
+  "preview_width": 8,
+  "selected_lanes": 8,
+  "style": "single translucent fill plus outline; no lane/median rendering"
+}

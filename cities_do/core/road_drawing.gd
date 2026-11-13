@@ -216,11 +216,42 @@ func draw_measurements(result: Dictionary):
  for angle in data.angles:
   if angle.degrees>.001:view.draw_polyline(angle.arc,Color("36b7ff"),2,true)
   draw_measure_badge(angle.text,angle.arc[12]+Vector2(0,-28),Color("36b7ff"))
+func preview_colors(valid: bool) -> Dictionary:
+ return {"fill":Color(.3,.9,.5,.55) if valid else Color(.95,.3,.25,.55),"outline":Color("3ddc84") if valid else Color("ef5350")}
+func preview_polygons(points: PackedVector2Array,width: float) -> Array[PackedVector2Array]:
+ var result: Array[PackedVector2Array]=[]
+ if points.is_empty() or width<=0:return result
+ var shapes: Array[PackedVector2Array]=[]
+ if LengthUnits.Paths.length_of(points)<.00001:
+  var disc:=PackedVector2Array()
+  for i in range(64):disc.append(points[0]+Vector2.from_angle(TAU*i/64.0)*width/2)
+  shapes.append(disc)
+ else:
+  # Clipper's absolute arc tolerance is too coarse in 4m world cells: scale only the presentation mesh.
+  const DETAIL_SCALE:=64.0
+  var detailed:=PackedVector2Array()
+  for p in points:detailed.append(p*DETAIL_SCALE)
+  for shape in Geometry2D.offset_polyline(detailed,width*DETAIL_SCALE/2,Geometry2D.JOIN_ROUND,Geometry2D.END_ROUND):
+   for i in range(shape.size()):shape[i]/=DETAIL_SCALE
+   shapes.append(shape)
+ var bounds:=Vector2(view.city.width,view.city.height)
+ var border:=PackedVector2Array([Vector2.ZERO,Vector2(bounds.x,0),bounds,Vector2(0,bounds.y)])
+ for shape in shapes:
+  for clipped in Geometry2D.intersect_polygons(shape,border):
+   for i in range(clipped.size()):clipped[i]=clipped[i].clamp(Vector2.ZERO,bounds)
+   result.append(clipped)
+ return result
 func draw_preview():
  measurement_boxes.clear()
  if view.mode!="road" or kind=="legacy" or view.get_viewport().gui_get_hovered_control()!=null:return
  if anchors.is_empty():draw_cursor(cursor_preview());return
  var result:=preview()
  if result.points.size()<2:return
- view.draw_ribbon(result.points,view.road_lanes,Color(.3,.9,.5,.55) if result.ok else Color(.95,.3,.25,.55))
+ var colors:=preview_colors(result.ok)
+ var width: float=view.city.config.road_width*view.road_lanes/2.0
+ for shape in preview_polygons(result.points,width):
+  var projected:=PackedVector2Array()
+  for point in shape:projected.append(view.screen(point))
+  view.draw_colored_polygon(projected,colors.fill)
+  projected.append(projected[0]);view.draw_polyline(projected,colors.outline,2,true)
  draw_measurements(result)

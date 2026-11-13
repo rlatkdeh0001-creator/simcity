@@ -1,0 +1,32 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road preview has a dedicated smooth round-cap silhouette
+PASS smooth capsule is a single densely sampled strip for 2 lanes
+PASS both semicircle diameters equal the selected road width 2
+PASS cap vertices stay on the real-radius circles without mutating construction points 2
+PASS smooth capsule is a single densely sampled strip for 3 lanes
+PASS both semicircle diameters equal the selected road width 3
+PASS cap vertices stay on the real-radius circles without mutating construction points 3
+PASS smooth capsule is a single densely sampled strip for 4 lanes
+PASS both semicircle diameters equal the selected road width 4
+PASS cap vertices stay on the real-radius circles without mutating construction points 4
+PASS smooth capsule is a single densely sampled strip for 5 lanes
+PASS both semicircle diameters equal the selected road width 5
+PASS cap vertices stay on the real-radius circles without mutating construction points 5
+PASS smooth capsule is a single densely sampled strip for 8 lanes
+PASS both semicircle diameters equal the selected road width 8
+PASS cap vertices stay on the real-radius circles without mutating construction points 8
+PASS valid and invalid translucent fill colours retain the existing policy
+PASS outlines reuse the pre-click disc's green and red colours
+PASS a stationary first point remains a full road-width disc before stretching into the strip
+PASS preview keeps the existing map-edge clipping
+PASS straight uses the same round-cap silhouette for its actual resolved path
+PASS straight presentation never changes grid, angle, arc length, authored roads or anchors
+PASS straight length and connection-angle annotations remain unchanged
+PASS curve uses the same round-cap silhouette for its actual resolved path
+PASS curve presentation never changes grid, angle, arc length, authored roads or anchors
+PASS curve length and connection-angle annotations remain unchanged
+PASS free uses the same round-cap silhouette for its actual resolved path
+PASS free presentation never changes grid, angle, arc length, authored roads or anchors
+PASS free length and connection-angle annotations remain unchanged
+RESULT 29/29 round road preview checks passed

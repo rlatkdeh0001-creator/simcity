@@ -15,6 +15,7 @@ func run():
   if arg.begins_with("--case="):scenario=arg.trim_prefix("--case=")
  assert(not path.is_empty())
  if scenario=="grid":await capture_grid(path);return
+ if scenario=="rounded":await capture_rounded(path);return
  game=load("res://main.tscn").instantiate();game.city=preload("res://core/city_model.gd").new(100,100);game.paused=true;root.add_child(game);current_scene=game
  var counts:=[2,3,4,5,8]
  for i in range(counts.size()):assert(game.city.add_road(PackedVector2Array([Vector2(18,20+i*14),Vector2(34,20+i*14)]),"local",true,counts[i]).ok)
@@ -55,3 +56,16 @@ func capture_grid(path: String):
  var state:={"grid":game.road_grid_enabled,"lanes":[4,2],"edge_gap_cells":8,"opposed_cells":cells.size(),"valid_8x8_placement":true,"painted_cells":painted.changed,"input":"real category/card and world mouse press/release","preview_equals_commit":game.city.roads[-1].points==preview.points,"roads":game.city.roads}
  var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
  print("NATIVE_ROAD_GRID_PASS actual mouse input; eight-cell edge gap; 64 opposed cells; valid8x8; exact preview=commit");quit()
+func capture_rounded(path: String):
+ game=load("res://main.tscn").instantiate();game.city=preload("res://core/city_model.gd").new(100,100);game.paused=true;root.add_child(game);current_scene=game
+ await settle();await click(game.categories[1].get_global_rect().get_center());await settle();await click(game.road_lane_cards[4].get_global_rect().get_center())
+ game.map_zoom=2.2;game.origin=Vector2.ZERO;game.origin=Vector2(960,400)-game.screen(Vector2(43,42));game.queue_redraw();await settle()
+ await move_world(Vector2(32,42));var disc: Dictionary=game.road_drawer.cursor_preview();assert(disc.ok and disc.radius==4)
+ await click(game.screen(Vector2(32,42)));await move_world(Vector2(54.3,42.1));await settle()
+ var preview: Dictionary=game.road_drawer.preview();var measurements: Dictionary=game.road_drawer.measurements(preview)
+ var shapes: Array=game.road_drawer.preview_polygons(preview.points,8)
+ assert(preview.ok and game.city.roads.is_empty() and preview.points==PackedVector2Array([Vector2(32,42),Vector2(54,42)]) and measurements.length_text=="88 m" and shapes.size()==1)
+ var image:=root.get_texture().get_image();assert(image.get_size()==Vector2i(1920,1080) and image.save_png(path)==OK)
+ var state:={"grid":game.road_grid_enabled,"selected_lanes":8,"committed_roads":game.city.roads.size(),"first_disc_radius":disc.radius,"preview_width":8,"outline_vertices":shapes[0].size(),"points":preview.points,"length_text":measurements.length_text,"input":"real card click, world first-click press/release, then mouse move without confirming construction","style":"single translucent fill plus outline; no lane/median rendering"}
+ var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
+ print("NATIVE_ROUND_ROAD_PREVIEW_PASS both smooth semicircles; width8; 88 m; actual first click and mouse move; roads0");quit()
