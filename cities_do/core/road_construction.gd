@@ -94,9 +94,13 @@ static func overlap_allowed(a: Dictionary,b: Dictionary) -> bool:
   var first:={"points":Paths.slice(a.points,maxf(0,hit.a-hit.reach),minf(length_a,hit.a+hit.reach)),"width":a.width}
   var second:={"points":Paths.slice(b.points,maxf(0,hit.b-hit.reach),minf(length_b,hit.b+hit.reach)),"width":b.width}
   for allowed in intersections(first,second):
+   # Re-offsetting sliced paths can leave float/Clipper slivers at a valid junction.
+   # Use the existing topology tolerance only after contact and escape checks pass.
+   var border:=Geometry2D.offset_polygon(allowed,Paths.EPS,Geometry2D.JOIN_MITER)
+   var contact_area: PackedVector2Array=allowed if border.is_empty() else border[0]
    var next: Array[PackedVector2Array]=[]
    for shape in remaining:
-    for rest in Geometry2D.clip_polygons(shape,allowed):
+    for rest in Geometry2D.clip_polygons(shape,contact_area):
      if Parcels.area(rest)>EPS:next.append(rest)
    remaining=next
   if remaining.is_empty():return true

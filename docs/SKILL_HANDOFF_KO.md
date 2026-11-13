@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 도로 중간 T 접속 오판 수정 (2026-11-13)
+
+기설치 `systematic-debugging`·`test-driven-development`·`godot-windows-validation` 및 `.agents/skills/cities-do-construction/SKILL.md`를 적용했다(재설치/출처·라이선스 변경 없음). `road_construction.gd`의 국소 교차 공제에만 기존 topology 정밀도를 적용하고, 실제 카드·마우스 회귀 `test_road_midpoint_connections.gd`를 추가했다.
+현재 실행: Godot 4.6.3의 정상 GL 게임 창에서 중간 양쪽/끝점 접속 26/26, headless 겹침 정책 22/22. 최종 로그 `road-midpoint-connections-validation/`; 새 검수 수준에 따라 캡처·전수 대조·전체 회귀·RED/중간 결과 파일 없이 마쳤다. main 병합/푸시 없음.
+
 최종 기록: 2026-11-12 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → [mistake.md](../mistake.md) → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
