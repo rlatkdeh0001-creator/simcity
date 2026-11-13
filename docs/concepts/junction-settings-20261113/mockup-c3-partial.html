@@ -1,0 +1,65 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+.win{background:#142b37;color:#edf4f5;font-size:18px;border:1px solid #38515e;border-radius:10px;width:900px;display:flex;flex-direction:column}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #38515e}
+.seg{display:flex;gap:4px}.seg b{padding:6px 14px;border-radius:6px;background:#38515e;font-weight:600}.seg b.on{background:#36b7ff;color:#142b37}
+.body{display:flex}.dg{width:340px;height:340px;flex:none;border-right:1px solid #38515e}.side{flex:1;padding:10px 14px}
+.ctl{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #38515e}
+.btn{background:#36b7ff;color:#142b37;border:0;border-radius:6px;font-size:18px;font-weight:700;width:44px;height:36px;cursor:pointer}
+.sp{background:#38515e;color:#edf4f5;border:0;border-radius:6px;font-size:18px;padding:6px 10px;cursor:pointer}.sp.on{background:#edf4f5;color:#142b37}
+.t{font-variant-numeric:tabular-nums}
+table{border-collapse:separate;border-spacing:5px}td,th{text-align:center;font-weight:700}
+td{background:#1c3846;border-radius:6px;width:64px;height:42px;font-size:22px;cursor:pointer;user-select:none}
+td:hover{background:#26495a}
+th{font-size:18px;color:#9fb3bb;font-weight:600}th.cur{color:#36b7ff}td.cur{outline:3px solid #36b7ff}
+td.bad{outline:3px solid #e5484d!important}td.skip{opacity:.4}
+td.tm{cursor:default;font-size:18px;font-variant-numeric:tabular-nums}
+.add{background:#38515e;width:40px}
+.bd{display:inline-flex;width:30px;height:30px;border-radius:50%;background:#edf4f5;color:#142b37;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+.rd{color:#e5484d}.gr{color:#3fbf6a}
+.q{display:inline-block;min-width:34px;font-variant-numeric:tabular-nums;color:#9fb3bb;font-size:18px}
+</style></head><body>
+<div id="app"></div>
+<script>
+// 일부 수동: 단계 구성은 플레이어, 시간은 자동(대기 차량에 맞춰 연장·단축·건너뜀)
+let P=[{1:'L',3:'L'},{1:'T',3:'T'},{2:'L',4:'L'},{2:'T',4:'T'}];
+const CYCLE=['L','T','LT',undefined],MIN=5,MAX=40,Y=3,AR=1,RATE={1:.35,2:.2,3:.3,4:.15},OUT=.5;
+const AP={1:[190,280,0,250,311],2:[280,150,-90,311,90],3:[150,60,180,90,29],4:[60,190,90,29,250]};
+const OPP={1:3,3:1,2:4,4:2},C={g:'#3fbf6a',y:'#f2c14e',r:'#e5484d',off:'#2a3a42'};
+let Q={1:4,2:2,3:3,4:1},cur=0,k='g',el=0,tot=0,run=false,sp=1,last=0,used=[];
+const $=i=>document.getElementById(i);
+function conflict(p){const bad=new Set();const g=Object.keys(p).filter(a=>p[a]);
+ for(const a of g)for(const b of g){if(a>=b)continue;const A=+a,B=+b;
+  if(OPP[A]!==B){bad.add(A);bad.add(B)}else{const x=p[A],y=p[B];if(!(x===y&&x!=='LT'))if(x!==y||x==='LT'){bad.add(A);bad.add(B)}}}
+ return bad}
+function demand(i){return Object.keys(P[i]).some(a=>P[i][a]&&Q[a]>0.5)}
+function lit(a,x){const m=P[cur][a];if(!m||!(m===x||m==='LT'))return'r';return k}
+function diag(){let g=`<svg viewBox="0 0 340 340" width="340" height="340"><rect width="340" height="340" fill="#7f9774"/><rect x="130" width="80" height="340" fill="#4d5357"/><rect y="130" width="340" height="80" fill="#4d5357"/><rect x="130" y="130" width="80" height="80" fill="#59606a"/>`;
+ for(const a in AP){const[x,y,r,bx,by]=AP[a],L=lit(a,'L'),T=lit(a,'T');const cc=s=>s==='g'?C.g:s==='y'?C.y:C.r;
+  const red=L!=='g'&&T!=='g'&&L!=='y'&&T!=='y',yel=L==='y'||T==='y';
+  g+=`<g transform="translate(${x},${y}) rotate(${r})" font-weight="700" text-anchor="middle"><text x="-10" y="-4" font-size="26" fill="${cc(L)}">←</text><text x="12" y="-4" font-size="26" fill="${cc(T)}">↑</text>
+   <rect x="-30" y="12" width="64" height="20" rx="4" fill="#0b161c"/><circle cx="-21" cy="22" r="6.5" fill="${red?C.r:C.off}"/><circle cx="-5" cy="22" r="6.5" fill="${yel?C.y:C.off}"/>
+   <text x="11" y="28" font-size="18" fill="${L==='g'?C.g:C.off}">←</text><circle cx="26" cy="22" r="6.5" fill="${T==='g'?C.g:C.off}"/>`;
+  const n=Math.min(8,Math.round(Q[a]));for(let j=0;j<n;j++)g+=`<rect x="${-4}" y="${44+j*12}" width="16" height="9" rx="2" fill="#d8dee2"/>`;
+  g+=`</g><circle cx="${bx}" cy="${by}" r="15" fill="#edf4f5" stroke="#142b37" stroke-width="2"/><text x="${bx}" y="${by+6}" text-anchor="middle" font-size="18" font-weight="800" fill="#142b37">${a}</text>`}
+ return g+'</svg>'}
+function cell(m){return m==='L'?'<span class=gr>←</span>':m==='T'?'<span class=gr>↑</span>':m==='LT'?'<span class=gr>←↑</span>':'<span class=rd>●</span>'}
+function table(){let h='<tr><th></th>'+P.map((_,i)=>`<th class="${i===cur?'cur':''}">${'ABCDEF'[i]}</th>`).join('')+`<th></th></tr>`;
+ const bads=P.map(conflict);
+ for(const a of [1,2,3,4])h+=`<tr><th><span class="bd">${a}</span> <span class="q">${Math.round(Q[a])}대</span></th>`+P.map((p,i)=>`<td data-i="${i}" data-a="${a}" class="${i===cur?'cur':''} ${bads[i].has(a)?'bad':''} ${!demand(i)&&i!==cur?'skip':''}">${cell(p[a])}</td>`).join('')+(a===1?`<td class="add" rowspan="4" id="add">＋</td>`:'')+'</tr>';
+ return `<table>${h}</table>`}
+function render(){$('d').innerHTML=diag();$('tb').innerHTML=table();$('tt').textContent=`${Math.floor(tot)}초`;
+ document.querySelectorAll('td[data-a]').forEach(td=>td.onclick=()=>{const i=+td.dataset.i,a=td.dataset.a;const n=CYCLE[(CYCLE.indexOf(P[i][a])+1)%CYCLE.length];if(n)P[i][a]=n;else delete P[i][a];render()});
+ const ad=$('add');if(ad)ad.onclick=()=>{if(P.length<6){P.push({});render()}}}
+function step(dt){tot+=dt;for(const a in Q){Q[a]=Math.min(12,Q[a]+RATE[a]*dt);const m=P[cur][a];if(k==='g'&&m)Q[a]=Math.max(0,Q[a]-OUT*(m==='LT'?1.5:1)*dt)}
+ el+=dt;const serving=Object.keys(P[cur]).some(a=>P[cur][a]&&Q[a]>0.5);
+ if(k==='g'&&el>=MIN&&(!serving||el>=MAX)){used[cur]=Math.floor(el);k='y';el=0}
+ else if(k==='y'&&el>=Y){k='r';el=0}
+ else if(k==='r'&&el>=AR){let n=cur;for(let s=0;s<P.length;s++){n=(n+1)%P.length;if(demand(n))break}cur=n;k='g';el=0}}
+$('app')||0;document.getElementById('app').innerHTML=`<div class="win"><div class="hd"><b style="font-size:20px">교차로</b><div class="seg"><b>자동</b><b class="on">수동(차량 감지)</b><b>수동(시간 조정)</b></div><span style="margin-left:auto;color:#9fb3bb">✕</span></div>
+<div class="body"><div class="dg" id="d"></div><div class="side" id="tb"></div></div>
+<div class="ctl"><button class="btn" id="p">▶</button><span class="t" id="tt"></span><span style="flex:1"></span><button class="sp on" id="x1">×1</button><button class="sp" id="x4">×4</button></div></div>`;
+$('p').onclick=()=>{run=!run;$('p').textContent=run?'❚❚':'▶';last=performance.now()};
+$('x1').onclick=()=>{sp=1;$('x1').classList.add('on');$('x4').classList.remove('on')};$('x4').onclick=()=>{sp=4;$('x4').classList.add('on');$('x1').classList.remove('on')};
+let acc=0;const loop=n=>{if(run){acc+=(n-last)/1000*sp;if(acc>=0.25){while(acc>=0.25){step(0.25);acc-=0.25}render()}}last=n;requestAnimationFrame(loop)};render();requestAnimationFrame(loop);
+</script></body></html>

@@ -1,0 +1,68 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+.win{background:#142b37;color:#edf4f5;font-size:18px;border:1px solid #38515e;border-radius:10px;width:900px;display:flex;flex-direction:column}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #38515e}
+.seg{display:flex;gap:4px}.seg b{padding:6px 14px;border-radius:6px;background:#38515e;font-weight:600}.seg b.on{background:#36b7ff;color:#142b37}
+.body{display:flex}.dg{width:340px;height:340px;flex:none;border-right:1px solid #38515e}.side{flex:1;padding:12px 16px}
+.ctl{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #38515e}
+.btn{background:#36b7ff;color:#142b37;border:0;border-radius:6px;font-size:18px;font-weight:700;width:44px;height:36px;cursor:pointer}
+.sp{background:#38515e;color:#edf4f5;border:0;border-radius:6px;font-size:18px;padding:6px 10px;cursor:pointer}.sp.on{background:#edf4f5;color:#142b37}
+.t{font-variant-numeric:tabular-nums}
+.opt{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;background:#1c3846;margin-bottom:6px;cursor:pointer}
+.opt.on{outline:3px solid #36b7ff;background:#20435a}
+.ic{width:46px;height:28px;flex:none}
+.rd{width:20px;height:20px;border-radius:50%;border:2px solid #9fb3bb;flex:none}.opt.on .rd{border-color:#36b7ff;background:radial-gradient(#36b7ff 45%,transparent 50%)}
+.sl{display:flex;align-items:center;gap:10px;margin-top:12px}.sl input{flex:1;accent-color:#36b7ff}
+.dim{color:#9fb3bb}
+.ph{display:flex;gap:6px;margin-top:12px}.ph span{flex:1;text-align:center;padding:6px 0;border-radius:6px;background:#1c3846;font-weight:700}.ph span.cur{background:#36b7ff;color:#142b37}
+.q{font-variant-numeric:tabular-nums}
+</style></head><body>
+<div id="app"></div>
+<script>
+// 자동: 단계 구성·시간 모두 게임이 결정. 오른쪽에서 '신호 유지 방식'만 고름 (TM:PE Adaptive step switching / sensitivity 참고)
+const P=[{1:'L',3:'L'},{1:'T',3:'T'},{2:'L',4:'L'},{2:'T',4:'T'}],MAIN=[1,3];
+const MIN=5,MAX=60,Y=3,AR=1,RATE={1:.45,2:.12,3:.4,4:.1},OUT=1;
+const AP={1:[190,280,0,250,311],2:[280,150,-90,311,90],3:[150,60,180,90,29],4:[60,190,90,29,250]};
+const C={g:'#3fbf6a',y:'#f2c14e',r:'#e5484d',off:'#2a3a42'};
+const OPTS=[
+ ['bal','균형','<rect x="2" y="10" width="18" height="8" fill="#3fbf6a"/><rect x="26" y="10" width="18" height="8" fill="#e5484d"/><text x="23" y="19" font-size="14" fill="#edf4f5" text-anchor="middle">=</text>'],
+ ['empty','차 없으면 넘김','<rect x="2" y="10" width="18" height="8" fill="#3fbf6a" opacity=".25"/><text x="34" y="21" font-size="20" fill="#edf4f5" text-anchor="middle">→</text>'],
+ ['main','큰 도로 우선','<rect x="2" y="6" width="42" height="7" fill="#3fbf6a"/><rect x="20" y="16" width="8" height="12" fill="#e5484d"/>'],
+];
+let mode='bal',W=1,Q={1:3,2:1,3:3,4:1},cur=0,k='g',el=0,tot=0,run=false,sp=1,last=0;
+const $=i=>document.getElementById(i);
+const served=i=>Object.keys(P[i]).map(Number);
+const qs=a=>a.reduce((s,x)=>s+Q[x],0);
+const others=i=>[1,2,3,4].filter(a=>!served(i).includes(a));
+function demand(i){return qs(served(i))>0.5}
+function shouldSwitch(){const s=qs(served(cur)),w=qs(others(cur));if(el<MIN)return false;if(el>=MAX)return true;
+ if(mode==='bal')return s*W<w;            // 지나갈 차 × 유지 성향 < 기다리는 차
+ if(mode==='empty')return s<0.5;          // 이 단계 차가 다 빠지면
+ if(mode==='main'){const isMain=served(cur).some(a=>MAIN.includes(a));return isMain?w>=3*W:(s<0.5||el>=8*W)}}
+function lit(a,x){const m=P[cur][a];return m===x?k:'r'}
+function diag(){let g=`<svg viewBox="0 0 340 340" width="340" height="340"><rect width="340" height="340" fill="#7f9774"/><rect x="125" width="90" height="340" fill="#4d5357"/><rect y="138" width="340" height="64" fill="#4d5357"/><rect x="125" y="138" width="90" height="64" fill="#59606a"/>`;
+ for(const a in AP){const[x,y,r,bx,by]=AP[a],L=lit(a,'L'),T=lit(a,'T'),cc=s=>s==='g'?C.g:s==='y'?C.y:C.r;
+  const yel=L==='y'||T==='y',red=!yel&&L!=='g'&&T!=='g';
+  g+=`<g transform="translate(${x},${y}) rotate(${r})" font-weight="700" text-anchor="middle"><text x="-10" y="-4" font-size="26" fill="${cc(L)}">←</text><text x="12" y="-4" font-size="26" fill="${cc(T)}">↑</text>
+  <rect x="-30" y="12" width="64" height="20" rx="4" fill="#0b161c"/><circle cx="-21" cy="22" r="6.5" fill="${red?C.r:C.off}"/><circle cx="-5" cy="22" r="6.5" fill="${yel?C.y:C.off}"/>
+  <text x="11" y="28" font-size="18" fill="${L==='g'?C.g:C.off}">←</text><circle cx="26" cy="22" r="6.5" fill="${T==='g'?C.g:C.off}"/>`;
+  const n=Math.min(8,Math.round(Q[a]));for(let j=0;j<n;j++)g+=`<rect x="-4" y="${44+j*12}" width="16" height="9" rx="2" fill="#d8dee2"/>`;
+  g+=`</g><circle cx="${bx}" cy="${by}" r="15" fill="#edf4f5" stroke="#142b37" stroke-width="2"/><text x="${bx}" y="${by+6}" text-anchor="middle" font-size="18" font-weight="800" fill="#142b37">${a}</text>`}
+ return g+'</svg>'}
+function side(){return OPTS.map(([id,n,ic])=>`<div class="opt ${mode===id?'on':''}" data-m="${id}"><span class="rd"></span><b>${n}</b></div>`).join('')+
+ `<div class="sl ${mode==='empty'?'dim':''}"><span>짧게</span><input type="range" min="0.4" max="3" step="0.1" value="${W}" id="w" ${mode==='empty'?'disabled':''}><span>길게</span></div>
+`}
+function render(){$('d').innerHTML=diag();$('s').innerHTML=side();$('tt').textContent=`${Math.floor(tot)}초`;
+ document.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{mode=o.dataset.m;render()});
+ const w=$('w');w.oninput=()=>{W=+w.value}}
+function step(dt){tot+=dt;for(const a in Q){Q[a]=Math.min(14,Q[a]+RATE[a]*dt);if(k==='g'&&P[cur][a])Q[a]=Math.max(0,Q[a]-OUT*dt)}
+ el+=dt;if(k==='g'&&shouldSwitch()){k='y';el=0}else if(k==='y'&&el>=Y){k='r';el=0}
+ else if(k==='r'&&el>=AR){let n=cur;for(let s=0;s<P.length;s++){n=(n+1)%P.length;if(demand(n))break}cur=n;k='g';el=0}}
+$('app').innerHTML=`<div class="win"><div class="hd"><b style="font-size:20px">교차로</b><div class="seg"><b class="on">자동</b><b>수동(차량 감지)</b><b>수동(시간 조정)</b></div><span style="margin-left:auto;color:#9fb3bb">✕</span></div>
+<div class="body"><div class="dg" id="d"></div><div class="side" id="s"></div></div>
+<div class="ctl"><button class="btn" id="p">▶</button><span class="t" id="tt"></span><span style="flex:1"></span><button class="sp on" id="x1">×1</button><button class="sp" id="x4">×4</button></div></div>`;
+$('p').onclick=()=>{run=!run;$('p').textContent=run?'❚❚':'▶';last=performance.now()};
+$('x1').onclick=()=>{sp=1;$('x1').classList.add('on');$('x4').classList.remove('on')};$('x4').onclick=()=>{sp=4;$('x4').classList.add('on');$('x1').classList.remove('on')};
+let acc=0;const loop=n=>{if(run){acc+=(n-last)/1000*sp;if(acc>=0.25){while(acc>=0.25){step(0.25);acc-=0.25}
+ $('d').innerHTML=diag();$('tt').textContent=`${Math.floor(tot)}초`}}last=n;requestAnimationFrame(loop)};render();requestAnimationFrame(loop);
+</script></body></html>
