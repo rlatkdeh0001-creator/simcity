@@ -1,0 +1,68 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS cross fixture has an actual mixed-width intersection
+PASS cross median and lane dashes never cross painted zebra stripes or stop lines
+PASS cross 8-lane median reaches the actual stop-line approach edge
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross 8-lane median reaches the actual stop-line approach edge
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross lane separator continues to the stop line within its existing dash spacing
+PASS cross 2-lane median reaches the actual stop-line approach edge
+PASS cross 2-lane median reaches the actual stop-line approach edge
+PASS cross derived approach paint never changes authored road geometry
+PASS T fixture has an actual mixed-width intersection
+PASS T median and lane dashes never cross painted zebra stripes or stop lines
+PASS T 8-lane median reaches the actual stop-line approach edge
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T 8-lane median reaches the actual stop-line approach edge
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T lane separator continues to the stop line within its existing dash spacing
+PASS T 2-lane median reaches the actual stop-line approach edge
+PASS T derived approach paint never changes authored road geometry
+PASS rotated fixture has an actual mixed-width intersection
+PASS rotated median and lane dashes never cross painted zebra stripes or stop lines
+PASS rotated 8-lane median reaches the actual stop-line approach edge
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated 8-lane median reaches the actual stop-line approach edge
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated lane separator continues to the stop line within its existing dash spacing
+PASS rotated 2-lane median reaches the actual stop-line approach edge
+PASS rotated 2-lane median reaches the actual stop-line approach edge
+PASS rotated derived approach paint never changes authored road geometry
+PASS odd fixture has an actual mixed-width intersection
+PASS odd median and lane dashes never cross painted zebra stripes or stop lines
+PASS odd 3-lane median reaches the actual stop-line approach edge
+PASS odd lane separator continues to the stop line within its existing dash spacing
+PASS odd 3-lane median reaches the actual stop-line approach edge
+PASS odd lane separator continues to the stop line within its existing dash spacing
+PASS odd 2-lane median reaches the actual stop-line approach edge
+PASS odd 2-lane median reaches the actual stop-line approach edge
+PASS odd derived approach paint never changes authored road geometry
+RESULT 65/65 approach marking checks passed

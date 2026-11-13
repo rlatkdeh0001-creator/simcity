@@ -76,13 +76,22 @@ func capture_mixed_width(path: String):
    assert(is_equal_approx(game.city.RoadJunctions.crosswalk_distance(junction,arm),expected))
    var crossing: Vector2=game.city.RoadJunctions.sample(arm.points,expected)
    assert(game.city.road_crosswalks.any(func(p):return Geometry2D.is_point_in_polygon(crossing,p)))
+   var finish: float=game.city.RoadJunctions.stop_line_distance(junction,arm)+.04+.03
+   var centre_end: Vector2=game.city.RoadJunctions.sample(arm.points,finish)
+   var normal:=Vector2(-arm.direction.y,arm.direction.x)
+   var median_end: Vector2=centre_end+normal*game.city.RoadProfile.median_offset(arm)
+   assert(game.city.road_medians.any(func(line):return minf(line[0].distance_to(median_end),line[-1].distance_to(median_end))<.005))
+   for offset in game.city.RoadProfile.separators(arm):
+    var lane_end: Vector2=centre_end+normal*offset
+    assert(game.city.road_lane_marks.any(func(line):return Geometry2D.get_closest_point_to_segment(lane_end,line[0],line[-1]).distance_to(lane_end)<.55))
  for polygon in game.city.road_pavement+game.city.road_asphalt:
   for region in game.city.intersection_regions:assert(not game.city.Parcels.overlap(polygon,region))
  for line in game.city.road_medians+game.city.road_lane_marks:
-  for region in game.city.intersection_regions:assert(not Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,region))
+  for junction in game.city.junctions:
+   for region in game.city.RoadJunctions.lane_mark_regions(junction):assert(not Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,region))
  await escape();assert(game.mode=="select")
  game.queue_redraw();await settle()
  var image:=root.get_texture().get_image();assert(image.get_size()==Vector2i(1920,1080) and image.save_png(path)==OK)
- var state:={"case":"mixed-width","input":"actual lane-card/grid clicks, two world road gestures, preview and committed T/cross verified, ESC exits preview","roads":game.city.roads,"junctions":game.city.junctions,"road_bodies_and_lane_marks_outside_boxes":true,"crosswalks_at_actual_crossed_edges":true,"wide_arm_crossing_distance_cells":1.25,"narrow_arm_crossing_distance_cells":4.25,"stop_line_polygons":game.city.road_stop_lines.size(),"crosswalk_polygons":game.city.road_crosswalks.size(),"grid":game.road_grid_enabled}
+ var state:={"case":"mixed-width","input":"actual lane-card/grid clicks, two world road gestures, preview and committed T/cross verified, ESC exits preview","roads":game.city.roads,"junctions":game.city.junctions,"road_bodies_outside_boxes":true,"lane_marks_end_at_actual_stop_lines":true,"crosswalks_at_actual_crossed_edges":true,"wide_arm_crossing_distance_cells":1.25,"narrow_arm_crossing_distance_cells":4.25,"stop_line_polygons":game.city.road_stop_lines.size(),"crosswalk_polygons":game.city.road_crosswalks.size(),"grid":game.road_grid_enabled}
  var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
- print("NATIVE_MIXED_WIDTH_JUNCTIONS_PASS 8/2-lane T and cross; zebra at actual crossed-road edges, render boxes preserved, real mouse commits");quit()
+ print("NATIVE_MIXED_WIDTH_JUNCTIONS_PASS 8/2-lane T and cross; medians and lane dashes reach stop lines, zebra gaps protected, real mouse commits");quit()

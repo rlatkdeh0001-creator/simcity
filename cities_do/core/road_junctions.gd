@@ -4,6 +4,8 @@ const EPS := .0001
 const Profile=preload("res://core/road_profile.gd")
 const CROSSWALK_HALF_LENGTH := .22
 const CROSSWALK_EDGE_GAP := .03
+const STOP_LINE_HALF_LENGTH := .04
+const LANE_MARK_GAP := .03
 static func key(point: Vector2) -> Vector2i:
  return Vector2i(roundi(point.x/EPS),roundi(point.y/EPS))
 static func merged_key(point: Vector2, nodes: Dictionary) -> Vector2i:
@@ -220,18 +222,32 @@ static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector
      if clipped.size()>=3:result.append(clipped)
    offset+=.28
  return result
+static func stop_line_distance(junction: Dictionary,arm: Dictionary) -> float:
+ return crosswalk_distance(junction,arm)+CROSSWALK_HALF_LENGTH+.18
+
+static func lane_mark_regions(junction: Dictionary) -> Array[PackedVector2Array]:
+ var result: Array[PackedVector2Array]=[]
+ if junction.get("transition",false):
+  if junction.has("box"):result.append(junction.box)
+  return result
+ for arm in junction.arms:
+  var finish:=minf(arm.length,stop_line_distance(junction,arm)+STOP_LINE_HALF_LENGTH+LANE_MARK_GAP)
+  var points:=slice(arm.points,0,finish)
+  if points.size()>=2:result.append_array(Geometry2D.offset_polyline(points,arm.width/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
+ return result
+
 static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false) or not junction.has("box"):return result
  for arm in junction.arms:
-  var distance:=crosswalk_distance(junction,arm)+CROSSWALK_HALF_LENGTH+.18
-  if distance+.04>arm.length+EPS:continue
+  var distance:=stop_line_distance(junction,arm)
+  if distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:continue
   var centre:=sample(arm.points,distance)
   var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
   var normal:=Vector2(-direction.y,direction.x)
   var a:=centre-normal*(Profile.asphalt_width(arm)/2-.08)
   var b:=centre+normal*(Profile.median_offset(arm)-.04)
-  var corners:=PackedVector2Array([a-direction*.04,b-direction*.04,b+direction*.04,a+direction*.04])
+  var corners:=PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
   if not marker_slot_clear(junction,arm,corners):continue
   for surface in surfaces:
    for clipped in Geometry2D.intersect_polygons(corners,surface):

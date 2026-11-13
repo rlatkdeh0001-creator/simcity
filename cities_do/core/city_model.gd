@@ -593,20 +593,22 @@ func _update_zoning_for_road(_road: Dictionary):
 	junctions=topology.junctions
 	road_joins=topology.joins
 	road_visuals=RoadGeometry.continuous_roads(roads,topology)
-	# A shared exclusion boundary owns the plane; no individual curb or paint can cross it.
+	# Pavement owns its render box; approach lines use the actual stop-line boundaries.
 	for cache in [road_crosswalks,road_stop_lines,intersection_regions,road_pavement,road_asphalt,road_medians,road_lane_marks,junction_pavement,junction_asphalt]:cache.clear()
 	var bounds:=Vector2(width,height)
 	var border:=PackedVector2Array([Vector2.ZERO,Vector2(width,0),bounds,Vector2(0,height)])
+	var line_regions: Array[PackedVector2Array]=[]
 	for junction in junctions+road_joins:
 		if not junction.has("box"):continue
 		intersection_regions.append(junction.box)
 		junction_pavement.append_array(Geometry2D.intersect_polygons(junction.footprint,border))
 		junction_asphalt.append_array(Geometry2D.intersect_polygons(junction.asphalt,border))
+		line_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 	for visual in road_visuals:
 		road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,visual.width,bounds,visual.flat_start,visual.flat_end),intersection_regions))
 		road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
-		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,intersection_regions))
-		for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,intersection_regions))
+		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
+		for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
 	# Crossings can lie inside the render box: clip against all actually visible asphalt.
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)

@@ -31,8 +31,9 @@ func run():
   verify(surfaces_clear,kind+" individual road pavement and sidewalks stop outside the box")
   var lines_clear:=true
   for line in city.road_medians+city.road_lane_marks:
-   if Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,node.box):lines_clear=false
-  verify(lines_clear,kind+" lane separators and medians end at the common box boundary")
+   for region in city.RoadJunctions.lane_mark_regions(node):
+    if Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,region):lines_clear=false
+  verify(lines_clear,kind+" lane separators and medians stay outside the actual stop-line exclusion regions")
   if kind in ["T","cross","rotated"]:
    verify(city.road_crosswalks.any(func(p):return Parcels.overlap(p,node.box)),kind+" wide-arm zebra may occupy the render box to stay beside the actual two-lane crossing")
    verify(city.road_stop_lines.any(func(p):return Parcels.overlap(p,node.box)),kind+" stop lines follow the restored zebra position rather than the render-box boundary")
