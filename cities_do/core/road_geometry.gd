@@ -78,8 +78,10 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
-		visual.flat_start=flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
-		visual.flat_end=flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
+		var first_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[0],topology.nodes)]
+		var last_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[-1],topology.nodes)]
+		visual.flat_start=first_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
+		visual.flat_end=last_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
 		result.append(visual)
 	return result
 
