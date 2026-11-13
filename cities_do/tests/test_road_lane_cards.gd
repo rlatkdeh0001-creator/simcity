@@ -10,7 +10,7 @@ func verify(ok: bool,label: String):
  if ok:print("PASS "+label)
  else:failures+=1;push_error("FAIL "+label)
 func run():
- for count in [2,3,4,5,8]:
+ for count in [2,3,4,5,6,7,8]:
   var city:=City.new(100,100)
   var added: Dictionary=city.add_road(PackedVector2Array([Vector2(20,40),Vector2(40,40)]),"local",true,count)
   verify(added.ok,"normal road accepts approved total lane count %d"%count)
@@ -31,7 +31,7 @@ func run():
  verify(game.has_method("select_road_lanes"),"approved lane cards replace the old selector")
  if game.has_method("select_road_lanes"):
   game.select_category("road");await process_frame;await process_frame
-  verify(game.road_lane_cards.size()==5 and game.find_child("RoadLanes",true,false)==null,"five C-cards and no old OptionButton")
+  verify(game.road_lane_cards.size()==7 and game.find_child("RoadLanes",true,false)==null,"seven C-cards and no old OptionButton")
   verify(game.road_grid_enabled and game.road_grid_button.button_pressed,"grid icon defaults on")
   for card in game.road_lane_cards:
    card.pressed.emit()
@@ -43,7 +43,8 @@ func run():
   for size in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:
    root.size=size;await process_frame;await process_frame
    var good:=true
-   for i in range(4):good=good and game.road_lane_cards[i].get_global_rect().end.x<=game.road_lane_cards[i+1].get_global_rect().position.x
-   verify(good and game.road_grid_button.get_global_rect().end.x<=size.x,"lane row remains ordered and grid button is inside viewport "+str(size))
+   for i in range(game.road_lane_cards.size()-1):good=good and game.road_lane_cards[i].get_global_rect().end.x<=game.road_lane_cards[i+1].get_global_rect().position.x
+   verify(good,"seven-card order has no overlapping card rectangles "+str(size))
+   if game.road_grid_button.get_global_rect().end.x>size.x:print("LAYOUT_OVERFLOW ",size," row_right=",game.road_grid_button.get_global_rect().end.x," report-only per user; layout unchanged")
  game.queue_free();await process_frame
  print("RESULT %d/%d road lane card checks passed"%[checks-failures,checks]);quit(1 if failures else 0)

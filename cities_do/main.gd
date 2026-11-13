@@ -65,7 +65,7 @@ func _ready():
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
-	if city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
+	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for(r.kind,r.lanes,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for asset in city.catalog.entries:
 		var texture: Texture2D = load(asset.texture)
@@ -670,7 +670,7 @@ func _draw():
 		var points := PackedVector2Array()
 		for p in snapped: points.append(screen(p))
 		var valid: bool = city.add_road(snapped, "local", false, road_lanes).ok
-		draw_ribbon(snapped, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
+		draw_ribbon(snapped, city.RoadProfile.width_for("local",road_lanes,city.config.road_width), Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
 	if road_drawer!=null:road_drawer.draw_preview()
 	if mode=="demolish" and not demolition_hover.is_empty():

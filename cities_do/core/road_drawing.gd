@@ -31,12 +31,12 @@ func set_kind(value: String):
 func grid_on() -> bool:return view.road_grid_enabled and kind!="legacy"
 func grid_reference(point: Vector2) -> Dictionary:return grid_frame if not grid_frame.is_empty() else Grid.frame_near(view.city,point)
 func snap(point: Vector2) -> Vector2:
- return Grid.start(view.city,point,view.city.config.road_width*view.road_lanes/2.0,grid_reference(point)) if grid_on() else view.city.RoadJunctions.snap_point(point,view.city.roads)
+ return Grid.start(view.city,point,view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(point)) if grid_on() else view.city.RoadJunctions.snap_point(point,view.city.roads)
 func arm_cursor():cursor_armed=true;view.queue_redraw()
 func cursor_preview() -> Dictionary:
  if not cursor_armed or view.mode!="road" or kind=="legacy" or not anchors.is_empty() or not view.pointer.is_finite():return {}
  var center:=snap(view.pointer)
- var width: float=view.city.config.road_width*view.road_lanes/2.0
+ var width: float=view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width)
  var valid: bool=center.x>=0 and center.y>=0 and center.x<=view.city.width and center.y<=view.city.height
  var probe:={"points":PackedVector2Array([center,center]),"width":width}
  var occupied: Array=[]
@@ -80,7 +80,7 @@ func raw_path() -> PackedVector2Array:
   if kind=="curve" and anchors.size()<2:last=view.pointer
   else:
    var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
-   var ends:=Grid.ends(view.city,assisted[0],assisted[-1],view.city.config.road_width*view.road_lanes/2.0,grid_reference(first))
+   var ends:=Grid.ends(view.city,assisted[0],assisted[-1],view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(first))
    first=ends[0];last=ends[-1]
  if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
  if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last]) if grid_on() else AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true)
@@ -108,7 +108,7 @@ func resolved_path() -> Dictionary:
   return Grid.fit(points,view.city.roads)
  # Control handles are not destination contacts; follow the start road's build step.
  if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),view.city.roads) if not anchors.is_empty() else LengthUnits.BUILD)
- var overdraw:=Construction.fit_overlay(points,view.city.roads,{"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0,"major_side":view.road_major_side})
+ var overdraw:=Construction.fit_overlay(points,view.city.roads,{"kind":"local","lanes":view.road_lanes,"width":view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),"major_side":view.road_major_side})
  if not overdraw.is_empty():return overdraw
  return LengthUnits.fit(points,view.city.roads)
 func path() -> PackedVector2Array:return resolved_path().points
@@ -135,7 +135,7 @@ func preview() -> Dictionary:
  result.points=points
  if not resolved.ok:result.ok=false;result.reason=resolved.reason
  if result.ok:
-  var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0,"major_side":view.road_major_side}
+  var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),"major_side":view.road_major_side}
   var network=Network.new()
   var additions: Array=result.get("new_roads",[candidate])
   if not network.build(view.city.roads+additions):result.ok=false;result.reason=network.errors[0] if not network.errors.is_empty() else "도로 경로를 확인해 주세요"
@@ -196,7 +196,7 @@ func measurements(result: Dictionary={}) -> Dictionary:
   if not host.endpoint and base.dot(ray)<0:base=-base
   var turn:=base.angle_to(ray)
   var degrees:=absf(rad_to_deg(turn))
-  var radius: float=maxf(.6,view.city.config.road_width*view.road_lanes/2.0*.8)
+  var radius: float=maxf(.6,view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width)*.8)
   var arc:=PackedVector2Array()
   for i in range(25):arc.append(view.screen(center+Vector2.from_angle(base.angle()+turn*i/24.0)*radius))
   data.angles.append({"center":center,"degrees":degrees,"text":"%d°"%roundi(degrees),"arc":arc})
@@ -254,7 +254,7 @@ func draw_preview():
  var result:=preview()
  if result.points.size()<2:return
  var colors:=preview_colors(result.ok)
- var width: float=view.city.config.road_width*view.road_lanes/2.0
+ var width: float=view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width)
  for shape in preview_polygons(result.points,width):
   var projected:=PackedVector2Array()
   for point in shape:projected.append(view.screen(point))

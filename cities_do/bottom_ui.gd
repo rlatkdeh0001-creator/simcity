@@ -616,7 +616,7 @@ func select_category(key: String):
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[] # The five lane cards are the drawing actions.
+  "road": choices=[] # The seven lane cards are the drawing actions.
 
   _:
    pass
@@ -660,14 +660,14 @@ func select_category(key: String):
   drawer_box.add_child(button)
  if key=="road":
   var group:=ButtonGroup.new()
+  var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
   for count in preload("res://core/road_profile.gd").LOCAL_LANES:
    var path: String="res://assets/ui/roads/local-%d.png"%count
    var card:=ThumbnailButton.new();card.name="RoadLane_%d"%count
    card.set_asset({"id":"road-local-%d"%count,"name":"%d차선"%count,"preview":path},path)
    card.custom_minimum_size=Vector2(96,84);card.set_meta("lanes",count);card.tooltip_text="%d차선"%count
    card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
-   drawer_box.add_child(card);road_lane_cards.append(card)
-  var spacer:=Control.new();spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL;drawer_box.add_child(spacer)
+   palette.content.add_child(card);road_lane_cards.append(card)
   road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
   road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
   road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
@@ -979,7 +979,8 @@ func layout_bottom_hud():
  status_left.add_theme_constant_override("separation",2 if narrow else 12)
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
- var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),get_viewport_rect().size.x-32)
+ var item_count:=road_lane_cards.size()+3 if chosen=="road" else drawer_box.get_child_count()
+ var width_value := minf(maxf(410,240+145*(item_count-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
  if road_modes!=null:

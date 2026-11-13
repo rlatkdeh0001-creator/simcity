@@ -140,3 +140,7 @@ static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 			start = end+0.00001
 		phase += length
 	return lines
+static func shoulder_marks(road: Dictionary) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	for offset in Profile.shoulder_offsets(road):result.append(Profile.offset_path(road.points,offset))
+	return result

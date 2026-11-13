@@ -16,7 +16,7 @@ func run():
 	var points := PackedVector2Array([Vector2(20,50),Vector2(80,50)])
 	city.add_road(points,"local",false,2)
 	check(city.zoning_grid.count() == 0,"preview does not reveal zoning")
-	check(city.add_road(points,"local",true,2).ok and city.roads[0].width == 2 and city.roads[0].lanes == 2,"1+1 road occupies 2 cells / 8m")
+	check(city.add_road(points,"local",true,2).ok and city.roads[0].width == 3 and city.roads[0].lanes == 2,"1+1 plus shoulders occupies 3 cells / 12m")
 	check(city.zoning_grid.has_cell(Vector2i(40,48)) and city.zoning_grid.has_cell(Vector2i(40,51)),"road reveals adjacent zoning on both sides")
 	check(not city.zoning_grid.has_cell(Vector2i(40,49)) and not city.zoning_grid.has_cell(Vector2i(40,50)),"road surface has no zoning grid")
 	check(not city.zoning_grid.has_cell(Vector2i(40,20)),"distant terrain remains grid-free")
@@ -25,7 +25,7 @@ func run():
 	for cell in visible:
 		if not Rect2i(38,46,5,4).has_point(cell):inside = false
 	check(inside,"chunk query returns only visible world bounds")
-	check(city.add_road(PackedVector2Array([Vector2(40,20),Vector2(40,80)]),"local",true,4).ok and city.roads[1].width == 4,"2+2 road occupies 4 cells / 16m")
+	check(city.add_road(PackedVector2Array([Vector2(40,20),Vector2(40,80)]),"local",true,4).ok and city.roads[1].width == 5,"2+2 plus shoulders occupies 5 cells / 20m")
 	check(not city.zoning_grid.has_cell(Vector2i(40,48)),"new road removes grid under its corridor")
 	check(not city.add_building(39,43).ok,"wide road corridor blocks building placement")
 	var highway = Model.new(100,100)

@@ -1,19 +1,27 @@
 extends RefCounted
 ## Total lane counts; major_side is relative to authored point order, never screen axes.
-const LOCAL_LANES:=[2,3,4,5,8]
+const LOCAL_LANES:=[2,3,4,5,6,7,8]
+static func width_grade(lanes: int) -> int:return lanes+1 if lanes in [2,4,6] else lanes
+static func width_for(kind: String,lanes: int,base_width: float=2.0) -> float:
+ return base_width*(width_grade(lanes) if kind=="local" else lanes)/2.0
 static func direction_count(road: Dictionary,direction: int) -> int:
  return ceili(float(road.lanes)/2) if direction==int(road.get("major_side",1)) else floori(float(road.lanes)/2)
 static func asphalt_width(road: Dictionary) -> float:
- return float(road.width)*(.75 if road.lanes==2 else (.8125 if road.lanes==4 else .875))
+ return float(road.width)*(.875 if road.get("kind","local")=="local" else (.75 if road.lanes==2 else (.8125 if road.lanes==4 else .875)))
 static func lane_width_metres(road: Dictionary) -> float:
- return minf(3.5,(float(road.width)*4-2)/road.lanes) if road.lanes in [2,4] else minf(3.5,asphalt_width(road)*4/road.lanes)
+ return minf(3.5,(float(road.width)*4-2)/road.lanes) if road.get("kind","local")!="local" else minf(3.5,asphalt_width(road)*4/road.lanes)
+static func travel_width(road: Dictionary) -> float:return lane_width_metres(road)*road.lanes/4.0
+static func shoulder_offsets(road: Dictionary) -> Array[float]:
+ var result: Array[float]=[]
+ if road.get("kind","local")=="local" and road.lanes in [2,4,6]:result.assign([-travel_width(road)/2,travel_width(road)/2])
+ return result
 static func median_offset(road: Dictionary) -> float:
- return -int(road.get("major_side",1))*asphalt_width(road)/road.lanes/2 if int(road.lanes)%2 else 0.0
+ return -int(road.get("major_side",1))*lane_width_metres(road)/8 if int(road.lanes)%2 else 0.0
 static func separators(road: Dictionary) -> Array[float]:
  var result: Array[float]=[]
  for i in range(1,int(road.lanes)):
   if i==direction_count(road,-1):continue
-  result.append((i-float(road.lanes)/2)*asphalt_width(road)/road.lanes)
+  result.append((i-float(road.lanes)/2)*(lane_width_metres(road)/4 if road.get("kind","local")=="local" else asphalt_width(road)/road.lanes))
  return result
 static func offset_path(points: PackedVector2Array,distance: float) -> PackedVector2Array:
  if is_zero_approx(distance):return points.duplicate()

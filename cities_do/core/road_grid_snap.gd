@@ -69,7 +69,11 @@ static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionar
  else:a=coordinates(start_hit.point,frame)
  if end_hit.is_empty():
   b[cross_axis]=tick(b[cross_axis],a[cross_axis])
-  b[along_axis]=tick(b[along_axis],width/2 if not start_hit.is_empty() else 0)
+  var phase:float=width/2 if not start_hit.is_empty() else 0.0
+  if not start_hit.is_empty():
+   var host:=Angles.connection(start_hit.point,city.roads)
+   if host.get("endpoint",false) and absf((last-first).normalized().dot(host.tangent))>.99999:phase=a[along_axis]
+  b[along_axis]=tick(b[along_axis],phase)
  else:
   b=coordinates(end_hit.point,frame)
   if start_hit.is_empty():a[cross_axis]=tick(a[cross_axis],b[cross_axis])

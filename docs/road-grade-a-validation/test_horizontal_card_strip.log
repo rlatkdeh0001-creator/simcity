@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS road cards use reusable horizontally scrollable strip
+PASS seven cards overflow into an automatic horizontal bar at 880
+PASS card strip and fixed grid toggle stay inside small viewport
+PASS approved palette track and handle
+PASS wheel down over cards moves right without map zoom
+PASS wheel up over cards moves left without map zoom
+PASS real handle drag scrolls cards without world construction or zoom
+PASS wheel over map retains existing zoom
+PASS focus can reveal the rightmost lane card
+PASS horizontal bar hides when all seven cards fit
+PASS 1280 keeps fixed controls and strip inside viewport
+PASS 960 keeps controls inside viewport and shows bar only on actual overflow
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+PASS card captions retain 18px readability
+RESULT 19/19 horizontal card strip checks passed

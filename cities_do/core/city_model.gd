@@ -269,7 +269,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0,"major_side":major_side}
+	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": RoadProfile.width_for(kind,lanes,config.road_width),"major_side":major_side}
 	if not grid_frame.is_empty():road.grid_frame=grid_frame.duplicate(true)
 	var plan: Dictionary={"ok":true,"new_roads":[road],"new_length_m":total*4,"retained_length_m":0.0,"construction_cost":0,"reason":""}
 	# Authored/restored scenarios retain their supplied geometry; all player modes share this transaction.
@@ -589,6 +589,11 @@ func upgrade_chain(id: int) -> Dictionary:
 
 
 func _update_zoning_for_road(_road: Dictionary):
+	# Upgrade saved footprints only; never remove/move authored roads or buildings.
+	for road in roads:
+		if road.kind!="local":continue
+		var target:=RoadProfile.width_for(road.kind,road.lanes,config.road_width)
+		if not is_equal_approx(road.width,target):road.width=target;road.erase("grid_frame")
 	var topology: Dictionary=RoadJunctions.analyze(roads)
 	junctions=topology.junctions
 	road_joins=topology.joins
@@ -609,6 +614,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
 		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
 		for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
+		for line in RoadGeometry.shoulder_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(line,bounds,line_regions))
 	# Crossings can lie inside the render box: clip against all actually visible asphalt.
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)
