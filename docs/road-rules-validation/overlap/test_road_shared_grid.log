@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS L creates its real first road
+PASS L creates its orthogonal connection
+PASS L connected roads share both axes of one boundary lattice without half-cell double lines
+PASS L grid alignment never moves authored road points
+PASS L preserves unaffected first-road parcel identities and positions
+PASS T creates its real first road
+PASS T creates its orthogonal connection
+PASS T connected roads share both axes of one boundary lattice without half-cell double lines
+PASS T grid alignment never moves authored road points
+PASS T preserves unaffected first-road parcel identities and positions
+PASS cross creates its real first road
+PASS cross creates its orthogonal connection
+PASS cross connected roads share both axes of one boundary lattice without half-cell double lines
+PASS cross grid alignment never moves authored road points
+PASS cross preserves unaffected first-road parcel identities and positions
+PASS rotated creates its real first road
+PASS rotated creates its orthogonal connection
+PASS rotated connected roads share both axes of one boundary lattice without half-cell double lines
+PASS rotated grid alignment never moves authored road points
+PASS rotated preserves unaffected first-road parcel identities and positions
+PASS single_stroke creates its real first road
+PASS single_stroke connected roads share both axes of one boundary lattice without half-cell double lines
+PASS single_stroke grid alignment never moves authored road points
+PASS single_stroke preserves unaffected first-road parcel identities and positions
+PASS future road input reuses the actual shared zoning board at the perpendicular arm
+RESULT 25/25 shared road grid checks passed

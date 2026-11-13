@@ -1,0 +1,11 @@
+{
+  "case": "crossing",
+  "grid": true,
+  "input": "real lane-card click and world mouse press/release; capture before final click, transaction verified afterward",
+  "junctions_after_click": 2,
+  "points": "[(44.0, 20.0), (44.0, 60.0)]",
+  "preview_ok": true,
+  "reason": "",
+  "roads_after_click": 3,
+  "roads_before_click": 2
+}

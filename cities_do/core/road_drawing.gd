@@ -4,6 +4,7 @@ const Network=preload("res://core/traffic_network.gd")
 const AngleSnap=preload("res://core/road_angle_snap.gd")
 const LengthUnits=preload("res://core/road_length_units.gd")
 const Grid=preload("res://core/road_grid_snap.gd")
+const Construction=preload("res://core/road_construction.gd")
 var grid_frame: Dictionary={}
 var owner_reference: WeakRef
 var view:
@@ -78,11 +79,11 @@ func raw_path() -> PackedVector2Array:
  if grid_on():
   if kind=="curve" and anchors.size()<2:last=view.pointer
   else:
-   var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
+   var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
    var ends:=Grid.ends(view.city,assisted[0],assisted[-1],view.city.config.road_width*view.road_lanes/2.0,grid_reference(first))
    first=ends[0];last=ends[-1]
  if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
- if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last]) if grid_on() else AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads)
+ if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last]) if grid_on() else AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true)
  var control: Vector2=anchors[1] if kind=="curve" else first+start_tangent*first.distance_to(last)/2
  if kind=="free":
   var assisted:=AngleSnap.axis(last-first,AngleSnap.connection(first,view.city.roads))
@@ -107,12 +108,14 @@ func resolved_path() -> Dictionary:
   return Grid.fit(points,view.city.roads)
  # Control handles are not destination contacts; follow the start road's build step.
  if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),view.city.roads) if not anchors.is_empty() else LengthUnits.BUILD)
+ var overdraw:=Construction.fit_overlay(points,view.city.roads,{"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0,"major_side":view.road_major_side})
+ if not overdraw.is_empty():return overdraw
  return LengthUnits.fit(points,view.city.roads)
 func path() -> PackedVector2Array:return resolved_path().points
-func joins_routable(network,points: PackedVector2Array) -> bool:
+func joins_routable(network,points: PackedVector2Array,road_id: int=-1) -> bool:
  # Surface the existing traffic graph's no-U-turn rule, rather than showing a
  # green road whose snapped endpoint cannot enter any new outgoing lane.
- var new_id: int=view.city.roads.size()
+ var new_id: int=view.city.roads.size() if road_id<0 else road_id
  for point in [points[0],points[-1]]:
   var existing:=false;var connected:=false
   for outgoing: Dictionary in network.lanes:
@@ -134,8 +137,11 @@ func preview() -> Dictionary:
  if result.ok:
   var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.config.road_width*view.road_lanes/2.0,"major_side":view.road_major_side}
   var network=Network.new()
-  if not network.build(view.city.roads+[candidate]):result.ok=false;result.reason=network.errors[0] if not network.errors.is_empty() else "도로 경로를 확인해 주세요"
-  elif not joins_routable(network,points):result.ok=false;result.reason="급격한 되돌림 도로는 주행할 수 없습니다"
+  var additions: Array=result.get("new_roads",[candidate])
+  if not network.build(view.city.roads+additions):result.ok=false;result.reason=network.errors[0] if not network.errors.is_empty() else "도로 경로를 확인해 주세요"
+  else:
+   for i in range(additions.size()):
+    if not joins_routable(network,additions[i].points,view.city.roads.size()+i):result.ok=false;result.reason="급격한 되돌림 도로는 주행할 수 없습니다";break
  return result
 func click(point: Vector2):
  view.pointer=point

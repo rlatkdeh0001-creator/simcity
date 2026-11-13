@@ -258,39 +258,43 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	if enforce_units:
-		var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(total,RoadUnits.build_step(points,roads))
-		if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
 	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": config.road_width * lanes / 2.0,"major_side":major_side}
 	if not grid_frame.is_empty():road.grid_frame=grid_frame.duplicate(true)
-	for b in buildings:
-		if _polygon_road_distance(footprint(b), road) < -0.0005:
-			return {"ok": false, "reason": "건물과 충돌합니다"}
-	for record: Dictionary in public_facilities.lots:
-		if _polygon_road_distance(record.polygon,road)<-0.0005:return {"ok":false,"reason":"공공시설과 충돌합니다"}
-	for plant in power.plants:
-		if _polygon_road_distance(power_plant_footprint(plant),road)<-0.0005:
-			return {"ok":false,"reason":"발전소와 충돌합니다"}
-	for facility in water.facilities:
-		if _polygon_road_distance(power_plant_footprint(facility),road)<-0.0005:
-			return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
+	var plan: Dictionary={"ok":true,"new_roads":[road],"new_length_m":total*4,"retained_length_m":0.0,"construction_cost":0,"reason":""}
+	# Authored/restored scenarios retain their supplied geometry; all player modes share this transaction.
+	if enforce_units:plan=preload("res://core/road_construction.gd").plan(roads,road)
+	if not plan.ok:return plan
+	var new_roads: Array=plan.new_roads
+	for candidate: Dictionary in new_roads:
+		if enforce_units:
+			var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(candidate.points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(RoadJunctions.length_of(candidate.points),RoadUnits.build_step(candidate.points,roads))
+			if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
+		for b in buildings:
+			if _polygon_road_distance(footprint(b),candidate)<-0.0005:return {"ok":false,"reason":"건물과 충돌합니다"}
+		for record: Dictionary in public_facilities.lots:
+			if _polygon_road_distance(record.polygon,candidate)<-0.0005:return {"ok":false,"reason":"공공시설과 충돌합니다"}
+		for plant in power.plants:
+			if _polygon_road_distance(power_plant_footprint(plant),candidate)<-0.0005:return {"ok":false,"reason":"발전소와 충돌합니다"}
+		for facility in water.facilities:
+			if _polygon_road_distance(power_plant_footprint(facility),candidate)<-0.0005:return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
 	var occupied := []
 	for building in buildings: occupied.append(footprint(building))
 	for record: Dictionary in public_facilities.lots:occupied.append(record.polygon)
 	for facility in power.plants+water.facilities: occupied.append(power_plant_footprint(facility))
 	if not occupied.is_empty():
-		var topology: Dictionary=RoadJunctions.analyze(roads+[road])
+		var topology: Dictionary=RoadJunctions.analyze(roads+new_roads)
 		for junction in topology.junctions+topology.joins:
 			var polygon_value: PackedVector2Array=RoadJunctions.patch(junction)
 			for existing in occupied:
 				if Parcels.overlap(existing,polygon_value):return {"ok":false,"reason":"교차로가 기존 건물과 충돌합니다"}
 	if commit:
-		road.parcel_id=next_road_id
-		next_road_id+=1
-		roads.append(road)
+		for candidate: Dictionary in new_roads:
+			candidate.parcel_id=next_road_id
+			next_road_id+=1
+			roads.append(candidate)
 		_update_zoning_for_road(road)
 		for building in buildings:orient_building(building)
-	return {"ok": true}
+	return plan
 
 func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
 	for i in range(roads.size()):

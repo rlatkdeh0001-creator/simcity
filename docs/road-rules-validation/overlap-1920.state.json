@@ -1,0 +1,11 @@
+{
+  "case": "overlap",
+  "grid": false,
+  "input": "real lane-card click and world mouse press/release; capture before final click, transaction verified afterward",
+  "junctions_after_click": 0,
+  "points": "[(20.0, 36.5), (66.0, 36.5)]",
+  "preview_ok": false,
+  "reason": "기존 도로와 겹칩니다",
+  "roads_after_click": 1,
+  "roads_before_click": 1
+}

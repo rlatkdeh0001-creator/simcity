@@ -33,6 +33,15 @@ static func snap_path(points: PackedVector2Array,roads: Array) -> PackedVector2A
  if result.size()>=2:
   result[0]=snap_point(result[0],roads);result[-1]=snap_point(result[-1],roads)
  return result
+static func intersection(a: Vector2,b: Vector2,c: Vector2,d: Vector2):
+ var hit=Geometry2D.segment_intersects_segment(a,b,c,d)
+ if hit!=null:return hit
+ # Float32 endpoint tangencies can produce a tiny negative segment parameter.
+ for point in [a,b]:
+  if point.distance_to(Geometry2D.get_closest_point_to_segment(point,c,d))<=EPS:return point
+ for point in [c,d]:
+  if point.distance_to(Geometry2D.get_closest_point_to_segment(point,a,b))<=EPS:return point
+ return null
 static func length_of(points: PackedVector2Array) -> float:
  var result := 0.0
  for i in range(1,points.size()): result+=points[i-1].distance_to(points[i])
@@ -78,7 +87,7 @@ static func analyze(roads: Array) -> Dictionary:
       if minf(1,maxf(t0,t1))-maxf(0,minf(t0,t1))>EPS:
        if not "겹치는 도로는 주행할 수 없습니다" in errors: errors.append("겹치는 도로는 주행할 수 없습니다")
        continue
-     var hit=Geometry2D.segment_intersects_segment(pa[i],pa[i+1],pb[j],pb[j+1])
+     var hit=intersection(pa[i],pa[i+1],pb[j],pb[j+1])
      if hit==null:continue
      cuts[a].append(float(offsets[a][i])+pa[i].distance_to(hit))
      cuts[b].append(float(offsets[b][j])+pb[j].distance_to(hit))
@@ -102,7 +111,7 @@ static func analyze(roads: Array) -> Dictionary:
     if not road_id in node.road_ids:node.road_ids.append(road_id)
     var duplicate := false
     for arm in node.arms:
-     if arm.direction.dot(pair[2])>.9999: duplicate=true
+     if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:duplicate=true
     if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"lanes":int(roads[road_id].lanes)})
  var junctions := []
  var joins := []
