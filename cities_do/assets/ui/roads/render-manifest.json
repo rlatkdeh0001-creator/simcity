@@ -1,47 +1,72 @@
 [
   {
     "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
-    "camera_size": 36.65087890625,
+    "camera_size": 8.33333301544189,
+    "camera_vertical_offset": -1.5,
+    "flat_cut_ends": true,
     "lanes": 2,
     "major_side": 1,
+    "segment_metres": 8.0,
     "separators": 0,
-    "size": "(256, 192)",
-    "studio": "building_views.gd camera/light/environment"
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.03,
+    "width_frame_coverage": 0.84
   },
   {
     "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
-    "camera_size": 41.2322387695313,
+    "camera_size": 12.2093019485474,
+    "camera_vertical_offset": -2.19767427444458,
+    "flat_cut_ends": true,
     "lanes": 3,
     "major_side": 1,
+    "segment_metres": 8.66666666666667,
     "separators": 1,
-    "size": "(256, 192)",
-    "studio": "building_views.gd camera/light/environment"
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.039,
+    "width_frame_coverage": 0.86
   },
   {
     "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
-    "camera_size": 45.8135986328125,
+    "camera_size": 15.9090909957886,
+    "camera_vertical_offset": -2.86363649368286,
+    "flat_cut_ends": true,
     "lanes": 4,
     "major_side": 1,
+    "segment_metres": 9.33333333333333,
     "separators": 2,
-    "size": "(256, 192)",
-    "studio": "building_views.gd camera/light/environment"
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.052,
+    "width_frame_coverage": 0.88
   },
   {
     "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
-    "camera_size": 50.3949584960938,
+    "camera_size": 19.4444446563721,
+    "camera_vertical_offset": -3.5,
+    "flat_cut_ends": true,
     "lanes": 5,
     "major_side": 1,
+    "segment_metres": 10.0,
     "separators": 3,
-    "size": "(256, 192)",
-    "studio": "building_views.gd camera/light/environment"
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.065,
+    "width_frame_coverage": 0.9
   },
   {
     "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
-    "camera_size": 64.1390380859375,
+    "camera_size": 29.1666660308838,
+    "camera_vertical_offset": -5.25,
+    "flat_cut_ends": true,
     "lanes": 8,
     "major_side": 1,
+    "segment_metres": 12.0,
     "separators": 6,
-    "size": "(256, 192)",
-    "studio": "building_views.gd camera/light/environment"
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.104,
+    "width_frame_coverage": 0.96
   }
 ]
