@@ -1,0 +1,113 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS T derives a common intersection exclusion region
+PASS T has one max-width box including mixed-width uncontrolled transitions
+PASS T box uses the widest eight-cell road, not separate arm widths
+PASS T uses continuous rounded outer curb corners
+PASS T individual road pavement and sidewalks stop outside the box
+PASS T lane separators and medians end at the common box boundary
+ERROR: FAIL T wide-arm zebra may occupy the render box to stay beside the actual two-lane crossing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:37)
+ERROR: FAIL T stop lines follow the restored zebra position rather than the render-box boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:38)
+PASS T central intersection is one solid asphalt region without sidewalk islands
+PASS T narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+PASS T supported approach boundaries retain both crossing stripes and incoming stop lines
+ERROR: FAIL T 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+ERROR: FAIL T 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+PASS T 8/2-lane zebra uses the crossed road width, not the widest render box
+PASS cross derives a common intersection exclusion region
+PASS cross has one max-width box including mixed-width uncontrolled transitions
+PASS cross box uses the widest eight-cell road, not separate arm widths
+PASS cross uses continuous rounded outer curb corners
+PASS cross individual road pavement and sidewalks stop outside the box
+PASS cross lane separators and medians end at the common box boundary
+ERROR: FAIL cross wide-arm zebra may occupy the render box to stay beside the actual two-lane crossing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:37)
+ERROR: FAIL cross stop lines follow the restored zebra position rather than the render-box boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:38)
+PASS cross central intersection is one solid asphalt region without sidewalk islands
+PASS cross narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+PASS cross supported approach boundaries retain both crossing stripes and incoming stop lines
+ERROR: FAIL cross 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+ERROR: FAIL cross 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+PASS cross 8/2-lane zebra uses the crossed road width, not the widest render box
+PASS cross 8/2-lane zebra uses the crossed road width, not the widest render box
+PASS rotated derives a common intersection exclusion region
+PASS rotated has one max-width box including mixed-width uncontrolled transitions
+PASS rotated box uses the widest eight-cell road, not separate arm widths
+PASS rotated uses continuous rounded outer curb corners
+PASS rotated individual road pavement and sidewalks stop outside the box
+PASS rotated lane separators and medians end at the common box boundary
+ERROR: FAIL rotated wide-arm zebra may occupy the render box to stay beside the actual two-lane crossing
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:37)
+ERROR: FAIL rotated stop lines follow the restored zebra position rather than the render-box boundary
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:38)
+PASS rotated central intersection is one solid asphalt region without sidewalk islands
+PASS rotated narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+PASS rotated supported approach boundaries retain both crossing stripes and incoming stop lines
+ERROR: FAIL rotated 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+ERROR: FAIL rotated 8/2-lane zebra uses the crossed road width, not the widest render box
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:56)
+PASS rotated 8/2-lane zebra uses the crossed road width, not the widest render box
+PASS transition derives a common intersection exclusion region
+PASS transition has one max-width box including mixed-width uncontrolled transitions
+PASS transition box uses the widest eight-cell road, not separate arm widths
+PASS transition uses continuous rounded outer curb corners
+PASS transition individual road pavement and sidewalks stop outside the box
+PASS transition lane separators and medians end at the common box boundary
+PASS transition central intersection is one solid asphalt region without sidewalk islands
+PASS transition narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+PASS two-arm lane-count transition remains uncontrolled and has no invented zebra crossings
+PASS oblique derives a common intersection exclusion region
+PASS oblique has one max-width box including mixed-width uncontrolled transitions
+PASS oblique box uses the widest eight-cell road, not separate arm widths
+PASS oblique uses continuous rounded outer curb corners
+PASS oblique individual road pavement and sidewalks stop outside the box
+PASS oblique lane separators and medians end at the common box boundary
+PASS oblique narrow-arm zebra never floats on the overlapping eight-lane carriageway beyond the box
+PASS oblique central intersection is one solid asphalt region without sidewalk islands
+PASS oblique narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+PASS oblique supported approach boundaries retain both crossing stripes and incoming stop lines
+RESULT 50/62 junction box checks passed

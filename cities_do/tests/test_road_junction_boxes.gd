@@ -33,13 +33,17 @@ func run():
   for line in city.road_medians+city.road_lane_marks:
    if Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,node.box):lines_clear=false
   verify(lines_clear,kind+" lane separators and medians end at the common box boundary")
-  var markings_clear:=true
-  for polygon in city.road_crosswalks+city.road_stop_lines:
-   if Parcels.overlap(polygon,node.box):markings_clear=false
-  verify(markings_clear,kind+" crosswalks and stop lines never appear inside the box")
+  if kind in ["T","cross","rotated"]:
+   verify(city.road_crosswalks.any(func(p):return Parcels.overlap(p,node.box)),kind+" wide-arm zebra may occupy the render box to stay beside the actual two-lane crossing")
+   verify(city.road_stop_lines.any(func(p):return Parcels.overlap(p,node.box)),kind+" stop lines follow the restored zebra position rather than the render-box boundary")
   if kind=="oblique":
    var no_floating_fragments:=true
    for stripe in city.road_crosswalks:
+    var longest:=Vector2.ZERO
+    for i in range(stripe.size()):
+     var edge: Vector2=stripe[(i+1)%stripe.size()]-stripe[i]
+     if edge.length_squared()>longest.length_squared():longest=edge
+    if absf(longest.normalized().dot(branch))<.99:continue # Legitimate wide-arm crossings are not narrow-arm fragments.
     for p in stripe:
      if p.x>centre.x+4 and absf(p.y-centre.y)<3.5:no_floating_fragments=false
    verify(no_floating_fragments,"oblique narrow-arm zebra never floats on the overlapping eight-lane carriageway beyond the box")
@@ -51,5 +55,8 @@ func run():
   if kind=="transition":verify(city.road_crosswalks.is_empty() and city.road_stop_lines.is_empty(),"two-arm lane-count transition remains uncontrolled and has no invented zebra crossings")
   else:
    verify(not city.road_crosswalks.is_empty() and not city.road_stop_lines.is_empty(),kind+" supported approach boundaries retain both crossing stripes and incoming stop lines")
-   for arm in node.arms:verify(city.RoadJunctions.crosswalk_distance(node,arm)>4,kind+" approach crossing is at its box edge rather than the two-lane edge")
+   if kind!="oblique":
+    for arm in node.arms:
+     var expected:=1.25 if absf(arm.direction.dot(axis))>.99 else 4.25
+     verify(is_equal_approx(city.RoadJunctions.crosswalk_distance(node,arm),expected),kind+" 8/2-lane zebra uses the crossed road width, not the widest render box")
  print("RESULT %d/%d junction box checks passed"%[checks-failures,checks]);quit(1 if failures else 0)

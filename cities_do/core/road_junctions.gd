@@ -176,8 +176,7 @@ static func boundary_distance(junction: Dictionary,points: PackedVector2Array) -
  return progress
 
 static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
- if junction.has("box"):return boundary_distance(junction,arm.points)+CROSSWALK_HALF_LENGTH+CROSSWALK_EDGE_GAP
- # Measure the far edge of the crossing road, not a shared maximum road radius.
+ # Paint follows the actual crossed road, independently of the render exclusion box.
  var direction: Vector2=arm.direction
  var half: float=Profile.asphalt_width(arm)/2
  var edge := 0.0

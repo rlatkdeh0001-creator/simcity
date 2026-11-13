@@ -71,19 +71,19 @@ func test_crosswalks() -> bool:
  var edge_clear := true
  for arm in junction.arms:
   var distance: float=Topology.crosswalk_distance(junction,arm)
-  if arm.lanes==4:wide=wide and is_equal_approx(distance,2.25)
+  if arm.lanes==4:wide=wide and is_equal_approx(distance,1.25)
   else:narrow=narrow and is_equal_approx(distance,2.25)
-  var boundary: float=2
+  var boundary: float=1 if arm.lanes==4 else 2
   edge_clear=edge_clear and is_equal_approx(distance-Topology.CROSSWALK_HALF_LENGTH-boundary,Topology.CROSSWALK_EDGE_GAP)
- verify(wide,"four-lane zebra sits just outside the shared four-lane box")
- verify(narrow,"two-lane zebra follows the same widest-road box boundary")
+ verify(wide,"wide-road zebra sits immediately outside the actual two-lane crossed road")
+ verify(narrow,"narrow-road zebra follows the actual wider crossed-road edge")
  verify(edge_clear,"both zebra near edges use the same small pavement-edge gap")
  var tee: Dictionary=Topology.analyze([mixed[0],road([Vector2(50,10),Vector2(50,50)])]).junctions[0]
- verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),2.25)),"T junction zebra placement uses the common box boundary")
+ verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),1.25 if arm.lanes==4 else 2.25)),"T junction zebra placement uses actual crossed-road widths, independently of the render box")
  var reordered: Dictionary=Topology.analyze([mixed[1],mixed[0]]).junctions[0]
- verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),2.25)),"zebra placement does not depend on road construction order")
+ verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),1.25 if arm.lanes==4 else 2.25)),"zebra placement does not depend on road construction order")
  var diagonal: Dictionary=Topology.analyze([road([Vector2(10,10),Vector2(90,90)],4),road([Vector2(90,10),Vector2(10,90)])]).junctions[0]
- verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),2.25)),"rotated right-angle crossing keeps the same box-boundary layout")
+ verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),1.25 if arm.lanes==4 else 2.25)),"rotated crossing preserves actual crossed-road edge placement")
  return true
 func test_footprints() -> bool:
  var city := City.new(100,100)

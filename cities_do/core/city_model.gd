@@ -607,9 +607,12 @@ func _update_zoning_for_road(_road: Dictionary):
 		road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
 		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,intersection_regions))
 		for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,intersection_regions))
+	# Crossings can lie inside the render box: clip against all actually visible asphalt.
+	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
+	paint_surfaces.append_array(junction_asphalt)
 	for junction in junctions:
-		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,road_asphalt))
-		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,road_asphalt))
+		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,paint_surfaces))
+		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,paint_surfaces))
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()
