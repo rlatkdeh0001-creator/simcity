@@ -17,6 +17,15 @@ static func same_line(a: Dictionary,b: Dictionary) -> bool:
  return absf(a.direction.cross(b.direction))<.000001 and absf((b.a-Vector2(a.a)).cross(a.direction))<EPS and absf((b.b-Vector2(a.a)).cross(a.direction))<EPS
 static func same_profile(a: Dictionary,b: Dictionary) -> bool:
  return a.kind==b.kind and a.lanes==b.lanes and is_equal_approx(a.width,b.width) and int(a.get("major_side",1))==int(b.get("major_side",1))
+static func collinear_contact(a: Dictionary,b: Dictionary) -> bool:
+ for first in segments(a.points):
+  for second in segments(b.points):
+   if absf(first.direction.cross(second.direction))>=.000001:continue
+   for point in [first.a,first.b]:
+    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,second.a,second.b))<=Paths.EPS:return true
+   for point in [second.a,second.b]:
+    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,first.a,first.b))<=Paths.EPS:return true
+ return false
 static func coverage(roads: Array,road: Dictionary) -> Dictionary:
  var intervals: Array[Vector2]=[]
  for a in segments(road.points):
@@ -156,6 +165,7 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   var candidate:=road.duplicate(true);candidate.points=points
   if not self_clear(candidate):return {"ok":false,"reason":"도로가 스스로 겹칩니다"}
   for old in roads+additions:
+   if not same_profile(candidate,old) and collinear_contact(candidate,old):return {"ok":false,"reason":"직선 연장은 같은 종류·차로의 도로만 가능합니다"}
    if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
   additions.append(candidate);length+=Paths.length_of(points)
  var topology:=Paths.analyze(roads+additions)

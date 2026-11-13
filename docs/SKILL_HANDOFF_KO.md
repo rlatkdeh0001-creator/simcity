@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 직선 연장의 도로 종류 제한 (2026-11-13)
+
+기설치 Godot/TDD 절차로 `road_construction.gd`에 동종 직선 접속 검사를 추가했다. 2→8/8→2 직선 연장·다른 차로 덧씌우기는 거부하고, 동종 연장 및 혼합 폭 T·십자·직각 끝점 접속은 허용한다. 기존 저장 도로/내부 authored 생성은 변경하지 않았다.
+정상 GL 게임 창의 실제 카드·마우스 입력 `test_road_profile_connections.gd` 50/50, 기존 겹침 정책 22/22. 최종 로그 `road-profile-connections-validation/`; 캡처·전체 회귀·전수 대조·RED/중간 파일·main 푸시 없음.
+
 ## 도로 중간 T 접속 오판 수정 (2026-11-13)
 
 기설치 `systematic-debugging`·`test-driven-development`·`godot-windows-validation` 및 `.agents/skills/cities-do-construction/SKILL.md`를 적용했다(재설치/출처·라이선스 변경 없음). `road_construction.gd`의 국소 교차 공제에만 기존 topology 정밀도를 적용하고, 실제 카드·마우스 회귀 `test_road_midpoint_connections.gd`를 추가했다.

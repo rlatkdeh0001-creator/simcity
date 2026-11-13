@@ -1,0 +1,54 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 2 to 8 end builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 2 to 8 end preview follows the same-profile extension / mixed-width crossing rule
+PASS 2 to 8 end rejected final mouse click cannot mutate the roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 2 to 8 start builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 2 to 8 start preview follows the same-profile extension / mixed-width crossing rule
+PASS 2 to 8 start rejected final mouse click cannot mutate the roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 2 to 8 midpoint overdraw builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 2 to 8 midpoint overdraw preview follows the same-profile extension / mixed-width crossing rule
+PASS 2 to 8 midpoint overdraw rejected final mouse click cannot mutate the roads
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 to 2 end builds its host through the actual lane card
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 8 to 2 end preview follows the same-profile extension / mixed-width crossing rule
+PASS 8 to 2 end rejected final mouse click cannot mutate the roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 2 to 2 end builds its host through the actual lane card
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 2 to 2 end preview follows the same-profile extension / mixed-width crossing rule
+PASS 2 to 2 end final mouse click constructs the permitted road
+PASS 2 to 2 end retains the intended T/cross or uncontrolled angled/end connection
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 to 8 end builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 to 8 end preview follows the same-profile extension / mixed-width crossing rule
+PASS 8 to 8 end final mouse click constructs the permitted road
+PASS 8 to 8 end retains the intended T/cross or uncontrolled angled/end connection
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 8 to 2 right-angle T builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 to 2 right-angle T preview follows the same-profile extension / mixed-width crossing rule
+PASS 8 to 2 right-angle T final mouse click constructs the permitted road
+PASS 8 to 2 right-angle T retains the intended T/cross or uncontrolled angled/end connection
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 8 across 2 cross builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 across 2 cross preview follows the same-profile extension / mixed-width crossing rule
+PASS 8 across 2 cross final mouse click constructs the permitted road
+PASS 8 across 2 cross retains the intended T/cross or uncontrolled angled/end connection
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS 8 to 2 angled endpoint builds its host through the actual lane card
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS 8 to 2 angled endpoint preview follows the same-profile extension / mixed-width crossing rule
+PASS 8 to 2 angled endpoint final mouse click constructs the permitted road
+PASS 8 to 2 angled endpoint retains the intended T/cross or uncontrolled angled/end connection
+RESULT 50/50 road profile connection checks passed
