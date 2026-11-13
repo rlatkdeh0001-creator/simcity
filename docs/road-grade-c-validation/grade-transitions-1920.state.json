@@ -1,0 +1,96 @@
+{
+  "adjacent_grades": [
+    3,
+    5,
+    7,
+    8
+  ],
+  "controlled_junctions": 0,
+  "input": "actual lane-card and world press/release",
+  "roads": [
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 2,
+      "major_side": 1,
+      "parcel_id": 0,
+      "points": "[(28.0, 40.5), (40.0, 40.5)]",
+      "width": 3.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 3,
+      "major_side": 1,
+      "parcel_id": 1,
+      "points": "[(40.0, 40.5), (52.0, 40.5)]",
+      "width": 3.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 3,
+      "major_side": 1,
+      "parcel_id": 2,
+      "points": "[(24.0, 68.5), (32.0, 68.5)]",
+      "width": 3.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 5,
+      "major_side": 1,
+      "parcel_id": 3,
+      "points": "[(32.0, 68.5), (40.0, 68.5)]",
+      "width": 5.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 7,
+      "major_side": 1,
+      "parcel_id": 4,
+      "points": "[(40.0, 68.5), (48.0, 68.5)]",
+      "width": 7.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(0.0, 0.0)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 8,
+      "major_side": 1,
+      "parcel_id": 5,
+      "points": "[(48.0, 68.5), (56.0, 68.5)]",
+      "width": 8.0
+    }
+  ],
+  "same_grade": [
+    2,
+    3
+  ],
+  "tapers": 3,
+  "viewport": "(1920, 1080)"
+}
