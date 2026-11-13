@@ -1,0 +1,5 @@
+Native GL Compatibility input validation summary (not a full stdout log).
+Observed tool output: RESULT 23/23 road demolition input checks passed
+The final normal-window run emitted no ERROR or SCRIPT ERROR lines in its filtered output. Full stdout was not retained.
+HUD layout is allowed to settle before resolving bulldozer button coordinates. A temporary diagnostic-only print was removed after this passing run; functional test and production code are unchanged.
+No capture was requested or produced.

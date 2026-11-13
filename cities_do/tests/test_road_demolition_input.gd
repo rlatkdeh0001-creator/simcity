@@ -10,7 +10,7 @@ func verify(ok: bool,label: String):
  if ok:print("PASS "+label)
  else:failures+=1;push_error("FAIL "+label)
 func settle():
- for i in range(4):await process_frame
+ for i in range(8):await process_frame
 func motion(point: Vector2):
  var event:=InputEventMouseMotion.new();event.position=point;event.global_position=point;root.push_input(event,true);await settle()
 func button(point: Vector2,down: bool,which: int=MOUSE_BUTTON_LEFT):
@@ -26,6 +26,7 @@ func fixture():
  game.city.add_road(PackedVector2Array([Vector2(50,20),Vector2(50,65)]))
  game.map_zoom=.6;game.origin=Vector2.ZERO;game.origin=Vector2(600,300)-game.screen(Vector2(40,40))
  game.mode="select";game.refresh()
+ await settle() # Wait for HUD relayout before resolving native button coordinates.
  await click(game.bulldozer.get_global_rect().get_center())
  verify(game.mode=="demolish","native viewport bulldozer click activates actual tool")
 func interval(first: float,last: float) -> bool:

@@ -59,4 +59,20 @@ func run():
  city=fixture()
  result=city.demolish_road_unit(0,Vector2(25.3,30))
  verify(result.ok and result.removed_cells==1,"legacy four-metre internal API remains unchanged")
+ city=City.new(100,100)
+ var horizontal:=PackedVector2Array([Vector2(20,40),Vector2(40,40)])
+ city.add_road(horizontal);city.add_road(PackedVector2Array([Vector2(40,40),Vector2(40,60)]));city.add_road(PackedVector2Array([Vector2(40,40),Vector2(60,40)]))
+ verify(city.junctions.size()==1 and city.junctions[0].arms.size()==3,"separately built horizontal and vertical roads form a true T")
+ verify(city.demolish_road_selection(city.road_demolition_selection(2,Vector2(50,40))).ok and city.roads.size()==2 and city.junctions.is_empty(),"remove one T arm and retain an ordinary L-shaped connection")
+ original=var_to_bytes(city.roads)
+ selected=city.road_demolition_selection(1,Vector2(40,50),Vector2(20,40))
+ verify(selected.cuts.size()==1 and selected.cuts[0].id==1 and selected.cuts[0].first==0,"drag toward horizontal road stops at L corner")
+ selected=city.road_demolition_selection(1,Vector2(40,50))
+ verify(selected.cuts.size()==1 and selected.cuts[0].id==1 and var_to_bytes(city.roads)==original,"vertical whole-span preview excludes horizontal road and does not mutate")
+ result=city.demolish_road_selection(selected)
+ verify(result.ok and city.roads.size()==1 and city.roads[0].parcel_id==0 and city.roads[0].points==horizontal,"T then arm removal then vertical removal leaves original horizontal road only")
+ var flat:bool=city.roads.size()==1 and city.road_visuals.size()==1 and city.road_visuals[0].flat_end
+ for polygon in city.road_pavement:
+  for point in polygon:flat=flat and point.x<=40.0001 and point.x>=19.9999
+ verify(flat,"surviving horizontal corner end has a flat butt cap with no painted extension")
  print("RESULT %d/%d road demolition model checks passed"%[checks-failures,checks]);quit(1 if failures else 0)

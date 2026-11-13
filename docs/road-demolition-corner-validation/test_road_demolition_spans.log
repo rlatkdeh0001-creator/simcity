@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS pure selection helper exists
+PASS click selects free-end to free-end span
+PASS click traverses reversed authored straight joins and width transitions
+PASS click stops at both two-arm corners instead of deleting neighbouring roads
+PASS forward drag clamps at first bent connection
+PASS reverse drag clamps at second bent connection
+PASS drag from selected road's corner cannot enter perpendicular road
+PASS mid-record T and cross clip click to junction-to-junction
+PASS click does not pass a true T junction
+PASS branch click stops at T without deleting trunk
+PASS forward drag starts at exact projected press and grows first eight metres
+PASS backward drag grows in eight-metre ceiling increments
+PASS exact eight-metre multiples do not add another increment
+PASS directional drag spans authored join and reversed record with shared arc budget
+PASS reverse directional drag spans multi-record straight join
+PASS forward drag clamps at cross even for distant cursor
+PASS backward drag clamps at T even for distant cursor
+PASS sampled curve uses arc length and retains interior vertices, not chord or source offset
+PASS curved reverse drag uses sampled arc length
+PASS repeated preview and modifying returned geometry cannot mutate input roads
+PASS click at exact first endpoint selects span
+PASS click at exact last endpoint selects span
+PASS terminal remainder shorter than eight metres is clamped, never snapped backwards
+PASS outward drag from first free endpoint selects nothing
+PASS outward drag from last free endpoint selects nothing
+PASS drag starting exactly at junction chooses pressed road arm in drag direction
+PASS junction-boundary forward drag cannot delete opposite arm
+PASS missing stable ID is safely rejected
+PASS press beyond selected road width is safely rejected
+PASS nonfinite press is safely rejected
+PASS nonfinite drag is safely rejected
+PASS empty input is safely rejected
+PASS long drag crosses three authored records and clamps at final free endpoint
+PASS drag from exact two-arm seam enters next reversed record
+PASS drag from exact two-arm seam enters previous record
+PASS exact junction click deterministically chooses forward span, never both sides
+PASS multi-record drag stops at three-arm authored junction
+PASS zero-motion explicit drag has no direction; click must pass null
+PASS sampled curved record drag clips at a mid-road T by local arc distance
+RESULT 39/39 road demolition span checks passed
