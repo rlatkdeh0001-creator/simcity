@@ -1,0 +1,51 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS shared demolition removes only the selected building
+PASS no invented charge or refund for building
+PASS already removed building is safe
+PASS shared demolition removes only the selected road
+PASS no invented charge or refund for road
+PASS already removed road is safe
+PASS shared demolition removes only the selected power_plant
+PASS no invented charge or refund for power_plant
+PASS already removed power_plant is safe
+PASS shared demolition removes only the selected power_wire
+PASS no invented charge or refund for power_wire
+PASS already removed power_wire is safe
+PASS shared demolition removes only the selected water_facility
+PASS no invented charge or refund for water_facility
+PASS already removed water_facility is safe
+PASS shared demolition removes only the selected water_pipe
+PASS no invented charge or refund for water_pipe
+PASS already removed water_pipe is safe
+PASS unknown target cannot delete anything
+PASS demolished building leaves both utility demand lists immediately
+PASS road-local building created on surviving road
+PASS removing an earlier road preserves remaining road-local frame and building position
+PASS surviving building retains valid zoning frontage
+PASS deleted road leaves no phantom placement tiles
+PASS road IDs are not reused after demolition
+PASS last road removal clears revealed tiles without deleting other buildings
+PASS placement tiles hidden by default without deleting zoning data
+PASS construction tab renamed to zoning
+PASS placement tiles visible in build tab
+PASS placement tiles visible in road tab
+PASS placement tiles hidden in power tab
+PASS placement tiles hidden in water tab
+PASS placement tiles hidden in environment tab
+PASS placement tiles hidden in park tab
+PASS placement tiles hidden in transport tab
+PASS placement tiles hidden in other tab
+PASS switching tabs preserves all parcel geometry
+PASS one bulldozer button sits to the right of category toolbar
+PASS bulldozer activates shared tool and hides tiles and drawer
+PASS one map click demolishes one actual building and keeps tool active
+PASS empty map space is not a demolition target
+PASS water tab has no separate demolition tool
+PASS visible paired pipe is targetable over overlapping road while water tab stays open
+PASS closing utility tray hides pipes and prevents invisible pipes intercepting bulldozer selection
+PASS power tab has no separate demolition tool
+PASS hidden water pipe cannot intercept a road click in power view
+PASS escape cancels bulldozer mode
+PASS camera remains usable after all buildings are demolished
+RESULT 48/48 demolition checks passed

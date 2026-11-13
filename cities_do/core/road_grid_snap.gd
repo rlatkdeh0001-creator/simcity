@@ -6,12 +6,12 @@ const Units=preload("res://core/road_length_units.gd")
 const Angles=preload("res://core/road_angle_snap.gd")
 const EPS:=.0005
 static func frame_near(city,point: Vector2) -> Dictionary:
- var best:=INF;var selected: Dictionary={}
+ var best:=INF;var selected: Dictionary={};var selected_index: int=-1
  for i in range(city.roads.size()-1,-1,-1):
   var road: Dictionary=city.roads[i]
   var distance: float=Units.projection(road.points,point).distance
   if distance>=best:continue
-  best=distance;selected=road
+  best=distance;selected=road;selected_index=i
  if selected.is_empty():return {"origin":Vector2.ZERO,"along":Vector2.RIGHT,"outward":Vector2.DOWN}
  var frames:=Parcels.blocks(selected.get("zoning_source_points",selected.points),selected.width/2,0)
  var result: Dictionary={};var closest: Dictionary={};best=INF
@@ -19,8 +19,9 @@ static func frame_near(city,point: Vector2) -> Dictionary:
   if frame.side!=1:continue
   var distance: float=Units.projection(frame.centerline,point).distance
   if distance<best:best=distance;closest=frame;result={"origin":frame.origin,"along":frame.along,"outward":frame.outward}
- if selected.has("grid_frame") and not closest.is_empty() and straight(closest):
-  var inherited: Dictionary=selected.grid_frame
+ var shared: Dictionary=city.zoning_lattices[selected_index] if city.zoning_lattices.size()==city.roads.size() else selected.get("grid_frame",{})
+ if not shared.is_empty() and not closest.is_empty() and straight(closest):
+  var inherited: Dictionary=shared
   if maxf(absf(closest.along.dot(inherited.along)),absf(closest.along.dot(inherited.outward)))>.99999:return inherited.duplicate(true)
  if result.is_empty():
   var along: Vector2=(selected.points[-1]-selected.points[0]).normalized()
@@ -83,6 +84,10 @@ static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary) -> Array[
   var frame: Dictionary=frames[i]
   if maxf(absf(frame.along.dot(grid.along)),absf(frame.along.dot(grid.outward)))<.99999:continue
   if not straight(frame):continue
+  # Whole cells share both boundary phases; sacrifice a partial curb cell rather than drawing a second board.
+  var row_phase: float=(frame.origin-Vector2(grid.origin)).dot(frame.outward)
+  var row_shift:=ceilf(row_phase-EPS)-row_phase
+  if absf(row_shift)>EPS:frame.origin+=frame.outward*row_shift
   var phase: float=(frame.origin-Vector2(grid.origin)).dot(frame.along)
   var shift:=ceilf(phase-EPS)-phase
   var length: float=frame.centerline[0].distance_to(frame.centerline[-1])
@@ -92,6 +97,35 @@ static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary) -> Array[
   var extension: float=shift+frame.columns-length
   if extension>EPS:frame.centerline.append(frame.centerline[-1]+frame.along*extension)
  return frames
+static func orthogonal(road: Dictionary,basis: Dictionary) -> bool:
+ for i in range(1,road.points.size()):
+  var tangent: Vector2=(road.points[i]-road.points[i-1]).normalized()
+  if tangent!=Vector2.ZERO and maxf(absf(tangent.dot(basis.along)),absf(tangent.dot(basis.outward)))<.99999:return false
+ return true
+static func basis_for(road: Dictionary) -> Dictionary:
+ var inherited: Dictionary=road.get("grid_frame",{})
+ if not inherited.is_empty() and orthogonal(road,inherited):return inherited.duplicate(true)
+ var frames:=Parcels.blocks(road.get("zoning_source_points",road.points),road.width/2,0)
+ if frames.size()<2:return {}
+ return {"origin":frames[1].origin,"along":frames[1].along,"outward":frames[1].outward}
+static func shared_grids(roads: Array,topology: Dictionary) -> Array[Dictionary]:
+ var result: Array[Dictionary]=[];var neighbors: Array[Dictionary]=[];var visited: Dictionary={}
+ for road in roads:result.append(road.get("grid_frame",{}).duplicate(true));neighbors.append({})
+ for node in topology.nodes.values():
+  for a in node.road_ids:
+   for b in node.road_ids:
+    if a!=b:neighbors[a][b]=true
+ for root in range(roads.size()):
+  if visited.has(root) or roads[root].kind!="local":continue
+  var basis:=basis_for(roads[root])
+  if basis.is_empty() or not orthogonal(roads[root],basis):continue
+  var pending: Array[int]=[root];visited[root]=true
+  while not pending.is_empty():
+   var index: int=pending.pop_back();result[index]=basis
+   for other in neighbors[index]:
+    if visited.has(other) or roads[other].kind!="local" or not orthogonal(roads[other],basis):continue
+    visited[other]=true;pending.append(other)
+ return result
 static func valid_length(points: PackedVector2Array,roads: Array) -> bool:
  if points.size()<2:return false
  var minimum:=Units.build_step(points,roads)

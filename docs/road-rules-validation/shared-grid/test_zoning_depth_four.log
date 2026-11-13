@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS default roadside depth is four cells
+PASS no road side generates rows four through seven
+PASS legacy prototype config cannot restore eight-deep strips
+PASS one road cannot supply a new 8x8 lot
+PASS opposed aligned four-deep strips support 8x8 reverse=false
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS opposed aligned four-deep strips support 8x8 reverse=true
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS default roadside depth is four cells
+PASS no road side generates rows four through seven
+PASS legacy prototype config cannot restore eight-deep strips
+PASS one road cannot supply a new 8x8 lot
+PASS opposed aligned four-deep strips support 8x8 reverse=false
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS opposed aligned four-deep strips support 8x8 reverse=true
+PASS eight-wide shared lot paints 32 cells from each road
+PASS uniform zoning resolves real cell IDs across road frames
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road growth expands to 8x8 only at stage five
+PASS two-road expansion retains one building and original ID
+PASS non-eight-cell road spacing cannot silently fill a gap: 7.0
+PASS non-eight-cell road spacing cannot silently fill a gap: 8.25
+PASS non-eight-cell road spacing cannot silently fill a gap: 9.0
+PASS a four-wide rear strip cannot support an eight-wide lot
+PASS half-cell phase mismatch never counts as an aligned shared lot
+PASS one-degree skew cannot bend square cells to force an 8x8
+PASS one rear-road cell of another use blocks 8x8 growth
+PASS missing opposite road keeps existing 4x4 at final stage
+PASS authored placement cannot bypass two-road 8x8 geometry
+PASS authored final-stage 8x8 accepts real opposed strips
+PASS rebuilding four-deep zoning preserves stored 8x8 footprint ID stage facade and score
+PASS opening cached legacy city rebuilds four-deep tiles without changing existing 8x8 building data
+RESULT 52/52 four-cell zoning checks passed

@@ -18,6 +18,7 @@ const Frontage = preload("res://core/building_frontage.gd")
 const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
 var zoning_grid = ZoningGrid.new()
+var zoning_lattices: Array[Dictionary]=[]
 const Catalog = preload("res://core/building_catalog.gd")
 var catalog = Catalog.new()
 var appearance_rng := RandomNumberGenerator.new()
@@ -577,6 +578,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	junctions=topology.junctions
 	road_joins=topology.joins
 	road_visuals=preload("res://core/road_geometry.gd").continuous_roads(roads,topology)
+	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()
 	for road_index in range(roads.size()):
@@ -585,7 +587,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		var source: PackedVector2Array=road.get("zoning_source_points",road.points)
 		var source_id: int=road.get("zoning_source_id",road.get("parcel_id",road_index))
 		var frames: Array[Dictionary]=Parcels.blocks(source,road.width/2,source_id,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation)
-		for frame in preload("res://core/road_grid_snap.gd").aligned_blocks(frames,road.get("grid_frame",{})):
+		for frame in preload("res://core/road_grid_snap.gd").aligned_blocks(frames,zoning_lattices[road_index]):
 			for u in range(frame.columns):
 				if not RoadUnits.supports_column(road,frame,u):continue
 				for v in range(clampi(int(config.zoning_depth),0,Config.MAX_ZONING_DEPTH)):
