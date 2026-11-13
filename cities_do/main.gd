@@ -148,7 +148,7 @@ func _build_controls(layer: CanvasLayer):
 	upgrade.text = "선택 건물 업그레이드"
 	upgrade.pressed.connect(func():
 		var result: Dictionary = city.upgrade_chain(selected)
-		message = "성장 %d개 · 연쇄 %d개" % [result.events.size(), max(0, result.events.size() - 1)] if result.ok else result.reason
+		message = "" if result.ok else result.reason
 		refresh())
 	box.add_child(upgrade)
 	info = Label.new()
@@ -251,7 +251,7 @@ func _build_controls(layer: CanvasLayer):
 func toggle_traffic():
 	if traffic.running:
 		stop_traffic()
-		message = "도로 주행을 종료했습니다"
+		message = ""
 	else:
 		if traffic.rebuild(city.roads):
 			traffic.seed_traffic()
@@ -400,7 +400,7 @@ func _unhandled_input(event):
 					var target := demolition_target(event.position)
 					if not target.is_empty():
 						var result: Dictionary=city.demolish_road_unit(target.id,target.world_point) if target.kind=="road" else city.demolish(target.kind,target.id)
-						message=result.reason
+						message="" if result.ok else result.reason
 						if result.ok:
 							if target.kind=="road": stop_traffic()
 							if target.kind=="building" and selected==target.id: selected=-1
@@ -479,7 +479,7 @@ func finish_road():
 	drawing = false
 	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes, true)
 	if result.ok: stop_traffic()
-	message = "자유 도로 건설 완료" if result.ok else result.reason
+	message = "" if result.ok else result.reason
 	stroke.clear()
 	refresh()
 

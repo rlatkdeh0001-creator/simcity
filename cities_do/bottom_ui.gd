@@ -1031,7 +1031,7 @@ func activate_tool(tool: String):
    message=""
   "upgrade":
    var result: Dictionary=city.upgrade_chain(selected)
-   message="성장 %d개" % result.events.size() if result.ok else result.reason
+   message="" if result.ok else result.reason
 
   "traffic": toggle_traffic()
   _:

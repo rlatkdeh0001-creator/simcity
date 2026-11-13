@@ -138,7 +138,7 @@ func handle_input(event) -> bool:
    "water_supply","water_treatment":
     var kind := "water" if view.mode=="water_supply" else "sewage"
     var result: Dictionary=view.city.add_water_facility(p,kind,output.value)
-    instruction.text=result.reason
+    instruction.text="" if result.ok else result.reason
     if result.ok: selected_facility=result.id
     refresh()
    "water_erase_pipe":
@@ -170,7 +170,7 @@ func finish_pipe():
  if not drawing: return
  drawing=false
  var result: Dictionary=view.city.water.add_pipe(stroke)
- instruction.text="상수관·하수관 함께 건설 완료" if result.ok else result.reason
+ instruction.text="" if result.ok else result.reason
  stroke.clear()
  refresh()
 

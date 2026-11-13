@@ -1,0 +1,48 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL successful legacy road construction clears status instead of showing a completion notice
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:17)
+ERROR: FAIL actual demolition click clears the success HUD while still removing exactly one road cell
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:19)
+PASS internal model success diagnostics are preserved; suppression is presentation-only
+PASS failed construction continues to expose its actionable error
+ERROR: FAIL successful power facility placement has no success notice
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:26)
+ERROR: FAIL successful water facility placement has no success notice
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:28)
+ERROR: FAIL successful underground wire construction has no completion notice
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:30)
+ERROR: FAIL successful paired water/sewage construction has no completion notice
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:32)
+PASS wire failure messages remain available
+PASS traffic fixture starts the actual lane simulation
+ERROR: FAIL stopping traffic has no success-state announcement
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:36)
+PASS growth fixture uses a genuinely placeable roadside building
+ERROR: FAIL internal developer growth still operates without a success-count message
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_quiet_success_feedback.gd:9)
+       [1] run (res://tests/test_quiet_success_feedback.gd:40)
+RESULT 5/13 quiet success feedback checks passed

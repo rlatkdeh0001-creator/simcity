@@ -159,7 +159,7 @@ func handle_input(event) -> bool:
      instruction.text=""
    "power_plant":
     var result: Dictionary=view.city.add_power_plant(p,output.value)
-    instruction.text=result.reason
+    instruction.text="" if result.ok else result.reason
     if result.ok: selected_plant=result.id
     refresh()
    "power_erase_wire":
@@ -191,7 +191,7 @@ func finish_wire():
  if not drawing: return
  drawing=false
  var result: Dictionary=view.city.power.add_wire(stroke)
- instruction.text="지중 전력선 건설 완료" if result.ok else result.reason
+ instruction.text="" if result.ok else result.reason
  stroke.clear()
  refresh()
 
