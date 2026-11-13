@@ -307,6 +307,60 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 		for building in buildings:orient_building(building)
 	return plan
 
+func road_demolition_selection(id: int,point: Vector2,drag_to: Variant=null) -> Dictionary:
+	var selection: Dictionary=preload("res://core/road_demolition.gd").selection(roads,id,point,drag_to)
+	# A held preview belongs to this exact geometry, not to a later replacement.
+	selection.snapshot=var_to_bytes(roads)
+	return selection
+
+func demolish_road_selection(selection: Dictionary) -> Dictionary:
+	var invalid: Dictionary={"ok":false,"reason":"철거할 도로를 다시 선택하세요"}
+	if not selection.get("ok",false) or selection.get("cuts",[]).is_empty():return invalid
+	if selection.has("snapshot") and selection.snapshot!=var_to_bytes(roads):return invalid
+	var grouped: Dictionary={}
+	# Validate every original-local interval before mutating any road or ID counter.
+	for cut: Dictionary in selection.cuts:
+		var id: int=cut.get("id",-1)
+		var index: int=-1
+		for i in range(roads.size()):
+			if int(roads[i].parcel_id)==id:index=i;break
+		if index<0:return invalid
+		var first: float=cut.get("first",NAN);var last: float=cut.get("last",NAN)
+		var length: float=RoadJunctions.length_of(roads[index].points)
+		if not is_finite(first) or not is_finite(last) or first<0 or last>length+RoadUnits.EPS or last-first<=RoadUnits.EPS:return invalid
+		last=minf(last,length)
+		if not cut.has("points") or cut.points!=RoadJunctions.slice(roads[index].points,first,last):return invalid
+		if not grouped.has(id):grouped[id]=[]
+		grouped[id].append(Vector2(first,last))
+	var replacement: Array[Dictionary]=[]
+	var removed:=0.0
+	for road: Dictionary in roads:
+		var id: int=road.parcel_id
+		if not grouped.has(id):replacement.append(road);continue
+		var intervals: Array=grouped[id]
+		intervals.sort_custom(func(a,b):return a.x<b.x)
+		var merged: Array[Vector2]=[]
+		for interval: Vector2 in intervals:
+			if not merged.is_empty() and interval.x<=merged[-1].y+RoadUnits.EPS:merged[-1].y=maxf(merged[-1].y,interval.y)
+			else:merged.append(interval)
+		var cursor:=0.0
+		var pieces: Array[Dictionary]=[]
+		for interval: Vector2 in merged:
+			if interval.x-cursor>RoadUnits.EPS:pieces.append(RoadUnits.fragment(road,cursor,interval.x))
+			removed+=interval.y-interval.x
+			cursor=interval.y
+		var length: float=RoadJunctions.length_of(road.points)
+		if length-cursor>RoadUnits.EPS:pieces.append(RoadUnits.fragment(road,cursor,length))
+		for i in range(pieces.size()):
+			if i==0:pieces[i].parcel_id=id
+			else:pieces[i].parcel_id=next_road_id;next_road_id+=1
+			replacement.append(pieces[i])
+	roads=replacement
+	_update_zoning_for_road({})
+	for building in buildings:orient_building(building)
+	population.sync(buildings);power_state();water_state()
+	return {"ok":true,"reason":"철거 완료","removed_cells":removed}
+
 func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
 	for i in range(roads.size()):
 		var road: Dictionary=roads[i]

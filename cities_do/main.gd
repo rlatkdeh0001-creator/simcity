@@ -30,6 +30,9 @@ var public_controller
 var road_drawer
 var mode := "select"
 var demolition_hover := {}
+var demolition_press := {}
+var demolition_press_screen := Vector2.ZERO
+var demolition_dragged := false
 var zone := "residential"
 var selected := -1
 var stroke := PackedVector2Array()
@@ -333,6 +336,7 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if mode!="demolish":cancel_demolition_drag()
 	if road_drawer!=null and mode!="road":road_drawer.cancel()
 	if labor_panel!=null:
 		labor_panel.visible=city.population.workplaces.has(selected)
@@ -350,6 +354,7 @@ func refresh():
 	queue_redraw()
 
 func cancel_zoning_drag() -> void:
+	cancel_demolition_drag()
 	zoning_drag=false
 	zoning_anchor.clear()
 	queue_redraw()
@@ -376,7 +381,32 @@ func finish_zoning(position: Vector2,over_hud: bool=false) -> void:
 	refresh()
 
 func _unhandled_key_input(event):
-	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_zoning_drag()
+	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+		cancel_zoning_drag()
+		if mode=="demolish":mode="select";refresh()
+
+func cancel_demolition_drag() -> void:
+	demolition_press.clear()
+	demolition_hover.clear()
+	demolition_dragged=false
+	queue_redraw()
+
+func update_demolition_drag(position: Vector2) -> void:
+	if demolition_press.is_empty():return
+	if position.distance_to(demolition_press_screen)>3.0:demolition_dragged=true
+	var selection: Dictionary=city.road_demolition_selection(demolition_press.id,demolition_press.world_point,world(position) if demolition_dragged else null)
+	demolition_hover={"kind":"road","id":demolition_press.id,"selection":selection}
+	queue_redraw()
+
+func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
+	if demolition_press.is_empty():return
+	if mode!="demolish" or over_hud:cancel_demolition_drag();return
+	update_demolition_drag(position)
+	var result: Dictionary=city.demolish_road_selection(demolition_hover.selection)
+	message="" if result.ok else result.reason
+	if result.ok:stop_traffic()
+	cancel_demolition_drag()
+	refresh()
 
 func _unhandled_input(event):
 	if road_drawer!=null and road_drawer.handle_input(event):
@@ -387,25 +417,32 @@ func _unhandled_input(event):
 		return
 	if mode=="demolish":
 		if event is InputEventMouseMotion:
-			demolition_hover=demolition_target(event.position)
+			if not demolition_press.is_empty():update_demolition_drag(event.position)
+			else:demolition_hover=demolition_target(event.position)
 			queue_redraw()
 		elif event is InputEventMouseButton:
 			if event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
 				mode="select"
-				demolition_hover.clear()
+				cancel_demolition_drag()
 				refresh()
 				return
 			if event.button_index==MOUSE_BUTTON_LEFT:
 				if event.pressed:
 					var target := demolition_target(event.position)
 					if not target.is_empty():
-						var result: Dictionary=city.demolish_road_unit(target.id,target.world_point) if target.kind=="road" else city.demolish(target.kind,target.id)
+						if target.kind=="road":
+							demolition_press=target.duplicate(true)
+							demolition_press_screen=event.position
+							demolition_dragged=false
+							update_demolition_drag(event.position)
+							return
+						var result: Dictionary=city.demolish(target.kind,target.id)
 						message="" if result.ok else result.reason
 						if result.ok:
-							if target.kind=="road": stop_traffic()
 							if target.kind=="building" and selected==target.id: selected=-1
 							demolition_hover.clear()
 						refresh()
+				else:finish_demolition_drag(event.position)
 				return
 	if water_overlay != null and water_overlay.handle_input(event): return
 	if power_overlay != null and power_overlay.handle_input(event): return
@@ -454,6 +491,16 @@ func _unhandled_input(event):
 			finish_road()
 
 func _input(event):
+	if not demolition_press.is_empty():
+		if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_demolition_drag()
+		elif event is InputEventMouseMotion:
+			update_demolition_drag(event.position)
+			get_viewport().set_input_as_handled()
+			return
+		elif event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+			finish_demolition_drag(event.position,get_viewport().gui_get_hovered_control()!=null)
+			get_viewport().set_input_as_handled()
+			return
 	if keyboard_camera!=null and keyboard_camera.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -578,8 +625,8 @@ func demolition_target(position: Vector2) -> Dictionary:
 		var road: Dictionary=city.roads[i]
 		for j in range(road.points.size()-1):
 			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
-				var selected: Dictionary=city.RoadUnits.cut_target(road,point)
-				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":selected.road,"world_point":point}
+				var id: int=road.get("parcel_id",i)
+				return {"kind":"road","id":id,"selection":city.road_demolition_selection(id,point),"world_point":point}
 	return {}
 
 func draw_front_door(b: Dictionary):
@@ -679,5 +726,9 @@ func _draw():
 			draw_colored_polygon(demolition_hover.polygon,tint)
 		elif demolition_hover.has("line"):
 			draw_polyline(demolition_hover.line,tint,10,true)
-		elif demolition_hover.has("road"):
-			draw_ribbon(demolition_hover.road.points,demolition_hover.road.width,tint,true,true)
+		elif demolition_hover.has("selection"):
+			for cut: Dictionary in demolition_hover.selection.get("cuts",[]):
+				for road: Dictionary in city.roads:
+					if int(road.parcel_id)==int(cut.id):
+						draw_ribbon(cut.points,road.width,tint,true,true)
+						break

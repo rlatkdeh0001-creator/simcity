@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS successful legacy road construction clears status instead of showing a completion notice
+PASS road demolition press is preview-only until release
+PASS actual demolition release clears the success HUD while removing the full selected span
+PASS internal model success diagnostics are preserved; suppression is presentation-only
+PASS failed construction continues to expose its actionable error
+PASS successful power facility placement has no success notice
+PASS successful water facility placement has no success notice
+PASS successful underground wire construction has no completion notice
+PASS successful paired water/sewage construction has no completion notice
+PASS wire failure messages remain available
+PASS traffic fixture starts the actual lane simulation
+PASS stopping traffic has no success-state announcement
+PASS growth fixture uses a genuinely placeable roadside building
+PASS internal developer growth still operates without a success-count message
+RESULT 14/14 quiet success feedback checks passed
