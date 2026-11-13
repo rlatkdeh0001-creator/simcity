@@ -1,0 +1,473 @@
+{
+  "assets": [
+    {
+      "id": "traffic-signal-post-01",
+      "checks": {
+        "all_four_named_meshes": true,
+        "independent_mesh_data": true,
+        "single_swappable_material_slot": true,
+        "all_off_in_saved_source": true,
+        "eight_named_materials_survive_save": true,
+        "on_materials_emissive": true,
+        "off_materials_dark_matte": true,
+        "material_fake_users": true,
+        "front_view_order_R_Y_arrow_G": true,
+        "arrow_geometry_points_front_view_left": true,
+        "arrow_separate_dark_round_backing": true,
+        "four_upper_visors": true,
+        "one_head_only": true,
+        "root_at_pole_base": true,
+        "metre_units": true,
+        "triangle_budget": true,
+        "triangle_count_matches_spec": true,
+        "height_matches_spec": true,
+        "bounds_match_spec": true,
+        "lens_15x_reference": true,
+        "no_external_images": true,
+        "no_glb_created": true,
+        "frame_metadata": true,
+        "export_material_definitions_complete": true,
+        "head_size_matches_spec": true,
+        "arrow_tip_centerline": true,
+        "arrow_front_cap_normal": true,
+        "opaque_one_way_backboard": true,
+        "sixteen_independent_states": true,
+        "can_restore_all_off": true,
+        "validation_never_wrote_source": true
+      },
+      "passed": true,
+      "triangles": 764,
+      "states": [
+        {
+          "mask": 0,
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "mask": 1,
+          "expected": [
+            "lamp_red"
+          ],
+          "actual": [
+            "lamp_red"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 2,
+          "expected": [
+            "lamp_yellow"
+          ],
+          "actual": [
+            "lamp_yellow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 3,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 4,
+          "expected": [
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 5,
+          "expected": [
+            "lamp_red",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 6,
+          "expected": [
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 7,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 8,
+          "expected": [
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 9,
+          "expected": [
+            "lamp_red",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 10,
+          "expected": [
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 11,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 12,
+          "expected": [
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 13,
+          "expected": [
+            "lamp_red",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 14,
+          "expected": [
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 15,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        }
+      ],
+      "head_geometry_material_hash": "9a4e47b578aae0266c97dae5052f3cf6bd11b2ac36e74f39ecf96fb8e9665ff9",
+      "source_sha256": "908b6871c10ce2b92d83937831dec23746c02e7c0b35978d3b9fdfbb87b6599d"
+    },
+    {
+      "id": "traffic-signal-arm-01",
+      "checks": {
+        "all_four_named_meshes": true,
+        "independent_mesh_data": true,
+        "single_swappable_material_slot": true,
+        "all_off_in_saved_source": true,
+        "eight_named_materials_survive_save": true,
+        "on_materials_emissive": true,
+        "off_materials_dark_matte": true,
+        "material_fake_users": true,
+        "front_view_order_R_Y_arrow_G": true,
+        "arrow_geometry_points_front_view_left": true,
+        "arrow_separate_dark_round_backing": true,
+        "four_upper_visors": true,
+        "one_head_only": true,
+        "root_at_pole_base": true,
+        "metre_units": true,
+        "triangle_budget": true,
+        "triangle_count_matches_spec": true,
+        "height_matches_spec": true,
+        "bounds_match_spec": true,
+        "lens_15x_reference": true,
+        "no_external_images": true,
+        "no_glb_created": true,
+        "frame_metadata": true,
+        "export_material_definitions_complete": true,
+        "head_size_matches_spec": true,
+        "arrow_tip_centerline": true,
+        "arrow_front_cap_normal": true,
+        "opaque_one_way_backboard": true,
+        "arm_extends_minus_x": true,
+        "arm_length_7m": true,
+        "head_clearance_at_least_45m": true,
+        "sixteen_independent_states": true,
+        "can_restore_all_off": true,
+        "validation_never_wrote_source": true
+      },
+      "passed": true,
+      "triangles": 788,
+      "states": [
+        {
+          "mask": 0,
+          "expected": [],
+          "actual": [],
+          "passed": true
+        },
+        {
+          "mask": 1,
+          "expected": [
+            "lamp_red"
+          ],
+          "actual": [
+            "lamp_red"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 2,
+          "expected": [
+            "lamp_yellow"
+          ],
+          "actual": [
+            "lamp_yellow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 3,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 4,
+          "expected": [
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 5,
+          "expected": [
+            "lamp_red",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 6,
+          "expected": [
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 7,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 8,
+          "expected": [
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 9,
+          "expected": [
+            "lamp_red",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 10,
+          "expected": [
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 11,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 12,
+          "expected": [
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 13,
+          "expected": [
+            "lamp_red",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 14,
+          "expected": [
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        },
+        {
+          "mask": 15,
+          "expected": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "actual": [
+            "lamp_red",
+            "lamp_yellow",
+            "lamp_left_arrow",
+            "lamp_green"
+          ],
+          "passed": true
+        }
+      ],
+      "head_geometry_material_hash": "9a4e47b578aae0266c97dae5052f3cf6bd11b2ac36e74f39ecf96fb8e9665ff9",
+      "source_sha256": "2e5a6e17460c47c02fb87ce7702d1c182aa665b30da65a3182b457621586b429"
+    }
+  ],
+  "identical_head_geometry": true,
+  "passed": true
+}

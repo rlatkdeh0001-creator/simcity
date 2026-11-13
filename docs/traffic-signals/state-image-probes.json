@@ -1,0 +1,18 @@
+{
+  "lamp_red": [
+    184,
+    150
+  ],
+  "lamp_yellow": [
+    361,
+    150
+  ],
+  "lamp_left_arrow": [
+    539,
+    150
+  ],
+  "lamp_green": [
+    716,
+    150
+  ]
+}

@@ -301,6 +301,23 @@ Blender4.3.2 CPU Cycles48샘플로 900×1100 투명 PNG14장을 렌더했다. �
 민간 자동 신축 시정부0doth 규칙을 유지하며, 용량/민간운영 제안은 growth-14/BALANCE_PROPOSALS_KO.md에
 미적용으로 분리했다. 외형 제작과 별개로 승인이 필요하며 신규 시정부 과금은 넣지 않았다.
 
+## 차량 신호등2종 · 독립4구 원본 (2026-11-13 KST)
+
+브랜치 assets/traffic-signals-20261113. [실측/꺼짐·켜짐/단독 점등/검증/변환 계약](traffic-signals/README_KO.md).
+새 build_traffic_signals.py의 원래 지오메트리로 기둥형764삼각형/전체4.92m(기둥4.5), 가로대788삼각형/전체6.5m를 제작했다.
+가로대는−X로7m, 머리 아래끝5.28m이며 머리1개다. 동일 머리/렌즈Ø.45m(1.5배)/정면−Y/위+Z/원점기둥바닥0.
+정면 관찰 화면에 R/Y/좌회전/G를 배치했고 lamp_red/lamp_yellow/lamp_left_arrow/lamp_green4메시를 분리했다.
+화살표만 바꾸도록 별도 고정 원형 배경을 썼다. ON/OFF8재질을 fake user로 보존하고 원본은 모두OFF로 저장했다.
+GLB에서 미사용 ON 재질이 빠질 수 있으므로 spec에 선형 RGB/발광/거칠기8개 정의를 넣었다. fake user를 GLB 보장으로 오인하지 않는다.
+실제 재사용은 build_vehicle_fleet.material과 pinned vehicle/common.reset_scene/empty다. 차량 스킬 전체 리깅/실사 파이프라인을 실행하지 않았다.
+상류 https://github.com/duolahypercho/zstack 고정판74f7786e9931b9ced858a0e2df880f23e4c2430e, MIT. street-furniture에 기존 라이선스를 복사했다.
+새 verify_traffic_signals.py로 원본 재개방66검사와32점등조합, 머리 해시 동일/소스무기록을 확인했다.
+render_signal_states.py로 실제 단독4프레임도 렌더하고 활성색/나머지3등 어두움을 픽셀로 검사했다.
+Blender4.3.2 CPU Cycles48샘플(단독32); 원본4PNG1100정사각/RGBA/프레임 검증. 리뷰 배치는 기존 Pillow/Noto만 사용했다.
+외부 모델/텍스처/폰트/생성 API/신규패키지/에이전트 없음. 새 스킬을 설치하지 않았고 상류/기존 helper는 그대로다.
+GLB/게임배치/주기·AI/성능/보행자/머리2개짜리 가로대/main 통합은 제외했다. 비용·수요·용량은 미승인 제안 문서만 있다.
+원본/스펙/PNG/스크립트/검증/인계를 별도 애셋 브랜치에 커밋·푸시한다.
+
 ## 최신 작업: 건물·시설 크기 통합표 (2026-11-11 KST)
 
 사용자가 2×2/4×4 등의 크기를 어디 기록했는지와 GitHub 업로드를 요청했다.

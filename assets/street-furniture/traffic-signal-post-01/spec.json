@@ -1,0 +1,216 @@
+{
+  "id": "traffic-signal-post-01",
+  "name": "기둥형 4색 차량 신호등",
+  "category": "street-furniture",
+  "style": "traffic-signal",
+  "height_m": 4.920000076293945,
+  "pole_height_m": 4.5,
+  "arm_length_m": 0.0,
+  "head_clearance_m": 4.08,
+  "lamp_order_left_to_right": [
+    "lamp_red",
+    "lamp_yellow",
+    "lamp_left_arrow",
+    "lamp_green"
+  ],
+  "lamp_materials": {
+    "lamp_red": [
+      "mat_lamp_red_on",
+      "mat_lamp_red_off"
+    ],
+    "lamp_yellow": [
+      "mat_lamp_yellow_on",
+      "mat_lamp_yellow_off"
+    ],
+    "lamp_left_arrow": [
+      "mat_lamp_left_arrow_on",
+      "mat_lamp_left_arrow_off"
+    ],
+    "lamp_green": [
+      "mat_lamp_green_on",
+      "mat_lamp_green_off"
+    ]
+  },
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "origin": "pole base center, z=0",
+  "triangles": 764,
+  "not_validated": [
+    "signal timing",
+    "traffic AI",
+    "large-city performance"
+  ],
+  "vertex_bounds_m": [
+    [
+      -1.2999999523162842,
+      -0.7300000190734863,
+      0.0
+    ],
+    [
+      1.2999999523162842,
+      0.2199999988079071,
+      4.920000076293945
+    ]
+  ],
+  "measured_dimensions_m": [
+    2.5999999046325684,
+    0.9500000178813934,
+    4.920000076293945
+  ],
+  "head_origin_blender_m": [
+    0.0,
+    -0.2199999988079071,
+    4.5
+  ],
+  "head_dimensions_m": [
+    2.6,
+    0.535,
+    0.84
+  ],
+  "lamp_diameter_m": 0.45,
+  "nominal_reference_lamp_diameter_m": 0.3,
+  "lens_scale": 1.5,
+  "default_state": "all_off",
+  "arm_direction_blender": null,
+  "front_view_note": "observer at -Y looking +Y: red to green follows increasing X; arrow tip points negative X",
+  "source": "original scripted geometry; existing fleet material helper; no external models, textures, fonts or generation APIs",
+  "game_registered": false,
+  "material_definitions": {
+    "mat_lamp_green_off": {
+      "base_color_linear": [
+        0.005181516520678997,
+        0.024157632142305374,
+        0.009134058840572834,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.005181516520678997,
+        0.024157632142305374,
+        0.009134058840572834,
+        1.0
+      ],
+      "emission_strength": 0.0,
+      "roughness": 0.8799999952316284
+    },
+    "mat_lamp_green_on": {
+      "base_color_linear": [
+        0.04666508734226227,
+        0.8069522380828857,
+        0.18782077729701996,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.04666508734226227,
+        0.8069522380828857,
+        0.18782077729701996,
+        1.0
+      ],
+      "emission_strength": 2.0,
+      "roughness": 0.3199999928474426
+    },
+    "mat_lamp_left_arrow_off": {
+      "base_color_linear": [
+        0.005181516520678997,
+        0.024157632142305374,
+        0.009134058840572834,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.005181516520678997,
+        0.024157632142305374,
+        0.009134058840572834,
+        1.0
+      ],
+      "emission_strength": 0.0,
+      "roughness": 0.8799999952316284
+    },
+    "mat_lamp_left_arrow_on": {
+      "base_color_linear": [
+        0.04666508734226227,
+        0.8069522380828857,
+        0.18782077729701996,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.04666508734226227,
+        0.8069522380828857,
+        0.18782077729701996,
+        1.0
+      ],
+      "emission_strength": 2.0,
+      "roughness": 0.3199999928474426
+    },
+    "mat_lamp_red_off": {
+      "base_color_linear": [
+        0.02955683507025242,
+        0.005181516520678997,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.02955683507025242,
+        0.005181516520678997,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_strength": 0.0,
+      "roughness": 0.8799999952316284
+    },
+    "mat_lamp_red_on": {
+      "base_color_linear": [
+        0.8879231214523315,
+        0.04817182570695877,
+        0.03189603239297867,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.8879231214523315,
+        0.04817182570695877,
+        0.03189603239297867,
+        1.0
+      ],
+      "emission_strength": 2.0,
+      "roughness": 0.3199999928474426
+    },
+    "mat_lamp_yellow_off": {
+      "base_color_linear": [
+        0.02955683507025242,
+        0.019382361322641373,
+        0.002124688820913434,
+        1.0
+      ],
+      "emission_color_linear": [
+        0.02955683507025242,
+        0.019382361322641373,
+        0.002124688820913434,
+        1.0
+      ],
+      "emission_strength": 0.0,
+      "roughness": 0.8799999952316284
+    },
+    "mat_lamp_yellow_on": {
+      "base_color_linear": [
+        1.0,
+        0.5972017645835876,
+        0.03560131415724754,
+        1.0
+      ],
+      "emission_color_linear": [
+        1.0,
+        0.5972017645835876,
+        0.03560131415724754,
+        1.0
+      ],
+      "emission_strength": 2.0,
+      "roughness": 0.3199999928474426
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "previews": [
+    {
+      "path": "assets/street-furniture/traffic-signal-post-01/preview-off.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        313,
+        81,
+        770,
+        960
+      ],
+      "sha256": "ddd4db4ef4fb87ee9735d28268fa9d2bb1520334982bdfc6368415d8cfde0568"
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-post-01/preview-on.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        313,
+        81,
+        770,
+        960
+      ],
+      "sha256": "27a1d9348a2975e422933c85a4cfe7872efd870693f5480a9b7db9fbf3e7ff07"
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-arm-01/preview-off.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        142,
+        81,
+        973,
+        1006
+      ],
+      "sha256": "51755a3cfc8991e5e9e42bbe0101fbc6d7431857c75300eed8ed3455b24ee2ed"
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-arm-01/preview-on.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        142,
+        81,
+        973,
+        1006
+      ],
+      "sha256": "23e4ac1855716d017e6ad69c42b3b7e74a46fff132e89f23149ffefbb6a8b4b3"
+    }
+  ],
+  "individual_states": [
+    {
+      "active": "lamp_red",
+      "probe_rgb": {
+        "lamp_red": [
+          255,
+          100,
+          85
+        ],
+        "lamp_yellow": [
+          43,
+          39,
+          28
+        ],
+        "lamp_left_arrow": [
+          32,
+          46,
+          37
+        ],
+        "lamp_green": [
+          30,
+          43,
+          35
+        ]
+      },
+      "active_color_correct": true,
+      "other_three_dark": true
+    },
+    {
+      "active": "lamp_yellow",
+      "probe_rgb": {
+        "lamp_red": [
+          43,
+          30,
+          29
+        ],
+        "lamp_yellow": [
+          255,
+          255,
+          90
+        ],
+        "lamp_left_arrow": [
+          32,
+          46,
+          37
+        ],
+        "lamp_green": [
+          30,
+          43,
+          35
+        ]
+      },
+      "active_color_correct": true,
+      "other_three_dark": true
+    },
+    {
+      "active": "lamp_left_arrow",
+      "probe_rgb": {
+        "lamp_red": [
+          43,
+          30,
+          29
+        ],
+        "lamp_yellow": [
+          43,
+          39,
+          28
+        ],
+        "lamp_left_arrow": [
+          99,
+          255,
+          182
+        ],
+        "lamp_green": [
+          30,
+          43,
+          35
+        ]
+      },
+      "active_color_correct": true,
+      "other_three_dark": true
+    },
+    {
+      "active": "lamp_green",
+      "probe_rgb": {
+        "lamp_red": [
+          43,
+          30,
+          29
+        ],
+        "lamp_yellow": [
+          43,
+          39,
+          28
+        ],
+        "lamp_left_arrow": [
+          32,
+          46,
+          37
+        ],
+        "lamp_green": [
+          98,
+          255,
+          180
+        ]
+      },
+      "active_color_correct": true,
+      "other_three_dark": true
+    }
+  ],
+  "passed": true
+}
