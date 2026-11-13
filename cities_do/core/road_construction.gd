@@ -94,9 +94,34 @@ static func contact_hits(a: Dictionary,b: Dictionary) -> Array[Dictionary]:
    if point==null:continue
    result.append({"a":first.first+first.a.distance_to(point),"b":second.first+second.a.distance_to(point),"reach":(float(a.width)+float(b.width))/cross_value})
  return result
+static func surface_contact(shapes: Array[PackedVector2Array],polygon: PackedVector2Array) -> bool:
+ for shape in shapes:
+  if not Parcels.bounds(shape).grow(Paths.EPS).intersects(Parcels.bounds(polygon)):continue
+  # Include boundary-only contact, which an area-only intersection test drops.
+  for expanded in Geometry2D.offset_polygon(shape,Paths.EPS,Geometry2D.JOIN_MITER):
+   if not Geometry2D.intersect_polygons(expanded,polygon).is_empty():return true
+ return false
+static func centre_contact_in_patch(road: Dictionary,junction: Dictionary) -> bool:
+ for first in segments(road.points):
+  for arm in junction.arms:
+   for second in segments(arm.points):
+    var point=Paths.intersection(first.a,first.b,second.a,second.b)
+    if point==null:continue
+    if Geometry2D.is_point_in_polygon(point,junction.footprint):return true
+    for i in range(junction.footprint.size()):
+     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,junction.footprint[i],junction.footprint[(i+1)%junction.footprint.size()]))<=Paths.EPS:return true
+ return false
 static func overlap_allowed(a: Dictionary,b: Dictionary) -> bool:
  var remaining:=intersections(a,b)
- if remaining.is_empty():return true
+ if remaining.is_empty():
+  var touching:=false
+  for polygon in outlines(b):
+   if surface_contact(outlines(a),polygon):touching=true;break
+  if not touching:return true
+  if collinear_contact(a,b):return true # Profile compatibility is checked by plan.
+  for hit in contact_hits(a,b):
+   if escapes(a,b,hit.a,hit.reach) and escapes(b,a,hit.b,hit.reach):return true
+  return false
  var length_a:=Paths.length_of(a.points);var length_b:=Paths.length_of(b.points)
  for hit in contact_hits(a,b):
   if not escapes(a,b,hit.a,hit.reach) or not escapes(b,a,hit.b,hit.reach):continue
@@ -160,6 +185,7 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
  if not retained.ok:return retained
  var pieces:=uncovered(road.points,retained.intervals)
  if pieces.is_empty():return {"ok":false,"reason":"이미 있는 도로입니다"}
+ var existing:=Paths.analyze(roads)
  var additions: Array[Dictionary]=[];var length:=0.0
  for points in pieces:
   var candidate:=road.duplicate(true);candidate.points=points
@@ -167,6 +193,8 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   for old in roads+additions:
    if not same_profile(candidate,old) and collinear_contact(candidate,old):return {"ok":false,"reason":"직선 연장은 같은 종류·차로의 도로만 가능합니다"}
    if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
+  for junction in existing.junctions+existing.joins:
+   if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
   additions.append(candidate);length+=Paths.length_of(points)
  var topology:=Paths.analyze(roads+additions)
  if not topology.errors.is_empty():return {"ok":false,"reason":topology.errors[0]}

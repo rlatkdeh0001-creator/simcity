@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS angled_both_sides builds the roughly 64m host using the actual lane card and world mouse input
+PASS angled_both_sides first midpoint 90-degree arm has a green preview: 
+PASS angled_both_sides first midpoint 90-degree arm actual final mouse click commits the preview unchanged
+PASS angled_both_sides first midpoint 90-degree arm creates exactly the required T/cross or continuous end connection
+PASS angled_both_sides opposite midpoint 90-degree arm has a green preview: 
+PASS angled_both_sides opposite midpoint 90-degree arm actual final mouse click commits the preview unchanged
+PASS angled_both_sides opposite midpoint 90-degree arm creates exactly the required T/cross or continuous end connection
+PASS angled_both_sides preserves the original host geometry
+PASS cardinal_both_sides builds the roughly 64m host using the actual lane card and world mouse input
+PASS cardinal_both_sides first midpoint 90-degree arm has a green preview: 
+PASS cardinal_both_sides first midpoint 90-degree arm actual final mouse click commits the preview unchanged
+PASS cardinal_both_sides first midpoint 90-degree arm creates exactly the required T/cross or continuous end connection
+PASS cardinal_both_sides opposite midpoint 90-degree arm has a green preview: 
+PASS cardinal_both_sides opposite midpoint 90-degree arm actual final mouse click commits the preview unchanged
+PASS cardinal_both_sides opposite midpoint 90-degree arm creates exactly the required T/cross or continuous end connection
+PASS cardinal_both_sides preserves the original host geometry
+PASS start_extension builds the roughly 64m host using the actual lane card and world mouse input
+PASS start_extension has a green preview: 
+PASS start_extension actual final mouse click commits the preview unchanged
+PASS start_extension creates exactly the required T/cross or continuous end connection
+PASS start_extension preserves the original host geometry
+PASS end_extension builds the roughly 64m host using the actual lane card and world mouse input
+PASS end_extension has a green preview: 
+PASS end_extension actual final mouse click commits the preview unchanged
+PASS end_extension creates exactly the required T/cross or continuous end connection
+PASS end_extension preserves the original host geometry
+RESULT 26/26 midpoint connection checks passed
