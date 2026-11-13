@@ -7,7 +7,11 @@ func run():
   ["legacy widened box boundary",true,Vector2(33,20),Vector2(33,36),false,0],
   ["legacy widened box overlap",true,Vector2(33,21),Vector2(33,37),false,0],
   ["real mixed-width T",false,Vector2(38,40),Vector2(38,56),true,3],
-  ["real mixed-width cross",false,Vector2(38,24),Vector2(38,56),true,4]
+  ["real mixed-width cross",false,Vector2(38,24),Vector2(38,56),true,4],
+  ["three-lane parallel side boundary",false,Vector2(30,45.5),Vector2(46,45.5),false,0,3],
+  ["three-lane legacy widened box overlap",true,Vector2(33.5,21),Vector2(33.5,37),false,0,3],
+  ["five-lane legacy widened box overlap",true,Vector2(32.5,21),Vector2(32.5,37),false,0,5],
+  ["real three-lane mixed-width T",false,Vector2(38.5,40),Vector2(38.5,56),true,3,3]
  ]
  for spec in cases:
   game.road_drawer.cancel();game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(38,40))
@@ -21,7 +25,7 @@ func run():
    await select_lanes(8);await click(game.screen(Vector2(30,40)));await click(game.screen(Vector2(46,40)));await settle()
    verify(game.city.roads.size()==1,spec[0]+" builds its eight-lane host through real mouse input")
   var before:=var_to_str(game.city.roads);var count: int=game.city.roads.size()
-  await select_lanes(2);await click(game.screen(spec[2]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);root.push_input(motion,true);await process_frame
+  await select_lanes(spec[6] if spec.size()>6 else 2);await click(game.screen(spec[2]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);root.push_input(motion,true);await process_frame
   var result: Dictionary=game.road_drawer.preview()
   verify(result.ok==spec[4],spec[0]+" preview rejects surface-only contact but permits actual crossings")
   await click(game.screen(spec[3]));await settle()

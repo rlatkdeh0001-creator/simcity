@@ -29,4 +29,22 @@ PASS real mixed-width cross builds its eight-lane host through real mouse input
 PASS actual lane card selects 2 lanes and drawing mode before world input
 PASS real mixed-width cross preview rejects surface-only contact but permits actual crossings
 PASS real mixed-width cross actual final click creates its real junction
-RESULT 28/28 road side-contact checks passed
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS three-lane parallel side boundary builds its eight-lane host through real mouse input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS three-lane parallel side boundary preview rejects surface-only contact but permits actual crossings
+PASS three-lane parallel side boundary rejected final click leaves every existing road intact
+PASS three-lane legacy widened box overlap rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS three-lane legacy widened box overlap preview rejects surface-only contact but permits actual crossings
+PASS three-lane legacy widened box overlap rejected final click leaves every existing road intact
+PASS five-lane legacy widened box overlap rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS five-lane legacy widened box overlap preview rejects surface-only contact but permits actual crossings
+PASS five-lane legacy widened box overlap rejected final click leaves every existing road intact
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS real three-lane mixed-width T builds its eight-lane host through real mouse input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS real three-lane mixed-width T preview rejects surface-only contact but permits actual crossings
+PASS real three-lane mixed-width T actual final click creates its real junction
+RESULT 46/46 road side-contact checks passed
