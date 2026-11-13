@@ -1,0 +1,69 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS T derives a common intersection exclusion region
+PASS T has one max-width box including mixed-width uncontrolled transitions
+PASS T box uses the widest eight-cell road, not separate arm widths
+PASS T uses continuous rounded outer curb corners
+PASS T individual road pavement and sidewalks stop outside the box
+PASS T lane separators and medians end at the common box boundary
+PASS T crosswalks and stop lines never appear inside the box
+PASS T central intersection is one solid asphalt region without sidewalk islands
+ERROR: FAIL T narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:43)
+PASS T supported approach boundaries retain both crossing stripes and incoming stop lines
+PASS T approach crossing is at its box edge rather than the two-lane edge
+PASS T approach crossing is at its box edge rather than the two-lane edge
+PASS T approach crossing is at its box edge rather than the two-lane edge
+PASS cross derives a common intersection exclusion region
+PASS cross has one max-width box including mixed-width uncontrolled transitions
+PASS cross box uses the widest eight-cell road, not separate arm widths
+PASS cross uses continuous rounded outer curb corners
+PASS cross individual road pavement and sidewalks stop outside the box
+PASS cross lane separators and medians end at the common box boundary
+PASS cross crosswalks and stop lines never appear inside the box
+PASS cross central intersection is one solid asphalt region without sidewalk islands
+ERROR: FAIL cross narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:43)
+PASS cross supported approach boundaries retain both crossing stripes and incoming stop lines
+PASS cross approach crossing is at its box edge rather than the two-lane edge
+PASS cross approach crossing is at its box edge rather than the two-lane edge
+PASS cross approach crossing is at its box edge rather than the two-lane edge
+PASS cross approach crossing is at its box edge rather than the two-lane edge
+PASS rotated derives a common intersection exclusion region
+PASS rotated has one max-width box including mixed-width uncontrolled transitions
+PASS rotated box uses the widest eight-cell road, not separate arm widths
+PASS rotated uses continuous rounded outer curb corners
+PASS rotated individual road pavement and sidewalks stop outside the box
+PASS rotated lane separators and medians end at the common box boundary
+PASS rotated crosswalks and stop lines never appear inside the box
+PASS rotated central intersection is one solid asphalt region without sidewalk islands
+ERROR: FAIL rotated narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:43)
+PASS rotated supported approach boundaries retain both crossing stripes and incoming stop lines
+PASS rotated approach crossing is at its box edge rather than the two-lane edge
+PASS rotated approach crossing is at its box edge rather than the two-lane edge
+PASS rotated approach crossing is at its box edge rather than the two-lane edge
+PASS transition derives a common intersection exclusion region
+PASS transition has one max-width box including mixed-width uncontrolled transitions
+PASS transition box uses the widest eight-cell road, not separate arm widths
+PASS transition uses continuous rounded outer curb corners
+PASS transition individual road pavement and sidewalks stop outside the box
+PASS transition lane separators and medians end at the common box boundary
+PASS transition crosswalks and stop lines never appear inside the box
+PASS transition central intersection is one solid asphalt region without sidewalk islands
+ERROR: FAIL transition narrow-arm curb entry has a rounded concave fillet rather than a sharp corner
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_junction_boxes.gd:10)
+       [1] run (res://tests/test_road_junction_boxes.gd:43)
+PASS two-arm lane-count transition remains uncontrolled and has no invented zebra crossings
+RESULT 46/50 junction box checks passed

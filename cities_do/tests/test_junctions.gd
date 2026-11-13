@@ -71,31 +71,27 @@ func test_crosswalks() -> bool:
  var edge_clear := true
  for arm in junction.arms:
   var distance: float=Topology.crosswalk_distance(junction,arm)
-  if arm.lanes==4:wide=wide and is_equal_approx(distance,1.25)
+  if arm.lanes==4:wide=wide and is_equal_approx(distance,2.25)
   else:narrow=narrow and is_equal_approx(distance,2.25)
-  var boundary: float=1 if arm.lanes==4 else 2
+  var boundary: float=2
   edge_clear=edge_clear and is_equal_approx(distance-Topology.CROSSWALK_HALF_LENGTH-boundary,Topology.CROSSWALK_EDGE_GAP)
- verify(wide,"four-lane zebra sits just beyond the two-lane road edge instead of shared radius")
- verify(narrow,"two-lane zebra follows the actual wider crossed-road edge")
+ verify(wide,"four-lane zebra sits just outside the shared four-lane box")
+ verify(narrow,"two-lane zebra follows the same widest-road box boundary")
  verify(edge_clear,"both zebra near edges use the same small pavement-edge gap")
  var tee: Dictionary=Topology.analyze([mixed[0],road([Vector2(50,10),Vector2(50,50)])]).junctions[0]
- verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),1.25 if arm.lanes==4 else 2.25)),"T junction zebra placement uses each crossing width too")
+ verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),2.25)),"T junction zebra placement uses the common box boundary")
  var reordered: Dictionary=Topology.analyze([mixed[1],mixed[0]]).junctions[0]
- verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),1.25 if arm.lanes==4 else 2.25)),"zebra placement does not depend on road construction order")
+ verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),2.25)),"zebra placement does not depend on road construction order")
  var diagonal: Dictionary=Topology.analyze([road([Vector2(10,10),Vector2(90,90)],4),road([Vector2(90,10),Vector2(10,90)])]).junctions[0]
- verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),1.25 if arm.lanes==4 else 2.25)),"rotated right-angle crossing keeps the same compact zebra layout")
+ verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),2.25)),"rotated right-angle crossing keeps the same box-boundary layout")
  return true
 func test_footprints() -> bool:
  var city := City.new(100,100)
  city.add_road(roads()[0].points)
  city.add_road(roads()[1].points)
  var outline: PackedVector2Array=Topology.patch(city.junctions[0])
- var square := true
- for i in range(outline.size()):
-  var edge: Vector2=outline[(i+1)%outline.size()]-outline[i]
-  square=square and (absf(edge.x)<.001 or absf(edge.y)<.001)
- verify(square,"right-angle junction keeps straight square corners instead of diagonal flares")
- verify(is_equal_approx(city.Parcels.area(outline),12.0),"two-lane crossing uses only the 12 square cells inside road-width strips")
+ verify(outline.size()>16 and city.Parcels.bounds(outline).size.distance_to(Vector2(2,2))<.001,"right-angle junction uses rounded curbs inside its shared road-width box, not diagonal flares")
+ verify(city.Parcels.area(outline)>3.8 and city.Parcels.area(outline)<4.0,"two-lane crossing uses one compact four-cell box with rounded corners")
  var restored := true
  for point in [Vector2(47.5,48.5),Vector2(51.5,48.5),Vector2(47.5,51.5),Vector2(51.5,51.5)]:
   restored=restored and city.add_building_at(point).ok
@@ -143,12 +139,13 @@ func test_routes() -> bool:
  for pair in [[network,roads()],[mixed,[road([Vector2(10,50),Vector2(90,50)],4),road([Vector2(50,10),Vector2(50,90)])]]]:
   var shapes := []
   for entry in pair[1]:shapes.append_array(RoadGeometry.ribbons(entry.points,entry.width*(.75 if entry.lanes==2 else .8125)))
+  for junction in pair[0].junctions:shapes.append(Topology.patch(junction,true))
   for lane in pair[0].lanes:
    if lane.junction<0:continue
    for step in range(61):
     var point: Vector2=pair[0].sample(lane.id,lane.length*step/60)/4.0
     inside=inside and shapes.any(func(shape):return Geometry2D.is_point_in_polygon(point,shape))
- verify(inside,"all mixed-width turn centre paths stay on actual asphalt after square-corner change")
+ verify(inside,"all mixed-width turn centre paths stay on actual asphalt including the rounded shared-box plane")
  var tee := Network.new()
  tee.build([roads()[0],road([Vector2(50,10),Vector2(50,50)])])
  verify(path(tee,Vector2(50,10),Vector2(90,50)).size()==3,"T junction routes from branch onto through road")

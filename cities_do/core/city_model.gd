@@ -17,9 +17,19 @@ var funds: int = Economy.NORMAL_STARTING_FUNDS:
 const Frontage = preload("res://core/building_frontage.gd")
 const Parcels = preload("res://core/road_parcels.gd")
 const ZoningGrid = preload("res://core/zoning_grid.gd")
+const RoadGeometry=preload("res://core/road_geometry.gd")
+const RoadProfile=preload("res://core/road_profile.gd")
 var zoning_grid = ZoningGrid.new()
 var zoning_lattices: Array[Dictionary]=[]
 var road_crosswalks: Array[PackedVector2Array]=[]
+var road_stop_lines: Array[PackedVector2Array]=[]
+var intersection_regions: Array[PackedVector2Array]=[]
+var road_pavement: Array[PackedVector2Array]=[]
+var road_asphalt: Array[PackedVector2Array]=[]
+var road_medians: Array[PackedVector2Array]=[]
+var road_lane_marks: Array[PackedVector2Array]=[]
+var junction_pavement: Array[PackedVector2Array]=[]
+var junction_asphalt: Array[PackedVector2Array]=[]
 const Catalog = preload("res://core/building_catalog.gd")
 var catalog = Catalog.new()
 var appearance_rng := RandomNumberGenerator.new()
@@ -582,12 +592,24 @@ func _update_zoning_for_road(_road: Dictionary):
 	var topology: Dictionary=RoadJunctions.analyze(roads)
 	junctions=topology.junctions
 	road_joins=topology.joins
-	road_visuals=preload("res://core/road_geometry.gd").continuous_roads(roads,topology)
-	road_crosswalks.clear()
-	var asphalt: Array[PackedVector2Array]=[]
+	road_visuals=RoadGeometry.continuous_roads(roads,topology)
+	# A shared exclusion boundary owns the plane; no individual curb or paint can cross it.
+	for cache in [road_crosswalks,road_stop_lines,intersection_regions,road_pavement,road_asphalt,road_medians,road_lane_marks,junction_pavement,junction_asphalt]:cache.clear()
+	var bounds:=Vector2(width,height)
+	var border:=PackedVector2Array([Vector2.ZERO,Vector2(width,0),bounds,Vector2(0,height)])
+	for junction in junctions+road_joins:
+		if not junction.has("box"):continue
+		intersection_regions.append(junction.box)
+		junction_pavement.append_array(Geometry2D.intersect_polygons(junction.footprint,border))
+		junction_asphalt.append_array(Geometry2D.intersect_polygons(junction.asphalt,border))
 	for visual in road_visuals:
-		asphalt.append_array(preload("res://core/road_geometry.gd").clipped_ribbons(visual.points,preload("res://core/road_profile.gd").asphalt_width(visual),Vector2(width,height),visual.flat_start,visual.flat_end))
-	for junction in junctions:road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,asphalt))
+		road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,visual.width,bounds,visual.flat_start,visual.flat_end),intersection_regions))
+		road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
+		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,intersection_regions))
+		for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,intersection_regions))
+	for junction in junctions:
+		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,road_asphalt))
+		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,road_asphalt))
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()

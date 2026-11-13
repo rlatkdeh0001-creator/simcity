@@ -4,6 +4,9 @@ func _initialize():run.call_deferred()
 func click(point: Vector2):
  for down in [true,false]:
   var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;event.position=point;root.push_input(event,true);await process_frame
+func escape():
+ for down in [true,false]:
+  var event:=InputEventKey.new();event.keycode=KEY_ESCAPE;event.physical_keycode=KEY_ESCAPE;event.pressed=down;root.push_input(event,true);await process_frame
 func settle():
  for i in range(8):await process_frame
  await RenderingServer.frame_post_draw
@@ -14,6 +17,7 @@ func run():
   if arg.begins_with("--evidence="):path=arg.trim_prefix("--evidence=")
   if arg.begins_with("--case="):scenario=arg.trim_prefix("--case=")
  assert(not path.is_empty())
+ if scenario=="mixed-width":await capture_mixed_width(path);return
  if scenario!="corner":await capture_construction(path,scenario);return
  game=load("res://main.tscn").instantiate();game.city=preload("res://core/city_model.gd").new(100,100);game.paused=true;root.add_child(game);current_scene=game
  assert(game.city.add_road(PackedVector2Array([Vector2(20,35),Vector2(50,35)]),"local",true,3).ok)
@@ -51,3 +55,28 @@ func capture_construction(path: String,scenario: String):
  var state:={"case":scenario,"preview_ok":result.ok,"reason":result.get("reason",""),"grid":game.road_grid_enabled,"points":result.points,"roads_before_click":before,"roads_after_click":game.city.roads.size(),"junctions_after_click":game.city.junctions.size(),"input":"real lane-card click and world mouse press/release; capture before final click, transaction verified afterward"}
  var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
  print("NATIVE_ROAD_CONSTRUCTION_PASS "+scenario+" preview and actual final click agree");quit()
+func capture_mixed_width(path: String):
+ game=load("res://main.tscn").instantiate();game.city=preload("res://core/city_model.gd").new(100,100);game.paused=true;root.add_child(game);current_scene=game
+ assert(game.city.add_road(PackedVector2Array([Vector2(15,40),Vector2(85,40)]),"local",true,8).ok)
+ await settle();await click(game.categories[1].get_global_rect().get_center());await settle();await click(game.road_lane_cards[0].get_global_rect().get_center())
+ if game.road_grid_enabled:await click(game.road_grid_button.get_global_rect().get_center())
+ game.map_zoom=.95;game.origin=Vector2.ZERO;game.origin=Vector2(960,400)-game.screen(Vector2(50,42));game.queue_redraw();await settle()
+ for endpoints in [[Vector2(40,16),Vector2(40,70)],[Vector2(70,40),Vector2(70,70)]]:
+  # Straight mode intentionally chains from its last endpoint; start a separate stroke.
+  await escape();await click(game.categories[1].get_global_rect().get_center());await settle();await click(game.road_lane_cards[0].get_global_rect().get_center())
+  await move_world(endpoints[0]);await click(game.screen(endpoints[0]));await move_world(endpoints[1]);await settle()
+  var preview: Dictionary=game.road_drawer.preview()
+  assert(preview.ok and preview.points[0].distance_to(endpoints[0])<.01 and preview.points[-1].distance_to(endpoints[1])<.01);await click(game.screen(endpoints[1]));await settle()
+ assert(game.city.roads.size()==3 and game.city.junctions.size()==2)
+ assert(game.city.junctions.any(func(j):return j.arms.size()==3) and game.city.junctions.any(func(j):return j.arms.size()==4))
+ for junction in game.city.junctions:assert(is_equal_approx(junction.box_width,8.0))
+ for polygon in game.city.road_pavement+game.city.road_asphalt+game.city.road_crosswalks+game.city.road_stop_lines:
+  for region in game.city.intersection_regions:assert(not game.city.Parcels.overlap(polygon,region))
+ for line in game.city.road_medians+game.city.road_lane_marks:
+  for region in game.city.intersection_regions:assert(not Geometry2D.is_point_in_polygon((line[0]+line[-1])/2,region))
+ await escape();assert(game.mode=="select")
+ game.queue_redraw();await settle()
+ var image:=root.get_texture().get_image();assert(image.get_size()==Vector2i(1920,1080) and image.save_png(path)==OK)
+ var state:={"case":"mixed-width","input":"actual lane-card/grid clicks, two world road gestures, preview and committed T/cross verified, ESC exits preview","roads":game.city.roads,"junctions":game.city.junctions,"all_arms_and_markings_outside_boxes":true,"stop_line_polygons":game.city.road_stop_lines.size(),"crosswalk_polygons":game.city.road_crosswalks.size(),"grid":game.road_grid_enabled}
+ var file:=FileAccess.open(path.trim_suffix(".png")+".state.json",FileAccess.WRITE);file.store_string(JSON.stringify(state,"  "));file.close()
+ print("NATIVE_MIXED_WIDTH_JUNCTIONS_PASS 8/2-lane T and cross; flat shared planes, external arm markings, real mouse commits");quit()

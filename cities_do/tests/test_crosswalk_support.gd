@@ -12,9 +12,16 @@ func verify(ok: bool,label: String):
  else:failures+=1;push_error("FAIL "+label)
 func asphalt(city) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
- for road in city.road_visuals:result.append_array(Geometry.clipped_ribbons(road.points,Profile.asphalt_width(road),Vector2(city.width,city.height),road.flat_start,road.flat_end))
- for junction in city.junctions:result.append(Junctions.patch(junction,true))
+ result.append_array(city.road_asphalt);result.append_array(city.junction_asphalt)
  return result
+func legacy_distance(junction: Dictionary,arm: Dictionary) -> float:
+ # Freeze the pre-box algorithm so the historical grass regression stays reproducible.
+ var edge:=0.0
+ for other in junction.arms:
+  var crossing: float=absf(arm.direction.cross(other.direction))
+  if crossing<.001:continue
+  edge=maxf(edge,(other.width/2+Profile.asphalt_width(arm)/2*absf(arm.direction.dot(other.direction)))/crossing)
+ return edge+Junctions.CROSSWALK_HALF_LENGTH+Junctions.CROSSWALK_EDGE_GAP
 func on_surface(point: Vector2,surfaces: Array) -> bool:
  for shape in surfaces:
   if Geometry2D.is_point_in_polygon(point,shape):return true
@@ -32,7 +39,7 @@ func run():
  # Reproduce the former main.gd projection, independently of the new bounded renderer.
  for junction in city.junctions:
   for arm in junction.arms:
-   var centre: Vector2=junction.position+arm.direction*Junctions.crosswalk_distance(junction,arm)
+   var centre: Vector2=junction.position+arm.direction*legacy_distance(junction,arm)
    if not on_surface(centre,surfaces):outside+=1
  verify(outside>0,"root-cause fixture reproduces a projected zebra centre on grass despite fresh junction topology")
  print("ROOT_CAUSE unbounded tangent projection, not an unrefreshed junction cache; unsupported arms=",outside)

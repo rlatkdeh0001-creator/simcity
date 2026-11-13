@@ -610,26 +610,19 @@ func _draw():
 		draw_colored_polygon(outline,tint)
 		outline.append(outline[0])
 		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
-	# Paint all sidewalks before any asphalt: a later stroke's round end cap
-	# must not cut a pale curb across the already-connected carriageway.
-	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width,Color("c8cbc3"),road.get("flat_start",false),road.get("flat_end",false))
-	for road in city.road_visuals:
-		draw_ribbon(road.points,preload("res://core/road_profile.gd").asphalt_width(road),Color("4c5659"),road.get("flat_start",false),road.get("flat_end",false))
-	for road in city.road_visuals:
-		var points := PackedVector2Array()
-		for p in preload("res://core/road_profile.gd").offset_path(road.points,preload("res://core/road_profile.gd").median_offset(road)): points.append(screen(p))
-		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
-		for dash in RoadGeometry.lane_marks(road):
-			var clipped: PackedVector2Array=RoadGeometry.clipped_segment(dash[0],dash[1],Vector2(city.width,city.height))
-			if clipped.size()==2:draw_line(screen(clipped[0]),screen(clipped[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
-	for junction in city.junctions:
-		for asphalt in [false,true]:
-			var outline := PackedVector2Array()
-			for point in city.RoadJunctions.patch(junction,asphalt): outline.append(screen(point))
-			if outline.size()>=3: draw_colored_polygon(outline,Color("4c5659") if asphalt else Color("c8cbc3"))
+	# All curbs precede every asphalt plane, including neighbouring boxes.
+	for polygon in city.road_pavement+city.junction_pavement:
+		var outline:=PackedVector2Array()
+		for point in polygon:outline.append(screen(point))
+		draw_colored_polygon(outline,Color("c8cbc3"))
+	for polygon in city.road_asphalt+city.junction_asphalt:
+		var outline:=PackedVector2Array()
+		for point in polygon:outline.append(screen(point))
+		draw_colored_polygon(outline,Color("4c5659"))
+	for line in city.road_medians:draw_line(screen(line[0]),screen(line[-1]),Color("e4bd5f"),maxf(.6,map_zoom),true)
+	for line in city.road_lane_marks:draw_line(screen(line[0]),screen(line[-1]),Color("e8e7dc"),maxf(.6,map_zoom),true)
 	# Topology rebuilds derive paint only on surviving, visible asphalt.
-	for stripe in city.road_crosswalks:
+	for stripe in city.road_crosswalks+city.road_stop_lines:
 		var projected:=PackedVector2Array()
 		for corner in stripe:projected.append(screen(corner))
 		draw_colored_polygon(projected,Color("e8e7dc"))

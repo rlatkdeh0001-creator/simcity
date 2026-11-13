@@ -85,6 +85,38 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		result.append(visual)
 	return result
 
+static func outside_regions(shapes: Array[PackedVector2Array],regions: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=shapes.duplicate()
+	for region in regions:
+		var next: Array[PackedVector2Array]=[]
+		for shape in result:
+			for piece in Geometry2D.clip_polygons(shape,region):
+				if piece.size()>=3:next.append(piece)
+		result=next
+	return result
+
+static func visible_lines(points: PackedVector2Array,bounds: Vector2,regions: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	for i in range(1,points.size()):
+		var line:=clipped_segment(points[i-1],points[i],bounds)
+		if line.size()!=2:continue
+		var delta: Vector2=line[1]-line[0]
+		if delta.length_squared()<.00000001:continue
+		var cuts: Array[float]=[0,1]
+		for region in regions:
+			for edge in range(region.size()):
+				var point=Geometry2D.segment_intersects_segment(line[0],line[1],region[edge],region[(edge+1)%region.size()])
+				if point!=null:cuts.append(clampf((point-Vector2(line[0])).dot(delta)/delta.length_squared(),0,1))
+		cuts.sort()
+		for j in range(1,cuts.size()):
+			if cuts[j]-cuts[j-1]<.00001:continue
+			var middle: Vector2=line[0]+delta*(cuts[j]+cuts[j-1])/2
+			var hidden:=false
+			for region in regions:
+				if Geometry2D.is_point_in_polygon(middle,region):hidden=true;break
+			if not hidden:result.append(PackedVector2Array([line[0]+delta*cuts[j-1],line[0]+delta*cuts[j]]))
+	return result
+
 static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 	var lines: Array[PackedVector2Array] = []
 	var offsets:=Profile.separators(road)

@@ -37,8 +37,9 @@ func build(roads: Array) -> bool:
 		var last: Dictionary=topology.nodes[section.end_node]
 		var first_connection: Dictionary=Junctions.connection(first,topology)
 		var last_connection: Dictionary=Junctions.connection(last,topology)
-		var trim_start: float=minf(length*.4,first_connection.radius) if not first_connection.is_empty() else 0.0
-		var trim_end: float=minf(length*.4,last_connection.radius) if not last_connection.is_empty() else 0.0
+		var reverse:=original.duplicate();reverse.reverse()
+		var trim_start: float=minf(length*.4,Junctions.boundary_distance(first_connection,original)) if not first_connection.is_empty() else 0.0
+		var trim_end: float=minf(length*.4,Junctions.boundary_distance(last_connection,reverse)) if not last_connection.is_empty() else 0.0
 		var cells: PackedVector2Array=Junctions.slice(original,trim_start,length-trim_end)
 		var points := PackedVector2Array()
 		for point in cells:points.append(point*METRES_PER_CELL)
