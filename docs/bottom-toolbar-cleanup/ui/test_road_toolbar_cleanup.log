@@ -1,0 +1,35 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS build has no redundant draw/building/facility-select action
+PASS road has no redundant draw/building/facility-select action
+PASS power has no redundant draw/building/facility-select action
+PASS water has no redundant draw/building/facility-select action
+PASS environment has no redundant draw/building/facility-select action
+PASS park has no redundant draw/building/facility-select action
+PASS transport has no redundant draw/building/facility-select action
+PASS health has no redundant draw/building/facility-select action
+PASS education has no redundant draw/building/facility-select action
+PASS fire has no redundant draw/building/facility-select action
+PASS police has no redundant draw/building/facility-select action
+PASS legacy water-panel facility-select button is also removed
+PASS internal facility and building inspection entry points remain available
+PASS small v is the preserved drawer-collapse button, not a lane dropdown
+PASS v folds the tool drawer without changing the grid choice
+PASS fixture uses the player's real grid OFF click
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS pending curve exists before width-card restart
+PASS width card starts a fresh stroke instead of changing an unfinished stroke's width
+PASS real Escape exits drawing mode and clears its preview
+PASS clicking the already selected lane card re-arms drawing after Escape
+PASS real right click exits drawing without constructing a road
+PASS toolbar navigation and cancellations never mutate the city
+RESULT 32/32 road toolbar cleanup checks passed

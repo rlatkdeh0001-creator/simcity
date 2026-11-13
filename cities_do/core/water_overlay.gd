@@ -31,7 +31,7 @@ func setup(owner_view, layer: CanvasLayer):
  title.text="상하수도 · 함께 설치"
  title.add_theme_font_size_override("font_size",20)
  box.add_child(title)
- for pair in [["취수장 배치","supply"],["하수처리장 배치","treatment"],["상하수관 함께 · 드래그","pipe"],["시설 선택","select"]]:
+ for pair in [["취수장 배치","supply"],["하수처리장 배치","treatment"],["상하수관 함께 · 드래그","pipe"]]:
   var button := Button.new()
   button.name="Water_"+pair[1]
   button.text=pair[0]

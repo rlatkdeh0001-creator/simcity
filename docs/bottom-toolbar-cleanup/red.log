@@ -1,0 +1,64 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL build has no redundant draw/building/facility-select action
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:18)
+ERROR: FAIL road has no redundant draw/building/facility-select action
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:18)
+PASS power has no redundant draw/building/facility-select action
+ERROR: FAIL water has no redundant draw/building/facility-select action
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:18)
+PASS environment has no redundant draw/building/facility-select action
+PASS park has no redundant draw/building/facility-select action
+PASS transport has no redundant draw/building/facility-select action
+PASS health has no redundant draw/building/facility-select action
+PASS education has no redundant draw/building/facility-select action
+PASS fire has no redundant draw/building/facility-select action
+PASS police has no redundant draw/building/facility-select action
+ERROR: FAIL legacy water-panel facility-select button is also removed
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:19)
+PASS internal facility and building inspection entry points remain available
+PASS small v is the preserved drawer-collapse button, not a lane dropdown
+PASS v folds the tool drawer without changing the grid choice
+PASS fixture uses the player's real grid OFF click
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS real card click starts its exact road width from selection mode
+PASS card activation retains selected drawing method and grid setting
+PASS pending curve exists before width-card restart
+ERROR: FAIL width card starts a fresh stroke instead of changing an unfinished stroke's width
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:37)
+       [2] click (res://tests/test_road_toolbar_cleanup.gd:11)
+ERROR: FAIL real Escape exits drawing mode and clears its preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:41)
+PASS clicking the already selected lane card re-arms drawing after Escape
+ERROR: FAIL real right click exits drawing without constructing a road
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_toolbar_cleanup.gd:8)
+       [1] run (res://tests/test_road_toolbar_cleanup.gd:48)
+PASS toolbar navigation and cancellations never mutate the city
+RESULT 25/32 road toolbar cleanup checks passed

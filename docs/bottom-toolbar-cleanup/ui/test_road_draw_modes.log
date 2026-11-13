@@ -1,0 +1,32 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS approved default click-based road drawing controller exists
+PASS default mode is straight, hidden legacy drag is not the default
+PASS first click and release keep live preview without committing a dragged road
+PASS straight preview follows cursor with exact two endpoints
+PASS second click builds and seeds the next straight segment from the previous end
+PASS continuous straight drawing uses next endpoint clicks without another start
+PASS quadratic mode waits for third click while displaying green preview
+PASS quadratic remains sampled curved geometry with a nearby eight-metre snapped endpoint, not a straight chord
+PASS third click commits the actual quadratic path
+PASS free curve snaps to previous quantized road end and makes a real smooth curved path
+PASS free curve initial tangent follows connected road travel direction
+PASS free curve commits on second endpoint click
+PASS unconnected free curve falls back to straight
+PASS real ESC cancels all pending geometry without construction
+PASS overlapping duplicate road is red and not constructible
+PASS clicking invalid duplicate cannot commit
+PASS real right click cancels click-based drawing
+PASS straight supports snapped middle-road branch preview
+PASS straight creates actual junction and traffic route from existing road to new branch
+PASS curve supports snapped middle-road branch preview
+PASS curve creates actual junction and traffic route from existing road to new branch
+PASS free supports snapped middle-road branch preview
+PASS free creates actual junction and traffic route from existing road to new branch
+PASS outside-map preview is red via existing city geometry validation
+PASS switching drawing mode cancels pending curve without building
+PASS reversing into existing road is rejected by original overlap/turn checks
+PASS collision fixture uses a real valid roadside building
+PASS new road preview cannot cut existing real building
+PASS near-reversing acute endpoint join is red when original traffic rules forbid its U-turn
+RESULT 29/29 road draw mode checks passed

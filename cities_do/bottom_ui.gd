@@ -612,11 +612,11 @@ func select_category(key: String):
  var choices := []
  match key:
   "power": choices=[["지중 전력선","power_wire"]]
-  "water": choices=[["상하수관 함께","water_pipe"],["시설 선택","water_select"]]
-  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"]]
+  "water": choices=[["상하수관 함께","water_pipe"]]
+  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
+  "road": choices=[] # The five lane cards are the drawing actions.
 
   _:
    pass
@@ -789,12 +789,20 @@ func capture():
  var error := get_viewport().get_texture().get_image().save_png(capture_path)
  get_tree().quit(0 if error==OK else 1)
 
+func _unhandled_input(event):
+ if mode=="road" and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
+  activate_tool("select")
+  get_viewport().set_input_as_handled()
+  return
+ super._unhandled_input(event)
+
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
   hide_asset_info();clear_money_toast()
   if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
+  elif mode=="road":activate_tool("select")
   drawer.hide()
 
 func asset_info_rows(id: String) -> Array[Dictionary]:return preload("res://core/asset_money_info.gd").rows(city,id)
@@ -986,7 +994,7 @@ func layout_bottom_hud():
 
 func select_road_lanes(count: int):
  if count not in preload("res://core/road_profile.gd").LOCAL_LANES:return
- road_lanes=count;mode="road";road_drawer.arm_cursor();update_road_lane_cards();queue_redraw()
+ road_lanes=count;activate_tool("road");update_road_lane_cards();queue_redraw()
 func update_road_lane_cards():
  for card in road_lane_cards:
   var active: bool=int(card.get_meta("lanes"))==road_lanes
