@@ -10,10 +10,12 @@ func verify(value: bool,label: String):
 func town(gap: float=8.0,second: bool=true,angle: float=0.0,reverse: bool=false,half: bool=false):
  var city:=City.new(120,120);city.population_enabled=false
  var along:=Vector2.RIGHT.rotated(angle);var outward:=Vector2.DOWN.rotated(angle)
- var start:=Vector2(25,40)
+ var half_width:float=City.RoadProfile.width_for("local",2,city.config.road_width)/2.0
+ var start:=Vector2(25,41.0-half_width)
  city.add_road(PackedVector2Array([start,start+along*40]))
  if second:
-  var other:=PackedVector2Array([start+outward*(gap+2),start+outward*(gap+2)+along*(4 if half else 40)])
+  var separation:float=gap+city.roads[0].width
+  var other:=PackedVector2Array([start+outward*separation,start+outward*separation+along*(4 if half else 40)])
   if reverse:other.reverse()
   city.add_road(other)
  return city
@@ -45,10 +47,12 @@ func run():
  var partial=town(8,true,0,false,true)
  verify(not partial.parcel_placement_error(front_frame(partial),0,0,8).is_empty(),"a four-wide rear strip cannot support an eight-wide lot")
  var shifted=town(8,false)
- shifted.add_road(PackedVector2Array([Vector2(25.5,50),Vector2(65.5,50)]))
+ var rear_y:float=shifted.roads[0].points[0].y+8+shifted.roads[0].width
+ shifted.add_road(PackedVector2Array([Vector2(25.5,rear_y),Vector2(65.5,rear_y)]))
  verify(not shifted.parcel_placement_error(front_frame(shifted),0,0,8).is_empty(),"half-cell phase mismatch never counts as an aligned shared lot")
  var skewed=town(8,false)
- skewed.add_road(PackedVector2Array([Vector2(25,50),Vector2(65,50)+Vector2(0,40*tan(deg_to_rad(1)))]))
+ rear_y=skewed.roads[0].points[0].y+8+skewed.roads[0].width
+ skewed.add_road(PackedVector2Array([Vector2(25,rear_y),Vector2(65,rear_y)+Vector2(0,40*tan(deg_to_rad(1)))]))
  verify(not skewed.parcel_placement_error(front_frame(skewed),0,0,8).is_empty(),"one-degree skew cannot bend square cells to force an 8x8")
  var mixed=town();var frame:=front_frame(mixed);mixed.paint_zones(mixed.Parcels.polygon(frame,0,0,8),"residential")
  var rear: Dictionary=mixed.zoning_grid.parcel_at(frame.origin+frame.along*.5+frame.outward*7.5)

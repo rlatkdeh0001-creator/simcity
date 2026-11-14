@@ -1,0 +1,89 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS residential automatic wide zoning deterministically prefers 4x4
+PASS residential 4x4 starts with a stage1 small facade
+PASS commercial automatic wide zoning deterministically prefers 4x4
+PASS commercial 4x4 starts with a stage1 small facade
+PASS industrial automatic wide zoning deterministically prefers 4x4
+PASS industrial 4x4 starts with a stage1 small facade
+PASS residential largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS residential largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS commercial largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS commercial largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS industrial largest legal lot at stage2
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage3
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage4
+PASS lot selection consumes no random draw without neighbors
+PASS industrial largest legal lot at stage5
+PASS lot selection consumes no random draw without neighbors
+PASS stage5 is final without an invented stage6
+PASS stage5 8x8 selects actual original large facade
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS insufficient same-use expansion space preserves existing 4x4 without shrinking
+PASS stage5 8x8 collision falls back to existing 4x4
+PASS no automatic merging or demolition of another building
+PASS new authored 8x8 also starts at final stage; only existing legacy data may be earlier
+PASS legacy early-stage 8x8 keeps its existing large original without shrinking
+PASS narrow residential falls back to actual 2x2 stage1
+PASS no same-use 4x4/8x8 space retains 2x2 at stage2
+PASS no same-use 4x4/8x8 space retains 2x2 at stage3
+PASS no same-use 4x4/8x8 space retains 2x2 at stage4
+PASS no same-use 4x4/8x8 space retains 2x2 at stage5
+PASS private construction and manual growth remain free
+PASS narrow commercial falls back to actual 2x2 stage1
+PASS no same-use 4x4/8x8 space retains 2x2 at stage2
+PASS no same-use 4x4/8x8 space retains 2x2 at stage3
+PASS no same-use 4x4/8x8 space retains 2x2 at stage4
+PASS no same-use 4x4/8x8 space retains 2x2 at stage5
+PASS private construction and manual growth remain free
+PASS narrow industrial falls back to actual 2x2 stage1
+PASS no same-use 4x4/8x8 space retains 2x2 at stage2
+PASS no same-use 4x4/8x8 space retains 2x2 at stage3
+PASS no same-use 4x4/8x8 space retains 2x2 at stage4
+PASS no same-use 4x4/8x8 space retains 2x2 at stage5
+PASS private construction and manual growth remain free
+PASS neither valid size means no construction
+PASS mixed-use 2x2 cannot construct
+PASS 4x4 cannot cross two road blocks even if paint is continuous
+PASS valid large lot wins over earlier narrow candidate in the same fair scan
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS initial lot preference is seed-independent and consumes no growth RNG
+PASS diagonal 4x4 uses same-block shared frontage and collision checks
+PASS 4x4 dwelling capacity equals four 2x2 stage1 buildings without config edits
+PASS commercial all five job bands retain existing area-proportional capacity
+PASS commercial populated original demand gate remains nonnegative and does not increase after construction
+PASS industrial all five job bands retain existing area-proportional capacity
+PASS industrial populated original demand gate remains nonnegative and does not increase after construction
+PASS real residential demand gate permits a large birth without upward demand jump
+PASS larger capacity does not create four immigrant households in one existing tick
+RESULT 86/86 lot rule checks passed
