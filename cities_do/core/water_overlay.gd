@@ -13,6 +13,8 @@ var summary: Label
 var instruction: Label
 var output: SpinBox
 var selected_facility := -1
+var paint_origin:=Vector2.ZERO
+var paint_zoom:=1.0
 
 func setup(owner_view, layer: CanvasLayer):
  view=owner_view
@@ -109,7 +111,7 @@ func update_state(delta: float):
   var state: Dictionary=view.water_snapshot
   summary.text="상수 수요 %.1f / 공급 %.1f m³/일\n상수 수입 %.1f / 잉여 수출 %.1f\n하수 발생 %.1f / 내부 처리 %.1f\n하수 외부 위탁 %.1f / 미처리 %.1f\n누적 급수 %.4f / 내부 처리 %.4f m³" % [state.get("demand_m3_day",0),state.get("water_supplied_m3_day",0),state.get("water_import_m3_day",0),state.get("water_export_m3_day",0),state.get("sewage_generated_m3_day",0),state.get("sewage_treated_m3_day",0),state.get("sewage_export_m3_day",0),state.get("unhandled_sewage_m3_day",0),view.city.water.supplied_m3,view.city.water.treated_m3]
   summary.text+="\n외부 요금 %s/일\n수출 수익 %s/일\n수도 미정산 잔액 %s" % [view.city.Economy.format_fraction(state.get("expense_doth_day",0),4),view.city.Economy.format_fraction(state.get("revenue_doth_day",0),4),view.city.Economy.format_fraction(view.city.water.pending_doth,6,true)]
- if tab_open or not view.city.water.facilities.is_empty(): queue_redraw()
+ if tab_open: queue_redraw()
 
 func finish_capture(event):
  if drawing and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
@@ -179,8 +181,14 @@ func projected(points: PackedVector2Array, offset: Vector2) -> PackedVector2Arra
  for point in points: path.append(view.screen(point/4.0)+offset)
  return path
 
+func _process(_delta:float):
+ if view==null or tab_open:return
+ # Keep above-ground facilities while closed; camera changes only transform the cached canvas.
+ var factor:float=view.map_zoom/paint_zoom
+ scale=Vector2.ONE*factor;position=view.origin-paint_origin*factor
 func _draw():
  if view==null: return
+ position=Vector2.ZERO;scale=Vector2.ONE;paint_origin=view.origin;paint_zoom=view.map_zoom
  var water_color := Color("35b8ff")
  var sewage_color := Color("aa6737")
  var grid=view.city.water.geometry

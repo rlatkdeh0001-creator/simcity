@@ -15,6 +15,11 @@ var start_tangent:=Vector2.ZERO
 var last_result: Dictionary={}
 var cursor_armed:=false
 var measurement_boxes: Array[Dictionary]=[]
+var preview_computations:=0
+var _preview_signature=null
+var _preview_cache:Dictionary={}
+var _legacy_signature=null
+var _legacy_valid:=false
 func _init(owner):owner_reference=weakref(owner)
 func cancel():
  grid_frame.clear()
@@ -128,6 +133,24 @@ func joins_routable(network,points: PackedVector2Array,road_id: int=-1) -> bool:
   if existing and not connected:return false
  return true
 func preview() -> Dictionary:
+ # Cache world-space admission, never camera-space drawing. Geometry changes also invalidate.
+ var obstacles:Array=[]
+ for building in view.city.buildings:obstacles.append(view.city.footprint(building))
+ for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
+ var signature:=hash([kind,anchors,view.pointer,view.road_lanes,view.road_major_side,grid_on(),grid_frame,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ if signature!=_preview_signature:
+  _preview_signature=signature;preview_computations+=1;_preview_cache=_compute_preview()
+ return _preview_cache.duplicate(true)
+func legacy_preview(points:PackedVector2Array)->bool:
+ var obstacles:Array=[]
+ for building in view.city.buildings:obstacles.append(view.city.footprint(building))
+ for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
+ var signature:=hash([points,view.road_lanes,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ if signature!=_legacy_signature:
+  _legacy_signature=signature;preview_computations+=1
+  _legacy_valid=view.city.add_road(points,"local",false,view.road_lanes).ok
+ return _legacy_valid
+func _compute_preview() -> Dictionary:
  var resolved:=resolved_path()
  var points: PackedVector2Array=resolved.points
  var complete: bool=kind!="curve" or anchors.size()>=2

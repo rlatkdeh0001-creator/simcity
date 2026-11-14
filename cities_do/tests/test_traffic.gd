@@ -42,8 +42,9 @@ func test_network() -> bool:
 	var network := Network.new()
 	verify(network.build([road([Vector2(10,20),Vector2(90,20)])]), "straight city road imports")
 	verify(network.lanes.size() == 2, "two lanes represent opposite directions")
-	verify(network.sample(0,0).is_equal_approx(Vector2(40,81.5)), "city cells convert to metres; forward lane stays right")
-	verify(network.sample(1,0).is_equal_approx(Vector2(360,78.5)), "reverse lane stays on its own right side")
+	# Current approved 3.5m lane width places each centre 1.75m from the median.
+	verify(network.sample(0,0).is_equal_approx(Vector2(40,81.75)), "city cells convert to metres; forward lane stays right")
+	verify(network.sample(1,0).is_equal_approx(Vector2(360,78.25)), "reverse lane stays on its own right side")
 	verify(network.tangent(0,20).dot(network.tangent(1,20)) < -0.999, "opposite lane tangents")
 	verify(is_equal_approx(network.lanes[0].speed_limit*3.6,80.0), "local speed ceiling 80 km/h")
 	network.build([road([Vector2(10,20),Vector2(50,20)]),road([Vector2(90,20),Vector2(50,20)])])
@@ -106,7 +107,7 @@ func test_loop() -> bool:
 		min_gap = minf(min_gap,gap)
 		for vehicle in sim.vehicles:
 			var p: Vector2 = sim.position(vehicle)
-			valid = valid and p.is_finite() and absf(p.distance_to(Vector2(200,200))-130.5) < 0.25
+			valid = valid and p.is_finite() and absf(p.distance_to(Vector2(200,200))-130.25) < 0.25
 	verify(min_gap >= 1.999, "following distance is maintained across closed-lane seam")
 	verify(valid, "vehicles stay on offset curved lane for three minutes")
 	verify(follow.distance > 300 and not follow.arrived, "closed route keeps moving through seam")

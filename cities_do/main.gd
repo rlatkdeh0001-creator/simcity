@@ -10,6 +10,7 @@ var water_overlay
 var water_snapshot := {}
 var traffic
 var traffic_button: Button
+var world_renderer
 var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
 const Model = preload("res://core/city_model.gd")
 var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed))
@@ -106,6 +107,9 @@ func _ready():
 	labor_rings=preload("res://labor_rings.gd").new()
 	labor_panel.add_child(labor_rings)
 	refresh()
+	world_renderer=preload("res://core/cached_world_renderer.gd").new()
+	add_child(world_renderer)
+	world_renderer.setup(self)
 
 func _build_controls(layer: CanvasLayer):
 	var panel := PanelContainer.new()
@@ -281,19 +285,6 @@ func _process(delta: float):
 		traffic.update(delta)
 		queue_redraw()
 
-func draw_traffic():
-	if traffic == null or not traffic.running: return
-	var ordered: Array = traffic.simulation.vehicles.duplicate()
-	ordered.sort_custom(func(a,b):
-		var pa: Vector2 = traffic.simulation.position(a)
-		var pb: Vector2 = traffic.simulation.position(b)
-		return pa.x+pa.y < pb.x+pb.y)
-	for vehicle in ordered:
-		var position_m: Vector2 = traffic.simulation.position(vehicle)
-		var heading: Vector2 = traffic.simulation.heading(vehicle)
-		var texture: Texture2D = traffic.texture_for(vehicle.asset_id, heading)
-		var rect: Rect2 = traffic.sprite_rect(vehicle.asset_id, screen(position_m/4.0), tile.x/4.0*sqrt(2.0)*map_zoom)
-		draw_texture_rect(texture, rect, false)
 
 func building_visual(b: Dictionary) -> Dictionary:
 	var asset: Dictionary=city.catalog.get_asset(b.get("asset_id",""))
@@ -351,6 +342,7 @@ func refresh():
 		if not asset.is_empty():
 			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
 	hud.text = message
+	if world_renderer!=null:world_renderer.synchronize()
 	queue_redraw()
 
 func cancel_zoning_drag() -> void:
@@ -645,65 +637,11 @@ func draw_front_door(b: Dictionary):
 	draw_colored_polygon(PackedVector2Array([left,right,right-lift,left-lift]),Color("293c46"))
 
 func _draw():
-	# One terrain polygon, no full-map cell array or always-on grid.
-	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
-	draw_colored_polygon(terrain,Color("7e9275"))
-	for parcel in visible_zoning_parcels():
-		var outline := PackedVector2Array()
-		for point in parcel.polygon:outline.append(screen(point))
-		var designated: String=city.zone_designations.get(parcel.id,"")
-		var tint: Color=ZONE_COLORS.get(designated,Color(0.82,0.89,0.72))
-		tint.a=.50 if not designated.is_empty() else .22
-		draw_colored_polygon(outline,tint)
-		outline.append(outline[0])
-		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
-	# All curbs precede every asphalt plane, including neighbouring boxes.
-	for polygon in city.road_pavement+city.junction_pavement:
-		var outline:=PackedVector2Array()
-		for point in polygon:outline.append(screen(point))
-		draw_colored_polygon(outline,Color("c8cbc3"))
-	for polygon in city.road_asphalt+city.junction_asphalt:
-		var outline:=PackedVector2Array()
-		for point in polygon:outline.append(screen(point))
-		draw_colored_polygon(outline,Color("4c5659"))
-	for line in city.road_medians:draw_line(screen(line[0]),screen(line[-1]),Color("e4bd5f"),maxf(.6,map_zoom),true)
-	for line in city.road_lane_marks:draw_line(screen(line[0]),screen(line[-1]),Color("e8e7dc"),maxf(.6,map_zoom),true)
-	# Topology rebuilds derive paint only on surviving, visible asphalt.
-	for stripe in city.road_crosswalks+city.road_stop_lines:
-		var projected:=PackedVector2Array()
-		for corner in stripe:projected.append(screen(corner))
-		draw_colored_polygon(projected,Color("e8e7dc"))
-	BoundaryLinks.draw_links(self,self,BoundaryLinks.road_links(city))
-	draw_traffic()
-	var sorted: Array = building_draw_order()
-	for b in sorted:
-		if b.has("public_asset_id"):
-			var public_visual: Dictionary=public_controller.visual(b)
-			if not public_visual.is_empty():draw_texture_rect(public_visual.texture,public_visual.rect,false)
-			continue
-		var visual:=building_visual(b)
-		if not visual.is_empty():
-			draw_texture_rect(visual.texture,visual.rect,false)
-			if b.id==selected:
-				var outline:=projected_footprint(b)
-				outline.append(outline[0])
-				draw_polyline(outline,Color.WHITE,2)
-			continue
-		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
-		var base := projected_footprint(b)
-		var top := lifted_footprint(b,visual_lift(b))
-		var faces: Array[Dictionary]=[]
-		for edge in range(4):
-			var next: int=(edge+1)%4
-			faces.append({"depth":(base[edge].y+base[next].y)/2,"points":PackedVector2Array([base[edge],base[next],top[next],top[edge]]),"shade":0.15 if edge%2 else 0.35})
-		faces.sort_custom(func(a,c):return a.depth<c.depth)
-		for face in faces:draw_colored_polygon(face.points,color.darkened(face.shade))
-		draw_colored_polygon(top, color)
-		draw_front_door(b)
-		if b.id == selected:
-			var outline := top.duplicate()
-			outline.append(top[0])
-			draw_polyline(outline, Color.WHITE, 2)
+	# Only active interaction feedback is screen-space; static layers and actors are retained.
+	var b:Dictionary=city.find_building(selected)
+	if not b.is_empty():
+		var outline:=projected_footprint(b) if not building_visual(b).is_empty() else lifted_footprint(b,visual_lift(b))
+		outline.append(outline[0]);draw_polyline(outline,Color.WHITE,2)
 	if zoning_drag:
 		var selection := zoning_selection()
 		if selection.size()>=3:
@@ -716,7 +654,7 @@ func _draw():
 		var snapped: PackedVector2Array=city.RoadJunctions.snap_path(stroke,city.roads)
 		var points := PackedVector2Array()
 		for p in snapped: points.append(screen(p))
-		var valid: bool = city.add_road(snapped, "local", false, road_lanes).ok
+		var valid: bool = road_drawer.legacy_preview(snapped)
 		draw_ribbon(snapped, city.RoadProfile.width_for("local",road_lanes,city.config.road_width), Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
 	if road_drawer!=null:road_drawer.draw_preview()
