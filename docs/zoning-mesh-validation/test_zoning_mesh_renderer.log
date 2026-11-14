@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS chunked zoning mesh renderer exists
+PASS real straight/curved grids are grouped into cullable frame blocks
+PASS every unchanged road-local cell has exactly one palette entry
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS one cullable mesh node reuses two static LOD resources
+PASS inset cells and gap bands replace all polygon/line draw commands
+PASS zoning paint updates existing palette pixels without rebuilding meshes or textures
+PASS designated cell preserves its production tint and alpha
+PASS paint preserves every chunk ArrayMesh identity
+PASS far zoom swaps cached full cells without lines or geometry regeneration
+PASS normal zoom restores inset gap representation
+PASS existing tab visibility still hides zoning meshes
+PASS rendering and camera changes do not mutate model roads or curved grid cells
+PASS independent parcel cache changes invalidate static geometry even when roads are unchanged
+RESULT 44/44 zoning mesh checks passed

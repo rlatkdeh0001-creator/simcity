@@ -1,0 +1,8 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+ZONING_PERF before normal { "fps": 141.772278278016, "frames": 568, "median_ms": 6.562, "p99_ms": 18.307, "max_ms": 34.152, &"scenario": "normal" }
+ZONING_PERF before zoning { "fps": 38.8623689204682, "frames": 156, "median_ms": 25.327, "p99_ms": 32.923, "max_ms": 33.126, &"scenario": "zoning" }
+ZONING_PERF before zoom-out { "fps": 67.9566266830196, "frames": 272, "median_ms": 14.636, "p99_ms": 22.156, "max_ms": 24.8, &"scenario": "zoom-out" }
+ZONING_DRAG before max_ms=85.77
+ZONING_MESH_CAPTURE_PASS before

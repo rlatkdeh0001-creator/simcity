@@ -30,11 +30,11 @@ var road_signature:=0
 var zone_signature:=0
 var building_signature:Array=[]
 var ordered:Array=[]
-var fills:Array=[]
+
 var road_shapes:Array=[]
 var verges:Array=[]
 var stripes:Array=[]
-var outlines:=PackedVector2Array()
+
 var arrows:Array=[]
 var line_mesh:ArrayMesh
 var line_material:ShaderMaterial
@@ -44,8 +44,8 @@ const DISPLAY_STRIDE:=100
 func setup(owner_view):
  view=owner_view;z_index=-10
  ground=Layer.new(self,"ground");add_child(ground)
- zones=Layer.new(self,"zones");zones.z_index=1;add_child(zones)
- grid=Layer.new(self,"grid");grid.z_index=2;add_child(grid)
+ zones=preload("res://core/zoning_mesh_renderer.gd").new();zones.z_index=1;add_child(zones);zones.setup(view)
+ grid=Node2D.new();grid.z_index=2;add_child(grid) # Existing outline visibility contract; no line drawing.
  roads=Layer.new(self,"roads");roads.z_index=3;add_child(roads)
  marks=Layer.new(self,"marks");marks.z_index=4;add_child(marks)
  line_material=ShaderMaterial.new();var shader:=Shader.new()
@@ -78,16 +78,12 @@ func synchronize():
     for clipped in Geometry2D.intersect_polygons(shape,boundary):arrows.append(project(clipped))
   verges.clear()
   for polygon in preload("res://core/roadside_verges.gd").build(view.city):verges.append(project(polygon))
+  zones.rebuild()
   build_marks();ground.queue_redraw();roads.queue_redraw();marks.queue_redraw()
  var zs:=hash([rs,view.city.zone_designations,view.city.zoning_grid.parcels.size()])
  if changed or zs!=zone_signature:
-  zone_signature=zs;grid_generation+=1;fills.clear();outlines.clear()
-  for parcel in view.city.zoning_grid.parcels.values():
-   var polygon:=project(parcel.polygon);var designated:String=view.city.zone_designations.get(parcel.id,"")
-   var color:Color=view.ZONE_COLORS.get(designated,Color(.82,.89,.72));color.a=.5 if not designated.is_empty() else .22
-   fills.append([polygon,color])
-   for i in range(polygon.size()):outlines.append(polygon[i]);outlines.append(polygon[(i+1)%polygon.size()])
-  zones.queue_redraw();grid.queue_redraw()
+  if not changed and zones.cell_slots.size()!=view.city.zoning_grid.count():zones.rebuild()
+  zone_signature=zs;grid_generation+=1;zones.update_palette()
  var records:Array=view.city.buildings.duplicate();records.append_array(view.city.public_facilities.lots)
  var signature:Array=[view.city.get_instance_id()]
  for record in records:signature.append([record.id,record.get("asset_id",""),record.get("public_asset_id",""),record.get("level",0),view.city.footprint(record),view.city.front_direction(record)])
@@ -140,10 +136,7 @@ func paint(canvas:CanvasItem,kind:String):
   "ground":
    canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),Color("7e9275"))
    for polygon in verges:canvas.draw_colored_polygon(polygon,preload("res://core/roadside_verges.gd").COLOR)
-  "zones":
-   for fill in fills:canvas.draw_colored_polygon(fill[0],fill[1])
-  "grid":
-   if not outlines.is_empty():canvas.draw_multiline(outlines,Color(.87,.94,.8,.5),.7,true)
+
   "roads":
    for shape in road_shapes:canvas.draw_colored_polygon(shape[0],shape[1])
    for polygon in stripes:canvas.draw_colored_polygon(polygon,Color("e8e7dc"))
@@ -174,8 +167,10 @@ static func display_eligible(vehicle:Dictionary)->bool:
 func _process(_delta:float):
  if view==null:return
  if city_reference!=view.city:synchronize()
- position=view.origin;scale=Vector2.ONE*view.map_zoom
+ if position!=view.origin:position=view.origin
+ if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
  zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
+ zones.set_grid_visible(view.map_zoom>=.4)
  if line_zoom!=view.map_zoom:
   line_zoom=view.map_zoom;line_material.set_shader_parameter("zoom",line_zoom)
  var screen_bounds:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
