@@ -1181,3 +1181,8 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - 기설치 TDD/Godot 검증 절차 적용, 외부 도입·라이선스 변경 없음. `test_lot_rules.gd`·`test_zoning_depth_four.gd`의 도로 중심 간격이 옛 폭을 가정해 실제 빈 땅이 8칸이 아니었고 정수 authored 부지와 반 칸 phase도 달랐다. 실제 보도 포함 폭으로 도로 중심 좌표를 계산해 기존 4+4 구획·8×8 성공 fixture만 바로잡았다. 부지/성장/인구 생산 코드와 기대 정책은 변경하지 않았다.
 - 새 실행 부지86/86·깊이52/52, 합138/138; 과거 fixture 스크립트 오류와 3실패 제거. 음성·원본·캡처·전체 회귀·main/push 없음. 최종 로그 `docs/pre-csharp-test-baseline/`. 기존 인구136/136·3일 동일성 근거는 생산 코드가 같아 재실행하지 않았다.
 - 승인된 성능 메모의 다음1~7 순서·30만/C# 결정 및 MAP_SIZE/VEHICLE_SPAWN_DESPAWN 수정 원문을 이 단계 첫 커밋에 함께 보존한다. 미커밋 depth 테스트는 다음2단계용으로 남겼으며 GDScript 5000명 미세 최적화와 C# 설치는 하지 않았다.
+
+### 승인 순서 2: 유지형 건물·공공 주차장 가림 순서
+- 기설치 TDD/Godot 검증 적용, 자체 검토·외부 설치 없음. painter_order는 옳았으나 0.0001 Y 차이가 엔진에서 근사 동률일 때 늦게 만든 뒤 건물이 위로 그려졌다. `cached_world_renderer.gd`에서 캐시 정렬 시 sibling 순서만 painter 순서로 맞췄다. 공통 y_sort·차량 좌표·건물 그림 위치·원본/배치 데이터는 유지한다.
+- 보존된 `test_retained_depth_order.gd`를 2×2/4×4/8×8·4방향 및 평면 주차장/창고4방향으로 확장했다. 새 실행 retained32·시설16·캐시/차량26=74/74. 원래의 '근사 Y가 반드시 달라야 한다' 구현 가정 대신 실제 엔진의 sibling 동률 처리 결과를 검사한다.
+- `tools/validate_retained_depth_native.gd`: 실제 1920×1080 GL 자산 렌더의 겹침 불투명19픽셀 앞 건물 일치0→19, 뒤 건물 일치19→0. 전후4PNG·상태·최종 로그는 `docs/retained-depth-validation/`. 크기/표시 배율을 바꾸거나 주차장을 강제로 지면 층에 보내지 않았다. 전체 회귀·main/push 없음.

@@ -89,11 +89,14 @@ func synchronize():
  for record in records:signature.append([record.id,record.get("asset_id",""),record.get("public_asset_id",""),record.get("level",0),view.city.footprint(record),view.city.front_direction(record)])
  if changed or signature!=building_signature:
   building_signature=signature;ordered=view.building_draw_order();building_sorts+=1
-  var keep:Dictionary={};var previous_depth:float=-INF
+  var keep:Dictionary={};var previous_depth:float=-INF;var rank:=0
   for record in ordered:
    keep[record.id]=true
    var node:Building=buildings.get(record.id)
    if node==null:node=Building.new();node.renderer=self;node.centered=false;actors.add_child(node);buildings[record.id]=node
+   # Engine Y-sort resolves approximately equal anchors by sibling order.
+   # Keep that stable tie-break in painter order, not construction order.
+   actors.move_child(node,rank);rank+=1
    node.record=record
    var center:=Vector2.ZERO
    for p in view.city.footprint(record):center+=p
