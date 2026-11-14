@@ -1,0 +1,47 @@
+{
+  "building_preserved": true,
+  "designations_preserved": true,
+  "fixture": "four-arm junction, vertical four-lane road ending at y50 then continued to y75",
+  "input": "real four-lane card and endpoint viewport mouse press/release",
+  "old_designated_cells": 45,
+  "polygon_sets_equal": true,
+  "roads": [
+    {
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 0,
+      "points": "[(10.0, 30.0), (90.0, 30.0)]",
+      "width": 5.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(10.0, 32.5)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 1,
+      "points": "[(50.5, 10.0), (50.5, 50.0)]",
+      "width": 5.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(10.0, 32.5)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 2,
+      "points": "[(50.5, 50.0), (50.5, 75.0)]",
+      "width": 5.0
+    }
+  ],
+  "split_cell_count": 1008,
+  "viewport": "(1920, 1080)",
+  "whole_cell_count": 1008
+}

@@ -1,0 +1,53 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight continuation/overlay retains authored road records 0/46.0/false
+PASS one-shot and split road have identical full polygon sets 0/46.0/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/46.0/true
+PASS one-shot and split road have identical full polygon sets 0/46.0/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/46.5/false
+PASS one-shot and split road have identical full polygon sets 0/46.5/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/46.5/true
+PASS one-shot and split road have identical full polygon sets 0/46.5/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/50.0/false
+PASS one-shot and split road have identical full polygon sets 0/50.0/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/50.0/true
+PASS one-shot and split road have identical full polygon sets 0/50.0/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/50.5/false
+PASS one-shot and split road have identical full polygon sets 0/50.5/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 0/50.5/true
+PASS one-shot and split road have identical full polygon sets 0/50.5/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/46.0/false
+PASS one-shot and split road have identical full polygon sets 1/46.0/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/46.0/true
+PASS one-shot and split road have identical full polygon sets 1/46.0/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/46.5/false
+PASS one-shot and split road have identical full polygon sets 1/46.5/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/46.5/true
+PASS one-shot and split road have identical full polygon sets 1/46.5/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/50.0/false
+PASS one-shot and split road have identical full polygon sets 1/50.0/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/50.0/true
+PASS one-shot and split road have identical full polygon sets 1/50.0/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/50.5/false
+PASS one-shot and split road have identical full polygon sets 1/50.5/false
+PASS extension preserves every old parcel ID, polygon and designation
+PASS straight continuation/overlay retains authored road records 1/50.5/true
+PASS one-shot and split road have identical full polygon sets 1/50.5/true
+PASS extension preserves every old parcel ID, polygon and designation
+PASS preservation fixture uses a legally constructed existing building
+PASS extending a road keeps the full existing building record and footprint unchanged
+RESULT 50/50 road extension grid checks passed

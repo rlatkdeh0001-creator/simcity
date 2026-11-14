@@ -686,19 +686,30 @@ func _update_zoning_for_road(_road: Dictionary):
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()
+	var seam_columns:Array[Dictionary]=[]
 	for road_index in range(roads.size()):
 		var road: Dictionary=roads[road_index]
 		if road.kind!="local":continue
 		var source: PackedVector2Array=road.get("zoning_source_points",road.points)
 		var source_id: int=road.get("zoning_source_id",road.get("parcel_id",road_index))
 		var frames: Array[Dictionary]=Parcels.blocks(source,road.width/2,source_id,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation)
-		for frame in preload("res://core/road_grid_snap.gd").aligned_blocks(frames,zoning_lattices[road_index]):
+		var aligned: Array[Dictionary]=preload("res://core/road_grid_snap.gd").aligned_blocks(frames.duplicate(true),zoning_lattices[road_index])
+		var supported: Array[Dictionary]=preload("res://core/road_grid_snap.gd").aligned_blocks(frames,zoning_lattices[road_index],roads,road.width)
+		for i in range(aligned.size()):
+			for u in range(aligned[i].columns,supported[i].columns):seam_columns.append({"road":road,"frame":supported[i],"u":u})
+		for frame in aligned:
 			for u in range(frame.columns):
 				if not RoadUnits.supports_column(road,frame,u):continue
 				for v in range(clampi(int(config.zoning_depth),0,Config.MAX_ZONING_DEPTH)):
 					var polygon_value:=Parcels.polygon(frame,u,v)
 					if _polygon_error(polygon_value,-1,false)=="":zoning_grid.add_parcel(frame,u,v)
-
+	# Complete only physically supported whole cells AFTER established ownership, so
+	# new seam cells cannot steal another road's existing parcel IDs/designations.
+	for entry in seam_columns:
+		if not RoadUnits.supports_column(entry.road,entry.frame,entry.u):continue
+		for v in range(clampi(int(config.zoning_depth),0,Config.MAX_ZONING_DEPTH)):
+			var polygon_value:=Parcels.polygon(entry.frame,entry.u,v)
+			if _polygon_error(polygon_value,-1,false)=="":zoning_grid.add_parcel(entry.frame,entry.u,v)
 
 	# Keep designations only on surviving stable road-local cells.
 	for id in zone_designations.keys():

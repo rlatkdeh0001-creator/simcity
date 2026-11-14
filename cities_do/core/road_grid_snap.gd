@@ -82,7 +82,24 @@ static func straight(frame: Dictionary) -> bool:
  for p in frame.centerline:
   if absf((p-Vector2(frame.centerline[0])).cross(frame.along))>EPS:return false
  return true
-static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary) -> Array[Dictionary]:
+static func column_supported(a:Vector2,b:Vector2,roads:Array,width:float)->bool:
+ # Real collinear centreline coverage may span several authored construction IDs.
+ var axis:Vector2=(b-a).normalized();var length:float=a.distance_to(b);var intervals:Array[Vector2]=[]
+ for road in roads:
+  if road.kind!="local" or absf(float(road.width)-width)>EPS:continue
+  for i in range(1,road.points.size()):
+   var p:Vector2=road.points[i-1];var q:Vector2=road.points[i]
+   if absf((p-a).cross(axis))>EPS or absf((q-a).cross(axis))>EPS:continue
+   var first:float=(p-a).dot(axis);var last:float=(q-a).dot(axis)
+   var low:=maxf(0,minf(first,last));var high:=minf(length,maxf(first,last))
+   if high>low+EPS:intervals.append(Vector2(low,high))
+ intervals.sort_custom(func(x,y):return x.x<y.x)
+ var cursor:=0.0
+ for interval in intervals:
+  if interval.x>cursor+EPS:return false
+  cursor=maxf(cursor,interval.y)
+ return cursor>=length-EPS
+static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary,support_roads:Array=[],width:float=0.0) -> Array[Dictionary]:
  if grid.is_empty():return frames
  for i in range(frames.size()):
   var frame: Dictionary=frames[i]
@@ -96,8 +113,12 @@ static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary) -> Array[
   var shift:=ceilf(phase-EPS)-phase
   var length: float=frame.centerline[0].distance_to(frame.centerline[-1])
   var continues: bool=i+2<frames.size() and frame.along.dot(frames[i+2].along)>.99999 and frame.centerline[-1].distance_to(frames[i+2].centerline[0])<EPS
+  var columns:=floori(length-shift+EPS);var full_columns:=ceili(length-shift-EPS)
+  if not support_roads.is_empty() and full_columns>columns:
+   var end:Vector2=frame.centerline[0]+frame.along*(shift+full_columns)
+   continues=column_supported(end-frame.along,end,support_roads,width)
   frame.origin+=frame.along*shift
-  frame.columns=ceili(length-shift-EPS) if continues else floori(length-shift+EPS)
+  frame.columns=full_columns if continues else columns
   var extension: float=shift+frame.columns-length
   if extension>EPS:frame.centerline.append(frame.centerline[-1]+frame.along*extension)
  return frames

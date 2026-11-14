@@ -109,9 +109,10 @@ func check_demolition(game):
  verify(short.roads.is_empty(),"old terminal shorter than four metres can be removed without leaving an undeletable stub")
  game.activate_tool("reset");game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(70,30)]));game.map_zoom=.8;game.origin=Vector2(850,20);game.toggle_demolition()
  var target: Dictionary=game.demolition_target(game.screen(Vector2(40.2,30)))
- verify(target.get("kind","")=="road" and absf(Paths.length_of(target.road.points)-1)<.001,"bulldozer hover selects only the actual four-metre interval")
+ # The 4m internal model API above remains; approved player clicks select the complete span.
+ verify(target.get("kind","")=="road" and target.selection.ok and target.selection.cuts.size()==1 and is_equal_approx(Paths.length_of(target.selection.cuts[0].points),Paths.length_of(game.city.roads[0].points)),"player bulldozer hover selects the complete free-end-to-free-end span")
  var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=true;event.position=game.screen(Vector2(40.2,30));root.push_input(event,true);await process_frame
  event.pressed=false;root.push_input(event,true);await process_frame
  after=0
  for road in game.city.roads:after+=Paths.length_of(road.points)
- verify(absf(after-59)<.001 and game.city.roads.size()==2 and game.mode=="demolish","actual player bulldozer uses partial removal rather than whole-object deletion")
+ verify(is_zero_approx(after) and game.city.roads.is_empty() and game.mode=="demolish","actual player click removes the approved complete span while keeping demolition mode")
