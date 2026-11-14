@@ -1,0 +1,14 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 4 lanes and drawing mode before world input
+PASS native short-arm junction overlay is green
+PASS native overlay has the reported 96m total length
+PASS production preview really selects green
+PASS native mouse commit preserves both originals and adds only one uncovered tail
+PASS native overlay leaves the existing four-arm junction unchanged
+PASS real zoning category reveals the unchanged grid
+PASS four-lane L and crossing have retained verge patches
+PASS actual framebuffer has grass color on both sides of both L arms
+PASS stationary native frames preserve grid and retained geometry generation
+RESULT 10/10 native overlay and verge checks passed

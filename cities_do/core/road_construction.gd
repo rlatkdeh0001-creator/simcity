@@ -169,6 +169,31 @@ static func overlap_allowed(a: Dictionary,b: Dictionary) -> bool:
    remaining=next
   if remaining.is_empty():return true
  return false
+static func continuation_overlap_allowed(candidate:Dictionary,other:Dictionary,roads:Array,topology:Dictionary)->bool:
+ # An uncovered tail may start inside an EXISTING junction's footprint. Validate its
+ # unchanged entry arm plus the tail, without storing that combined road or bypassing spacing.
+ var other_id:=roads.find(other)
+ if other_id<0:return false
+ var parts:=segments(candidate.points)
+ if parts.is_empty():return false
+ for host_id in range(roads.size()):
+  var host:Dictionary=roads[host_id]
+  if host_id==other_id or not same_profile(candidate,host):continue
+  var existing_contact:=false
+  for node in topology.nodes.values():
+   if (node.junction>=0 or node.join>=0) and host_id in node.road_ids and other_id in node.road_ids:existing_contact=true;break
+  if not existing_contact:continue
+  var host_parts:=segments(host.points)
+  if host_parts.is_empty():continue
+  var points:=PackedVector2Array()
+  if candidate.points[0].distance_to(host.points[-1])<EPS and same_line(host_parts[-1],parts[0]) and host_parts[-1].direction.dot(parts[0].direction)>0:
+   points=host.points.duplicate();points.append_array(candidate.points.slice(1))
+  elif candidate.points[-1].distance_to(host.points[0])<EPS and same_line(parts[-1],host_parts[0]) and parts[-1].direction.dot(host_parts[0].direction)>0:
+   points=candidate.points.duplicate();points.append_array(host.points.slice(1))
+  if points.is_empty():continue
+  var joined:=candidate.duplicate();joined.points=points
+  if overlap_allowed(joined,other):return true
+ return false
 static func self_clear(road: Dictionary) -> bool:
  var parts:=segments(road.points);var hits: Array[Dictionary]=[];var hits_ready:=false
  for i in range(parts.size()):
@@ -239,7 +264,7 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   var candidate: Dictionary=additions[i]
   for old in roads+additions.slice(0,i):
    if collinear_contact(candidate,old) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,roads+additions.slice(0,i)):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
-   if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
+   if not overlap_allowed(candidate,old) and not continuation_overlap_allowed(candidate,old,roads,existing):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
   for junction in existing.junctions+existing.joins:
    if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
  return {"ok":true,"new_roads":additions,"new_length_m":length*4,"retained_length_m":(Paths.length_of(road.points)-length)*4,"construction_cost":0,"reason":""}

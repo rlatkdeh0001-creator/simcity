@@ -1,0 +1,44 @@
+{
+  "fixture": "four-lane existing four-arm junction with a two-cell east stub",
+  "image_phase": "after successful real mouse commit",
+  "input": "real category/lane card and viewport mouse press/release",
+  "junctions_after": 1,
+  "new_length_m": 90.0,
+  "originals_preserved": true,
+  "preview_ok": true,
+  "preview_points": "[(50.5, 50.0), (74.5, 50.0)]",
+  "retained_length_m": 6.0,
+  "roads_after": [
+    {
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 0,
+      "points": "[(10.0, 50.0), (52.0, 50.0)]",
+      "width": 5.0
+    },
+    {
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 1,
+      "points": "[(50.0, 10.0), (50.0, 90.0)]",
+      "width": 5.0
+    },
+    {
+      "grid_frame": {
+        "along": "(1.0, 0.0)",
+        "origin": "(10.0, 52.5)",
+        "outward": "(0.0, 1.0)"
+      },
+      "kind": "local",
+      "lanes": 4,
+      "major_side": 1,
+      "parcel_id": 2,
+      "points": "[(52.0, 50.0), (74.5, 50.0)]",
+      "width": 5.0
+    }
+  ],
+  "total_length_m": 96.0,
+  "viewport": "(1920, 1080)"
+}

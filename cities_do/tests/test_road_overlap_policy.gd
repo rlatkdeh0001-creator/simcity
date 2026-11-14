@@ -43,6 +43,22 @@ func run():
  verify(shallow.ok and city.junctions.size()==1,"a genuine half-degree crossing is allowed when all arms actually escape the other road")
  city=City.new(100,100)
  verify(not propose(city,PackedVector2Array([Vector2(20,20),Vector2(60,20),Vector2(60,20.5),Vector2(20,20.5)])).ok,"a hairpin cannot hide a long parallel self-overlap")
+ for lanes in [2,4,8]:
+  for stub in [1.0,2.0,4.0]:
+   city=City.new(100,100)
+   city.add_road(PackedVector2Array([Vector2(10,50),Vector2(50+stub,50)]),"local",true,lanes)
+   city.add_road(PackedVector2Array([Vector2(50,10),Vector2(50,90)]),"local",true,lanes)
+   before=var_to_str(city.roads);var old_count:int=city.junctions.size()
+   var start:=Vector2(50+stub*.25,50);var finish:=start+Vector2(24,0)
+   preview=propose(city,PackedVector2Array([start,finish]),false,lanes)
+   verify(preview.ok and var_to_str(city.roads)==before,"exact 96m overlay beside existing four-arm junction stays green lanes=%s stub=%s"%[lanes,stub])
+   verify(not propose(city,PackedVector2Array([start,start+Vector2.from_angle(deg_to_rad(1))*24]),false,lanes).ok,"one-degree junction overpaint stays rejected")
+   verify(not propose(city,PackedVector2Array([start,finish]),false,3 if lanes==2 else 2).ok,"different-lane junction overpaint stays rejected")
+   committed=propose(city,PackedVector2Array([start,finish]),true,lanes)
+   verify(committed.ok and var_to_str(city.roads.slice(0,2))==before and city.junctions.size()==old_count,"extension keeps authored originals and creates no extra junction")
+   if committed.ok:
+    var close:=propose(city,PackedVector2Array([Vector2(53.5,50),Vector2(53.5,80)]),false,lanes)
+    verify(not close.ok and "4칸" in close.get("reason",""),"real new T beside retained junction still enforces spacing")
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.city=base();game.paused=true;root.add_child(game);await process_frame;game.road_grid_enabled=false;game.activate_tool("road");game.road_drawer.set_kind("straight");game.road_drawer.click(Vector2(20,40));game.pointer=Vector2(60,40)
  var result: Dictionary=game.road_drawer.preview()

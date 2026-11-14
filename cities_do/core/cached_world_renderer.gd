@@ -32,6 +32,7 @@ var building_signature:Array=[]
 var ordered:Array=[]
 var fills:Array=[]
 var road_shapes:Array=[]
+var verges:Array=[]
 var stripes:Array=[]
 var outlines:=PackedVector2Array()
 var arrows:Array=[]
@@ -75,6 +76,8 @@ func synchronize():
   for link in Boundary.road_links(view.city):
    for shape in Boundary.arrow_shapes(link):
     for clipped in Geometry2D.intersect_polygons(shape,boundary):arrows.append(project(clipped))
+  verges.clear()
+  for polygon in preload("res://core/roadside_verges.gd").build(view.city):verges.append(project(polygon))
   build_marks();ground.queue_redraw();roads.queue_redraw();marks.queue_redraw()
  var zs:=hash([rs,view.city.zone_designations,view.city.zoning_grid.parcels.size()])
  if changed or zs!=zone_signature:
@@ -134,7 +137,9 @@ func build_marks():
   line_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,data)
 func paint(canvas:CanvasItem,kind:String):
  match kind:
-  "ground":canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),Color("7e9275"))
+  "ground":
+   canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),Color("7e9275"))
+   for polygon in verges:canvas.draw_colored_polygon(polygon,preload("res://core/roadside_verges.gd").COLOR)
   "zones":
    for fill in fills:canvas.draw_colored_polygon(fill[0],fill[1])
   "grid":

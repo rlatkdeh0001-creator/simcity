@@ -1,0 +1,28 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS split-record T 3.5 real preview uses the common four-cell policy
+PASS split-record T 3.5 production preview chooses green/red
+PASS split-record T 3.5 actual confirmation agrees without mutating a rejected city
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS split-record T exact four real preview uses the common four-cell policy
+PASS split-record T exact four production preview chooses green/red
+PASS split-record T exact four actual confirmation agrees without mutating a rejected city
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS T endpoint attachment 3.5 real preview uses the common four-cell policy
+PASS T endpoint attachment 3.5 production preview chooses green/red
+PASS T endpoint attachment 3.5 actual confirmation agrees without mutating a rejected city
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS corner T 3.5 real preview uses the common four-cell policy
+PASS corner T 3.5 production preview chooses green/red
+PASS corner T 3.5 actual confirmation agrees without mutating a rejected city
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS grid corner exact four real preview uses the common four-cell policy
+PASS grid corner exact four production preview chooses green/red
+PASS grid corner exact four actual confirmation agrees without mutating a rejected city
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS grid corner three real preview uses the common four-cell policy
+PASS grid corner three production preview chooses green/red
+PASS grid corner three actual confirmation agrees without mutating a rejected city
+RESULT 24/24 native junction spacing checks passed
