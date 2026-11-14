@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+.wrap{display:flex;gap:12px}
+.box{width:290px}
+.cap{font-size:16px;color:var(--muted-foreground);margin-top:4px}
+svg{border-radius:10px;display:block}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <g id="map"><rect width="290" height="290" fill="#7f9774"/>
+  <rect x="122" width="46" height="290" fill="#4d5357"/><rect y="122" width="290" height="46" fill="#4d5357"/>
+  <rect x="122" y="122" width="46" height="46" fill="#59606a"/>
+  <path d="M145 0V118M145 172V290M0 145H118M172 145H290" stroke="#f2c14e" stroke-width="2"/></g>
+ <g id="donut">
+  <circle r="58" fill="none" stroke-width="26" class="ring"/>
+  <g><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="-360 0 0" dur="6s" repeatCount="indefinite"/>
+   <circle r="58" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-dasharray="14 22"/>
+  </g></g>
+</defs></svg>
+<div class="wrap">
+ <div class="box"><svg width="290" height="290"><use href="#map"/>
+  <g transform="translate(70,215)" opacity=".9"><g style="stroke:#8a9399"><use href="#donut"/></g></g>
+  <path d="M74 219 l0 16 l4 -4 l3 7 l3 -1 l-3 -7 l6 0z" fill="#fff" stroke="#142b37"/></svg>
+  <div class="cap">① 기본: 회색 도넛이 커서를 따라다님</div></div>
+ <div class="box"><svg width="290" height="290"><use href="#map"/>
+  <g transform="translate(145,145)"><g style="stroke:rgba(63,191,106,.85)"><use href="#donut"/></g></g>
+  <path d="M149 149 l0 16 l4 -4 l3 7 l3 -1 l-3 -7 l6 0z" fill="#fff" stroke="#142b37"/></svg>
+  <div class="cap">② 교차로 위: 초록으로 붙음 → 클릭하면 설치</div></div>
+ <div class="box"><svg width="290" height="290"><use href="#map"/>
+  <rect x="190" y="180" width="60" height="60" fill="#c9b79c"/><rect x="196" y="186" width="48" height="48" fill="#a8927a"/>
+  <g transform="translate(145,145)"><g style="stroke:rgba(229,72,77,.8)"><use href="#donut"/></g></g>
+  <path d="M149 149 l0 16 l4 -4 l3 7 l3 -1 l-3 -7 l6 0z" fill="#fff" stroke="#142b37"/></svg>
+  <div class="cap">③ 건물·다른 교차로와 겹치거나 2갈래: 빨강</div></div>
+</div>
+<script>document.querySelectorAll('use[href="#donut"]').forEach(u=>{const s=u.parentNode.style.stroke;u.parentNode.querySelector('.ring')})</script>
+</body></html>
