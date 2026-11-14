@@ -1,0 +1,127 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS 2 to 2 shared grade policy preview is nonmutating
+PASS 2 to 2 commits only equal or adjacent grades
+PASS 2 to 3 shared grade policy preview is nonmutating
+PASS 2 to 3 commits only equal or adjacent grades
+PASS 2 to 4 shared grade policy preview is nonmutating
+PASS 2 to 4 commits only equal or adjacent grades
+PASS 2 to 4 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 2 to 5 shared grade policy preview is nonmutating
+PASS 2 to 5 commits only equal or adjacent grades
+PASS 2 to 5 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 2 to 6 shared grade policy preview is nonmutating
+PASS 2 to 6 commits only equal or adjacent grades
+PASS 2 to 7 shared grade policy preview is nonmutating
+PASS 2 to 7 commits only equal or adjacent grades
+PASS 2 to 8 shared grade policy preview is nonmutating
+PASS 2 to 8 commits only equal or adjacent grades
+PASS 3 to 2 shared grade policy preview is nonmutating
+PASS 3 to 2 commits only equal or adjacent grades
+PASS 3 to 3 shared grade policy preview is nonmutating
+PASS 3 to 3 commits only equal or adjacent grades
+PASS 3 to 4 shared grade policy preview is nonmutating
+PASS 3 to 4 commits only equal or adjacent grades
+PASS 3 to 4 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 3 to 5 shared grade policy preview is nonmutating
+PASS 3 to 5 commits only equal or adjacent grades
+PASS 3 to 5 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 3 to 6 shared grade policy preview is nonmutating
+PASS 3 to 6 commits only equal or adjacent grades
+PASS 3 to 7 shared grade policy preview is nonmutating
+PASS 3 to 7 commits only equal or adjacent grades
+PASS 3 to 8 shared grade policy preview is nonmutating
+PASS 3 to 8 commits only equal or adjacent grades
+PASS 4 to 2 shared grade policy preview is nonmutating
+PASS 4 to 2 commits only equal or adjacent grades
+PASS 4 to 2 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 4 to 3 shared grade policy preview is nonmutating
+PASS 4 to 3 commits only equal or adjacent grades
+PASS 4 to 3 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 4 to 4 shared grade policy preview is nonmutating
+PASS 4 to 4 commits only equal or adjacent grades
+PASS 4 to 5 shared grade policy preview is nonmutating
+PASS 4 to 5 commits only equal or adjacent grades
+PASS 4 to 6 shared grade policy preview is nonmutating
+PASS 4 to 6 commits only equal or adjacent grades
+PASS 4 to 6 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 4 to 7 shared grade policy preview is nonmutating
+PASS 4 to 7 commits only equal or adjacent grades
+PASS 4 to 7 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 4 to 8 shared grade policy preview is nonmutating
+PASS 4 to 8 commits only equal or adjacent grades
+PASS 5 to 2 shared grade policy preview is nonmutating
+PASS 5 to 2 commits only equal or adjacent grades
+PASS 5 to 2 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 5 to 3 shared grade policy preview is nonmutating
+PASS 5 to 3 commits only equal or adjacent grades
+PASS 5 to 3 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 5 to 4 shared grade policy preview is nonmutating
+PASS 5 to 4 commits only equal or adjacent grades
+PASS 5 to 5 shared grade policy preview is nonmutating
+PASS 5 to 5 commits only equal or adjacent grades
+PASS 5 to 6 shared grade policy preview is nonmutating
+PASS 5 to 6 commits only equal or adjacent grades
+PASS 5 to 6 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 5 to 7 shared grade policy preview is nonmutating
+PASS 5 to 7 commits only equal or adjacent grades
+PASS 5 to 7 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 5 to 8 shared grade policy preview is nonmutating
+PASS 5 to 8 commits only equal or adjacent grades
+PASS 6 to 2 shared grade policy preview is nonmutating
+PASS 6 to 2 commits only equal or adjacent grades
+PASS 6 to 3 shared grade policy preview is nonmutating
+PASS 6 to 3 commits only equal or adjacent grades
+PASS 6 to 4 shared grade policy preview is nonmutating
+PASS 6 to 4 commits only equal or adjacent grades
+PASS 6 to 4 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 6 to 5 shared grade policy preview is nonmutating
+PASS 6 to 5 commits only equal or adjacent grades
+PASS 6 to 5 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 6 to 6 shared grade policy preview is nonmutating
+PASS 6 to 6 commits only equal or adjacent grades
+PASS 6 to 7 shared grade policy preview is nonmutating
+PASS 6 to 7 commits only equal or adjacent grades
+PASS 6 to 8 shared grade policy preview is nonmutating
+PASS 6 to 8 commits only equal or adjacent grades
+PASS 6 to 8 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 7 to 2 shared grade policy preview is nonmutating
+PASS 7 to 2 commits only equal or adjacent grades
+PASS 7 to 3 shared grade policy preview is nonmutating
+PASS 7 to 3 commits only equal or adjacent grades
+PASS 7 to 4 shared grade policy preview is nonmutating
+PASS 7 to 4 commits only equal or adjacent grades
+PASS 7 to 4 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 7 to 5 shared grade policy preview is nonmutating
+PASS 7 to 5 commits only equal or adjacent grades
+PASS 7 to 5 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 7 to 6 shared grade policy preview is nonmutating
+PASS 7 to 6 commits only equal or adjacent grades
+PASS 7 to 7 shared grade policy preview is nonmutating
+PASS 7 to 7 commits only equal or adjacent grades
+PASS 7 to 8 shared grade policy preview is nonmutating
+PASS 7 to 8 commits only equal or adjacent grades
+PASS 7 to 8 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 8 to 2 shared grade policy preview is nonmutating
+PASS 8 to 2 commits only equal or adjacent grades
+PASS 8 to 3 shared grade policy preview is nonmutating
+PASS 8 to 3 commits only equal or adjacent grades
+PASS 8 to 4 shared grade policy preview is nonmutating
+PASS 8 to 4 commits only equal or adjacent grades
+PASS 8 to 5 shared grade policy preview is nonmutating
+PASS 8 to 5 commits only equal or adjacent grades
+PASS 8 to 6 shared grade policy preview is nonmutating
+PASS 8 to 6 commits only equal or adjacent grades
+PASS 8 to 6 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 8 to 7 shared grade policy preview is nonmutating
+PASS 8 to 7 commits only equal or adjacent grades
+PASS 8 to 7 pavement uses a short sloped uncontrolled trapezoid, not a step or box
+PASS 8 to 8 shared grade policy preview is nonmutating
+PASS 8 to 8 commits only equal or adjacent grades
+PASS nonadjacent grades still allow actual T crossings [2, 8]
+PASS nonadjacent grades still allow actual T crossings [4, 8]
+PASS nonadjacent grades still allow actual T crossings [8, 2]
+PASS nonadjacent grades still allow actual T crossings [8, 4]
+PASS real three-arm junction is not misclassified as a forbidden straight grade jump to 6
+PASS real three-arm junction is not misclassified as a forbidden straight grade jump to 8
+RESULT 124/124 road grade extension checks passed

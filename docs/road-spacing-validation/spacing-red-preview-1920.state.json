@@ -1,0 +1,13 @@
+{
+  "fixture": "bent two-arm corner and existing T eight cells away",
+  "gap_cells": 3,
+  "grid_enabled": true,
+  "input": "actual lane-card and viewport mouse press/release",
+  "minimum_cells": 4,
+  "outline": "ef5350ff",
+  "preview_ok": false,
+  "preview_points": "[(40.0, 43.0), (60.5, 43.0)]",
+  "reason": "교차로 사이 간격은 4칸 이상이어야 합니다",
+  "rejected_commit_preserved_roads": true,
+  "viewport": "(1920, 1080)"
+}

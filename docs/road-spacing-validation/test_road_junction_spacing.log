@@ -1,0 +1,39 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS T preview rejects a 3.5-cell gap across a straight authored record boundary
+PASS rejected T commit preserves every original road
+PASS T beside a bent two-arm corner is rejected by the same spacing rule
+PASS T start/end preview at 1.0 cells reverse=false is pure and follows four-cell boundary
+PASS T start/end confirmation at 1.0 cells reverse=false matches preview
+PASS T start/end preview at 1.0 cells reverse=true is pure and follows four-cell boundary
+PASS T start/end confirmation at 1.0 cells reverse=true matches preview
+PASS T start/end preview at 3.0 cells reverse=false is pure and follows four-cell boundary
+PASS T start/end confirmation at 3.0 cells reverse=false matches preview
+PASS T start/end preview at 3.0 cells reverse=true is pure and follows four-cell boundary
+PASS T start/end confirmation at 3.0 cells reverse=true matches preview
+PASS T start/end preview at 3.5 cells reverse=false is pure and follows four-cell boundary
+PASS T start/end confirmation at 3.5 cells reverse=false matches preview
+PASS T start/end preview at 3.5 cells reverse=true is pure and follows four-cell boundary
+PASS T start/end confirmation at 3.5 cells reverse=true matches preview
+PASS T start/end preview at 4.0 cells reverse=false is pure and follows four-cell boundary
+PASS T start/end confirmation at 4.0 cells reverse=false matches preview
+PASS T start/end preview at 4.0 cells reverse=true is pure and follows four-cell boundary
+PASS T start/end confirmation at 4.0 cells reverse=true matches preview
+PASS T start/end preview at 5.0 cells reverse=false is pure and follows four-cell boundary
+PASS T start/end confirmation at 5.0 cells reverse=false matches preview
+PASS T start/end preview at 5.0 cells reverse=true is pure and follows four-cell boundary
+PASS T start/end confirmation at 5.0 cells reverse=true matches preview
+PASS through crossing across an authored seam follows spacing at 3.0
+PASS angled road-end connection follows spacing at 3.0
+PASS bent two-arm corner boundary follows spacing at 3.0
+PASS through crossing across an authored seam follows spacing at 3.5
+PASS angled road-end connection follows spacing at 3.5
+PASS bent two-arm corner boundary follows spacing at 3.5
+PASS through crossing across an authored seam follows spacing at 4.0
+PASS angled road-end connection follows spacing at 4.0
+PASS bent two-arm corner boundary follows spacing at 4.0
+PASS removing a T arm leaves the authored two-arm corner
+PASS post-demolition corner retains the same four-cell guard
+PASS eleven-cell centreline gap remains allowed despite three-cell Euclidean distance
+PASS unrelated construction preserves legacy short-gap records
+RESULT 36/36 junction spacing checks passed

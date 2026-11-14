@@ -189,44 +189,57 @@ static func self_clear(road: Dictionary) -> bool:
     if absf((a.first+a.length/2)-hit.a)<=hit.reach and absf((b.first+b.length/2)-hit.b)<=hit.reach:supported=true;break
    if not supported:return false
  return true
-static func spacing_ok(topology: Dictionary,old_count: int,total: int) -> bool:
- var affected: Dictionary={};var offsets: Dictionary={};var positions: Array=[]
- for i in range(total):positions.append([])
+static func spacing_ok(topology: Dictionary,old_count: int,_total: int) -> bool:
+ # Follow centreline sections across authored record boundaries, not record-local offsets.
+ var anchors: Dictionary={};var adjacent: Dictionary={}
  for node in topology.nodes.values():
-  if node.junction<0:continue
+  adjacent[node.key]=[]
+  # Uncontrolled bends are spacing boundaries too; straight joins/width changes are not.
+  var bent: bool=node.arms.size()==2 and (node.arms[0].direction.dot(node.arms[1].direction)>=0 or absf(node.arms[0].direction.cross(node.arms[1].direction))>=.000001)
+  if node.junction<0 and not bent:continue
+  var changed:=false
   for id in node.road_ids:
-   if id>=old_count:affected[node.key]=true
+   if id>=old_count:changed=true
+  anchors[node.key]=changed
  for section in topology.sections:
-  var first: float=offsets.get(section.road,0.0);var length:=Paths.length_of(section.points)
-  for pair in [[section.start_node,first],[section.end_node,first+length]]:
-   var node: Dictionary=topology.nodes[pair[0]]
-   if node.junction<0:continue
-   var list: Array=positions[section.road]
-   var item:={"distance":pair[1],"changed":affected.has(node.key)}
-   if not list.is_empty() and absf(list[-1].distance-item.distance)<EPS:list[-1].changed=list[-1].changed or item.changed
-   else:list.append(item)
-  offsets[section.road]=first+length
- for list in positions:
-  for i in range(1,list.size()):
-   if (list[i-1].changed or list[i].changed) and list[i].distance-list[i-1].distance<MIN_JUNCTION_DISTANCE-.0005:return false
+  var distance:=Paths.length_of(section.points)
+  for pair in [[section.start_node,section.end_node],[section.end_node,section.start_node]]:
+   adjacent[pair[0]].append({"key":pair[1],"distance":distance,"changed":section.road>=old_count})
+ for origin in anchors:
+  var frontier: Array=[{"key":origin,"distance":0.0,"changed":anchors[origin]}]
+  var best: Array[Dictionary]=[{},{}];best[int(anchors[origin])][origin]=0.0
+  while not frontier.is_empty():
+   var step: Dictionary=frontier.pop_back()
+   for edge in adjacent[step.key]:
+    var distance: float=step.distance+edge.distance
+    if edge.key==origin or distance>=MIN_JUNCTION_DISTANCE-.0005:continue
+    var changed: bool=step.changed or edge.changed or anchors.get(edge.key,false)
+    if anchors.has(edge.key):
+     if changed:return false
+     continue # Leave unrelated legacy short gaps intact.
+    if distance>=best[int(changed)].get(edge.key,INF):continue
+    best[int(changed)][edge.key]=distance
+    frontier.append({"key":edge.key,"distance":distance,"changed":changed})
  return true
 static func plan(roads: Array,road: Dictionary) -> Dictionary:
  var retained:=coverage(roads,road)
  if not retained.ok:return retained
  var pieces:=uncovered(road.points,retained.intervals)
  if pieces.is_empty():return {"ok":false,"reason":"이미 있는 도로입니다"}
- var existing:=Paths.analyze(roads)
  var additions: Array[Dictionary]=[];var length:=0.0
  for points in pieces:
   var candidate:=road.duplicate(true);candidate.points=points
   if not self_clear(candidate):return {"ok":false,"reason":"도로가 스스로 겹칩니다"}
-  for old in roads+additions:
-   if collinear_contact(candidate,old) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,roads+additions):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
-   if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
-  for junction in existing.junctions+existing.joins:
-   if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
   additions.append(candidate);length+=Paths.length_of(points)
  var topology:=Paths.analyze(roads+additions)
  if not topology.errors.is_empty():return {"ok":false,"reason":topology.errors[0]}
  if not spacing_ok(topology,roads.size(),roads.size()+additions.size()):return {"ok":false,"reason":"교차로 사이 간격은 4칸 이상이어야 합니다"}
+ var existing:=Paths.analyze(roads)
+ for i in range(additions.size()):
+  var candidate: Dictionary=additions[i]
+  for old in roads+additions.slice(0,i):
+   if collinear_contact(candidate,old) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,roads+additions.slice(0,i)):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
+   if not overlap_allowed(candidate,old):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
+  for junction in existing.junctions+existing.joins:
+   if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
  return {"ok":true,"new_roads":additions,"new_length_m":length*4,"retained_length_m":(Paths.length_of(road.points)-length)*4,"construction_cost":0,"reason":""}
