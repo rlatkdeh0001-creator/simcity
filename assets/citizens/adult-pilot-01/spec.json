@@ -1,0 +1,330 @@
+{
+  "id": "adult-pilot-01",
+  "name": "중성 성인 시민 시험형",
+  "height_m": 1.75,
+  "height_reference": "idle hair apex; soles z=0",
+  "triangles_by_layer": {
+    "body": 172,
+    "hair": 70,
+    "top": 212,
+    "bottom": 204
+  },
+  "triangles_total": 658,
+  "layers": [
+    "body",
+    "hair",
+    "top",
+    "bottom"
+  ],
+  "armature": "CitizenRig",
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "head",
+    "upper_arm.L",
+    "forearm.L",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "upper_arm.R",
+    "forearm.R",
+    "thigh.R",
+    "shin.R",
+    "foot.R"
+  ],
+  "bone_count": 14,
+  "rest_bones": {
+    "root": {
+      "head": [
+        0,
+        0,
+        0
+      ],
+      "tail": [
+        0,
+        0,
+        0.12
+      ],
+      "parent": null
+    },
+    "pelvis": {
+      "head": [
+        0,
+        0,
+        0.92
+      ],
+      "tail": [
+        0,
+        0,
+        1.04
+      ],
+      "parent": "root"
+    },
+    "spine": {
+      "head": [
+        0,
+        0,
+        1.04
+      ],
+      "tail": [
+        0,
+        0,
+        1.36
+      ],
+      "parent": "pelvis"
+    },
+    "head": {
+      "head": [
+        0,
+        0,
+        1.36
+      ],
+      "tail": [
+        0,
+        0,
+        1.66
+      ],
+      "parent": "spine"
+    },
+    "upper_arm.L": {
+      "head": [
+        0.205,
+        0,
+        1.335
+      ],
+      "tail": [
+        0.245,
+        0,
+        1.1
+      ],
+      "parent": "spine"
+    },
+    "forearm.L": {
+      "head": [
+        0.245,
+        0,
+        1.1
+      ],
+      "tail": [
+        0.264,
+        0,
+        0.925
+      ],
+      "parent": "upper_arm.L"
+    },
+    "thigh.L": {
+      "head": [
+        0.095,
+        0,
+        0.94
+      ],
+      "tail": [
+        0.095,
+        0,
+        0.52
+      ],
+      "parent": "pelvis"
+    },
+    "shin.L": {
+      "head": [
+        0.095,
+        0,
+        0.52
+      ],
+      "tail": [
+        0.095,
+        0.035,
+        0.1
+      ],
+      "parent": "thigh.L"
+    },
+    "foot.L": {
+      "head": [
+        0.095,
+        0.035,
+        0.1
+      ],
+      "tail": [
+        0.095,
+        -0.11,
+        0.045
+      ],
+      "parent": "shin.L"
+    },
+    "upper_arm.R": {
+      "head": [
+        -0.205,
+        0,
+        1.335
+      ],
+      "tail": [
+        -0.245,
+        0,
+        1.1
+      ],
+      "parent": "spine"
+    },
+    "forearm.R": {
+      "head": [
+        -0.245,
+        0,
+        1.1
+      ],
+      "tail": [
+        -0.264,
+        0,
+        0.925
+      ],
+      "parent": "upper_arm.R"
+    },
+    "thigh.R": {
+      "head": [
+        -0.095,
+        0,
+        0.94
+      ],
+      "tail": [
+        -0.095,
+        0,
+        0.52
+      ],
+      "parent": "pelvis"
+    },
+    "shin.R": {
+      "head": [
+        -0.095,
+        0,
+        0.52
+      ],
+      "tail": [
+        -0.095,
+        0.035,
+        0.1
+      ],
+      "parent": "thigh.R"
+    },
+    "foot.R": {
+      "head": [
+        -0.095,
+        0.035,
+        0.1
+      ],
+      "tail": [
+        -0.095,
+        -0.11,
+        0.045
+      ],
+      "parent": "shin.R"
+    }
+  },
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "origin": "center of combined soles in idle; (0,0,0)",
+  "actions": {
+    "idle": "Idle",
+    "walk": "Walk"
+  },
+  "walk_sample_frames": [
+    1,
+    5,
+    9,
+    13
+  ],
+  "walk_closure_frame": 17,
+  "cycle_seconds": 0.8,
+  "canvas_px": [
+    64,
+    96
+  ],
+  "pixels_per_meter": 40.0,
+  "foot_anchor_px": [
+    32,
+    84
+  ],
+  "directions": {
+    "S": 0,
+    "SE": 45,
+    "E": 90,
+    "NE": 135,
+    "N": 180
+  },
+  "frames": [
+    "idle",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "shoe_vertex_indices": {
+    "L": [
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "R": [
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ]
+  },
+  "source": "original scripted geometry and armature; no external models, textures, fonts or generation APIs",
+  "game_registered": false,
+  "not_validated": [
+    "game renderer integration",
+    "all future garment combinations",
+    "large-crowd performance",
+    "game camera calibration"
+  ],
+  "sprite_directory": "sprites",
+  "sprite_count": 100,
+  "supersampling": 4,
+  "alpha_mode": "straight",
+  "sprites_are_unoccluded": true,
+  "depth_sidecar": "layer-depths.npz",
+  "depth_units": "millimetres of camera Z pass; smaller is nearer; 65535 means transparent",
+  "compositing": "tint each grayscale RGB, sort four layers per pixel by depth, alpha-over back to front",
+  "mirror_missing_directions": {
+    "SW": "SE",
+    "W": "E",
+    "NW": "NE"
+  },
+  "mirror_contract": "flip both RGBA and depth horizontally around continuous canvas x=32",
+  "tint_example_rgb": {
+    "body": [
+      225,
+      182,
+      145
+    ],
+    "hair": [
+      77,
+      54,
+      40
+    ],
+    "top": [
+      65,
+      147,
+      166
+    ],
+    "bottom": [
+      63,
+      73,
+      97
+    ]
+  },
+  "archetype": "adult-neutral",
+  "part_interface_version": 1
+}

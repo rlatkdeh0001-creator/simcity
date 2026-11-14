@@ -1,0 +1,115 @@
+{
+  "checks": {
+    "four_mesh_parts": true,
+    "one_armature_14_bones": true,
+    "all_share_one_skin": true,
+    "all_vertices_weighted_normalized": true,
+    "no_unknown_bone_groups": true,
+    "one_gray_material_each": true,
+    "no_external_images": true,
+    "triangles_within_1500": true,
+    "triangle_counts_metadata": true,
+    "metres": true,
+    "two_actions": true,
+    "loop_modifier_on_every_walk_curve": true,
+    "no_duplicate_endpoint_in_playback": true,
+    "idle_height_175": true,
+    "sole_ground_zero": true,
+    "sole_pair_center_xy_origin": true,
+    "shirt_overlaps_waist_7cm": true,
+    "neck_head_overlap": true,
+    "hair_wraps_head": true,
+    "all_four_poses_feet_not_below_ground": true,
+    "one_planted_foot_each_pose": true,
+    "root_stationary": true,
+    "walk_frame17_exactly_frame1": true,
+    "wrap_step_not_an_outlier": true,
+    "four_distinct_walk_poses": true,
+    "100_render_records": true,
+    "every_anchor_32_84": true,
+    "every_camera_40px_per_metre": true,
+    "source_never_saved_in_validation": true
+  },
+  "passed": true,
+  "triangles_by_layer": {
+    "body": 172,
+    "hair": 70,
+    "top": 212,
+    "bottom": 204
+  },
+  "bone_count": 14,
+  "idle_bounds_m": [
+    [
+      -0.30800002813339233,
+      -0.125,
+      -1.1175870895385742e-08
+    ],
+    [
+      0.30800002813339233,
+      0.125,
+      1.75
+    ]
+  ],
+  "poses": [
+    {
+      "frame": 1,
+      "sole_min_z": {
+        "L": -1.1175870895385742e-08,
+        "R": 0.020686404779553413
+      },
+      "root_location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pelvis_world_y": 0.0
+    },
+    {
+      "frame": 5,
+      "sole_min_z": {
+        "L": -1.1175870895385742e-08,
+        "R": 0.07290679216384888
+      },
+      "root_location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pelvis_world_y": 0.0
+    },
+    {
+      "frame": 9,
+      "sole_min_z": {
+        "L": 0.020686404779553413,
+        "R": -1.1175870895385742e-08
+      },
+      "root_location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pelvis_world_y": 0.0
+    },
+    {
+      "frame": 13,
+      "sole_min_z": {
+        "L": 0.07290679216384888,
+        "R": -1.1175870895385742e-08
+      },
+      "root_location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pelvis_world_y": 0.0
+    }
+  ],
+  "closure_max_vertex_error_m": 0.0,
+  "cyclic_max_step_displacements_m": [
+    0.2503723090511891,
+    0.45968202239335904,
+    0.2503723090511891,
+    0.45968202239335904
+  ],
+  "source_sha256": "6bf4ae6ec3c08567cf31e1f7ba67e7d7cb1c020ee1b4ecd232121674b5a9b467"
+}

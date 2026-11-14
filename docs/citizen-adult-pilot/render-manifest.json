@@ -1,0 +1,1406 @@
+{
+  "supersampling": 4,
+  "temporary_directory": "/tmp/citizen-adult-pilot-render",
+  "images": [
+    {
+      "stem": "body_S_idle",
+      "part": "body",
+      "direction": "S",
+      "frame": "idle",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_idle",
+      "part": "hair",
+      "direction": "S",
+      "frame": "idle",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_idle",
+      "part": "top",
+      "direction": "S",
+      "frame": "idle",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_S_idle",
+      "part": "bottom",
+      "direction": "S",
+      "frame": "idle",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_S_1",
+      "part": "body",
+      "direction": "S",
+      "frame": "1",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_1",
+      "part": "hair",
+      "direction": "S",
+      "frame": "1",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_1",
+      "part": "top",
+      "direction": "S",
+      "frame": "1",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_S_1",
+      "part": "bottom",
+      "direction": "S",
+      "frame": "1",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_S_2",
+      "part": "body",
+      "direction": "S",
+      "frame": "2",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_2",
+      "part": "hair",
+      "direction": "S",
+      "frame": "2",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_2",
+      "part": "top",
+      "direction": "S",
+      "frame": "2",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_S_2",
+      "part": "bottom",
+      "direction": "S",
+      "frame": "2",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_S_3",
+      "part": "body",
+      "direction": "S",
+      "frame": "3",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_3",
+      "part": "hair",
+      "direction": "S",
+      "frame": "3",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_3",
+      "part": "top",
+      "direction": "S",
+      "frame": "3",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_S_3",
+      "part": "bottom",
+      "direction": "S",
+      "frame": "3",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_S_4",
+      "part": "body",
+      "direction": "S",
+      "frame": "4",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_4",
+      "part": "hair",
+      "direction": "S",
+      "frame": "4",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_4",
+      "part": "top",
+      "direction": "S",
+      "frame": "4",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_S_4",
+      "part": "bottom",
+      "direction": "S",
+      "frame": "4",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_SE_idle",
+      "part": "body",
+      "direction": "SE",
+      "frame": "idle",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_idle",
+      "part": "hair",
+      "direction": "SE",
+      "frame": "idle",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_idle",
+      "part": "top",
+      "direction": "SE",
+      "frame": "idle",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_SE_idle",
+      "part": "bottom",
+      "direction": "SE",
+      "frame": "idle",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_SE_1",
+      "part": "body",
+      "direction": "SE",
+      "frame": "1",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_1",
+      "part": "hair",
+      "direction": "SE",
+      "frame": "1",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_1",
+      "part": "top",
+      "direction": "SE",
+      "frame": "1",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_SE_1",
+      "part": "bottom",
+      "direction": "SE",
+      "frame": "1",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_SE_2",
+      "part": "body",
+      "direction": "SE",
+      "frame": "2",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_2",
+      "part": "hair",
+      "direction": "SE",
+      "frame": "2",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_2",
+      "part": "top",
+      "direction": "SE",
+      "frame": "2",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_SE_2",
+      "part": "bottom",
+      "direction": "SE",
+      "frame": "2",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_SE_3",
+      "part": "body",
+      "direction": "SE",
+      "frame": "3",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_3",
+      "part": "hair",
+      "direction": "SE",
+      "frame": "3",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_3",
+      "part": "top",
+      "direction": "SE",
+      "frame": "3",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_SE_3",
+      "part": "bottom",
+      "direction": "SE",
+      "frame": "3",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_SE_4",
+      "part": "body",
+      "direction": "SE",
+      "frame": "4",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_4",
+      "part": "hair",
+      "direction": "SE",
+      "frame": "4",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_4",
+      "part": "top",
+      "direction": "SE",
+      "frame": "4",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_SE_4",
+      "part": "bottom",
+      "direction": "SE",
+      "frame": "4",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_E_idle",
+      "part": "body",
+      "direction": "E",
+      "frame": "idle",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_idle",
+      "part": "hair",
+      "direction": "E",
+      "frame": "idle",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_idle",
+      "part": "top",
+      "direction": "E",
+      "frame": "idle",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_E_idle",
+      "part": "bottom",
+      "direction": "E",
+      "frame": "idle",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_E_1",
+      "part": "body",
+      "direction": "E",
+      "frame": "1",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_1",
+      "part": "hair",
+      "direction": "E",
+      "frame": "1",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_1",
+      "part": "top",
+      "direction": "E",
+      "frame": "1",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_E_1",
+      "part": "bottom",
+      "direction": "E",
+      "frame": "1",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_E_2",
+      "part": "body",
+      "direction": "E",
+      "frame": "2",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_2",
+      "part": "hair",
+      "direction": "E",
+      "frame": "2",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_2",
+      "part": "top",
+      "direction": "E",
+      "frame": "2",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_E_2",
+      "part": "bottom",
+      "direction": "E",
+      "frame": "2",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_E_3",
+      "part": "body",
+      "direction": "E",
+      "frame": "3",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_3",
+      "part": "hair",
+      "direction": "E",
+      "frame": "3",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_3",
+      "part": "top",
+      "direction": "E",
+      "frame": "3",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_E_3",
+      "part": "bottom",
+      "direction": "E",
+      "frame": "3",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_E_4",
+      "part": "body",
+      "direction": "E",
+      "frame": "4",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_4",
+      "part": "hair",
+      "direction": "E",
+      "frame": "4",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_4",
+      "part": "top",
+      "direction": "E",
+      "frame": "4",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_E_4",
+      "part": "bottom",
+      "direction": "E",
+      "frame": "4",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_NE_idle",
+      "part": "body",
+      "direction": "NE",
+      "frame": "idle",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_idle",
+      "part": "hair",
+      "direction": "NE",
+      "frame": "idle",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_idle",
+      "part": "top",
+      "direction": "NE",
+      "frame": "idle",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_NE_idle",
+      "part": "bottom",
+      "direction": "NE",
+      "frame": "idle",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_NE_1",
+      "part": "body",
+      "direction": "NE",
+      "frame": "1",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_1",
+      "part": "hair",
+      "direction": "NE",
+      "frame": "1",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_1",
+      "part": "top",
+      "direction": "NE",
+      "frame": "1",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_NE_1",
+      "part": "bottom",
+      "direction": "NE",
+      "frame": "1",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_NE_2",
+      "part": "body",
+      "direction": "NE",
+      "frame": "2",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_2",
+      "part": "hair",
+      "direction": "NE",
+      "frame": "2",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_2",
+      "part": "top",
+      "direction": "NE",
+      "frame": "2",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_NE_2",
+      "part": "bottom",
+      "direction": "NE",
+      "frame": "2",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_NE_3",
+      "part": "body",
+      "direction": "NE",
+      "frame": "3",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_3",
+      "part": "hair",
+      "direction": "NE",
+      "frame": "3",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_3",
+      "part": "top",
+      "direction": "NE",
+      "frame": "3",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_NE_3",
+      "part": "bottom",
+      "direction": "NE",
+      "frame": "3",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_NE_4",
+      "part": "body",
+      "direction": "NE",
+      "frame": "4",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_4",
+      "part": "hair",
+      "direction": "NE",
+      "frame": "4",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_4",
+      "part": "top",
+      "direction": "NE",
+      "frame": "4",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "bottom_NE_4",
+      "part": "bottom",
+      "direction": "NE",
+      "frame": "4",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "body_N_idle",
+      "part": "body",
+      "direction": "N",
+      "frame": "idle",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_idle",
+      "part": "hair",
+      "direction": "N",
+      "frame": "idle",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_idle",
+      "part": "top",
+      "direction": "N",
+      "frame": "idle",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_N_idle",
+      "part": "bottom",
+      "direction": "N",
+      "frame": "idle",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_N_1",
+      "part": "body",
+      "direction": "N",
+      "frame": "1",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_1",
+      "part": "hair",
+      "direction": "N",
+      "frame": "1",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_1",
+      "part": "top",
+      "direction": "N",
+      "frame": "1",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_N_1",
+      "part": "bottom",
+      "direction": "N",
+      "frame": "1",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_N_2",
+      "part": "body",
+      "direction": "N",
+      "frame": "2",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_2",
+      "part": "hair",
+      "direction": "N",
+      "frame": "2",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_2",
+      "part": "top",
+      "direction": "N",
+      "frame": "2",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_N_2",
+      "part": "bottom",
+      "direction": "N",
+      "frame": "2",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_N_3",
+      "part": "body",
+      "direction": "N",
+      "frame": "3",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_3",
+      "part": "hair",
+      "direction": "N",
+      "frame": "3",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_3",
+      "part": "top",
+      "direction": "N",
+      "frame": "3",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_N_3",
+      "part": "bottom",
+      "direction": "N",
+      "frame": "3",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "body_N_4",
+      "part": "body",
+      "direction": "N",
+      "frame": "4",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_4",
+      "part": "hair",
+      "direction": "N",
+      "frame": "4",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_4",
+      "part": "top",
+      "direction": "N",
+      "frame": "4",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "bottom_N_4",
+      "part": "bottom",
+      "direction": "N",
+      "frame": "4",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    }
+  ]
+}

@@ -1,0 +1,1013 @@
+{
+  "images": [
+    {
+      "file": "body_S_idle.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "sha256": "701ffbfb993910f0539529b5eeabb1b7152e2a10fc21590cc01dff43df4358fa"
+    },
+    {
+      "file": "hair_S_idle.png",
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "sha256": "17ff22cdb0e246cd4575e6e02dd1efb002225836f13b907df2c1e8ff33eac04b"
+    },
+    {
+      "file": "top_S_idle.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "a9150a9b6d9275cdf4dc029672d1093a3268dae598542d39fea28ac3180fa7d2"
+    },
+    {
+      "file": "bottom_S_idle.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "sha256": "5bffda67cf3d4df601262516966064925a7e63b9cb221f121e60eeb35011d303"
+    },
+    {
+      "file": "body_S_1.png",
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "sha256": "3ea87da72b74b0c5c97ba4db691d576706c970036979c25b6aeda6ae85059aee"
+    },
+    {
+      "file": "hair_S_1.png",
+      "alpha_bbox_px": [
+        24,
+        22,
+        40,
+        33
+      ],
+      "sha256": "c6347b53b87879044be8440ab08deef7e56a810f9113f53c57893f0a4c33515b"
+    },
+    {
+      "file": "top_S_1.png",
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "sha256": "625837a465b9cb56bd767a151aaa0ef10ac6f47f2a8f57492da06cf9ccc05d32"
+    },
+    {
+      "file": "bottom_S_1.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        94
+      ],
+      "sha256": "ee5f71bd2904d7336f566be4a50ad0ced8b19a0033607a0255a9d412ba08f630"
+    },
+    {
+      "file": "body_S_2.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "sha256": "10a5ca65c46f6f5f6a7024dab89dc15f93f19aa979ddba861857aba7f96aaf37"
+    },
+    {
+      "file": "hair_S_2.png",
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "sha256": "17ff22cdb0e246cd4575e6e02dd1efb002225836f13b907df2c1e8ff33eac04b"
+    },
+    {
+      "file": "top_S_2.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "b6f1b1d5f7118340478550ce493f90d9d5f98b992ad001b0cc94b159d63f2d13"
+    },
+    {
+      "file": "bottom_S_2.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "sha256": "0f7b60647350ccc2171dde844cb3b79c7f8bbcba595a0a76293ac3b3d747e475"
+    },
+    {
+      "file": "body_S_3.png",
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "sha256": "d0cca69510d38ccbcd4c2f0e3e8ff694b36576c068bf3c5b14dc99620a4f439b"
+    },
+    {
+      "file": "hair_S_3.png",
+      "alpha_bbox_px": [
+        24,
+        22,
+        40,
+        33
+      ],
+      "sha256": "c6347b53b87879044be8440ab08deef7e56a810f9113f53c57893f0a4c33515b"
+    },
+    {
+      "file": "top_S_3.png",
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "sha256": "aae652d8ab93f0ccabacb206e2ec11a5be816b92a9bc72216cce899f4fbb9be8"
+    },
+    {
+      "file": "bottom_S_3.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        94
+      ],
+      "sha256": "fbd7d6e963d0e8db1d9d8dbf24aa41a9c1b1d99829ed33a4c3a723efaae9dbbd"
+    },
+    {
+      "file": "body_S_4.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "sha256": "10a5ca65c46f6f5f6a7024dab89dc15f93f19aa979ddba861857aba7f96aaf37"
+    },
+    {
+      "file": "hair_S_4.png",
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "sha256": "17ff22cdb0e246cd4575e6e02dd1efb002225836f13b907df2c1e8ff33eac04b"
+    },
+    {
+      "file": "top_S_4.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "b6f1b1d5f7118340478550ce493f90d9d5f98b992ad001b0cc94b159d63f2d13"
+    },
+    {
+      "file": "bottom_S_4.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "sha256": "2caf7e0aa4741b9c042315f7ab49c2eb098a70cac3f8a43c8e5a44e7e5973c5b"
+    },
+    {
+      "file": "body_SE_idle.png",
+      "alpha_bbox_px": [
+        20,
+        21,
+        43,
+        62
+      ],
+      "sha256": "fcb5e3d684af51cf717e4c369dc5fe386e85421cd8d2bcb5eb2792311866a0d9"
+    },
+    {
+      "file": "hair_SE_idle.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "sha256": "e8de3b9a01d6d0ed099a1ab0d6b290a228d6b41d8ac508744b558fdf4e17cb55"
+    },
+    {
+      "file": "top_SE_idle.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "462948e82a235c26d0c2127f2e53b368e656d61fdb96c4f31b6265001de5bfb4"
+    },
+    {
+      "file": "bottom_SE_idle.png",
+      "alpha_bbox_px": [
+        22,
+        44,
+        42,
+        90
+      ],
+      "sha256": "80740c7567ce594056d67ad4168136bc17f91fc5ec37d08e2d0ded377e79cfc6"
+    },
+    {
+      "file": "body_SE_1.png",
+      "alpha_bbox_px": [
+        18,
+        22,
+        48,
+        60
+      ],
+      "sha256": "25b192e200e8f191b74771dca70ec6e44b7897c2fafc1843019d98d6b06e06cf"
+    },
+    {
+      "file": "hair_SE_1.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        35
+      ],
+      "sha256": "e1bbe9cdaa667832455e27cfc9a39589e0a2260d4f2924ec851da3ec645eb71d"
+    },
+    {
+      "file": "top_SE_1.png",
+      "alpha_bbox_px": [
+        18,
+        32,
+        47,
+        58
+      ],
+      "sha256": "19626c3ccc68f1f590a3f7ade145eb56e61faf2c1afca4fde0dba62fbe292fcc"
+    },
+    {
+      "file": "bottom_SE_1.png",
+      "alpha_bbox_px": [
+        20,
+        45,
+        44,
+        94
+      ],
+      "sha256": "beb59ffa25b7d27ce2dcc8818f609ea7edb9e8768355ab1a603e86e212a88fb5"
+    },
+    {
+      "file": "body_SE_2.png",
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "sha256": "c5e4dc836ae8b6453006a71e2a6acf14838f55898042b07b606ceeda53a582c0"
+    },
+    {
+      "file": "hair_SE_2.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "sha256": "e8de3b9a01d6d0ed099a1ab0d6b290a228d6b41d8ac508744b558fdf4e17cb55"
+    },
+    {
+      "file": "top_SE_2.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "2d5c23a4e162fcdbe9cd01572316983697a11163fc292935813eef1feedbc18d"
+    },
+    {
+      "file": "bottom_SE_2.png",
+      "alpha_bbox_px": [
+        23,
+        44,
+        43,
+        90
+      ],
+      "sha256": "2e2c33a08071cbb98092897da57666e90b2a51604d0baf587cfd355a3c40e768"
+    },
+    {
+      "file": "body_SE_3.png",
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "sha256": "bc90562c813d7ac9d541769a1461016fe056debea93c04d285f5d6df473e0367"
+    },
+    {
+      "file": "hair_SE_3.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        35
+      ],
+      "sha256": "e1bbe9cdaa667832455e27cfc9a39589e0a2260d4f2924ec851da3ec645eb71d"
+    },
+    {
+      "file": "top_SE_3.png",
+      "alpha_bbox_px": [
+        21,
+        31,
+        43,
+        60
+      ],
+      "sha256": "c783dbc11020d6f8b19747989f21cacf5ec21aa4e4d5abba08460490bc54ab03"
+    },
+    {
+      "file": "bottom_SE_3.png",
+      "alpha_bbox_px": [
+        14,
+        45,
+        49,
+        91
+      ],
+      "sha256": "644a8a6fa1d1038948580941f07a67c47d82d1bc2ce15483012440e128d52536"
+    },
+    {
+      "file": "body_SE_4.png",
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "sha256": "c5e4dc836ae8b6453006a71e2a6acf14838f55898042b07b606ceeda53a582c0"
+    },
+    {
+      "file": "hair_SE_4.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "sha256": "e8de3b9a01d6d0ed099a1ab0d6b290a228d6b41d8ac508744b558fdf4e17cb55"
+    },
+    {
+      "file": "top_SE_4.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "2d5c23a4e162fcdbe9cd01572316983697a11163fc292935813eef1feedbc18d"
+    },
+    {
+      "file": "bottom_SE_4.png",
+      "alpha_bbox_px": [
+        22,
+        44,
+        48,
+        88
+      ],
+      "sha256": "bfcb8c810c355671a903f018f768f5a5087741a7df2ebdd59683bc10b2a127e7"
+    },
+    {
+      "file": "body_E_idle.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "sha256": "fca287005c65622d34b5fa6aeb339b9b1aeb4e36f0a6f12e75684e5e8196d95e"
+    },
+    {
+      "file": "hair_E_idle.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "sha256": "b600d79ed3a8e1e9b3334a5957df512f5df51e8ff76ea7f73e4fb71c2a35600f"
+    },
+    {
+      "file": "top_E_idle.png",
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "sha256": "7c5553dc2f04f3bcc5f74ddf0c3e17dfbe1dda07f46f34952f879e80d794ecd0"
+    },
+    {
+      "file": "bottom_E_idle.png",
+      "alpha_bbox_px": [
+        24,
+        44,
+        40,
+        90
+      ],
+      "sha256": "325d925ed23ff9af5cce1214e86c91530809a399f4d33f48038bdea9f1df15aa"
+    },
+    {
+      "file": "body_E_1.png",
+      "alpha_bbox_px": [
+        25,
+        22,
+        42,
+        64
+      ],
+      "sha256": "728e5f3a28e787288e6137666e1ab56efd206bb29156f7b938a9ca3f910503c2"
+    },
+    {
+      "file": "hair_E_1.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        36
+      ],
+      "sha256": "687be7d040c06e073143680f0c2b52a5e082b580528f3e6e936654d642f0f941"
+    },
+    {
+      "file": "top_E_1.png",
+      "alpha_bbox_px": [
+        25,
+        30,
+        41,
+        61
+      ],
+      "sha256": "45a07a34001582cacbf118cea16e8bcdc09abf1b38312e66ec01b5ed34f7cfeb"
+    },
+    {
+      "file": "bottom_E_1.png",
+      "alpha_bbox_px": [
+        14,
+        45,
+        50,
+        90
+      ],
+      "sha256": "0ff58ad5732dc154c2a6f0d1b3242deffa89f465697f38220997f71590c502f2"
+    },
+    {
+      "file": "body_E_2.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "sha256": "f3f7016dfeafc16bf6fcd086e1bf6c63bcca45b765793c95ff513b371f5b74f4"
+    },
+    {
+      "file": "hair_E_2.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "sha256": "b600d79ed3a8e1e9b3334a5957df512f5df51e8ff76ea7f73e4fb71c2a35600f"
+    },
+    {
+      "file": "top_E_2.png",
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "sha256": "c55303ca3f5f095d4cf39e194dc44bc66779b559fa17ea038bc917573c5eb98b"
+    },
+    {
+      "file": "bottom_E_2.png",
+      "alpha_bbox_px": [
+        24,
+        44,
+        48,
+        90
+      ],
+      "sha256": "85b38487c1f6e9a4c252bfd9c391d1c496919743a6bdf9a3ea546252baee5ef1"
+    },
+    {
+      "file": "body_E_3.png",
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "sha256": "9d9cbf106c5056f23920caa7bb66207de33a391c355664aa1b385b24e6bfeb92"
+    },
+    {
+      "file": "hair_E_3.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        36
+      ],
+      "sha256": "687be7d040c06e073143680f0c2b52a5e082b580528f3e6e936654d642f0f941"
+    },
+    {
+      "file": "top_E_3.png",
+      "alpha_bbox_px": [
+        24,
+        30,
+        41,
+        61
+      ],
+      "sha256": "3a6eadde6613acfa8c6652c56357bad11f4c22b55825f06b160ea62494189fcf"
+    },
+    {
+      "file": "bottom_E_3.png",
+      "alpha_bbox_px": [
+        14,
+        45,
+        50,
+        89
+      ],
+      "sha256": "7167fd2a848b4c3273244aaa560a173ba3c8e54196d5776dc35b1f62dae32221"
+    },
+    {
+      "file": "body_E_4.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "sha256": "f3f7016dfeafc16bf6fcd086e1bf6c63bcca45b765793c95ff513b371f5b74f4"
+    },
+    {
+      "file": "hair_E_4.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "sha256": "b600d79ed3a8e1e9b3334a5957df512f5df51e8ff76ea7f73e4fb71c2a35600f"
+    },
+    {
+      "file": "top_E_4.png",
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "sha256": "c55303ca3f5f095d4cf39e194dc44bc66779b559fa17ea038bc917573c5eb98b"
+    },
+    {
+      "file": "bottom_E_4.png",
+      "alpha_bbox_px": [
+        24,
+        44,
+        48,
+        87
+      ],
+      "sha256": "a8c5ac205427499da42831cf7a822e827af03e55836079fd203bd32df378306b"
+    },
+    {
+      "file": "body_NE_idle.png",
+      "alpha_bbox_px": [
+        20,
+        21,
+        43,
+        62
+      ],
+      "sha256": "62070a2eb5bc8b72ec9fb7dfbe55946ee69e65405843888422f3af77e99ba42c"
+    },
+    {
+      "file": "hair_NE_idle.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "sha256": "8619b3f4ca16e4b7398fca6d993c5c56937cccdaf5ed391e48cad088d1d05203"
+    },
+    {
+      "file": "top_NE_idle.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "9e2b7fe7d0fce324816fbc26e6a8f529c3725292c258745b81d0546c5f22ca34"
+    },
+    {
+      "file": "bottom_NE_idle.png",
+      "alpha_bbox_px": [
+        22,
+        44,
+        42,
+        90
+      ],
+      "sha256": "d51a1c8c53e67174b21ff95b65e9e60260bc1eb837966ea381c081063bbccf5a"
+    },
+    {
+      "file": "body_NE_1.png",
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "sha256": "aeadb6d4a7cbc6684055b9cff89f67dcceb5d18203c8df79f4010ac5bd9aa1a8"
+    },
+    {
+      "file": "hair_NE_1.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        37
+      ],
+      "sha256": "2f8b8f14a52d7b13257e7bde1504dc6b009da89dd23d89fc011c63a066495583"
+    },
+    {
+      "file": "top_NE_1.png",
+      "alpha_bbox_px": [
+        21,
+        31,
+        43,
+        60
+      ],
+      "sha256": "cd4ae41852c927fd62736d83d9fd3d5eb2e5a44c67d02f3b11e7ca4ef062751f"
+    },
+    {
+      "file": "bottom_NE_1.png",
+      "alpha_bbox_px": [
+        14,
+        45,
+        49,
+        91
+      ],
+      "sha256": "6b022a6796acee46b841ee6132b9928b55e0b9d91ac8948a2687bd71e8b7b5e4"
+    },
+    {
+      "file": "body_NE_2.png",
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "sha256": "97c8c047efb5ca2a2fbc7607d796d393646ae2c673065746c9abffd1c7c8d374"
+    },
+    {
+      "file": "hair_NE_2.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "sha256": "8619b3f4ca16e4b7398fca6d993c5c56937cccdaf5ed391e48cad088d1d05203"
+    },
+    {
+      "file": "top_NE_2.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "2497e9a1232da5f3abe02b89545963ba284fc3750fe2bbfc7df99cbad8cedc8e"
+    },
+    {
+      "file": "bottom_NE_2.png",
+      "alpha_bbox_px": [
+        22,
+        44,
+        48,
+        90
+      ],
+      "sha256": "3b1471791a583cb3aa88725f98251733a1a80a9cbdca72c11ff8274804eec66d"
+    },
+    {
+      "file": "body_NE_3.png",
+      "alpha_bbox_px": [
+        18,
+        22,
+        47,
+        61
+      ],
+      "sha256": "48688c4831a032fbb45213e831011fe5cd646e7581979f844dc4015bd2d725ae"
+    },
+    {
+      "file": "hair_NE_3.png",
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        37
+      ],
+      "sha256": "2f8b8f14a52d7b13257e7bde1504dc6b009da89dd23d89fc011c63a066495583"
+    },
+    {
+      "file": "top_NE_3.png",
+      "alpha_bbox_px": [
+        18,
+        32,
+        47,
+        58
+      ],
+      "sha256": "74addf2aed412a0e235dc329c4d78a1d160916c916b87d075d899c651b2ddbcf"
+    },
+    {
+      "file": "bottom_NE_3.png",
+      "alpha_bbox_px": [
+        20,
+        45,
+        44,
+        93
+      ],
+      "sha256": "19eeab286c130b72a9c1610e67e92bcd04977ef93936ef8f0895e637d097aa30"
+    },
+    {
+      "file": "body_NE_4.png",
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "sha256": "97c8c047efb5ca2a2fbc7607d796d393646ae2c673065746c9abffd1c7c8d374"
+    },
+    {
+      "file": "hair_NE_4.png",
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "sha256": "8619b3f4ca16e4b7398fca6d993c5c56937cccdaf5ed391e48cad088d1d05203"
+    },
+    {
+      "file": "top_NE_4.png",
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "sha256": "2497e9a1232da5f3abe02b89545963ba284fc3750fe2bbfc7df99cbad8cedc8e"
+    },
+    {
+      "file": "bottom_NE_4.png",
+      "alpha_bbox_px": [
+        23,
+        44,
+        43,
+        91
+      ],
+      "sha256": "fecd272092d3495a849c1c98e1463d36e39293e4496b8c592ac462fd56d74f23"
+    },
+    {
+      "file": "body_N_idle.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "sha256": "30d5f1feee7b6ddfe351f099465404dfff21f24ff7b3577a812a6fb75d3afaa3"
+    },
+    {
+      "file": "hair_N_idle.png",
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "sha256": "2aab1c70a2dd6558107bbd441460cd7d5a82f5e289d94542a2e38ecb165bcf19"
+    },
+    {
+      "file": "top_N_idle.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "e3c3d5f076c1e7168db7d7336133b0bda5f96df15e77294d6f782373586fe1fd"
+    },
+    {
+      "file": "bottom_N_idle.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "sha256": "fc223c207be40613469208d95732597432dfd7616445ebe2fbeaa9212c871f0c"
+    },
+    {
+      "file": "body_N_1.png",
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        62
+      ],
+      "sha256": "b38c1f66ebb74c0d63cc91ac408d0f526a8067ca3f24c1b4692544911f4fbe20"
+    },
+    {
+      "file": "hair_N_1.png",
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        37
+      ],
+      "sha256": "cb8b55535040512ff1b4fd8f53c68cef66e47fb944045b4695dc4eea30070e06"
+    },
+    {
+      "file": "top_N_1.png",
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "sha256": "bb59d2f71fe70c7280d8d170fdd0a5b5a3ecffef73ce183010aeb1663e6d923e"
+    },
+    {
+      "file": "bottom_N_1.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        93
+      ],
+      "sha256": "d214a137c3d53d7b5c53e21d30c2c58bd39bb4ecf4619089fe2dd3a2cd0474cb"
+    },
+    {
+      "file": "body_N_2.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        59
+      ],
+      "sha256": "78a773e6f17c2d73c620474dcd2087a18e686fc964ccba9c71577ffc47267801"
+    },
+    {
+      "file": "hair_N_2.png",
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "sha256": "2aab1c70a2dd6558107bbd441460cd7d5a82f5e289d94542a2e38ecb165bcf19"
+    },
+    {
+      "file": "top_N_2.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "de872a77162434678c23dfa4b6749f0abbcd1163e62fd15145b5953a4f404e7b"
+    },
+    {
+      "file": "bottom_N_2.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        91
+      ],
+      "sha256": "e444a4a2d8ece133c75219bedf53e37c989b0efe085176c54edfdc61a0f08b20"
+    },
+    {
+      "file": "body_N_3.png",
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "sha256": "e0858c556913f1c060bfb84a244848a672c4578bb43dc84416eafa6deedef6e2"
+    },
+    {
+      "file": "hair_N_3.png",
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        37
+      ],
+      "sha256": "cb8b55535040512ff1b4fd8f53c68cef66e47fb944045b4695dc4eea30070e06"
+    },
+    {
+      "file": "top_N_3.png",
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "sha256": "4773d300f2a6ed6eb427c611620b622148ce598610c7e0c603aac581880d4494"
+    },
+    {
+      "file": "bottom_N_3.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        93
+      ],
+      "sha256": "5d457f1f459c5d0305978cca4011ea30729775128450b0a51ddaccbfae3893cc"
+    },
+    {
+      "file": "body_N_4.png",
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        59
+      ],
+      "sha256": "78a773e6f17c2d73c620474dcd2087a18e686fc964ccba9c71577ffc47267801"
+    },
+    {
+      "file": "hair_N_4.png",
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "sha256": "2aab1c70a2dd6558107bbd441460cd7d5a82f5e289d94542a2e38ecb165bcf19"
+    },
+    {
+      "file": "top_N_4.png",
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "sha256": "de872a77162434678c23dfa4b6749f0abbcd1163e62fd15145b5953a4f404e7b"
+    },
+    {
+      "file": "bottom_N_4.png",
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        91
+      ],
+      "sha256": "e537262f3da29d1bac51817403dc40ffd1e2dfa727549df3c002af0a7cc770fe"
+    }
+  ],
+  "count": 100,
+  "same_canvas": [
+    64,
+    96
+  ],
+  "grayscale": true,
+  "no_clipping": true,
+  "depth_covers_every_alpha_pixel": true,
+  "passed": true
+}

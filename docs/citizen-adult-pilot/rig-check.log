@@ -1,0 +1,6 @@
+RIG_CHECKS {'four_mesh_parts': True, 'one_armature_14_bones': True, 'all_share_one_skin': True, 'all_vertices_weighted_normalized': True, 'no_unknown_bone_groups': True, 'one_gray_material_each': True, 'no_external_images': True, 'triangles_within_1500': True, 'triangle_counts_metadata': True, 'metres': True, 'two_actions': True, 'loop_modifier_on_every_walk_curve': True, 'no_duplicate_endpoint_in_playback': True, 'idle_height_175': True, 'sole_ground_zero': True, 'sole_pair_center_xy_origin': True, 'shirt_overlaps_waist_7cm': True, 'neck_head_overlap': True, 'hair_wraps_head': True, 'all_four_poses_feet_not_below_ground': True, 'one_planted_foot_each_pose': True, 'root_stationary': True, 'walk_frame17_exactly_frame1': True, 'wrap_step_not_an_outlier': True, 'four_distinct_walk_poses': True, '100_render_records': True, 'every_anchor_32_84': True, 'every_camera_40px_per_metre': True, 'source_never_saved_in_validation': True}
+RESULT 29 rig/camera checks passed
+Blender 4.3.2
+Read blend: "/workspace/simcity/assets/citizens/adult-pilot-01/citizen.blend"
+
+Blender quit
