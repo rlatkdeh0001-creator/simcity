@@ -1,0 +1,81 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS population demand supports an explicitly bounded tick cache
+PASS one full matching pass in a population tick
+PASS old unemployed cohort keeps its pre-immigration hiring priority exactly
+PASS cached demand equals original query 0
+PASS cached demand equals original query 1
+PASS cached demand equals original query 2
+PASS cached demand equals original query 3
+PASS cached demand equals original query 4
+PASS cached demand equals original query 5
+PASS cached demand equals original query 6
+PASS cached demand equals original query 7
+PASS cached demand equals original query 8
+PASS cached demand equals original query 9
+PASS cached demand equals original query 10
+PASS cached demand equals original query 11
+PASS cached demand equals original query 12
+PASS cached demand equals original query 13
+PASS cached demand equals original query 14
+PASS cached demand equals original query 15
+PASS cached demand equals original query 16
+PASS cached demand equals original query 17
+PASS cached demand equals original query 18
+PASS cached demand equals original query 19
+PASS cached demand equals original query 20
+PASS cached demand equals original query 21
+PASS cached demand equals original query 22
+PASS cached demand equals original query 23
+PASS cached demand equals original query 24
+PASS cached demand equals original query 25
+PASS cached demand equals original query 26
+PASS cached demand equals original query 27
+PASS cached demand equals original query 28
+PASS cached demand equals original query 29
+PASS cached demand equals original query 30
+PASS cached demand equals original query 31
+PASS cached demand equals original query 32
+PASS cached demand equals original query 33
+PASS cached demand equals original query 34
+PASS cached demand equals original query 35
+PASS cached demand equals original query 36
+PASS cached demand equals original query 37
+PASS cached demand equals original query 38
+PASS cached demand equals original query 39
+PASS cached demand equals original query 40
+PASS cached demand equals original query 41
+PASS cached demand equals original query 42
+PASS cached demand equals original query 43
+PASS cached demand equals original query 44
+PASS cached demand equals original query 45
+PASS cached demand equals original query 46
+PASS cached demand equals original query 47
+PASS cached demand equals original query 48
+PASS cached demand equals original query 49
+PASS cached demand equals original query 50
+PASS cached demand equals original query 51
+PASS cached demand equals original query 52
+PASS cached demand equals original query 53
+PASS cached demand equals original query 54
+PASS cached demand equals original query 55
+PASS cached demand equals original query 56
+PASS cached demand equals original query 57
+PASS cached demand equals original query 58
+PASS cached demand equals original query 59
+PASS cached demand equals original query 60
+PASS cached demand equals original query 61
+PASS cached demand equals original query 62
+PASS cached demand equals original query 63
+PASS 64 demand requests perform exactly one full scan
+PASS new dwelling decreases demand incrementally within the same tick
+PASS in-place level change updates only its capacity contribution
+PASS workplace stage and area changes update slots and demand contribution incrementally
+PASS new workplace updates demand and available-job index without changing assignment order 4
+PASS new workplace updates demand and available-job index without changing assignment order 5
+PASS demolished home rehouses the same households and preserves vacancy accounting
+PASS workplace removal preserves original reassignment results
+PASS all same-tick building changes avoid full demand and matching rebuilds
+PASS the next tick refreshes cached aggregate state
+PASS production society and development share one bounded demand cache
+RESULT 78/78 population cache checks passed

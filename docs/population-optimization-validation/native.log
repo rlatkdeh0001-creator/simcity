@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+BASIC_FPS {"fps":238.641358521534,"frames":955,"max_ms":16.694,"median_ms":4.058,"p99_ms":5.411,"renderer":"2ea4105"}
+BASIC_FPS {"fps":233.579428622249,"frames":935,"max_ms":6.871,"median_ms":4.208,"p99_ms":5.834,"renderer":"28ebcc7"}
+LIVE_30_SECONDS population=240 moving_frames=7122 max_ms=63.317 p99_ms=6.251 society_max_ms=2.711
+NATIVE_POPULATION_PASS

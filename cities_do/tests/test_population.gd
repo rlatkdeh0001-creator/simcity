@@ -78,7 +78,12 @@ func run():
  for i in range(8):a.advance_society(.5)
  b.advance_society(4)
  check(a.population.people==b.population.people and a.clock.game_seconds==b.clock.game_seconds,"fixed population ticks are frame independent")
- var view=load("res://bottom_ui_preview.tscn").instantiate()
+ root.size=Vector2i(1280,820)
+ var view=load("res://main.tscn").instantiate()
+ view.city=Model.new(64,64,42);view.paused=true
+ view.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(50,30)]))
+ var fixture_parcel:Dictionary=view.city.zoning_grid.parcels.values()[0]
+ assert(view.city.add_building_at(fixture_parcel.center).ok)
  root.add_child(view);await process_frame
  view.city.population.sync(view.city.buildings)
  var target: Dictionary=view.city.buildings[0]

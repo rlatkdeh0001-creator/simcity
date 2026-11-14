@@ -1,0 +1,58 @@
+{
+  "method": "same 20261114 seed fixture, full houses, jobs primed, 32 designated cells; one real 2-second society tick; development includes demand",
+  "rows": [
+    {
+      "demand_calls": 1,
+      "demand_full_scans": 1,
+      "demand_ms": 0.006,
+      "development_ms": 0.496,
+      "match_jobs_calls": 1,
+      "match_jobs_ms": 0.005,
+      "population": 0,
+      "population_advance_ms": 0.02,
+      "population_after": 0,
+      "sync_excluding_jobs_ms": 0.02,
+      "total_tick_ms": 0.536
+    },
+    {
+      "demand_calls": 64,
+      "demand_full_scans": 1,
+      "demand_ms": 0.109,
+      "development_ms": 0.21,
+      "match_jobs_calls": 1,
+      "match_jobs_ms": 0.506,
+      "population": 240,
+      "population_advance_ms": 1.197,
+      "population_after": 240,
+      "sync_excluding_jobs_ms": 0.581,
+      "total_tick_ms": 1.421
+    },
+    {
+      "demand_calls": 64,
+      "demand_full_scans": 1,
+      "demand_ms": 0.117,
+      "development_ms": 0.227,
+      "match_jobs_calls": 1,
+      "match_jobs_ms": 2.324,
+      "population": 1000,
+      "population_advance_ms": 5.525,
+      "population_after": 1000,
+      "sync_excluding_jobs_ms": 2.685,
+      "total_tick_ms": 5.773
+    },
+    {
+      "demand_calls": 64,
+      "demand_full_scans": 1,
+      "demand_ms": 0.106,
+      "development_ms": 0.22,
+      "match_jobs_calls": 1,
+      "match_jobs_ms": 13.114,
+      "population": 5000,
+      "population_advance_ms": 29.781,
+      "population_after": 5000,
+      "sync_excluding_jobs_ms": 13.334,
+      "total_tick_ms": 30.022
+    }
+  ],
+  "stage": "after"
+}

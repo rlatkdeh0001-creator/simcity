@@ -186,6 +186,8 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 	if zone_designations.is_empty():
 		development_elapsed=0
 		return created
+	var own_population_tick:bool=population_enabled and not population.tick_active
+	if own_population_tick:population.begin_tick()
 	development_elapsed+=seconds
 	var steps := 0
 	while development_elapsed>=config.development_interval_seconds and steps<config.development_max_steps:
@@ -216,6 +218,7 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 				built=true
 				break
 			if built:break
+	if own_population_tick:population.end_tick()
 	return created
 
 func advance_society(seconds: float) -> void:
@@ -226,8 +229,11 @@ func advance_society(seconds: float) -> void:
 	while society_elapsed>=config.development_interval_seconds and steps<config.development_max_steps:
 		society_elapsed-=config.development_interval_seconds
 		steps+=1
-		if population_enabled:population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
+		if population_enabled:
+			population.begin_tick()
+			population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
+		if population_enabled:population.end_tick()
 	if steps>0:society_changed.emit()
 
 func orient_building(b: Dictionary) -> void:
