@@ -1,0 +1,22 @@
+{
+  "artifacts": [
+    {
+      "name": "Godot_v4.6.3-stable_mono_win64.zip",
+      "url": "https://github.com/godotengine/godot-builds/releases/download/4.6.3-stable/Godot_v4.6.3-stable_mono_win64.zip",
+      "archive_bytes": 109661890,
+      "expanded_bytes": 259057362,
+      "sha256": "0015a6f2fab16e255919380864e8b5320017b1258c01121d5521b133dbe705f6",
+      "destination": "D:\\tools\\godot-dotnet"
+    },
+    {
+      "name": "dotnet-sdk-10.0.404-win-x64.zip",
+      "url": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-win-x64.zip",
+      "archive_bytes": 303618098,
+      "expanded_bytes": 812144112,
+      "sha512": "330ddd2665b43cd2e428216a0d8ea1ac7bb19b5434fdc530e62010dc3b52823a620bf95489d628e1ed6f5122401793ee4887cca4a019122361a1231497f632ee",
+      "destination": "D:\\tools\\dotnet"
+    }
+  ],
+  "godot": "D:\\tools\\godot-dotnet\\Godot_v4.6.3-stable_mono_win64\\Godot_v4.6.3-stable_mono_win64_console.exe",
+  "dotnet": "D:\\tools\\dotnet\\dotnet.exe"
+}
