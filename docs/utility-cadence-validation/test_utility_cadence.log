@@ -24,4 +24,6 @@ PASS the production 2x control halves the real-time water deadline
 PASS the production 2x control halves the real-time power deadline
 PASS open overlay numbers stay latched between actual calculation times
 PASS tab/edit refreshes mark dirty instead of forcing a network solve
-RESULT 24/24 utility cadence checks passed
+PASS a replacement city with the same generation counter refreshes its own utility snapshot
+PASS water overlay counters are also isolated between cities
+RESULT 26/26 utility cadence checks passed

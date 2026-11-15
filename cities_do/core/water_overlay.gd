@@ -106,9 +106,11 @@ func refresh():
  queue_redraw()
 
 var summary_generation:=-1
+var summary_city:=0
 func update_state(delta: float):
  if not visual_paused: visual_time+=delta
- if not tab_open:summary_generation=-1
+ if not tab_open or summary_city!=view.city.get_instance_id():summary_generation=-1
+ summary_city=view.city.get_instance_id()
  if tab_open and summary_generation!=view.city.utilities.water_generation:
   summary_generation=view.city.utilities.water_generation
   var state: Dictionary=view.water_snapshot

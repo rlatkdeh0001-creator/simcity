@@ -69,5 +69,10 @@ func run():
  verify(game.power_overlay.summary.text==text,"open overlay numbers stay latched between actual calculation times")
  var calls:int=game.city.power_calls;game.power_overlay.refresh()
  verify(game.city.power_calls==calls,"tab/edit refreshes mark dirty instead of forcing a network solve")
+ game.water_overlay.tab_open=true
+ game.city=fixture();game._process(0);var prior_text:String=game.power_overlay.summary.text;var prior_water:String=game.water_overlay.summary.text
+ game.city=fixture(true);game._process(0)
+ verify(game.power_overlay.summary.text!=prior_text,"a replacement city with the same generation counter refreshes its own utility snapshot")
+ verify(game.water_overlay.summary.text!=prior_water,"water overlay counters are also isolated between cities")
  game.queue_free();await process_frame
  print("RESULT %d/%d utility cadence checks passed"%[checks-failures,checks]);quit(1 if failures else 0)
