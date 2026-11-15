@@ -67,6 +67,7 @@ func set_capacity(id: int, capacity: float) -> bool:
  for facility in facilities:
   if facility.id==id:
    facility.capacity_m3_day=capacity
+   geometry.revision+=1
    return true
  return false
 

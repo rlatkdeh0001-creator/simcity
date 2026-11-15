@@ -1,0 +1,27 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS production city owns a staggered utility scheduler
+PASS startup primes both snapshots once without billing
+PASS ordinary frames do not rebuild consumers or solve networks
+PASS water updates at game second 24, one real second before power
+PASS power updates at game second 48 and keeps its independent phase
+PASS generation changes mark dirty without applying a solve
+PASS dirty changes never force an early calculation
+PASS dirty state applies at the next fixed deadline within two seconds
+PASS paused or invalid deltas do not accrue utility charges
+PASS one game day of frame-by-frame charges equals cached metering; exporting=false
+PASS all kWh are retained between staggered calculations
+PASS all water and sewage volumes are retained
+PASS one game day of frame-by-frame charges equals cached metering; exporting=true
+PASS all kWh are retained between staggered calculations
+PASS all water and sewage volumes are retained
+PASS shared fractional funds exhaust identically at 30 FPS
+PASS budget-limited power/water priority preserves every traded volume
+PASS shared fractional funds exhaust identically at 60 FPS
+PASS budget-limited power/water priority preserves every traded volume
+PASS the production pause control freezes utility time and charges
+PASS the production 2x control halves the real-time water deadline
+PASS the production 2x control halves the real-time power deadline
+PASS open overlay numbers stay latched between actual calculation times
+PASS tab/edit refreshes mark dirty instead of forcing a network solve
+RESULT 24/24 utility cadence checks passed

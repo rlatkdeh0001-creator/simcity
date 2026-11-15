@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+INHERITED_WATER_FIXTURE 5e3b7a0 old_width_fixture={ "ok": false, "reason": "도로와 충돌합니다" }
+INHERITED_WATER_FIXTURE current old_width_fixture={ "ok": false, "reason": "도로와 충돌합니다" }
+FIXTURE_WIDTH_PROBE_PASS preserved lot and facility coordinates, only road centre corrected

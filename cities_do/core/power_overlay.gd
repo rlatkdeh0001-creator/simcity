@@ -114,15 +114,19 @@ func toggle():
  refresh()
 
 func refresh():
- view.power_snapshot=view.city.power_state()
+ view.city.utilities.mark_power_dirty()
  view.refresh()
  update_state(0)
  queue_redraw()
 
+var summary_generation:=-1
 func update_state(delta: float):
  if not visual_paused: visual_time+=delta
- if tab_open:
+ if not tab_open:summary_generation=-1
+ if tab_open and summary_generation!=view.city.utilities.power_generation:
+  summary_generation=view.city.utilities.power_generation
   var state: Dictionary=view.power_snapshot
+  var meters:Dictionary=state.get("display",{})
   var generation := 0.0
   var demand := 0.0
   var supplied := 0.0
@@ -130,7 +134,7 @@ func update_state(delta: float):
    generation+=float(group.generation_kw)
    demand+=float(group.demand_kw)
    supplied+=float(group.supplied_kw)
-  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %s" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),view.city.power.imported_kwh,view.city.power.exported_kwh,view.city.Economy.format_fraction(view.city.power.pending_doth,6,true)]
+  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %s" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),meters.get("imported_kwh",view.city.power.imported_kwh),meters.get("exported_kwh",view.city.power.exported_kwh),view.city.Economy.format_fraction(meters.get("pending_doth",view.city.power.pending_doth),6,true)]
  if tab_open or not view.city.power.plants.is_empty(): queue_redraw()
 
 func finish_capture(event):

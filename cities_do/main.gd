@@ -92,11 +92,12 @@ func _ready():
 	traffic = Traffic.new()
 	add_child(traffic)
 	_build_controls(layer)
-	power_snapshot = city.power_state()
+	city.utilities.start()
+	power_snapshot = city.utilities.power_snapshot
 	power_overlay = PowerOverlay.new()
 	add_child(power_overlay)
 	power_overlay.setup(self,layer)
-	water_snapshot = city.water_state()
+	water_snapshot = city.utilities.water_snapshot
 	water_overlay = WaterOverlay.new()
 	add_child(water_overlay)
 	water_overlay.setup(self,layer)
@@ -276,8 +277,9 @@ func _process(delta: float):
 	if labor_panel!=null:labor_panel.position.x=maxf(8,get_viewport_rect().size.x-490)
 	if city.buildings.size()!=before_buildings or (labor_panel!=null and labor_panel.visible): refresh()
 	# Simulation/billing runs regardless of the power tab or visual pause.
-	power_snapshot = city.advance_power(delta*city.Clock.SCALE/3600.0)
-	water_snapshot = city.advance_water(delta*city.Clock.SCALE/86400.0)
+	var utility_state:Dictionary=city.advance_utilities(delta)
+	power_snapshot = utility_state.power
+	water_snapshot = utility_state.water
 	if water_overlay != null: water_overlay.update_state(delta)
 	if treasury_label != null: treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	if power_overlay != null: power_overlay.update_state(delta)

@@ -11,7 +11,11 @@ var ports: Array[Dictionary] = []
 var next_id := 1
 var nodes: Array[Dictionary] = []
 var adjacency := {}
-var revision := 0
+signal changed
+var revision := 0:
+ set(value):
+  revision=value
+  changed.emit()
 var graph_revision := -1
 var imported_kwh := 0.0
 var exported_kwh := 0.0

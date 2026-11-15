@@ -63,6 +63,7 @@ const PowerGrid = preload("res://core/power_grid.gd")
 var power
 const WaterGrid = preload("res://core/water_grid.gd")
 var water
+var utilities
 const PublicFacilities=preload("res://core/public_facilities.gd")
 var public_facilities
 const PROTOTYPE_POWER_LOADS := {"residential":1.6,"commercial":1.5,"industrial":3.0}
@@ -77,6 +78,12 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	water = WaterGrid.new(Vector2(w,h)*4.0)
 	public_facilities=PublicFacilities.new(self)
 	clock.day_changed.connect(public_facilities.bill_months)
+	utilities=preload("res://core/utility_cadence.gd").new(self)
+	power.changed.connect(utilities.mark_power_dirty)
+	water.geometry.changed.connect(utilities.mark_water_dirty)
+
+func advance_utilities(seconds:float)->Dictionary:
+	return utilities.advance(seconds)
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -237,6 +244,7 @@ func advance_society(seconds: float) -> void:
 	if steps>0:society_changed.emit()
 
 func orient_building(b: Dictionary) -> void:
+	utilities.mark_dirty()
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
 
 func front_direction(b: Dictionary) -> Vector2:
@@ -364,7 +372,7 @@ func demolish_road_selection(selection: Dictionary) -> Dictionary:
 	roads=replacement
 	_update_zoning_for_road({})
 	for building in buildings:orient_building(building)
-	population.sync(buildings);power_state();water_state()
+	population.sync(buildings);utilities.mark_dirty()
 	return {"ok":true,"reason":"철거 완료","removed_cells":removed}
 
 func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
@@ -387,7 +395,7 @@ func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
 			roads.insert(i+j,pieces[j])
 		_update_zoning_for_road({})
 		for building in buildings:orient_building(building)
-		population.sync(buildings);power_state();water_state()
+		population.sync(buildings);utilities.mark_dirty()
 		return {"ok":true,"reason":"철거 완료","removed_cells":last-first}
 	return {"ok":false,"reason":"철거할 도로가 없습니다"}
 
@@ -415,8 +423,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 		"water_pipe": removed=water.remove_pipe(id)
 	if removed:
 		population.sync(buildings)
-		power_state()
-		water_state()
+		utilities.mark_dirty()
 	return {"ok":removed,"reason":"철거 완료" if removed else "철거할 대상을 선택하세요"}
 
 func find_building(id: int) -> Dictionary:
