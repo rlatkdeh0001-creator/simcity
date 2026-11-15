@@ -174,3 +174,11 @@ asset registration/inspection from city placement and operational simulation.
 - 보고는 5줄 이내: 브랜치·SHA·통과 수·캡처 경로·막힌 점. README·검증 폴더 긴 문서는 main 병합 때만.
 - 같은 테스트를 이유 없이 반복 실행하지 않는다. 다시 돌리는 건 코드가 바뀌었거나 실패했을 때만.
 - RED 로그·중간 결과 파일은 남기지 않는다(최종 결과만).
+
+## cities-claude 직접 코딩 (사용자 승인 2026-11-15)
+
+- 기본 분담은 그대로: cities-claude = 기획·UI/UX·검수·중계, cities-gpt = 코딩·구현·커밋.
+- cities-claude는 **사용자가 "지피티가 사용량이 없으니 니가 해"처럼 cities-claude에게 직접 명령했을 때만** 코딩한다. 지피티 사용량이 없다는 사실만으로 스스로 시작하지 않는다.
+- 범위: 작은 수정·급한 버그·미커밋 작업 마무리·측정/테스트 실행. 큰 구현은 지피티를 기다린다.
+- 커밋: `git -c user.name=rlatkdeh0001-creator -c user.email=304212562+rlatkdeh0001-creator@users.noreply.github.com commit`, 메시지 끝에 `(by cities-claude)`. push·main 반영은 기존처럼 사용자 승인 후.
+- 끝나면 바뀐 브랜치·SHA·내용을 cities-gpt에게 알려 이어받게 한다.
