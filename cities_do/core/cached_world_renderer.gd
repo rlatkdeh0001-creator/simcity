@@ -33,6 +33,9 @@ var ordered:Array=[]
 
 var road_shapes:Array=[]
 var verges:Array=[]
+var accessways:Array=[]
+var access_signature:Array=[]
+var access_generation:=0
 var stripes:Array=[]
 
 var arrows:Array=[]
@@ -87,6 +90,11 @@ func synchronize():
  var records:Array=view.city.buildings.duplicate();records.append_array(view.city.public_facilities.lots)
  var signature:Array=[view.city.get_instance_id()]
  for record in records:signature.append([record.id,record.get("asset_id",""),record.get("public_asset_id",""),record.get("level",0),view.city.footprint(record),view.city.front_direction(record)])
+ var access_key:Array=[rs,signature,records.map(func(record):return [record.get("front_road_id",-1),record.get("entrance_spans_m",[])])]
+ if access_key!=access_signature:
+  access_signature=access_key;access_generation+=1;accessways.clear()
+  for polygon in preload("res://core/entrance_accessways.gd").build(view.city):accessways.append(project(polygon))
+  ground.queue_redraw()
  if changed or signature!=building_signature:
   building_signature=signature;ordered=view.building_draw_order();building_sorts+=1
   var keep:Dictionary={};var previous_depth:float=-INF;var rank:=0
@@ -139,6 +147,7 @@ func paint(canvas:CanvasItem,kind:String):
   "ground":
    canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),Color("7e9275"))
    for polygon in verges:canvas.draw_colored_polygon(polygon,preload("res://core/roadside_verges.gd").COLOR)
+   for polygon in accessways:canvas.draw_colored_polygon(polygon,preload("res://core/entrance_accessways.gd").COLOR)
 
   "roads":
    for shape in road_shapes:canvas.draw_colored_polygon(shape[0],shape[1])

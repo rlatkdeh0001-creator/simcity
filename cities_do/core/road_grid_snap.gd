@@ -77,7 +77,22 @@ static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionar
  else:
   b=coordinates(end_hit.point,frame)
   if start_hit.is_empty():a[cross_axis]=tick(a[cross_axis],b[cross_axis])
- return PackedVector2Array([world(a,frame),world(b,frame)])
+ var first_world:=world(a,frame);var last_world:=world(b,frame)
+ return PackedVector2Array([boundary_endpoint(city,first_world,last_world) if start_hit.is_empty() else first_world,boundary_endpoint(city,last_world,first_world) if end_hit.is_empty() else last_world])
+static func boundary_endpoint(city,point:Vector2,inside:Vector2)->Vector2:
+ # Extend only the terminal cap along its original axis; the shared lattice stays put.
+ var direction:Vector2=(point-inside).normalized();var bounds:=Vector2(city.width,city.height)
+ var best:=INF;var result:=point
+ for axis in range(2):
+  if absf(direction[axis])<EPS:continue
+  for edge in [0.0,bounds[axis]]:
+   var distance:float=(float(edge)-point[axis])/direction[axis]
+   if absf(distance)>1.0+EPS or absf(distance)>=best:continue
+   var hit:Vector2=point+direction*distance;hit[axis]=float(edge)
+   var other:int=1-axis
+   if hit[other]<-EPS or hit[other]>bounds[other]+EPS or (hit-inside).dot(direction)<=EPS:continue
+   best=absf(distance);result=hit.clamp(Vector2.ZERO,bounds)
+ return result
 static func straight(frame: Dictionary) -> bool:
  for p in frame.centerline:
   if absf((p-Vector2(frame.centerline[0])).cross(frame.along))>EPS:return false

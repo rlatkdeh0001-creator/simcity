@@ -1,0 +1,8 @@
+{
+  "boundary_arrow_samples": 2,
+  "endpoint": "Vector2(100, 60.75)",
+  "entry_polygons": "Array[PackedVector2Array]([PackedVector2Array(60, 58.25, 59.25, 58.25, 59.25, 58, 60, 58), PackedVector2Array(61.9525, 58.25, 61.25, 58.25, 61.25, 58, 61.9525, 58)])",
+  "input": "real viewport mouse press/release; grid on, same-road overdraw to map edge",
+  "lot_geometry_preserved": true,
+  "visible_entry_paving": 2
+}
