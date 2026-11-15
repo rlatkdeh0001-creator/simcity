@@ -332,8 +332,9 @@ func refresh():
 	if mode!="demolish":cancel_demolition_drag()
 	if road_drawer!=null and mode!="road":road_drawer.cancel()
 	if labor_panel!=null:
-		labor_panel.visible=city.population.workplaces.has(selected)
-		labor_rings.work=city.population.workplaces.get(selected,{})
+		var workplace:Dictionary=city.population.workplace_info(selected) if city.population.has_method("workplace_info") else city.population.workplaces.get(selected,{})
+		labor_panel.visible=not workplace.is_empty()
+		labor_rings.work=workplace
 		labor_rings.queue_redraw()
 	if treasury_label != null:
 		treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)

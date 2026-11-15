@@ -1,0 +1,86 @@
+{
+  "method": "median of five fresh identical fixtures per backend; one production advance_society(2), 48 game seconds, full homes, primed jobs, 32 zoned cells; includes development; JIT warm-up excluded; managed production storage, not mutable compatibility views",
+  "reference": "e3a7c84 optimized GDScript population",
+  "rows": [
+    {
+      "csharp_ms": 0.681,
+      "csharp_samples_ms": [
+        4.453,
+        0.893,
+        0.657,
+        0.673,
+        0.681
+      ],
+      "exact_post_tick_equal": true,
+      "gd_ms": 0.659,
+      "gd_samples_ms": [
+        0.669,
+        0.671,
+        0.659,
+        0.655,
+        0.628
+      ],
+      "population": 0
+    },
+    {
+      "csharp_ms": 0.988,
+      "csharp_samples_ms": [
+        1.447,
+        1.285,
+        0.979,
+        0.977,
+        0.988
+      ],
+      "exact_post_tick_equal": true,
+      "gd_ms": 1.846,
+      "gd_samples_ms": [
+        1.968,
+        1.993,
+        1.846,
+        1.821,
+        1.77
+      ],
+      "population": 240
+    },
+    {
+      "csharp_ms": 1.413,
+      "csharp_samples_ms": [
+        1.346,
+        1.371,
+        1.413,
+        1.483,
+        1.653
+      ],
+      "exact_post_tick_equal": true,
+      "gd_ms": 7.155,
+      "gd_samples_ms": [
+        6.541,
+        7.155,
+        6.614,
+        8.049,
+        8.367
+      ],
+      "population": 1000
+    },
+    {
+      "csharp_ms": 4.273,
+      "csharp_samples_ms": [
+        4.273,
+        3.65,
+        4.337,
+        4.116,
+        6.285
+      ],
+      "exact_post_tick_equal": true,
+      "gd_ms": 36.88,
+      "gd_samples_ms": [
+        42.142,
+        33.116,
+        36.097,
+        36.88,
+        38.959
+      ],
+      "population": 5000
+    }
+  ]
+}

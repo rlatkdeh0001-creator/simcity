@@ -1212,3 +1212,9 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 ### 승인된 C# 이전 2: .NET 프로젝트·언어 간 브리지
 - `CitiesDo.csproj/.sln`, SDK10.0.404 `global.json`, Godot4.6.3 로컬 NuGet feed·D: 패키지 폴더를 고정했다. net10.0 빌드 경고0/오류0, 산출물은 주 프로젝트 `.godot/mono/temp/` 아래다. 프로젝트의 C# feature/assembly만 의미상 추가하고 이전 에디터 자동 서식 미커밋분은 별도로 보존한다.
 - `PopulationCore.cs` RefCounted를 실제 GDScript에서 생성·호출하고 native Godot RNG20회 값/상태까지 일치하는22/22를 확인했다. 아직 인구 계산을 이 브리지로 전환하지 않았고 현행 성장/화면/데이터는 그대로다. 최종 로그 `docs/csharp-bridge-validation/`. C: NuGet 설정 생성 없음, Godot managed 패키지4종 모두 D:에서 복원, 추가 설치/캡처/main/push 없음.
+
+### 승인된 C# 이전 3: 현행 인구 코어 이전·동일성·실행 검증
+- PopulationState/PopulationCore가 인구·가구·일자리·수요를 소유하며 population.gd는 어댑터다. native Godot RNG와 원래 고용 순서·현행 성장 규칙을 보존한다. 건물은 PackedInt64Array로 일괄 전달하고 캐시 수요 조회에는 재포장하지 않는다. 기존 가변 dictionary fixture는 명시적 호환 뷰로 지원하되 HUD는 단일 직장 조회로 전체 인구 복제를 켜지 않는다. 기존 Godot/TDD·자체 검토 적용, 새 설치 없음.
+- 새 실행: 브리지22·어댑터5·캐시78·인구52·3일동일성6·부지86·깊이52 통과, 빌드 경고/오류0. e3a7c84 인구/모델 UTF-8 동결 참조와 시드42/20261114 각각5400틱의 건물·주민·가구·직업·인구 RNG가 정확히 같았다. pre-csharp-test-baseline은 불변이며 승인 행복도/mistake 원문은 이미8a0893a에 포함됐다.
+- 동일 fixture 새 5회 중앙값 GD→C#(ms), 0명0.659→0.681 /240명1.846→0.988 /1000명7.155→1.413 /5000명36.880→4.273. 20쌍의 최종 상태도 정확 일치. setup/JIT 제외, 실제 advance_society(2) 전체·개발 포함, 지역 컴퓨터 측정이며 모든 부하 조건의 보장은 아니다.
+- 실제1920×1080 GL: 240명·주택60+상점1, 마우스 직장 선택/고용 패널·30초 WASD 확인. 5166프레임, 이동4760, 720.225게임초, 사회 최대2.569ms(프레임 최대44.377/p99 11.346ms는 별도). 최종 근거 docs/csharp-population-validation/. 캡처0·현행 성장 유지·main/push 없음. 다음은 별도 행복도/성장 연결이며 미확정 거리·초기값·정원 배정은 임의 결정하지 않는다.
