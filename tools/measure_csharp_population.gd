@@ -4,7 +4,7 @@ const Managed=preload("res://core/population.gd")
 var reference
 func _initialize():run.call_deferred()
 func seed_city(count:int):
- var city=Model.new(1000,1000,20261114);var pop=reference.new(20261114);city.population=pop
+ var city=Model.new(1000,1000,20261114);city.happiness_enabled=false;var pop=reference.new(20261114);city.population=pop
  assert(city.add_road(PackedVector2Array([Vector2(10,40),Vector2(90,40)])).ok)
  var homes:=ceili(float(count)/4);var jobs:=ceili(float(count)/6)
  for i in range(homes):city.buildings.append({"id":i+1,"x":200+(i%40)*3,"y":200+floori(float(i)/40)*3,"size":2,"level":1,"zone":"residential","score":0.0,"asset_id":""})

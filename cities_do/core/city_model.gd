@@ -45,6 +45,8 @@ const Population=preload("res://core/population.gd")
 var clock=Clock.new()
 var population
 var population_enabled := true
+var happiness_enabled := true
+var happiness
 var society_elapsed := 0.0
 var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
 var development_elapsed := 0.0
@@ -81,6 +83,7 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	utilities=preload("res://core/utility_cadence.gd").new(self)
 	power.changed.connect(utilities.mark_power_dirty)
 	water.geometry.changed.connect(utilities.mark_water_dirty)
+	happiness=preload("res://core/happiness.gd").new(self)
 
 func advance_utilities(seconds:float)->Dictionary:
 	return utilities.advance(seconds)
@@ -240,11 +243,16 @@ func advance_society(seconds: float) -> void:
 			population.begin_tick()
 			population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
+		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
 	if steps>0:society_changed.emit()
 
+func advance_happiness(game_seconds:float)->void:
+	if happiness_enabled and population_enabled:happiness.advance(game_seconds)
+
 func orient_building(b: Dictionary) -> void:
 	utilities.mark_dirty()
+	if happiness!=null:happiness.mark_dirty()
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
 
 func front_direction(b: Dictionary) -> Vector2:

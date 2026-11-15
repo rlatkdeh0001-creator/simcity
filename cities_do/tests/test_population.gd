@@ -74,7 +74,7 @@ func run():
  check(fertility.people.any(func(p):return p.origin=="local"),"daily birth scheduling creates local citizens when eligible")
  check(is_equal_approx(adult.age_years-age,1.0/12),"one game day ages citizens by one twelfth of a year")
  var a=Model.new();var b=Model.new()
- for town in [a,b]:town.buildings.append({"id":1,"zone":"residential","size":2,"level":1})
+ for town in [a,b]:town.buildings.append({"id":1,"zone":"residential","size":2,"level":1,"x":10,"y":10})
  for i in range(8):a.advance_society(.5)
  b.advance_society(4)
  check(a.population.people==b.population.people and a.clock.game_seconds==b.clock.game_seconds,"fixed population ticks are frame independent")

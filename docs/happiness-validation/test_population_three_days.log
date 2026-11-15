@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS eight catch-up construction steps preserve original building count and types
+PASS same-call demand decrement prevents extra construction after four homes exhaust initial demand
+PASS three full game days preserve every building, person, household, job assignment and RNG state seed=42
+PASS comparison exercises real development and immigration seed=42
+PASS three full game days preserve every building, person, household, job assignment and RNG state seed=20261114
+PASS comparison exercises real development and immigration seed=20261114
+RESULT 6/6 three-day equality checks passed

@@ -2,6 +2,8 @@ extends "res://tests/test_population_cache.gd"
 const Model=preload("res://core/city_model.gd")
 func town(script,pop_script,seed_value:int):
  var city=script.new(100,100,seed_value);city.population=pop_script.new(seed_value)
+ # This is the frozen unchanged-policy port oracle, not a test of newly enabled growth.
+ if script==Model:city.happiness_enabled=false
  assert(city.add_road(PackedVector2Array([Vector2(10,40),Vector2(42,40)])).ok)
  var i:=0
  for frame in city.zoning_grid.frames.values():

@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+HAPPINESS_SCENARIO_STATE {"levels":[1,4,5],"pollution":[-10.0,-10.0,-5.0],"targets":[40.0,70.0,80.0]}
+HAPPINESS_SCENARIO_PASS levels=[1, 4, 5] targets=[40.0, 70.0, 80.0] pollution=[-10.0, -10.0, -5.0]
