@@ -182,3 +182,10 @@ asset registration/inspection from city placement and operational simulation.
 - 범위: 작은 수정·급한 버그·미커밋 작업 마무리·측정/테스트 실행. 큰 구현은 지피티를 기다린다.
 - 커밋: `git -c user.name=rlatkdeh0001-creator -c user.email=304212562+rlatkdeh0001-creator@users.noreply.github.com commit`, 메시지 끝에 `(by cities-claude)`. push·main 반영은 기존처럼 사용자 승인 후.
 - 끝나면 바뀐 브랜치·SHA·내용을 cities-gpt에게 알려 이어받게 한다.
+
+## 애셋 제작 분담 (사용자 승인 2026-11-15)
+
+- 애셋 원본 제작·렌더·등록은 **cities-asset**(시티즈 애셋) 봇이 맡는다: Blender 파이썬 스크립트로 직접 만든 지오메트리만, 외부 모델·외부 텍스처·생성형 이미지·가짜 PNG 금지, 스크립트와 `.blend`를 함께 남긴다.
+- 흐름: 사용자 요청 → cities-claude가 `docs/design/ASSET_REQUEST_*_KO.md` 제작 요청서 작성 → 사용자가 제작을 요청하면 cities-claude가 cities-asset에 전달 → cities-asset이 `assets/<이름>-<날짜>` 브랜치에서 작업, 메시지 끝 `(by cities-asset)`.
+- cities-gpt는 애셋을 만들지 않는다(게임 코드 전담). cities-asset은 게임 코드를 고치지 않고 등록용 카탈로그·메타데이터만 바꾼다.
+- 기존 애셋 원본(.blend, metadata, GLB, spec.json, sprites, npz)은 수정하지 않고 새 버전 파일로 만든다. push·main 반영은 사용자 승인 후. 설치는 D: 드라이브.
