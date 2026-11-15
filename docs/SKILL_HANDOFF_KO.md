@@ -7,6 +7,23 @@
 원본 파이프라인 전체 실행 여부도 구분한다.
 
 
+## 다른 AI용 휴대형 애셋 제작 스킬 (skills/asset-production-20261116)
+
+사용자 요청으로 `.agents/skills/cities-do-asset-production/`에 실제 생성/렌더/검증
+워크플로를 묶었다. `skill-creator`의 구조/패키징 지침을 사용했고 upstream 원본을 수정하지
+않았다. 자체 지침/runner/검사기와 승인 branch의 생성기 스냅샷을 함께 포함했다.
+원본 URL·고정 SHA·원본/묶음 해시·최소 수정 목록은 `references/source-manifest.json`,
+zstack helper MIT/폰트 저작권은 `kit/licenses/`에 있다. 프로젝트 전체를 MIT로 재허가하지 않는다.
+
+`downloads/cities-do-asset-production.skill`을 풀면 Git·대화 기록 없이 실행할 수 있다.
+기존 profile 재생성뿐 아니라 staged 스크립트를 편집해 신규 디자인을 추가하는 법과
+시민 깊이 합성/신호등 독립 재질/차량 미러/부지·좌표계 계약을 포함했다.
+[복사해서 전달할 문구·명령·실제 검사 결과](asset-production-skill/README_KO.md) 참조.
+기존 기록과 이번 standalone 검증은 구분한다. 실제 실행은 기록 JSON에 명시한다.
+AI 모델 비교/게임 적용/대규모 성능/Windows/macOS 검증은 하지 않았다.
+애셋 적용 없이 별도 스킬 브랜치에 커밋·푸시하며 최종 commit은 Git 이력에서 확인한다.
+
+
 ## 최신 주차장 게임 반영: 승인된 빈 원본4종
 
 main1395ded 기반 feature/empty-parking에서 승인 원본8f6d8d5를 병합하고 게임 GLB/PNG 및 카드 썸네일4종만 재생성했다. 원본 blend/spec/preview/제작기는 실행 중 저장·수정하지 않았다. 기존 render 함수만 AST로 추출하고 기존 combined-mesh export 및 thumbnail entry 루프를 재사용했다. 보호 입력1462개 해시 일치, 부지/정면/좌표계·카탈로그/가격/용량 불변. 신규16/16·관련4/4·구조9/9, 실제1920 캡처1장. G 보류는 완료됐으며 과거 근거는 보존했다. docs/parking-vehicle-inspection/REPORT_KO.md 및 docs/empty-parking-game-validation/ 참조. main 푸시 없음.

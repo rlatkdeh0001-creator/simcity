@@ -1,0 +1,25 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/industrial-growth/small-4x4-logistics-01/building.png",
+      "size_px": [
+        900,
+        1100
+      ],
+      "alpha_bbox_px": [
+        48,
+        293,
+        852,
+        833
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend",
+      "triangles": 8012,
+      "vertex_bounds_m": [
+        [
+          -8.0,
+          -8.0,
+          -0.11999999731779099
+        ],
+        [
+          8.0,
+          8.0,
+          5.410000324249268
+        ]
+      ],
+      "dimensions_xyz_m": [
+        16.0,
+        16.0,
+        5.530000321567059
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

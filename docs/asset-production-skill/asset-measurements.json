@@ -1,0 +1,394 @@
+[
+  {
+    "profile": "building-growth",
+    "path": "assets/industrial-growth/small-4x4-logistics-01/small-4x4-logistics-01.blend",
+    "triangles": 8012,
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        5.410000324249268
+      ]
+    ],
+    "dimensions_xyz_m": [
+      16.0,
+      16.0,
+      5.530000321567059
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "citizen",
+    "path": "assets/citizens/adult-pilot-01/citizen.blend",
+    "triangles": 658,
+    "vertex_bounds_m": [
+      [
+        -0.30800002813339233,
+        -0.125,
+        -1.1175870895385742e-08
+      ],
+      [
+        0.30800002813339233,
+        0.125,
+        1.75
+      ]
+    ],
+    "dimensions_xyz_m": [
+      0.6160000562667847,
+      0.25,
+      1.750000011175871
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "parking-parks",
+    "path": "assets/facilities/parking-small-2x4/facility.blend",
+    "triangles": 792,
+    "vertex_bounds_m": [
+      [
+        -4.0,
+        -8.0,
+        0.0
+      ],
+      [
+        4.0,
+        8.0,
+        0.375
+      ]
+    ],
+    "dimensions_xyz_m": [
+      8.0,
+      16.0,
+      0.375
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "primary-grain",
+    "path": "assets/primary-industry/primary-farm-grain-01/primary-farm-grain-01.blend",
+    "triangles": 14704,
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        7.559999942779541
+      ]
+    ],
+    "dimensions_xyz_m": [
+      16.0,
+      16.0,
+      7.679999940097332
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "primary-grain",
+    "path": "assets/primary-industry/primary-tile-grain-01/primary-tile-grain-01.blend",
+    "triangles": 140,
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.11999999731779099
+      ],
+      [
+        2.0,
+        2.0,
+        0.7400000095367432
+      ]
+    ],
+    "dimensions_xyz_m": [
+      4.0,
+      4.0,
+      0.8600000068545341
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "primary-main",
+    "path": "assets/primary-industry/primary-mine-iron-01/primary-mine-iron-01.blend",
+    "triangles": 6850,
+    "vertex_bounds_m": [
+      [
+        -8.0,
+        -8.0,
+        -0.11999999731779099
+      ],
+      [
+        8.0,
+        8.0,
+        9.279999732971191
+      ]
+    ],
+    "dimensions_xyz_m": [
+      16.0,
+      16.0,
+      9.399999730288982
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "primary-tiles",
+    "path": "assets/primary-industry/primary-tile-mine-coal-01/primary-tile-mine-coal-01.blend",
+    "triangles": 52,
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.42000001668930054
+      ],
+      [
+        2.0,
+        2.0,
+        -0.17000000178813934
+      ]
+    ],
+    "dimensions_xyz_m": [
+      4.0,
+      4.0,
+      0.2500000149011612
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "road-study",
+    "path": "assets/road-tile-study/grass-tile.blend",
+    "triangles": 216,
+    "vertex_bounds_m": [
+      [
+        -2.0,
+        -2.0,
+        -0.23999999463558197
+      ],
+      [
+        2.0,
+        2.0,
+        0.03999999910593033
+      ]
+    ],
+    "dimensions_xyz_m": [
+      4.0,
+      4.0,
+      0.2799999937415123
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "road-study",
+    "path": "assets/road-tile-study/road-2/road.blend",
+    "triangles": 1008,
+    "vertex_bounds_m": [
+      [
+        -16.009000778198242,
+        -4.0,
+        -0.35500001907348633
+      ],
+      [
+        16.009000778198242,
+        4.0,
+        0.2900000214576721
+      ]
+    ],
+    "dimensions_xyz_m": [
+      32.018001556396484,
+      8.0,
+      0.6450000405311584
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "service-vehicles",
+    "path": "assets/vehicle-fleet/ambulance-01/vehicle.blend",
+    "triangles": 3326,
+    "vertex_bounds_m": [
+      [
+        -1.340000033378601,
+        -3.00249981880188,
+        0.0
+      ],
+      [
+        1.340000033378601,
+        3.015000104904175,
+        2.5999999046325684
+      ]
+    ],
+    "dimensions_xyz_m": [
+      2.680000066757202,
+      6.017499923706055,
+      2.5999999046325684
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "service-vehicles",
+    "path": "assets/vehicle-fleet/garbage-truck-01/vehicle.blend",
+    "triangles": 3186,
+    "vertex_bounds_m": [
+      [
+        -1.3499999046325684,
+        -4.072499752044678,
+        0.0
+      ],
+      [
+        1.3499999046325684,
+        4.041500091552734,
+        3.1449999809265137
+      ]
+    ],
+    "dimensions_xyz_m": [
+      2.6999998092651367,
+      8.113999843597412,
+      3.1449999809265137
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "traffic-signals",
+    "path": "assets/street-furniture/traffic-signal-arm-01/signal.blend",
+    "triangles": 788,
+    "vertex_bounds_m": [
+      [
+        -7.199999809265137,
+        -0.7300000190734863,
+        0.0
+      ],
+      [
+        0.2199999988079071,
+        0.2199999988079071,
+        6.5
+      ]
+    ],
+    "dimensions_xyz_m": [
+      7.419999808073044,
+      0.9500000178813934,
+      6.5
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "traffic-signals",
+    "path": "assets/street-furniture/traffic-signal-post-01/signal.blend",
+    "triangles": 764,
+    "vertex_bounds_m": [
+      [
+        -1.2999999523162842,
+        -0.7300000190734863,
+        0.0
+      ],
+      [
+        1.2999999523162842,
+        0.2199999988079071,
+        4.920000076293945
+      ]
+    ],
+    "dimensions_xyz_m": [
+      2.5999999046325684,
+      0.9500000178813934,
+      4.920000076293945
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  },
+  {
+    "profile": "vehicle-fleet",
+    "path": "assets/vehicle-fleet/car-sedan-03/vehicle.blend",
+    "triangles": 1724,
+    "vertex_bounds_m": [
+      [
+        -1.065000057220459,
+        -2.4600000381469727,
+        0.0
+      ],
+      [
+        1.065000057220459,
+        2.4600000381469727,
+        1.4799998998641968
+      ]
+    ],
+    "dimensions_xyz_m": [
+      2.130000114440918,
+      4.920000076293945,
+      1.4799998998641968
+    ],
+    "checks": {
+      "nonempty_finite_geometry": true,
+      "triangles_positive": true,
+      "unit_scale_one": true
+    },
+    "passed": true
+  }
+]

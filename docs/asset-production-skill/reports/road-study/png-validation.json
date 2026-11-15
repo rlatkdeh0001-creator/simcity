@@ -1,0 +1,44 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/road-tile-study/grass-tile.png",
+      "size_px": [
+        512,
+        512
+      ],
+      "alpha_bbox_px": [
+        33,
+        142,
+        479,
+        383
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/road-tile-study/road-2/road.png",
+      "size_px": [
+        1000,
+        760
+      ],
+      "alpha_bbox_px": [
+        178,
+        214,
+        822,
+        548
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

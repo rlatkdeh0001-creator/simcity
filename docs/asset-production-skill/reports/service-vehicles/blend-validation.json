@@ -1,0 +1,60 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/vehicle-fleet/ambulance-01/vehicle.blend",
+      "triangles": 3326,
+      "vertex_bounds_m": [
+        [
+          -1.340000033378601,
+          -3.00249981880188,
+          0.0
+        ],
+        [
+          1.340000033378601,
+          3.015000104904175,
+          2.5999999046325684
+        ]
+      ],
+      "dimensions_xyz_m": [
+        2.680000066757202,
+        6.017499923706055,
+        2.5999999046325684
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/vehicle-fleet/garbage-truck-01/vehicle.blend",
+      "triangles": 3186,
+      "vertex_bounds_m": [
+        [
+          -1.3499999046325684,
+          -4.072499752044678,
+          0.0
+        ],
+        [
+          1.3499999046325684,
+          4.041500091552734,
+          3.1449999809265137
+        ]
+      ],
+      "dimensions_xyz_m": [
+        2.6999998092651367,
+        8.113999843597412,
+        3.1449999809265137
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

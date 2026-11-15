@@ -1,0 +1,33 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/primary-industry/primary-mine-iron-01/primary-mine-iron-01.blend",
+      "triangles": 6850,
+      "vertex_bounds_m": [
+        [
+          -8.0,
+          -8.0,
+          -0.11999999731779099
+        ],
+        [
+          8.0,
+          8.0,
+          9.279999732971191
+        ]
+      ],
+      "dimensions_xyz_m": [
+        16.0,
+        16.0,
+        9.399999730288982
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/primary-industry/primary-mine-iron-01/building.png",
+      "size_px": [
+        900,
+        1100
+      ],
+      "alpha_bbox_px": [
+        57,
+        358,
+        843,
+        882
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

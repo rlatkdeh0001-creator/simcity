@@ -1,0 +1,3 @@
+# System Python only; Blender provides bpy/mathutils/numpy internally.
+numpy>=1.26,<3
+Pillow>=10.1,<13

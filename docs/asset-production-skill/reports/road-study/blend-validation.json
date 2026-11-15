@@ -1,0 +1,60 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/road-tile-study/grass-tile.blend",
+      "triangles": 216,
+      "vertex_bounds_m": [
+        [
+          -2.0,
+          -2.0,
+          -0.23999999463558197
+        ],
+        [
+          2.0,
+          2.0,
+          0.03999999910593033
+        ]
+      ],
+      "dimensions_xyz_m": [
+        4.0,
+        4.0,
+        0.2799999937415123
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/road-tile-study/road-2/road.blend",
+      "triangles": 1008,
+      "vertex_bounds_m": [
+        [
+          -16.009000778198242,
+          -4.0,
+          -0.35500001907348633
+        ],
+        [
+          16.009000778198242,
+          4.0,
+          0.2900000214576721
+        ]
+      ],
+      "dimensions_xyz_m": [
+        32.018001556396484,
+        8.0,
+        0.6450000405311584
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

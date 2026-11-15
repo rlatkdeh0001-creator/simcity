@@ -1,0 +1,171 @@
+{
+  "utc": "2026-11-15T23:19:38.265977+00:00",
+  "python": "3.12.14",
+  "platform": "Linux",
+  "scope": "representative recipe execution, not all catalog models or AI evaluation",
+  "profiles": [
+    {
+      "profile": "building-growth",
+      "only": "small-4x4-logistics-01",
+      "exit_code": 0,
+      "elapsed_seconds": 22.33,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 1,
+        "passed": true
+      }
+    },
+    {
+      "profile": "citizen",
+      "only": null,
+      "exit_code": 0,
+      "elapsed_seconds": 45.22,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 100,
+        "passed": true
+      }
+    },
+    {
+      "profile": "parking-parks",
+      "only": "parking-small-2x4",
+      "exit_code": 0,
+      "elapsed_seconds": 8.22,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 2,
+        "passed": true
+      }
+    },
+    {
+      "profile": "primary-grain",
+      "only": null,
+      "exit_code": 0,
+      "elapsed_seconds": 57.38,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 2,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 3,
+        "passed": true
+      }
+    },
+    {
+      "profile": "primary-main",
+      "only": "primary-mine-iron-01",
+      "exit_code": 0,
+      "elapsed_seconds": 20.73,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 1,
+        "passed": true
+      }
+    },
+    {
+      "profile": "primary-tiles",
+      "only": "primary-tile-mine-coal-01",
+      "exit_code": 0,
+      "elapsed_seconds": 30.37,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 2,
+        "passed": true
+      }
+    },
+    {
+      "profile": "road-study",
+      "only": null,
+      "exit_code": 0,
+      "elapsed_seconds": 14.8,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 2,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 2,
+        "passed": true
+      }
+    },
+    {
+      "profile": "service-vehicles",
+      "only": null,
+      "exit_code": 0,
+      "elapsed_seconds": 55.88,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 2,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 4,
+        "passed": true
+      }
+    },
+    {
+      "profile": "traffic-signals",
+      "only": null,
+      "exit_code": 0,
+      "elapsed_seconds": 77.72,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 2,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 4,
+        "passed": true
+      }
+    },
+    {
+      "profile": "vehicle-fleet",
+      "only": "car-sedan-03",
+      "exit_code": 0,
+      "elapsed_seconds": 13.33,
+      "no_git_workspace": true,
+      "blend-validation": {
+        "files": 1,
+        "passed": true
+      },
+      "png-validation": {
+        "files": 8,
+        "passed": true
+      }
+    }
+  ],
+  "passed": true,
+  "environment": {
+    "blender": "4.3.2",
+    "blender_numpy": "2.2.4",
+    "system_python": "3.12.14",
+    "pillow": "12.3.0",
+    "system_numpy": "2.3.5"
+  },
+  "totals": {
+    "profiles": 10,
+    "blend_files": 14,
+    "png_files": 127
+  }
+}

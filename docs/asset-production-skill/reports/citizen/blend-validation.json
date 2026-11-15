@@ -1,0 +1,33 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/citizens/adult-pilot-01/citizen.blend",
+      "triangles": 658,
+      "vertex_bounds_m": [
+        [
+          -0.30800002813339233,
+          -0.125,
+          -1.1175870895385742e-08
+        ],
+        [
+          0.30800002813339233,
+          0.125,
+          1.75
+        ]
+      ],
+      "dimensions_xyz_m": [
+        0.6160000562667847,
+        0.25,
+        1.750000011175871
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

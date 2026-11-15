@@ -1,0 +1,60 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/street-furniture/traffic-signal-arm-01/signal.blend",
+      "triangles": 788,
+      "vertex_bounds_m": [
+        [
+          -7.199999809265137,
+          -0.7300000190734863,
+          0.0
+        ],
+        [
+          0.2199999988079071,
+          0.2199999988079071,
+          6.5
+        ]
+      ],
+      "dimensions_xyz_m": [
+        7.419999808073044,
+        0.9500000178813934,
+        6.5
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-post-01/signal.blend",
+      "triangles": 764,
+      "vertex_bounds_m": [
+        [
+          -1.2999999523162842,
+          -0.7300000190734863,
+          0.0
+        ],
+        [
+          1.2999999523162842,
+          0.2199999988079071,
+          4.920000076293945
+        ]
+      ],
+      "dimensions_xyz_m": [
+        2.5999999046325684,
+        0.9500000178813934,
+        4.920000076293945
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

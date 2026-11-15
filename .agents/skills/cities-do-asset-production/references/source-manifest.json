@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "afe0bfe341a4c195db9457ac71d148a6691e7edf",
+      "path": "tools/build_growth_14.py",
+      "source_sha256": "87fc26a241a1ab67489bccf170c02a619856c8833307ce4e07e5926363d8a39d",
+      "bundled_sha256": "8a5d6c749a36f82b2f2d8cf84667d966f33cda4fdcf65dbecb1f1b88420fe8cf",
+      "adaptations": [
+        "Resolve open system font through portable helper; fallback Blender builtin; metadata describes resolver."
+      ]
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "71ee70316d19c5f8c8646e621a3234a562a72c44",
+      "path": "tools/build_vehicle_fleet.py",
+      "source_sha256": "9d40b36bc0df7e36931f95aedaa5711dc3ce784de6675204156a0cb87d0ce15a",
+      "bundled_sha256": "9d40b36bc0df7e36931f95aedaa5711dc3ce784de6675204156a0cb87d0ce15a",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "71ee70316d19c5f8c8646e621a3234a562a72c44",
+      "path": "tools/facility_layout.py",
+      "source_sha256": "3e6c5760517248429428a6720aef4f6e08d10bf203c070b09b3c0a59cea1e223",
+      "bundled_sha256": "3e6c5760517248429428a6720aef4f6e08d10bf203c070b09b3c0a59cea1e223",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "71ee70316d19c5f8c8646e621a3234a562a72c44",
+      "path": "assets/road-tile-study/build_roads.py",
+      "source_sha256": "ad5650884105867fd35637ba13334c1f2c9f80cb8de20b6ee0b35adec91e032b",
+      "bundled_sha256": "ad5650884105867fd35637ba13334c1f2c9f80cb8de20b6ee0b35adec91e032b",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "71ee70316d19c5f8c8646e621a3234a562a72c44",
+      "path": ".agents/skills/vehicle/blender/common.py",
+      "source_sha256": "175562c1db2adf4bb11d0bdf2ddb2433f13b40e04dca5142431e0b8f4ab578ce",
+      "bundled_sha256": "175562c1db2adf4bb11d0bdf2ddb2433f13b40e04dca5142431e0b8f4ab578ce",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "c4cc4e52e13a8eeed91234cd8612c0ecb8f6bf07",
+      "path": "tools/build_service_vehicles_2.py",
+      "source_sha256": "9caba996fb3ddf239842400e2f2c0a018c5547bfec156cf75765f76423759af3",
+      "bundled_sha256": "9caba996fb3ddf239842400e2f2c0a018c5547bfec156cf75765f76423759af3",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "c4cc4e52e13a8eeed91234cd8612c0ecb8f6bf07",
+      "path": "tools/verify_service_vehicles_2.py",
+      "source_sha256": "53accc237bf8a98f49ca29cc37a2ce94a2ec2cea77d0b7627794281a448a1762",
+      "bundled_sha256": "53accc237bf8a98f49ca29cc37a2ce94a2ec2cea77d0b7627794281a448a1762",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "74deb4230b0092dad12303833c2e8686abc723e1",
+      "path": "tools/build_primary_industry.py",
+      "source_sha256": "959a43649e8b0d89d11655c0b0195a39f3ce5f285967956f88e5889e065e0fd1",
+      "bundled_sha256": "959a43649e8b0d89d11655c0b0195a39f3ce5f285967956f88e5889e065e0fd1",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "74deb4230b0092dad12303833c2e8686abc723e1",
+      "path": "tools/build_primary_work_tiles.py",
+      "source_sha256": "f13aa0c9eb6ffdadf61324839ec088168d71a3939b5d724d6c4f20415022f013",
+      "bundled_sha256": "f13aa0c9eb6ffdadf61324839ec088168d71a3939b5d724d6c4f20415022f013",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "74deb4230b0092dad12303833c2e8686abc723e1",
+      "path": "tools/build_primary_main.py",
+      "source_sha256": "3daefdfdfd5f5a91e908bc6757165f3ffd2421c5058d20a1f4c568313016b99f",
+      "bundled_sha256": "3daefdfdfd5f5a91e908bc6757165f3ffd2421c5058d20a1f4c568313016b99f",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "74deb4230b0092dad12303833c2e8686abc723e1",
+      "path": "tools/verify_primary_main.py",
+      "source_sha256": "f81506156a07a3c5fc4fec1a8ec06141fb7b732a62207cba47039bf9e27d9505",
+      "bundled_sha256": "f81506156a07a3c5fc4fec1a8ec06141fb7b732a62207cba47039bf9e27d9505",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "edda3f3767230119a4fec8f6bfc964e596ea4a2f",
+      "path": "tools/build_traffic_signals.py",
+      "source_sha256": "67b35848c5770a53f9155bca4811a5f2edc32a285f61bd60d9487c9343201877",
+      "bundled_sha256": "67b35848c5770a53f9155bca4811a5f2edc32a285f61bd60d9487c9343201877",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "edda3f3767230119a4fec8f6bfc964e596ea4a2f",
+      "path": "tools/verify_traffic_signals.py",
+      "source_sha256": "d446f818e15d0307e8a2e3216290fa95374046c5b2c927440248207ddcc2af04",
+      "bundled_sha256": "d446f818e15d0307e8a2e3216290fa95374046c5b2c927440248207ddcc2af04",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "edda3f3767230119a4fec8f6bfc964e596ea4a2f",
+      "path": "tools/render_signal_states.py",
+      "source_sha256": "aecb02e6161ac3f5fb7116773011753e1aa123342b175ec3d7da5a4321535844",
+      "bundled_sha256": "aecb02e6161ac3f5fb7116773011753e1aa123342b175ec3d7da5a4321535844",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "edda3f3767230119a4fec8f6bfc964e596ea4a2f",
+      "path": "tools/build_traffic_signal_review.py",
+      "source_sha256": "1521ec82545504a31d8129f0738e62bd1c7c20ea7d6c3de26587a5be3d43a2fb",
+      "bundled_sha256": "aca47c656b0c1d1e121c3500c9a711b5d45718eea942e3c49943b0ebf3f5fc44",
+      "adaptations": [
+        "Resolve review font with portable Pillow fallback."
+      ]
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/build_citizen_adult_pilot.py",
+      "source_sha256": "ca49838f82313c490778fdde0feda2ca60eb0893ff1fc2dfa927c865f8c483cc",
+      "bundled_sha256": "ca49838f82313c490778fdde0feda2ca60eb0893ff1fc2dfa927c865f8c483cc",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/citizen_pilot_common.py",
+      "source_sha256": "7052f34b0858481ef969f42f25beaecc89932f7eacc30ee6659b5beaa90e9995",
+      "bundled_sha256": "7052f34b0858481ef969f42f25beaecc89932f7eacc30ee6659b5beaa90e9995",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/render_citizen_adult_pilot.py",
+      "source_sha256": "462a4be694c97070876388083c8ef3289546c32c4cd5be0719ed388725c5962d",
+      "bundled_sha256": "88ef08aecd2c5088e87e16ac2fcd62ee5b9be61b24c5d637a960ddd7a4cfff4f",
+      "adaptations": [
+        "Use per-workspace/environment render cache rather than shared /tmp path."
+      ]
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/compose_citizen_pilot.py",
+      "source_sha256": "7f6cd63a9a905905d63f1f60c097b88a784c5cd94296bbc75f66b509eb18f231",
+      "bundled_sha256": "57ed0514d70260d7d7330a5b78ec8696d5c2dd078f2bbefe9ed0622628aadc20",
+      "adaptations": [
+        "Use per-workspace/environment render cache rather than shared /tmp path.",
+        "Resolve review font with portable Pillow fallback."
+      ]
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/verify_citizen_adult_pilot.py",
+      "source_sha256": "28ab9924902043a666452090440d3aeaae97e3a743b51167626d6bfffd5f6ca0",
+      "bundled_sha256": "28ab9924902043a666452090440d3aeaae97e3a743b51167626d6bfffd5f6ca0",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/verify_citizen_sprites.py",
+      "source_sha256": "039156a70980d6bbc3476a7623c0e6db8f09856dc4c936500b4625f9d692f93b",
+      "bundled_sha256": "039156a70980d6bbc3476a7623c0e6db8f09856dc4c936500b4625f9d692f93b",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "957d8068bd031f85a97823e709fb1c726c9f712a",
+      "path": "tools/audit_citizen_projection.py",
+      "source_sha256": "6b907cbc1fc2d8308a7e99c7dd0ba341915f9945bb3ee9ede3ba4ef0de253aa0",
+      "bundled_sha256": "6b907cbc1fc2d8308a7e99c7dd0ba341915f9945bb3ee9ede3ba4ef0de253aa0",
+      "adaptations": []
+    },
+    {
+      "repository": "https://github.com/rlatkdeh0001-creator/simcity",
+      "revision": "8f6d8d541867297f92c85d8b282f5efb74aa467e",
+      "path": "tools/build_facilities.py",
+      "source_sha256": "9e2c0453ca4c4be8af2203d9032e0d7df801f99b7b4978fae6ef606487c41802",
+      "bundled_sha256": "7ab944cc8709e53c0a3ba498b2e01ed69b59f3636abd7123b0bd50b965180bb3",
+      "adaptations": [
+        "Add environment ID filter; all generated engine files stay inside staged workspace."
+      ]
+    }
+  ],
+  "third_party": {
+    "zstack": {
+      "repository": "https://github.com/duolahypercho/zstack",
+      "revision": "74f7786e9931b9ced858a0e2df880f23e4c2430e",
+      "license": "MIT",
+      "bundled_path": "kit/.agents/skills/vehicle/blender/common.py"
+    }
+  },
+  "new_handoff_files": [
+    "scripts/assetkit.py",
+    "scripts/inspect_blends.py",
+    "scripts/inspect_pngs.py",
+    "kit/tools/assetkit_support.py",
+    "scripts/test_portability.py",
+    "scripts/smoke_recipes.py"
+  ],
+  "new_handoff_sha256": {
+    "scripts/assetkit.py": "ef254c0cd4582174b935749ab06a23da3b2a854648d118f87a669f37b49df549",
+    "scripts/inspect_blends.py": "d7cc21d29bb005b25a7fd05981537ddc449f9e67a3401625b0b10eb6c0250f13",
+    "scripts/inspect_pngs.py": "bb9e1eb6d22e0af98b1525e469eb00e5ca2c115d8f52f0b0792ac60ba5c686dd",
+    "kit/tools/assetkit_support.py": "731c42149f4a39fd5fcdb141431262655ed02ac2b8e0b88fc24aa4a8350e1f35",
+    "scripts/test_portability.py": "945794627e558e0acc5af212d18fc9819de46aea6cb5b8ecb7dd5573b2f5aab6",
+    "scripts/smoke_recipes.py": "7578407e799df6fef68fe5edd0953a907ee9cfaf04a7646c294781d91a76bca6"
+  }
+}

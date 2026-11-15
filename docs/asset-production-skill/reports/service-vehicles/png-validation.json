@@ -1,0 +1,82 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/vehicle-fleet/ambulance-01/preview.png",
+      "size_px": [
+        1000,
+        700
+      ],
+      "alpha_bbox_px": [
+        193,
+        96,
+        817,
+        589
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/vehicle-fleet/ambulance-01/rear-review.png",
+      "size_px": [
+        1000,
+        700
+      ],
+      "alpha_bbox_px": [
+        183,
+        157,
+        807,
+        589
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/vehicle-fleet/garbage-truck-01/preview.png",
+      "size_px": [
+        1000,
+        700
+      ],
+      "alpha_bbox_px": [
+        179,
+        80,
+        820,
+        589
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/vehicle-fleet/garbage-truck-01/rear-review.png",
+      "size_px": [
+        1000,
+        700
+      ],
+      "alpha_bbox_px": [
+        180,
+        112,
+        821,
+        593
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

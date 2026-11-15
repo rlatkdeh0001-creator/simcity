@@ -1,0 +1,82 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/street-furniture/traffic-signal-arm-01/preview-off.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        142,
+        81,
+        973,
+        1006
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-arm-01/preview-on.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        142,
+        81,
+        973,
+        1006
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-post-01/preview-off.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        313,
+        81,
+        770,
+        960
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/street-furniture/traffic-signal-post-01/preview-on.png",
+      "size_px": [
+        1100,
+        1100
+      ],
+      "alpha_bbox_px": [
+        313,
+        81,
+        770,
+        960
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

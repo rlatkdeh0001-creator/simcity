@@ -1,0 +1,1906 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_E_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        22,
+        42,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_E_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_E_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_E_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_E_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_NE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_NE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_NE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        18,
+        22,
+        47,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_NE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_NE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        21,
+        43,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_N_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_N_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_N_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_N_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_N_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_SE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        18,
+        22,
+        48,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_SE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_SE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        22,
+        41,
+        64
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_SE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        21,
+        44,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_SE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        21,
+        43,
+        62
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_S_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_S_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_S_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        22,
+        47,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_S_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/body_S_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        21,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_E_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        14,
+        45,
+        50,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_E_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        44,
+        48,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_E_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        14,
+        45,
+        50,
+        89
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_E_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        44,
+        48,
+        87
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_E_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        44,
+        40,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_NE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        14,
+        45,
+        49,
+        91
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_NE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        22,
+        44,
+        48,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_NE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        45,
+        44,
+        93
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_NE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        44,
+        43,
+        91
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_NE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        22,
+        44,
+        42,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_N_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        93
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_N_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        91
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_N_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        93
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_N_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        91
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_N_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_SE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        45,
+        44,
+        94
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_SE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        44,
+        43,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_SE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        14,
+        45,
+        49,
+        91
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_SE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        22,
+        44,
+        48,
+        88
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_SE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        22,
+        44,
+        42,
+        90
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_S_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        94
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_S_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_S_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        94
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_S_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/bottom_S_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        23,
+        45,
+        41,
+        89
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_E_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_E_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_E_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_E_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_E_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        35
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_NE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        37
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_NE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_NE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        37
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_NE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_NE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_N_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        37
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_N_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_N_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        37
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_N_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_N_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        20,
+        40,
+        36
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_SE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        35
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_SE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_SE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        21,
+        39,
+        35
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_SE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_SE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        20,
+        39,
+        34
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_S_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        22,
+        40,
+        33
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_S_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_S_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        22,
+        40,
+        33
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_S_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/hair_S_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        21,
+        40,
+        32
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_E_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        30,
+        41,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_E_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_E_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        24,
+        30,
+        41,
+        61
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_E_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_E_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        25,
+        30,
+        39,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_NE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        31,
+        43,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_NE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_NE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        18,
+        32,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_NE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_NE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_N_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_N_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_N_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_N_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_N_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_SE_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        18,
+        32,
+        47,
+        58
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_SE_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_SE_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        21,
+        31,
+        43,
+        60
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_SE_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_SE_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        20,
+        31,
+        44,
+        59
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_S_1.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_S_2.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_S_3.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        32,
+        47,
+        57
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_S_4.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/citizens/adult-pilot-01/sprites/top_S_idle.png",
+      "size_px": [
+        64,
+        96
+      ],
+      "alpha_bbox_px": [
+        17,
+        31,
+        47,
+        56
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

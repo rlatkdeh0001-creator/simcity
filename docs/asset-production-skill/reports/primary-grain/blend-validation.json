@@ -1,0 +1,60 @@
+{
+  "scope": "generic read-only evaluated geometry; dimensions include every mesh accessory; not contract-specific",
+  "assets": [
+    {
+      "path": "assets/primary-industry/primary-farm-grain-01/primary-farm-grain-01.blend",
+      "triangles": 14704,
+      "vertex_bounds_m": [
+        [
+          -8.0,
+          -8.0,
+          -0.11999999731779099
+        ],
+        [
+          8.0,
+          8.0,
+          7.559999942779541
+        ]
+      ],
+      "dimensions_xyz_m": [
+        16.0,
+        16.0,
+        7.679999940097332
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/primary-tile-grain-01.blend",
+      "triangles": 140,
+      "vertex_bounds_m": [
+        [
+          -2.0,
+          -2.0,
+          -0.11999999731779099
+        ],
+        [
+          2.0,
+          2.0,
+          0.7400000095367432
+        ]
+      ],
+      "dimensions_xyz_m": [
+        4.0,
+        4.0,
+        0.8600000068545341
+      ],
+      "checks": {
+        "nonempty_finite_geometry": true,
+        "triangles_positive": true,
+        "unit_scale_one": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

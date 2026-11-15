@@ -1,5 +1,12 @@
 # Anthropic 공개 스킬 · Codex 작업 공간
 
+## 다른 AI용 애셋 제작 스킬
+
+[실행 지침·다른 AI에게 전달할 문구·검증 기록](docs/asset-production-skill/README_KO.md) ·
+[SKILL.md](.agents/skills/cities-do-asset-production/SKILL.md) ·
+[생성 코드 포함 .skill 다운로드](downloads/cities-do-asset-production.skill).
+Blender 생성→렌더→실측 검증을 새 폴더에서 재현한다. Claude 로그인/API 없이 실행한다.
+
 ## 1B 공공시설 실제 배치 · 로컬 승인 대기
 
 기존 C카드34종을 실제 도시 배치/초록·빨강 고스트/R회전/취소/불도저·CSV 비용에 연결했다.

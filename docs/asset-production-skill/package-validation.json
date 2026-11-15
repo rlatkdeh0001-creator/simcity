@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "archive_entries": 39,
+  "bytes": 114301,
+  "sha256": "7195063df105fcf01cb31d3b04680ee0d0323d0c1bb4dfe2b21bdd769015b982",
+  "all_shipped_python_identical_to_tested_extraction": true,
+  "packaged_sources_identical_to_skill_folder": true,
+  "zip_integrity": true,
+  "evaluation_prompts_bundled_as_reference": true
+}

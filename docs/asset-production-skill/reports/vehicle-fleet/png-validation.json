@@ -1,0 +1,158 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/000.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        156,
+        52,
+        274,
+        210
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/045.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        87,
+        52,
+        342,
+        207
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/090.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        80,
+        66,
+        350,
+        181
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/135.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        88,
+        55,
+        342,
+        207
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/180.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        156,
+        52,
+        274,
+        210
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/225.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        89,
+        55,
+        342,
+        207
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/270.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        80,
+        66,
+        350,
+        181
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/vehicles/sprites/car-sedan-03/315.png",
+      "size_px": [
+        430,
+        245
+      ],
+      "alpha_bbox_px": [
+        88,
+        52,
+        342,
+        207
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,44 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/facilities/parking-small-2x4/preview.png",
+      "size_px": [
+        800,
+        680
+      ],
+      "alpha_bbox_px": [
+        54,
+        193,
+        746,
+        552
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "cities_do/assets/facilities/parking-small-2x4.png",
+      "size_px": [
+        800,
+        680
+      ],
+      "alpha_bbox_px": [
+        54,
+        193,
+        746,
+        552
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

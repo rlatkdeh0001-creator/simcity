@@ -1,0 +1,63 @@
+{
+  "scope": "asset PNGs except labelled sheet; game-side sprites checked by their profile when available",
+  "assets": [
+    {
+      "path": "assets/primary-industry/primary-farm-grain-01/building.png",
+      "size_px": [
+        900,
+        1100
+      ],
+      "alpha_bbox_px": [
+        57,
+        326,
+        843,
+        858
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/tile-3x3.png",
+      "size_px": [
+        900,
+        900
+      ],
+      "alpha_bbox_px": [
+        57,
+        244,
+        844,
+        664
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    },
+    {
+      "path": "assets/primary-industry/primary-tile-grain-01/tile.png",
+      "size_px": [
+        900,
+        900
+      ],
+      "alpha_bbox_px": [
+        57,
+        227,
+        843,
+        697
+      ],
+      "checks": {
+        "rgba": true,
+        "nonempty_alpha": true,
+        "transparent_margin": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}
