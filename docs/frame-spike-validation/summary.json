@@ -1,0 +1,69 @@
+{
+  "production_commit_measured": "fa04104",
+  "viewport": "1920x1080",
+  "vsync": false,
+  "seconds_per_run": 45,
+  "original_63_317_ms_reproduced": false,
+  "cause_of_original_spike": "unconfirmed",
+  "screenshots": 0,
+  "csharp_started": false,
+  "runs": {
+    "cached": {
+      "frames": 15483,
+      "population": 240,
+      "moving_frames": 15030,
+      "max_ms": 17.473,
+      "p99_ms": 4.442,
+      "worst_frame": {
+        "after_draw_us": 90,
+        "begin_us": 11160702,
+        "frame": 2292,
+        "keyboard_us": 50,
+        "root_draw_us": 25,
+        "root_process_us": 91,
+        "society_us": 10,
+        "to_postdraw_us": 17383,
+        "utilities_us": 40,
+        "wall_us": 17473,
+        "world_process_us": 61
+      },
+      "captured_script_sections_worst_ms": 0.227,
+      "unattributed_worst_ms": 17.246,
+      "society_peak_ms": 3.583,
+      "population_advance_peak_ms": 2.045,
+      "utilities_peak_ms": 0.997,
+      "traffic_running": false,
+      "vehicle_count": 0,
+      "sprite_cache_final": 2
+    },
+    "legacy_per_frame": {
+      "frames": 10214,
+      "population": 240,
+      "moving_frames": 9909,
+      "max_ms": 16.842,
+      "p99_ms": 6.588,
+      "worst_frame": {
+        "after_draw_us": 92,
+        "begin_us": 24318862,
+        "frame": 4275,
+        "keyboard_us": 42,
+        "render_setup_us": 3.0,
+        "root_draw_us": 13,
+        "root_process_us": 1376,
+        "society_us": 10,
+        "to_postdraw_us": 16750,
+        "utilities_us": 1232,
+        "wall_us": 16842,
+        "world_process_us": 56
+      },
+      "captured_script_sections_worst_ms": 1.487,
+      "unattributed_worst_ms": 15.355,
+      "society_peak_ms": 3.381,
+      "population_advance_peak_ms": 1.97,
+      "utilities_peak_ms": 6.979,
+      "traffic_running": false,
+      "vehicle_count": 0,
+      "sprite_cache_final": 2
+    }
+  }
+}

@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+TRACE_READY
+TRACE_START
+TRACE_END rows=10214
+FRAME_TRACE_PASS rows=10214 population=240 moving=9909 max_ms=16.842 p99_ms=6.588
