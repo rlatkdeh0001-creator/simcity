@@ -2,9 +2,12 @@ config_version=5
 [application]
 config/name="CITIES_DO · Construction Lab"
 run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.6", "C#")
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=820
+[dotnet]
+project/assembly_name="CitiesDo"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.09, 0.14, 0.19, 1)

@@ -1208,3 +1208,7 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - `tools/dotnet_env.py`·`run_dotnet.py`: DOTNET_ROOT/CLI_HOME, NuGet·HTTP·plugin 캐시, APPDATA/LOCALAPPDATA·TEMP/TMP를 자식 프로세스에서만 D:로 지정한다. 전역 PATH/프로그램 설정 변경 없음. 새 Godot 옆 `_sc_`와 D: editor_data 실제 생성 확인; C: 추가 설치 없이 기존 VC++ 사용. `install_approved_dotnet.py`는 승인한 두 ZIP만 설치하고 기존 비어 있지 않은 경로는 덮어쓰지 않는다.
 - 실제 SDK10.0.404/MSBuild18.9.15·런타임10.0.15·Godot4.6.3.mono 버전 조회, D:의 net10.0 콘솔 빌드/실행, 별도 빈 검증 프로젝트의 에디터 초기화 통과. 최종 로그 `docs/dotnet-installation-validation/`. 기존 C: NuGet 사용자 설정은 생성되지 않았고 주 프로젝트 소스/임포트는 이 단계에서 변경하지 않았다. 기존 로컬 Godot 검증 스킬 적용, 도구 자체 작성; 외부 스킬 추가 없음.
 - 사용자 승인 HAPPINESS_KO 확정 원문·mistake M-009 재발3 원문을 첫 설치 커밋에 함께 보존한다. 최신 순서는 현행 규칙 그대로 C# 이전·정확 동일성 검증 후 별도 행복도14요소+성장75 연결이며, 이전 계획의 행복도 입력 미정 판단은 이 확정 지시로 대체됐다. 전체 회귀·캡처·main/push 없음.
+
+### 승인된 C# 이전 2: .NET 프로젝트·언어 간 브리지
+- `CitiesDo.csproj/.sln`, SDK10.0.404 `global.json`, Godot4.6.3 로컬 NuGet feed·D: 패키지 폴더를 고정했다. net10.0 빌드 경고0/오류0, 산출물은 주 프로젝트 `.godot/mono/temp/` 아래다. 프로젝트의 C# feature/assembly만 의미상 추가하고 이전 에디터 자동 서식 미커밋분은 별도로 보존한다.
+- `PopulationCore.cs` RefCounted를 실제 GDScript에서 생성·호출하고 native Godot RNG20회 값/상태까지 일치하는22/22를 확인했다. 아직 인구 계산을 이 브리지로 전환하지 않았고 현행 성장/화면/데이터는 그대로다. 최종 로그 `docs/csharp-bridge-validation/`. C: NuGet 설정 생성 없음, Godot managed 패키지4종 모두 D:에서 복원, 추가 설치/캡처/main/push 없음.
