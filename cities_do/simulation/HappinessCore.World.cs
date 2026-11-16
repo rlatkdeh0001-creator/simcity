@@ -177,16 +177,17 @@ public partial class HappinessCore
         foreach(var source in _pollutionGrid.Near(b.Position,600.001)){penalty+=Source(source.Position,true);if(penalty>=15)return -15;}
         return -Math.Min(15,penalty);
     }
-    private D Calculate(Building b)
+    private ScoreInputs InputsFor(Building b,double pollution,bool park)
     {
         var people=People(b.Id);double education=0;int students=people.Students.Sum();
         if(students>0)for(int i=0;i<4;i++)education+=Service(b,"education",i)*people.Students[i]/students;
-        return CachedScore(b,new ScoreInputs(people.Eligible>0?(double)people.Employed/people.Eligible:0,
+        return new ScoreInputs(people.Eligible>0?(double)people.Employed/people.Eligible:0,
             Service(b,"health"),Service(b,"police"),Service(b,"fire"),education,
-            CachedPark(b)?5:0,_states[b.Id].Housing,CachedPollution(b),b.Power,b.Water));
+            park?5:0,_states[b.Id].Housing,pollution,b.Power,b.Water);
     }
+    private D Calculate(Building b)=>CachedScore(b,InputsFor(b,CachedPollution(b),CachedPark(b)));
     public D Preview(long id)=>Calculate(_buildings[id]).Duplicate(true);
-    private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary();}
+    private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary().Duplicate();}
     private bool Qualifies(Building b,State s)=>s.Initialized&&b.Power&&b.Water&&People(b.Id).Count>0&&b.Level<5&&s.Actual>=40+b.Level*10;
     private void Observe(Building b,State s)
     {
@@ -232,9 +233,10 @@ public partial class HappinessCore
             }
             _nextDay+=86400;
         }
+        var prepared=PrepareBucket(_buckets[_bucket]);int preparedIndex=0;
         foreach(var b in _buckets[_bucket])
         {
-            var s=_states[b.Id];Target(b,s);
+            var s=_states[b.Id];if(prepared==null)Target(b,s);else PublishTarget(b,s,prepared[preparedIndex++]);
             if(!s.Initialized){s.Actual=s.Target;s.Initialized=true;}
             Observe(b,s);if(Qualifies(b,s)&&!s.Since.HasValue)s.Since=_elapsed;
             if(s.Since.HasValue&&_elapsed-s.Since.Value>=86400-1e-8&&!s.Pending){s.Pending=true;upgrades.Add(b.Id);}

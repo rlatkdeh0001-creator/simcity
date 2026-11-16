@@ -26,6 +26,7 @@ func run():
  var source:=FileAccess.get_file_as_string("res://simulation/HappinessCore.World.cs")
  check(source.contains("IndexSpatial()"),"production world must build spatial candidate indices")
  var actual=load("res://simulation/HappinessCore.cs").new();var reference=load("res://tests/reference/HappinessReferenceCore.cs").new()
+ actual.SetParallelWorkers(2)
  var buildings:Array=[];var facilities:Array=[]
  var rng:=RandomNumberGenerator.new();rng.seed=20261116
  for i in range(120):
@@ -48,6 +49,10 @@ func run():
  roads=PackedFloat64Array([0,-2000,0,0,0,0,0,0,2000,0,1,0,-1000,0,1000])
  for core in [actual,reference]:core.SetWorld(buildings,facilities,roads)
  for tick in range(80):check(same(actual.Tick(48,PackedInt64Array()),reference.Tick(48,PackedInt64Array())),"changed world exact at "+str(tick))
+ # Public Inspect dictionaries must not let a caller poison the private target cache.
+ actual.Inspect(1).factors.goods=-1000.0;reference.Inspect(1).factors.goods=-1000.0
+ check(same(actual.Preview(1),reference.Preview(1)),"public factor mutation cannot alter a fresh preview")
+ for tick in range(75):check(same(actual.Tick(48,PackedInt64Array()),reference.Tick(48,PackedInt64Array())),"bucket restores factors after public mutation "+str(tick))
  # Stable cached preview must not repeat native factor evaluation or source scanning.
  var before:Dictionary=actual.CacheStats()
  for b in buildings:actual.Preview(b.id)
@@ -56,6 +61,7 @@ func run():
  for seed_value in [42,20261114]:
   rng.seed=seed_value
   var left=load("res://simulation/HappinessCore.cs").new();var right=load("res://tests/reference/HappinessReferenceCore.cs").new()
+  left.SetParallelWorkers(2)
   var seeded:Array=[]
   for i in range(36):
    var b:=building(i+1,Vector2(rng.randf_range(-800,800),rng.randf_range(-800,800)),"industrial" if i%5==0 else "residential");b.level=rng.randi_range(1,5);seeded.append(b)

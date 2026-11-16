@@ -62,13 +62,13 @@ public partial class HappinessCore
     private bool HasNearbyPark(Building b)
     {
         if(!_buildingAnchors.TryGetValue(b.Id,out var anchor)||!anchor.HasValue)return false;
-        foreach(var f in _parkRoadGrid.Near(AnchorPoint(anchor.Value),400.0001))if(Distance(b,f)<=400.00001)return true;
+        foreach(var f in _parkRoadGrid.Near(AnchorPoint(anchor.Value),401))if(Distance(b,f)<=400.00001)return true;
         return false;
     }
     private IEnumerable<Building> ServiceCandidates(Facility f)
     {
         if(!_facilityAnchors.TryGetValue(f.Id,out var anchor)||!anchor.HasValue)return Enumerable.Empty<Building>();
-        return _serviceBuildingGrid.Near(AnchorPoint(anchor.Value),6000.001);
+        return _serviceBuildingGrid.Near(AnchorPoint(anchor.Value),6001);
     }
     private int HigherNeighbors(Building b)=>_residentialGrid.Near(b.Position,100.001).Count(n=>n.Id!=b.Id&&n.Level>b.Level&&n.Position.DistanceTo(b.Position)<=100.00001);
 }

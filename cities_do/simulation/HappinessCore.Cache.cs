@@ -27,10 +27,11 @@ public partial class HappinessCore
     {
         var cache=Cache(b.Id);if(cache.Inputs.HasValue&&cache.Inputs.Value==inputs)return cache.Result;
         cache.Inputs=inputs;_targetEvaluations++;
-        return cache.Result=Score(new D {["employment"]=inputs.Employment,["power"]=inputs.Power,["water"]=inputs.Water,
-            ["health"]=inputs.Health,["police"]=inputs.Police,["fire"]=inputs.Fire,["education"]=inputs.Education,
-            ["park"]=inputs.Park,["housing"]=inputs.Housing,["pollution_noise"]=inputs.Pollution});
+        return cache.Result=EvaluateScore(inputs);
     }
+    private D EvaluateScore(ScoreInputs inputs)=>Score(new D {["employment"]=inputs.Employment,["power"]=inputs.Power,["water"]=inputs.Water,
+        ["health"]=inputs.Health,["police"]=inputs.Police,["fire"]=inputs.Fire,["education"]=inputs.Education,
+        ["park"]=inputs.Park,["housing"]=inputs.Housing,["pollution_noise"]=inputs.Pollution});
     private static bool SameSource(Building a,Building b)=>a.Zone==b.Zone&&a.Position==b.Position;
     private static bool SameFacility(Facility a,Facility b)=>a.Kind==b.Kind&&a.Position==b.Position&&a.Road==b.Road&&a.Polygon.SequenceEqual(b.Polygon);
     private void DirtyPollution(IEnumerable<Building> buildings)
@@ -60,7 +61,7 @@ public partial class HappinessCore
             // Old projected anchors use the old graph. On graph changes all park scores were dirtied already.
             if(roadsChanged)return;
             var map=old?anchors:_facilityAnchors;
-            if(map.TryGetValue(f.Id,out var anchor)&&anchor.HasValue)DirtyPark(_serviceBuildingGrid.Near(AnchorPoint(anchor.Value),400.001));
+            if(map.TryGetValue(f.Id,out var anchor)&&anchor.HasValue)DirtyPark(_serviceBuildingGrid.Near(AnchorPoint(anchor.Value),401));
         }
         foreach(var f in facilities.Values)if(!_facilities.TryGetValue(f.Id,out var next)||!SameFacility(f,next))ChangedFacility(f,true);
         foreach(var f in _facilities.Values)if(!facilities.TryGetValue(f.Id,out var old)||!SameFacility(f,old))ChangedFacility(f,false);

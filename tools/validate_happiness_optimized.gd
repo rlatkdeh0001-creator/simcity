@@ -1,6 +1,7 @@
 extends "D:/project/simcity/tools/validate_happiness_scenario.gd"
 func run():
  setup()
+ city.happiness.core.SetParallelWorkers(2)
  for i in range(7350):
   city.advance_utilities(2);city.advance_society(2)
   if i%300==0:await process_frame
