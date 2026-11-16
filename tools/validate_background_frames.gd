@@ -31,8 +31,11 @@ func setup():
  city.population.sync(city.buildings);people.clear();households.clear()
  city.happiness._rebuild(city)
  if mode=="background":city.happiness.enable_background()
+ if mode=="full-worker":city.enable_simulation_worker();city.simulation.worker.Suspend()
  # One accepted tick establishes immutable group and worker/public buffers before sampling.
- city.advance_society(2);city.happiness.suspend_background();city.happiness.publish_boundary()
+ city.advance_society(2)
+ if mode=="full-worker":city.simulation.validation_publish();city.simulation.resume()
+ else:city.happiness.suspend_background();city.happiness.publish_boundary()
  print("BACKGROUND_FRAME_READY population=",population_count," speed=",speed)
  measuring=true
 func _process(delta:float):
@@ -50,7 +53,14 @@ func metrics(values:Array)->Dictionary:
  var sorted:Array=values.duplicate();sorted.sort()
  return {"samples":sorted.size(),"median_ms":sorted[sorted.size()/2],"max_ms":sorted[-1]}
 func finish():
- city.happiness.suspend_background();city.happiness.publish_boundary()
+ var status:Dictionary
+ if mode=="full-worker":
+  city.simulation.validation_publish()
+  status={"published":city.simulation.get_published_tick(),"fault":city.simulation.get_fault(),"worker_thread":city.simulation.worker.GetWorkerThread()}
+  city.simulation.shutdown()
+ else:
+  city.happiness.suspend_background();city.happiness.publish_boundary()
+  status=city.happiness.core.BackgroundStatus()
  assert(city.population.stats().population==population_count)
- print("BACKGROUND_FRAME_RESULT ",JSON.stringify({"mode":mode,"population":population_count,"speed":speed,"main_callback":metrics(callback_samples),"frame_start_gap":metrics(frame_samples),"frozen_cycles":city.society_frozen_cycles,"status":city.happiness.core.BackgroundStatus(),"scope":"real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded"}))
+ print("BACKGROUND_FRAME_RESULT ",JSON.stringify({"mode":mode,"population":population_count,"speed":speed,"main_callback":metrics(callback_samples),"frame_start_gap":metrics(frame_samples),"frozen_cycles":city.society_frozen_cycles,"status":status,"scope":"real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded"}))
  quit()

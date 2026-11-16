@@ -1,0 +1,16 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS city happiness is a cached simulation result
+PASS no residents has no invented average
+PASS resident weighting, not building average or workplace double counting
+PASS world edits do not calculate HUD statistics between simulation ticks
+PASS same-tick supply interruption updates the cached city average
+PASS removing all residents restores unknown display
+PASS empty-city approved happiness slot stays a dash
+PASS simulation result drives existing icon-plus-number HUD without explanatory text
+PASS unchanged values do not reassign HUD contents
+PASS HUD reads cached simulation average, not per-frame building scans
+PASS no housed residents returns the existing dash through a published demolition
+PASS production map renderer contains no facility-name text: power_overlay.gd
+PASS production map renderer contains no facility-name text: water_overlay.gd
+RESULT 13/13 happiness HUD and map-label checks passed

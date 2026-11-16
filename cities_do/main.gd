@@ -68,7 +68,8 @@ func _ready():
 		map_zoom = session.map_zoom
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
-	city.happiness.enable_background()
+	city.enable_simulation_worker()
+	city.simulation.edit_completed.connect(_simulation_edit_completed)
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
 	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for(r.kind,r.lanes,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -269,7 +270,12 @@ func toggle_traffic():
 	refresh()
 
 func _exit_tree():
-	if city!=null and city.happiness!=null:city.happiness.suspend_background()
+	if city!=null and city.simulation!=null:city.simulation.shutdown()
+	elif city!=null and city.happiness!=null:city.happiness.suspend_background()
+
+func _simulation_edit_completed(result:Variant):
+	if result is Dictionary and not result.get("ok",true):message=str(result.get("reason","편집을 적용하지 못했습니다"))
+	refresh()
 
 func stop_traffic():
 	if traffic != null: traffic.stop()

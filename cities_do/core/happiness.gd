@@ -8,15 +8,29 @@ var signature:=-1
 var records:Dictionary={}
 var bound
 var city_average:Variant=null
+var _read_view # Immutable full-city publication, never a mutable worker-core alias.
+func attach_read_view(view):
+ assert(view!=null)
+ _read_view=view
+func detach_read_view():_read_view=null
+func has_read_view()->bool:return _read_view!=null
+func published_read_view():return _read_view
+func inspect(id:int)->Dictionary:return _read_view.Inspect(id) if _read_view!=null else core.Inspect(id)
+func preview(id:int)->Dictionary:return _read_view.Preview(id) if _read_view!=null else core.Preview(id)
 var background_enabled:=false
 var supply_changes:Dictionary={}
 func note_supply(building:Dictionary):
+ if _read_view!=null:return
  supply_changes[building.id]=PackedInt64Array([building.id,int(building.get("has_power",false)),int(building.get("has_water",false))])
 func average_value()->Variant:
+ if _read_view!=null:
+  var published:Variant=_read_view.CityHappiness()
+  return null if published==null else roundi(float(published))
  if not background_enabled:return city_average
  var value:Variant=core.CityHappiness()
  return null if value==null else roundi(float(value))
 func enable_background():
+ assert(_read_view==null,"Full-city worker cannot nest a main happiness worker")
  if background_enabled:return
  var city=owner.get_ref()
  if city!=null:city.population.enable_geometry_transport(city.buildings)
@@ -30,7 +44,7 @@ func suspend_background():
 func materialize_values(building_values:Array):
  # Explicit compatibility/readout only; normal background publication swaps one buffer.
  for b:Dictionary in building_values:
-  var values:Dictionary=core.Inspect(b.id)
+  var values:Dictionary=inspect(b.id)
   if values.is_empty() or not values.get("initialized",false):continue
   b.happiness=values.actual;b.happiness_target=values.target;b.happiness_factors=values.factors
 func publish_boundary()->bool:
@@ -79,6 +93,7 @@ func _rebuild(city):
   for i in range(1,points.size()):edges.append_array(PackedFloat64Array([road_id,points[i-1].x*4,points[i-1].y*4,points[i].x*4,points[i].y*4]))
  core.SetWorld(buildings,facilities,edges);last_count=city.buildings.size();dirty=false;supply_changes.clear()
 func advance(game_seconds:float)->void:
+ assert(_read_view==null,"Main happiness simulation must not run while full-city worker owns it")
  if not is_finite(game_seconds) or game_seconds<=0:return
  if background_enabled:
   if background_busy():skip_background_cycle();return

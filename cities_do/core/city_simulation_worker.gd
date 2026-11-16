@@ -1,0 +1,166 @@
+extends RefCounted
+## Detached-city adapter. Instantiate one adapter per coordinator; city is worker-only.
+const Model=preload("res://core/city_model.gd")
+const NON_GEOMETRY=["happiness","happiness_target","happiness_factors"]
+var city
+var logical_tick:=0
+var edit_revision:=0
+var previous:Dictionary={}
+
+# ONE idle initialization capture, never part of a normal frame/tick.
+static func capture(source)->Dictionary:
+ var checkpoint:Dictionary={"model":_capture_object(source,["population","happiness","simulation"]),"population":source.population.core.ExportCityCheckpoint(),"population_config":source.population.config.duplicate(true),"happiness":source.happiness.core.ExportCityCheckpoint(),"happiness_vars":_capture_object(source.happiness,["owner","core","bound","records","background_enabled","_read_view"])}
+ return checkpoint
+static func _capture_object(source,skip:Array=[])->Dictionary:
+ var values:Dictionary={}
+ for descriptor:Dictionary in source.get_property_list():
+  if (int(descriptor.usage)&PROPERTY_USAGE_SCRIPT_VARIABLE)==0:continue
+  var key:String=descriptor.name
+  if key in skip or key=="city":continue # Computed owner facade is not stored state.
+  var value:Variant=source.get(key)
+  if value is WeakRef:continue # Existing constructor has already rebound owners.
+  values[key]=_capture_value(value)
+ return {"__city_object":true,"values":values}
+static func _capture_value(value:Variant)->Variant:
+ if value is RandomNumberGenerator:return {"__city_rng":true,"seed":value.seed,"state":value.state}
+ if value is Object:
+  assert(value.get_script()!=null,"Unsupported native object in detached snapshot")
+  return _capture_object(value)
+ if value is Array:
+  var result:Array=[]
+  for entry:Variant in value:result.append(_capture_value(entry))
+  return result
+ if value is Dictionary:
+  var result:Dictionary={}
+  for key:Variant in value:result[_capture_value(key)]=_capture_value(value[key])
+  return result
+ assert(not value is Callable and not value is Signal,"Callable/Signal cannot cross worker snapshot")
+ # Packed arrays have copy-on-write backing; force an owned duplicate via serialization.
+ return bytes_to_var(var_to_bytes(value))
+static func _restore_object(target,snapshot:Dictionary):
+ for key:String in snapshot.values:
+  var value:Variant=snapshot.values[key]
+  var current:Variant=target.get(key)
+  if value is Dictionary and value.get("__city_rng",false):
+   current.seed=value.seed;current.state=value.state
+  elif value is Dictionary and value.get("__city_object",false):
+   assert(current is Object,"Fresh model component missing: "+key)
+   _restore_object(current,value)
+  elif current is Array and value is Array:current.assign(value.duplicate(true))
+  else:target.set(key,_copy(value))
+static func _copy(value:Variant)->Variant:
+ return bytes_to_var(var_to_bytes(value))
+func boot(checkpoint:Dictionary)->Dictionary:
+ city=Model.new()
+ _restore_object(city,checkpoint.model)
+ city.population.config=checkpoint.population_config.duplicate(true)
+ city.population.import_fixture_state(checkpoint.population)
+ city.population.rng.seed=checkpoint.population.rng_seed
+ city.population.rng.state=checkpoint.population.rng_state
+ # Worker geometry can use the original pack path, but stage1 notifications avoid it.
+ city.population.enable_geometry_transport(city.buildings)
+ _restore_object(city.happiness,checkpoint.happiness_vars)
+ city.happiness.background_enabled=false
+ city.happiness.core.ImportCityCheckpoint(checkpoint.happiness)
+ city.happiness.bound=city.population.core
+ city.happiness.records.clear()
+ for b:Dictionary in city.buildings:city.happiness.records[b.id]=b
+ previous=_geometry_snapshot()
+ return {"ok":true}
+func _geometry_snapshot()->Dictionary:
+ var result:Dictionary={}
+ for b:Dictionary in city.buildings:
+  var row:Dictionary=b.duplicate(true)
+  for key:String in NON_GEOMETRY:row.erase(key)
+  result[int(b.id)]=row
+ return result
+func _error(message:String)->Dictionary:return {"ok":false,"error":message}
+func _validate(delta:Dictionary)->String:
+ if int(delta.get("base_tick",-1))!=logical_tick:return "stale logical tick"
+ if int(delta.get("base_revision",-1))!=edit_revision:return "stale edit revision"
+ if int(delta.get("revision",edit_revision))<edit_revision:return "revision went backwards"
+ var seen:Dictionary={}
+ var existing:Dictionary={}
+ for b:Dictionary in city.buildings:existing[int(b.id)]=true
+ for lot:Dictionary in city.public_facilities.lots:existing[int(lot.id)]=true
+ for op:Dictionary in delta.get("building_ops",[]):
+  var kind:String=op.get("kind","");var id:int=op.get("id",-1)
+  if kind not in ["create","update","remove"] or seen.has(id):return "invalid/duplicate building operation"
+  seen[id]=true
+  if kind=="create" and (id<city.next_id or existing.has(id)):return "create ID collides with simulation/public lot or is below next_id"
+  if kind!="create" and not previous.has(id):return "unknown building ID"
+  if kind!="remove":
+   var row:Dictionary=op.get("record",{})
+   if int(row.get("id",-2))!=id:return "record ID mismatch"
+   for field:String in ["zone","size","level","x","y"]:
+    if not row.has(field):return "missing building field: "+field
+   if row.zone not in ["residential","commercial","industrial"]:return "invalid building zone"
+ for key:Variant in delta.get("meta",{}):
+  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name"]:return "unsupported meta field"
+ for key:Variant in delta.get("world",{}):
+  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins"]:return "unsupported world field"
+ for key:Variant in delta.get("zones",{}):
+  if str(delta.zones[key]) not in ["","residential","commercial","industrial"]:return "invalid zone designation"
+ var world:Dictionary=delta.get("world",{})
+ if world.has("public_lots"):
+  var lot_ids:Dictionary={};var old_lot_ids:Dictionary={}
+  for lot:Dictionary in city.public_facilities.lots:old_lot_ids[int(lot.id)]=true
+  for lot:Dictionary in world.public_lots:
+   var id:int=lot.get("id",-1)
+   if lot_ids.has(id) or previous.has(id) or seen.has(id):return "public lot ID collides with a building/edit/lot"
+   if not old_lot_ids.has(id) and id<city.next_id:return "new public lot ID is below next_id"
+   lot_ids[id]=true
+ return ""
+func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
+ var problem:=_validate(delta)
+ if not problem.is_empty():return _error(problem)
+ if tick!=logical_tick+1 or seconds!=float(city.config.development_interval_seconds):return _error("step must advance exactly one configured logical interval")
+ var by_id:Dictionary={}
+ for b:Dictionary in city.buildings:by_id[int(b.id)]=b
+ var geometry_changed:=false
+ for op:Dictionary in delta.get("building_ops",[]):
+  var id:int=op.id
+  if op.kind=="remove":
+   city.buildings.erase(by_id[id]);by_id.erase(id);city.population.remove_building(id)
+  elif op.kind=="create":
+   var row:Dictionary=op.record.duplicate(true);city.buildings.append(row);by_id[id]=row
+   city.next_id=maxi(city.next_id,id+1);city.population.record_building(row)
+  else:
+   var row:Dictionary=by_id[id];row.clear();row.merge(op.record.duplicate(true),true);city.population.record_building(row)
+  geometry_changed=true
+ for key:Variant in delta.get("zones",{}):
+  if str(delta.zones[key]).is_empty():city.zone_designations.erase(key)
+  else:city.zone_designations[key]=delta.zones[key]
+ for key:Variant in delta.get("meta",{}):city.set(key,delta.meta[key])
+ if delta.has("growth_config"):_restore_object(city.config,delta.growth_config)
+ if delta.has("population_config"):city.population.config=delta.population_config.duplicate(true)
+ var world:Dictionary=delta.get("world",{})
+ if world.has("public_lots"):
+  city.public_facilities.lots.assign(world.public_lots.duplicate(true))
+  for lot:Dictionary in city.public_facilities.lots:city.next_id=maxi(city.next_id,int(lot.id)+1)
+ if world.has("power_plants"):city.power.plants.assign(world.power_plants.duplicate(true))
+ if world.has("water_facilities"):city.water.facilities.assign(world.water_facilities.duplicate(true))
+ if world.has("roads"):
+  city.roads.assign(world.roads.duplicate(true));city._update_zoning_for_road({})
+  for b:Dictionary in city.buildings:city.orient_building(b)
+ else:
+  if world.has("junctions"):city.junctions=world.junctions.duplicate(true)
+  if world.has("road_joins"):city.road_joins=world.road_joins.duplicate(true)
+ if geometry_changed or not world.is_empty():city.happiness.mark_dirty();city.utilities.mark_dirty()
+ if geometry_changed:city.population.sync(city.buildings)
+ city.advance_society(seconds)
+ logical_tick=tick;edit_revision=int(delta.get("revision",edit_revision))
+ var current:=_geometry_snapshot();var changed:Array[Dictionary]=[];var removed:=PackedInt64Array()
+ for id:Variant in current:
+  if not previous.has(id) or previous[id]!=current[id]:changed.append(current[id].duplicate(true))
+ for id:Variant in previous:
+  if not current.has(id):removed.append(int(id))
+ previous=current
+ return {"ok":true,"logical_tick":logical_tick,"revision":edit_revision,"building_upserts":changed,"building_removals":removed,
+  "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
+  "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
+  "funds":city.funds,"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
+func export_validation()->Dictionary:
+ return {"buildings":city.buildings.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
+  "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
+  "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}

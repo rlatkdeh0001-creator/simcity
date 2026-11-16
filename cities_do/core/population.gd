@@ -14,6 +14,16 @@ var _config_hash:=-1
 var _depth:=0
 signal geometry_transport_recovered(expected_count:int,actual_count:int)
 var _geometry_transport:=false
+var _read_view # Immutable full-city publication; null preserves mutable legacy fixtures.
+func attach_read_view(view):
+ assert(view!=null)
+ _read_view=view
+ rng.seed=view.GetRngSeed();rng.state=view.GetRngState()
+func detach_read_view():_read_view=null
+func has_read_view()->bool:return _read_view!=null
+func published_read_view():return _read_view
+func rng_seed()->int:return _read_view.GetRngSeed() if _read_view!=null else rng.seed
+func rng_state()->int:return _read_view.GetRngState() if _read_view!=null else rng.state
 var people:Array[Dictionary]:
  get:_expose();return _people
  set(value):_expose();_people.assign(value)
@@ -24,19 +34,19 @@ var workplaces:Dictionary:
  get:_expose();return _workplaces
  set(value):_expose();_workplaces=value
 var next_person:int:
- get:return core.GetNextPerson()
+ get:return _read_view.GetNextPerson() if _read_view!=null else core.GetNextPerson()
  set(value):core.SetNextPerson(value)
 var next_household:int:
- get:return core.GetNextHousehold()
+ get:return _read_view.GetNextHousehold() if _read_view!=null else core.GetNextHousehold()
  set(value):core.SetNextHousehold(value)
 var elapsed_days:float:
- get:return core.GetElapsedDays()
+ get:return _read_view.GetElapsedDays() if _read_view!=null else core.GetElapsedDays()
  set(value):core.SetElapsedDays(value)
 var birth_day:int:
- get:return core.GetBirthDay()
+ get:return _read_view.GetBirthDay() if _read_view!=null else core.GetBirthDay()
  set(value):core.SetBirthDay(value)
 var tick_active:bool:
- get:return core.IsTickActive()
+ get:return false if _read_view!=null else core.IsTickActive()
 var demand_full_scans:int:
  get:return core.GetDemandScans()
 func _init(seed_value:int=42):
@@ -46,6 +56,7 @@ func _configure():
  var fingerprint:int=hash(config)
  if fingerprint!=_config_hash:core.Configure(config);_config_hash=fingerprint
 func _expose():
+ assert(_read_view==null,"Mutable population arrays require a detached fixture")
  if not _views:_views=true;_refresh_views()
 func _merge_records(target:Array[Dictionary],incoming:Array):
  var old:Dictionary={}
@@ -65,6 +76,7 @@ func _refresh_views():
  _workplaces.clear();_workplaces.merge(next,true)
  _legacy_hash=hash([_people,_households,_workplaces])
 func _enter():
+ assert(_read_view==null,"Main population mutations are forbidden while the worker owns simulation state")
  if _depth==0:
   _configure()
   if _views and hash([_people,_households,_workplaces])!=_legacy_hash:core.ImportState(_people,_households,_workplaces)
@@ -76,6 +88,7 @@ func release_compatibility_views():
  # Fixtures may seed mutable views, then explicitly stop snapshot transport before benchmarking/play.
  _enter();_leave(false);_views=false;_people=[];_households=[];_workplaces={}
 func import_fixture_state(snapshot:Dictionary):
+ assert(_read_view==null,"Detach before importing an explicit compatibility fixture")
  _configure();core.ImportState(snapshot.people,snapshot.households,snapshot.get("workplaces",{}))
  if snapshot.has("next_person"):next_person=snapshot.next_person
  if snapshot.has("next_household"):next_household=snapshot.next_household
@@ -112,10 +125,10 @@ func enable_geometry_transport(buildings:Array)->void:
  # Mutable fixture arrays remain on the legacy full-pack path by default.
  _enter();core.EnableGeometryTransport(_pack_buildings(buildings));_geometry_transport=true;_leave(false)
 func record_building(b:Dictionary)->void:
- if not _geometry_transport:return
+ if _read_view!=null or not _geometry_transport:return
  core.RecordBuilding(b.id,0 if b.zone=="residential" else (1 if b.zone=="commercial" else 2),b.size,b.level)
 func remove_building(id:int)->void:
- if _geometry_transport:core.RemoveBuilding(id)
+ if _read_view==null and _geometry_transport:core.RemoveBuilding(id)
 func _check_geometry(buildings:Array)->void:
  var expected:int=core.GetGeometryCount()
  if expected==buildings.size():return
@@ -125,6 +138,9 @@ func _check_geometry(buildings:Array)->void:
  push_warning("Population geometry count mismatch: reseeded %d -> %d; check model notifications"%[expected,buildings.size()])
  geometry_transport_recovered.emit(expected,buildings.size())
 func sync(buildings:Array)->void:
+ # Legacy editor transactions may request reconciliation. The next owned worker delta
+ # does it there; published reads MUST remain frozen until that boundary is visible.
+ if _read_view!=null:return
  _enter()
  if _geometry_transport:
   _check_geometry(buildings)
@@ -139,12 +155,15 @@ func advance(game_seconds:float,buildings:Array)->void:
  else:core.AdvancePacked(game_seconds,_pack_buildings(buildings))
  match_jobs();_leave()
 func demand(buildings:Array)->Dictionary:
+ if _read_view!=null:return _read_view.Demand()
  _enter()
  var result:Dictionary
  if _geometry_transport:_check_geometry(buildings);result=core.DemandManaged()
  else:result=core.Demand(_pack_buildings(buildings) if core.NeedsDemandBuildings() else PackedInt64Array())
  _leave(false);return result
 func workplace_info(id:int)->Dictionary:
+ if _read_view!=null:return _read_view.WorkplaceInfo(id)
  _enter();var result:Dictionary=core.WorkplaceInfo(id);_leave(false);return result
 func stats()->Dictionary:
+ if _read_view!=null:return _read_view.Stats()
  _enter();var result:Dictionary=core.StatsManaged() if _geometry_transport else core.Stats();_leave(false);return result

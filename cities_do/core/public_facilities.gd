@@ -65,6 +65,7 @@ func preview(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) ->
  response.ok=true
  return response
 func place(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) -> Dictionary:
+ if city._defer_simulation_edit(place.bind(id,point,turns,snap_to_road)):return city._queued_simulation_edit()
  var result:=preview(id,point,turns,snap_to_road)
  if not result.ok:return result
  var record: Dictionary=result.record
@@ -83,6 +84,7 @@ func place(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) -> D
  city.next_id+=1
  lots.append(record)
  city.funds-=int(result.cost)
+ city._simulation_world_changed()
  city.society_changed.emit()
  return result
 func monthly_upkeep() -> int:
@@ -90,15 +92,18 @@ func monthly_upkeep() -> int:
  for record: Dictionary in lots:result+=int(upkeep(record.public_asset_id))
  return result
 func bill_months(previous: int,current: int):
+ if city.simulation!=null:return # Worker clock already bills; public clock is display only.
  var crossed:=maxi(0,current-previous)
  if crossed>0:city.funds-=crossed*monthly_upkeep()
 func remove(id: int) -> bool:
+ if city._defer_simulation_edit(remove.bind(id)):return true
  for index in range(lots.size()):
   if lots[index].id!=id:continue
   var record: Dictionary=lots[index]
   if record.engine=="power" and record.utility_id>=0:city.power.remove_plant(record.utility_id)
   elif record.engine in ["water","sewage"] and record.utility_id>=0:city.water.remove_facility(record.utility_id)
   lots.remove_at(index)
+  city._simulation_world_changed()
   city.society_changed.emit()
   return true
  return false

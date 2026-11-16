@@ -47,6 +47,7 @@ var population
 var population_enabled := true
 var happiness_enabled := true
 var happiness
+var simulation # Main-only facade; the detached model leaves this null.
 var society_elapsed := 0.0
 var society_frozen_cycles := 0 # Debug only; never shown in HUD.
 var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
@@ -84,10 +85,28 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	utilities=preload("res://core/utility_cadence.gd").new(self)
 	power.changed.connect(utilities.mark_power_dirty)
 	water.geometry.changed.connect(utilities.mark_water_dirty)
+	power.changed.connect(_simulation_world_changed)
+	water.geometry.changed.connect(_simulation_world_changed)
 	happiness=preload("res://core/happiness.gd").new(self)
 
+func enable_simulation_worker()->void:
+	if simulation!=null:
+		simulation.resume();return
+	if happiness.background_enabled:
+		happiness.suspend_background();happiness.publish_boundary()
+	simulation=load("res://core/city_simulation.gd").new(self)
+
+func _simulation_world_changed()->void:
+	if simulation!=null:simulation.note_world()
+
+func _defer_simulation_edit(action:Callable)->bool:
+	return simulation!=null and simulation.defer_edit(action)
+
+func _queued_simulation_edit()->Dictionary:
+	return {"ok":false,"queued":true,"changed":0,"code":"queued","reason":"시뮬레이션 반영 대기"}
+
 func advance_utilities(seconds:float)->Dictionary:
-	if happiness_enabled and population_enabled and happiness.background_enabled:
+	if simulation!=null or (happiness_enabled and population_enabled and happiness.background_enabled):
 		# Consume only accepted logical clock credit. Keep original per-frame metering
 		# chunks where possible; rejected/busy cycles cannot bill or age the networks.
 		seconds=minf(maxf(0.0,seconds),maxf(0.0,clock.game_seconds-utilities.elapsed)/Clock.SCALE)
@@ -159,6 +178,7 @@ func parcel_placement_error(frame: Dictionary,u: int,v: int,size: int,ignore_id:
 	return _polygon_error(Parcels.polygon(frame,u,v,size),ignore_id)
 
 func add_building_at(point: Vector2,zone: String="residential",score: float=0.0,size: int=2) -> Dictionary:
+	if _defer_simulation_edit(add_building_at.bind(point,zone,score,size)):return _queued_simulation_edit()
 	if zone not in ["residential","commercial","industrial"]:return {"ok":false,"reason":"지원하지 않는 구획입니다"}
 	if size not in [2,4]:return {"ok":false,"reason":"신축 부지는 2·4만 가능합니다"}
 	var parcel: Dictionary=zoning_grid.parcel_at(point)
@@ -173,6 +193,7 @@ func add_building_at(point: Vector2,zone: String="residential",score: float=0.0,
 	return {"ok":true,"building":building}
 
 func paint_zones(selection: PackedVector2Array, zone_type: String) -> Dictionary:
+	if _defer_simulation_edit(paint_zones.bind(selection.duplicate(),zone_type)):return _queued_simulation_edit()
 	if zone_type not in ["residential","commercial","industrial",""] or selection.size()<3:
 		return {"ok":false,"changed":0,"reason":"구획을 선택하세요"}
 	var bounds := Parcels.bounds(selection)
@@ -184,6 +205,7 @@ func paint_zones(selection: PackedVector2Array, zone_type: String) -> Dictionary
 		if zone_type.is_empty():zone_designations.erase(parcel.id)
 		else:zone_designations[parcel.id]=zone_type
 		changed+=1
+	if changed>0 and simulation!=null:simulation.note_zones()
 	return {"ok":true,"changed":changed,"reason":"%d칸 %s" % [changed,"해제" if zone_type.is_empty() else "지정"]}
 
 func zoned_lot_matches(frame: Dictionary,u: int,v: int,size: int,zone_type: String) -> bool:
@@ -237,6 +259,8 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 	return created
 
 func advance_society(seconds: float) -> void:
+	if simulation!=null:
+		simulation.advance(seconds);return
 	if seconds<=0 or not is_finite(seconds):return
 	var background:bool=happiness_enabled and population_enabled and happiness.background_enabled
 	if not background:clock.advance_real(seconds)
@@ -274,6 +298,7 @@ func orient_building(b: Dictionary) -> void:
 	if happiness!=null:happiness.mark_dirty()
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
 	if population!=null and population.has_method("record_building"):population.record_building(b)
+	if simulation!=null:simulation.note_building(b)
 
 func front_direction(b: Dictionary) -> Vector2:
 	return Frontage.direction(b)
@@ -285,6 +310,7 @@ func supports_static_sprite(b: Dictionary) -> bool:
 	return absf(bounds.size.x-b.size)<.00001 and absf(bounds.size.y-b.size)<.00001
 
 func add_building(x: int, y: int, zone: String = "residential", score: float = 0.0) -> Dictionary:
+	if _defer_simulation_edit(add_building.bind(x,y,zone,score)):return _queued_simulation_edit()
 	if zone not in ["residential", "commercial", "industrial"]:
 		return {"ok": false, "reason": "지원하지 않는 구획입니다"}
 	var error := placement_error(x, y, 2)
@@ -298,6 +324,7 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	return {"ok": true, "building": b}
 
 func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1, grid_frame: Dictionary = {}) -> Dictionary:
+	if commit and _defer_simulation_edit(add_road.bind(points.duplicate(),kind,true,lanes,connect_ends,enforce_units,major_side,grid_frame.duplicate(true))):return _queued_simulation_edit()
 	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in (preload("res://core/road_profile.gd").LOCAL_LANES if kind=="local" else [2,4]) or major_side not in [-1,1]:
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
 	# Player strokes opt in; authored scenarios retain exact supplied geometry.
@@ -356,6 +383,7 @@ func road_demolition_selection(id: int,point: Vector2,drag_to: Variant=null) -> 
 	return selection
 
 func demolish_road_selection(selection: Dictionary) -> Dictionary:
+	if _defer_simulation_edit(demolish_road_selection.bind(selection.duplicate(true))):return _queued_simulation_edit()
 	var invalid: Dictionary={"ok":false,"reason":"철거할 도로를 다시 선택하세요"}
 	if not selection.get("ok",false) or selection.get("cuts",[]).is_empty():return invalid
 	if selection.has("snapshot") and selection.snapshot!=var_to_bytes(roads):return invalid
@@ -428,6 +456,7 @@ func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
 	return {"ok":false,"reason":"철거할 도로가 없습니다"}
 
 func demolish(kind: String, id: int) -> Dictionary:
+	if _defer_simulation_edit(demolish.bind(kind,id)):return _queued_simulation_edit()
 	var removed := false
 	match kind:
 		"public_facility":removed=public_facilities.remove(id)
@@ -435,6 +464,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 			for i in range(buildings.size()):
 				if buildings[i].id==id:
 					if population.has_method("remove_building"):population.remove_building(id)
+					if simulation!=null:simulation.remove_building(id)
 					buildings.remove_at(i)
 					removed=true
 					break
@@ -491,6 +521,7 @@ func power_plant_footprint(plant: Dictionary) -> PackedVector2Array:
 	return footprint({"x":p.x,"y":p.y,"size":2})
 
 func add_power_plant(point: Vector2, output_kw: float = 300.0) -> Dictionary:
+	if _defer_simulation_edit(add_power_plant.bind(point,output_kw)):return _queued_simulation_edit()
 	var center := Vector2(floorf(point.x)+1,floorf(point.y)+1)
 	var polygon_value := footprint({"x":center.x-1,"y":center.y-1,"size":2})
 	var error := _polygon_error(polygon_value)
@@ -543,6 +574,7 @@ func advance_power(hours: float) -> Dictionary:
 	return state
 
 func add_water_facility(point: Vector2, kind: String, capacity: float = 300.0) -> Dictionary:
+	if _defer_simulation_edit(add_water_facility.bind(point,kind,capacity)):return _queued_simulation_edit()
 	var center := Vector2(floorf(point.x)+1,floorf(point.y)+1)
 	var error := _polygon_error(footprint({"x":center.x-1,"y":center.y-1,"size":2}))
 	if error!="": return {"ok":false,"reason":error}
@@ -689,6 +721,7 @@ func upgrade_chain(id: int) -> Dictionary:
 
 
 func _update_zoning_for_road(_road: Dictionary):
+	_simulation_world_changed()
 	# Upgrade saved footprints only; never remove/move authored roads or buildings.
 	for road in roads:
 		if road.kind!="local":continue
@@ -762,6 +795,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		if not zoning_grid.parcels.has(id):zone_designations.erase(id)
 
 func place_catalog_building(asset_id: String, x: int, y: int) -> Dictionary:
+	if _defer_simulation_edit(place_catalog_building.bind(asset_id,x,y)):return _queued_simulation_edit()
 	# Authored scenario placement; automatic birth uses the separate 4x4-first zoning path.
 	var asset: Dictionary = catalog.get_asset(asset_id)
 	if asset.is_empty(): return {"ok":false,"reason":"등록되지 않은 건물입니다"}
