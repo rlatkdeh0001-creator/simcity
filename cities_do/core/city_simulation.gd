@@ -42,7 +42,7 @@ func initialize()->bool:
  var city=owner.get_ref()
  if city==null:return false
  _adapter_script=load("res://core/city_simulation_worker.gd")
- var worker_script=load("res://simulation/CitySimulationWorker.cs")
+ var worker_script=load("res://core/city_native_mailbox.gd")
  if _adapter_script==null or worker_script==null:return false
  # Explicit idle initialization only. Flush mutable fixture edits BEFORE freezing the source.
  city.population.release_compatibility_views()
@@ -60,10 +60,11 @@ func initialize()->bool:
  for b:Dictionary in city.buildings:_by_id[int(b.id)]=b;_published_ids[int(b.id)]=true
  _known_zones=city.zone_designations.duplicate(true)
  # Boot has a published T0 read surface as well; no stale main-core reads during boot.
- city.population.attach_read_view(city.population.core.CaptureCityReadView())
- city.happiness.attach_read_view(city.happiness.core.CaptureCityReadView())
+ city.population.attach_read_view(load("res://core/native_population_view.gd").capture_boot(city.population.core.CaptureCityReadView()))
+ city.happiness.attach_read_view(load("res://core/native_happiness_view.gd").capture_boot(city.happiness.core.CaptureCityReadView()))
  worker=worker_script.new()
  worker.Initialize(_adapter_script.new(),checkpoint)
+ worker.AdoptBootViews(city.population.published_read_view(),city.happiness.published_read_view())
  enabled=true
  return true
 func enable()->bool:return initialize()

@@ -1268,3 +1268,14 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - 위임 `deleg_79b72435` 통합 완료. 현재 root 실제 검증: backend 54,006 + main Model 두 시드 각5400틱 140,407 + facade41 + lifecycle10 + HUD13/72 + 실제 OpenGL 게임창 입력7 = 194556 통과. 실제 공급 7350틱/26경계에서40·70·80→1·4·5, 편집/재개/월청구 중복 방지 정상. 캡처0.
 - 인구·고용·개발·행복도는 detached CityModel/Godot Thread 전용, main은 변경 건물과 immutable 조회만 발행. 별도 Legacy 종료/재개와 미발행 결과 보존. CLR 상태를 매 프레임 조회하던 부분을 제거했지만 30만2배속의 드문 callback35.776ms 1건은 남음(원인 GC 추정일 뿐 확정 아님). 1만/5만 최대0.135/0.156ms, 30만 전체속도 최대35.776ms, 나머지30만0.166/0.106ms. `docs/scale-measurement/full-worker/summary.json`, headless callback만 측정·전체 frame16ms 미달.
 - 후속 활성 위임 `deleg_b10ada6d`(`sa-0-956b100f`): scratch 출력만 소유, main 경계의 managed 진입을 없애는 native Mutex/Semaphore mailbox 실제 prototype. 부모 root는 건드리지 않음. 완료 통지 후 통합/실측; 아직 수요식·통근/T1~T4 미착수. Godot/dotnet은 반드시 run_dotnet.py, 직접 실행 금지(hostfxr 팝업 방지).
+
+### Native mailbox 통합(2026-11-17 새벽)
+- `5736a31` 뒤 prototype는 절전으로 결과 전달이 오류 종료됐지만 D:/tools/validation/native-mailbox-20261116 실제 소스/로그를 복구해 root 통합·검증함. Native Mutex/Semaphore 단일 슬롯 + scalar native 조회 + worker측 버퍼 회수, 기존 C# API 보존.
+- root 빌드0경고/0오류, 관련 226877 검사 통과, 두 시드3일 exact·7350틱40/70/80→1/4/5 유지. 실제 OpenGL 입력7/7, 캡처0.
+- 1/2/3배속 9회, scalar HUD reader 포함 callback 최대 30만/5만/1만 = 0.177/0.249/0.944ms. callback16ms 통과; frame-start gap은16ms 초과라 전체 프레임 완료 아님. 근거 docs/scale-measurement/native-mailbox/summary.json.
+- 다음 작업은 승인 순서대로 수요식·이웃 통근·집에서 도로 최단 일자리 배정, 이어 T1~T4. 지각은 출발 후 게임4시간 기준이며 일급 감소는 T3 뒤 별도.
+
+## 사용자 확인 대기 (2026-11-17 아침)
+- [ ] 사회 callback16ms는 충족했으나 headless frame-start gap은 최대35.784ms(별도 외부 구간 포함)로 전체 프레임16ms는 미달. 최신 순서대로 후속 기능을 진행하고 전체 프레임 원인 계측은 보류. 향후 전체 프레임도16ms로 제한할 추가 작업 범위를 확인할 것.
+- 밤사이 승인 필요 행동(push/main/rm/reset --hard/AGENTS.md 수정/설치)은 하지 않으며, 미정 수치는 임시 설정으로 분리해 이 목록에 기록한다.
+

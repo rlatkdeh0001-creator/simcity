@@ -1,0 +1,28 @@
+{
+  "boundary_callbacks": {
+    "max_ms": 0.159,
+    "median_ms": 0.135,
+    "samples": 4
+  },
+  "frame_start_gap": {
+    "max_ms": 31.413,
+    "median_ms": 6.903,
+    "samples": 1140
+  },
+  "frozen_cycles": 0,
+  "hud_scalar_reads": 9,
+  "main_callback": {
+    "max_ms": 0.159,
+    "median_ms": 0.022,
+    "samples": 1141
+  },
+  "mode": "full-worker",
+  "population": 50000,
+  "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+  "speed": 1,
+  "status": {
+    "fault": "",
+    "published": 5,
+    "worker_thread": 40
+  }
+}
