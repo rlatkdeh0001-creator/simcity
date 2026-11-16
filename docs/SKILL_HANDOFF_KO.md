@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 버스 스테이션 v2 확대 (2026-11-16, cities-asset)
+
+기획 1차 반려 후 사용자 최신 확대값48×20m·30°5베이로 `tools/build_bus_station_v2.py`에서 재제작. 앞3.5m 일방향 주행로·입출구 화살표, 뒤4.2m 대합 승강장 전체 캐노피, 작은 대합실 포함. 3831tri. 원본v1 보존, v2 폴더/GLB/PNG로 카탈로그 교체. 앞선32×16m 미승인 결과는 작업 트리 밖 scratch에 보존하고 제출하지 않는다. 기존 road-edge/vehicle/common(MIT 고정판·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`bus-station-v2-1600.png` 한 장에 기존 버스5대 정차, 실제GLB 로드·부지/원점·주행로 침범/인접 차체 겹침12/12 통과. 수치·명령 `BUS_STATION_V2_RESULTS.txt`. 화살표는 설계 표시이며 실제 회차 궤적·부착·운행·승하차 검증이 아니다. 게임 코드·가격·main·push 없음. 요청서의 다음 기차역32×24m 변경도 원문 그대로 함께 보존한다.
+
 ## 고속열차 선두차 v2 (2026-11-16, cities-asset)
 
 사용자 "트럭 같다" 반려와 갱신 요청서를 적용해 `tools/build_transit_loco_v2.py`에서 연속 loft 곡면·노즈 띠창·하부 스커트·팬터그래프 1개로 재제작했다. v1 원본/GLB/스프라이트는 그대로 두고 `assets/vehicle-fleet/train-loco-01/v2`, `train-loco-01-v2.glb`, 새 스프라이트 폴더로 카탈로그만 교체했다. 차체9m/전체10×3×3.8m,3940tri, 8방향 PNG. 기존 common/vehicle 제작 helper(MIT, 기존 고정판/NOTICE 아래 기록)와 godot-windows-validation 재사용, 설치 없음. 별도 생성기는 `--output-root <새 빈 폴더>` 지원.

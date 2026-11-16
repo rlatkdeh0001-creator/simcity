@@ -1,0 +1,114 @@
+{
+  "id": "bus-station-01",
+  "name": "버스 스테이션",
+  "kind": "transit_road_edge",
+  "width": 12,
+  "depth": 5,
+  "metres": [
+    48,
+    20
+  ],
+  "storeys": 0,
+  "capacity": 5,
+  "capacity_unit": "static_vehicle_bays",
+  "capacity_status": "geometry only, not passenger capacity or transport simulation",
+  "placement": "road_edge",
+  "road_side": {
+    "blender": "-Y",
+    "gltf": "+Z",
+    "edge_coordinate_m": 0
+  },
+  "origin": "centre of road-contact edge, ground z=0",
+  "road_axis_blender": "+X",
+  "sidewalk_occupied_width_m": 0,
+  "inward_depth_m": 20,
+  "required_sidewalk_width_m": 0,
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "height_m": 4.31,
+  "length_m": 20,
+  "width_m": 48,
+  "triangles": 3831,
+  "model": "res://assets/facilities/bus-station-01-v2.glb",
+  "preview": "res://assets/facilities/bus-station-01-v2.png",
+  "source": "assets/facilities/bus-station-01/v2/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 14.345102555945093,
+    "camera_elevation_deg": 30
+  },
+  "status": "inspection_only",
+  "road_attachment_implemented": false,
+  "not_validated": [
+    "live road attachment",
+    "bus swept turning envelopes",
+    "passenger simulation"
+  ],
+  "entry_exit_centres_blender": [
+    [
+      21.5,
+      0,
+      0
+    ],
+    [
+      -21.5,
+      0,
+      0
+    ]
+  ],
+  "review_bus_centres_blender": [
+    [
+      -18.0,
+      7.6,
+      0.1
+    ],
+    [
+      -9.0,
+      7.6,
+      0.1
+    ],
+    [
+      0.0,
+      7.6,
+      0.1
+    ],
+    [
+      9.0,
+      7.6,
+      0.1
+    ],
+    [
+      18.0,
+      7.6,
+      0.1
+    ]
+  ],
+  "bay_dimensions_m": [
+    11.15,
+    2.85
+  ],
+  "bay_angle_deg": 30,
+  "review_bus_yaw_godot_deg": -60,
+  "one_way_aisle_width_m": 3.5,
+  "circulation_direction": "right entrance -> front one-way aisle (towards -X) -> left exit; sawtooth bays behind aisle",
+  "waiting_platform_depth_m": 4.2,
+  "waiting_canopy_coverage_m": [
+    48,
+    4.2
+  ],
+  "waiting_room_dimensions_m": [
+    14,
+    3.6,
+    3.1
+  ],
+  "supersedes": "bus-station-01 v1, originals retained"
+}
