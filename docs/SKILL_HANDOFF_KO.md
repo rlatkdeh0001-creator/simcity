@@ -1,11 +1,21 @@
 # CITIES_DO 스킬 인계장
 
-최종 기록: 2026-11-14 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
+최종 기록: 2026-11-16 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → [mistake.md](../mistake.md) → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
 검증 기록을 읽어 같은 작업을 이어갈 수 있다는 뜻이다. 자동 스킬 탐색 여부와
 원본 파이프라인 전체 실행 여부도 구분한다.
 
+
+## 시민 전체 세트 묶음① — 성인 머리10 (2026-11-16 KST)
+
+- 승인 범위: `assets/citizens-full-20261116` / `D:/project/simcity-citizens`, 시안 `957d806`을 그대로 보존. [요청/선택한 인터페이스](design/ASSET_REQUEST_CITIZENS_FULL_KO.md), [납품/실행/검증/한계](citizens-full/adult-heads/README_KO.md). 남5·여5 새 hair층10종, 직접 작성한 지오메트리. 머리108~348tri/전체696~936tri, 성인1.75m/시안14본·Idle/Walk·피부/공용 옷 유지.
+- 생성/렌더 `tools/build_citizen_adult_heads.py`, 축소·깊이/임시 해석 뷰 `tools/finalize_citizen_adult_heads.py`, 원 검증기 호출 `tools/verify_citizen_adult_head_rigs.py`, 진입점 `tools/run_citizen_adult_heads.py`, 실제 GL fixture `tools/capture_citizen_adult_heads.gd`. 원본 `.blend`10/부위GLB10/PNG250/깊이NPZ10과 메타데이터를 새 `assets/citizens/full-set/adult-heads/`에 보관한다. 게임 코드는 바꾸지 않았다.
+- 이번 실측: 원 `verify_citizen_adult_pilot.py`29항목×10 및 `verify_citizen_sprites.py`10항목×10 통과, 반전 RGBA/깊이 합성150경우 통과, 최소 접속 alpha251. 공용75개는 재렌더하지 않고 새25개와 해석하여 원 검증기를 변경 없이 임시 뷰에서 실행했다. `validation-results.json`은 이번 결과이며 기존 시안의 과거 검사와 구분한다.
+- Godot4.6.3 OpenGL3/RTX2070 SUPER 실제 실행 exit0: 기존 demo adapter/shader를 `031ce4b5ba488c2ea5991fc69d8d712f1fd273d1`에서 읽어 scratch fixture로 새10종·12조합·8방향 로드. [실제 GL 시트](citizens-full/adult-heads/godot-combinations.png). 상단은 게임 zoom1 배율, 하단은 native1배/머리3배. 라이브 도시/100명 운행/게임 부위 선택 UI 통합 검증이 아니다.
+- 적용한 프로필 로컬 스킬: `godot-windows-validation/references/citizen-sprites.md`의 깊이/미러/공용배율 및 `requesting-code-review`2.2.0(MIT)의 자체 검수 모드. 본 프로필의 시민 참조에25+공용75해석 뷰·명시적 scratch·read-only 원본 확장 절차도 추가했다. 새 외부 스킬/에이전트 설치·호출 없음. 기존 검증기/공용 코드/시안 원본을 수정하지 않았다. 외부 모델·텍스처·생성 API 없음. 신규 형상은 이 저장소의 생성기가 원본이다.
+- 승인된 유일한 추가 패키지는 Pillow11.3.0(cp311/win_amd64), 공식 배포 https://files.pythonhosted.org/packages/f1/cc/29c0f5d64ab8eae20f3232da8f8571660aa0ab4b8f1331da5c2f5f9a938e/pillow-11.3.0-cp311-cp311-win_amd64.whl (6,986,055bytes), 설치 `D:/tools/cities-asset-python311/site-packages`, METADATA 라이선스 MIT-CMU/원 LICENSE 보존. 기존 Blender4.3.2 동봉 Python3.11/NumPy1.24.3과 프로세스 한정 PYTHONPATH로 사용; C: 신규 설치·전역 PATH 변경 없음.
+- 재실행은 위 README 명령. fresh 출력 또는 `verify-existing`를 쓰며 기존 원본 덮어쓰기 금지. scratch 경로는 명시한다(TMPDIR 실제값이 시스템 Temp인 환경이었음). 신규 상의/교복·하의 및 아이 세트는 미제작이므로 모든 신규 옷 조합의 검증은 다음 묶음 범위. push/main 반영 없음.
 
 ## 시민 성인1명·4부위 공통틀 (2026-11-14 KST)
 

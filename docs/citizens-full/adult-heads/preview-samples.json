@@ -1,0 +1,344 @@
+{
+  "seed": 20261116,
+  "count": 12,
+  "game_scale": 0.12374368670764582,
+  "game_scale_ref": "031ce4b5ba488c2ea5991fc69d8d712f1fd273d1",
+  "samples": [
+    {
+      "citizen_id": 1,
+      "hair": "adult-hair-f05-low-bun",
+      "direction": "SE",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          150,
+          85,
+          75
+        ],
+        [
+          137,
+          103,
+          143
+        ]
+      ]
+    },
+    {
+      "citizen_id": 2,
+      "hair": "adult-hair-m04-curly",
+      "direction": "NW",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          92,
+          101,
+          151
+        ],
+        [
+          137,
+          103,
+          143
+        ]
+      ]
+    },
+    {
+      "citizen_id": 3,
+      "hair": "adult-hair-f03-ponytail",
+      "direction": "W",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          99,
+          127,
+          84
+        ],
+        [
+          63,
+          136,
+          157
+        ]
+      ]
+    },
+    {
+      "citizen_id": 4,
+      "hair": "adult-hair-m03-centre-part",
+      "direction": "S",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          193,
+          163,
+          96
+        ],
+        [
+          150,
+          85,
+          75
+        ]
+      ]
+    },
+    {
+      "citizen_id": 5,
+      "hair": "adult-hair-m01-crew",
+      "direction": "N",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          137,
+          103,
+          143
+        ],
+        [
+          99,
+          127,
+          84
+        ]
+      ]
+    },
+    {
+      "citizen_id": 6,
+      "hair": "adult-hair-f02-bob",
+      "direction": "SW",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          99,
+          127,
+          84
+        ],
+        [
+          193,
+          163,
+          96
+        ]
+      ]
+    },
+    {
+      "citizen_id": 7,
+      "hair": "adult-hair-f01-pixie",
+      "direction": "E",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          137,
+          103,
+          143
+        ],
+        [
+          193,
+          163,
+          96
+        ]
+      ]
+    },
+    {
+      "citizen_id": 8,
+      "hair": "adult-hair-m05-swept-back",
+      "direction": "NE",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          99,
+          127,
+          84
+        ],
+        [
+          63,
+          136,
+          157
+        ]
+      ]
+    },
+    {
+      "citizen_id": 9,
+      "hair": "adult-hair-m02-fringe",
+      "direction": "SE",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          99,
+          127,
+          84
+        ],
+        [
+          92,
+          101,
+          151
+        ]
+      ]
+    },
+    {
+      "citizen_id": 10,
+      "hair": "adult-hair-f04-double-bun",
+      "direction": "NE",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          150,
+          85,
+          75
+        ],
+        [
+          63,
+          136,
+          157
+        ]
+      ]
+    },
+    {
+      "citizen_id": 11,
+      "hair": "adult-hair-m04-curly",
+      "direction": "E",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          193,
+          163,
+          96
+        ],
+        [
+          63,
+          136,
+          157
+        ]
+      ]
+    },
+    {
+      "citizen_id": 12,
+      "hair": "adult-hair-m02-fringe",
+      "direction": "SE",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          92,
+          101,
+          151
+        ],
+        [
+          137,
+          103,
+          143
+        ]
+      ]
+    }
+  ]
+}

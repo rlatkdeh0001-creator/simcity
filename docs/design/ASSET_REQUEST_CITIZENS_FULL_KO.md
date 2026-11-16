@@ -1,0 +1,12 @@
+# 시민 부위 전체 세트 제작 요청 기록
+
+지시: cities-claude 전달 사용자 승인. 브랜치 `assets/citizens-full-20261116`, worktree `D:/project/simcity-citizens`, 기준 `origin/assets/citizen-adult-pilot-20261114` / `957d806`.
+
+- 원본 adult-pilot-01은 수정하지 않는다. 성인은 같은14본·휴지 좌표·Idle/Walk·키1.75m·회색1재질/층·64×96/40px/m·발(32,84)·깊이 NPZ 합성 계약을 유지한다.
+- 시안과 동일하게 실제 저장은 S/SE/E/NE/N 5방향×idle/걷기4, 나머지 SW/W/NW는 RGBA와 깊이를 함께 반전해 논리8방향을 제공한다. 완성 조합을 다시 렌더하지 않고 새 부위당25PNG+25깊이를 추가한다.
+- 성인 머리10(남5/여5) → 상의5+교복1 → 하의/신발4 → 아이 체형 약1.1m 및 머리6/상의4/하의3 순서. 아이는 성인과 본 이름·프레임·기준점 계약을 공유하되 비율에 맞는 뼈 길이를 별도 제작한다.
+- 피부 층은 시안 방식. 어떤 부위 조합에도 허리·목·소매가 이어져야 하며, 성인 머리 생성은 목/상의 간섭을 피하도록 최저 hair Z≥1.43m, 향후 상의 목 주변 최대 Z≤1.40m 인터페이스를 사용한다.
+- 원래 tools/verify_citizen_adult_pilot.py 및 verify_citizen_sprites.py의 검사 조건은 변경하지 않는다. 부위25장과 공용75장을 임시 해석 뷰로 합쳐 원 검증기를 그대로 실행하고 결과를 집계한다. 시안 몸/옷은 재렌더하지 않는다.
+- 묶음마다 커밋·무작위 조합12명 이상 미리보기 시트1장·5줄 보고. native40px/m와 기존 demo/citizens-100의 실제 축척 공식을 구분해 표시한다. 게임 코드/시뮬레이션 변경 없음, push/main 금지.
+
+성인 머리 디자인 세부 선택(허용 범위 내): 남 crew/fringe/centre-part/curly/swept-back, 여 pixie/bob/ponytail/double-bun/low-bun. 두상/피부는 공통 시안 그대로, 새 회색 hair층 실루엣만 제작한다. 얼굴 세부·외부 모델·텍스처·생성형 그림은 사용하지 않는다.

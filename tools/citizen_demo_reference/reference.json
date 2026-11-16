@@ -1,0 +1,14 @@
+{
+  "repository": "rlatkdeh0001-creator/simcity",
+  "source_ref": "demo/citizens-100",
+  "source_commit": "031ce4b5ba488c2ea5991fc69d8d712f1fd273d1",
+  "files": {
+    "citizen_demo_sprites.gd": "cities_do/core/citizen_demo_sprites.gd",
+    "citizen_demo.gdshader": "cities_do/core/citizen_demo.gdshader"
+  },
+  "purpose": "Read-only, unchanged same-project renderer snapshot for asset validation without a dependency on sibling Git history; not installed in the live game.",
+  "license": "Original same-project terms retained; no new third-party asset source.",
+  "source_pixels_per_metre": 40,
+  "tile": [14, 7],
+  "game_scale_formula": "tile.x /4 *sqrt(2) *map_zoom /source_pixels_per_metre"
+}

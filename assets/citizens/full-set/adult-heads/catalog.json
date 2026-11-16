@@ -1,0 +1,79 @@
+{
+  "archetype": "adult-neutral",
+  "part_layer": "hair",
+  "pilot_reference": "assets/citizens/adult-pilot-01",
+  "logical_directions": 8,
+  "physical_directions": 5,
+  "parts": [
+    {
+      "id": "adult-hair-m01-crew",
+      "gender": "male",
+      "style": "crew",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-m01-crew",
+      "triangles": 108
+    },
+    {
+      "id": "adult-hair-m02-fringe",
+      "gender": "male",
+      "style": "fringe",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-m02-fringe",
+      "triangles": 120
+    },
+    {
+      "id": "adult-hair-m03-centre-part",
+      "gender": "male",
+      "style": "centre-part",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-m03-centre-part",
+      "triangles": 204
+    },
+    {
+      "id": "adult-hair-m04-curly",
+      "gender": "male",
+      "style": "curly",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-m04-curly",
+      "triangles": 348
+    },
+    {
+      "id": "adult-hair-m05-swept-back",
+      "gender": "male",
+      "style": "swept-back",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-m05-swept-back",
+      "triangles": 156
+    },
+    {
+      "id": "adult-hair-f01-pixie",
+      "gender": "female",
+      "style": "pixie",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-f01-pixie",
+      "triangles": 120
+    },
+    {
+      "id": "adult-hair-f02-bob",
+      "gender": "female",
+      "style": "bob",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-f02-bob",
+      "triangles": 108
+    },
+    {
+      "id": "adult-hair-f03-ponytail",
+      "gender": "female",
+      "style": "ponytail",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-f03-ponytail",
+      "triangles": 156
+    },
+    {
+      "id": "adult-hair-f04-double-bun",
+      "gender": "female",
+      "style": "double-bun",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-f04-double-bun",
+      "triangles": 204
+    },
+    {
+      "id": "adult-hair-f05-low-bun",
+      "gender": "female",
+      "style": "low-bun",
+      "source": "assets/citizens/full-set/adult-heads/adult-hair-f05-low-bun",
+      "triangles": 156
+    }
+  ]
+}
