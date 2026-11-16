@@ -1,0 +1,26 @@
+{
+  "source_commit": "6be51b9b056d83b02d7bff09579aa0b67aa315ba",
+  "hash_mode": "Git blob bytes (LF normalized by repository)",
+  "files": {
+    "cities_do/bottom_ui.gd": "515ca2e466b9931458e47d57e651a07dedd0132401ef5c40756d8b987dc4cbd1",
+    "cities_do/core/city_model.gd": "796e836a7b34f8483843f3f23cf102a226a8263821a676ad1057cb27c93a90aa",
+    "cities_do/core/happiness.gd": "323b8ccc246ca3e595b65b31a6b2604236a4e0fee7781d31b94a2b60d5285c64",
+    "cities_do/main.gd": "e807d4f2e6565b20c6822cf94b95345d52ac34bc1d08f925f90340aa83abbe58",
+    "cities_do/simulation/HappinessCore.Background.cs": "000a4085d78cfedca188c8f50ee6041a73320c5a1c4cb5551bc99b70a47d2f76",
+    "cities_do/simulation/HappinessCore.World.cs": "e10fe96ec6f7cba0be7ad108acb1b6eca307c9b1506e30f1605311b7fd12725d",
+    "cities_do/simulation/HappinessCore.cs": "0ca5fb4741e382071336bd2aaabd4ada3fd555f666898b49b9864eaa30ca0bbb",
+    "cities_do/simulation/PopulationState.Happiness.cs": "f66466747d2e8a6e780a4c3065c4099263bfb0e4ea84f47290ad001725b116d3",
+    "cities_do/tests/test_background_society.gd": "6ab11bc8f85aa2df2b84a380134b858be2e3299470696f3a84053cac2f91e201",
+    "cities_do/tests/test_happiness_background.gd": "2630c89408c6552832f297f302a78648dfecb23f6afb9d935867598003af5900",
+    "cities_do/tests/test_happiness_hud.gd": "97797d456e2265a02af34df54b9ab915d846a682d8e6a189c7961ecab74fb47f",
+    "cities_do/tests/test_hud_v2.gd": "1df98a5eb2cd6d595e189f91b1cde5f8087dcc3ccaa0caacece63ab8693f896f",
+    "docs/SKILL_HANDOFF_KO.md": "c35f6579ab6b34d032006bdc3c19bcf0f3a0ac0967f26e8f9463f09dfdb62227",
+    "tools/validate_background_frames.gd": "0d972cdbf58dae2db87aeec9493d210e1cfcf9ab94d1c60bc8582eef2a664f13",
+    "tools/validate_happiness_background.gd": "0efdce89facb9f9af61a4361b8e0806f6a1cac56a5cdb75e31c5f79fba7e651b"
+  },
+  "frame_harness_scope": "headless SceneTree advance_society main-thread callback and entry intervals; not rendered game",
+  "post_measurement_source_updates_outside_exercised_frame_path": [
+    "utility credit clamp in advance_utilities (not called by the harness)",
+    "HUD fixture logical-boundary barriers (not loaded by harness)"
+  ]
+}

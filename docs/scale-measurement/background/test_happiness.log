@@ -1,0 +1,68 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS managed happiness calculator exists
+PASS base20 + actual employment20 + temporary goods10
+PASS fourteen factors plus the base are explicitly represented
+PASS unemployment penalty
+PASS mixed employment interpolates actual group employment
+PASS service factor health
+PASS service factor police
+PASS service factor fire
+PASS service factor education
+PASS park, housing and capped pollution contribute
+PASS electricity absence forces zero
+PASS water absence forces zero
+PASS happiness is capped at 100
+PASS replaceable temporary factor goods
+PASS replaceable temporary factor commute
+PASS replaceable temporary factor garbage
+PASS replaceable temporary factor tax
+PASS temporary values are configuration, not hardcoded fulfillment
+PASS world, services and growth evaluator exists
+PASS road-distance service boundary 0
+PASS road-distance service boundary 1000
+PASS road-distance service boundary 1000.01
+PASS road-distance service boundary 2000
+PASS road-distance service boundary 2000.01
+PASS road-distance service boundary 3000.01
+PASS road-distance service boundary 4000.01
+PASS road-distance service boundary 5000.01
+PASS road-distance service boundary 6000
+PASS road-distance service boundary 6000.01
+PASS placed capacity-backed service health
+PASS placed capacity-backed service police
+PASS placed capacity-backed service fire
+PASS placed capacity-backed service education
+PASS nearer buildings reserve resident capacity first
+PASS midday placement does not reassign daily quotas
+PASS next day allocates next available facility
+PASS equal distance breaks ties by building ID
+PASS nearby but disconnected park gives no road-access bonus
+PASS park inclusive 400m road distance
+PASS park beyond 400m gives no bonus
+PASS factory within 100m
+PASS intervening parks halve each source once, not repeatedly
+PASS off-path park does not buffer pollution
+PASS factory outer 200m band
+PASS coal/oil/incinerator inner 300m band
+PASS heavy-source outer 600m band
+PASS road noise and emissions share the -15 cap
+PASS immediate four-plus-lane road noise
+PASS only higher residential neighbors within 100m; bonus moves one per day
+PASS only ID modulo 75 bucket is evaluated
+PASS new building starts at its first target
+PASS no upgrade before a full continuous day
+PASS qualifying building requests one upgrade in its own bucket
+PASS successful level change resets next-level timer
+PASS power loss immediately zeros happiness and interrupts continuity
+PASS actual happiness declines by at most five per day
+PASS dropping below threshold resets continuous holding
+PASS unoccupied buildings cannot earn resident happiness growth
+PASS fire incident capacity uses configured 100 buildings, not people
+PASS 80 happiness qualifies full-day threshold for level 1
+PASS 80 happiness qualifies full-day threshold for level 2
+PASS 80 happiness qualifies full-day threshold for level 3
+PASS 80 happiness qualifies full-day threshold for level 4
+PASS level five never upgrades beyond the cap
+PASS external level change cannot inherit the previous-level holding time
+RESULT 65/65 happiness checks passed

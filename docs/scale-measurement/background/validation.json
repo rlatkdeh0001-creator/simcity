@@ -1,0 +1,39 @@
+{
+  "background_snapshot_checks": 21617,
+  "background_society_checks": 22,
+  "happiness": 65,
+  "integration": 12,
+  "hud_happiness": 13,
+  "population_aggregates": 16,
+  "population_cache": 78,
+  "spatial_oracle": 11241,
+  "hud_v2": 72,
+  "total_checks": 33136,
+  "all_final_process_exits": 0,
+  "seeds": [
+    42,
+    20261114
+  ],
+  "completed_logical_ticks_each_seed": 5400,
+  "scenario": {
+    "logical_ticks": 7350,
+    "game_seconds": 352800,
+    "targets": [
+      40,
+      70,
+      80
+    ],
+    "levels": [
+      1,
+      4,
+      5
+    ],
+    "pollution": [
+      -10,
+      -10,
+      -5
+    ]
+  },
+  "denominator": "completed logical ticks, not wall time; rejected cycles freeze game and utility logical clocks",
+  "snapshot_cli_evidence": "Successful actual parent execution printed RESULT 21617/21617 background snapshot checks passed and exit0; full assertion/cadence/fixture runner committed. Other final suite logs are in this folder."
+}

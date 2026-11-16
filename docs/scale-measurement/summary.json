@@ -1,4 +1,8 @@
 {
+  "latest_phase": "background",
+  "latest_source_commit": "6be51b9b056d83b02d7bff09579aa0b67aa315ba",
+  "latest_frame_acceptance_16ms_met": false,
+  "latest_report": "background/summary.json",
   "baseline": {
     "source_commit": "a3a945c582cfafcbb79a18cca1ca4f156367dbb8",
     "measured_after_kst_deadline": true,

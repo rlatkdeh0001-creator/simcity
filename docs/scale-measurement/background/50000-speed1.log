@@ -1,0 +1,4 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+BACKGROUND_FRAME_READY population=50000 speed=1
+BACKGROUND_FRAME_RESULT {"frame_start_gap":{"max_ms":27.892,"median_ms":6.899,"samples":1135},"frozen_cycles":0,"main_callback":{"max_ms":27.852,"median_ms":0.008,"samples":1136},"population":50000,"scope":"real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded","speed":1,"status":{"main_thread":2,"published":5,"skipped":0,"submitted":5,"worker_thread":5}}
