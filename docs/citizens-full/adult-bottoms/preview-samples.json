@@ -1,0 +1,428 @@
+{
+  "batch": "adult-bottoms",
+  "count": 12,
+  "height_m": 1.75,
+  "game_scale": 0.12374368670764582,
+  "samples": [
+    {
+      "citizen_id": 1,
+      "hair": "case-01",
+      "label": "H3 T5 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m03-centre-part",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-05-hoodie-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-03-wide"
+      },
+      "direction": "SW",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          173,
+          157,
+          162
+        ],
+        [
+          53,
+          98,
+          139
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 2,
+      "hair": "case-02",
+      "label": "H9 T2 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f04-double-bun",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-02-bomber-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+      },
+      "direction": "NW",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          136,
+          78,
+          106
+        ],
+        [
+          55,
+          75,
+          60
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 3,
+      "hair": "case-03",
+      "label": "H8 T4 B4",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f03-ponytail",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-04-cardigan-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-04-jogger"
+      },
+      "direction": "SE",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          76,
+          124,
+          142
+        ],
+        [
+          60,
+          75,
+          127
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 4,
+      "hair": "case-04",
+      "label": "H1 T1 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m01-crew",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-02-cargo"
+      },
+      "direction": "N",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          185,
+          141,
+          109
+        ],
+        [
+          100,
+          93,
+          80
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 5,
+      "hair": "case-05",
+      "label": "H2 T3 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m02-fringe",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-03-wide"
+      },
+      "direction": "W",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          119,
+          166,
+          147
+        ],
+        [
+          59,
+          94,
+          51
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 6,
+      "hair": "case-06",
+      "label": "H6 T6 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f01-pixie",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-06-uniform-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+      },
+      "direction": "S",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          132,
+          170,
+          117
+        ],
+        [
+          103,
+          112,
+          107
+        ]
+      ],
+      "age": 14
+    },
+    {
+      "citizen_id": 7,
+      "hair": "case-07",
+      "label": "H5 T5 B4",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m05-swept-back",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-05-hoodie-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-04-jogger"
+      },
+      "direction": "E",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          150,
+          84,
+          64
+        ],
+        [
+          97,
+          92,
+          49
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 8,
+      "hair": "case-08",
+      "label": "H7 T2 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f02-bob",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-02-bomber-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-02-cargo"
+      },
+      "direction": "NE",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          141,
+          62,
+          116
+        ],
+        [
+          136,
+          101,
+          93
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 9,
+      "hair": "case-09",
+      "label": "H4 T4 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m04-curly",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-04-cardigan-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-03-wide"
+      },
+      "direction": "NE",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          145,
+          171,
+          162
+        ],
+        [
+          97,
+          87,
+          51
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 10,
+      "hair": "case-10",
+      "label": "H10 T1 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f05-low-bun",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+      },
+      "direction": "S",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          129,
+          87,
+          61
+        ],
+        [
+          131,
+          129,
+          132
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 11,
+      "hair": "case-11",
+      "label": "H3 T3 B4",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m03-centre-part",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-04-jogger"
+      },
+      "direction": "SE",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          185,
+          80,
+          67
+        ],
+        [
+          133,
+          125,
+          72
+        ]
+      ],
+      "age": 25
+    },
+    {
+      "citizen_id": 12,
+      "hair": "case-12",
+      "label": "H9 T6 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f04-double-bun",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-06-uniform-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-02-cargo"
+      },
+      "direction": "S",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          188,
+          94,
+          102
+        ],
+        [
+          100,
+          109,
+          73
+        ]
+      ],
+      "age": 14
+    }
+  ]
+}

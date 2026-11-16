@@ -1,0 +1,37 @@
+{
+  "batch": "adult-bottoms",
+  "parts": [
+    {
+      "id": "adult-bottom-01-straight",
+      "layer": "bottom",
+      "style": "straight",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+    },
+    {
+      "id": "adult-bottom-02-cargo",
+      "layer": "bottom",
+      "style": "cargo",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-bottoms/adult-bottom-02-cargo"
+    },
+    {
+      "id": "adult-bottom-03-wide",
+      "layer": "bottom",
+      "style": "wide",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-bottoms/adult-bottom-03-wide"
+    },
+    {
+      "id": "adult-bottom-04-jogger",
+      "layer": "bottom",
+      "style": "jogger",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-bottoms/adult-bottom-04-jogger"
+    }
+  ]
+}

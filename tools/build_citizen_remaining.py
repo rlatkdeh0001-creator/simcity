@@ -177,6 +177,8 @@ def main():
   if args.only and ident!=args.only:continue
   if child and not base and not parent.exists():parent=PRIMARY/'child/child-base-01'
   folder=FULL/args.batch/ident
+  if base and not args.only and (folder/'layer-depths.npz').exists():
+   catalog.append(dict(id=ident,layer=part,style=style,gender=gender,base=True,source=folder.relative_to(ROOT).as_posix()));continue
   if folder.exists() and args.resume:
    if (folder/'layer-depths.npz').exists():raise RuntimeError('Completed part protected: '+str(folder))
    meta=json.loads((folder/'spec.json').read_text(encoding='utf-8'))
