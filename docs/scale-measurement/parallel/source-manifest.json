@@ -1,0 +1,18 @@
+{
+  "sha256": {
+    "PopulationCore.cs": "13a883ff80e46e985cb64ee4820ee96c3ae24bdb3ab8cb24ac2cecfa2557f19b",
+    "PopulationState.cs": "16eb1b2a03d2e4e82f65cb955da6a28fa151850580c389b422940b3f03863f22",
+    "PopulationState.Happiness.cs": "642acb519ebc6dcce6e94fd6eec9afb0ff8e7a3f18a8ece283064778e06b37aa",
+    "HappinessCore.cs": "459929588d39e02e86a1cef3fdf80c02a1b02151bb6f4c7539bbf653558f1c8b",
+    "HappinessCore.World.cs": "b452f29a37229e96b93284d53f5dc9e07a0c3a03f74c7e201bc16d3389936f86",
+    "HappinessCore.Spatial.cs": "32f91463696c964c18bdd1d74a8c0c33c53a76cdf82caf1a25dada6adb8ee49f",
+    "HappinessCore.Cache.cs": "095ba49c1e198289a22affc9809a2f84f694747446f9892b5a4cd66b0fcdd07b",
+    "HappinessCore.Parallel.cs": "33ba8cb4a9e979a732d427204b72a3d5ed0cb20ac6f2a856de54d97759e04acb"
+  },
+  "instrumentation": "Stopwatch section brackets added only to isolated copied HappinessCore.Tick; production algorithms unchanged",
+  "sandbox": "D:\\tools\\validation\\ScaleMeasurement",
+  "production_files_modified": false,
+  "verified_source_commit": "db45002ec81fdf307b8a2c62af7ace9c0faa476d",
+  "measurement_base_commit": "5d213765239ff14ffe92def5c3d7d533f4ea18f0",
+  "review_mode": "self-review"
+}

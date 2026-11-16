@@ -1,0 +1,107 @@
+{
+  "population": 50000,
+  "scenario": "steady",
+  "status": "passed",
+  "reason": null,
+  "peak_tree_rss_bytes": 282066944,
+  "wall_seconds": 3.404185299998062,
+  "measurement": {
+    "buildings": 18750,
+    "city_average": {
+      "max_ms": 1.79789999872446,
+      "median_ms": 1.29679999873042,
+      "samples_ms": [
+        1.29679999873042,
+        1.47429999709129,
+        1.79789999872446,
+        1.30570000037551,
+        1.25349999964237,
+        1.03770000115037,
+        1.05099999904633
+      ]
+    },
+    "employment_replay": {
+      "max_ms": 4.839,
+      "median_ms": 2.932,
+      "samples_ms": [
+        4.839,
+        2.171,
+        2.932,
+        4.15,
+        2.155,
+        2.793,
+        4.19
+      ]
+    },
+    "generation_ms": 2320.196,
+    "growth_bucket_including_target": {
+      "max_ms": 24.1730000004172,
+      "median_ms": 10.7725999988616,
+      "samples_ms": [
+        12.416899997741,
+        10.7725999988616,
+        8.86349999904633,
+        24.1730000004172,
+        10.2120999991894,
+        9.78849999979138,
+        11.1985999979079
+      ]
+    },
+    "happiness_tick_including_bucket": {
+      "max_ms": 26.983,
+      "median_ms": 13.72,
+      "samples_ms": [
+        15.675,
+        13.73,
+        12.153,
+        26.983,
+        12.917,
+        12.55,
+        13.72
+      ]
+    },
+    "homes": 12500,
+    "initial_happiness_sections": {
+      "assignment_ms": 81.3737999983132,
+      "average_ms": 1.48319999873638,
+      "bucket_ms": 24.8439000025392,
+      "daily_ms": 0.000599998980760574,
+      "groups_ms": 0.00879999995231628
+    },
+    "population": 50000,
+    "population_grouping": {
+      "max_ms": 0.000900000333786011,
+      "median_ms": 0.000600002706050873,
+      "samples_ms": [
+        0.000700000673532486,
+        0.000599998980760574,
+        0.000799998641014099,
+        0.000599998980760574,
+        0.000900000333786011,
+        0.00039999932050705,
+        0.000600002706050873
+      ]
+    },
+    "population_tick_including_matching": {
+      "max_ms": 14.698,
+      "median_ms": 12.683,
+      "samples_ms": [
+        14.698,
+        11.527,
+        12.14,
+        12.776,
+        12.683,
+        12.051,
+        14.532
+      ]
+    },
+    "stats": {
+      "employed": 45000,
+      "households": 25000,
+      "population": 50000,
+      "unemployed": 5000
+    },
+    "warmup_happiness_buckets": 1,
+    "workplaces": 6250
+  }
+}
