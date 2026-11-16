@@ -1,0 +1,53 @@
+{
+  "batch": "adult-tops",
+  "parts": [
+    {
+      "id": "adult-top-01-sweater-v2",
+      "layer": "top",
+      "style": "sweater",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-01-sweater-v2"
+    },
+    {
+      "id": "adult-top-02-bomber-v2",
+      "layer": "top",
+      "style": "bomber",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-02-bomber-v2"
+    },
+    {
+      "id": "adult-top-03-shirt-v2",
+      "layer": "top",
+      "style": "shirt",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-03-shirt-v2"
+    },
+    {
+      "id": "adult-top-04-cardigan-v2",
+      "layer": "top",
+      "style": "cardigan",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-04-cardigan-v2"
+    },
+    {
+      "id": "adult-top-05-hoodie-v2",
+      "layer": "top",
+      "style": "hoodie",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-05-hoodie-v2"
+    },
+    {
+      "id": "adult-top-06-uniform-v2",
+      "layer": "top",
+      "style": "uniform",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/adult-tops/adult-top-06-uniform-v2"
+    }
+  ]
+}

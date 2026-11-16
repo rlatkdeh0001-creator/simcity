@@ -7,6 +7,12 @@
 원본 파이프라인 전체 실행 여부도 구분한다.
 
 
+## 시민 전체 세트 연속 확장 — ② 상의6 (2026-11-16 KST)
+
+① d0416dd 1차 검수 통과 후 사용자 승인으로 ②③④ 중간 대기 없이 진행. [전체 진입점/상태](citizens-full/README_KO.md), [② 원본/검증/실제 GL 시트](citizens-full/adult-tops/README_KO.md).
+이번 실행: 상의5+교복1, 새 PNG150장, 원 rig174/sprite60/미러90 검사 통과, 머리10×상의6의60조합×25포즈 최소 alpha250. 실제 변형된 바지 정점과 공통12각 허리 단면 사이 최소 여유8.743mm, 머리/상의 최소 높이 여유43mm. Godot GL 12조합 캡처/GLB6개 로드 exit0. 초기 미승인 얇은 패널 시안은 덮어쓰지 않고 checkout 밖 draft로 분리, 최종 v2는 칼라/포켓을 몸통에 닿는 닫힌 부피로 만들었다.
+신규 자체 생성기 `tools/build_citizen_remaining.py`, 공통 검증 `tools/citizen_remaining_pipeline.py`, 진입점 `tools/run_citizen_remaining.py`, fixture `tools/capture_citizen_remaining.gd`/`verify_citizen_remaining_glb.gd`. 기존 source957d806/카메라/① 원본/원 검증기/게임 코드는 보호한다. Blender는 PYTHONPATH를 무시하므로 기존 승인 D:Pillow 경로만 해당 Python 프로세스 sys.path에 명시하며 전역 PATH/새 설치 없음. 검수 self-review, 외부 스킬·모델·텍스처·에이전트 추가 없음. 후속③/④는 해당 커밋의 검증 결과로 판정하며 여기의② 통과를 대신 쓰지 않는다.
+
 ## 시민 전체 세트 묶음① — 성인 머리10 (2026-11-16 KST)
 
 - 승인 범위: `assets/citizens-full-20261116` / `D:/project/simcity-citizens`, 시안 `957d806`을 그대로 보존. [요청/선택한 인터페이스](design/ASSET_REQUEST_CITIZENS_FULL_KO.md), [납품/실행/검증/한계](citizens-full/adult-heads/README_KO.md). 남5·여5 새 hair층10종, 직접 작성한 지오메트리. 머리108~348tri/전체696~936tri, 성인1.75m/시안14본·Idle/Walk·피부/공용 옷 유지.

@@ -1,0 +1,9 @@
+{
+  "complete_combinations": 60,
+  "poses_per_combination": 25,
+  "logical_directions": 8,
+  "minimum_joint_alpha": 250,
+  "minimum_head_top_gap_m": 0.04300004482269282,
+  "waist": "all5 model poses, evaluated points inside common12-sided waist envelope",
+  "passed": true
+}
