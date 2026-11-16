@@ -579,6 +579,62 @@
       ],
       "id": "original-truck-heavy-dump-08",
       "pixels_per_metre": 26.2459237961857
+    },
+    {
+      "id": "train-loco-01",
+      "pixels_per_metre": 23.84537325771709,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "train-passenger-01",
+      "pixels_per_metre": 23.04525180730515,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "train-flatcar-01",
+      "pixels_per_metre": 38.632321888263085,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
+    },
+    {
+      "id": "container-20ft-01",
+      "pixels_per_metre": 38.2760615615413,
+      "angles_deg": [
+        0,
+        45,
+        90,
+        135,
+        180,
+        225,
+        270,
+        315
+      ]
     }
   ]
 }

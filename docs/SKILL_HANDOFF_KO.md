@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 대중교통 차량 첫 묶음 (2026-11-16, cities-asset)
+
+`assets/transit-20261116`, 별도 `D:/project/simcity-transit`에서 요청서 최신판 적용. 기관차/객차/평판차/20ft 컨테이너의 직접 제작 지오메트리·원본·GLB·8방향 PNG와 검사 카탈로그만 추가했다. Blender4.3.2 기존 실행파일 재사용, 설치 없음. `tools/build_transit_vehicles.py`는 기존 `tools/build_vehicle_fleet.py`의 팔레트·primitive·Cycles24/430×245/30° 렌더러를 호출한다. 상류 `.agents/skills/vehicle/blender/common.py` 및 MIT LICENSE/NOTICE는 수정하지 않았다(기존 인계 고정판 zstack `74f7786e9931b9ced858a0e2df880f23e4c2430e`, 출처 `https://github.com/duolahypercho/zstack/tree/74f7786e9931b9ced858a0e2df880f23e4c2430e/skills/vehicle`). 재현은 생성기에 `--output-root <새 빈 폴더>` 지정; 저장된 소스가 있으면 덮어쓰지 않고 거부, 수정은 `--revision` 새 경로로 생성한다.
+
+적용: 사용자 제공 asset-production SKILL/CONTRACTS/RECIPES/VERIFICATION을 원격 브랜치 `skills/asset-production-20261116`에서 읽었으며 설치하지 않았다. 프로필 `godot-windows-validation` 적용. 창/문의 공면은 첫 실제 GLB 캡처에서 발견해 객차 `v2`의 외피/씰/유리 깊이를 분리하고 새 GLB/스프라이트 경로로 등록했다. 첫 미승인 산출물은 작업 트리 밖 scratch로 격리해 덮어쓰지 않았다. 현재 최종 Godot GL 캡처 `transit-validation/vehicles-v2-1600.png`: 4종 로드, 연결기 접촉·32m 편성·적재 기준 5/5, 버스/택시/1.75m 기준 비교. 수치는 `transit-validation/RESULTS.txt`. 지도 배치·운행·가격/용량·main·push 없음. 표준 Godot 편집기 import는 C# 기반 main의 PopulationCore/HappinessCore 로더 오류를 출력했으므로 전체 게임 검증으로 주장하지 않는다; 독립 검사 fixture 실행은 오류 없이 통과했다.
+
 ## A: 7차로 카드·폭 등급·갓길·가로 스크롤 (2026-11-13)
 
 승인 문서 `1fbcde2` 원문 기준으로 2/3=3폭, 4/5=5폭, 6/7=7폭, 8=8폭 적용. 짝수 2·4·6 갓길은 실선 표시만 추가(주차·속도 시뮬 미변경), 복원 도로 폭·구획은 재계산하되 ID/점/기존 건물은 삭제·이동하지 않는다. 2·4·6·7 실제 대각선 썸네일 재렌더, 기존 3·5·8 PNG와 원본 렌더러 보존.
