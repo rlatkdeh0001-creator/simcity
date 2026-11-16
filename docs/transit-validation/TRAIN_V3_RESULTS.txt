@@ -1,0 +1,14 @@
+Matched high-speed train v3 - final results
+train-loco-01 v3: body 9.0 x 3.0 x 3.8m; overall 10.0 x 3.0 x 3.8m; 4452 evaluated triangles.
+train-passenger-01 v3: body 10.0 x 3.0 x 3.8m; overall 11.0 x 3.0 x 3.8m; 4264 evaluated triangles.
+Lead car: straight falling roof silhouette over a 4.5m nose (50% of body), tip width 1.2m, tip shell top 1.02m. Long low windscreen conforms to the sloping nose, no rounded forehead or separate truck cab/bonnet. Single folded pantograph recessed below the 3.8m roof envelope. Front bogie shifted behind narrow nose so its axle boxes do not project through the skirt.
+Coach: continuous dark ribbon glazing between end doors, matching cream/teal palette and band datum 1.86m, integral lower skirts, rounded roof and longitudinal end corners.
+Both v3 body interfaces share nominal 3.8m roof, rounded end ring top 3.72m / width 2.8m, gangway centre z=2.37m and stripe datum 1.86m. Couplers unchanged: anchors at carbody ends z=1.0m and heads project 0.5m at each end. Rail datum z=0, gauge1.435m.
+New assets/vehicle-fleet/<id>/v3/vehicle.blend, build.py, spec.json, preview.png; new <id>-v3.glb and 8 directional PNGs each, 16 total. v1/v2 files retained; catalog/render manifest select v3.
+Blender4.3.2 CPU Cycles24, actual transparent430x245 PNGs, 30-degree orthographic capture, existing helper palette and MIT dependencies retained.
+Godot4.6.3 GL Compatibility: TRAIN_V3_GRAPHICAL_PASS 16 checks; v3 lead + 2 coaches, equal height,32m,side/3-4.
+Eight checks per view: v3 lead catalog path, v3 coach path, first coupler contact, second contact,32m total,lead width/height,forward orientation,both coach heights3.8m.
+One raw framebuffer: docs/transit-validation/train-v3-consist-1600.png,1600x1000, true side and front three-quarter views of the same 32m consist.
+Reproduce: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_train_v3.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_transit_train_v3.gd
+Scope: static inspection registration only; no passenger/route/rail simulation or full-game C# validation. User re-review pending. No push/main changes. Prior bus-station v2 batch is b8de232.

@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 선두차·객차 v3 통일 (2026-11-16, cities-asset)
+
+사용자 v2 인상 피드백·기관차/객차 맞춤 지시에 따라 `tools/build_transit_train_v3.py`에서 두 원본을 신규 제작했다. 선두차4452tri(차체9m/전체10×3×3.8m), 객차4264tri(차체10m/전체11×3×3.8m). 선두차의 앞4.5m가 직선으로 낮아지는 쐐기, 끝폭1.2m/높이1.02m, 길게 누운 앞유리, 대차를 스커트 안으로 재배치, 낮은 팬터그래프는 지붕 recess에 수용. 객차는 한 줄 띠창·둥근 끝/지붕·스커트, 두 차종의 지붕/연결단면/띠선·색을 통일했다. v1/v2 소스·GLB·PNG는 그대로 두고 v3 폴더/새 GLB/스프라이트16장만 등록. 기존 common/vehicle 제작 helper(MIT·아래 기존 고정 출처/NOTICE)와 프로필 godot-windows-validation 재사용, 설치 없음.
+
+실제 Godot `train-v3-consist-1600.png` 한 장에 동일32m 편성의 측면/3·4 시점, 두 차종 로드·연결·폭/높이·정면16/16 통과. 수치·재현 명령 `TRAIN_V3_RESULTS.txt`. 사용자 재검수 대기; 시뮬레이션·main·push 없음. 앞선 버스 스테이션v2 48×20m/5대 캡처는 b8de232에 별도 보존했다.
+
 ## 버스 스테이션 v2 확대 (2026-11-16, cities-asset)
 
 기획 1차 반려 후 사용자 최신 확대값48×20m·30°5베이로 `tools/build_bus_station_v2.py`에서 재제작. 앞3.5m 일방향 주행로·입출구 화살표, 뒤4.2m 대합 승강장 전체 캐노피, 작은 대합실 포함. 3831tri. 원본v1 보존, v2 폴더/GLB/PNG로 카탈로그 교체. 앞선32×16m 미승인 결과는 작업 트리 밖 scratch에 보존하고 제출하지 않는다. 기존 road-edge/vehicle/common(MIT 고정판·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
