@@ -1,0 +1,355 @@
+{
+  "supersampling": 4,
+  "images": [
+    {
+      "stem": "hair_S_idle",
+      "part": "hair",
+      "frame": "idle",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_1",
+      "part": "hair",
+      "frame": "1",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_2",
+      "part": "hair",
+      "frame": "2",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_3",
+      "part": "hair",
+      "frame": "3",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_S_4",
+      "part": "hair",
+      "frame": "4",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_SE_idle",
+      "part": "hair",
+      "frame": "idle",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_1",
+      "part": "hair",
+      "frame": "1",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_2",
+      "part": "hair",
+      "frame": "2",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_3",
+      "part": "hair",
+      "frame": "3",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_SE_4",
+      "part": "hair",
+      "frame": "4",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_E_idle",
+      "part": "hair",
+      "frame": "idle",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_1",
+      "part": "hair",
+      "frame": "1",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_2",
+      "part": "hair",
+      "frame": "2",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_3",
+      "part": "hair",
+      "frame": "3",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_E_4",
+      "part": "hair",
+      "frame": "4",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_idle",
+      "part": "hair",
+      "frame": "idle",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_1",
+      "part": "hair",
+      "frame": "1",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_2",
+      "part": "hair",
+      "frame": "2",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_3",
+      "part": "hair",
+      "frame": "3",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_NE_4",
+      "part": "hair",
+      "frame": "4",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "hair_N_idle",
+      "part": "hair",
+      "frame": "idle",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_1",
+      "part": "hair",
+      "frame": "1",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_2",
+      "part": "hair",
+      "frame": "2",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_3",
+      "part": "hair",
+      "frame": "3",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "hair_N_4",
+      "part": "hair",
+      "frame": "4",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    }
+  ]
+}

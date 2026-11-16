@@ -1,0 +1,420 @@
+{
+  "id": "child-hair-m03-curly-v2",
+  "name": "curly",
+  "height_m": 1.1,
+  "height_reference": "idle hair apex; soles z=0",
+  "triangles_by_layer": {
+    "body": 172,
+    "hair": 348,
+    "top": 256,
+    "bottom": 204
+  },
+  "triangles_total": 980,
+  "layers": [
+    "body",
+    "hair",
+    "top",
+    "bottom"
+  ],
+  "armature": "CitizenRig",
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "head",
+    "upper_arm.L",
+    "forearm.L",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "upper_arm.R",
+    "forearm.R",
+    "thigh.R",
+    "shin.R",
+    "foot.R"
+  ],
+  "bone_count": 14,
+  "rest_bones": {
+    "root": {
+      "head": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.06719999760389328
+      ],
+      "parent": null
+    },
+    "pelvis": {
+      "head": [
+        0.0,
+        0.0,
+        0.5152000188827515
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.5823999643325806
+      ],
+      "parent": "root"
+    },
+    "spine": {
+      "head": [
+        0.0,
+        0.0,
+        0.5823999643325806
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.7616000175476074
+      ],
+      "parent": "pelvis"
+    },
+    "head": {
+      "head": [
+        0.0,
+        0.0,
+        0.7616000175476074
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.9296000003814697
+      ],
+      "parent": "spine"
+    },
+    "upper_arm.L": {
+      "head": [
+        0.11479999870061874,
+        0.0,
+        0.7476000189781189
+      ],
+      "tail": [
+        0.1371999979019165,
+        0.0,
+        0.6159999966621399
+      ],
+      "parent": "spine"
+    },
+    "forearm.L": {
+      "head": [
+        0.1371999979019165,
+        0.0,
+        0.6159999966621399
+      ],
+      "tail": [
+        0.1478399932384491,
+        0.0,
+        0.5180000066757202
+      ],
+      "parent": "upper_arm.L"
+    },
+    "upper_arm.R": {
+      "head": [
+        -0.11479999870061874,
+        0.0,
+        0.7476000189781189
+      ],
+      "tail": [
+        -0.1371999979019165,
+        0.0,
+        0.6159999966621399
+      ],
+      "parent": "spine"
+    },
+    "forearm.R": {
+      "head": [
+        -0.1371999979019165,
+        0.0,
+        0.6159999966621399
+      ],
+      "tail": [
+        -0.1478399932384491,
+        0.0,
+        0.5180000066757202
+      ],
+      "parent": "upper_arm.R"
+    },
+    "thigh.L": {
+      "head": [
+        0.053199999034404755,
+        0.0,
+        0.5264000296592712
+      ],
+      "tail": [
+        0.053199999034404755,
+        0.0,
+        0.2911999821662903
+      ],
+      "parent": "pelvis"
+    },
+    "shin.L": {
+      "head": [
+        0.053199999034404755,
+        0.0,
+        0.2911999821662903
+      ],
+      "tail": [
+        0.053199999034404755,
+        0.019600000232458115,
+        0.0560000017285347
+      ],
+      "parent": "thigh.L"
+    },
+    "foot.L": {
+      "head": [
+        0.053199999034404755,
+        0.019600000232458115,
+        0.0560000017285347
+      ],
+      "tail": [
+        0.053199999034404755,
+        -0.06159999966621399,
+        0.025200001895427704
+      ],
+      "parent": "shin.L"
+    },
+    "thigh.R": {
+      "head": [
+        -0.053199999034404755,
+        0.0,
+        0.5264000296592712
+      ],
+      "tail": [
+        -0.053199999034404755,
+        0.0,
+        0.2911999821662903
+      ],
+      "parent": "pelvis"
+    },
+    "shin.R": {
+      "head": [
+        -0.053199999034404755,
+        0.0,
+        0.2911999821662903
+      ],
+      "tail": [
+        -0.053199999034404755,
+        0.019600000232458115,
+        0.0560000017285347
+      ],
+      "parent": "thigh.R"
+    },
+    "foot.R": {
+      "head": [
+        -0.053199999034404755,
+        0.019600000232458115,
+        0.0560000017285347
+      ],
+      "tail": [
+        -0.053199999034404755,
+        -0.06159999966621399,
+        0.025200001895427704
+      ],
+      "parent": "shin.R"
+    }
+  },
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "origin": "center of combined soles in idle; (0,0,0)",
+  "actions": {
+    "idle": "Idle",
+    "walk": "Walk"
+  },
+  "walk_sample_frames": [
+    1,
+    5,
+    9,
+    13
+  ],
+  "walk_closure_frame": 17,
+  "cycle_seconds": 0.8,
+  "canvas_px": [
+    64,
+    96
+  ],
+  "pixels_per_meter": 40.0,
+  "foot_anchor_px": [
+    32,
+    84
+  ],
+  "directions": {
+    "S": 0,
+    "SE": 45,
+    "E": 90,
+    "NE": 135,
+    "N": 180
+  },
+  "frames": [
+    "idle",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "shoe_vertex_indices": {
+    "L": [
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "R": [
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ]
+  },
+  "source": "citizen.blend",
+  "game_registered": false,
+  "not_validated": [
+    "live population/selection integration",
+    "crowd performance"
+  ],
+  "sprite_directory": "sprites",
+  "sprite_count": 25,
+  "supersampling": 4,
+  "alpha_mode": "straight",
+  "sprites_are_unoccluded": true,
+  "depth_sidecar": "layer-depths.npz",
+  "depth_units": "millimetres of camera Z pass; smaller is nearer; 65535 means transparent",
+  "compositing": "tint each grayscale RGB, sort four layers per pixel by depth, alpha-over back to front",
+  "mirror_missing_directions": {
+    "SW": "SE",
+    "W": "E",
+    "NW": "NE"
+  },
+  "mirror_contract": "flip both RGBA and depth horizontally around continuous canvas x=32",
+  "tint_example_rgb": {
+    "body": [
+      225,
+      182,
+      145
+    ],
+    "hair": [
+      77,
+      54,
+      40
+    ],
+    "top": [
+      65,
+      147,
+      166
+    ],
+    "bottom": [
+      63,
+      73,
+      97
+    ]
+  },
+  "archetype": "child",
+  "part_interface_version": 1,
+  "revision": 2,
+  "variant_layer": "hair",
+  "style": "curly",
+  "gender": "male",
+  "body_scale": 0.56,
+  "head_scale": 0.903225806451613,
+  "skull_height_m": 0.28000009059906006,
+  "skull_heads_tall": 3.9285701574115586,
+  "skull_width_m": 0.21316128969192505,
+  "skull_depth_m": 0.1896774172782898,
+  "shape_note": "Uniform skull enlargement; shorter0.56 skeleton/translation scale; narrower shoulder centres,1.12 radial limb thickening, short neck collar. V1 preserved.",
+  "rendered_layers": [
+    "hair"
+  ],
+  "layer_sources": {
+    "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+    "hair": "assets/citizens/full-set/child-v2/child-hair-m03-curly-v2",
+    "top": "assets/citizens/full-set/child-v2/child-base-01-v2",
+    "bottom": "assets/citizens/full-set/child-v2/child-base-01-v2"
+  },
+  "part_model": "hair.glb",
+  "waist_overlap_m": 0.039200000000000006,
+  "waist_profile": [
+    [
+      0.5236000000000001,
+      0.10416,
+      0.07504000000000001
+    ],
+    [
+      0.5824,
+      0.09744,
+      0.06664
+    ]
+  ],
+  "attachment_points": [
+    [
+      "waist",
+      "pelvis",
+      [
+        0,
+        0,
+        0.5432
+      ]
+    ],
+    [
+      "neck",
+      "head",
+      [
+        0,
+        0,
+        0.7984
+      ]
+    ],
+    [
+      "wrist_L",
+      "forearm.L",
+      [
+        0.14784000000000003,
+        0,
+        0.52752
+      ]
+    ],
+    [
+      "wrist_R",
+      "forearm.R",
+      [
+        -0.14784000000000003,
+        0,
+        0.52752
+      ]
+    ]
+  ],
+  "age_min": 0,
+  "age_max": 11,
+  "layer_z_bounds": {
+    "body": [
+      0.4467400014400482,
+      1.0819355249404907
+    ],
+    "hair": [
+      0.8832257986068726,
+      1.100000023841858
+    ],
+    "top": [
+      0.5235999822616577,
+      0.7900000214576721
+    ],
+    "bottom": [
+      0.0,
+      0.5627999901771545
+    ]
+  }
+}

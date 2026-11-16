@@ -1,0 +1,514 @@
+{
+  "batch": "child-v2",
+  "count": 14,
+  "child_count": 12,
+  "adult_count": 2,
+  "height_m": 1.1,
+  "game_scale": 0.12374368670764582,
+  "samples": [
+    {
+      "citizen_id": 1,
+      "hair": "case-01",
+      "label": "CHILD H5 T4 B2",
+      "direction": "NW",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          90,
+          155,
+          112
+        ],
+        [
+          70,
+          117,
+          47
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f02-ponytail-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-04-hoodie-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-02-cargo-v2"
+      }
+    },
+    {
+      "citizen_id": 2,
+      "hair": "case-02",
+      "label": "CHILD H1 T3 B3",
+      "direction": "E",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          167,
+          140,
+          147
+        ],
+        [
+          51,
+          60,
+          111
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m01-crew-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-03-jogger-v2"
+      }
+    },
+    {
+      "citizen_id": 3,
+      "hair": "case-03",
+      "label": "CHILD H4 T1 B1",
+      "direction": "N",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          87,
+          91,
+          151
+        ],
+        [
+          56,
+          119,
+          104
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f01-bob-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-01-straight-v2"
+      }
+    },
+    {
+      "citizen_id": 4,
+      "hair": "case-04",
+      "label": "CHILD H3 T2 B2",
+      "direction": "S",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          153,
+          111,
+          118
+        ],
+        [
+          98,
+          57,
+          113
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m03-curly-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-02-bomber-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-02-cargo-v2"
+      }
+    },
+    {
+      "citizen_id": 5,
+      "hair": "case-05",
+      "label": "CHILD H6 T4 B3",
+      "direction": "SW",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          101,
+          170,
+          167
+        ],
+        [
+          69,
+          68,
+          71
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f03-double-bun-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-04-hoodie-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-03-jogger-v2"
+      }
+    },
+    {
+      "citizen_id": 6,
+      "hair": "case-06",
+      "label": "CHILD H2 T3 B1",
+      "direction": "NE",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          162,
+          69,
+          95
+        ],
+        [
+          97,
+          121,
+          96
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m02-fringe-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-01-straight-v2"
+      }
+    },
+    {
+      "citizen_id": 7,
+      "hair": "case-07",
+      "label": "CHILD H5 T1 B2",
+      "direction": "W",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          154,
+          77,
+          127
+        ],
+        [
+          58,
+          121,
+          64
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f02-ponytail-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-02-cargo-v2"
+      }
+    },
+    {
+      "citizen_id": 8,
+      "hair": "case-08",
+      "label": "CHILD H1 T2 B3",
+      "direction": "SE",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          139,
+          109,
+          153
+        ],
+        [
+          52,
+          109,
+          104
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m01-crew-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-02-bomber-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-03-jogger-v2"
+      }
+    },
+    {
+      "citizen_id": 9,
+      "hair": "case-09",
+      "label": "CHILD H4 T4 B1",
+      "direction": "S",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          141,
+          89,
+          107
+        ],
+        [
+          96,
+          91,
+          96
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f01-bob-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-04-hoodie-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-01-straight-v2"
+      }
+    },
+    {
+      "citizen_id": 10,
+      "hair": "case-10",
+      "label": "CHILD H3 T3 B2",
+      "direction": "SE",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          68,
+          81,
+          88
+        ],
+        [
+          93,
+          126,
+          90
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m03-curly-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-02-cargo-v2"
+      }
+    },
+    {
+      "citizen_id": 11,
+      "hair": "case-11",
+      "label": "CHILD H6 T1 B3",
+      "direction": "E",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          169,
+          104,
+          163
+        ],
+        [
+          92,
+          80,
+          103
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-f03-double-bun-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-03-jogger-v2"
+      }
+    },
+    {
+      "citizen_id": 12,
+      "hair": "case-12",
+      "label": "CHILD H2 T2 B1",
+      "direction": "NE",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          82,
+          168,
+          172
+        ],
+        [
+          52,
+          106,
+          87
+        ]
+      ],
+      "height_m": 1.1,
+      "parts": {
+        "body": "assets/citizens/full-set/child-v2/child-base-01-v2",
+        "hair": "assets/citizens/full-set/child-v2/child-hair-m02-fringe-v2",
+        "top": "assets/citizens/full-set/child-v2/child-top-02-bomber-v2",
+        "bottom": "assets/citizens/full-set/child-v2/child-bottom-01-straight-v2"
+      }
+    },
+    {
+      "citizen_id": 13,
+      "hair": "case-13",
+      "label": "ADULT 1 /1.75m",
+      "direction": "S",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          89,
+          156,
+          165
+        ],
+        [
+          122,
+          86,
+          94
+        ]
+      ],
+      "height_m": 1.75,
+      "parts": {
+        "body": "assets/citizens/adult-pilot-01",
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-m01-crew",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-01-sweater-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+      }
+    },
+    {
+      "citizen_id": 14,
+      "hair": "case-14",
+      "label": "ADULT 2 /1.75m",
+      "direction": "S",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          65,
+          45,
+          33
+        ],
+        [
+          169,
+          77,
+          153
+        ],
+        [
+          66,
+          55,
+          113
+        ]
+      ],
+      "height_m": 1.75,
+      "parts": {
+        "body": "assets/citizens/adult-pilot-01",
+        "hair": "assets/citizens/full-set/adult-heads/adult-hair-f02-bob",
+        "top": "assets/citizens/full-set/adult-tops/adult-top-03-shirt-v2",
+        "bottom": "assets/citizens/full-set/adult-bottoms/adult-bottom-01-straight"
+      }
+    }
+  ]
+}

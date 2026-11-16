@@ -1,0 +1,13 @@
+{
+  "height_m_range": [
+    1.1000000210478902,
+    1.1000000210478902
+  ],
+  "skull_height_m": 0.28000009059906006,
+  "skull_width_m": 0.21316128969192505,
+  "skull_depth_m": 0.1896774172782898,
+  "heads_tall": 3.9285702325825707,
+  "body_scale": 0.56,
+  "limb_radial_factor": 1.12,
+  "shoulder_centre_scale": 0.56
+}
