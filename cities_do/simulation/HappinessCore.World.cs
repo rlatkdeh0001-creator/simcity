@@ -196,6 +196,18 @@ public partial class HappinessCore
         var s=_states[id];return new D {["initialized"]=s.Initialized,["actual"]=s.Actual,["target"]=s.Target,["factors"]=s.Factors,
             ["housing"]=s.Housing,["held_seconds"]=s.Since.HasValue?Math.Max(0,_elapsed-s.Since.Value):0};
     }
+    private Variant _cityHappiness;
+    public Variant CityHappiness()=>_cityHappiness;
+    private void UpdateCityHappiness()
+    {
+        double weighted=0;int residents=0;bool complete=true;
+        foreach(var b in _buildings.Values)
+        {
+            if(b.Zone!="residential")continue;int count=People(b.Id).Count;if(count<=0)continue;
+            residents+=count;var state=_states[b.Id];complete&=state.Initialized;weighted+=state.Actual*count;
+        }
+        _cityHappiness=residents>0&&complete?Variant.From(weighted/residents):default;
+    }
     public D Tick(double seconds,long[] supplies)
     {
         var upgrades=new A();var updates=new D();if(!double.IsFinite(seconds)||seconds<=0)return new D {["upgrades"]=upgrades,["updates"]=updates};
@@ -226,7 +238,7 @@ public partial class HappinessCore
             if(s.Since.HasValue&&_elapsed-s.Since.Value>=86400-1e-8&&!s.Pending){s.Pending=true;upgrades.Add(b.Id);}
             updates[b.Id]=Inspect(b.Id);
         }
-        _bucket=(_bucket+1)%75;return new D {["upgrades"]=upgrades,["updates"]=updates};
+        _bucket=(_bucket+1)%75;UpdateCityHappiness();return new D {["upgrades"]=upgrades,["updates"]=updates,["city_happiness"]=_cityHappiness};
     }
     public void Acknowledge(long id,bool success,int level)
     {

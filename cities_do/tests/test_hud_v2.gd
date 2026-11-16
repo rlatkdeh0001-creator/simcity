@@ -30,7 +30,7 @@ func run():
 
 func check_status(game):
  verify(game.city.city_name=="CITIESDO" and game.city_name_button.text=="CITIESDO","default city identity matches A2")
- verify(game.happiness_label.text=="—" and game.balance_label.text=="—","unimplemented happiness and cash flow stay unknown")
+ verify(game.happiness_label.text=="—" and game.balance_label.text=="—","empty-city happiness and unavailable cash flow stay unknown")
  verify(game.money.text=="50,000 \uFFFC" and game.population_label.text=="0","real initial funds and population, no made-up mockup values")
  verify(game.demand_bars.size()==3 and game.demand_bars[0].value>0 and game.demand_bars[1].value==0 and game.demand_bars[2].value==0,"RCI reflects existing empty-city residential-only demand")
  game.city_name_button.pressed.emit()

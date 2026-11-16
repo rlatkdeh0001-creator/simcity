@@ -522,12 +522,13 @@ func refresh_status():
  if money==null:return
  var stats: Dictionary=city.population.stats()
  var demand: Dictionary=city.population.demand(city.buildings)
- var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance}
+ var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance,"happiness":city.happiness.city_average}
  if snapshot==status_cache:return
  hud_refresh_count+=1
  if snapshot.name!=status_cache.get("name"):city_name_button.text=snapshot.name
  if snapshot.funds!=status_cache.get("funds"):money.text=city.Economy.format_amount(city.funds)
  if snapshot.date!=status_cache.get("date"):date_label.text=snapshot.date
+ if snapshot.happiness!=status_cache.get("happiness") or status_cache.is_empty():happiness_label.text="—" if snapshot.happiness==null else str(int(snapshot.happiness))
  if snapshot.stats!=status_cache.get("stats") or snapshot.demand!=status_cache.get("demand"):
   population_label.text=city.Economy.format_number(stats.population)
   population_label.tooltip_text="취업 %d · 미취업 %d · 주 %d 상 %d 공 %d" % [stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial]

@@ -211,7 +211,7 @@ func _draw():
   draw_colored_polygon(PackedVector2Array([base[1],base[2],top[2],top[1]]),Color("69838a"))
   draw_colored_polygon(PackedVector2Array([base[2],base[3],top[3],top[2]]),Color("526970"))
   draw_colored_polygon(top,Color("b4c6c4"))
-  draw_string(ThemeDB.fallback_font,view.screen(plant.position/4)-Vector2(20,30)*view.map_zoom,"발전소",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+
  if not tab_open: return
  var grid=view.city.power
  grid.rebuild()

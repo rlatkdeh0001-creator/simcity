@@ -7,6 +7,7 @@ var last_count:=-1
 var signature:=-1
 var records:Dictionary={}
 var bound
+var city_average:Variant=null
 func _init(city):
  owner=weakref(city)
  core.Configure(JSON.parse_string(FileAccess.get_file_as_string("res://core/happiness_config.json")))
@@ -57,6 +58,7 @@ func advance(game_seconds:float)->void:
  for b:Dictionary in city.buildings:
   supplies[offset]=b.id;supplies[offset+1]=int(b.get("has_power",false));supplies[offset+2]=int(b.get("has_water",false));offset+=3
  var result:Dictionary=core.Tick(game_seconds,supplies)
+ city_average=null if result.city_happiness==null else roundi(float(result.city_happiness))
  for id in result.updates:
   if not records.has(id):continue
   var b:Dictionary=records[id];var values:Dictionary=result.updates[id]
