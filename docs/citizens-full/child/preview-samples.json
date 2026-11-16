@@ -1,0 +1,428 @@
+{
+  "batch": "child",
+  "count": 12,
+  "height_m": 1.1,
+  "game_scale": 0.12374368670764582,
+  "samples": [
+    {
+      "citizen_id": 1,
+      "hair": "case-01",
+      "label": "H3 T4 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m03-curly",
+        "top": "assets/citizens/full-set/child/child-top-04-hoodie",
+        "bottom": "assets/citizens/full-set/child/child-bottom-03-jogger"
+      },
+      "direction": "S",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          69,
+          131,
+          61
+        ],
+        [
+          121,
+          119,
+          127
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 2,
+      "hair": "case-02",
+      "label": "H4 T1 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f01-bob",
+        "top": "assets/citizens/full-set/child/child-top-01-sweater",
+        "bottom": "assets/citizens/full-set/child/child-bottom-01-straight"
+      },
+      "direction": "N",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          122,
+          180,
+          171
+        ],
+        [
+          90,
+          129,
+          70
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 3,
+      "hair": "case-03",
+      "label": "H2 T3 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m02-fringe",
+        "top": "assets/citizens/full-set/child/child-top-03-shirt",
+        "bottom": "assets/citizens/full-set/child/child-bottom-02-cargo"
+      },
+      "direction": "W",
+      "frame": "4",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          148,
+          184,
+          70
+        ],
+        [
+          117,
+          62,
+          123
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 4,
+      "hair": "case-04",
+      "label": "H5 T2 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f02-ponytail",
+        "top": "assets/citizens/full-set/child/child-top-02-bomber",
+        "bottom": "assets/citizens/full-set/child/child-bottom-03-jogger"
+      },
+      "direction": "NE",
+      "frame": "1",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          61,
+          160,
+          97
+        ],
+        [
+          104,
+          100,
+          61
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 5,
+      "hair": "case-05",
+      "label": "H6 T4 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f03-double-bun",
+        "top": "assets/citizens/full-set/child/child-top-04-hoodie",
+        "bottom": "assets/citizens/full-set/child/child-bottom-01-straight"
+      },
+      "direction": "SW",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          170,
+          76,
+          122
+        ],
+        [
+          72,
+          64,
+          139
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 6,
+      "hair": "case-06",
+      "label": "H1 T1 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m01-crew",
+        "top": "assets/citizens/full-set/child/child-top-01-sweater",
+        "bottom": "assets/citizens/full-set/child/child-bottom-02-cargo"
+      },
+      "direction": "SE",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          77,
+          121,
+          153
+        ],
+        [
+          114,
+          110,
+          74
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 7,
+      "hair": "case-07",
+      "label": "H3 T3 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m03-curly",
+        "top": "assets/citizens/full-set/child/child-top-03-shirt",
+        "bottom": "assets/citizens/full-set/child/child-bottom-03-jogger"
+      },
+      "direction": "NW",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          225,
+          182,
+          145
+        ],
+        [
+          90,
+          61,
+          40
+        ],
+        [
+          126,
+          109,
+          171
+        ],
+        [
+          46,
+          95,
+          139
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 8,
+      "hair": "case-08",
+      "label": "H4 T2 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f01-bob",
+        "top": "assets/citizens/full-set/child/child-top-02-bomber",
+        "bottom": "assets/citizens/full-set/child/child-bottom-01-straight"
+      },
+      "direction": "E",
+      "frame": "2",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          70,
+          159,
+          147
+        ],
+        [
+          139,
+          93,
+          51
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 9,
+      "hair": "case-09",
+      "label": "H2 T4 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m02-fringe",
+        "top": "assets/citizens/full-set/child/child-top-04-hoodie",
+        "bottom": "assets/citizens/full-set/child/child-bottom-02-cargo"
+      },
+      "direction": "N",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          40,
+          46,
+          48
+        ],
+        [
+          103,
+          138,
+          65
+        ],
+        [
+          112,
+          97,
+          80
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 10,
+      "hair": "case-10",
+      "label": "H5 T1 B3",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f02-ponytail",
+        "top": "assets/citizens/full-set/child/child-top-01-sweater",
+        "bottom": "assets/citizens/full-set/child/child-bottom-03-jogger"
+      },
+      "direction": "N",
+      "frame": "idle",
+      "tints_rgb": [
+        [
+          134,
+          91,
+          68
+        ],
+        [
+          45,
+          35,
+          30
+        ],
+        [
+          125,
+          107,
+          148
+        ],
+        [
+          53,
+          74,
+          75
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 11,
+      "hair": "case-11",
+      "label": "H6 T3 B1",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-f03-double-bun",
+        "top": "assets/citizens/full-set/child/child-top-03-shirt",
+        "bottom": "assets/citizens/full-set/child/child-bottom-01-straight"
+      },
+      "direction": "N",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          155,
+          105,
+          114
+        ],
+        [
+          65,
+          51,
+          46
+        ]
+      ],
+      "age": 8
+    },
+    {
+      "citizen_id": 12,
+      "hair": "case-12",
+      "label": "H1 T2 B2",
+      "parts": {
+        "hair": "assets/citizens/full-set/child/child-hair-m01-crew",
+        "top": "assets/citizens/full-set/child/child-top-02-bomber",
+        "bottom": "assets/citizens/full-set/child/child-bottom-02-cargo"
+      },
+      "direction": "SE",
+      "frame": "3",
+      "tints_rgb": [
+        [
+          190,
+          143,
+          109
+        ],
+        [
+          149,
+          111,
+          64
+        ],
+        [
+          113,
+          157,
+          170
+        ],
+        [
+          51,
+          105,
+          57
+        ]
+      ],
+      "age": 8
+    }
+  ]
+}

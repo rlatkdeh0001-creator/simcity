@@ -1,0 +1,356 @@
+{
+  "supersampling": 4,
+  "images": [
+    {
+      "stem": "top_S_idle",
+      "part": "top",
+      "frame": "idle",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_1",
+      "part": "top",
+      "frame": "1",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_2",
+      "part": "top",
+      "frame": "2",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_3",
+      "part": "top",
+      "frame": "3",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_S_4",
+      "part": "top",
+      "frame": "4",
+      "direction": "S",
+      "azimuth_deg": 0,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000000953674316,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_SE_idle",
+      "part": "top",
+      "frame": "idle",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_1",
+      "part": "top",
+      "frame": "1",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_2",
+      "part": "top",
+      "frame": "2",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_3",
+      "part": "top",
+      "frame": "3",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_SE_4",
+      "part": "top",
+      "frame": "4",
+      "direction": "SE",
+      "azimuth_deg": 45,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        31.99995231628418,
+        83.99993133544922
+      ],
+      "pixels_per_metre": 39.999996185302734,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_E_idle",
+      "part": "top",
+      "frame": "idle",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_1",
+      "part": "top",
+      "frame": "1",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_2",
+      "part": "top",
+      "frame": "2",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_3",
+      "part": "top",
+      "frame": "3",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_E_4",
+      "part": "top",
+      "frame": "4",
+      "direction": "E",
+      "azimuth_deg": 90,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.00002670288086,
+        84.0000250339508
+      ],
+      "pixels_per_metre": 40.000003814697266,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_idle",
+      "part": "top",
+      "frame": "idle",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_1",
+      "part": "top",
+      "frame": "1",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_2",
+      "part": "top",
+      "frame": "2",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_3",
+      "part": "top",
+      "frame": "3",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_NE_4",
+      "part": "top",
+      "frame": "4",
+      "direction": "NE",
+      "azimuth_deg": 135,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.0,
+        84.00001287460327
+      ],
+      "pixels_per_metre": 39.999999046325684,
+      "ortho_scale": 2.3999998569488525
+    },
+    {
+      "stem": "top_N_idle",
+      "part": "top",
+      "frame": "idle",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_1",
+      "part": "top",
+      "frame": "1",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_2",
+      "part": "top",
+      "frame": "2",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_3",
+      "part": "top",
+      "frame": "3",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    },
+    {
+      "stem": "top_N_4",
+      "part": "top",
+      "frame": "4",
+      "direction": "N",
+      "azimuth_deg": 180,
+      "elevation_deg": 30,
+      "foot_anchor_px": [
+        32.000038146972656,
+        84.00002145767212
+      ],
+      "pixels_per_metre": 39.99999713897705,
+      "ortho_scale": 2.4000000953674316
+    }
+  ],
+  "reused_from": "assets/citizens/full-set/child/child-base-01"
+}

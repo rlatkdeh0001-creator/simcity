@@ -108,12 +108,18 @@ def build_child_base():
 def dump_source(folder,ident,part,style,parent,child=False,gender=None,base=False):
  if folder.exists():raise RuntimeError('Protected output exists: '+str(folder))
  bpy.ops.wm.open_mainfile(filepath=str(parent/'citizen.blend'));meta=json.loads((parent/'spec.json').read_text(encoding='utf-8'))
- clear();shoes=None
+ clear();shoes=None;reuse=False
  if base:build_child_base();shoes={k:list(v) for k,v in P.SHOE.items()}
  elif part=='top':
-  top_geometry(style,child);replace(part,[map_child(v) for v in P.V[part]] if child else P.V[part],P.F[part],P.WEIGHTS[part])
+  top_geometry(style,child);vertices=[map_child(v) for v in P.V[part]] if child else P.V[part]
+  if child and style=='sweater':
+   old=bpy.data.objects[part];assert np.array_equal(np.array([v.co[:] for v in old.data.vertices],np.float32),np.array(vertices,np.float32));assert [tuple(f.vertices) for f in old.data.polygons]==P.F[part];reuse=True
+  replace(part,vertices,P.F[part],P.WEIGHTS[part])
  elif part=='bottom':
-  bottom_geometry(style);shoes={k:list(v) for k,v in P.SHOE.items()};replace(part,[map_child(v) for v in P.V[part]] if child else P.V[part],P.F[part],P.WEIGHTS[part])
+  bottom_geometry(style);shoes={k:list(v) for k,v in P.SHOE.items()};vertices=[map_child(v) for v in P.V[part]] if child else P.V[part]
+  if child and style=='straight':
+   old=bpy.data.objects[part];assert np.array_equal(np.array([v.co[:] for v in old.data.vertices],np.float32),np.array(vertices,np.float32));assert [tuple(f.vertices) for f in old.data.polygons]==P.F[part];reuse=True
+  replace(part,vertices,P.F[part],P.WEIGHTS[part])
  else:
   h=make_hair(style);replace('hair',[map_child(v,True) for v in h.v],h.f,[{'head':1} for _ in h.v])
  rig=bpy.data.objects['CitizenRig'];rig.animation_data.action=bpy.data.actions['Idle'];bpy.context.scene.frame_set(1);bpy.context.view_layer.update();C.studio(scale=1);C.set_view('S')
@@ -132,6 +138,7 @@ def dump_source(folder,ident,part,style,parent,child=False,gender=None,base=Fals
   waist_profile=[[.935*scale,.186*scale,.134*scale],[1.04*scale,.174*scale,.119*scale]],
   not_validated=['live city population / part selection integration','large-crowd performance'])
  if shoes:meta['shoe_vertex_indices']=shoes
+ if reuse:meta['reused_render_from']=parent.relative_to(ROOT).as_posix()
  bounds={p:[min(v.co.z for v in bpy.data.objects[p].data.vertices),max(v.co.z for v in bpy.data.objects[p].data.vertices)] for p in C.PARTS};meta['layer_z_bounds']=bounds
  if part=='top' or base:assert bounds['top'][1]<=1.4*scale+1e-6
  if child:assert abs(bounds['hair'][1]-1.1)<1e-5
@@ -183,7 +190,11 @@ def main():
    if (folder/'layer-depths.npz').exists():raise RuntimeError('Completed part protected: '+str(folder))
    meta=json.loads((folder/'spec.json').read_text(encoding='utf-8'))
   else:meta=dump_source(folder,ident,part,style,parent,child,gender,base)
-  render(folder,args.cache/ident,meta['rendered_layers']);catalog.append(dict(id=ident,layer=part,style=style,gender=gender,base=base,source=folder.relative_to(ROOT).as_posix()))
+  if meta.get('reused_render_from'):
+   inherited=json.loads((ROOT/meta['reused_render_from']/'render-manifest.json').read_text(encoding='utf-8'));rows=[r for r in inherited['images'] if r['part']==part];assert len(rows)==25
+   (folder/'render-manifest.json').write_text(json.dumps({'supersampling':4,'images':rows,'reused_from':meta['reused_render_from']},indent=2)+'\n',encoding='utf-8');print('PART_RENDER_REUSED',ident,25,flush=True)
+  else:render(folder,args.cache/ident,meta['rendered_layers'])
+  catalog.append(dict(id=ident,layer=part,style=style,gender=gender,base=base,source=folder.relative_to(ROOT).as_posix()))
   path=FULL/args.batch/'catalog.json';path.write_text(json.dumps({'batch':args.batch,'parts':catalog},indent=2)+'\n',encoding='utf-8')
  print('BATCH_RENDERED',args.batch,len(catalog),flush=True)
 if __name__=='__main__':main()

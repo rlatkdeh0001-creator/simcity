@@ -1,0 +1,117 @@
+{
+  "batch": "child",
+  "parts": [
+    {
+      "id": "child-base-01",
+      "layer": "body",
+      "style": "child-body-base",
+      "gender": null,
+      "base": true,
+      "source": "assets/citizens/full-set/child/child-base-01"
+    },
+    {
+      "id": "child-hair-m01-crew",
+      "layer": "hair",
+      "style": "crew",
+      "gender": "male",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-m01-crew"
+    },
+    {
+      "id": "child-hair-m02-fringe",
+      "layer": "hair",
+      "style": "fringe",
+      "gender": "male",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-m02-fringe"
+    },
+    {
+      "id": "child-hair-m03-curly",
+      "layer": "hair",
+      "style": "curly",
+      "gender": "male",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-m03-curly"
+    },
+    {
+      "id": "child-hair-f01-bob",
+      "layer": "hair",
+      "style": "bob",
+      "gender": "female",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-f01-bob"
+    },
+    {
+      "id": "child-hair-f02-ponytail",
+      "layer": "hair",
+      "style": "ponytail",
+      "gender": "female",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-f02-ponytail"
+    },
+    {
+      "id": "child-hair-f03-double-bun",
+      "layer": "hair",
+      "style": "double-bun",
+      "gender": "female",
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-hair-f03-double-bun"
+    },
+    {
+      "id": "child-top-01-sweater",
+      "layer": "top",
+      "style": "sweater",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-top-01-sweater"
+    },
+    {
+      "id": "child-top-02-bomber",
+      "layer": "top",
+      "style": "bomber",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-top-02-bomber"
+    },
+    {
+      "id": "child-top-03-shirt",
+      "layer": "top",
+      "style": "shirt",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-top-03-shirt"
+    },
+    {
+      "id": "child-top-04-hoodie",
+      "layer": "top",
+      "style": "hoodie",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-top-04-hoodie"
+    },
+    {
+      "id": "child-bottom-01-straight",
+      "layer": "bottom",
+      "style": "straight",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-bottom-01-straight"
+    },
+    {
+      "id": "child-bottom-02-cargo",
+      "layer": "bottom",
+      "style": "cargo",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-bottom-02-cargo"
+    },
+    {
+      "id": "child-bottom-03-jogger",
+      "layer": "bottom",
+      "style": "jogger",
+      "gender": null,
+      "base": false,
+      "source": "assets/citizens/full-set/child/child-bottom-03-jogger"
+    }
+  ]
+}

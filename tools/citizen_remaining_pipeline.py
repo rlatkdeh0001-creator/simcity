@@ -46,6 +46,11 @@ def finalize(folder,work):
  m=meta(folder);layers=m['rendered_layers'];spr=folder/'sprites';side=folder/'layer-depths.npz'
  if side.exists():assert len(list(spr.glob('*.png')))==25*len(layers);return
  spr.mkdir(exist_ok=True);names=[];depths=[]
+ if m.get('reused_render_from'):
+  source=ROOT/m['reused_render_from'];z=np.load(source/'layer-depths.npz')
+  for n,d in zip(z['names'],z['depth_mm']):
+   if str(n).split('_')[0] in layers:shutil.copy2(source/'sprites'/(str(n)+'.png'),spr/(str(n)+'.png'));names.append(str(n));depths.append(d)
+  assert len(names)==25;np.savez_compressed(side,depth_mm=np.stack(depths),names=np.array(names));print('NATIVE_REUSED',folder.name,len(names),flush=True);return
  for d in F.DIRS:
   for frame in F.FRAMES:
    for p in layers:
