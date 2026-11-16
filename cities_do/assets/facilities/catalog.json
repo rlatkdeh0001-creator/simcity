@@ -195,6 +195,251 @@
         "pixels_per_metre": 25.95443550750022,
         "camera_elevation_deg": 30
       }
+    },
+    {
+      "id": "bus-stop-01",
+      "name": "버스 정류장",
+      "kind": "transit_road_edge",
+      "width": 2.0,
+      "depth": 0.75,
+      "metres": [
+        8.0,
+        3.0
+      ],
+      "storeys": 0,
+      "capacity": 1,
+      "capacity_unit": "static_vehicle_bays",
+      "capacity_status": "geometry only, not passenger capacity or transport simulation",
+      "placement": "road_edge",
+      "road_side": {
+        "blender": "-Y",
+        "gltf": "+Z",
+        "edge_coordinate_m": 0
+      },
+      "origin": "centre of road-contact edge, ground z=0",
+      "road_axis_blender": "+X",
+      "sidewalk_occupied_width_m": 3.0,
+      "inward_depth_m": 3.0,
+      "required_sidewalk_width_m": 3.0,
+      "frame_blender": {
+        "front": "-Y",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "front": "+Z",
+        "up": "+Y"
+      },
+      "height_m": 3.28,
+      "length_m": 3.0,
+      "width_m": 8.0,
+      "triangles": 1660,
+      "model": "res://assets/facilities/bus-stop-01.glb",
+      "preview": "res://assets/facilities/bus-stop-01.png",
+      "source": "assets/facilities/bus-stop-01/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 87.04560929896837,
+        "camera_elevation_deg": 30
+      },
+      "status": "inspection_only",
+      "road_attachment_implemented": false,
+      "not_validated": [
+        "live road placement",
+        "vehicle turning swept path",
+        "passenger simulation"
+      ],
+      "separate_decal_mesh": "StopZoneYellowDecal",
+      "review_bus_blender": [
+        0,
+        -1.65,
+        0
+      ]
+    },
+    {
+      "id": "bus-station-01",
+      "name": "버스 스테이션",
+      "kind": "transit_road_edge",
+      "width": 8.0,
+      "depth": 3.0,
+      "metres": [
+        32.0,
+        12.0
+      ],
+      "storeys": 0,
+      "capacity": 3,
+      "capacity_unit": "static_vehicle_bays",
+      "capacity_status": "geometry only, not passenger capacity or transport simulation",
+      "placement": "road_edge",
+      "road_side": {
+        "blender": "-Y",
+        "gltf": "+Z",
+        "edge_coordinate_m": 0
+      },
+      "origin": "centre of road-contact edge, ground z=0",
+      "road_axis_blender": "+X",
+      "sidewalk_occupied_width_m": 0,
+      "inward_depth_m": 12.0,
+      "required_sidewalk_width_m": 0,
+      "frame_blender": {
+        "front": "-Y",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "front": "+Z",
+        "up": "+Y"
+      },
+      "height_m": 4.09,
+      "length_m": 12.0,
+      "width_m": 32.0,
+      "triangles": 2918,
+      "model": "res://assets/facilities/bus-station-01.glb",
+      "preview": "res://assets/facilities/bus-station-01.png",
+      "source": "assets/facilities/bus-station-01/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 22.16970381223611,
+        "camera_elevation_deg": 30
+      },
+      "status": "inspection_only",
+      "road_attachment_implemented": false,
+      "not_validated": [
+        "live road placement",
+        "vehicle turning swept path",
+        "passenger simulation"
+      ],
+      "entry_exit_centres_blender": [
+        [
+          -11.5,
+          0,
+          0
+        ],
+        [
+          11.5,
+          0,
+          0
+        ]
+      ],
+      "review_bus_centres_blender": [
+        [
+          0,
+          2,
+          0.1
+        ],
+        [
+          0,
+          5.5,
+          0.1
+        ],
+        [
+          0,
+          9,
+          0.1
+        ]
+      ],
+      "bay_dimensions_m": [
+        12,
+        2.8
+      ]
+    },
+    {
+      "id": "taxi-stand-01",
+      "name": "택시 스테이션",
+      "kind": "transit_road_edge",
+      "width": 6.0,
+      "depth": 2.0,
+      "metres": [
+        24.0,
+        8.0
+      ],
+      "storeys": 0,
+      "capacity": 4,
+      "capacity_unit": "static_vehicle_bays",
+      "capacity_status": "geometry only, not passenger capacity or transport simulation",
+      "placement": "road_edge",
+      "road_side": {
+        "blender": "-Y",
+        "gltf": "+Z",
+        "edge_coordinate_m": 0
+      },
+      "origin": "centre of road-contact edge, ground z=0",
+      "road_axis_blender": "+X",
+      "sidewalk_occupied_width_m": 0,
+      "inward_depth_m": 8.0,
+      "required_sidewalk_width_m": 0,
+      "frame_blender": {
+        "front": "-Y",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "front": "+Z",
+        "up": "+Y"
+      },
+      "height_m": 3.38,
+      "length_m": 8.0,
+      "width_m": 24.0,
+      "triangles": 2368,
+      "model": "res://assets/facilities/taxi-stand-01.glb",
+      "preview": "res://assets/facilities/taxi-stand-01.png",
+      "source": "assets/facilities/taxi-stand-01/facility.blend",
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "pixels_per_metre": 30.483344755885643,
+        "camera_elevation_deg": 30
+      },
+      "status": "inspection_only",
+      "road_attachment_implemented": false,
+      "not_validated": [
+        "live road placement",
+        "vehicle turning swept path",
+        "passenger simulation"
+      ],
+      "entry_exit_centres_blender": [
+        [
+          -9.5,
+          0,
+          0
+        ],
+        [
+          9.5,
+          0,
+          0
+        ]
+      ],
+      "review_taxi_centres_blender": [
+        [
+          -4.5,
+          3.35,
+          0.1
+        ],
+        [
+          -1.5,
+          3.35,
+          0.1
+        ],
+        [
+          1.5,
+          3.35,
+          0.1
+        ],
+        [
+          4.5,
+          3.35,
+          0.1
+        ]
+      ],
+      "bay_dimensions_m": [
+        2.6,
+        5.2
+      ]
     }
   ]
 }

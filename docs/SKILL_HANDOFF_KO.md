@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 도로 부착형 대중교통 3종 (2026-11-16, cities-asset)
+
+`tools/build_transit_roadside.py`: 정류장 8×3m/1660tri, 버스 스테이션 32×12m/2918tri, 택시 스테이션 24×8m/2368tri. 직접 제작 원본·스크립트·spec·투명 PNG·GLB 및 시설 검사 카탈로그 추가. `placement=road_edge`, 도로 접촉 변 중앙 원점, Blender -Y / glTF +Z 정면, 보도 점유 폭 기록. 노란 정차 표시는 독립 메시, 벤치 등받이 지지대 포함. 기존 build_vehicle_fleet/common(MIT, 아래 기존 고정 출처·LICENSE/NOTICE)와 프로필 godot-windows-validation 재사용, 신규 설치 없음. 원본 보존을 위해 기존 폴더에는 생성기가 덮어쓰기를 거부하며 재현은 `--output-root <새 빈 폴더>` 사용.
+
+실제 Godot GLB 캡처 `transit-validation/roadside-1600.png` 1장에 버스 4대·택시 4대와 사람 크기 기준을 배치했다. 로드·원점/경계·분리 데칼·버스3칸/택시4칸 크기 맞음 20/20. `ROADSIDE_RESULTS.txt`에 수치·명령 기록. 검사는 정적 형상/주차 칸만 확인하며 실제 회차 궤적·보도 부착 로직·승하차/운행·시뮬레이션·가격은 미구현/미검증. 원본 차량/기존 시설은 수정하지 않았고 push·main 없음.
+
 ## 대중교통 차량 첫 묶음 (2026-11-16, cities-asset)
 
 `assets/transit-20261116`, 별도 `D:/project/simcity-transit`에서 요청서 최신판 적용. 기관차/객차/평판차/20ft 컨테이너의 직접 제작 지오메트리·원본·GLB·8방향 PNG와 검사 카탈로그만 추가했다. Blender4.3.2 기존 실행파일 재사용, 설치 없음. `tools/build_transit_vehicles.py`는 기존 `tools/build_vehicle_fleet.py`의 팔레트·primitive·Cycles24/430×245/30° 렌더러를 호출한다. 상류 `.agents/skills/vehicle/blender/common.py` 및 MIT LICENSE/NOTICE는 수정하지 않았다(기존 인계 고정판 zstack `74f7786e9931b9ced858a0e2df880f23e4c2430e`, 출처 `https://github.com/duolahypercho/zstack/tree/74f7786e9931b9ced858a0e2df880f23e4c2430e/skills/vehicle`). 재현은 생성기에 `--output-root <새 빈 폴더>` 지정; 저장된 소스가 있으면 덮어쓰지 않고 거부, 수정은 `--revision` 새 경로로 생성한다.
