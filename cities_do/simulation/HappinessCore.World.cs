@@ -44,6 +44,8 @@ public partial class HappinessCore
     private static Vector2[] Polygon(D d)=>d.TryGetValue("polygon",out var v)?v.AsVector2Array():System.Array.Empty<Vector2>();
     public void SetWorld(A buildings,A facilities,double[] roads)
     {
+        var previous=new Dictionary<long,Building>(_buildings);var previousFacilities=new Dictionary<long,Facility>(_facilities);
+        var previousAnchors=new Dictionary<long,Anchor?>(_facilityAnchors);bool roadsChanged=!_indexedRoads.SequenceEqual(roads);_indexedRoads=(double[])roads.Clone();
         var seen=new HashSet<long>();_buildings.Clear();_facilities.Clear();_routes.Clear();
         foreach(var bucket in _buckets)bucket.Clear();
         foreach(var value in buildings)
@@ -65,7 +67,7 @@ public partial class HappinessCore
             if(f.Kind=="fire")f.Capacity*=_fireMultiplier;
             _facilities[f.Id]=f;
         }
-        BuildRoads(roads);IndexSpatial();RefreshGroups();
+        BuildRoads(roads);IndexSpatial();InvalidateSpatial(previous,previousFacilities,previousAnchors,roadsChanged);RefreshGroups();
     }
     private void RefreshGroups()=>_groups=_population?.HappinessGroups()??_buildings.ToDictionary(p=>p.Key,p=>p.Value.Fixture);
     private HappinessPeople People(long id)=>_groups.TryGetValue(id,out var p)?p:new HappinessPeople();
@@ -179,11 +181,11 @@ public partial class HappinessCore
     {
         var people=People(b.Id);double education=0;int students=people.Students.Sum();
         if(students>0)for(int i=0;i<4;i++)education+=Service(b,"education",i)*people.Students[i]/students;
-        return Score(new D {["employment"]=people.Eligible>0?(double)people.Employed/people.Eligible:0,["power"]=b.Power,["water"]=b.Water,
-            ["health"]=Service(b,"health"),["police"]=Service(b,"police"),["fire"]=Service(b,"fire"),["education"]=education,
-            ["park"]=HasNearbyPark(b)?5:0,["housing"]=_states[b.Id].Housing,["pollution_noise"]=Pollution(b)});
+        return CachedScore(b,new ScoreInputs(people.Eligible>0?(double)people.Employed/people.Eligible:0,
+            Service(b,"health"),Service(b,"police"),Service(b,"fire"),education,
+            CachedPark(b)?5:0,_states[b.Id].Housing,CachedPollution(b),b.Power,b.Water));
     }
-    public D Preview(long id)=>Calculate(_buildings[id]);
+    public D Preview(long id)=>Calculate(_buildings[id]).Duplicate(true);
     private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary();}
     private bool Qualifies(Building b,State s)=>s.Initialized&&b.Power&&b.Water&&People(b.Id).Count>0&&b.Level<5&&s.Actual>=40+b.Level*10;
     private void Observe(Building b,State s)

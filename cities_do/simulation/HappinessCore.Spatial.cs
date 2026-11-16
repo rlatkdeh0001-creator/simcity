@@ -26,18 +26,18 @@ public partial class HappinessCore
                 if(_cells.TryGetValue((x,y),out var list))foreach(var item in list)yield return item;
         }
     }
-    private readonly Grid<Building> _industrialGrid=new(),_residentialGrid=new(),_serviceBuildingGrid=new();
+    private readonly Grid<Building> _industrialGrid=new(),_residentialGrid=new(),_serviceBuildingGrid=new(),_buildingGrid=new();
     private readonly Grid<Facility> _pollutionGrid=new(),_parkPolygonGrid=new(),_parkRoadGrid=new();
     private readonly Dictionary<long,Anchor?> _buildingAnchors=new(),_facilityAnchors=new();
     private Vector2 AnchorPoint(Anchor anchor)
     {var edge=_edges[anchor.Edge];return edge.Start+(edge.End-edge.Start)*(float)(anchor.FromStart/edge.Length);}
     private void IndexSpatial()
     {
-        _industrialGrid.Clear();_residentialGrid.Clear();_serviceBuildingGrid.Clear();
+        _industrialGrid.Clear();_residentialGrid.Clear();_serviceBuildingGrid.Clear();_buildingGrid.Clear();
         _pollutionGrid.Clear();_parkPolygonGrid.Clear();_parkRoadGrid.Clear();_buildingAnchors.Clear();_facilityAnchors.Clear();
         foreach(var b in _buildings.Values)
         {
-            if(b.Zone=="industrial")_industrialGrid.Add(b,b.Position);
+            _buildingGrid.Add(b,b.Position);if(b.Zone=="industrial")_industrialGrid.Add(b,b.Position);
             if(b.Zone=="residential")_residentialGrid.Add(b,b.Position);
             var anchor=Attach(b.Road,b.Position);_buildingAnchors[b.Id]=anchor;
             if(anchor.HasValue)_serviceBuildingGrid.Add(b,AnchorPoint(anchor.Value));

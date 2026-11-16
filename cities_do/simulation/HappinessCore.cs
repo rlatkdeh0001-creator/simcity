@@ -11,7 +11,7 @@ public partial class HappinessCore:RefCounted
     {
         _goods=config["goods"].AsDouble();_commute=config["commute"].AsDouble();
         _garbage=config["garbage"].AsDouble();_tax=config["tax"].AsDouble();
-        _fireMultiplier=(int)config["fire_buildings_per_incident"].AsInt64();
+        _fireMultiplier=(int)config["fire_buildings_per_incident"].AsInt64();_targetCache.Clear();
     }
     private static double Number(D d,string key)=>d.TryGetValue(key,out var v)?v.AsDouble():0;
     public D Score(D input)
