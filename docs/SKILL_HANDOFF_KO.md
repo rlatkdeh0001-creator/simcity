@@ -1250,3 +1250,17 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - UI는 C# 발행 평균을 단건 조회하고 백그라운드 경로는 공급 변경분만 보낸다. 전체 GD 공급 포장과 building 행복도 materialize는 동기 비교/명시적 fixture 경로에만 남긴다. 수도/전력 논리 시간은 수락한 게임 시계 credit까지만 계량해 busy 시간에 앞서가거나 청구하지 않는다.
 - 실제 background snapshot21617(두 시드 각5400틱)·society22(시드별 건물/주민/가구/직장/RNG 3일, 배속별 강제 busy, utility 동결) 통과. 실제 공급 4일40/70/80→1/4/5 유지. 관련 행복도65/통합12/HUD13/집계16/캐시78/공간11241/HUD v2 72 정상 exit0. HUD burst catch-up fixture는 완료한 두 논리 경계로 변경했다. 외부 검토 아닌 자체 검토다.
 - 사용자의 측정 보류 중 비용 계측은 하지 않았고, 해제 후 1/5/30만·1/2/3배 각각8초의 실제 headless SceneTree에서 advance_society main callback과 frame 진입 간격을 기록했다. 30만 main callback 최대195.107ms, headless 간격 최대195.161ms로 16ms 미달성이다. 렌더/HUD/utility를 제외한 하한 검사조차 실패했으므로 전체 게임 프레임 통과를 주장하지 않는다. 현재 인구 advance/고용/개발과 인구용 GD 전체 건물 포장은 main에 남아 후속 이전이 필요하다. 측정/준비 첫 job과 초기 로딩을 구분했고 최종 근거는 docs/scale-measurement/background/. 수요식·통근은 미착수/문서 미커밋 보존, main/push 없음.
+
+### 후속 작업 순서 예약 — 사용자 확정
+- 순서: 현재 백그라운드 스레드/30만 프레임 기준 검증 → 수요식·통근 → T1 → T2 → T3 → T4. 세금 코드는 선행 단계 완료 전 착수하지 않는다. 수요식·통근에는 LABOR_BALANCE_KO.md의 학력 ±1 후보 중 집에서 도로 거리 최단 직장 배정도 포함한다.
+- T1: 주거/상업/공업 × 단계1·2/3·4/5의 세율9칸(0~20%, 기본9%), 게임 하루 경계 정산, 저단계 수요 배율/고단계 성장 기준 가산, 하단 실제 수지. TAX_BUDGET_KO.md의 임시 수치는 설정 파일로 분리한다.
+- T2: 확정 mockup-a2.html·DECISION_KO.md 그대로, 예산 탭만 활성, 내부 수요/성장 수치 비표시, 대출 게이지는 T4 전 비활성. 1920 캡처1장은 T2에만.
+- T3: 가구 현금·1인8 D/일 생필품·체납, 생필품/세금 행복도 연결, 출퇴근 요소 삭제로13요소, HAPPINESS_KO.md 끝 이사/빈 건물 규칙. 지각 일급 감소는 별도 지시 전 제외.
+- T4: LOAN_RULES_KO.md의 대출·이자·파산. 단계마다 별도 커밋/5줄 이내 SHA·통과 수·해당 캡처 보고, push/main/.import/.uid 금지.
+- 현재 미커밋 docs/design/TAX_BUDGET_KO.md, HAPPINESS_KO.md, LABOR_BALANCE_KO.md, ROAD_DRAWING_KO.md 및 docs/concepts/tax-budget-20261116/는 소유자 변경을 보존하며 해당 구현 단계에서 포함한다. 이 예약 기록 자체로 구현/승인 문서 커밋 완료를 주장하지 않는다.
+
+
+### 인구 건물 변경분 전송 단계(재개 검증)
+- godot-scale-regression/requesting-code-review 적용, self-review. `PopulationState.Geometry.cs` 및 facade/model 변경통지: 전체 포장은 활성화 1회와 누락 복구만, HUD 통계/수요는 관리 캐시. 관련 455+22+78=555 통과; 의도한 4→5 복구 경고 1건.
+- 3배속 8초 headless callback 최대 1만/5만/30만 = 59.941/97.149/320.321ms. 이전 세션보다 높아 무회귀·16ms 완료 주장 없음. 별도 30만 구간 계측은 `docs/scale-measurement/transport/summary.json`(첫 준비 tick 제외): 인구/종료 집계가 여전히 main에 있음.
+- 다음: scratch/full-city-stage2의 실제 worker-owned CityModel backend 통합. 3일·성장 동일성과 main callback 다시 검증한 뒤 수요식·통근, T1~T4. 보호 원본·타인 변경·push/main 미접촉.

@@ -12,6 +12,8 @@ var _views:=false
 var _legacy_hash:=0
 var _config_hash:=-1
 var _depth:=0
+signal geometry_transport_recovered(expected_count:int,actual_count:int)
+var _geometry_transport:=false
 var people:Array[Dictionary]:
  get:_expose();return _people
  set(value):_expose();_people.assign(value)
@@ -105,17 +107,44 @@ func _pack_buildings(buildings:Array)->PackedInt64Array:
   values[cursor]=b.id;values[cursor+1]=0 if b.zone=="residential" else (1 if b.zone=="commercial" else 2)
   values[cursor+2]=b.size;values[cursor+3]=b.level;cursor+=4
  return values
+func enable_geometry_transport(buildings:Array)->void:
+ # Opt in only when the model owns all geometry edits and forwards notifications.
+ # Mutable fixture arrays remain on the legacy full-pack path by default.
+ _enter();core.EnableGeometryTransport(_pack_buildings(buildings));_geometry_transport=true;_leave(false)
+func record_building(b:Dictionary)->void:
+ if not _geometry_transport:return
+ core.RecordBuilding(b.id,0 if b.zone=="residential" else (1 if b.zone=="commercial" else 2),b.size,b.level)
+func remove_building(id:int)->void:
+ if _geometry_transport:core.RemoveBuilding(id)
+func _check_geometry(buildings:Array)->void:
+ var expected:int=core.GetGeometryCount()
+ if expected==buildings.size():return
+ # Missed add/remove notification: a full seed is recovery, never normal cadence.
+ # Equal-count unnotified edits cannot be detected without defeating delta transport.
+ core.EnableGeometryTransport(_pack_buildings(buildings))
+ push_warning("Population geometry count mismatch: reseeded %d -> %d; check model notifications"%[expected,buildings.size()])
+ geometry_transport_recovered.emit(expected,buildings.size())
 func sync(buildings:Array)->void:
  _enter()
- if core.SyncPacked(_pack_buildings(buildings)):match_jobs()
+ if _geometry_transport:
+  _check_geometry(buildings)
+  if core.SyncManaged():match_jobs()
+ elif core.SyncPacked(_pack_buildings(buildings)):match_jobs()
  _leave()
 func match_jobs()->void:_enter();core.MatchJobs();_leave()
 func advance(game_seconds:float,buildings:Array)->void:
  if game_seconds<=0 or not is_finite(game_seconds):return
- _enter();core.AdvancePacked(game_seconds,_pack_buildings(buildings));match_jobs();_leave()
+ _enter()
+ if _geometry_transport:_check_geometry(buildings);core.AdvanceManaged(game_seconds)
+ else:core.AdvancePacked(game_seconds,_pack_buildings(buildings))
+ match_jobs();_leave()
 func demand(buildings:Array)->Dictionary:
- _enter();var result:Dictionary=core.Demand(_pack_buildings(buildings) if core.NeedsDemandBuildings() else PackedInt64Array());_leave(false);return result
+ _enter()
+ var result:Dictionary
+ if _geometry_transport:_check_geometry(buildings);result=core.DemandManaged()
+ else:result=core.Demand(_pack_buildings(buildings) if core.NeedsDemandBuildings() else PackedInt64Array())
+ _leave(false);return result
 func workplace_info(id:int)->Dictionary:
  _enter();var result:Dictionary=core.WorkplaceInfo(id);_leave(false);return result
 func stats()->Dictionary:
- _enter();var result:Dictionary=core.Stats();_leave(false);return result
+ _enter();var result:Dictionary=core.StatsManaged() if _geometry_transport else core.Stats();_leave(false);return result

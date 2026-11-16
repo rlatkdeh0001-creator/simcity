@@ -34,20 +34,20 @@ public partial class PopulationState : RefCounted
     private int[] _commercial=new int[5], _industrial=new int[5];
     private double[] _weights=new double[5], _educationMinAges=new double[5];
     public string Echo(string value)=>value;
-    public void Initialize(long seed)=>_rng.Seed=unchecked((ulong)(seed^0x71294));
+    public void Initialize(long seed){_rng.Seed=unchecked((ulong)(seed^0x71294));InvalidateManagedSnapshots();}
     public RandomNumberGenerator GetRng()=>_rng;
     public double ValidationRandom()=>_rng.Randf();
     public bool IsTickActive()=>_tickActive;
     public bool NeedsDemandBuildings()=>!_tickActive||(!_demandValid&&!_demandPrepared);
     public int GetDemandScans()=>_fullScans;
     public long GetNextPerson()=>_nextPerson;
-    public void SetNextPerson(long value)=>_nextPerson=value;
+    public void SetNextPerson(long value){_nextPerson=value;InvalidateManagedSnapshots();}
     public long GetNextHousehold()=>_nextHousehold;
-    public void SetNextHousehold(long value)=>_nextHousehold=value;
+    public void SetNextHousehold(long value){_nextHousehold=value;InvalidateManagedSnapshots();}
     public double GetElapsedDays()=>_elapsedDays;
-    public void SetElapsedDays(double value)=>_elapsedDays=value;
+    public void SetElapsedDays(double value){_elapsedDays=value;InvalidateManagedSnapshots();}
     public int GetBirthDay()=>_birthDay;
-    public void SetBirthDay(int value)=>_birthDay=value;
+    public void SetBirthDay(int value){_birthDay=value;InvalidateManagedSnapshots();}
     private static int Int(D d,string key)=>(int)d[key].AsInt64();
     private static long Id(D d,string key)=>d[key].AsInt64();
     private static double Num(D d,string key)=>d[key].AsDouble();
@@ -57,7 +57,7 @@ public partial class PopulationState : RefCounted
     public void Configure(D c)
     {
         // Configuration can change in compatibility fixtures without a building edit.
-        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();
+        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();InvalidateManagedSnapshots();
         _unitsPerLot=Int(c,"households_per_2x2"); _maxMembers=Int(c,"household_max_members");
         _immigrantAdults=Int(c,"immigrant_adults_per_household"); _initialHousing=Int(c,"initial_housing_target");
         _workingAge=Num(c,"working_age_years"); _commercialRatio=Num(c,"residents_per_commercial"); _industrialRatio=Num(c,"residents_per_industrial");
@@ -81,7 +81,7 @@ public partial class PopulationState : RefCounted
     private int[] Slots(Building b)=>(b.Zone=="commercial"?_commercial:_industrial).Select(n=>n*(b.Size*b.Size/4)*Math.Max(1,b.Level)).ToArray();
     public A BuildingSlots(D b)=>ToArray(Slots(new(0,Str(b,"zone"),Int(b,"size"),Int(b,"level"))));
     public void BeginTick() { _tickActive=true; _demandValid=false; _demandPrepared=false; }
-    public void EndTick() { _tickActive=false; _demandValid=false; _demandPrepared=false; }
+    public void EndTick() { _tickActive=false; _demandValid=false; _demandPrepared=false;RefreshManagedSnapshots(); }
     public int RandomEducation()
     {
         double total=0; foreach(double w in _weights) total+=w;
@@ -91,6 +91,7 @@ public partial class PopulationState : RefCounted
     }
     private Person Add(long household,int education,double age,string origin)
     {
+        InvalidateManagedSnapshots();
         var p=new Person {Id=_nextPerson++,Household=household,Education=education,Age=age,Origin=origin}; _people.Add(p);
         if(!_families.TryGetValue(household,out var family)) _families[household]=family=new();
         family.Add(p);UpdateHappiness(p);return p;
@@ -107,7 +108,7 @@ public partial class PopulationState : RefCounted
     public bool CompleteEducation(long id,int stage)
     {
         if(stage<1||stage>4)return false;
-        foreach(var p in _people)if(p.Id==id&&p.Education==stage-1&&p.Age>=_educationMinAges[stage]) {p.Education=stage;return true;}
+        foreach(var p in _people)if(p.Id==id&&p.Education==stage-1&&p.Age>=_educationMinAges[stage]) {p.Education=stage;InvalidateManagedSnapshots();return true;}
         return false;
     }
     private int HomeCount(long id)=>_homeCounts.GetValueOrDefault(id);
@@ -134,6 +135,7 @@ public partial class PopulationState : RefCounted
     public bool SyncPacked(long[] values)=>SyncInternal(Buildings(values));
     private bool SyncInternal(List<Building> buildings)
     {
+        InvalidateManagedSnapshots();
         bool sameTick=_tickActive&&(_demandValid||_demandPrepared);
         if(_reconciliationValid)
         {
@@ -234,6 +236,7 @@ public partial class PopulationState : RefCounted
     }
     public void MatchJobs()
     {
+        InvalidateManagedSnapshots();
         foreach(long id in _workOrder)System.Array.Clear(_works[id].Filled);
         foreach(var p in _people)
         {
@@ -247,8 +250,19 @@ public partial class PopulationState : RefCounted
     public void AdvancePacked(double seconds,long[] values)
     {
         if(!double.IsFinite(seconds)||seconds<=0)return;
+        // Legacy packed calls age before parsing (including malformed-input failure
+        // ordering); managed calls share the same remaining algorithm without parsing.
+        AdvanceAges(seconds);AdvanceInternal(seconds,Buildings(values),false);
+    }
+    private void AdvanceAges(double seconds)
+    {
+        InvalidateManagedSnapshots();
         _elapsedDays+=seconds/86400.0;foreach(var p in _people) {double old=p.Age;p.Age+=seconds/(86400.0*12);AdvanceHappinessAge(p,old);}
-        var buildings=Buildings(values);_cohortEnd=_people.Count;_deferMatching=true;SyncInternal(buildings);_deferMatching=false;
+    }
+    private void AdvanceInternal(double seconds,List<Building> buildings,bool advanceAges=true)
+    {
+        if(advanceAges)AdvanceAges(seconds);
+        _cohortEnd=_people.Count;_deferMatching=true;SyncInternal(buildings);_deferMatching=false;
         if(!_households.Any(h=>h.Home==-1))foreach(var b in buildings)
         {
             if(b.Zone!="residential"||HomeCount(b.Id)>=_homes[b.Id])continue;
@@ -259,15 +273,25 @@ public partial class PopulationState : RefCounted
     }
     private void CalculateDemand(long[] values)
     {
+        // Preserve the packed prepared fast path and its scan-counter semantics.
+        if(_demandPrepared){_fullScans++;_demandValid=true;_demandPrepared=false;return;}
+        CalculateDemand(Buildings(values));
+    }
+    private void CalculateDemand(List<Building> buildings)
+    {
         _fullScans++;if(_demandPrepared) {_demandValid=true;_demandPrepared=false;return;}
         // An independent demand query may see housing edits before SyncPacked does.
         _housingNeedsReconcile=true;ResetCounts();IndexHouseholds();_homes.Clear();_homeOrder.Clear();
-        foreach(var b in Buildings(values)) {var state=new Contribution(b.Zone,b.Zone=="residential"?Units(b):0);_buildingStates[b.Id]=state;_counts[b.Zone]++;if(b.Zone=="residential") {_homes[b.Id]=state.Units;_homeOrder.Add(b.Id);_vacancies+=Math.Max(0,state.Units-HomeCount(b.Id));}}
+        foreach(var b in buildings) {var state=new Contribution(b.Zone,b.Zone=="residential"?Units(b):0);_buildingStates[b.Id]=state;_counts[b.Zone]++;if(b.Zone=="residential") {_homes[b.Id]=state.Units;_homeOrder.Add(b.Id);_vacancies+=Math.Max(0,state.Units-HomeCount(b.Id));}}
         foreach(long id in _workOrder)foreach(int n in _works[id].Slots)_jobCount+=n;_demandValid=true;
     }
     public D Demand(long[] buildings)
     {
-        if(!_tickActive||!_demandValid)CalculateDemand(buildings);int target=Math.Max(_initialHousing,(int)Math.Ceiling(_jobCount/4.0));
+        if(!_tickActive||!_demandValid)CalculateDemand(buildings);return DemandResult();
+    }
+    private D DemandResult()
+    {
+        int target=Math.Max(_initialHousing,(int)Math.Ceiling(_jobCount/4.0));
         return new D {["residential"]=Math.Max(0,target-_households.Count-_vacancies),["commercial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_commercialRatio)-_counts["commercial"]),["industrial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_industrialRatio)-_counts["industrial"])};
     }
     public D WorkplaceInfo(long id)
@@ -300,6 +324,6 @@ public partial class PopulationState : RefCounted
         }
         foreach(var value in households) {var d=value.AsGodotDictionary();_households.Add(new Household {Id=Id(d,"id"),Home=Id(d,"home_id")});}
         foreach(var key in works.Keys) {long id=key.AsInt64();var d=works[key].AsGodotDictionary();_works[id]=new Work {Id=id,Zone=d.TryGetValue("zone",out var zone)?zone.AsString():"",HasZone=d.ContainsKey("zone"),Slots=Ints(d["slots"]),Filled=Ints(d["filled"])};_workOrder.Add(id);}
-        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();IndexHouseholds();IndexVacancies();
+        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();InvalidateManagedSnapshots();IndexHouseholds();IndexVacancies();
     }
 }

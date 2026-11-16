@@ -1,0 +1,71 @@
+{
+  "frame_start_gap": {
+    "max_ms": 297.102,
+    "median_ms": 6.9,
+    "samples": 941
+  },
+  "frozen_cycles": 6,
+  "main_callback": {
+    "max_ms": 296.997,
+    "median_ms": 0.024,
+    "samples": 942
+  },
+  "mode": "background",
+  "population": 300000,
+  "profile": {
+    "development": [
+      0.02,
+      0.026,
+      0.021,
+      0.029,
+      0.028,
+      0.023,
+      0.026
+    ],
+    "end_tick": [
+      23.6,
+      25.526,
+      24.056,
+      23.834,
+      33.03,
+      21.237,
+      31.557
+    ],
+    "happiness": [
+      12581.385,
+      0.299,
+      0.158,
+      0.388,
+      0.147,
+      0.154,
+      0.287
+    ],
+    "population": [
+      287.089,
+      222.189,
+      198.164,
+      209.273,
+      219.795,
+      171.612,
+      264.933
+    ],
+    "publication": [
+      1.252,
+      0.067,
+      0.053,
+      0.04,
+      0.052,
+      0.04,
+      0.056
+    ]
+  },
+  "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+  "speed": 3,
+  "status": {
+    "main_thread": 2,
+    "published": 7,
+    "skipped": 6,
+    "submitted": 7,
+    "worker_thread": 5
+  }
+}

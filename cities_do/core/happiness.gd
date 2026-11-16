@@ -18,6 +18,8 @@ func average_value()->Variant:
  return null if value==null else roundi(float(value))
 func enable_background():
  if background_enabled:return
+ var city=owner.get_ref()
+ if city!=null:city.population.enable_geometry_transport(city.buildings)
  core.EnableBackground();background_enabled=true;dirty=true;supply_changes.clear()
 func background_busy()->bool:
  return background_enabled and core.IsBackgroundBusy()

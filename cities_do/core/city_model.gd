@@ -273,6 +273,7 @@ func orient_building(b: Dictionary) -> void:
 	utilities.mark_dirty()
 	if happiness!=null:happiness.mark_dirty()
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
+	if population!=null and population.has_method("record_building"):population.record_building(b)
 
 func front_direction(b: Dictionary) -> Vector2:
 	return Frontage.direction(b)
@@ -433,6 +434,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 		"building":
 			for i in range(buildings.size()):
 				if buildings[i].id==id:
+					if population.has_method("remove_building"):population.remove_building(id)
 					buildings.remove_at(i)
 					removed=true
 					break
