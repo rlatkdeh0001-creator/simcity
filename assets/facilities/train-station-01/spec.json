@@ -1,0 +1,110 @@
+{
+  "id": "train-station-01",
+  "name": "기차역",
+  "kind": "transit_rail_station",
+  "width": 8,
+  "depth": 6,
+  "metres": [
+    32,
+    24
+  ],
+  "storeys": 2,
+  "capacity": null,
+  "capacity_status": "no passenger throughput proposal",
+  "height_m": 10.56,
+  "width_m": 32,
+  "length_m": 24,
+  "triangles": 14493,
+  "model": "res://assets/facilities/train-station-01.glb",
+  "preview": "res://assets/facilities/train-station-01.png",
+  "source": "assets/facilities/train-station-01/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 17.41905378451144
+  },
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "origin": "lot centre at ground datum",
+  "bounds_blender_m": {
+    "min": [
+      -16.0,
+      -12.0,
+      0.0
+    ],
+    "max": [
+      16.0,
+      12.0,
+      10.56
+    ]
+  },
+  "platform_length_m": 32,
+  "platform_depth_m": 4,
+  "platform_surface_blender_z_m": 1.1,
+  "platform_rear_edge_blender_y_m": 12,
+  "track_included": false,
+  "platform_extension_module": false,
+  "dropoff_bay_centres_blender": [
+    [
+      -6.5,
+      -7.3,
+      0.14
+    ],
+    [
+      1.0,
+      -7.3,
+      0.14
+    ],
+    [
+      8.5,
+      -7.3,
+      0.14
+    ]
+  ],
+  "dropoff_bay_dimensions_m": [
+    5.6,
+    2.3
+  ],
+  "dropoff_aisle_width_m": 3.5,
+  "review_train_centres_godot": [
+    [
+      11,
+      0,
+      -13.8
+    ],
+    [
+      0.5,
+      0,
+      -13.8
+    ],
+    [
+      -10.5,
+      0,
+      -13.8
+    ]
+  ],
+  "review_train_yaw_godot_deg": 90,
+  "review_train_ids": [
+    "train-loco-01",
+    "train-passenger-01",
+    "train-passenger-01"
+  ],
+  "status": "inspection_only",
+  "map_placement_implemented": false,
+  "not_validated": [
+    "train routing",
+    "passenger boarding",
+    "dropoff swept turning envelopes",
+    "live placement",
+    "full-game C# execution"
+  ]
+}

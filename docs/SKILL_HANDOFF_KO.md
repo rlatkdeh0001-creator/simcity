@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 기차역 32×24m (2026-11-16, cities-asset)
+
+`tools/build_transit_train_station.py`: 8×6칸/32×24×10.56m,14493tri. 2층 날개·높은 유리 아트리움/시계/역 표식·앞 승하차 광장/드롭오프3칸·뒤32m 승강장/캐노피를 직접 제작해 원본·생성기·spec·GLB·투명 PNG 및 시설 검사 카탈로그에 추가했다. 승강장면1.1m, 역 원본에 선로·차량·연장 모듈은 없다. 기존 road-edge/subway studio/vehicle/common(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치/기존 원본 수정 없음.
+
+실제 Godot `train-station-1600.png` 1장에 전면 광장(기존 택시/세단/사람 크기 기준)과 후면 승강장의 선두차v3+객차v3 2량32m 편성을 표시했다. 실제GLB·부지/정면·승강장1.1m·편성연결/32m·승강장간격0.3m16/16 통과. 선로/자갈은 검사 fixture에서만 그렸고 역 소스에 추가하지 않았다. `TRAIN_STATION_RESULTS.txt`에 수치·명령. 실제 배치·회차궤적·운행·승하차·가격/정원·main·push 없음, 1차 검수 대기.
+
 ## 지하철 입구·지하 실루엣 (2026-11-16, cities-asset)
 
 `tools/build_transit_subway.py`에서 입구8×8m/3432tri(지상3.71m, 최저-2.88m, 유한한 계단 바닥-2.52m)와 지하 실루엣64×12m/96tri(승강장-12m, 단색 재질1개·단순8박스)를 직접 제작했다. 입구는 실제 개구부·계단/에스컬레이터 형상·유리캐노피·가상M·환기구. 실루엣은 섬식 승강장·양쪽 홈·접근 통로만. 새 원본/생성기/spec/GLB/PNG와 검사 카탈로그만 추가, 기존 원본 보존. 기존 road-edge/vehicle/common(MIT 고정 출처·NOTICE 아래 기록) 및 프로필 godot-windows-validation 재사용, 설치 없음.
