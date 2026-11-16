@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 보도 전용 택시 정류장·버스 정류장 v2 (2026-11-16, cities-asset)
+
+현재 `core/road_profile.gd`의 일반2/3차로는 전체12m·아스팔트10.5m, 한쪽 보도0.75m다. 기존 버스 정류장3m는 초과하므로 v1을 보존하고 길이8m/높이3.28m/색·구성을 유지한 깊이0.72m v2(2942tri)로 재배치했다. 새 taxi-stop-01은 보도체6×0.72×3.08m/1716tri, 차양/벤치1개/TAXI 표지/별도 차도 데칼1대분. `tools/build_sidewalk_transit_stops.py`, 새 원본/GLB/PNG/spec 및 카탈로그만 변경. 기존 common/vehicle/roadside/studio(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`capture_sidewalk_transit_stops.gd`는 실제 RoadProfile/RoadGeometry/RoadParcels를 사용했다. 일반도로변 버스/택시 및 실제 구획40셀과 파란 경계를 사선/수직뷰로 표시한 `sidewalk-stops-1600.png` 1장, 보도내0.72m·격자비침범·분리데칼24검사항목 통과. 데칼은 차도 쪽 별도 메시여서 보도 점유 치수에서 제외한다. 원점은 **아스팔트-보도 경계(연석)**이며 전체 도로 바깥 경계가 아니다. 이후 배치 구현은 asphalt_width/2 기준과 보도폭 검사를 써야 한다. 메타데이터 zoning_occupancy_cells=0이며 실제 배치/교통/보행 로직은 아직 없다. 기차역57aea50 원본/캡처 유지, 수치·명령은 `SIDEWALK_STOPS_RESULTS.txt`; main/push 없음.
+
 ## 기차역 32×24m (2026-11-16, cities-asset)
 
 `tools/build_transit_train_station.py`: 8×6칸/32×24×10.56m,14493tri. 2층 날개·높은 유리 아트리움/시계/역 표식·앞 승하차 광장/드롭오프3칸·뒤32m 승강장/캐노피를 직접 제작해 원본·생성기·spec·GLB·투명 PNG 및 시설 검사 카탈로그에 추가했다. 승강장면1.1m, 역 원본에 선로·차량·연장 모듈은 없다. 기존 road-edge/subway studio/vehicle/common(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치/기존 원본 수정 없음.
