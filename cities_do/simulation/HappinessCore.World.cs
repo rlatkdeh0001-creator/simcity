@@ -65,7 +65,7 @@ public partial class HappinessCore
             if(f.Kind=="fire")f.Capacity*=_fireMultiplier;
             _facilities[f.Id]=f;
         }
-        BuildRoads(roads);RefreshGroups();
+        BuildRoads(roads);IndexSpatial();RefreshGroups();
     }
     private void RefreshGroups()=>_groups=_population?.HappinessGroups()??_buildings.ToDictionary(p=>p.Key,p=>p.Value.Fixture);
     private HappinessPeople People(long id)=>_groups.TryGetValue(id,out var p)?p:new HappinessPeople();
@@ -98,10 +98,10 @@ public partial class HappinessCore
     }
     private double Distance(Building building,Facility facility)
     {
-        var target=Attach(building.Road,building.Position);if(target==null)return double.PositiveInfinity;
+        var target=_buildingAnchors.GetValueOrDefault(building.Id);if(target==null)return double.PositiveInfinity;
         if(!_routes.TryGetValue(facility.Id,out var route))
         {
-            var start=Attach(facility.Road,facility.Position);if(start==null)return double.PositiveInfinity;
+            var start=_facilityAnchors.GetValueOrDefault(facility.Id);if(start==null)return double.PositiveInfinity;
             var costs=Enumerable.Repeat(double.PositiveInfinity,_graph.Count).ToArray();var queue=new PriorityQueue<int,double>();
             var e=_edges[start.Value.Edge];costs[e.A]=start.Value.FromStart;costs[e.B]=e.Length-start.Value.FromStart;
             queue.Enqueue(e.A,costs[e.A]);queue.Enqueue(e.B,costs[e.B]);
@@ -126,7 +126,7 @@ public partial class HappinessCore
         {
             var remaining=_facilities.Values.Where(f=>f.Kind==kind&&(kind!="education"||f.School==school)).ToDictionary(f=>f.Id,f=>f.Capacity);
             var pairs=new List<(double Distance,long Building,long Facility)>();
-            foreach(var f in _facilities.Values.Where(f=>remaining.ContainsKey(f.Id)))foreach(var b in _buildings.Values)
+            foreach(var f in _facilities.Values.Where(f=>remaining.ContainsKey(f.Id)))foreach(var b in ServiceCandidates(f))
             {
                 if(Demand(b,kind,school)<=0)continue;double distance=Distance(b,f);if(DistanceScore(distance)>0)pairs.Add((distance,b.Id,f.Id));
             }
@@ -168,11 +168,11 @@ public partial class HappinessCore
         double Source(Vector2 position,bool heavy)
         {
             double distance=b.Position.DistanceTo(position);double value=heavy?(distance<=300?15:distance<=600?8:0):(distance<=100?10:distance<=200?5:0);
-            if(value>0&&b.Zone=="residential"&&_facilities.Values.Any(p=>p.Kind=="park"&&Crosses(position,b.Position,p.Polygon)))value*=.5;
+            if(value>0&&b.Zone=="residential"&&Buffered(position,b.Position))value*=.5;
             return value;
         }
-        foreach(var source in _buildings.Values)if(source.Zone=="industrial")penalty+=Source(source.Position,false);
-        foreach(var source in _facilities.Values)if(source.Kind=="pollution")penalty+=Source(source.Position,true);
+        foreach(var source in _industrialGrid.Near(b.Position,200.001)){penalty+=Source(source.Position,false);if(penalty>=15)return -15;}
+        foreach(var source in _pollutionGrid.Near(b.Position,600.001)){penalty+=Source(source.Position,true);if(penalty>=15)return -15;}
         return -Math.Min(15,penalty);
     }
     private D Calculate(Building b)
@@ -181,7 +181,7 @@ public partial class HappinessCore
         if(students>0)for(int i=0;i<4;i++)education+=Service(b,"education",i)*people.Students[i]/students;
         return Score(new D {["employment"]=people.Eligible>0?(double)people.Employed/people.Eligible:0,["power"]=b.Power,["water"]=b.Water,
             ["health"]=Service(b,"health"),["police"]=Service(b,"police"),["fire"]=Service(b,"fire"),["education"]=education,
-            ["park"]=_facilities.Values.Any(f=>f.Kind=="park"&&Distance(b,f)<=400.00001)?5:0,["housing"]=_states[b.Id].Housing,["pollution_noise"]=Pollution(b)});
+            ["park"]=HasNearbyPark(b)?5:0,["housing"]=_states[b.Id].Housing,["pollution_noise"]=Pollution(b)});
     }
     public D Preview(long id)=>Calculate(_buildings[id]);
     private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary();}
@@ -224,7 +224,7 @@ public partial class HappinessCore
             foreach(var b in _buildings.Values)
             {
                 var s=_states[b.Id];if(!s.Initialized)continue;
-                int neighbors=b.Zone=="residential"?_buildings.Values.Count(n=>n.Id!=b.Id&&n.Zone=="residential"&&n.Level>b.Level&&n.Position.DistanceTo(b.Position)<=100.00001):0;
+                int neighbors=b.Zone=="residential"?HigherNeighbors(b):0;
                 s.Housing+=Math.Sign(Math.Min(5,neighbors)-s.Housing);Target(b,s);
                 s.Actual+=Math.Clamp(s.Target-s.Actual,-5,5);Observe(b,s);updates[b.Id]=Inspect(b.Id);
             }

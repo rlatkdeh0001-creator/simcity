@@ -1231,4 +1231,6 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - 새 관련 HUD/지도이름13·행복도65·생산연결12·HUD v2 72·utility표시53 통과. 실제1920×1080에서 주민12·행복도63과 이름 없는 시설 묶음을 확인했다. 캡처1장 `docs/happiness-hud-validation/resident-happiness-1920.png`, 최종 로그/상태 같은 폴더. FPS·프레임 시간·헤드리스 틱 비용 측정은 하지 않았다(사용자 측정 금지 준수).
 - 기존 Godot/TDD·자체 검토와 HUD 스킬의 생산자 캐시 원칙 적용. transit worktree/브랜치·ASSET_REQUEST_TRANSIT_KO.md·타인 변경·원본/경제 데이터는 건드리지 않으며 전체 회귀·main/push 없음.
 
-
+### 규모 최적화 1 — 공간 후보 색인
+- 600m 격자에 공장·주거·대형 오염원·공원 polygon bounds와 도로 anchor 투영점을 색인한다. 공원/서비스는 중심점이 아닌 실제 기존 도로 투영점으로 broad phase를 구성해, 멀리 떨어진 lot centres라도 같은 도로 위치로 투영되는 기존 fixture 결과를 보존한다. 최종 거리/선분/정원 정렬은 기존과 같다. 비음수 오염 합계는 기존 상한15에 도달하면만 조기 종료한다.
+- a3a945c 행복도 원본을 이름만 바꾼 테스트 oracle로 동결하고, 음수 셀/경계·원거리 road anchor·다중 셀 공원·도로 변경·시설/건물 제거/단계/주민/공급 변경의 Tick 전체 반환 및 Preview를 비교했다. 격리된 D:/tools/validation/SpatialCorrectness에서 빌드0경고0오류, 관련362/362 정확 일치. 생산 인구 증분 작업과 분리해 oracle population도 a3a945c를 사용했다. 최종 3일/성장 시나리오·전후 규모 측정은 후속 단계에서 수행한다.
