@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 고속열차 선두차 v2 (2026-11-16, cities-asset)
+
+사용자 "트럭 같다" 반려와 갱신 요청서를 적용해 `tools/build_transit_loco_v2.py`에서 연속 loft 곡면·노즈 띠창·하부 스커트·팬터그래프 1개로 재제작했다. v1 원본/GLB/스프라이트는 그대로 두고 `assets/vehicle-fleet/train-loco-01/v2`, `train-loco-01-v2.glb`, 새 스프라이트 폴더로 카탈로그만 교체했다. 차체9m/전체10×3×3.8m,3940tri, 8방향 PNG. 기존 common/vehicle 제작 helper(MIT, 기존 고정판/NOTICE 아래 기록)와 godot-windows-validation 재사용, 설치 없음. 별도 생성기는 `--output-root <새 빈 폴더>` 지원.
+
+실제 Godot `loco-v2-consist-1600.png` 1장에 동일 객차v2 2량 편성을 측면/3·4 시점으로 표시했고 연결·32m·치수·정면 12/12 통과. 객차 원본은 수정하지 않았다. 선두차 지붕3.66m/전체3.8m와 기존 객차 지붕4.0m 사이 높이차는 요청 치수대로 유지하고 spec rear_interface에 명시했다. 상세 `LOCO_V2_RESULTS.txt`; 사용자 재검수 대기. 본게임 운행·push·main 없음. 도로 부착형 3종은 앞선 로컬 커밋6f41a95에 이미 보존되어 재제작하지 않았다.
+
 ## 도로 부착형 대중교통 3종 (2026-11-16, cities-asset)
 
 `tools/build_transit_roadside.py`: 정류장 8×3m/1660tri, 버스 스테이션 32×12m/2918tri, 택시 스테이션 24×8m/2368tri. 직접 제작 원본·스크립트·spec·투명 PNG·GLB 및 시설 검사 카탈로그 추가. `placement=road_edge`, 도로 접촉 변 중앙 원점, Blender -Y / glTF +Z 정면, 보도 점유 폭 기록. 노란 정차 표시는 독립 메시, 벤치 등받이 지지대 포함. 기존 build_vehicle_fleet/common(MIT, 아래 기존 고정 출처·LICENSE/NOTICE)와 프로필 godot-windows-validation 재사용, 신규 설치 없음. 원본 보존을 위해 기존 폴더에는 생성기가 덮어쓰기를 거부하며 재현은 `--output-root <새 빈 폴더>` 사용.

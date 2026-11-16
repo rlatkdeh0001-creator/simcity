@@ -1130,20 +1130,20 @@
     },
     {
       "id": "train-loco-01",
-      "name": "기관차",
+      "name": "고속열차 선두차",
       "category": "rail_locomotive",
-      "style": "transit_compressed_20261116",
+      "style": "high_speed_streamlined_v2",
       "body_length_m": 9.0,
       "overall_length_m": 10.0,
       "length_m": 10.0,
       "width_m": 3.0,
-      "height_m": 4.2,
+      "height_m": 3.8,
       "measured_dimensions_lwh_m": [
         10.0,
         3.0,
-        4.2
+        3.8
       ],
-      "triangles": 4472,
+      "triangles": 3940,
       "frame_blender": {
         "forward": "-Y",
         "left": "+X",
@@ -1154,9 +1154,9 @@
         "left": "+X",
         "up": "+Y"
       },
-      "model": "res://assets/vehicles/train-loco-01.glb",
-      "source": "assets/vehicle-fleet/train-loco-01/vehicle.blend",
-      "preview": "res://assets/vehicles/sprites/train-loco-01/045.png",
+      "model": "res://assets/vehicles/train-loco-01-v2.glb",
+      "source": "assets/vehicle-fleet/train-loco-01/v2/vehicle.blend",
+      "preview": "res://assets/vehicles/sprites/train-loco-01-v2/045.png",
       "render": {
         "resolution": [
           430,
@@ -1176,7 +1176,7 @@
       },
       "status": "inspection_only",
       "simulation_enabled": false,
-      "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_vehicles.py -- --only train-loco-01",
+      "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_loco_v2.py -- --output-root <new-empty-workspace>",
       "gauge_m": 1.435,
       "rail_top_z_m": 0,
       "coupler_height_m": 1.0,
@@ -1205,7 +1205,16 @@
         ]
       ],
       "coupled_body_gap_m": 1.0,
-      "length_compression": "User-approved game-length compression only; width and height preserved."
+      "length_compression": "User-approved game-length compression only; width and height preserved.",
+      "rear_interface": {
+        "width_m": 3,
+        "gangway_centre_z_m": 2.37,
+        "band_centre_z_m": 1.86,
+        "roof_m": 3.66,
+        "coach_roof_m": 4.0,
+        "note": "same width, rounded profile, gangway and palette; lower roof preserves requested 3.8m overall height"
+      },
+      "supersedes": "train-loco-01 v1, originals retained"
     },
     {
       "id": "train-passenger-01",
