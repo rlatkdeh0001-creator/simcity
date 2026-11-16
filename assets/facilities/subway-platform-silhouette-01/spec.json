@@ -1,0 +1,59 @@
+{
+  "id": "subway-platform-silhouette-01",
+  "name": "지하철 승강장 실루엣",
+  "kind": "subway_underground_silhouette",
+  "width": 16,
+  "depth": 3,
+  "metres": [
+    64.0,
+    12.0
+  ],
+  "storeys": 0,
+  "capacity": null,
+  "capacity_status": "not a passenger throughput proposal",
+  "model": "res://assets/facilities/subway-platform-silhouette-01.glb",
+  "preview": "res://assets/facilities/subway-platform-silhouette-01.png",
+  "source": "assets/facilities/subway-platform-silhouette-01/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 12.835092037831705
+  },
+  "triangles": 96,
+  "height_m": 4.5,
+  "width_m": 64.0,
+  "length_m": 12.0,
+  "bounds_blender_m": {
+    "min": [
+      -32.0,
+      -6.0,
+      -13.0
+    ],
+    "max": [
+      32.0,
+      6.0,
+      -8.5
+    ]
+  },
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "origin": "lot centre at ground datum",
+  "status": "inspection_only",
+  "map_placement_implemented": false,
+  "visibility": "underground_only",
+  "platform_surface_blender_z_m": -12,
+  "depth_below_ground_m": 12,
+  "material_count": 1,
+  "detail_level": "eight closed mass boxes only; no track detail",
+  "track_groove_floor_blender_z_m": -12.7,
+  "entrance_corridor_top_blender_z_m": -8.5
+}
