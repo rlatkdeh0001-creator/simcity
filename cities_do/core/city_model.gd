@@ -48,6 +48,7 @@ var population_enabled := true
 var happiness_enabled := true
 var happiness
 var society_elapsed := 0.0
+var society_frozen_cycles := 0 # Debug only; never shown in HUD.
 var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
 var development_elapsed := 0.0
 var development_cursor := 0
@@ -86,6 +87,10 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	happiness=preload("res://core/happiness.gd").new(self)
 
 func advance_utilities(seconds:float)->Dictionary:
+	if happiness_enabled and population_enabled and happiness.background_enabled:
+		# Consume only accepted logical clock credit. Keep original per-frame metering
+		# chunks where possible; rejected/busy cycles cannot bill or age the networks.
+		seconds=minf(maxf(0.0,seconds),maxf(0.0,clock.game_seconds-utilities.elapsed)/Clock.SCALE)
 	return utilities.advance(seconds)
 
 func _rect(b: Dictionary) -> Rect2:
@@ -233,19 +238,33 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 
 func advance_society(seconds: float) -> void:
 	if seconds<=0 or not is_finite(seconds):return
-	clock.advance_real(seconds)
+	var background:bool=happiness_enabled and population_enabled and happiness.background_enabled
+	if not background:clock.advance_real(seconds)
 	society_elapsed+=seconds
 	var steps := 0
+	var accepted := 0
 	while society_elapsed>=config.development_interval_seconds and steps<config.development_max_steps:
 		society_elapsed-=config.development_interval_seconds
 		steps+=1
+		if background:
+			if happiness.background_busy():
+				society_frozen_cycles+=1
+				happiness.skip_background_cycle()
+				continue
+			# Commit T-1 before advancing population/development T: same logical ordering.
+			happiness.publish_boundary()
+			clock.advance_real(config.development_interval_seconds)
+		accepted+=1
 		if population_enabled:
 			population.begin_tick()
 			population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
 		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
-	if steps>0:society_changed.emit()
+	if background and society_elapsed>=config.development_interval_seconds:
+		society_frozen_cycles+=int(floor(society_elapsed/config.development_interval_seconds))
+		society_elapsed=fposmod(society_elapsed,config.development_interval_seconds)
+	if accepted>0:society_changed.emit()
 
 func advance_happiness(game_seconds:float)->void:
 	if happiness_enabled and population_enabled:happiness.advance(game_seconds)
@@ -499,7 +518,9 @@ func power_state() -> Dictionary:
 func _apply_power_state(state: Dictionary):
 	for building in buildings:
 		var supply: Dictionary = state.consumers[building.id]
+		var changed:bool=bool(building.get("has_power",false))!=bool(supply.powered)
 		building.has_power = supply.powered
+		if changed and happiness!=null:happiness.note_supply(building)
 		building.power_ratio = supply.ratio
 
 func advance_power(hours: float) -> Dictionary:
@@ -542,7 +563,9 @@ func water_consumers() -> Array:
 func _apply_water_state(state: Dictionary):
 	for building in buildings:
 		var service: Dictionary=state.consumers[building.id]
+		var changed:bool=bool(building.get("has_water",false))!=bool(service.has_water)
 		building.has_water=service.has_water
+		if changed and happiness!=null:happiness.note_supply(building)
 		building.has_sewage=service.has_sewage
 		building.water_ratio=service.water_ratio
 		building.sewage_ratio=service.sewage_ratio

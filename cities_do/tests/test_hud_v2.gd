@@ -86,7 +86,9 @@ func check_status(game):
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(50,30)]))
  var frame: Dictionary=game.city.zoning_grid.frames.values()[0]
  game.city.paint_zones(game.city.Parcels.polygon(frame,0,0,2),"residential")
- game.city.advance_society(4)
+ for i in range(2):
+  game.city.advance_society(2)
+  game.city.happiness.suspend_background();game.city.happiness.publish_boundary()
  var live: Dictionary=game.city.population.demand(game.city.buildings)
  verify(game.population_label.text=="2" and game.demand_bars[1].value==live.commercial and game.demand_bars[2].value==live.industrial and live.commercial>0,"real immigration event updates population and both job demand bars")
  for size_value in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:

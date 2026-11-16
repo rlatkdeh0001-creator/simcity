@@ -33,43 +33,54 @@ public partial class HappinessCore
     private readonly List<List<(int Node,double Cost)>> _graph=new();
     private readonly Dictionary<long,(Anchor Anchor,double[] Costs)> _routes=new();
     private readonly Dictionary<(long Building,string Kind,int School),long> _assignments=new();
-    private Dictionary<long,HappinessPeople> _groups=new();
+    private IReadOnlyDictionary<long,HappinessPeople> _groups=new Dictionary<long,HappinessPeople>();
     private PopulationState? _population;
     private double _elapsed,_nextDay=86400;
     private bool _assigned;
     private int _bucket;
-    public void BindPopulation(PopulationState population)=>_population=population;
+    public void BindPopulation(PopulationState population)
+    {RequireBackgroundOwner();if(IsBackgroundWorker)throw new InvalidOperationException("Population binding is main-thread-only");_population=population;}
     private static long Long(D d,string key)=>d.TryGetValue(key,out var v)?v.AsInt64():0;
     private static bool Flag(D d,string key)=>d.TryGetValue(key,out var v)&&v.AsBool();
     private static Vector2[] Polygon(D d)=>d.TryGetValue("polygon",out var v)?v.AsVector2Array():System.Array.Empty<Vector2>();
     public void SetWorld(A buildings,A facilities,double[] roads)
     {
+        RequireBackgroundOwner();
+        var snapshot=CaptureWorld(buildings,facilities,roads);
+        if(_backgroundEnabled&&!IsBackgroundWorker){_backgroundCommands.Add(new WorldCommand(snapshot));return;}
+        ApplyWorld(snapshot);
+    }
+    private void ApplyWorld(WorldSnapshot snapshot)
+    {
+        var roads=snapshot.Roads.ToArray();
         var previous=new Dictionary<long,Building>(_buildings);var previousFacilities=new Dictionary<long,Facility>(_facilities);
         var previousAnchors=new Dictionary<long,Anchor?>(_facilityAnchors);bool roadsChanged=!_indexedRoads.SequenceEqual(roads);_indexedRoads=(double[])roads.Clone();
         var seen=new HashSet<long>();_buildings.Clear();_facilities.Clear();_routes.Clear();
         foreach(var bucket in _buckets)bucket.Clear();
-        foreach(var value in buildings)
+        foreach(var value in snapshot.Buildings)
         {
-            var d=value.AsGodotDictionary();long id=Long(d,"id");seen.Add(id);
-            var b=new Building {Id=id,Road=Long(d,"road"),Position=d["position"].AsVector2(),Polygon=Polygon(d),Zone=d["zone"].AsString(),
-                Level=(int)Long(d,"level"),Power=Flag(d,"power"),Water=Flag(d,"water"),Noise=Flag(d,"noise")};
-            b.Fixture.Count=(int)Long(d,"occupants");b.Fixture.Eligible=(int)Long(d,"eligible");b.Fixture.Employed=(int)Long(d,"employed");
-            if(d.TryGetValue("students",out var students))for(int i=0;i<4;i++)b.Fixture.Students[i]=(int)students.AsGodotArray()[i].AsInt64();
+            long id=value.Id;seen.Add(id);
+            var b=new Building {Id=id,Road=value.Road,Position=value.Position,Polygon=value.Polygon.ToArray(),Zone=value.Zone,
+                Level=value.Level,Power=value.Power,Water=value.Water,Noise=value.Noise,Fixture=value.Fixture};
             _buildings[id]=b;_buckets[(int)(((id%75)+75)%75)].Add(b);
             if(!_states.TryGetValue(id,out var state))_states[id]=state=new();
             if(state.Level!=b.Level){state.Since=null;state.Pending=false;}state.Level=b.Level;
         }
         foreach(long id in _states.Keys.ToArray())if(!seen.Contains(id))_states.Remove(id);
-        foreach(var value in facilities)
+        foreach(var value in snapshot.Facilities)
         {
-            var d=value.AsGodotDictionary();var f=new Facility {Id=Long(d,"id"),Road=Long(d,"road"),Position=d["position"].AsVector2(),Polygon=Polygon(d),
-                Kind=d["kind"].AsString(),School=(int)Long(d,"school_stage"),Capacity=Number(d,"capacity")};
+            var f=new Facility {Id=value.Id,Road=value.Road,Position=value.Position,Polygon=value.Polygon.ToArray(),
+                Kind=value.Kind,School=value.School,Capacity=value.Capacity};
             if(f.Kind=="fire")f.Capacity*=_fireMultiplier;
             _facilities[f.Id]=f;
         }
         BuildRoads(roads);IndexSpatial();InvalidateSpatial(previous,previousFacilities,previousAnchors,roadsChanged);RefreshGroups();
     }
-    private void RefreshGroups()=>_groups=_population?.HappinessGroups()??_buildings.ToDictionary(p=>p.Key,p=>p.Value.Fixture);
+    private void RefreshGroups()
+    {
+        if(IsBackgroundWorker){_groups=_submittedGroups??_buildings.ToDictionary(p=>p.Key,p=>p.Value.Fixture);return;}
+        _groups=_population?.HappinessGroups()??_buildings.ToDictionary(p=>p.Key,p=>p.Value.Fixture);
+    }
     private HappinessPeople People(long id)=>_groups.TryGetValue(id,out var p)?p:new HappinessPeople();
     private void BuildRoads(double[] roads)
     {
@@ -186,21 +197,31 @@ public partial class HappinessCore
             park?5:0,_states[b.Id].Housing,pollution,b.Power,b.Water);
     }
     private D Calculate(Building b)=>CachedScore(b,InputsFor(b,CachedPollution(b),CachedPark(b)));
-    public D Preview(long id)=>Calculate(_buildings[id]).Duplicate(true);
+    public D Preview(long id)
+    {
+        RequireBackgroundOwner();
+        if(_backgroundEnabled&&!IsBackgroundWorker)return PublishedPreview(id);
+        return Calculate(_buildings[id]).Duplicate(true);
+    }
     private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary().Duplicate();}
     private bool Qualifies(Building b,State s)=>s.Initialized&&b.Power&&b.Water&&People(b.Id).Count>0&&b.Level<5&&s.Actual>=40+b.Level*10;
     private void Observe(Building b,State s)
     {
+        double actual=s.Actual,target=s.Target;double? since=s.Since;
         if(!b.Power||!b.Water){s.Actual=0;s.Target=0;}
         if(!Qualifies(b,s))s.Since=null;
+        if(IsBackgroundWorker&&(actual!=s.Actual||target!=s.Target||since!=s.Since))_backgroundDirtyStates.Add(b.Id);
     }
     public D Inspect(long id)
     {
-        var s=_states[id];return new D {["initialized"]=s.Initialized,["actual"]=s.Actual,["target"]=s.Target,["factors"]=s.Factors,
+        RequireBackgroundOwner();
+        if(_backgroundEnabled&&!IsBackgroundWorker)return PublishedInspect(id);
+        var s=_states[id];return new D {["initialized"]=s.Initialized,["actual"]=s.Actual,["target"]=s.Target,["factors"]=s.Factors.Duplicate(true),
             ["housing"]=s.Housing,["held_seconds"]=s.Since.HasValue?Math.Max(0,_elapsed-s.Since.Value):0};
     }
     private Variant _cityHappiness;
-    public Variant CityHappiness()=>_cityHappiness;
+    public Variant CityHappiness()
+    {RequireBackgroundOwner();return _backgroundEnabled&&!IsBackgroundWorker?_publishedBackground.CityHappiness:_cityHappiness;}
     private void UpdateCityHappiness()
     {
         double weighted=0;int residents=0;bool complete=true;
@@ -213,6 +234,8 @@ public partial class HappinessCore
     }
     public D Tick(double seconds,long[] supplies)
     {
+        RequireBackgroundOwner();
+        if(_backgroundEnabled&&!IsBackgroundWorker)throw new InvalidOperationException("Use SubmitBackgroundTick/PublishBackgroundTick while background mode is enabled");
         var upgrades=new A();var updates=new D();if(!double.IsFinite(seconds)||seconds<=0)return new D {["upgrades"]=upgrades,["updates"]=updates};
         _elapsed+=seconds;RefreshGroups();
         for(int i=0;i+2<supplies.Length;i+=3)if(_buildings.TryGetValue(supplies[i],out var b)){b.Power=supplies[i+1]!=0;b.Water=supplies[i+2]!=0;}
@@ -246,6 +269,8 @@ public partial class HappinessCore
     }
     public void Acknowledge(long id,bool success,int level)
     {
+        RequireBackgroundOwner();
+        if(_backgroundEnabled&&!IsBackgroundWorker){_backgroundCommands.Add(new AcknowledgeCommand(id,success,level));return;}
         if(!_states.TryGetValue(id,out var s)||!_buildings.TryGetValue(id,out var b))return;
         s.Pending=false;if(success){b.Level=level;s.Level=level;s.Since=Qualifies(b,s)?_elapsed:null;}
     }

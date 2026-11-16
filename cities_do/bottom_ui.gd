@@ -522,7 +522,7 @@ func refresh_status():
  if money==null:return
  var stats: Dictionary=city.population.stats()
  var demand: Dictionary=city.population.demand(city.buildings)
- var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance,"happiness":city.happiness.city_average}
+ var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance,"happiness":city.happiness.average_value()}
  if snapshot==status_cache:return
  hud_refresh_count+=1
  if snapshot.name!=status_cache.get("name"):city_name_button.text=snapshot.name

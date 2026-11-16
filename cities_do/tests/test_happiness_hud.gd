@@ -22,14 +22,14 @@ func run():
  var city=game.city
  city.buildings.append({"id":75,"x":10,"y":10,"size":2,"level":1,"zone":"residential","score":0.0,"asset_id":""})
  city.population.import_fixture_state({"people":[{"id":1,"household_id":1,"age_years":30.0,"education":0,"origin":"test","workplace_id":-1,"job_stage":-1}],"households":[{"id":1,"home_id":75}],"workplaces":{}})
- city.advance_happiness(48);city.society_changed.emit()
+ city.advance_happiness(48);city.happiness.suspend_background();city.happiness.publish_boundary();city.society_changed.emit()
  check(game.happiness_label.text=="0","simulation result drives existing icon-plus-number HUD without explanatory text")
  var refreshes:int=game.hud_refresh_count
  game.refresh_status();game.refresh_status()
  check(game.hud_refresh_count==refreshes,"unchanged values do not reassign HUD contents")
  city.buildings[0].happiness=99;game.refresh_status()
  check(game.happiness_label.text=="0","HUD reads cached simulation average, not per-frame building scans")
- city.population.import_fixture_state({"people":[],"households":[],"workplaces":{}});city.advance_happiness(48);city.society_changed.emit()
+ city.population.import_fixture_state({"people":[],"households":[],"workplaces":{}});city.advance_happiness(48);city.happiness.suspend_background();city.happiness.publish_boundary();city.society_changed.emit()
  check(game.happiness_label.text=="—","zero residents returns the existing dash")
  game.queue_free();await process_frame
  for script in ["power_overlay.gd","water_overlay.gd"]:

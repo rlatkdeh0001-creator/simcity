@@ -9,15 +9,22 @@ public partial class HappinessCore:RefCounted
     private int _fireMultiplier=100;
     public void Configure(D config)
     {
-        _goods=config["goods"].AsDouble();_commute=config["commute"].AsDouble();
-        _garbage=config["garbage"].AsDouble();_tax=config["tax"].AsDouble();
-        _fireMultiplier=(int)config["fire_buildings_per_incident"].AsInt64();_targetCache.Clear();
+        RequireBackgroundOwner();
+        var snapshot=new ConfigurationSnapshot(config["goods"].AsDouble(),config["commute"].AsDouble(),
+            config["garbage"].AsDouble(),config["tax"].AsDouble(),(int)config["fire_buildings_per_incident"].AsInt64());
+        if(_backgroundEnabled&&!IsBackgroundWorker)
+        {_mainConfiguration=snapshot;_backgroundCommands.Add(new ConfigureCommand(snapshot));return;}
+        ApplyConfiguration(snapshot);
     }
+    private void ApplyConfiguration(ConfigurationSnapshot config)
+    {_goods=config.Goods;_commute=config.Commute;_garbage=config.Garbage;_tax=config.Tax;_fireMultiplier=config.FireMultiplier;_targetCache.Clear();}
     private static double Number(D d,string key)=>d.TryGetValue(key,out var v)?v.AsDouble():0;
     public D Score(D input)
     {
+        RequireBackgroundOwner();
+        var config=_backgroundEnabled&&!IsBackgroundWorker?_mainConfiguration:new ConfigurationSnapshot(_goods,_commute,_garbage,_tax,_fireMultiplier);
         var factors=new D {["base"]=20.0,["money"]=-10+30*Math.Clamp(Number(input,"employment"),0,1),
-            ["goods"]=_goods,["commute"]=_commute,["garbage"]=_garbage,["tax"]=_tax,
+            ["goods"]=config.Goods,["commute"]=config.Commute,["garbage"]=config.Garbage,["tax"]=config.Tax,
             ["electricity"]=0.0,["water"]=0.0};
         foreach(string key in new[]{"health","police","fire","education"})factors[key]=Math.Clamp(Number(input,key),0,10);
         factors["park"]=Math.Clamp(Number(input,"park"),0,5);factors["housing"]=Math.Clamp(Number(input,"housing"),0,5);

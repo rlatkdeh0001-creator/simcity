@@ -8,6 +8,35 @@ var signature:=-1
 var records:Dictionary={}
 var bound
 var city_average:Variant=null
+var background_enabled:=false
+var supply_changes:Dictionary={}
+func note_supply(building:Dictionary):
+ supply_changes[building.id]=PackedInt64Array([building.id,int(building.get("has_power",false)),int(building.get("has_water",false))])
+func average_value()->Variant:
+ if not background_enabled:return city_average
+ var value:Variant=core.CityHappiness()
+ return null if value==null else roundi(float(value))
+func enable_background():
+ if background_enabled:return
+ core.EnableBackground();background_enabled=true;dirty=true;supply_changes.clear()
+func background_busy()->bool:
+ return background_enabled and core.IsBackgroundBusy()
+func skip_background_cycle():
+ if background_enabled:core.RecordSkippedBackgroundCycle()
+func suspend_background():
+ if background_enabled:core.SuspendBackground()
+func materialize_values(building_values:Array):
+ # Explicit compatibility/readout only; normal background publication swaps one buffer.
+ for b:Dictionary in building_values:
+  var values:Dictionary=core.Inspect(b.id)
+  if values.is_empty() or not values.get("initialized",false):continue
+  b.happiness=values.actual;b.happiness_target=values.target;b.happiness_factors=values.factors
+func publish_boundary()->bool:
+ if not background_enabled:return false
+ var result:Dictionary=core.PublishBackgroundTick()
+ if result.is_empty():return false
+ _apply_result(result,false)
+ return true
 func _init(city):
  owner=weakref(city)
  core.Configure(JSON.parse_string(FileAccess.get_file_as_string("res://core/happiness_config.json")))
@@ -46,25 +75,43 @@ func _rebuild(city):
   points[0]=topology.nodes[section.start_node].position;points[-1]=topology.nodes[section.end_node].position
   var road_id:int=city.roads[section.road].get("parcel_id",section.road)
   for i in range(1,points.size()):edges.append_array(PackedFloat64Array([road_id,points[i-1].x*4,points[i-1].y*4,points[i].x*4,points[i].y*4]))
- core.SetWorld(buildings,facilities,edges);last_count=city.buildings.size();dirty=false
+ core.SetWorld(buildings,facilities,edges);last_count=city.buildings.size();dirty=false;supply_changes.clear()
 func advance(game_seconds:float)->void:
  if not is_finite(game_seconds) or game_seconds<=0:return
+ if background_enabled:
+  if background_busy():skip_background_cycle();return
+  publish_boundary()
  var city=owner.get_ref()
  if city==null or not city.population.has_method("backend_name"):return
  if bound!=city.population.core:core.BindPopulation(city.population.core);bound=city.population.core;dirty=true
  var current:int=hash([city.roads,city.public_facilities.lots])
  if dirty or last_count!=city.buildings.size() or current!=signature:_rebuild(city);signature=current
- var supplies:=PackedInt64Array();supplies.resize(city.buildings.size()*3);var offset:=0
- for b:Dictionary in city.buildings:
-  supplies[offset]=b.id;supplies[offset+1]=int(b.get("has_power",false));supplies[offset+2]=int(b.get("has_water",false));offset+=3
- var result:Dictionary=core.Tick(game_seconds,supplies)
+ var supplies:=PackedInt64Array()
+ if background_enabled:
+  for change:PackedInt64Array in supply_changes.values():supplies.append_array(change)
+  supply_changes.clear()
+ else:
+  # Synchronous compatibility fixtures may directly mutate building dictionaries.
+  supplies.resize(city.buildings.size()*3);var offset:=0
+  for b:Dictionary in city.buildings:
+   supplies[offset]=b.id;supplies[offset+1]=int(b.get("has_power",false));supplies[offset+2]=int(b.get("has_water",false));offset+=3
+ supply_changes.clear()
+ if background_enabled:
+  assert(core.SubmitBackgroundTick(game_seconds,supplies),"one logical happiness job per accepted boundary")
+ else:_apply_result(core.Tick(game_seconds,supplies),true)
+func _apply_result(result:Dictionary,materialize:bool):
+ var city=owner.get_ref()
+ if city==null:return
  city_average=null if result.city_happiness==null else roundi(float(result.city_happiness))
- for id in result.updates:
-  if not records.has(id):continue
-  var b:Dictionary=records[id];var values:Dictionary=result.updates[id]
-  b.happiness=values.actual;b.happiness_target=values.target;b.happiness_factors=values.factors
+ if materialize:
+  for id in result.updates:
+   if not records.has(id):continue
+   var b:Dictionary=records[id];var values:Dictionary=result.updates[id]
+   b.happiness=values.actual;b.happiness_target=values.target;b.happiness_factors=values.factors
  for id in result.upgrades:
   if not records.has(id):continue
-  var b:Dictionary=records[id];var changed:bool=city._upgrade(b)
+  var b:Dictionary=records[id]
+  if not city.buildings.has(b):core.Acknowledge(id,false,b.level);continue
+  var changed:bool=city._upgrade(b)
   core.Acknowledge(id,changed,b.level)
   if changed:city.population.sync(city.buildings);dirty=true

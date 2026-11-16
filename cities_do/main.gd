@@ -68,6 +68,7 @@ func _ready():
 		map_zoom = session.map_zoom
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
+	city.happiness.enable_background()
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
 	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for(r.kind,r.lanes,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -266,6 +267,9 @@ func toggle_traffic():
 			if traffic_button != null: traffic_button.text = "도로 주행 종료"
 		message = traffic.status
 	refresh()
+
+func _exit_tree():
+	if city!=null and city.happiness!=null:city.happiness.suspend_background()
 
 func stop_traffic():
 	if traffic != null: traffic.stop()
