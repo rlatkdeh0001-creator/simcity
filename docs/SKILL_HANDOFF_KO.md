@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 기차역 v2 지하도 (2026-11-17, cities-asset)
+
+`tools/build_rail_station_v2.py`: v1의 읽기 전용 helper 재사용, 앞 구간 y−6m·기존 원본 보존. 새 v2 `.blend/build.py/spec/preview`와 GLB/PNG, 해당 카탈로그 항목만 교체. 실측32×36m, 지상최고10.56m/최저−3.85m,17461tri. 두 승강장32×4.2m·면1.1m, 계단통 각각 네 벽·유한 바닥−3.6m·중간참·내폭1.8m/옆 보행2.1m. StationFront/StationRear 두 노드와 위아래 빈7.6m 선로 자리; 지하 통로 없음.
+기존 common/studio MIT 출처·NOTICE(아래 기록), 로컬 `godot-windows-validation`(upstream/pin 없음) 사용, 설치 없음. `run_rail_station_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드/치수/분리/계단통/편성접촉/간격/정면11검사 통과. 요청 단일 최종 `docs/rail-park-validation/station-v2-1600.png`에 앞/뒤·동일축척v1·택시/사람·캐노피만 숨긴 명시적 검사 컷어웨이 포함; source visibility 유지. 최초 구도 잘림·계단 과노출은 fixture 카메라/조명만 보정해 최종 확인. `STATION_V2_RESULTS.txt`에 실제 명령/결과. 지형 절개·배치·터널 연결·운행은 코드측 후속, 사용자 검수 대기. 게임 코드·가격·main·push 없음.
+
 ## 대형 공원 v2 나무 축척 (2026-11-17, cities-asset)
 
 `tools/build_rail_park_large_v2.py`와 `measure_park_trees.py`: 기존 plaza/play .blend world 정점 읽기 전용 실측 후 동일 subdivision-1 수관·전체 높이4.5/4.8m로24그루 교체. 32×32×4.8m,4356tri(요청 하한6000 미달은 참조 지오메트리 우선, 불필요한 면 추가 없음). 부지·연못·길·정자·벤치·나무 위치 유지, 원본v1 보존. 신규 v2 소스/build.py/spec/GLB/800×680 studio PNG, 해당 catalog 항목만 갱신.

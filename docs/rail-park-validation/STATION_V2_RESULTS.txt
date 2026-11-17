@@ -1,0 +1,10 @@
+Actual Blender: 17461 triangles; measured bounds {'min': [-16.0, -18.0, -3.85], 'max': [16.0, 18.0, 10.56]}
+Two32x4.2m platforms at1.1m; stair floor-3.6m bottom-3.85m, two intermediate landings, eight closed walls, 1.8m inner width/2.1m track-side walk. No under-track tunnel.
+Graphical command: C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe --path C:\Users\wlgml\AppData\Local\hermes\profiles\cities-asset\cache\scratch\rail-park\station-v2 --audio-driver Dummy --rendering-method gl_compatibility --resolution 1600x1000 --borderless --quit-after 240 --script res://capture.gd -- D:\project\simcity-rail\docs\rail-park-validation\station-v2-1600.png
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+STATION_V2_GRAPHICAL_PASS checks=11 dimensions32x36 top10.56 bottom-3.85 landing-3.6 layers2 empty_trackway couplers4 consists32/26 gaps0.3 front-Y
+
+One raw1600x1000 framebuffer: front/rear, same-scale v1, taxi/human, labelled canopy-only inspection cutaway. Source visibility unchanged.
+Inspection_only: live terrain cutout, placement, tunnel connectivity and operation remain code-side work. No push/main/game-code or original source edits.
