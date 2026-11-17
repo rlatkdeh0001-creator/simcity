@@ -1,5 +1,9 @@
 # CITIES_DO 스킬 인계장
 
+## 박스형 전기 화물 기관차 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight.py`: train-loco-freight-01 차체9m/전체10×3×3.8m,4536tri. 저채도 황토 상자 차체·양끝 창2개·앞 전조등/뒤 미등·측면 루버/점검문·오목부 팬터그래프1기(최고3.8m), 디젤/노즈 없음. 기존 bogies/couplers/8방향 renderer(MIT 고정 출처/NOTICE 아래 참조), 프로필 godot-windows-validation 사용. `.blend`·build.py·spec·GLB·8×430×245 PNG와 catalog/manifest 등록. `run_rail_freight.py` 실제 Godot4.6.3 독립GL 검사14항목 통과, `freight-loco-1600.png`에서26m 적재 편성/옆 선두차v3/제작 복선 확인. 결과 FREIGHT_LOCO_RESULTS.txt. 스킬에 Sprite2D px/m·동심원 UV·디더링 경계 허용오차 교훈 추가. 기존 park/subway/역/차량 원본 보존; station v2 미승인으로 미착수. 설치·가격·게임 코드·운행·main·push 없음.
+
 ## 복선 선로 견본 (2026-11-17, cities-asset)
 
 `tools/build_rail_track.py`: 신규 rail-track-01, 복선12×7.6m/1140tri, 단선320×288 emission 띠3장. 기존 vehicle/common·subway studio(MIT 고정 출처/NOTICE 아래 참조), 프로필 `software-development/godot-windows-validation` 재사용(로컬 스킬, upstream/pin 별도 없음), 설치 없음. `run_rail_track.py`는 scratch 독립 Godot4.6.3 GL에서 13검사 및 실제1600×1000 여섯 뷰 캡처. fixture 2D 표시는 Sprite2D로 정확한 px/m 축척, 곡선은 동심원32/36m UV 리본. 결과 `docs/rail-park-validation/RAIL_TRACK_RESULTS.txt`. 띠 경계 RGB 차이는 Blender 디더링1/255 이내, 육안 반복 이음 없음. 기존 원본·게임 코드·가격·station v2 변경 없음. 지도 그리기/운행 미구현, main/push 없음.

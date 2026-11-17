@@ -1531,6 +1531,99 @@
       "platform_gap_m": 0.25,
       "consist_cars": 4,
       "consist_overall_length_m": 64
+    },
+    {
+      "id": "train-loco-freight-01",
+      "name": "박스형 전기 화물 기관차",
+      "category": "rail_locomotive",
+      "style": "ochre_electric_box",
+      "body_length_m": 9.0,
+      "overall_length_m": 10.0,
+      "length_m": 10.0,
+      "width_m": 3.0,
+      "height_m": 3.8,
+      "measured_dimensions_lwh_m": [
+        10.0,
+        3.0,
+        3.8
+      ],
+      "triangles": 4536,
+      "traction": "electric",
+      "pantograph": "one low unit within roof recess, max z=3.8m",
+      "pantograph_count": 1,
+      "pantograph_top_z_m": 3.8,
+      "roof_recess_blender": {
+        "x": [
+          -0.82,
+          0.82
+        ],
+        "y": [
+          1.6,
+          3.2
+        ],
+        "floor_z": 3.6
+      },
+      "gauge_m": 1.435,
+      "rail_top_z_m": 0,
+      "coupler_height_m": 1.0,
+      "coupler_anchors_blender": [
+        [
+          0,
+          -4.5,
+          1
+        ],
+        [
+          0,
+          4.5,
+          1
+        ]
+      ],
+      "coupler_contact_heads_blender": [
+        [
+          0,
+          -5,
+          1
+        ],
+        [
+          0,
+          5,
+          1
+        ]
+      ],
+      "coupled_body_gap_m": 1.0,
+      "frame_blender": {
+        "forward": "-Y",
+        "left": "+X",
+        "up": "+Z"
+      },
+      "frame_gltf": {
+        "forward": "+Z",
+        "left": "+X",
+        "up": "+Y"
+      },
+      "status": "inspection_only",
+      "simulation_enabled": false,
+      "model": "res://assets/vehicles/train-loco-freight-01.glb",
+      "source": "assets/vehicle-fleet/train-loco-freight-01/vehicle.blend",
+      "preview": "res://assets/vehicles/sprites/train-loco-freight-01/045.png",
+      "render": {
+        "resolution": [
+          430,
+          245
+        ],
+        "camera_elevation_deg": 30,
+        "angles_deg": [
+          0,
+          45,
+          90,
+          135,
+          180,
+          225,
+          270,
+          315
+        ]
+      },
+      "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_rail_freight.py -- --output-root NEW_WORKSPACE"
     }
   ]
 }
