@@ -1,0 +1,83 @@
+{
+  "id": "subway-car-01",
+  "name": "지하철 차량",
+  "category": "rail_metro",
+  "style": "plain_white_symmetric",
+  "body_length_m": 15,
+  "overall_length_m": 16,
+  "length_m": 16,
+  "width_m": 2.8,
+  "height_m": 3.6,
+  "measured_dimensions_lwh_m": [
+    16.0,
+    2.799999952316284,
+    3.5999999046325684
+  ],
+  "triangles": 1208,
+  "material_count": 3,
+  "gauge_m": 1.435,
+  "rail_top_z_m": 0,
+  "coupler_height_m": 1,
+  "coupler_anchors_blender": [
+    [
+      0,
+      -7.5,
+      1
+    ],
+    [
+      0,
+      7.5,
+      1
+    ]
+  ],
+  "coupler_contact_heads_blender": [
+    [
+      0,
+      -8,
+      1
+    ],
+    [
+      0,
+      8,
+      1
+    ]
+  ],
+  "coupled_body_gap_m": 1,
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "model": "res://assets/vehicles/subway-car-01.glb",
+  "source": "assets/vehicle-fleet/subway-car-01/vehicle.blend",
+  "preview": "res://assets/vehicles/sprites/subway-car-01/045.png",
+  "render": {
+    "resolution": [
+      430,
+      245
+    ],
+    "camera_elevation_deg": 30,
+    "angles_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ]
+  },
+  "status": "inspection_only",
+  "simulation_enabled": false,
+  "underground_rail_top_world_m": -12.7,
+  "groove_width_m": 3.3,
+  "platform_gap_m": 0.25,
+  "consist_cars": 4,
+  "consist_overall_length_m": 64
+}
