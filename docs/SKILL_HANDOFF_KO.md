@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 대형 공원 v2 나무 축척 (2026-11-17, cities-asset)
+
+`tools/build_rail_park_large_v2.py`와 `measure_park_trees.py`: 기존 plaza/play .blend world 정점 읽기 전용 실측 후 동일 subdivision-1 수관·전체 높이4.5/4.8m로24그루 교체. 32×32×4.8m,4356tri(요청 하한6000 미달은 참조 지오메트리 우선, 불필요한 면 추가 없음). 부지·연못·길·정자·벤치·나무 위치 유지, 원본v1 보존. 신규 v2 소스/build.py/spec/GLB/800×680 studio PNG, 해당 catalog 항목만 갱신.
+프로필 `software-development/godot-windows-validation`(로컬, upstream/pin 없음) 및 기존 common/studio MIT 고정 출처·NOTICE(아래 참조) 재사용, 설치 없음. `run_rail_park_large_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 GLB 로드·32m·정면·높이·24줄기/72수관 검사 통과, `park-large-v2-1600.png` 기존4×4 공원 옆 단일 실제 캡처 육안 확인. 결과 `PARK_LARGE_V2_RESULTS.txt`. 보호 원본·게임 코드·station v2·main·push 변경 없음.
+
+
 ## 박스형 전기 화물 기관차 (2026-11-17, cities-asset)
 
 `tools/build_rail_freight.py`: train-loco-freight-01 차체9m/전체10×3×3.8m,4536tri. 저채도 황토 상자 차체·양끝 창2개·앞 전조등/뒤 미등·측면 루버/점검문·오목부 팬터그래프1기(최고3.8m), 디젤/노즈 없음. 기존 bogies/couplers/8방향 renderer(MIT 고정 출처/NOTICE 아래 참조), 프로필 godot-windows-validation 사용. `.blend`·build.py·spec·GLB·8×430×245 PNG와 catalog/manifest 등록. `run_rail_freight.py` 실제 Godot4.6.3 독립GL 검사14항목 통과, `freight-loco-1600.png`에서26m 적재 편성/옆 선두차v3/제작 복선 확인. 결과 FREIGHT_LOCO_RESULTS.txt. 스킬에 Sprite2D px/m·동심원 UV·디더링 경계 허용오차 교훈 추가. 기존 park/subway/역/차량 원본 보존; station v2 미승인으로 미착수. 설치·가격·게임 코드·운행·main·push 없음.
