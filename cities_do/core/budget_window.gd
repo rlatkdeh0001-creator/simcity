@@ -143,17 +143,20 @@ func refresh():
  var rates:Array=tax.get("policy",{}).get("rates",[])
  # Check the publication fence before the display cache: equal scalar values
  # may still be a newer acknowledgment, including after close/reopen.
- if rates==pending_rates and (city.simulation==null or city.simulation.get_published_tick()>=pending_publication_tick):pending_rates.clear()
+ # The fence includes every queued financing barrier, so reaching it also
+ # reconciles an authoritative rejection/adjustment; older equal values cannot ack.
+ if not pending_rates.is_empty() and (city.simulation==null or city.simulation.get_published_tick()>=pending_publication_tick):pending_rates.clear()
  var state:Dictionary={"tax":tax,"economic":economic,"pending":pending_rates.duplicate(),"debt":debt,"pending_loan":pending_loan}
  if state==snapshot:return
  snapshot=state.duplicate(true);refresh_count+=1
 
  for i in range(9):
   var valid:=rates.size()==9
-  put(rate_labels[i],"%d%%"%int(rates[i]) if valid else "—")
+  var displayed_rates:Array=pending_rates if pending_rates.size()==9 else rates
+  put(rate_labels[i],"%d%%"%int(displayed_rates[i]) if valid else "—")
   sliders[i].editable=valid and not debt.bankrupt
-  if valid:sliders[i].set_value_no_signal(pending_rates[i] if pending_rates.size()==9 else rates[i])
-  sliders[i].tooltip_text="적용 대기" if pending_rates.size()==9 and pending_rates[i]!=rates[i] else ""
+  if valid:sliders[i].set_value_no_signal(displayed_rates[i])
+  sliders[i].tooltip_text=""
   var cells:Array=tax.get("cells",[]);var days:=int(tax.get("days",0))
   put(amounts[i],amount(float(cells[i].collected)/days) if days>0 and cells.size()==9 else "—")
  var available:bool=economic.get("available",false)

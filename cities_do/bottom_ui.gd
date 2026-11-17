@@ -120,6 +120,7 @@ func label(text: String, size_value: int = 18) -> Label:
 func icon(kind: String) -> Texture2D:
  var body := ""
  match kind:
+  "banknote": body='<g fill="none" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="1" stroke="#edf4f5"/><circle cx="12" cy="12" r="3" stroke="#36b7ff"/></g>'
   "build": body='<path d="M2 11 12 2 22 11h-3v11h-5v-7h-4v7H5V11z"/>'
   "road": body='<path d="m7 2-5 20h8v-4h4v4h8L17 2h-4v4h-2V2zm4 7h2v5h-2z" fill-rule="evenodd"/>'
   "power": body='<path d="M14 1 3 14h8l-2 9L22 9h-9z"/>'
@@ -512,7 +513,7 @@ func build_status_row(box: VBoxContainer) -> Control:
  actions.size_flags_vertical=Control.SIZE_SHRINK_CENTER
  actions.add_theme_constant_override("separation",6)
  right_margin.add_child(actions)
- economy_button=Button.new();economy_button.name="EconomyButton";economy_button.text="경제";economy_button.tooltip_text="예산";economy_button.pressed.connect(open_budget)
+ economy_button=small_button("banknote","예산",open_budget);economy_button.name="EconomyButton";economy_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
  actions.add_child(economy_button)
  actions.add_child(small_button("map","도시 전체 보기",fit_preview))
  actions.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))

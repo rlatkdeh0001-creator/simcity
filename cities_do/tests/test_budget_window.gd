@@ -32,7 +32,7 @@ func reverted_rate_publication(close_between:bool):
  check(sim.validation_publish(),"older A10 publication completes")
  check(sim.get_published_tick()==initial_tick+1 and city.tax_status().policy.rates[0]==10,"real published read view now contains older A10")
  if close_between:budget.open(city)
- check(budget.sliders[0].value==9 and budget.rate_labels[0].text=="10%","latest thumb survives older publication and reopen")
+ check(budget.sliders[0].value==9 and budget.rate_labels[0].text=="9%","latest thumb and percent survive older publication and reopen")
  budget.sliders[3].value=12
  sim.resume();city.advance_society(2)
  check(sim.queued_edit_count()==0 and sim.has_pending(),"restore and B replay into next actual worker submission")
@@ -53,6 +53,13 @@ func reverted_rate_publication(close_between:bool):
  check(budget.pending_rates.size()==9,"edit completion alone does not acknowledge worker publication")
  check(sim.validation_publish(),"matching corresponding worker publication completes")
  check(budget.pending_rates.is_empty(),"new matching tick acknowledges even when cached scalar values are unchanged")
+ budget.change_rate(21,0)
+ check(budget.pending_rates.is_empty() and budget.rate_labels[0].text=="9%" and budget.sliders[0].value==9,"rejected request restores authoritative percent and thumb")
+ budget.sliders[0].value=10
+ var adjusted:Array=city.tax_status().policy.rates.duplicate();adjusted[0]=11
+ city.configure_tax_policy({"rates":adjusted})
+ sim.resume();city.advance_society(2);sim.validation_publish()
+ check(budget.pending_rates.is_empty() and budget.rate_labels[0].text=="11%" and budget.sliders[0].value==11,"corresponding publication reconciles authoritative adjustment")
  sim.shutdown();budget.free()
 func _initialize():run.call_deferred()
 func run():
@@ -65,6 +72,9 @@ func run():
   game.open_budget();await process_frame
   check(game.budget_window.visible,"entrypoint opens approved budget")
   check(game.budget_window.sliders.size()==9,"nine tax cells")
+  check(game.economy_button.text.is_empty() and game.economy_button.icon!=null,"economy entry is an icon button rather than text")
+  var note:Image=game.icon("banknote").get_image()
+  check(note.get_pixel(5,13).a>0.5 and note.get_pixel(24,18).a>0.5 and note.get_pixel(15,24).a<0.1 and note.get_pixel(24,3).a<0.1,"banknote has wide outlined body, central circle and transparent interior")
   var budget=game.budget_window
   check(budget.net.text==game.balance_label.text and budget.net.text=="—","unclosed ledger shares HUD em dash")
   check(budget.loan.editable and budget.values.loan.text==budget.amount(0),"T4 loan gauge starts with actual zero debt")
@@ -81,9 +91,13 @@ func run():
   check(budget.pending_rates.size()==9 and budget.pending_rates[0]==10,"keyboard sends real tax edit")
   game.city.simulation.worker.Suspend();game.city.simulation.worker.SetValidationGate(true)
   game.city.advance_society(2)
+  var published_amounts:Array=budget.amounts.map(func(l):return l.text)
+  var published_net:String=budget.net.text
   budget.sliders[3].value=12;budget.sliders[8].value=17
   check(budget.pending_rates[0]==10 and budget.pending_rates[3]==12 and budget.pending_rates[8]==17,"queued multiple cells preserve latest complete policy")
-  check(budget.rate_labels[3].text=="9%","displayed rate remains authoritative during queue latency")
+  check(budget.rate_labels[3].text=="12%" and budget.rate_labels[8].text=="17%","each value_changed immediately shows requested percent during queue latency")
+  check(budget.sliders.all(func(s):return s.tooltip_text.is_empty()),"tax action has no pending explanation tooltip")
+  check(budget.amounts.map(func(l):return l.text)==published_amounts and budget.net.text==published_net,"intent never speculates collected taxes or net")
   check(game.city.simulation.validation_publish(),"native gate released and published")
   game.city.simulation.resume();game.city.advance_society(2);game.city.simulation.validation_publish()
   var policy:Dictionary=game.city.simulation.export_validation_state().population.tax_policy.policy
@@ -95,6 +109,11 @@ func run():
   var slider_rect:Rect2=budget.sliders[0].get_global_rect()
   await click(Vector2(slider_rect.end.x-2,slider_rect.get_center().y))
   check(budget.sliders[0].value==20,"actual mouse slider reaches 20 percent")
+  var press:=InputEventMouseButton.new();press.button_index=MOUSE_BUTTON_LEFT;press.pressed=true;press.position=Vector2(slider_rect.end.x-2,slider_rect.get_center().y);root.push_input(press)
+  for fraction in [0.25,0.45,0.65]:
+   var motion:=InputEventMouseMotion.new();motion.position=Vector2(slider_rect.position.x+slider_rect.size.x*fraction,slider_rect.get_center().y);motion.button_mask=MOUSE_BUTTON_MASK_LEFT;root.push_input(motion)
+   check(budget.rate_labels[0].text=="%d%%"%int(budget.sliders[0].value),"native held drag updates percent before another frame")
+  press.pressed=false;root.push_input(press)
   for viewport in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:
    root.size=viewport
    for i in range(4):await process_frame
