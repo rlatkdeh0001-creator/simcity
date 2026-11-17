@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS detached worker world
+PASS all logical people admitted
+PASS plan replay is idempotent
+PASS actual ACC cars spawned at boundary
+PASS cars actually advance on lane curves, not presentation-only records
+PASS busy accepted time frozen without backlog
+PASS nonempty binary checkpoint rebuilds directed graph and moving cars
+PASS published visible snapshots detached
+PASS deterministic mid-movement checkpoint replay
+PASS identical complete roundtrip replay
+FINAL { "persons": 12, "departed": 12, "arrived": 12, "late": 0, "returned": 12, "unreachable": 0, "logical_legs": 24, "physical_arrivals": 24, "game_seconds": 72000.0, "active_micro": 0, "pending_micro": 0, "event_groups": 5, "road_load": { 0: { "booked": 12, "entered": 12, "exited": 12, "active": 0 }, 9: { "booked": 12, "entered": 12, "exited": 12, "active": 0 }, 8: { "booked": 12, "entered": 12, "exited": 12, "active": 0 }, 10: { "booked": 12, "entered": 12, "exited": 12, "active": 0 }, 11: { "booked": 12, "entered": 12, "exited": 12, "active": 0 }, 5: { "booked": 12, "entered": 12, "exited": 12, "active": 0 } }, "roadside_occupancy": { "11": 0 }, "reservation_count": 0, "fade_count": 0 }
+PASS all people arrive and return
+PASS actual cars reach frontage and return exit; all occupants cleaned
+PASS no leaked junction reservations after physical arrivals
+PASS all unsampled road entries/exits conserved
+PASS inbound roadside occupancy released on return
+PASS detached worker world
+PASS display/fade cannot change trip demand, road loads, arrivals or late flags
+PASS detached worker world
+PASS outbound home-boundary and boundary-home physical roundtrip
+PASS approved tier sampling boundaries
+PASS detached worker world
+PASS unsampled trip still logically moving
+PASS tracked exception promotes to actual ACC vehicle
+PASS tracked citizen persists through roundtrip
+PASS detached worker world
+PASS late flag fires after four hours before delayed arrival
+RESULT 26/26 movement
