@@ -13,7 +13,7 @@ func run():
  var inputs:Dictionary={"employment":1.0,"power":true,"water":true,"health":0,"police":0,"fire":0,"education":0,"park":0,"housing":0,"pollution_noise":0}
  var value:Dictionary=core.Score(inputs)
  check(value.target==50,"base20 + actual employment20 + temporary goods10")
- check(value.factors.size()==15,"fourteen factors plus the base are explicitly represented")
+ check(value.factors.size()==14 and not value.factors.has("commute"),"thirteen factors plus base, obsolete commute removed")
  inputs.employment=0;check(core.Score(inputs).factors.money==-10,"unemployment penalty")
  inputs.employment=.5;check(core.Score(inputs).factors.money==5,"mixed employment interpolates actual group employment")
  inputs.employment=1
@@ -25,7 +25,7 @@ func run():
  inputs.power=true;inputs.water=false;check(core.Score(inputs).target==0,"water absence forces zero")
  inputs.water=true;inputs.pollution_noise=0
  check(core.Score(inputs).target==100,"happiness is capped at 100")
- for key in ["goods","commute","garbage","tax"]:check(value.factors.has(key),"replaceable temporary factor "+key)
+ for key in ["goods","garbage","tax"]:check(value.factors.has(key),"replaceable temporary factor "+key)
  core.Configure({"goods":0.0,"commute":-2.0,"garbage":-3.0,"tax":-4.0,"fire_buildings_per_incident":100})
  check(core.Score(inputs).factors.tax==-4 and core.Score(inputs).factors.goods==0,"temporary values are configuration, not hardcoded fulfillment")
  world_checks()

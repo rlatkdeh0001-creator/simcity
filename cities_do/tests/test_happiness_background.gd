@@ -48,7 +48,7 @@ func run():
   for i in range(30):seeded.append(building(i+1,Vector2(rng.randf_range(-400,400),rng.randf_range(-400,400)),"industrial" if i%5==0 else "residential"))
   for core in [left,right]:core.Configure(config);core.SetWorld(seeded,[],roads)
   left.EnableBackground()
-  for tick in range(5400):
+  for tick in range(80 if "--t3-short" in OS.get_cmdline_user_args() else 5400):
    var supplies:=PackedInt64Array()
    if tick%100==0:supplies=PackedInt64Array([1,1,0 if tick%200==0 else 1])
    check(left.SubmitBackgroundTick(48,supplies),"logical submit seed=%d tick=%d"%[seed_value,tick])

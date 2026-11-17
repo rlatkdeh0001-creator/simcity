@@ -63,9 +63,9 @@ public partial class PopulationState
         long days=day-_taxDay;
         var basis=_taxEnabled?TaxBases(buildings):new decimal[9];var assessed=new decimal[9];var collected=new decimal[9];
         for(int i=0;i<9;i++)assessed[i]=basis[i]*_taxRates[i]/100m*days;
-        // T1 full collection policy, deliberately separate from assessment. T3
-        // replaces this allocation with paid amounts; no household cash or arrears.
+        // Businesses retain the wage proxy; households remit only paid residential tax.
         System.Array.Copy(assessed,collected,9);
+        if(_taxEnabled)SettleHouseholds(buildings,days,collected);
         decimal collectedSum=collected.Sum(),sum=_taxCarry+collectedSum;
         long posted=checked((long)decimal.Floor(sum));
         decimal assessedTotal=_taxAssessedTotal+assessed.Sum(),collectedTotal=_taxCollectedTotal+collectedSum;
@@ -85,13 +85,13 @@ public partial class PopulationState
         cells.MakeReadOnly();zones.MakeReadOnly();
         var result=new D{["enabled"]=_taxEnabled,["last_day"]=_taxDay,["days"]=days,["posted"]=posted,["carry"]=(double)_taxCarry,
             ["assessed"]=(double)assessed.Sum(),["collected"]=(double)collected.Sum(),["assessed_total"]=(double)_taxAssessedTotal,["collected_total"]=(double)_taxCollectedTotal,
-            ["cells"]=cells,["zones"]=zones,["policy"]=GetTaxPolicy(),["inbound_basis"]="reserved_job_stage_wage_proxy"};result.MakeReadOnly();return result;
+            ["cells"]=cells,["zones"]=zones,["policy"]=GetTaxPolicy(),["household_finances"]=FinanceSummary(),["moving"]=MovingSummary(),["inbound_basis"]="reserved_job_stage_wage_proxy"};result.MakeReadOnly();return result;
     }
     public D GetTaxStatus()=>TaxReport(_taxLastBasis,_taxLastAssessed,_taxLastCollected,_taxLastDays,_taxLastPosted);
     private static A TaxExact(decimal[] values){var a=new A();foreach(var n in values)a.Add(n.ToString(CultureInfo.InvariantCulture));return a;}
     public D ExportTaxCheckpoint()=>new(){["version"]=1,["policy"]=GetTaxPolicy(),["last_day"]=_taxDay,["carry"]=_taxCarry.ToString(CultureInfo.InvariantCulture),
         ["assessed_total"]=_taxAssessedTotal.ToString(CultureInfo.InvariantCulture),["collected_total"]=_taxCollectedTotal.ToString(CultureInfo.InvariantCulture),
-        ["last_basis"]=TaxExact(_taxLastBasis),["last_assessed"]=TaxExact(_taxLastAssessed),["last_collected"]=TaxExact(_taxLastCollected),["last_days"]=_taxLastDays,["last_posted"]=_taxLastPosted};
+        ["last_basis"]=TaxExact(_taxLastBasis),["last_assessed"]=TaxExact(_taxLastAssessed),["last_collected"]=TaxExact(_taxLastCollected),["last_days"]=_taxLastDays,["last_posted"]=_taxLastPosted,["household_finances"]=ExportFinances(),["moving_state"]=ExportMoving()};
     private static decimal ParseTaxExact(Variant value)
     {
         if(value.VariantType!=Variant.Type.String||!decimal.TryParse(value.AsString(),NumberStyles.Number,CultureInfo.InvariantCulture,out var n)||n<0)throw new ArgumentException("Invalid exact tax amount");return n;
@@ -107,8 +107,12 @@ public partial class PopulationState
         decimal carry=ParseTaxExact(state["carry"]),assessed=ParseTaxExact(state["assessed_total"]),collected=ParseTaxExact(state["collected_total"]);
         var basis=ParseTaxAmounts(state["last_basis"]);var lastAssessed=ParseTaxAmounts(state["last_assessed"]);var lastCollected=ParseTaxAmounts(state["last_collected"]);
         if(day<0||days<0||days>day||posted<0||carry>=1||carry!=collected-decimal.Floor(collected)||collected>assessed||lastAssessed.Sum()>assessed||lastCollected.Sum()>collected)throw new ArgumentException("Invalid tax checkpoint totals");
+        var finances=state.TryGetValue("household_finances",out var fs)?ParseFinances(fs.AsGodotDictionary()):new Dictionary<long,HouseholdFinance>();
+        var moving=state.TryGetValue("moving_state",out var ms)?ParseMoving(ms.AsGodotDictionary()):null;
         // Config validation is atomic and is the last fallible operation.
         ConfigureTaxPolicy(state["policy"].AsGodotDictionary());
+        RestoreMoving(moving);
+        _finances.Clear();foreach(var pair in finances)_finances.Add(pair.Key,pair.Value);RebuildFinanceFactors();
         _taxDay=day;_taxCarry=carry;_taxAssessedTotal=assessed;_taxCollectedTotal=collected;_taxLastBasis=basis;_taxLastAssessed=lastAssessed;_taxLastCollected=lastCollected;_taxLastDays=days;_taxLastPosted=posted;
     }
 }

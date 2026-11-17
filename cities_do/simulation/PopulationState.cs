@@ -129,7 +129,7 @@ public partial class PopulationState : RefCounted
     }
     private void Rehouse()
     {
-        var available=_homeOrder.Where(id=>Vacant(id)>0).ToArray();int cursor=0;
+        var available=_homeOrder.Where(id=>Vacant(id)>0&&AcceptsHouseholds(id)).ToArray();int cursor=0;
         foreach(var h in _households) {if(h.Home!=-1)continue;while(cursor<available.Length&&Vacant(available[cursor])==0)cursor++;if(cursor==available.Length)break;Move(h,available[cursor]);}
     }
     private void ResetCounts() {_counts.Clear();_counts["residential"]=0;_counts["commercial"]=0;_counts["industrial"]=0;_vacancies=0;_jobCount=0;_buildingStates.Clear();ResetLaborInventory();}
@@ -226,7 +226,7 @@ public partial class PopulationState : RefCounted
     private long Candidate(int stage)
     {
         if(stage<0||stage>=5)return -1;var list=_vacancyLists[stage];int cursor=_vacancyCursor[stage];
-        while(cursor<list.Count) {var work=_works[list[cursor]];if(work.Filled[stage]<work.Slots[stage])break;cursor++;}
+        while(cursor<list.Count) {var work=_works[list[cursor]];if(AcceptsWorkers(list[cursor])&&work.Filled[stage]<work.Slots[stage])break;cursor++;}
         _vacancyCursor[stage]=cursor;return cursor<list.Count?list[cursor]:-1;
     }
     private void FillWaiting(int first,int last)
@@ -272,9 +272,9 @@ public partial class PopulationState : RefCounted
     {
         if(advanceAges)AdvanceAges(seconds);
         _cohortEnd=_people.Count;_deferMatching=true;SyncInternal(buildings);_deferMatching=false;
-        if(!_households.Any(h=>h.Home==-1))foreach(var b in buildings)
+        if(!_households.Any(h=>h.Home==-1)&&(!_taxEnabled||_departedHouseholds==0||_works.Values.Any(w=>FreeLaborSlots(w).Any(n=>n>0))))foreach(var b in buildings)
         {
-            if(b.Zone!="residential"||HomeCount(b.Id)>=_homes[b.Id])continue;
+            if(b.Zone!="residential"||HomeCount(b.Id)>=_homes[b.Id]||!AcceptsHouseholds(b.Id))continue;
             var h=new Household {Id=_nextHousehold++,Home=-1};_households.Add(h);Move(h,b.Id);
             for(int i=0;i<_immigrantAdults;i++)Add(h.Id,RandomEducation(),_rng.RandfRange(20,50),"immigrant");break;
         }
@@ -327,12 +327,14 @@ public partial class PopulationState : RefCounted
     private static A ToArray(int[] values) {var result=new A();foreach(int n in values)result.Add(n);return result;}
     public D ExportState()
     {
-        var people=new A();foreach(var p in _people)people.Add(PersonState(p));var households=new A();foreach(var h in _households)households.Add(new D {["id"]=h.Id,["home_id"]=h.Home});
+        var people=new A();foreach(var p in _people)people.Add(PersonState(p));var households=new A();foreach(var h in _households){var d=new D {["id"]=h.Id,["home_id"]=h.Home};if(_finances.TryGetValue(h.Id,out var f))d["finances"]=ExportFinance(f);households.Add(d);}
         var works=new D();foreach(long id in _workOrder) {var w=_works[id];var state=new D {["id"]=id,["slots"]=ToArray(w.Slots),["filled"]=ToArray(w.Filled)};if(w.HasZone)state["zone"]=w.Zone;works[id]=state;}
         return new D {["people"]=people,["households"]=households,["workplaces"]=works};
     }
     public void ImportState(A people,A households,D works)
     {
+        var finances=new Dictionary<long,HouseholdFinance>();foreach(var value in households){var d=value.AsGodotDictionary();if(d.TryGetValue("finances",out var f))finances.Add(Id(d,"id"),ParseFinance(f.AsGodotDictionary()));}
+        _finances.Clear();foreach(var pair in finances)_finances.Add(pair.Key,pair.Value);_financeFactors.Clear();_financeSummary=null;
         _people.Clear();_households.Clear();_families.Clear();_works.Clear();_workOrder.Clear();
         foreach(var value in people)
         {
@@ -342,5 +344,6 @@ public partial class PopulationState : RefCounted
         foreach(var value in households) {var d=value.AsGodotDictionary();_households.Add(new Household {Id=Id(d,"id"),Home=Id(d,"home_id")});}
         foreach(var key in works.Keys) {long id=key.AsInt64();var d=works[key].AsGodotDictionary();_works[id]=new Work {Id=id,Zone=d.TryGetValue("zone",out var zone)?zone.AsString():"",HasZone=d.ContainsKey("zone"),Slots=Ints(d["slots"]),Filled=Ints(d["filled"])};_workOrder.Add(id);}
         _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();InvalidateManagedSnapshots();InvalidateLaborImport();IndexHouseholds();IndexVacancies();
+        RebuildFinanceFactors();
     }
 }

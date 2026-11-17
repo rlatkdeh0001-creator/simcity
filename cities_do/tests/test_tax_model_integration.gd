@@ -84,6 +84,19 @@ func run():
  check(c.simulation.export_validation_state().population.labor_policy.enabled,"tax integration preserves production labor opt-in")
  c.simulation.shutdown()
  root.size=Vector2i(1280,820)
+ var household_city=town();household_city.happiness_enabled=true
+ household_city.enable_taxation();household_city.configure_tax_policy({"wages":[0,0,0,0,0]})
+ household_city.advance_happiness(3600)
+ var happiness_checkpoint:Dictionary=household_city.happiness.core.ExportCityCheckpoint()
+ happiness_checkpoint.elapsed=86400.0-48.0;happiness_checkpoint.next_day=86400.0
+ household_city.happiness.core.ImportCityCheckpoint(happiness_checkpoint)
+ household_city.clock.game_seconds=86400.0-48.0
+ household_city.enable_simulation_worker();household_city.simulation.worker.Suspend()
+ step(household_city)
+ check(household_city.happiness.inspect(1).factors.goods==-15,"native same-day happiness consumes settled necessities, not yesterday fulfillment")
+ var finance_summary:Dictionary=household_city.tax_status().household_finances
+ check(finance_summary.is_read_only() and finance_summary.goods_cost>0 and finance_summary.goods_paid==0,"native immutable small household summary publishes actual shortages")
+ household_city.simulation.shutdown()
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);game.set_process(false)
  await process_frame
  check(game.city.tax_status().enabled,"actual production scene explicitly opts in")

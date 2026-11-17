@@ -6,7 +6,7 @@ using D=Godot.Collections.Dictionary;
 
 public partial class HappinessCore
 {
-    private readonly record struct ScoreInputs(double Employment,double Health,double Police,double Fire,double Education,double Park,double Housing,double Pollution,bool Power,bool Water);
+    private readonly record struct ScoreInputs(double Employment,double Health,double Police,double Fire,double Education,double Park,double Housing,double Pollution,bool Power,bool Water,double Goods,double Tax);
     private sealed class CachedTarget
     {
         internal double? Pollution;internal bool? Park;internal ScoreInputs? Inputs;internal D Result=new();
@@ -31,7 +31,7 @@ public partial class HappinessCore
     }
     private D EvaluateScore(ScoreInputs inputs)=>Score(new D {["employment"]=inputs.Employment,["power"]=inputs.Power,["water"]=inputs.Water,
         ["health"]=inputs.Health,["police"]=inputs.Police,["fire"]=inputs.Fire,["education"]=inputs.Education,
-        ["park"]=inputs.Park,["housing"]=inputs.Housing,["pollution_noise"]=inputs.Pollution});
+        ["goods"]=inputs.Goods,["tax"]=inputs.Tax,["park"]=inputs.Park,["housing"]=inputs.Housing,["pollution_noise"]=inputs.Pollution});
     private static bool SameSource(Building a,Building b)=>a.Zone==b.Zone&&a.Position==b.Position;
     private static bool SameFacility(Facility a,Facility b)=>a.Kind==b.Kind&&a.Position==b.Position&&a.Road==b.Road&&a.Polygon.SequenceEqual(b.Polygon);
     private void DirtyPollution(IEnumerable<Building> buildings)

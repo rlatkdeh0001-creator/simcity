@@ -99,7 +99,7 @@ public partial class PopulationState
             while(cursor<candidates.Count)
             {
                 var candidate=candidates[cursor];
-                if(_works.TryGetValue(candidate.Work,out var w)&&w.Filled[candidate.Stage]+InboundReserved(w.Id,candidate.Stage)<w.Slots[candidate.Stage])
+                if(_works.TryGetValue(candidate.Work,out var w)&&AcceptsWorkers(candidate.Work)&&w.Filled[candidate.Stage]+InboundReserved(w.Id,candidate.Stage)<w.Slots[candidate.Stage])
                 {p.Work=candidate.Work;p.Stage=candidate.Stage;w.Filled[p.Stage]++;UpdateHappiness(p);break;}
                 cursor++;
             }

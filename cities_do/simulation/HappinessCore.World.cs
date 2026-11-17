@@ -194,7 +194,8 @@ public partial class HappinessCore
         if(students>0)for(int i=0;i<4;i++)education+=Service(b,"education",i)*people.Students[i]/students;
         return new ScoreInputs(people.Eligible>0?(double)people.Employed/people.Eligible:0,
             Service(b,"health"),Service(b,"police"),Service(b,"fire"),education,
-            park?5:0,_states[b.Id].Housing,pollution,b.Power,b.Water);
+            park?5:0,_states[b.Id].Housing,pollution,b.Power,b.Water,
+            _population?.FinanceFactors(b.Id).Goods??_goods,_population?.FinanceFactors(b.Id).Tax??_tax);
     }
     private D Calculate(Building b)=>CachedScore(b,InputsFor(b,CachedPollution(b),CachedPark(b)));
     public D Preview(long id)
@@ -253,6 +254,17 @@ public partial class HappinessCore
                 int neighbors=b.Zone=="residential"?HigherNeighbors(b):0;
                 s.Housing+=Math.Sign(Math.Min(5,neighbors)-s.Housing);Target(b,s);
                 s.Actual+=Math.Clamp(s.Target-s.Actual,-5,5);Observe(b,s);updates[b.Id]=Inspect(b.Id);
+            }
+            if(_population!=null)
+            {
+                var housing=new Dictionary<long,PopulationState.HousingCondition>();
+                foreach(var b in _buildings.Values)
+                {
+                    var s=_states[b.Id];Target(b,s);
+                    double infrastructure=_population.FringeInfrastructure(b.Id,Service(b,"health"),Service(b,"police"),Service(b,"fire"),Service(b,"education"),CachedPark(b),b.Power,b.Water,b.Road>=0);
+                    housing[b.Id]=new(b.Level,s.Actual,s.Target,infrastructure);
+                }
+                _population.ApplyHousingHappiness((long)Math.Floor(_nextDay/86400),housing);RefreshGroups();
             }
             _nextDay+=86400;
         }

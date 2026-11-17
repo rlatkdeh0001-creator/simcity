@@ -292,3 +292,7 @@
 세금,tax.demand_slope,저단계 수요 계수,0.06,배율/%p,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,1 - 계수*(세율-9); 0~1.5 범위; 기존 건물 수 곱 후 내림
 세금,tax.growth_per_point,성장 기준 가산,2,행복도/%p,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,9% 초과분; target3·4는 중급 세율 target5는 최고 세율
 세금,tax.growth_max,성장 기준 최대 가산,20,행복도,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,9% 이하는 기준을 낮추지 않음
+가구재정,finance.initial_cash,신규 가구 초기 현금,0,doth,임시값·T3 적용,가구,cities_do/simulation/PopulationState.Finances.cs,초기 지원금 없음; 설정 분리
+가구재정,finance.necessities,1인 생필품 일비용,8,doth/인/게임일,임시값·T3 적용,가구,cities_do/simulation/PopulationState.Finances.cs,소득과 저축에서 세금 다음 지불; 충족률 행복도 반영
+이사,finance.workplace_low_days,사업장 낮은 행복도 지속,3,게임일,임시값·T3 적용,사업장,cities_do/simulation/PopulationState.Moving.cs,회복시 연속일수 초기화
+이사,finance.workplace_move_fraction,일별 사업장 이동 비율,0.2,비율,임시값·T3 적용,사업장,cities_do/simulation/PopulationState.Moving.cs,대상 수 올림; 더 좋은 도달가능 직장 우선

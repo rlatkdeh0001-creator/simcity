@@ -31,7 +31,7 @@ public partial class PopulationState
     }
     private bool LaborExternal(Person p)=>_laborEnabled&&_laborOutbound.ContainsKey(p.Id);
     private int InboundReserved(long work,int stage)=>_laborEnabled&&_laborInbound.TryGetValue(work,out var slots)?slots[stage]:0;
-    private int[] FreeLaborSlots(Work work)=>Enumerable.Range(0,5).Select(stage=>Math.Max(0,work.Slots[stage]-work.Filled[stage]-InboundReserved(work.Id,stage))).ToArray();
+    private int[] FreeLaborSlots(Work work)=>Enumerable.Range(0,5).Select(stage=>AcceptsWorkers(work.Id)?Math.Max(0,work.Slots[stage]-work.Filled[stage]-InboundReserved(work.Id,stage)):0).ToArray();
 
     /// <summary>Worker-only owned copies. Daily neighbor planner must preserve or
     /// replace existing assignments explicitly; no connectivity/vehicle simulation
@@ -87,7 +87,7 @@ public partial class PopulationState
         foreach(var pair in requestedInbound.OrderBy(p=>p.Key))
         {
             var accepted=new int[5];_works.TryGetValue(pair.Key,out var work);
-            for(int stage=0;stage<5;stage++){accepted[stage]=work==null?0:Math.Min(pair.Value[stage],Math.Max(0,work.Slots[stage]-work.Filled[stage]));rejectedInbound+=pair.Value[stage]-accepted[stage];}
+            for(int stage=0;stage<5;stage++){accepted[stage]=work==null||!AcceptsWorkers(pair.Key)?0:Math.Min(pair.Value[stage],Math.Max(0,work.Slots[stage]-work.Filled[stage]));rejectedInbound+=pair.Value[stage]-accepted[stage];}
             if(accepted.Any(n=>n>0))acceptedInbound[pair.Key]=accepted;
         }
         _pendingLaborPlan=null;

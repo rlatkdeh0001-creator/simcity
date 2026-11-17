@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using D=Godot.Collections.Dictionary;
 public partial class TaxProbe:RefCounted
@@ -72,6 +73,105 @@ public partial class TaxProbe:RefCounted
         p.ConfigureTaxPolicy(new D{["wages"]=new Godot.Collections.Array{1,2,3,4,5}});Check(p.GetHouseholdTaxBasis(1)==2&&p.GetBusinessTaxBasis(2)==2,"configurable wage table applies to both bases");
         p.GetRng().Dispose();
     }
+    private void HouseholdFinanceTests()
+    {
+        var inspect=typeof(PopulationState).GetMethod("GetHouseholdFinances");
+        Check(inspect!=null,"T3 household cash settlement exists");if(inspect==null)return;
+        using var p=new PopulationState();p.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());
+        p.ConfigureTaxPolicy(new D{["enabled"]=true});
+        var people=new Godot.Collections.Array();
+        for(int i=1;i<=4;i++)people.Add(new D{["id"]=i,["household_id"]=1,["education"]=0,["age_years"]=25.0,["origin"]="fixture",["workplace_id"]=i<=2?2:-1,["job_stage"]=i<=2?0:-1});
+        p.ImportState(people,new Godot.Collections.Array{new D{["id"]=1,["home_id"]=1}},new D());
+        long[] buildings={1,0,2,1,2,1,2,1};p.SyncPacked(buildings);
+        D Cash()=>(D)inspect.Invoke(p,new object[]{1L})!;
+        p.AssessTaxesThroughDay(1,buildings);
+        Check(Math.Abs(Cash()["cash"].AsDouble()-22.6)<1e-9,"T3 actual wages minus tax then necessities carry 22.6");
+        Check(Cash()["income"].AsDouble()==60&&Cash()["goods_ratio"].AsDouble()==1,"T3 income only employed and all four residents consume");
+        p.AssessTaxesThroughDay(1,buildings);Check(Math.Abs(Cash()["cash"].AsDouble()-22.6)<1e-9,"T3 repeated day no second wages or consumption");
+        var saved=p.ExportCityCheckpoint();using var restored=new PopulationState();
+        restored.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());
+        restored.ImportState(saved["people"].AsGodotArray(),saved["households"].AsGodotArray(),saved["workplaces"].AsGodotDictionary());restored.ImportTaxCheckpoint(saved["tax_policy"].AsGodotDictionary());restored.SyncPacked(buildings);
+        Check(Json.Stringify(Cash())==Json.Stringify((D)inspect.Invoke(restored,new object[]{1L})!),"T3 checkpoint preserves exact cash and last settlement");
+        p.ConfigureTaxPolicy(new D{["wages"]=new Godot.Collections.Array{0,0,0,0,0}});p.AssessTaxesThroughDay(2,buildings);
+        Check(Cash()["cash"].AsDouble()==0&&Math.Abs(Cash()["goods_ratio"].AsDouble()-22.6/32)<1e-9,"T3 savings drawn before proportional shortages");
+        using var happiness=new HappinessCore();happiness.BindPopulation(p);
+        happiness.SetWorld(new Godot.Collections.Array{new D{["id"]=1,["zone"]="residential",["level"]=1,["position"]=Vector2.Zero,["power"]=true,["water"]=true}},new Godot.Collections.Array(),System.Array.Empty<double>());
+        var factors=happiness.Preview(1)["factors"].AsGodotDictionary();
+        Check(factors.Count==14&&!factors.ContainsKey("commute"),"T3 thirteen factors plus base, no obsolete commute factor");
+        Check(Math.Abs(factors["goods"].AsDouble()-(-15+25*22.6/32))<1e-9,"T3 actual family necessities drive building happiness");
+        p.AssessTaxesThroughDay(3,buildings);Check(happiness.Preview(1)["factors"].AsGodotDictionary()["goods"].AsDouble()==-15,"T3 score cache sees newly exhausted savings");
+        var legacy=p.ExportState();var beforeCash=Json.Stringify(Cash());p.ImportState(legacy["people"].AsGodotArray(),legacy["households"].AsGodotArray(),legacy["workplaces"].AsGodotDictionary());
+        Check(Json.Stringify(Cash())==beforeCash,"T3 legacy population roundtrip preserves settled cash");
+        var cp=restored.ExportTaxCheckpoint();var arrears=cp.Duplicate(true);var household=arrears["household_finances"].AsGodotDictionary()[1].AsGodotDictionary();household["assessed"]="30";household["paid"]="2";restored.ImportTaxCheckpoint(arrears);
+        using var penalty=new HappinessCore();penalty.BindPopulation(restored);penalty.SetWorld(new Godot.Collections.Array{new D{["id"]=1,["zone"]="residential",["level"]=1,["position"]=Vector2.Zero,["power"]=true,["water"]=true}},new Godot.Collections.Array(),System.Array.Empty<double>());
+        Check(penalty.Preview(1)["factors"].AsGodotDictionary()["tax"].AsDouble()==-10,"T3 unpaid residential assessment causes tax minus ten, independent of rate");
+        restored.GetRng().Dispose();p.GetRng().Dispose();
+    }
+    private void MovingTests()
+    {
+        using var p=new PopulationState();p.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());p.ConfigureTaxPolicy(new D{["enabled"]=true});
+        var people=new Godot.Collections.Array();var households=new Godot.Collections.Array();
+        for(int i=1;i<=5;i++){households.Add(new D{["id"]=i,["home_id"]=1});people.Add(new D{["id"]=i,["household_id"]=i,["education"]=0,["age_years"]=25.0,["origin"]="fixture",["workplace_id"]=3,["job_stage"]=0});}
+        long[] buildings={1,0,4,5,2,0,4,1,3,1,4,1};p.ImportState(people,households,new D());p.SyncPacked(buildings);p.AssessTaxesThroughDay(1,buildings);
+        using var h=new HappinessCore();h.BindPopulation(p);
+        h.SetWorld(new Godot.Collections.Array{new D{["id"]=1,["zone"]="residential",["level"]=5,["position"]=Vector2.Zero,["power"]=false,["water"]=true},new D{["id"]=2,["zone"]="residential",["level"]=1,["position"]=new Vector2(1000,0),["power"]=true,["water"]=true}},new Godot.Collections.Array(),System.Array.Empty<double>());
+        for(int i=0;i<75;i++)h.Tick(.001,System.Array.Empty<long>());
+        h.Tick(86400,System.Array.Empty<long>());h.Tick(86400,System.Array.Empty<long>());
+        int At(long id)=>p.ExportState()["households"].AsGodotArray().Count(v=>v.AsGodotDictionary()["home_id"].AsInt64()==id);
+        Check(At(1)==5,"T3 no environmental moves before third consecutive day");
+        var checkpoint=p.ExportCityCheckpoint();using var restored=new PopulationState();restored.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());
+        restored.ImportState(checkpoint["people"].AsGodotArray(),checkpoint["households"].AsGodotArray(),checkpoint["workplaces"].AsGodotDictionary());restored.ImportTaxCheckpoint(checkpoint["tax_policy"].AsGodotDictionary());restored.SyncPacked(buildings);
+        using var restoredHappiness=new HappinessCore();restoredHappiness.BindPopulation(restored);restoredHappiness.ImportCityCheckpoint(h.ExportCityCheckpoint());
+        restoredHappiness.Tick(86400,System.Array.Empty<long>());
+        Check(restored.ExportState()["households"].AsGodotArray().Count(v=>v.AsGodotDictionary()["home_id"].AsInt64()==2)==1,"T3 restore preserves two-day moving streak");
+        h.Tick(86400,System.Array.Empty<long>());Check(At(1)==4&&At(2)==1,"T3 third low day moves ceil twenty percent to better target");
+        var recovered=new System.Collections.Generic.Dictionary<long,PopulationState.HousingCondition>{{1,new(5,60,0,0)},{2,new(1,50,50,50)}};
+        p.ApplyHousingHappiness(4,recovered);Check(At(1)==4,"T3 stage five exact retention threshold stops moves");
+        recovered[1]=new(5,59,0,0);p.ApplyHousingHappiness(5,recovered);p.ApplyHousingHappiness(6,recovered);Check(At(1)==4,"T3 recovery resets consecutive low-day streak");
+        p.ApplyHousingHappiness(7,recovered);Check(At(1)==3,"T3 renewed third low day resumes migration");p.ApplyHousingHappiness(7,recovered);Check(At(1)==3,"T3 repeated migration boundary idempotent");
+        recovered[2]=new(1,0,0,50);p.ApplyHousingHappiness(8,recovered);Check(At(1)==3,"T3 employed households stay when no strictly better target exists");
+        restored.GetRng().Dispose();p.GetRng().Dispose();
+        PovertyTests();
+        WorkplaceMovingTests();
+    }
+    private void WorkplaceMovingTests()
+    {
+        using var p=new PopulationState();p.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());p.ConfigureTaxPolicy(new D{["enabled"]=true});
+        var person=new D{["id"]=1,["household_id"]=1,["education"]=0,["age_years"]=25.0,["origin"]="fixture",["workplace_id"]=2,["job_stage"]=0};
+        long[] buildings={1,0,2,1,2,1,2,1,3,1,2,1};p.ImportState(new Godot.Collections.Array{person},new Godot.Collections.Array{new D{["id"]=1,["home_id"]=1}},new D());p.SyncPacked(buildings);p.MatchJobs();p.AssessTaxesThroughDay(1,buildings);
+        var conditions=new System.Collections.Generic.Dictionary<long,PopulationState.HousingCondition>{{1,new(1,50,50,80)},{2,new(1,0,0,10)},{3,new(1,50,50,50)}};
+        for(int day=1;day<=3;day++)p.ApplyHousingHappiness(day,conditions);
+        Check(p.ExportState()["people"].AsGodotArray()[0].AsGodotDictionary()["workplace_id"].AsInt64()==3,"T3 unhappy workplace transfers worker to better eligible vacancy");
+        Check(p.WorkplaceInfo(2)["filled"].AsGodotArray().All(v=>v.AsInt64()==0),"T3 vacant workplace retains building but no workers");
+        p.SetNextPerson(10);p.AddPerson(1,0,25,"fixture");p.MatchJobs();
+        Check(p.WorkplaceInfo(2)["filled"].AsGodotArray().All(v=>v.AsInt64()==0),"T3 newly empty unhappy workplace cannot immediately refill");
+        p.GetRng().Dispose();
+    }
+    private void PovertyTests()
+    {
+        using var p=new PopulationState();p.Configure(Json.ParseString(FileAccess.GetFileAsString("res://core/population_config.json")).AsGodotDictionary());p.ConfigureTaxPolicy(new D{["enabled"]=true});
+        var person=new D{["id"]=1,["household_id"]=1,["education"]=0,["age_years"]=25.0,["origin"]="fixture",["workplace_id"]=-1,["job_stage"]=-1};
+        long[] buildings={1,0,2,1,2,0,2,1};p.ImportState(new Godot.Collections.Array{person},new Godot.Collections.Array{new D{["id"]=1,["home_id"]=1}},new D());p.SyncPacked(buildings);p.AssessTaxesThroughDay(1,buildings);
+        var conditions=new System.Collections.Generic.Dictionary<long,PopulationState.HousingCondition>{{1,new(1,20,0,80)},{2,new(1,0,0,10)}};
+        for(int day=1;day<=3;day++)p.ApplyHousingHappiness(day,conditions);
+        Check(p.ExportState()["households"].AsGodotArray()[0].AsGodotDictionary()["home_id"].AsInt64()==2,"T3 no income moves to lower infrastructure even without happy target");
+        for(int day=4;day<=10;day++)p.ApplyHousingHappiness(day,conditions);
+        Check(p.Stats()["population"].AsInt64()==0&&p.Stats()["households"].AsInt64()==0,"T3 repeated poverty after fringe reset departs cleanly");
+        p.SetNextPerson(10);p.SetNextHousehold(10);p.AdvancePacked(48,buildings);p.MatchJobs();
+        Check(p.Stats()["population"].AsInt64()==0,"T3 empty low-target housing cannot instantly refill without jobs");
+        conditions[1]=new(1,100,100,80);conditions[2]=new(1,100,100,10);p.ApplyHousingHappiness(11,conditions);p.AdvancePacked(48,buildings);p.MatchJobs();
+        Check(p.Stats()["population"].AsInt64()==0,"T3 recovered vacant houses cannot recruit unemployed replacements without jobs");
+        Check(p.GetTaxStatus()["moving"].AsGodotDictionary()["departed_households"].AsInt64()==1,"T3 departure statistics published");
+        var policy=p.GetTaxPolicy();Check(policy.ContainsKey("fringe_infrastructure_weights"),"T3 missing infrastructure coefficients are reversible policy values");
+        Check(policy.ContainsKey("workplace_low_days"),"T3 unspecified workplace persistence duration is reversible policy");
+        var settled=typeof(PopulationState).GetMethod("SettleHouseholdPayment",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic);
+        Check(settled!=null,"T3 limited-cash payment primitive available");
+        if(settled!=null){var paid=((decimal Cash,decimal Tax,decimal Goods))settled.Invoke(null,new object[]{1m,2m,8m,8m})!;Check(paid.Cash==0&&paid.Tax==3&&paid.Goods==0,"T3 short tax paid before necessities, never negative cash");}
+        person["workplace_id"]=2;person["job_stage"]=0;p.ImportState(new Godot.Collections.Array{person},new Godot.Collections.Array{new D{["id"]=1,["home_id"]=-1}},new D());
+        long[] homeless={2,1,2,1};p.SyncPacked(homeless);p.AssessTaxesThroughDay(2,homeless);
+        Check(p.GetHouseholdFinances(1)["cash"].AsDouble()==22,"T3 displaced household still earns wages and consumes without residential tax");
+        p.GetRng().Dispose();
+    }
     public D Run()
     {
         using var p=new PopulationState();
@@ -110,7 +210,7 @@ public partial class TaxProbe:RefCounted
         p.ConfigureTaxPolicy(new D{["enabled"]=false});Check(p.TaxDemandMultiplier("residential")==1&&p.TaxGrowthThreshold("residential",5,80)==80,"fixture disable removes all policy effects");
         var fileConfig=Json.ParseString(FileAccess.GetFileAsString("res://core/tax_config.json")).AsGodotDictionary();p.ConfigureTaxPolicy(fileConfig);
         Check(!p.GetTaxPolicy()["enabled"].AsBool()&&p.GetTaxPolicy()["wages"].AsGodotArray()[4].AsDouble()==100,"explicit resource config uses approved education wages and opt-in");
-        AssessmentTests(p);CommutingTests();
+        AssessmentTests(p);CommutingTests();HouseholdFinanceTests();MovingTests();
         p.GetRng().Dispose();return new D{["checks"]=checks,["failures"]=failures};
     }
 }

@@ -21,10 +21,22 @@ public partial class PopulationState
     public void ConfigureTaxPolicy(D options)
     {
         var rates=(int[])_taxRates.Clone();var wages=(decimal[])_taxWages.Clone();decimal slope=_taxDemandSlope;
+        decimal initial=options.TryGetValue("initial_household_cash",out var cash)?TaxNumber(cash):_initialHouseholdCash;
+        decimal needs=options.TryGetValue("necessities_per_person",out var goods)?TaxNumber(goods):_necessitiesPerPerson;
+        var infrastructure=(double[])_fringeInfrastructureWeights.Clone();
+        if(options.TryGetValue("fringe_infrastructure_weights",out var iw)){var a=iw.AsGodotArray();if(a.Count!=10)throw new ArgumentException("Ten infrastructure weights required");for(int i=0;i<10;i++)infrastructure[i]=(double)TaxNumber(a[i]);if(infrastructure.Sum()<=0)throw new ArgumentException("Positive infrastructure weight sum required");}
+        double access=options.TryGetValue("fringe_access_metres",out var am)?(double)TaxNumber(am):_fringeAccessMetres;
+        double workFraction=options.TryGetValue("workplace_move_fraction",out var wf)?(double)TaxNumber(wf):_workplaceMoveFraction;
+        if(workFraction>1)throw new ArgumentException("Workplace move fraction must be 0..1");
+        decimal workDays=options.TryGetValue("workplace_low_days",out var wd)?TaxNumber(wd):_workplaceLowDays;
+        if(workDays<1||workDays>365||workDays!=decimal.Truncate(workDays))throw new ArgumentException("Workplace low days must be integer 1..365");
         bool enabled=options.TryGetValue("enabled",out var e)?e.AsBool():_taxEnabled;
         if(options.TryGetValue("rates",out var r)){var a=r.AsGodotArray();if(a.Count!=9)throw new ArgumentException("Nine tax rates required");for(int i=0;i<9;i++){decimal n=TaxNumber(a[i]);if(n>20||n!=decimal.Truncate(n))throw new ArgumentException("Tax rates must be integers 0..20");rates[i]=(int)n;}}
         if(options.TryGetValue("wages",out var w)){var a=w.AsGodotArray();if(a.Count!=5)throw new ArgumentException("Five education wages required");for(int i=0;i<5;i++)wages[i]=TaxNumber(a[i]);}
         if(options.TryGetValue("demand_slope",out var s))slope=TaxNumber(s);
+        _initialHouseholdCash=initial;_necessitiesPerPerson=needs;
+        _fringeInfrastructureWeights=infrastructure;_fringeAccessMetres=access;_workplaceMoveFraction=workFraction;
+        _workplaceLowDays=(int)workDays;
         _taxRates=rates;_taxWages=wages;_taxDemandSlope=slope;_taxEnabled=enabled;InvalidateManagedSnapshots();
     }
     private decimal TaxMultiplier(string zone)=>_taxEnabled?Math.Clamp(1-_taxDemandSlope*(_taxRates[TaxZone(zone)*3]-9),0,1.5m):1;
@@ -39,6 +51,7 @@ public partial class PopulationState
     public D GetTaxPolicy()
     {
         var rates=ToArray(_taxRates);rates.MakeReadOnly();var wages=new A();foreach(var w in _taxWages)wages.Add((double)w);wages.MakeReadOnly();
-        var d=new D{["enabled"]=_taxEnabled,["rates"]=rates,["wages"]=wages,["demand_slope"]=(double)_taxDemandSlope};d.MakeReadOnly();return d;
+        var weights=new A();foreach(var weight in _fringeInfrastructureWeights)weights.Add(weight);weights.MakeReadOnly();
+        var d=new D{["enabled"]=_taxEnabled,["rates"]=rates,["wages"]=wages,["initial_household_cash"]=(double)_initialHouseholdCash,["necessities_per_person"]=(double)_necessitiesPerPerson,["demand_slope"]=(double)_taxDemandSlope,["fringe_infrastructure_weights"]=weights,["fringe_access_metres"]=_fringeAccessMetres,["workplace_move_fraction"]=_workplaceMoveFraction,["workplace_low_days"]=_workplaceLowDays};d.MakeReadOnly();return d;
     }
 }

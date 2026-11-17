@@ -24,7 +24,7 @@ public partial class HappinessCore:RefCounted
         RequireBackgroundOwner();
         var config=_backgroundEnabled&&!IsBackgroundWorker?_mainConfiguration:new ConfigurationSnapshot(_goods,_commute,_garbage,_tax,_fireMultiplier);
         var factors=new D {["base"]=20.0,["money"]=-10+30*Math.Clamp(Number(input,"employment"),0,1),
-            ["goods"]=config.Goods,["commute"]=config.Commute,["garbage"]=config.Garbage,["tax"]=config.Tax,
+            ["goods"]=input.ContainsKey("goods")?Math.Clamp(Number(input,"goods"),-15,10):config.Goods,["garbage"]=config.Garbage,["tax"]=input.ContainsKey("tax")?Math.Clamp(Number(input,"tax"),-10,0):config.Tax,
             ["electricity"]=0.0,["water"]=0.0};
         foreach(string key in new[]{"health","police","fire","education"})factors[key]=Math.Clamp(Number(input,key),0,10);
         factors["park"]=Math.Clamp(Number(input,"park"),0,5);factors["housing"]=Math.Clamp(Number(input,"housing"),0,5);

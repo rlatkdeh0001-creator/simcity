@@ -64,16 +64,26 @@ func enable_taxation()->Dictionary:
 func configure_tax_policy(options:Dictionary)->Dictionary:
 	# Validate before queuing so malformed UI input cannot fault the worker.
 	for key in options:
-		if key not in ["enabled","rates","wages","demand_slope"]:return {"ok":false,"code":"invalid_tax_policy"}
+		if key not in ["enabled","rates","wages","demand_slope","initial_household_cash","necessities_per_person","fringe_infrastructure_weights","fringe_access_metres","workplace_move_fraction","workplace_low_days"]:return {"ok":false,"code":"invalid_tax_policy"}
 	if options.has("enabled") and not options.enabled is bool:return {"ok":false,"code":"invalid_tax_policy"}
 	for key in ["rates","wages"]:
 		if not options.has(key):continue
 		if not options[key] is Array or options[key].size()!=(9 if key=="rates" else 5):return {"ok":false,"code":"invalid_tax_policy"}
 		for v in options[key]:
 			if not (v is int or v is float) or not is_finite(float(v)) or v<0 or v>(20 if key=="rates" else 1000000000) or (key=="rates" and floorf(v)!=v):return {"ok":false,"code":"invalid_tax_policy"}
-	if options.has("demand_slope"):
-		var v=options.demand_slope
+	if options.has("fringe_infrastructure_weights"):
+		if not options.fringe_infrastructure_weights is Array or options.fringe_infrastructure_weights.size()!=10:return {"ok":false,"code":"invalid_tax_policy"}
+		var total:=0.0
+		for v in options.fringe_infrastructure_weights:
+			if not (v is int or v is float) or not is_finite(float(v)) or v<0 or v>1000000000:return {"ok":false,"code":"invalid_tax_policy"}
+			total+=float(v)
+		if total<=0:return {"ok":false,"code":"invalid_tax_policy"}
+	for key in ["demand_slope","initial_household_cash","necessities_per_person","fringe_access_metres","workplace_move_fraction","workplace_low_days"]:
+		if not options.has(key):continue
+		var v=options[key]
 		if not (v is int or v is float) or not is_finite(float(v)) or v<0 or v>1000000000:return {"ok":false,"code":"invalid_tax_policy"}
+		if key=="workplace_move_fraction" and v>1:return {"ok":false,"code":"invalid_tax_policy"}
+		if key=="workplace_low_days" and (v<1 or v>365 or floorf(v)!=v):return {"ok":false,"code":"invalid_tax_policy"}
 	if happiness.background_enabled:return {"ok":false,"code":"requires_city_worker"}
 	if _defer_simulation_edit(configure_tax_policy.bind(options.duplicate(true))):return _queued_simulation_edit()
 	if simulation!=null:simulation.note_tax_policy(options)
@@ -333,9 +343,9 @@ func advance_society(seconds: float) -> void:
 			population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
 		if population_enabled:commuting.advance(self)
+		_assess_tax_boundary()
 		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
-		_assess_tax_boundary()
 	if background and society_elapsed>=config.development_interval_seconds:
 		society_frozen_cycles+=int(floor(society_elapsed/config.development_interval_seconds))
 		society_elapsed=fposmod(society_elapsed,config.development_interval_seconds)
