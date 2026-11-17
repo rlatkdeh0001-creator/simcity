@@ -179,13 +179,13 @@
 주민·수요,population.immigrant_education_weights,immigrant_education_weights,"[1, 1, 1, 1, 1]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.working_age_years,working_age_years,18,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.initial_housing_target,initial_housing_target,8,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
-주민·수요,population.residents_per_commercial,residents_per_commercial,8,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
-주민·수요,population.residents_per_industrial,residents_per_industrial,12,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.residents_per_commercial,residents_per_commercial,8,설정별 단위: docs/POPULATION_TIME_KO.md,이전 규칙·호환 fixture 전용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
+주민·수요,population.residents_per_industrial,residents_per_industrial,12,설정별 단위: docs/POPULATION_TIME_KO.md,이전 규칙·호환 fixture 전용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.commercial_jobs,commercial_jobs,"[3, 2, 1, 1, 0]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.industrial_jobs,industrial_jobs,"[2, 2, 2, 1, 1]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.birth_probability_per_household_day,birth_probability_per_household_day,0.01,설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
 주민·수요,population.education_min_ages,education_min_ages,"[0, 12, 18, 20, 22]",설정별 단위: docs/POPULATION_TIME_KO.md,임시기본값·적용,주민/사업장,cities_do/core/population_config.json,과금 아님. 수용량/일자리/초기 수요/출생/교육 전제는 보고서 참조
-주민·수요,population.jobs_per_target_household,추가 주거 목표 일자리 기준,4,일자리/목표 가구,임시기본값·적용,주거 수요,cities_do/core/population.gd demand,"목표=최대(초기8가구, 올림(일자리/4)); 문서의 보수적 목표식. 과금 아님"
+주민·수요,population.jobs_per_target_household,추가 주거 목표 일자리 기준,4,일자리/목표 가구,이전 규칙·호환 fixture 전용,주거 수요,cities_do/core/population.gd demand,"목표=최대(초기8가구, 올림(일자리/4)); 문서의 보수적 목표식. 과금 아님"
 공공시설 용량,public.crematorium-4x4.capacity.storage,crematorium-4x4 storage,20,구,임시 승인 2026-11-11,crematorium-4x4,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
 공공시설 용량,public.crematorium-4x4.capacity.rated_throughput,crematorium-4x4 rated_throughput,12,구/게임일,임시 승인 2026-11-11,crematorium-4x4,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
 공공시설 용량,public.crematorium-4x4.capacity.average_throughput,crematorium-4x4 average_throughput,6,구/게임일,임시 승인 2026-11-11,crematorium-4x4,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
@@ -271,3 +271,5 @@
 공공시설 용량,public.parking-large-4x8.capacity.own_power_kw,parking-large-4x8 own_power_kw,0.8,kW,임시 승인 2026-11-11,parking-large-4x8,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
 공공시설 용량,public.parking-tower-4x4-4f.capacity.vehicles,parking-tower-4x4-4f vehicles,16,대,임시 승인 2026-11-11,parking-tower-4x4-4f,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
 공공시설 용량,public.parking-tower-4x4-4f.capacity.own_power_kw,parking-tower-4x4-4f own_power_kw,4,kW,임시 승인 2026-11-11,parking-tower-4x4-4f,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
+주민·수요,labor.jobs_per_worker,노동 인구 대비 필요 일자리,1.05,일자리/노동 인구,사용자확정·적용,상업·공업 수요,cities_do/core/labor_policy.json,2026-11-16 일자리 기준 규칙
+주민·수요,labor.commercial_share,필요 일자리 상업 비중,0.60,비율,사용자확정·적용,상업·공업 수요,cities_do/core/labor_policy.json,공업은 잔여40%; 신축2x2 정원으로 나눠 올림

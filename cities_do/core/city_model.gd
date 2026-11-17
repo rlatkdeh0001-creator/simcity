@@ -48,6 +48,12 @@ var population_enabled := true
 var happiness_enabled := true
 var happiness
 var simulation # Main-only facade; the detached model leaves this null.
+var _labor_world_dirty:=true
+var _commuting_generation:=0
+var commuting=preload("res://core/commuting_coordinator.gd").new()
+var _commuting_summary:Dictionary={}
+func commuting_status()->Dictionary:
+	return _commuting_summary.duplicate(true) if simulation!=null else commuting.status()
 var society_elapsed := 0.0
 var society_frozen_cycles := 0 # Debug only; never shown in HUD.
 var zone_designations := {} # Stable parcel ID -> residential/commercial/industrial.
@@ -76,6 +82,7 @@ func _init(w: int = 40, h: int = 40, seed_value: int = 42):
 	width = w
 	height = h
 	population=Population.new(seed_value)
+	population.bind_labor_city(self,JSON.parse_string(FileAccess.get_file_as_string("res://core/labor_policy.json")))
 	rng.seed = seed_value
 	appearance_rng.seed = seed_value ^ 0x5f3759df
 	power = PowerGrid.new(Vector2(w,h)*4.0)
@@ -283,6 +290,7 @@ func advance_society(seconds: float) -> void:
 			population.begin_tick()
 			population.advance(config.development_interval_seconds*Clock.SCALE,buildings)
 		advance_development(config.development_interval_seconds)
+		if population_enabled:commuting.advance(self)
 		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
 	if background and society_elapsed>=config.development_interval_seconds:
@@ -294,6 +302,8 @@ func advance_happiness(game_seconds:float)->void:
 	if happiness_enabled and population_enabled:happiness.advance(game_seconds)
 
 func orient_building(b: Dictionary) -> void:
+	_labor_world_dirty=true
+	_commuting_generation+=1
 	utilities.mark_dirty()
 	if happiness!=null:happiness.mark_dirty()
 	Frontage.resolve(b,footprint(b),roads,config.road_access_distance)
@@ -466,6 +476,8 @@ func demolish(kind: String, id: int) -> Dictionary:
 					if population.has_method("remove_building"):population.remove_building(id)
 					if simulation!=null:simulation.remove_building(id)
 					buildings.remove_at(i)
+					_labor_world_dirty=true
+					_commuting_generation+=1
 					removed=true
 					break
 		"road":
@@ -621,6 +633,7 @@ func advance_water(days: float) -> Dictionary:
 	return state
 
 func add_external_link(kind: String, points: PackedVector2Array, commit: bool = true) -> Dictionary:
+	if commit and _defer_simulation_edit(add_external_link.bind(kind,points.duplicate(),true)):return _queued_simulation_edit()
 	if kind not in ["rail","power","metro","water","sewage"]:
 		return {"ok":false,"reason":"지원하지 않는 기반 시설입니다. 도로는 add_road를 사용하세요"}
 	var error := RegionalExchange.path_error(points,width,height)
@@ -629,12 +642,17 @@ func add_external_link(kind: String, points: PackedVector2Array, commit: bool = 
 	if commit:
 		external_infrastructure.append(link)
 		next_external_link_id += 1
+		_commuting_generation+=1
+		if simulation!=null:simulation.note_world_dirty("external_infrastructure")
 	return {"ok":true,"link":link}
 
 func remove_external_link(id: int) -> bool:
+	if _defer_simulation_edit(remove_external_link.bind(id)):return true
 	for i in range(external_infrastructure.size()):
 		if external_infrastructure[i].id == id:
 			external_infrastructure.remove_at(i)
+			_commuting_generation+=1
+			if simulation!=null:simulation.note_world_dirty("external_infrastructure")
 			return true
 	return false
 
@@ -721,6 +739,8 @@ func upgrade_chain(id: int) -> Dictionary:
 
 
 func _update_zoning_for_road(_road: Dictionary):
+	_labor_world_dirty=true
+	_commuting_generation+=1
 	_simulation_world_changed()
 	# Upgrade saved footprints only; never remove/move authored roads or buildings.
 	for road in roads:

@@ -116,12 +116,14 @@ public partial class PopulationState : RefCounted
     private void IndexHouseholds() { _homeCounts.Clear(); foreach(var h in _households)_homeCounts[h.Home]=HomeCount(h.Home)+1; }
     private void Move(Household h,long id)
     {
-        long old=h.Home;if(old==id)return; bool counting=_reconciliationValid||_demandValid||_demandPrepared;
+        long old=h.Home;if(old==id)return;
+        ReleaseLaborHomeJobs(h);
+        bool counting=_reconciliationValid||_demandValid||_demandPrepared;
         if(counting&&_homes.ContainsKey(old))_vacancies-=Vacant(old);
         if(old!=-1)_homeCounts[old]=Math.Max(0,HomeCount(old)-1);
         if(counting&&_homes.ContainsKey(old))_vacancies+=Vacant(old);
         if(counting&&_homes.ContainsKey(id))_vacancies-=Vacant(id);
-        h.Home=id;if(id!=-1)_homeCounts[id]=HomeCount(id)+1;
+        h.Home=id;_laborHouseholdHomes[h.Id]=id;if(id!=-1)_homeCounts[id]=HomeCount(id)+1;
         if(counting&&_homes.ContainsKey(id))_vacancies+=Vacant(id);
         MoveHappiness(h);
     }
@@ -130,7 +132,7 @@ public partial class PopulationState : RefCounted
         var available=_homeOrder.Where(id=>Vacant(id)>0).ToArray();int cursor=0;
         foreach(var h in _households) {if(h.Home!=-1)continue;while(cursor<available.Length&&Vacant(available[cursor])==0)cursor++;if(cursor==available.Length)break;Move(h,available[cursor]);}
     }
-    private void ResetCounts() {_counts.Clear();_counts["residential"]=0;_counts["commercial"]=0;_counts["industrial"]=0;_vacancies=0;_jobCount=0;_buildingStates.Clear();}
+    private void ResetCounts() {_counts.Clear();_counts["residential"]=0;_counts["commercial"]=0;_counts["industrial"]=0;_vacancies=0;_jobCount=0;_buildingStates.Clear();ResetLaborInventory();}
     // True asks the facade to call its overridable public match_jobs once.
     public bool SyncPacked(long[] values)=>SyncInternal(Buildings(values));
     private bool SyncInternal(List<Building> buildings)
@@ -148,12 +150,13 @@ public partial class PopulationState : RefCounted
         ResetCounts();
         foreach(var b in buildings)
         {
+            CountLaborBuilding(b);
             _buildingStates[b.Id]=new(b.Zone,b.Zone=="residential"?Units(b):0);_counts[b.Zone]++;
             if(b.Zone=="residential") {_homes[b.Id]=Units(b);_homeOrder.Add(b.Id);}
             else {var slots=Slots(b);_works[b.Id]=new Work {Id=b.Id,Slots=slots,Zone=b.Zone};_workOrder.Add(b.Id);foreach(int n in slots)_jobCount+=n;}
         }
-        foreach(var h in _households)if(!_homes.ContainsKey(h.Home)) {h.Home=-1;MoveHappiness(h);}
-        IndexHouseholds();foreach(long id in _homeOrder)_vacancies+=Vacant(id);_reconciliationValid=true;
+        foreach(var h in _households)if(!_homes.ContainsKey(h.Home))Move(h,-1);
+        IndexHouseholds();_vacancies=0;foreach(long id in _homeOrder)_vacancies+=Vacant(id);_reconciliationValid=true;
         Rehouse();_housingNeedsReconcile=false;return !_deferMatching;
     }
     private void RemoveContribution(long id,Contribution old)
@@ -173,9 +176,10 @@ public partial class PopulationState : RefCounted
     }
     private void SyncChanges(List<Building> buildings,bool matchChanges)
     {
-        var seen=new HashSet<long>();bool jobsChanged=false;
+        var seen=new HashSet<long>();bool jobsChanged=false;ResetLaborInventory();
         foreach(var b in buildings)
         {
+            CountLaborBuilding(b);
             seen.Add(b.Id);var state=new Contribution(b.Zone,b.Zone=="residential"?Units(b):0);bool had=_buildingStates.TryGetValue(b.Id,out var old);
             if(!had||state!=old)
             {
@@ -211,10 +215,11 @@ public partial class PopulationState : RefCounted
             foreach(var h in _households)if(!_homes.ContainsKey(h.Home))Move(h,-1);
             Rehouse();_housingNeedsReconcile=false;
         }
-        if(jobsChanged&&matchChanges&&!_deferMatching) {IndexVacancies();FillWaiting(0,_people.Count);}
+        if(jobsChanged&&matchChanges&&!_deferMatching) {PrepareLaborCommutersForMatching();IndexVacancies();FillWaiting(0,_people.Count);}
     }
     private void IndexVacancies()
     {
+        _laborCursors.Clear();
         foreach(var list in _vacancyLists)list.Clear();System.Array.Clear(_vacancyCursor);_workRanks.Clear();
         for(int order=0;order<_workOrder.Count;order++) {long id=_workOrder[order];var w=_works[id];_workRanks[id]=order;for(int stage=0;stage<5;stage++)if(w.Filled[stage]<w.Slots[stage])_vacancyLists[stage].Add(id);}
     }
@@ -226,6 +231,7 @@ public partial class PopulationState : RefCounted
     }
     private void FillWaiting(int first,int last)
     {
+        if(_laborEnabled){FillRoadWaiting(first,last);return;}
         var waiting=new List<Person>();for(int i=first;i<last;i++)if(_people[i].Work==-1&&_people[i].Age>=_workingAge)waiting.Add(_people[i]);
         for(int distance=0;distance<=1;distance++)foreach(var p in waiting)
         {
@@ -236,15 +242,18 @@ public partial class PopulationState : RefCounted
     }
     public void MatchJobs()
     {
+        RequireLaborWorld();
         InvalidateManagedSnapshots();
         foreach(long id in _workOrder)System.Array.Clear(_works[id].Filled);
+        // A commute outage is not job loss. Keep eligible incumbents until their
+        // actual position disappears; moving home explicitly releases jobs in Move.
         foreach(var p in _people)
         {
             _works.TryGetValue(p.Work,out var work);int stage=p.Stage;
             if(p.Age>=_workingAge&&stage>=0&&stage<5&&Math.Abs(p.Education-stage)<=1&&work!=null&&work.Filled[stage]<work.Slots[stage])work.Filled[stage]++;
             else {bool employed=p.Work!=-1;p.Work=-1;p.Stage=-1;if(employed)UpdateHappiness(p);}
         }
-        IndexVacancies();int boundary=_cohortEnd>=0?Math.Min(_cohortEnd,_people.Count):_people.Count;
+        PrepareLaborCommutersForMatching();IndexVacancies();int boundary=_cohortEnd>=0?Math.Min(_cohortEnd,_people.Count):_people.Count;
         FillWaiting(0,boundary);if(boundary<_people.Count)FillWaiting(boundary,_people.Count);_cohortEnd=-1;
     }
     public void AdvancePacked(double seconds,long[] values)
@@ -282,7 +291,7 @@ public partial class PopulationState : RefCounted
         _fullScans++;if(_demandPrepared) {_demandValid=true;_demandPrepared=false;return;}
         // An independent demand query may see housing edits before SyncPacked does.
         _housingNeedsReconcile=true;ResetCounts();IndexHouseholds();_homes.Clear();_homeOrder.Clear();
-        foreach(var b in buildings) {var state=new Contribution(b.Zone,b.Zone=="residential"?Units(b):0);_buildingStates[b.Id]=state;_counts[b.Zone]++;if(b.Zone=="residential") {_homes[b.Id]=state.Units;_homeOrder.Add(b.Id);_vacancies+=Math.Max(0,state.Units-HomeCount(b.Id));}}
+        foreach(var b in buildings) {CountLaborBuilding(b);var state=new Contribution(b.Zone,b.Zone=="residential"?Units(b):0);_buildingStates[b.Id]=state;_counts[b.Zone]++;if(b.Zone=="residential") {_homes[b.Id]=state.Units;_homeOrder.Add(b.Id);_vacancies+=Math.Max(0,state.Units-HomeCount(b.Id));}}
         foreach(long id in _workOrder)foreach(int n in _works[id].Slots)_jobCount+=n;_demandValid=true;
     }
     public D Demand(long[] buildings)
@@ -291,6 +300,7 @@ public partial class PopulationState : RefCounted
     }
     private D DemandResult()
     {
+        if(_laborEnabled)return LaborDemandResult();
         int target=Math.Max(_initialHousing,(int)Math.Ceiling(_jobCount/4.0));
         return new D {["residential"]=Math.Max(0,target-_households.Count-_vacancies),["commercial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_commercialRatio)-_counts["commercial"]),["industrial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_industrialRatio)-_counts["industrial"])};
     }
@@ -298,12 +308,13 @@ public partial class PopulationState : RefCounted
     {
         if(!_works.TryGetValue(id,out var w))return new D();
         var state=new D {["id"]=id,["slots"]=ToArray(w.Slots),["filled"]=ToArray(w.Filled)};
+        if(_laborEnabled){state["inbound_reserved"]=ToArray(Enumerable.Range(0,5).Select(stage=>InboundReserved(id,stage)).ToArray());state["free_slots"]=ToArray(FreeLaborSlots(w));}
         if(w.HasZone)state["zone"]=w.Zone;
         return state;
     }
     public D Stats()
     {
-        int eligible=0,employed=0;foreach(var p in _people) {if(p.Age>=_workingAge)eligible++;if(p.Work!=-1)employed++;}
+        int eligible=0,employed=0;foreach(var p in _people) {if(p.Age>=_workingAge)eligible++;if(p.Work!=-1||LaborExternal(p))employed++;}
         return new D {["population"]=_people.Count,["households"]=_households.Count,["employed"]=employed,["unemployed"]=eligible-employed};
     }
     private static D PersonState(Person p)=>new() {["id"]=p.Id,["household_id"]=p.Household,["education"]=p.Education,["age_years"]=p.Age,["origin"]=p.Origin,["workplace_id"]=p.Work,["job_stage"]=p.Stage};
@@ -324,6 +335,6 @@ public partial class PopulationState : RefCounted
         }
         foreach(var value in households) {var d=value.AsGodotDictionary();_households.Add(new Household {Id=Id(d,"id"),Home=Id(d,"home_id")});}
         foreach(var key in works.Keys) {long id=key.AsInt64();var d=works[key].AsGodotDictionary();_works[id]=new Work {Id=id,Zone=d.TryGetValue("zone",out var zone)?zone.AsString():"",HasZone=d.ContainsKey("zone"),Slots=Ints(d["slots"]),Filled=Ints(d["filled"])};_workOrder.Add(id);}
-        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();InvalidateManagedSnapshots();IndexHouseholds();IndexVacancies();
+        _reconciliationValid=false;_demandValid=false;_demandPrepared=false;InvalidateHappiness();InvalidateManagedSnapshots();InvalidateLaborImport();IndexHouseholds();IndexVacancies();
     }
 }

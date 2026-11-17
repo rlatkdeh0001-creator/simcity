@@ -98,7 +98,7 @@ func _validate(delta:Dictionary)->String:
  for key:Variant in delta.get("meta",{}):
   if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name"]:return "unsupported meta field"
  for key:Variant in delta.get("world",{}):
-  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins"]:return "unsupported world field"
+  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure"]:return "unsupported world field"
  for key:Variant in delta.get("zones",{}):
   if str(delta.zones[key]) not in ["","residential","commercial","industrial"]:return "invalid zone designation"
  var world:Dictionary=delta.get("world",{})
@@ -135,6 +135,10 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  if delta.has("growth_config"):_restore_object(city.config,delta.growth_config)
  if delta.has("population_config"):city.population.config=delta.population_config.duplicate(true)
  var world:Dictionary=delta.get("world",{})
+ if world.has("external_infrastructure"):
+  city.external_infrastructure.assign(world.external_infrastructure.duplicate(true))
+  city._commuting_generation+=1
+  for link:Dictionary in city.external_infrastructure:city.next_external_link_id=maxi(city.next_external_link_id,int(link.id)+1)
  if world.has("public_lots"):
   city.public_facilities.lots.assign(world.public_lots.duplicate(true))
   for lot:Dictionary in city.public_facilities.lots:city.next_id=maxi(city.next_id,int(lot.id)+1)
@@ -147,7 +151,8 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
   if world.has("junctions"):city.junctions=world.junctions.duplicate(true)
   if world.has("road_joins"):city.road_joins=world.road_joins.duplicate(true)
  if geometry_changed or not world.is_empty():city.happiness.mark_dirty();city.utilities.mark_dirty()
- if geometry_changed:city.population.sync(city.buildings)
+ if geometry_changed:
+  city._labor_world_dirty=true;city._commuting_generation+=1;city.population.sync(city.buildings)
  city.advance_society(seconds)
  logical_tick=tick;edit_revision=int(delta.get("revision",edit_revision))
  var current:=_geometry_snapshot();var changed:Array[Dictionary]=[];var removed:=PackedInt64Array()
@@ -159,8 +164,8 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  return {"ok":true,"logical_tick":logical_tick,"revision":edit_revision,"building_upserts":changed,"building_removals":removed,
   "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
   "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
-  "funds":city.funds,"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
+  "funds":city.funds,"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
- return {"buildings":city.buildings.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
+ return {"buildings":city.buildings.duplicate(true),"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
   "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}

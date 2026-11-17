@@ -14,6 +14,23 @@ var _config_hash:=-1
 var _depth:=0
 signal geometry_transport_recovered(expected_count:int,actual_count:int)
 var _geometry_transport:=false
+var _labor_owner:WeakRef
+var _labor_enabled:=false
+func bind_labor_city(city,options:Dictionary):
+ _labor_owner=weakref(city);configure_labor_policy(options)
+func configure_labor_policy(options:Dictionary):
+ assert(_read_view==null)
+ core.ConfigureLaborPolicy(options);_labor_enabled=bool(options.get("enabled",false))
+ if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+func _prepare_labor_world():
+ if not _labor_enabled or _labor_owner==null:return
+ var city=_labor_owner.get_ref()
+ if city!=null and city._labor_world_dirty:
+  core.PrepareLaborWorld(city.buildings,city.roads);city._labor_world_dirty=false
+func labor_commuting_context()->Dictionary:
+ _enter();var result:Dictionary=core.GetLaborCommutingContext();_leave(false);return result
+func apply_labor_commuting_plan(inbound:Array,outbound:Array)->Dictionary:
+ _enter();var result:Dictionary=core.ApplyLaborCommutingPlan(inbound,outbound);_leave();return result
 var _read_view # Immutable full-city publication; null preserves mutable legacy fixtures.
 func attach_read_view(view):
  assert(view!=null)
@@ -79,7 +96,10 @@ func _enter():
  assert(_read_view==null,"Main population mutations are forbidden while the worker owns simulation state")
  if _depth==0:
   _configure()
-  if _views and hash([_people,_households,_workplaces])!=_legacy_hash:core.ImportState(_people,_households,_workplaces)
+  if _views and hash([_people,_households,_workplaces])!=_legacy_hash:
+   core.ImportState(_people,_households,_workplaces)
+   if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+  _prepare_labor_world()
  _depth+=1
 func _leave(changed:bool=true):
  _depth-=1
@@ -90,6 +110,9 @@ func release_compatibility_views():
 func import_fixture_state(snapshot:Dictionary):
  assert(_read_view==null,"Detach before importing an explicit compatibility fixture")
  _configure();core.ImportState(snapshot.people,snapshot.households,snapshot.get("workplaces",{}))
+ if snapshot.has("labor_policy"):
+  core.ImportLaborPolicyState(snapshot.labor_policy);_labor_enabled=bool(snapshot.labor_policy.get("enabled",false))
+ if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
  if snapshot.has("next_person"):next_person=snapshot.next_person
  if snapshot.has("next_household"):next_household=snapshot.next_household
  if snapshot.has("rng_state"):rng.state=snapshot.rng_state

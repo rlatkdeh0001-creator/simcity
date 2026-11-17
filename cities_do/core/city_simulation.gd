@@ -2,7 +2,7 @@ extends RefCounted
 ## Main-thread coordinator. Default-off: CityModel's legacy path is untouched until initialize().
 ## One outstanding simulation step (including completed/unpublished); editor intents are NOT ticks.
 const Clock=preload("res://core/city_clock.gd")
-const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins"]
+const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure"]
 const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name"]
 const HAPPINESS_KEYS=["happiness","happiness_target","happiness_factors"]
 var owner:WeakRef
@@ -239,6 +239,7 @@ func _publish()->bool:
   if not existing:city.buildings.append(row)
   _by_id[id]=row;_published_ids[id]=true
  city.population.attach_read_view(result.population_view)
+ city._commuting_summary=result.get("commuting_summary",{}).duplicate(true)
  city.happiness.attach_read_view(result.happiness_view)
  city.next_id=maxi(city.next_id,int(result.next_id))
  city.rng.seed=result.rng_seed;city.rng.state=result.rng_state

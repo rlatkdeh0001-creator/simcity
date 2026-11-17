@@ -38,7 +38,7 @@ public partial class PopulationState
     // One membership per person, including both roles even when home == workplace.
     // Aggregate objects are managed-only and read-only to HappinessCore consumers.
     // The dictionary is updated in place: identity is not a population generation.
-    private readonly record struct HappinessMembership(long Home,long Work,bool Eligible,int Students);
+    private readonly record struct HappinessMembership(long Home,long Work,bool Eligible,int Students,bool External=false);
     private Dictionary<long,HappinessPeople>? _happinessGroups;
     private ImmutableDictionary<long,HappinessPeople> _happinessSnapshot=ImmutableDictionary<long,HappinessPeople>.Empty;
     private readonly HashSet<long> _dirtyHappinessGroups=new();
@@ -51,14 +51,14 @@ public partial class PopulationState
         for(int stage=1;stage<4;stage++)if(age>=_educationMinAges[stage]&&age<_educationMinAges[stage+1])mask|=1<<stage;
         return mask;
     }
-    private HappinessMembership Membership(Person p)=>new(_happinessHomes.GetValueOrDefault(p.Household,-1),p.Work,p.Age>=_workingAge,HappinessStudents(p.Age));
+    private HappinessMembership Membership(Person p)=>new(_happinessHomes.GetValueOrDefault(p.Household,-1),p.Work,p.Age>=_workingAge,HappinessStudents(p.Age),LaborExternal(p));
     private void ApplyHappiness(HappinessMembership member,int delta)
     {
         void Apply(long id)
         {
             if(id<0)return;
             if(!_happinessGroups!.TryGetValue(id,out var group))_happinessGroups[id]=group=new();
-            group.Count+=delta;if(member.Eligible)group.Eligible+=delta;if(member.Work>=0)group.Employed+=delta;
+            group.Count+=delta;if(member.Eligible)group.Eligible+=delta;if(member.Work>=0||member.External)group.Employed+=delta;
             for(int stage=0;stage<4;stage++)if((member.Students&(1<<stage))!=0)group.Students[stage]+=delta;
             if(group.Count==0)_happinessGroups.Remove(id);
             _dirtyHappinessGroups.Add(id);
