@@ -1,0 +1,10 @@
+Freight v3: color-only revision; Blender 4.3.2 actual build/render exit 0.
+4536 source triangles; LWH 10 x 3 x 3.8 m, body 9 m. Eight actual 430x245 sprites plus source preview.
+14 material slots only: RailWheel x8, BogieBolster x2, BogieSideFrame x4: Running -> Dark (30383b, existing tools/build_transit_train_v3.py palette).
+V2/V3 GLB geometry BIN, nodes and accessors identical; all other mesh material assignments unchanged. Cabinets, pilots, hubs, axles, springs and couplers retained.
+Godot 4.6.3 GL Compatibility / NVIDIA RTX 2070 SUPER: import exit 0; FREIGHT_GRAPHICAL_PASS checks=6 catalog_v3 LWH10x3x3.8 front rail_top wheels8.
+Command: python tools/run_rail_freight_v3.py --godot <existing Godot 4.6.3 console executable> --cache <cities-asset scratch/rail-park>
+One actual raw framebuffer: freight-loco-v3-1600.png, IHDR 1600x1000; same scale, low side camera and light. Visually inspected: both complete, darker wheels/frames, other appearance retained.
+Capture SHA256 daa8cecc350439420247b1d03638434e31f2cd31b6278371a3eb49404b7504eb
+Latest request copied verbatim from D:/project/simcity/docs/design/ASSET_REQUEST_RAIL_PARK_KO.md; bytes equal. Catalog references v3; render_manifest unchanged calibration.
+V1/V2 and park/station/subway/rail originals unchanged. Inspection only; no game code, installation, sound, push or main changes.

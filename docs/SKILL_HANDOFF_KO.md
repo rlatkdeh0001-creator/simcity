@@ -1,5 +1,11 @@
 # CITIES_DO 스킬 인계장
 
+## 화물 기관차 v3 색상만 변경 (2026-11-18, cities-asset)
+
+`tools/build_rail_freight_v3.py`: 기존 열차 Dark `30383b`를 바퀴8·대차 틀6개 슬롯에만 적용. v2 형상/다른 재질 그대로,4536tri/10×3×3.8m. 신규 v3 blend/build/spec/preview/GLB/8방향 PNG 및 catalog 참조, render_manifest 교정값 동일. v1/v2 보존.
+로컬 `software-development/godot-windows-validation`(upstream/pin 없음), 기존 MIT helper/NOTICE(아래 출처) 재사용. 실제 Blender4.3.2 렌더 성공, `run_rail_freight_v3.py` 독립 Godot4.6.3 GL 로드/크기/정면/레일/바퀴6검사 통과. v2/v3 GLB geometry BIN·nodes·accessors 동일, 허용14슬롯만 변경. 단일1600×1000 실화면 `docs/rail-park-validation/freight-loco-v3-1600.png` 육안 확인; 간단 결과 `FREIGHT_LOCO_V3_RESULTS.txt`. 최신 요청서 바이트 그대로 복사. 설치·게임 코드·운행·push·main 없음.
+
+
 ## 화물 기관차 v2 (2026-11-17, cities-asset)
 
 `tools/build_rail_freight_v2.py`: 새 v2 원본/GLB/8방향 PNG, 큰 연속 루버·양끝 운전실 창·밝은 대차와 바퀴·하부 기기함·분할 보호판/발판/손잡이·어두운 낮은 팬터그래프. 차체9m/전체10×3×3.8m,4536tri, 팬터그래프 전체 정점 최고3.799999952m. v1 및 다른 애셋 보존. catalog v2 교체; render_manifest는 재생성 결과 기존24.815891762990255px/m·8각도와 동일하여 diff 없음.

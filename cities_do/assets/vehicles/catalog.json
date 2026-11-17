@@ -1534,8 +1534,8 @@
     },
     {
       "id": "train-loco-freight-01",
-      "version": "v2",
-      "supersedes": "train-loco-freight-01 v1 retained",
+      "version": "v3",
+      "supersedes": "train-loco-freight-01 v1/v2 retained",
       "name": "박스형 전기 화물 기관차",
       "category": "rail_locomotive",
       "style": "ochre_electric_box",
@@ -1605,9 +1605,9 @@
       },
       "status": "inspection_only",
       "simulation_enabled": false,
-      "model": "res://assets/vehicles/train-loco-freight-01-v2.glb",
-      "source": "assets/vehicle-fleet/train-loco-freight-01/v2/vehicle.blend",
-      "preview": "res://assets/vehicles/sprites/train-loco-freight-01-v2/045.png",
+      "model": "res://assets/vehicles/train-loco-freight-01-v3.glb",
+      "source": "assets/vehicle-fleet/train-loco-freight-01/v3/vehicle.blend",
+      "preview": "res://assets/vehicles/sprites/train-loco-freight-01-v3/045.png",
       "render": {
         "resolution": [
           430,
@@ -1625,7 +1625,7 @@
           315
         ]
       },
-      "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_rail_freight_v2.py -- --output-root NEW_WORKSPACE"
+      "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_rail_freight_v3.py -- --output-root NEW_WORKSPACE"
     }
   ]
 }
