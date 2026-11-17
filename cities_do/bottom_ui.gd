@@ -1,5 +1,7 @@
 extends "res://main.gd"
 ## Shared main/preview bottom HUD. No city fixture or service placement logic.
+var budget_window
+var economy_button: Button
 var dock: PanelContainer
 var drawer: PanelContainer
 var drawer_scroll: ScrollContainer
@@ -296,6 +298,24 @@ func build_bottom_hud():
  drawer_scroll.add_child(drawer_box)
  build_road_modes(root)
  drawer.visibility_changed.connect(sync_utility_visibility)
+ budget_window=preload("res://core/budget_window.gd").new()
+ root.add_child(budget_window)
+ budget_window.closed.connect(func():
+  if economy_button.is_inside_tree():economy_button.grab_focus())
+
+func open_budget():
+ activate_tool("select");cancel_demolition_drag();drawing=false;stroke.clear();panning=false
+ keyboard_camera.clear();drawer.hide();road_modes.hide();hide_asset_info();clear_money_toast()
+ if utility_popup.visible:utility_popup.hide()
+ budget_window.open(city)
+
+func _input(event):
+ if budget_window!=null and budget_window.visible:
+  keyboard_camera.clear()
+  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+   budget_window.close();get_viewport().set_input_as_handled()
+  return
+ super._input(event)
 
 func sync_utility_visibility():
  # Keep above-ground facility models; only their tab-gated network drawing changes.
@@ -492,6 +512,8 @@ func build_status_row(box: VBoxContainer) -> Control:
  actions.size_flags_vertical=Control.SIZE_SHRINK_CENTER
  actions.add_theme_constant_override("separation",6)
  right_margin.add_child(actions)
+ economy_button=Button.new();economy_button.name="EconomyButton";economy_button.text="경제";economy_button.tooltip_text="예산";economy_button.pressed.connect(open_budget)
+ actions.add_child(economy_button)
  actions.add_child(small_button("map","도시 전체 보기",fit_preview))
  actions.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))
  return status_line
@@ -512,6 +534,7 @@ func bind_status_events():
   if observed_city.clock.minute_changed.is_connected(refresh_status):observed_city.clock.minute_changed.disconnect(refresh_status)
   if observed_city.clock.day_changed.is_connected(on_game_day_changed):observed_city.clock.day_changed.disconnect(on_game_day_changed)
  observed_city=city
+ if budget_window!=null:budget_window.bind_model(city)
  for event in ["funds_changed","society_changed","city_name_changed","economic_changed"]:city.connect(event,refresh_status)
  city.clock.minute_changed.connect(refresh_status)
  city.clock.day_changed.connect(on_game_day_changed)
@@ -794,6 +817,8 @@ func capture():
  get_tree().quit(0 if error==OK else 1)
 
 func _unhandled_input(event):
+ if budget_window!=null and budget_window.visible:
+  get_viewport().set_input_as_handled();return
  if mode=="road" and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
   activate_tool("select")
   get_viewport().set_input_as_handled()
