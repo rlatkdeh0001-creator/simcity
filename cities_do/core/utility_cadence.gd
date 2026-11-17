@@ -51,7 +51,8 @@ func _settle(city,grid,amount:float):
  var nearest:float=roundf(grid.pending_doth)
  if absf(grid.pending_doth-nearest)<EPS:grid.pending_doth=nearest
  var whole:=int(grid.pending_doth)
- city.funds+=whole;grid.pending_doth-=whole
+ grid.pending_doth-=whole;city.funds+=whole
+ city._observe_treasury()
 func _meter_power(city,hours:float):
  var grid=city.power;var budget:float=city.utility_balance();var cost:=0.0;var revenue:=0.0
  for group:Dictionary in power_snapshot.groups:

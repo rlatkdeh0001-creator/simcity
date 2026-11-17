@@ -543,6 +543,12 @@ func bind_status_events():
 
 func refresh_status():
  if money==null:return
+ # Reuse the existing feedback slot: no unapproved modal/layout is introduced.
+ if hud!=null:
+  if city.loans.bankrupt:message="파산 · 게임 오버"
+  elif city.loans.negative_days>=int(city.loans.config.warning_days):message="재정 경고 · 연속 적자 %d개월"%city.loans.negative_days
+  elif message.begins_with("재정 경고") or message=="파산 · 게임 오버":message=""
+  hud.text=message;hud.visible=not message.is_empty()
  if city._tax_production:
   var economic:Dictionary=city.economic_status()
   monthly_balance=roundi(economic.daily_net) if economic.available else null

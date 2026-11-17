@@ -29,6 +29,20 @@ var _world_dirty:Dictionary={}
 var _meta:Dictionary={}
 var _population_config_dirty:=false
 var _growth_config_dirty:=false
+var _loan_commands:Array=[]
+var _loan_flush_requested:=false
+var loan_reservation:=0.0
+func _reserve_loan_repayment(city)->float:
+ if _loan_commands.is_empty():return 0.0
+ var preview=load("res://core/loan_account.gd").new()
+ _adapter_script._restore_object(preview,_adapter_script._capture_object(city.loans))
+ var available:float=city.treasury_balance()
+ for target:float in _loan_commands:
+  var before:float=preview.principal
+  if preview.change(target,int(city.population.stats().population),available).ok:available+=target-before
+ return maxf(0.0,city.loans.principal-preview.principal)
+func note_loan_amount(target:float):
+ _loan_commands.append(target);_changed()
 var _tax_commands:Array=[]
 func note_tax_policy(options:Dictionary):
  _tax_commands.append(options.duplicate(true));_changed()
@@ -63,6 +77,7 @@ func initialize()->bool:
  for b:Dictionary in city.buildings:_by_id[int(b.id)]=b;_published_ids[int(b.id)]=true
  _known_zones=city.zone_designations.duplicate(true)
  # Boot has a published T0 read surface as well; no stale main-core reads during boot.
+ city._loan_view=city.loan_status()
  city.population.attach_read_view(load("res://core/native_population_view.gd").capture_boot(city.population.core.CaptureCityReadView()))
  city.happiness.attach_read_view(load("res://core/native_happiness_view.gd").capture_boot(city.happiness.core.CaptureCityReadView()))
  worker=worker_script.new()
@@ -88,23 +103,39 @@ func has_pending()->bool:
 func is_applying_publication()->bool:return _publishing
 func get_published_tick()->int:return _published_tick
 func queued_edit_count()->int:return _edits.size()
+func _is_loan_intent(intent:Callable)->bool:
+ return intent.get_object()==owner.get_ref() and intent.get_method()=="set_loan_amount"
+func edit_publication_tick(is_loan:bool=false)->int:
+ # Count the same financing barriers used by replay, including this new intent.
+ var tick:int=_published_tick+1+(1 if has_pending() else 0)
+ var financing:bool=not _loan_commands.is_empty()
+ for intent:Callable in _edits:
+  var next_loan:=_is_loan_intent(intent)
+  if financing and not next_loan:tick+=1;financing=false
+  if next_loan:financing=true
+ if financing and not is_loan:tick+=1
+ return tick
 func defer_edit(intent:Callable)->bool:
  # Parent calls this BEFORE validation, money, ID allocation or any structural write.
  # true = saved an UNALLOCATED intent; return a deferred UI result. false = execute now.
  if not enabled or _replaying:return false
- if _publishing or _stopped or suspended or not get_fault().is_empty() or not is_ready() or has_pending() or not _edits.is_empty():
+ if _publishing or _stopped or suspended or not get_fault().is_empty() or not is_ready() or has_pending() or not _loan_commands.is_empty() or not _edits.is_empty():
   _edits.append(intent);return true
  return false
 func _replay_edits():
  _replaying=true
- # Clear before invocation; hooks on each original method execute normally during replay.
+ # Replay a FIFO prefix only: financing must publish before a later edit can
+ # validate/spend cash. Consecutive loan targets may share one worker submission.
  var intents:Array[Callable]=_edits;_edits=[]
  var results:Array=[]
- for intent:Callable in intents:
+ for i:int in range(intents.size()):
+  var intent:Callable=intents[i]
+  if not _loan_commands.is_empty() and not _is_loan_intent(intent):
+   _edits.assign(intents.slice(i));break
   if intent.is_valid():results.append(intent.call())
   else:results.append({"ok":false,"code":"expired_intent","reason":"편집 대상이 사라졌습니다"})
  _replaying=false
- # Observers see the whole FIFO already replayed; they cannot interleave an old intent.
+ # Restore the untouched suffix before observers can enqueue any new intent.
  for result:Variant in results:edit_completed.emit(result)
 func _changed():_revision+=1
 func note_building(building:Dictionary):
@@ -175,20 +206,42 @@ func _make_delta(city)->Dictionary:
  var world:Dictionary={}
  for key:String in _world_dirty:world[key]=_world_value(city,key).duplicate(true)
  if not world.is_empty():delta.world=world
+ if not _loan_commands.is_empty():delta.loan_commands=_loan_commands.duplicate()
+ delta.utility_carry=city.power.pending_doth+city.water.pending_doth
+ delta.utility_day=floori(city.utilities.elapsed/86400.0)
+ delta.treasury_recovered=city._treasury_recovered
  if not _tax_commands.is_empty():delta.tax_commands=_tax_commands.duplicate(true)
  if _population_config_dirty:delta.population_config=city.population.config.duplicate(true)
  if _growth_config_dirty:delta.growth_config=_adapter_script._capture_object(city.config)
  return delta
-func _submit(city)->bool:
+func _submit(city,seconds:float=-1)->bool:
  var delta:=_make_delta(city)
- if not worker.Submit(delta,float(city.config.development_interval_seconds)):return false
+ if seconds==0 and _loan_flush_requested:delta.financing_flush=true
+ var reservation:=_reserve_loan_repayment(city)
+ if seconds<0:seconds=float(city.config.development_interval_seconds)
+ if not worker.Submit(delta,seconds):return false
+ loan_reservation=reservation
  _submitted_funds=int(delta.meta.funds);_submitted_revision=_revision
+ city._treasury_recovered=false
  _building_changes={};_supplies={};_zones={};_world_dirty={};_meta={}
- _population_config_dirty=false;_growth_config_dirty=false;_tax_commands=[]
+ _population_config_dirty=false;_growth_config_dirty=false;_tax_commands=[];_loan_commands=[]
  if _zones_dirty:_known_zones=city.zone_designations.duplicate(true);_zones_dirty=false
  return true
 func advance(seconds:float)->void:advance_society(seconds)
+func flush_loan_commands():
+ # Paused finance edits publish through the same FIFO, without a society tick.
+ if not _loan_flush_requested or not enabled or suspended or _stopped or not is_ready() or worker.IsBusy():return
+ var city=owner.get_ref()
+ if city==null:return
+ if has_pending() and not _publish():return
+ if city.loans.bankrupt:_loan_flush_requested=false;_edits.clear();return
+ _replay_edits()
+ # A financing barrier may leave paid edits or policy changes behind it.
+ # Publish that final prefix too, even while paused, before ending the drain.
+ if not _loan_commands.is_empty() or _revision!=_submitted_revision:_submit(city,0.0)
+ else:_loan_flush_requested=false
 func advance_society(seconds:float)->void:
+ if seconds==0:flush_loan_commands();return
  if not enabled or suspended or _stopped or seconds<=0 or not is_finite(seconds):return
  var city=owner.get_ref()
  if city==null or not _fault.is_empty():return
@@ -203,6 +256,8 @@ func advance_society(seconds:float)->void:
  if not _publish():
   if has_pending():return # Failed/stale publication must never authorize another submission.
  if not get_fault().is_empty():return
+ if city.loans.bankrupt:
+  _edits.clear();return
  _replay_edits() # New IDs allocated only AFTER publication's next_id, BEFORE Submit.
  if _submit(city):city.society_frozen_cycles+=maxi(0,attempts-1)
 func allowed_utility_seconds(seconds:float)->float:
@@ -251,6 +306,9 @@ func _publish()->bool:
  city.development_elapsed=result.development_elapsed;city.development_cursor=result.development_cursor
  city.society_elapsed=result.society_elapsed
  city._tax_day_economy=result.get("tax_day_economy",{}).duplicate(true)
+ city._loan_view=result.loan_status
+ _adapter_script._restore_object(city.loans,result.loan_checkpoint)
+ loan_reservation=0.0
  city.funds+=int(result.funds)-_submitted_funds
  _published_tick=int(result.logical_tick)
  is_publishing_clock=true

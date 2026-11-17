@@ -65,8 +65,10 @@ func Submit(owned_delta:Dictionary,seconds:float)->bool:
   _mutex.unlock();return false
  if int(owned_delta.get("base_tick",-1))!=_tick or int(owned_delta.get("base_revision",-1))!=_revision:
   _contract_error="Delta is not based on the published boundary";_mutex.unlock();return false
- if not is_finite(seconds) or seconds<=0:
-  _contract_error="seconds must be finite and positive";_mutex.unlock();return false
+ var financing_flush:bool=bool(owned_delta.get("financing_flush",false)) and int(owned_delta.get("revision",_revision))>_revision
+ if not is_finite(seconds) or seconds<0 or (seconds==0 and owned_delta.get("loan_commands",[]).is_empty() and not financing_flush):
+  _contract_error="seconds must be positive, or zero for a financing edit prefix";_mutex.unlock()
+  return false
  _freeze(owned_delta)
  _input=owned_delta;_seconds=seconds;_submitted_revision=int(owned_delta.get("revision",_revision))
  _pending=true;_complete=false

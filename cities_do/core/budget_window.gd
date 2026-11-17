@@ -16,6 +16,9 @@ var values:Dictionary={}
 var bars:Dictionary={}
 var net:Label
 var loan:HSlider
+var loan_limit:Label
+var pending_loan:Variant=null
+var pending_loan_tick:=0
 var pending_rates:Array=[]
 var pending_publication_tick:=0
 var snapshot:Dictionary={}
@@ -66,9 +69,10 @@ func _ready():
  side.add_child(HSeparator.new());text(side,"지출",20);composition(side,"expenses",[4,3,5])
  for item in [["upkeep","시설 유지비"],["utility_expense","전기·수도"],["interest","대출 이자"],["expenses","합계"]]:value_row(side,item[0],item[1])
  side.add_child(HSeparator.new());value_row(side,"loan","대출")
- loan=HSlider.new();loan.editable=false;loan.focus_mode=Control.FOCUS_NONE;loan.tooltip_text="대출 이용 불가";loan.custom_minimum_size.y=36;side.add_child(loan)
- text(side,"—",18).horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+ loan=HSlider.new();loan.custom_minimum_size.y=36;loan.value_changed.connect(change_loan);loan.gui_input.connect(loan_input);loan.scrollable=false;side.add_child(loan)
+ loan_limit=money(side)
  var focusable:Array=[tabs[0],close_button];focusable.append_array(sliders)
+ focusable.append(loan)
  for i in range(focusable.size()):
   focusable[i].focus_next=focusable[(i+1)%focusable.size()].get_path();focusable[i].focus_previous=focusable[posmod(i-1,focusable.size())].get_path()
   focusable[i].focus_neighbor_top=focusable[i].focus_previous;focusable[i].focus_neighbor_bottom=focusable[i].focus_next
@@ -86,7 +90,7 @@ func composition(parent:Node,key:String,colors:Array):
   var segment:=ColorRect.new();segment.color=COLORS[index];segment.mouse_filter=Control.MOUSE_FILTER_IGNORE;segment.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(segment);bars[key].append(segment);segment.hide()
 func bind_model(model):
  if city==model:return
- disconnect_model();city=model;pending_rates.clear();pending_publication_tick=0;snapshot.clear()
+ disconnect_model();city=model;pending_rates.clear();pending_publication_tick=0;pending_loan=null;pending_loan_tick=0;snapshot.clear()
  if city!=null:
   city.economic_changed.connect(refresh);city.society_changed.connect(refresh)
  refresh()
@@ -104,16 +108,29 @@ func change_rate(value:float,index:int):
  if pending_rates.is_empty():pending_rates=city.tax_status().get("policy",{}).get("rates",[]).duplicate()
  if pending_rates.size()!=9:return
  pending_rates[index]=int(value)
- # One outstanding tick: an existing job cannot contain this new intent.
- # Deferred edits replay FIFO before the following submission. edit_completed
- # acknowledges that replay, NOT publication of its immutable read view.
+ # Replay acknowledgment is not publication; financing may split the FIFO.
  pending_publication_tick=0
  if city.simulation!=null:
-  pending_publication_tick=city.simulation.get_published_tick()+1
-  if city.simulation.has_pending():pending_publication_tick+=1
+  pending_publication_tick=city.simulation.edit_publication_tick()
  var result:Dictionary=city.configure_tax_policy({"rates":pending_rates.duplicate()})
  if not result.get("ok",false) and not result.get("queued",false):pending_rates.clear()
  snapshot.clear();refresh()
+func change_loan(value:float):
+ if city==null:return
+ var debt:Dictionary=city.loan_status()
+ # Preserve exact outstanding fractional principal in Range; quantize only user intents.
+ value=clampf(roundf(value/float(debt.slider_step))*float(debt.slider_step),0.0,debt.limit)
+ pending_loan=value;pending_loan_tick=0
+ if city.simulation!=null:
+  pending_loan_tick=city.simulation.edit_publication_tick(true)
+ var result:Dictionary=city.set_loan_amount(value)
+ if not result.get("ok",false) and not result.get("queued",false):pending_loan=null
+ snapshot.clear();refresh()
+func loan_input(event:InputEvent):
+ if not loan.editable or city==null:return
+ if event is InputEventKey and event.pressed and event.keycode in [KEY_LEFT,KEY_RIGHT]:
+  loan.accept_event()
+  change_loan(loan.value+float(city.loan_status().slider_step)*(-1 if event.keycode==KEY_LEFT else 1))
 func put(label:Label,value:String):
  if label.text!=value:label.text=value
 func amount(value:Variant)->String:
@@ -121,18 +138,20 @@ func amount(value:Variant)->String:
 func refresh():
  if not visible or city==null or net==null:return
  var tax:Dictionary=city.tax_status();var economic:Dictionary=city.economic_status()
+ var debt:Dictionary=city.loan_status()
+ if pending_loan!=null and (city.simulation==null or city.simulation.get_published_tick()>=pending_loan_tick):pending_loan=null
  var rates:Array=tax.get("policy",{}).get("rates",[])
  # Check the publication fence before the display cache: equal scalar values
  # may still be a newer acknowledgment, including after close/reopen.
  if rates==pending_rates and (city.simulation==null or city.simulation.get_published_tick()>=pending_publication_tick):pending_rates.clear()
- var state:Dictionary={"tax":tax,"economic":economic,"pending":pending_rates.duplicate()}
+ var state:Dictionary={"tax":tax,"economic":economic,"pending":pending_rates.duplicate(),"debt":debt,"pending_loan":pending_loan}
  if state==snapshot:return
  snapshot=state.duplicate(true);refresh_count+=1
 
  for i in range(9):
   var valid:=rates.size()==9
   put(rate_labels[i],"%d%%"%int(rates[i]) if valid else "—")
-  sliders[i].editable=valid
+  sliders[i].editable=valid and not debt.bankrupt
   if valid:sliders[i].set_value_no_signal(pending_rates[i] if pending_rates.size()==9 else rates[i])
   sliders[i].tooltip_text="적용 대기" if pending_rates.size()==9 and pending_rates[i]!=rates[i] else ""
   var cells:Array=tax.get("cells",[]);var days:=int(tax.get("days",0))
@@ -149,6 +168,13 @@ func refresh():
   entries.upkeep=economic.facility_upkeep;entries.interest=economic.interest
   entries.income=economic.tax_collected+entries.utility_income;entries.expenses=entries.upkeep+entries.utility_expense+entries.interest
  for key in values:put(values[key],amount(entries.get(key)))
+ put(values.loan,amount(debt.principal));put(loan_limit,amount(debt.limit))
+ loan.editable=not debt.bankrupt
+ loan.set_block_signals(true)
+ loan.max_value=maxf(debt.limit,debt.principal);loan.step=0.0
+ loan.set_value_no_signal(float(pending_loan) if pending_loan!=null else debt.principal)
+ loan.set_block_signals(false)
+ loan.tooltip_text="적용 대기" if pending_loan!=null else ("파산 · 게임 오버" if debt.bankrupt else str(debt.last_command_result.get("reason","")))
  update_bar("income",[entries.get("residential"),entries.get("commercial"),entries.get("industrial"),entries.get("utility_income")])
  update_bar("expenses",[entries.get("upkeep"),entries.get("utility_expense"),entries.get("interest")])
 func update_bar(key:String,parts:Array):

@@ -12,6 +12,7 @@ func press(game,point: Vector2):
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);await process_frame
+ game.city.simulation.worker.Suspend()
  game.map_zoom=.75;game.origin=Vector2(850,20);game.road_drawer.set_kind("legacy")
  game.message="previous error";game.drawing=true;game.stroke=PackedVector2Array([Vector2(20,30),Vector2(40,30)]);game.finish_road()
  verify(game.city.roads.size()==1 and game.message.is_empty(),"successful legacy road construction clears status instead of showing a completion notice")
@@ -24,6 +25,7 @@ func run():
  verify(diagnostic.ok and diagnostic.reason=="철거 완료","internal model success diagnostics are preserved; suppression is presentation-only")
  game.drawing=true;game.stroke=PackedVector2Array();game.finish_road()
  verify(not game.message.is_empty(),"failed construction continues to expose its actionable error")
+ game.city.simulation.shutdown() # Join the fixture-owned worker before replacing its model.
  game.city=City.new(100,100);game.city.add_road(PackedVector2Array([Vector2(10,30.5),Vector2(90,30.5)]))
  game.power_overlay.tab_open=true;game.mode="power_plant";game.power_overlay.handle_input(press(game,Vector2(20,27)))
  verify(game.city.power.plants.size()==1 and game.power_overlay.instruction.text.is_empty(),"successful power facility placement has no success notice")

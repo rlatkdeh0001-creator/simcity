@@ -145,6 +145,8 @@ func finish_capture(event):
 
 func handle_input(event) -> bool:
  if not tab_open: return false
+ if view.city.loan_status().bankrupt:
+  drawing=false;stroke.clear();instruction.text="파산 · 게임 오버";return true
  if event is InputEventMouseMotion and drawing:
   var p: Vector2=view.world(event.position)*4.0
   if view.city.power.valid(p) and (stroke.is_empty() or stroke[-1].distance_to(p)>.8): stroke.append(p)
@@ -196,6 +198,8 @@ func handle_input(event) -> bool:
 func finish_wire():
  if not drawing: return
  drawing=false
+ if view.city.loan_status().bankrupt:
+  stroke.clear();instruction.text="파산 · 게임 오버";refresh();return
  var result: Dictionary=view.city.power.add_wire(stroke)
  instruction.text="" if result.ok else result.reason
  stroke.clear()

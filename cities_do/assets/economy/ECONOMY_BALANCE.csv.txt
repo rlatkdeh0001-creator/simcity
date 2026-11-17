@@ -296,3 +296,14 @@
 가구재정,finance.necessities,1인 생필품 일비용,8,doth/인/게임일,임시값·T3 적용,가구,cities_do/simulation/PopulationState.Finances.cs,소득과 저축에서 세금 다음 지불; 충족률 행복도 반영
 이사,finance.workplace_low_days,사업장 낮은 행복도 지속,3,게임일,임시값·T3 적용,사업장,cities_do/simulation/PopulationState.Moving.cs,회복시 연속일수 초기화
 이사,finance.workplace_move_fraction,일별 사업장 이동 비율,0.2,비율,임시값·T3 적용,사업장,cities_do/simulation/PopulationState.Moving.cs,대상 수 올림; 더 좋은 도달가능 직장 우선
+대출,loan.base_limit,base_limit,50000,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.limit_per_resident,limit_per_resident,20,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.base_annual_rate,base_annual_rate,0.1,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.preferred_fraction,preferred_fraction,0.3,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.preferred_population,preferred_population,"[1000, 10000, 100000]",설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.preferred_annual_rates,preferred_annual_rates,"[0.08, 0.06, 0.04]",설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.months_per_year,months_per_year,12,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.excess_repayment_fraction,excess_repayment_fraction,0.1,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.warning_days,warning_days,3,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.bankruptcy_days,bankruptcy_days,6,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조
+대출,loan.slider_step,slider_step,1000,설정값,임시값·T4 적용,도시,cities_do/core/loan_config.json,단위/계산은 docs/design/LOAN_RULES_KO.md 참조

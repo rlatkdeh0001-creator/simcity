@@ -67,7 +67,7 @@ func run():
   check(game.budget_window.sliders.size()==9,"nine tax cells")
   var budget=game.budget_window
   check(budget.net.text==game.balance_label.text and budget.net.text=="—","unclosed ledger shares HUD em dash")
-  check(budget.loan.editable==false and budget.values.loan.text=="—","loan disabled and unavailable until T4")
+  check(budget.loan.editable and budget.values.loan.text==budget.amount(0),"T4 loan gauge starts with actual zero debt")
   check(budget.tabs.slice(1).all(func(b):return b.disabled),"future tabs disabled")
   for slider in budget.sliders:check(slider.min_value==0 and slider.max_value==20 and slider.step==1,"integral zero to twenty range")
   check(budget.amounts.all(func(l):return l.text=="—" and l.icon_ready()),"unavailable amounts use actual currency renderer")

@@ -52,6 +52,8 @@ func preview(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) ->
  var shape:=polygon(center,int(entry.width),int(entry.depth),turns,base_front)
  var record: Dictionary={"id":-1,"public_asset_id":id,"position":center,"polygon":shape,"turns":posmod(turns,4),"front_direction":base_front.rotated(posmod(turns,4)*PI/2),"front_road_id":-1,"utility_id":-1,"engine":entry.engine,"capacity":balance.capacities(id)}
  var response: Dictionary={"ok":false,"code":"","reason":"","record":record,"cost":cost}
+ if city.loans.bankrupt:response.code="bankrupt";response.reason="파산 · 게임 오버";return response
+ if cost>0 and city.treasury_balance()<0:response.code="insufficient_funds";response.reason="자금 부족";return response
  if not is_finite(cost) or cost<0 or floorf(cost)!=cost or not is_finite(maintenance) or maintenance<0:
   response.code="invalid_balance";response.reason=response.code;return response
  for value in record.capacity.values():

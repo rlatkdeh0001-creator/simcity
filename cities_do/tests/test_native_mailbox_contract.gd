@@ -35,6 +35,7 @@ func run():
  var delta:Dictionary={"base_tick":0,"base_revision":0,"revision":5,"meta":{"funds":7}}
  check(not w.Submit({"base_tick":99,"base_revision":0},2) and not w.GetContractError().is_empty(),"stale base rejected natively")
  check(not w.Submit(delta,INF) and not w.Submit(delta,0),"invalid seconds rejected natively")
+ check(not w.Submit({"base_tick":0,"base_revision":0,"revision":0,"financing_flush":true},0),"empty financing flush cannot manufacture an extra publication")
  w.SetValidationGate(true)
  check(w.Submit(delta,2),"accepted owned input")
  check(delta.is_read_only() and delta.meta.is_read_only(),"input recursively frozen")

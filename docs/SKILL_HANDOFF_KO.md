@@ -1317,6 +1317,14 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - [ ] 임시값: 초기 가구현금0; 변두리 접근1000m, 인프라 가중치 일자리/상업/전기/수도/도로/교육/의료/경찰/소방/공원=20/10/10/10/10/8/8/8/8/8; 사업장3일 연속 미달시20% 올림 이동. 체납은 마지막 미납평가이며 누적채무/이자는T4범위 아님.
 - 근거 D:/tools/validation/tax-t3-root/delivery-manifest.json 및 INTEGRATION.md. 사용자 오늘 직접보고 조건 유지.
 
+### T4 완료 검증
+- 대출/상환·인구한도·구간이자·초과원금10%·3일 경고/6일 파산 정지 연결. 기존 피드백 사용, 전용 게임오버 화면은 별도 기획.
+- FIFO 금융→건설 순서 오류 RED 재현 후 발행 경계로 수정. zero-time 명령 반영은 논리시간을 추가하지 않음. 독립 재검토 deleg_af3ef0ee passed=true.
+- 중복제외1419검사+worker-edits 통과, 빌드0경고0오류. root/fifo MANIFEST의19파일 해시·로그를 부모 확인. 실제 GL 대출UI28/예산126 포함, 캡처0.
+- 근거 D:/tools/validation/tax-t4-root/MANIFEST.json 및 D:/tools/validation/tax-t4-fifo/MANIFEST.json. 초기 GL 입력누락 원인은 미확정이며 최종실행 통과.
+- 대중교통/지각일급 미착수, push/main 없음. 완료는 사용자 채팅에 직접 보고.
+
+
 
 
 

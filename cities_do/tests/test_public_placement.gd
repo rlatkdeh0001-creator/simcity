@@ -67,7 +67,7 @@ func check_utilities():
   verify(city.power.plants.size()==1 and record.utility_id>=0,id+" joins real power engine")
   if record.utility_id<0:continue
   verify(city.power.plants[0].output_kw==record.capacity.average_output_kw,id+" actual average generation comes from CSV, rated output remains separate")
-  city.add_building(40,36,"residential")
+  verify(city.add_building_at(Vector2(41,36.5),"residential").ok,"utility consumer snaps to the actual four-lane road edge")
   verify(not city.power_state().consumers[city.buildings[0].id].powered,"generation without connected wire cannot supply houses")
   city.power.add_wire(PackedVector2Array([record.position*4,Vector2(164,148)]))
   verify(city.power_state().consumers[city.buildings[0].id].powered,id+" actual wire supplies a real private building")
@@ -80,7 +80,7 @@ func check_utilities():
   verify(city.water.facilities.size()==2 and supply.utility_id>=0 and sink.utility_id>=0,id+" actual intake and sewage sink are registered")
   if supply.utility_id<0 or sink.utility_id<0:continue
   verify(city.water.facilities[0].capacity_m3_day==1000 and city.water.facilities[1].capacity_m3_day==sink.capacity.sewage_m3_day,"water/sewage real capacities read approved CSV")
-  city.add_building(40,36,"residential")
+  verify(city.add_building_at(Vector2(41,36.5),"residential").ok,"utility consumer snaps to the actual four-lane road edge")
   city.water.add_pipe(PackedVector2Array([supply.position*4,sink.position*4,Vector2(164,148)]))
   var state: Dictionary=city.water_state().consumers[city.buildings[0].id]
   verify(state.has_water and state.has_sewage,id+" paired real pipes deliver water and handle sewage")

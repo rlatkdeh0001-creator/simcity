@@ -14,6 +14,7 @@ var funds: int = Economy.NORMAL_STARTING_FUNDS:
 	set(value):
 		if funds==value:return
 		funds=value
+		if not _detached_worker:_observe_treasury()
 		funds_changed.emit()
 const Frontage = preload("res://core/building_frontage.gd")
 const Parcels = preload("res://core/road_parcels.gd")
@@ -49,6 +50,33 @@ var population_enabled := true
 var happiness_enabled := true
 var happiness
 var simulation # Main-only facade; the detached model leaves this null.
+var loans=preload("res://core/loan_account.gd").new()
+var _loan_view:Dictionary={}
+var _detached_worker:=false
+var _treasury_recovered:=false
+func _observe_treasury():
+	if loans==null or power==null or water==null or population==null:return
+	if treasury_balance()>=0:
+		if simulation!=null:_treasury_recovered=true
+		else:loans.observe_balance(treasury_balance())
+func loan_status()->Dictionary:
+	return _loan_view if simulation!=null and not _loan_view.is_empty() else loans.status(int(population.stats().get("population",0)))
+func treasury_balance()->float:
+	return float(funds)+power.pending_doth+water.pending_doth+float(tax_status().get("carry",0.0))+loans.carry
+func set_loan_amount(target:Variant)->Dictionary:
+	if not (target is int or target is float) or not is_finite(float(target)) or target<0 or target>1000000000000:return {"ok":false,"code":"invalid_loan","reason":"잘못된 대출 금액"}
+	if loans.bankrupt:return {"ok":false,"code":"bankrupt","reason":"파산 · 게임 오버"}
+	if simulation!=null:simulation._loan_flush_requested=true
+	if _defer_simulation_edit(set_loan_amount.bind(target)):return _queued_simulation_edit()
+	if simulation!=null:
+		simulation.note_loan_amount(float(target))
+		return _queued_simulation_edit()
+	var result:Dictionary=loans.change(float(target),int(population.stats().get("population",0)),treasury_balance())
+	if result.ok:
+		funds+=int(result.posted)
+		_observe_treasury()
+		economic_changed.emit()
+	return result
 var _tax_production:=false
 var _tax_day_economy:Dictionary={}
 var economic_ledger=preload("res://core/economic_ledger.gd").new()
@@ -93,6 +121,14 @@ func configure_tax_policy(options:Dictionary)->Dictionary:
 		happiness.core.NotifyTaxPolicyChanged()
 	_tax_production=true
 	return {"ok":true}
+func _assess_loan_boundary():
+	var result:Dictionary=loans.settle_day(clock.day(),int(population.stats().get("population",0)))
+	if int(result.days)<=0:return
+	funds+=int(result.posted)
+	if not _tax_day_economy.is_empty():
+		_tax_day_economy.interest=float(result.interest)/int(result.days)
+		_tax_day_economy.forced_repayment=float(result.forced_repayment)/int(result.days)
+	economic_changed.emit()
 func _assess_tax_boundary():
 	if not _tax_production:return
 	var result:Dictionary=population.core.AssessTaxesManaged(clock.day())
@@ -159,17 +195,25 @@ func _simulation_world_changed()->void:
 	if simulation!=null:simulation.note_world()
 
 func _defer_simulation_edit(action:Callable)->bool:
+	if loans.bankrupt:return true # Reject at the shared mutation boundary; never enqueue.
 	return simulation!=null and simulation.defer_edit(action)
 
 func _queued_simulation_edit()->Dictionary:
+	if loans.bankrupt:return {"ok":false,"queued":false,"code":"bankrupt","reason":"파산 · 게임 오버"}
 	return {"ok":false,"queued":true,"changed":0,"code":"queued","reason":"시뮬레이션 반영 대기"}
 
 func advance_utilities(seconds:float)->Dictionary:
+	if loans.bankrupt:seconds=0.0
 	if simulation!=null or (happiness_enabled and population_enabled and happiness.background_enabled):
 		# Consume only accepted logical clock credit. Keep original per-frame metering
 		# chunks where possible; rejected/busy cycles cannot bill or age the networks.
 		seconds=minf(maxf(0.0,seconds),maxf(0.0,clock.game_seconds-utilities.elapsed)/Clock.SCALE)
-	return utilities.advance(seconds)
+	var result:Dictionary=utilities.advance(seconds)
+	if simulation==null and not _detached_worker:
+		var previous_days:int=loans.negative_days
+		loans.evaluate_day(mini(loans.last_day,floori(utilities.elapsed/86400.0)),treasury_balance())
+		if previous_days!=loans.negative_days:economic_changed.emit()
+	return result
 
 func _rect(b: Dictionary) -> Rect2:
 	return Rect2(Vector2(b.x, b.y), Vector2(b.size, b.size))
@@ -318,6 +362,7 @@ func advance_development(seconds: float) -> Array[Dictionary]:
 	return created
 
 func advance_society(seconds: float) -> void:
+	if loans.bankrupt:return
 	if simulation!=null:
 		simulation.advance(seconds);return
 	if seconds<=0 or not is_finite(seconds):return
@@ -344,6 +389,8 @@ func advance_society(seconds: float) -> void:
 		advance_development(config.development_interval_seconds)
 		if population_enabled:commuting.advance(self)
 		_assess_tax_boundary()
+		_assess_loan_boundary()
+
 		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
 	if background and society_elapsed>=config.development_interval_seconds:
@@ -606,7 +653,7 @@ func power_consumers() -> Array:
 	return result
 
 func utility_balance() -> float:
-	return maxf(0,float(funds)+power.pending_doth+water.pending_doth+float(tax_status().get("carry",0.0)))
+	return maxf(0,treasury_balance()-(simulation.loan_reservation if simulation!=null else 0.0))
 
 func power_state() -> Dictionary:
 	var state: Dictionary = power.solve(power_consumers(),utility_balance())
@@ -633,8 +680,9 @@ func advance_power(hours: float) -> Dictionary:
 	if absf(power.pending_doth-nearest_integer)<0.000000001:
 		power.pending_doth=nearest_integer
 	var settled := int(power.pending_doth)
-	funds += settled
 	power.pending_doth -= settled
+	funds += settled
+	_observe_treasury()
 	_apply_power_state(state)
 	return state
 
@@ -680,8 +728,9 @@ func advance_water(days: float) -> Dictionary:
 	var nearest_integer := roundf(water.pending_doth)
 	if absf(water.pending_doth-nearest_integer)<.000000001: water.pending_doth=nearest_integer
 	var settled := int(water.pending_doth)
-	funds+=settled
 	water.pending_doth-=settled
+	funds+=settled
+	_observe_treasury()
 	_apply_water_state(state)
 	return state
 

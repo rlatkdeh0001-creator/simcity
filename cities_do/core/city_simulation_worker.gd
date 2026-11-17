@@ -53,6 +53,9 @@ static func _copy(value:Variant)->Variant:
 func boot(checkpoint:Dictionary)->Dictionary:
  city=Model.new()
  _restore_object(city,checkpoint.model)
+ city._detached_worker=true
+ if not checkpoint.model.values.has("loans"):
+  city.loans.last_day=city.clock.day();city.loans.evaluated_day=city.clock.day()
  city.population.config=checkpoint.population_config.duplicate(true)
  city.population.import_fixture_state(checkpoint.population)
  city.population.rng.seed=checkpoint.population.rng_seed
@@ -115,7 +118,8 @@ func _validate(delta:Dictionary)->String:
 func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  var problem:=_validate(delta)
  if not problem.is_empty():return _error(problem)
- if tick!=logical_tick+1 or seconds!=float(city.config.development_interval_seconds):return _error("step must advance exactly one configured logical interval")
+ var financing_flush:bool=bool(delta.get("financing_flush",false)) and int(delta.get("revision",edit_revision))>edit_revision
+ if tick!=logical_tick+1 or (seconds!=float(city.config.development_interval_seconds) and not (seconds==0 and (not delta.get("loan_commands",[]).is_empty() or financing_flush))):return _error("step must advance exactly one configured interval or a zero-time financing edit prefix")
  var by_id:Dictionary={}
  for b:Dictionary in city.buildings:by_id[int(b.id)]=b
  var geometry_changed:=false
@@ -157,6 +161,12 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  for options:Dictionary in delta.get("tax_commands",[]):
   var configured:Dictionary=city.configure_tax_policy(options)
   if not configured.ok:return _error("invalid tax policy command")
+ city.power.pending_doth=float(delta.get("utility_carry",0.0));city.water.pending_doth=0.0
+ # Count only completed fiscal days after main has metered their final utility interval.
+ if bool(delta.get("treasury_recovered",false)):city.loans.observe_balance(0.0)
+ city.loans.evaluate_day(mini(city.loans.last_day,int(delta.get("utility_day",0))),city.treasury_balance())
+ for target:Variant in delta.get("loan_commands",[]):
+  city.loans.last_command_result=city.set_loan_amount(target)
  city.advance_society(seconds)
  logical_tick=tick;edit_revision=int(delta.get("revision",edit_revision))
  var current:=_geometry_snapshot();var changed:Array[Dictionary]=[];var removed:=PackedInt64Array()
@@ -168,8 +178,10 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  return {"ok":true,"logical_tick":logical_tick,"revision":edit_revision,"building_upserts":changed,"building_removals":removed,
   "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
   "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
+  "loan_status":city.loan_status(),"loan_checkpoint":_capture_object(city.loans),
   "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
  return {"buildings":city.buildings.duplicate(true),"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
+  "loans":_capture_object(city.loans),
   "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}
