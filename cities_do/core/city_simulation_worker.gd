@@ -59,6 +59,7 @@ func boot(checkpoint:Dictionary)->Dictionary:
  city.population.rng.state=checkpoint.population.rng_state
  # Worker geometry can use the original pack path, but stage1 notifications avoid it.
  city.population.enable_geometry_transport(city.buildings)
+ if not checkpoint.population.has("tax_policy"):city.enable_taxation()
  _restore_object(city.happiness,checkpoint.happiness_vars)
  city.happiness.background_enabled=false
  city.happiness.core.ImportCityCheckpoint(checkpoint.happiness)
@@ -153,6 +154,9 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  if geometry_changed or not world.is_empty():city.happiness.mark_dirty();city.utilities.mark_dirty()
  if geometry_changed:
   city._labor_world_dirty=true;city._commuting_generation+=1;city.population.sync(city.buildings)
+ for options:Dictionary in delta.get("tax_commands",[]):
+  var configured:Dictionary=city.configure_tax_policy(options)
+  if not configured.ok:return _error("invalid tax policy command")
  city.advance_society(seconds)
  logical_tick=tick;edit_revision=int(delta.get("revision",edit_revision))
  var current:=_geometry_snapshot();var changed:Array[Dictionary]=[];var removed:=PackedInt64Array()
@@ -164,7 +168,7 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  return {"ok":true,"logical_tick":logical_tick,"revision":edit_revision,"building_upserts":changed,"building_removals":removed,
   "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
   "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
-  "funds":city.funds,"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
+  "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
  return {"buildings":city.buildings.duplicate(true),"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,

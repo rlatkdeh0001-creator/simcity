@@ -267,7 +267,9 @@ func test_ui() -> bool:
  return true
 func test_demo() -> bool:
  var demo=load("res://water_demo.tscn").instantiate()
+ var initial_city=demo.city # The legacy showcase replaces the model after super._ready.
  root.add_child(demo)
+ if initial_city.simulation!=null:initial_city.simulation.shutdown()
  current_scene=demo
  verify(demo.city.buildings.size()==6 and demo.city.water.facilities.size()==2,"live demo has six valid consumers and two validated facilities")
  var state: Dictionary=demo.city.water_state()

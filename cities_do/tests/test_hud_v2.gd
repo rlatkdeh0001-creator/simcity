@@ -69,12 +69,14 @@ func check_status(game):
  game.game_month_closed.connect(func(index):closed.append(index))
  game.city.clock.advance_real(3600)
  verify(closed==[0] and game.balance_label.text=="—","one game day closes one game month, no fake cash flow")
+ game.city._tax_production=false # Explicit presentation-only samples, not production tax data.
  game.set_monthly_balance(1200)
  verify(game.balance_label.text=="+1,200 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("5fd38a"),"future positive monthly value includes sign, unit and green")
  game.set_monthly_balance(-350)
  verify(game.balance_label.text=="−350 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("ff6b6b"),"future negative monthly value includes minus and red")
  game.set_monthly_balance(null)
  verify(game.balance_label.text=="—","unknown monthly data restores dash")
+ game.city._tax_production=true
  game.speed_button.pressed.emit()
  verify(game.simulation_speed==3 and game.speed_button.text=="3×","speed button changes real multiplier and caption")
  game.speed_button.pressed.emit()

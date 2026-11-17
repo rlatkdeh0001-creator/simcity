@@ -1281,7 +1281,13 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - [x] 사용자 확정: 수요식·통근 → 세금T1~T4 → 대중교통(역/정류장 배치·운행·환승, transit 애셋, ROAD_DRAWING 차선 정차 규칙) → 지각 일급 순서. 대중교통 전에는 도로 fallback.
 - [x] 사용자 확정: 기존 취업자 유지, 이사 또는 실직 시에만 학력±1/도로 최단 재구직, 동거리 안정 순서. 이사 시 재배정 검사를 추가해 통합 중.
 - [x] 사용자 확정: 일급30/40/55/75/100 D, 종전 LABOR 제안 폐기. T1에서 정식 설정값으로 반영.
-- [ ] 주거 수요 단위 환산·빈 도시 bootstrap은 기존 initial_housing_target8을 가구 정원으로 보존해 기본 신축4채로 계산하는 안. 이웃 숨은 성장/학력 숫자는 별도 임시 설정으로 진행(사용자 확정 4건과 별개).
+- [x] 재부팅 후 기획 승인: initial_housing_target8은 가구 정원으로 보존→기본 신축4채, 이웃 숨은 성장/학력 숫자는 현행 임시 설정 그대로 진행.
+- 재개 지시: 8fd6aae/1107dda 확인. 통근 차량 도착시각 일치·주차탐색·주행중 도로변경은 지각 단계로 이관,1107dda 비활성 유지. 세금T1→T2→T3→T4 단계별 커밋, T2에만1920캡처1장. 임금30/40/55/75/100 확정. 결정 필요사항은 가역적 임시값으로 진행하고 목록/보고에 기록.
+- T1 scratch `deleg_7724185f` 완료: D:/tools/validation/tax-t1-core/delivery/ 소스, 계약 문서는 상위 INTEGRATION.md. 격리164/164는 자식 보고이며 root 통합 검증과 구분. HEAD1107dda 확인 후 `deleg_15690c0d`에 root 런타임·일경계 적립·FIFO 세율 변경·복원·행복도 hold·실제 수지 및 관련 검증을 배정, 커밋/stage 금지. 부모는 설계/경제 CSV·검토·커밋 담당.
+- [ ] T1 임시 판단: 유입 직원 학력이 없으므로 실제 예약 일자리 단계 일급 사용; 수요 건물 수×배율은 내림(1채×0.34→0채); 명시적 누락 일수 정산은 현재 소득/세율 기준. 정상 실행은 각 논리 일 경계 정산, 구 저장자료 이전 기간과 비활성 기간은 소급 청구하지 않음. TAX_BUDGET_KO에 기록.
+- 세율9칸·일급30/40/55/75/100·수요/성장 임시 계수를 경제 CSV에 등록, tools/sync_public_economy.py로 runtime mirror 동기화. CSV 9열/ID유일/byte동일 검증. 설계문서의 구 임금·3세율·사업장 수요만 적용 문구를 최신 지시와 정합화.
+- T1 root 통합 검증 수신: D:/tools/validation/tax-t1-root/root-delivery-manifest.json의30파일 해시와 현재root 일치,18개 최종 로그 직접 확인. 빌드0경고/0오류, 계수582검사+별도worker-edits suite 통과. tax60/성장연속8/실제model28/경제수지22 포함. 캡처0, 통근실험 비활성 유지. 독립 코드 검토 deleg_ffe4cd96 통과(passed=true, 논리/보안 지적 없음). 부모 정적 검사·diff check 통과, T1 로컬 커밋 대상 확정; push/main 없음.
+- T2 연결 API: city.configure_tax_policy(options), city.tax_status(), city.economic_status(). 수지는 완료된 게임일(=월) 실제 거래/세금/유지비 합계이며 과거 거래 자료 없으면 unavailable. 기존 /월 표시 유지, 대출이자는T4까지0.
 
 ### 후속 진행 상태
 - Native mailbox 단계 `c4eb3f6` 커밋 확인. 다음 수요식·도로 최단 배정/이웃 통근 구현은 `deleg_78a94444`의 두 작업자가 scratch 출력만 소유해 진행 중. 부모는 root model/worker protocol/renderer 통합·빌드·커밋 소유.

@@ -3,6 +3,7 @@ extends RefCounted
 var managed_view
 var scalars:Dictionary
 func _init(view,envelope:Dictionary):managed_view=view;scalars=envelope
+func GetTaxStatus()->Dictionary:return scalars.tax_status
 func Stats()->Dictionary:return scalars.stats.duplicate(true)
 func Demand()->Dictionary:return scalars.demand.duplicate(true)
 func GetNextPerson()->int:return int(scalars.next_person)
@@ -14,4 +15,4 @@ func GetRngState()->int:return int(scalars.rng_state)
 func WorkplaceInfo(id:int)->Dictionary:return managed_view.WorkplaceInfo(id)
 # Explicit boot only: caller has not yet entered the frame loop.
 static func capture_boot(view):
- return load("res://core/native_population_view.gd").new(view,{"stats":view.Stats(),"demand":view.Demand(),"next_person":view.GetNextPerson(),"next_household":view.GetNextHousehold(),"elapsed_days":view.GetElapsedDays(),"birth_day":view.GetBirthDay(),"rng_seed":view.GetRngSeed(),"rng_state":view.GetRngState()})
+ return load("res://core/native_population_view.gd").new(view,{"tax_status":view.GetTaxStatus(),"stats":view.Stats(),"demand":view.Demand(),"next_person":view.GetNextPerson(),"next_household":view.GetNextHousehold(),"elapsed_days":view.GetElapsedDays(),"birth_day":view.GetBirthDay(),"rng_seed":view.GetRngSeed(),"rng_state":view.GetRngState()})

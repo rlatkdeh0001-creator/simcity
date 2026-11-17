@@ -94,7 +94,10 @@ func monthly_upkeep() -> int:
 func bill_months(previous: int,current: int):
  if city.simulation!=null:return # Worker clock already bills; public clock is display only.
  var crossed:=maxi(0,current-previous)
- if crossed>0:city.funds-=crossed*monthly_upkeep()
+ if crossed>0:
+  var charge:=monthly_upkeep()
+  city._upkeep_day=current;city._upkeep_per_day=float(charge)
+  city.funds-=crossed*charge
 func remove(id: int) -> bool:
  if city._defer_simulation_edit(remove.bind(id)):return true
  for index in range(lots.size()):

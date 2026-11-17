@@ -3,6 +3,7 @@ const Economy = preload("res://core/economy_config.gd")
 var difficulty := Economy.DEFAULT_DIFFICULTY
 signal funds_changed
 signal society_changed
+signal economic_changed
 signal city_name_changed
 var city_name := "CITIESDO":
 	set(value):
@@ -48,6 +49,47 @@ var population_enabled := true
 var happiness_enabled := true
 var happiness
 var simulation # Main-only facade; the detached model leaves this null.
+var _tax_production:=false
+var _tax_day_economy:Dictionary={}
+var economic_ledger=preload("res://core/economic_ledger.gd").new()
+var _upkeep_day:=0
+var _upkeep_per_day:=0.0
+func economic_status()->Dictionary:return economic_ledger.status(_tax_day_economy)
+func tax_status()->Dictionary:
+	return population.published_read_view().GetTaxStatus() if population.has_read_view() else population.core.GetTaxStatus()
+func enable_taxation()->Dictionary:
+	var options:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/tax_config.json"))
+	options.enabled=true
+	return configure_tax_policy(options)
+func configure_tax_policy(options:Dictionary)->Dictionary:
+	# Validate before queuing so malformed UI input cannot fault the worker.
+	for key in options:
+		if key not in ["enabled","rates","wages","demand_slope"]:return {"ok":false,"code":"invalid_tax_policy"}
+	if options.has("enabled") and not options.enabled is bool:return {"ok":false,"code":"invalid_tax_policy"}
+	for key in ["rates","wages"]:
+		if not options.has(key):continue
+		if not options[key] is Array or options[key].size()!=(9 if key=="rates" else 5):return {"ok":false,"code":"invalid_tax_policy"}
+		for v in options[key]:
+			if not (v is int or v is float) or not is_finite(float(v)) or v<0 or v>(20 if key=="rates" else 1000000000) or (key=="rates" and floorf(v)!=v):return {"ok":false,"code":"invalid_tax_policy"}
+	if options.has("demand_slope"):
+		var v=options.demand_slope
+		if not (v is int or v is float) or not is_finite(float(v)) or v<0 or v>1000000000:return {"ok":false,"code":"invalid_tax_policy"}
+	if happiness.background_enabled:return {"ok":false,"code":"requires_city_worker"}
+	if _defer_simulation_edit(configure_tax_policy.bind(options.duplicate(true))):return _queued_simulation_edit()
+	if simulation!=null:simulation.note_tax_policy(options)
+	else:
+		if not population._geometry_transport:population.enable_geometry_transport(buildings)
+		population.core.ConfigureTaxPolicy(options)
+		happiness.core.NotifyTaxPolicyChanged()
+	_tax_production=true
+	return {"ok":true}
+func _assess_tax_boundary():
+	if not _tax_production:return
+	var result:Dictionary=population.core.AssessTaxesManaged(clock.day())
+	if int(result.days)<=0:return
+	funds+=int(result.posted)
+	_tax_day_economy={"day":int(result.last_day),"days":int(result.days),"tax_assessed":float(result.assessed)/float(result.days),"tax_collected":float(result.collected)/float(result.days),"facility_upkeep":_upkeep_per_day if _upkeep_day==int(result.last_day) else 0.0,"interest":0.0}
+	economic_changed.emit()
 var _labor_world_dirty:=true
 var _commuting_generation:=0
 var commuting=preload("res://core/commuting_coordinator.gd").new()
@@ -293,6 +335,7 @@ func advance_society(seconds: float) -> void:
 		if population_enabled:commuting.advance(self)
 		advance_happiness(config.development_interval_seconds*Clock.SCALE)
 		if population_enabled:population.end_tick()
+		_assess_tax_boundary()
 	if background and society_elapsed>=config.development_interval_seconds:
 		society_frozen_cycles+=int(floor(society_elapsed/config.development_interval_seconds))
 		society_elapsed=fposmod(society_elapsed,config.development_interval_seconds)
@@ -553,7 +596,7 @@ func power_consumers() -> Array:
 	return result
 
 func utility_balance() -> float:
-	return maxf(0,float(funds)+power.pending_doth+water.pending_doth)
+	return maxf(0,float(funds)+power.pending_doth+water.pending_doth+float(tax_status().get("carry",0.0)))
 
 func power_state() -> Dictionary:
 	var state: Dictionary = power.solve(power_consumers(),utility_balance())

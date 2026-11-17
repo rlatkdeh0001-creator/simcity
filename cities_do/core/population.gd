@@ -113,6 +113,16 @@ func import_fixture_state(snapshot:Dictionary):
  if snapshot.has("labor_policy"):
   core.ImportLaborPolicyState(snapshot.labor_policy);_labor_enabled=bool(snapshot.labor_policy.get("enabled",false))
  if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+ if snapshot.has("tax_policy"):
+  core.ImportTaxCheckpoint(snapshot.tax_policy)
+  if _labor_owner!=null:
+   var city=_labor_owner.get_ref()
+   city._tax_production=city._tax_production or bool(snapshot.tax_policy.policy.enabled)
+ else:
+  core.ConfigureTaxPolicy({"enabled":false})
+  if _labor_owner!=null:
+   var city=_labor_owner.get_ref()
+   core.AssessTaxesThroughDay(city.clock.day(),_pack_buildings(city.buildings))
  if snapshot.has("next_person"):next_person=snapshot.next_person
  if snapshot.has("next_household"):next_household=snapshot.next_household
  if snapshot.has("rng_state"):rng.state=snapshot.rng_state

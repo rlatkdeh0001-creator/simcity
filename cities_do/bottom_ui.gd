@@ -507,12 +507,12 @@ func toggle_speed():
 func bind_status_events():
  if observed_city==city:return
  if observed_city!=null:
-  for event in ["funds_changed","society_changed","city_name_changed"]:
+  for event in ["funds_changed","society_changed","city_name_changed","economic_changed"]:
    if observed_city.is_connected(event,refresh_status):observed_city.disconnect(event,refresh_status)
   if observed_city.clock.minute_changed.is_connected(refresh_status):observed_city.clock.minute_changed.disconnect(refresh_status)
   if observed_city.clock.day_changed.is_connected(on_game_day_changed):observed_city.clock.day_changed.disconnect(on_game_day_changed)
  observed_city=city
- for event in ["funds_changed","society_changed","city_name_changed"]:city.connect(event,refresh_status)
+ for event in ["funds_changed","society_changed","city_name_changed","economic_changed"]:city.connect(event,refresh_status)
  city.clock.minute_changed.connect(refresh_status)
  city.clock.day_changed.connect(on_game_day_changed)
  status_cache.clear()
@@ -520,6 +520,9 @@ func bind_status_events():
 
 func refresh_status():
  if money==null:return
+ if city._tax_production:
+  var economic:Dictionary=city.economic_status()
+  monthly_balance=roundi(economic.daily_net) if economic.available else null
  var stats: Dictionary=city.population.stats()
  var demand: Dictionary=city.population.demand(city.buildings)
  var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance,"happiness":city.happiness.average_value()}
@@ -544,7 +547,7 @@ func refresh_status():
  update_asset_affordability()
 
 func set_monthly_balance(value: Variant):
- # Future economic producer publishes the closed game day's (= game month's) total.
+ # Legacy presentation fixtures only; production refresh reads the actual closed ledger.
  if value!=null and not value is int:return
  monthly_balance=value
  refresh_status()

@@ -129,12 +129,12 @@
 수도 거래요금,water.peer.water_import,상수 수입,0.05,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
 수도 거래요금,water.peer.water_export,상수 수출,0.025,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
 수도 거래요금,water.peer.sewage_disposal,하수 외부 처리,0.04,doth/m³,적용중,비슷한 마을 A/B,cities_do/core/water_tariffs.json,하수 외부 처리는 도시가 이웃에 지불하는 비용. 실제 거래 m³로 계산; 주민 수도 사용료와 별개.
-세금,tax.residential.rate,주거 세금/세율,,미정,미정,주거,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
-세금,tax.commercial.rate,상업 세금/세율,,미정,미정,상업,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
-세금,tax.industrial.rate,공업 세금/세율,,미정,미정,공업,docs/PRICE_PROPOSALS_KO.md,확정된 수치 없음. 0으로 간주하거나 자동 징수하지 않음. 과세기준과 주기 결정 후 단위/값 확정.
-세금,tax.assessment_basis,세금 과세 기준,,과세 대상,미정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
-세금,tax.period,세금 징수 주기,,시간,미정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
-세금,tax.currency,세금 화폐 단위,doth,문자,확정,전체,docs/CURRENCY_RULES_KO.md,재화는 doth이나 세금 산정·징수 방식은 아직 없음.
+세금,tax.residential.rate,주거 세율 기본값 (단계별 3칸),9,%,임시값·T1 통합중,주거,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,1·2 / 3·4 / 5단계 각각 0~20 정수; 9칸 개별 조절
+세금,tax.commercial.rate,상업 세율 기본값 (단계별 3칸),9,%,임시값·T1 통합중,상업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,실제 종사자 학력 일급 합 + 유입 예약 일자리 단계 일급 합
+세금,tax.industrial.rate,공업 세율 기본값 (단계별 3칸),9,%,임시값·T1 통합중,공업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,사업장 적자·체납은 이후 물자 순환 단계
+세금,tax.assessment_basis,세금 과세 기준,취업자 일급 합,doth/게임일,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,주거는 외부 취업 포함한 거주자 소득; 사업장은 실제 지역 직원 + 유입 예약; T1 산정액=징수액
+세금,tax.period,세금 징수 주기,1,게임일,T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,게임 하루=게임 한 달 경계; 동일 경계 재호출 징수 없음; 소수 이월
+세금,tax.currency,세금 화폐 단위,doth,문자,확정,전체,docs/CURRENCY_RULES_KO.md,정수 도시 자금과 소수 세수 이월 분리
 주민 사용료,billing.water.domestic,주민·사업장 상수 사용료,,doth/m³,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
 주민 사용료,billing.sewage.domestic,주민·사업장 하수 사용료,,doth/m³,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
 주민 사용료,billing.power.domestic,주민·사업장 전기 사용료,,doth/kWh,미정,주민·사업장,docs/WATER_TARIFFS_KO.md,이웃 거래요금과 별개. 미정이므로 아직 징수하지 않음; 단위도 검토용 후보.
@@ -273,3 +273,22 @@
 공공시설 용량,public.parking-tower-4x4-4f.capacity.own_power_kw,parking-tower-4x4-4f own_power_kw,4,kW,임시 승인 2026-11-11,parking-tower-4x4-4f,docs/CAPACITY_PROPOSALS_KO.md,1B: 발전5/취수/하수2만 기존 공급 엔진 적용; 그 외는 용량 데이터 등록만. 무한 급수/무연료 소각 발전 금지.
 주민·수요,labor.jobs_per_worker,노동 인구 대비 필요 일자리,1.05,일자리/노동 인구,사용자확정·적용,상업·공업 수요,cities_do/core/labor_policy.json,2026-11-16 일자리 기준 규칙
 주민·수요,labor.commercial_share,필요 일자리 상업 비중,0.60,비율,사용자확정·적용,상업·공업 수요,cities_do/core/labor_policy.json,공업은 잔여40%; 신축2x2 정원으로 나눠 올림
+세금,tax.residential.low.default,주거 1·2단계 기본 세율,9,%,임시값·T1 통합중,주거,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.residential.middle.default,주거 3·4단계 기본 세율,9,%,임시값·T1 통합중,주거,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.residential.high.default,주거 5단계 기본 세율,9,%,임시값·T1 통합중,주거,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.commercial.low.default,상업 1·2단계 기본 세율,9,%,임시값·T1 통합중,상업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.commercial.middle.default,상업 3·4단계 기본 세율,9,%,임시값·T1 통합중,상업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.commercial.high.default,상업 5단계 기본 세율,9,%,임시값·T1 통합중,상업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.industrial.low.default,공업 1·2단계 기본 세율,9,%,임시값·T1 통합중,공업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.industrial.middle.default,공업 3·4단계 기본 세율,9,%,임시값·T1 통합중,공업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+세금,tax.industrial.high.default,공업 5단계 기본 세율,9,%,임시값·T1 통합중,공업,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,기본값만 등록; 런타임 개별 설정은 저장 자료에 보존
+임금,labor.wage.education_0,학력 0단계 일급,30,doth/게임일,사용자 확정,학력 0,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,2026-11-17 확정; 지각 감액은 별도 후속 단계
+임금,labor.wage.education_1,학력 1단계 일급,40,doth/게임일,사용자 확정,학력 1,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,2026-11-17 확정; 지각 감액은 별도 후속 단계
+임금,labor.wage.education_2,학력 2단계 일급,55,doth/게임일,사용자 확정,학력 2,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,2026-11-17 확정; 지각 감액은 별도 후속 단계
+임금,labor.wage.education_3,학력 3단계 일급,75,doth/게임일,사용자 확정,학력 3,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,2026-11-17 확정; 지각 감액은 별도 후속 단계
+임금,labor.wage.education_4,학력 4단계 일급,100,doth/게임일,사용자 확정,학력 4,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,2026-11-17 확정; 지각 감액은 별도 후속 단계
+세금,tax.min_rate,세율 최솟값,0,%,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,정수 세율
+세금,tax.max_rate,세율 최댓값,20,%,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,정수 세율
+세금,tax.demand_slope,저단계 수요 계수,0.06,배율/%p,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,1 - 계수*(세율-9); 0~1.5 범위; 기존 건물 수 곱 후 내림
+세금,tax.growth_per_point,성장 기준 가산,2,행복도/%p,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,9% 초과분; target3·4는 중급 세율 target5는 최고 세율
+세금,tax.growth_max,성장 기준 최대 가산,20,행복도,임시값·T1 통합중,전체,cities_do/core/tax_config.json;docs/design/TAX_BUDGET_KO.md,9% 이하는 기준을 낮추지 않음

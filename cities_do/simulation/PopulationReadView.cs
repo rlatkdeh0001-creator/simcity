@@ -7,6 +7,9 @@ using A=Godot.Collections.Array;
 // No mutable population/core references escape into this read facade.
 public partial class PopulationReadView : RefCounted
 {
+    internal D TaxValue=EmptyTaxPublication();
+    private static D EmptyTaxPublication(){var d=new D();d.MakeReadOnly();return d;}
+    public D GetTaxStatus()=>TaxValue;
     internal sealed record Workplace(string Zone,bool HasZone,ImmutableArray<int> Slots,ImmutableArray<int> Filled,ImmutableArray<int> InboundReserved);
     // Typed scalar publication only: no per-person plans or mutable core references.
     internal sealed record LaborPublication(bool Enabled,double JobsPerWorker,double CommercialShare,int MaxCachedHomeRoutes,int RequestedInbound,int RequestedOutbound,int Inbound,int Outbound);

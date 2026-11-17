@@ -23,7 +23,7 @@ func run():
  game=load("res://main.tscn").instantiate();game.paused=true;game.set_process(false)
  var city=game.city
  city.buildings.append({"id":75,"x":10,"y":10,"size":2,"level":1,"zone":"residential","score":0.0,"asset_id":""})
- city.population.import_fixture_state({"people":[{"id":1,"household_id":1,"age_years":30.0,"education":0,"origin":"test","workplace_id":-1,"job_stage":-1}],"households":[{"id":1,"home_id":75}],"workplaces":{}})
+ city.population.import_fixture_state({"people":[{"id":1,"household_id":1,"age_years":30.0,"education":0,"origin":"test","workplace_id":-1,"job_stage":-1}],"households":[{"id":1,"home_id":75}],"workplaces":{},"next_person":2,"next_household":2})
  root.add_child(game);await process_frame
  while not city.simulation.is_ready():await process_frame
  city.advance_society(2);city.simulation.validation_publish();city.simulation.resume()

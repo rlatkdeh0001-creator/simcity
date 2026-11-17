@@ -204,7 +204,7 @@ public partial class HappinessCore
         return Calculate(_buildings[id]).Duplicate(true);
     }
     private void Target(Building b,State state){var value=Calculate(b);state.Target=value["target"].AsDouble();state.Factors=value["factors"].AsGodotDictionary().Duplicate();}
-    private bool Qualifies(Building b,State s)=>s.Initialized&&b.Power&&b.Water&&People(b.Id).Count>0&&b.Level<5&&s.Actual>=40+b.Level*10;
+    private bool Qualifies(Building b,State s)=>s.Initialized&&b.Power&&b.Water&&People(b.Id).Count>0&&b.Level<5&&s.Actual>=(_population?.TaxGrowthThreshold(b.Zone,b.Level+1,40+b.Level*10)??40+b.Level*10);
     private void Observe(Building b,State s)
     {
         double actual=s.Actual,target=s.Target;double? since=s.Since;

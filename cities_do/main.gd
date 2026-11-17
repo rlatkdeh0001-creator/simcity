@@ -68,6 +68,7 @@ func _ready():
 		map_zoom = session.map_zoom
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
+	if not city._tax_production:city.enable_taxation()
 	city.enable_simulation_worker()
 	city.simulation.edit_completed.connect(_simulation_edit_completed)
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.

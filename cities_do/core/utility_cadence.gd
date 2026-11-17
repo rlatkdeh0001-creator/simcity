@@ -38,7 +38,9 @@ func advance(seconds:float)->Dictionary:
   var city=owner.get_ref();var game_seconds:float=seconds*city.Clock.SCALE
   # Preserve the original power-then-water budget priority and fractional carry per frame.
   _meter_power(city,game_seconds/3600);_meter_water(city,game_seconds/86400)
+  var previous_day:=floori(elapsed/86400)
   elapsed+=game_seconds
+  if floori(elapsed/86400)!=previous_day:city.economic_changed.emit()
   if elapsed+EPS>=next_power:
    _power();next_power+=PERIOD*maxi(1,floori((elapsed-next_power+EPS)/PERIOD)+1)
   if elapsed+EPS>=next_water:
@@ -61,6 +63,7 @@ func _meter_power(city,hours:float):
   elif balance>0:
    grid.exported_kwh+=balance*hours;revenue+=balance*hours*float(rates[1])
  _settle(city,grid,revenue-cost)
+ city.economic_ledger.record_utility("power",hours*3600,revenue,cost,elapsed)
 func _meter_water(city,days:float):
  var grid=city.water;var budget:float=city.utility_balance();var total_cost:=0.0;var total_revenue:=0.0
  for group:Dictionary in water_snapshot.groups:
@@ -82,3 +85,4 @@ func _meter_water(city,days:float):
   grid.supplied_m3+=supplied*days;grid.treated_m3+=treated*days;grid.imported_water_m3+=imported*days;grid.exported_water_m3+=exported*days;grid.exported_sewage_m3+=exported_sewage*days
   total_cost+=purchase+disposal;total_revenue+=revenue
  _settle(city,grid,total_revenue-total_cost)
+ city.economic_ledger.record_utility("water",days*86400,total_revenue,total_cost,elapsed)

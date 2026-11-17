@@ -36,6 +36,7 @@ func run():
   verify(game.select_public_asset("power-wind") and game.mode=="public_placement" and game.city.funds==15000,"affordable selection opens ghost without charging or changing price")
   game.public_controller.cancel()
   verify(game.city.Economy.format_fraction(-12345.125,6)=="−12,345.125000 \uFFFC","fractional utility money keeps decimal precision and thousand grouping")
+  game.city._tax_production=false # Explicit presentation-only samples; live net has its own integration test.
   game.set_monthly_balance(1200);verify(game.balance_label.text=="+1,200 \uFFFC/월","monthly HUD keeps positive sign and official icon")
   game.set_monthly_balance(-200);verify(game.balance_label.text=="−200 \uFFFC/월","monthly HUD keeps negative sign and official icon")
  game.queue_free();await process_frame

@@ -32,7 +32,7 @@ public partial class CitySimulationWorker
         var h=(HappinessReadView)result["happiness_view"].AsGodotObject();
         using var stats=p.Stats();stats.MakeReadOnly();using var demand=p.Demand();demand.MakeReadOnly();
         var envelope=new D {
-            ["stats"]=stats,["demand"]=demand,
+            ["stats"]=stats,["demand"]=demand,["tax_status"]=p.GetTaxStatus(),
             ["next_person"]=p.GetNextPerson(),["next_household"]=p.GetNextHousehold(),
             ["elapsed_days"]=p.GetElapsedDays(),["birth_day"]=p.GetBirthDay(),
             ["rng_seed"]=p.GetRngSeed(),["rng_state"]=p.GetRngState(),

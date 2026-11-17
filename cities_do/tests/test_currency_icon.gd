@@ -11,6 +11,7 @@ func run():
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
  verify(not "₫" in game.money.text and not "doth" in game.money.text,"rejected currency glyph and internal unit are absent from HUD text")
  verify(game.money.get("currency_texture")!=null,"treasury uses an actual approved SVG image instead of a currency font glyph")
+ game.city._tax_production=false # Explicit layout fixture, never a production economic value.
  game.set_monthly_balance(1200);await process_frame;await process_frame
  var drawn_width: float=game.money.line_width(game.money.text,game.money.get_theme_font("font"),game.money.get_theme_font_size("font_size"))
  verify(game.money.size.x+.01>=drawn_width and game.money.global_position.x+drawn_width<=game.balance_label.global_position.x,"native treasury image/text reserves enough layout width and never overlaps monthly balance")

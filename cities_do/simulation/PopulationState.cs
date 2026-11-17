@@ -300,6 +300,12 @@ public partial class PopulationState : RefCounted
     }
     private D DemandResult()
     {
+        var result=UntaxedDemandResult();
+        if(_taxEnabled)foreach(string zone in Zones)result[zone]=TaxNewBuildingDemand(zone,Int(result,zone));
+        return result;
+    }
+    private D UntaxedDemandResult()
+    {
         if(_laborEnabled)return LaborDemandResult();
         int target=Math.Max(_initialHousing,(int)Math.Ceiling(_jobCount/4.0));
         return new D {["residential"]=Math.Max(0,target-_households.Count-_vacancies),["commercial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_commercialRatio)-_counts["commercial"]),["industrial"]=Math.Max(0,(int)Math.Ceiling(_people.Count/_industrialRatio)-_counts["industrial"])};

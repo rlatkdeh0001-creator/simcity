@@ -60,6 +60,8 @@ func run():
  var game=load("res://main.tscn").instantiate();game.city=fixture();game.city.population_enabled=false;game.paused=true;root.add_child(game);game.set_process(false);await process_frame
  game._process(5)
  verify(game.city.utilities.elapsed==0,"the production pause control freezes utility time and charges")
+ while not game.city.simulation.is_ready():await process_frame
+ game.city.advance_society(2);game.city.simulation.validation_publish();game.city.simulation.resume()
  game.paused=false;game.simulation_speed=2;game._process(.5)
  verify(game.city.utilities.power_generation==1 and game.city.utilities.water_generation==2,"the production 2x control halves the real-time water deadline")
  game._process(.5)
@@ -70,6 +72,7 @@ func run():
  var calls:int=game.city.power_calls;game.power_overlay.refresh()
  verify(game.city.power_calls==calls,"tab/edit refreshes mark dirty instead of forcing a network solve")
  game.water_overlay.tab_open=true
+ game.city.simulation.shutdown() # Replacing a test city must join its native owner first.
  game.city=fixture();game._process(0);var prior_text:String=game.power_overlay.summary.text;var prior_water:String=game.water_overlay.summary.text
  game.city=fixture(true);game._process(0)
  verify(game.power_overlay.summary.text!=prior_text,"a replacement city with the same generation counter refreshes its own utility snapshot")

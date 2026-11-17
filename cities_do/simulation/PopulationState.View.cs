@@ -20,7 +20,7 @@ public partial class PopulationState
             builder[pair.Key]=new(w.Zone,w.HasZone,ImmutableArray.CreateRange(w.Slots),ImmutableArray.CreateRange(w.Filled),ImmutableArray.CreateRange(reserved));
         }
         _cityReadWorks=builder.ToImmutable();
-        return new PopulationReadView {Works=_cityReadWorks,StatValues=FreezeCityNumbers(_geometryEnabled?StatsManaged():Stats()),
+        return new PopulationReadView {TaxValue=GetTaxStatus(),Works=_cityReadWorks,StatValues=FreezeCityNumbers(_geometryEnabled?StatsManaged():Stats()),
             LaborValue=new(_laborEnabled,(double)_jobsPerWorker,(double)_commercialShare,_laborCacheLimit,_neighborInbound,_neighborOutbound,
                 _laborEnabled?_laborInbound.Values.Sum(slots=>slots.Sum()):0,_laborEnabled?_laborOutbound.Count:0),
             DemandValues=FreezeCityNumbers(_geometryEnabled?DemandManaged():throw new System.InvalidOperationException("City read capture requires seeded geometry transport")),
@@ -33,6 +33,6 @@ public partial class PopulationState
         if(_tickActive)throw new System.InvalidOperationException("Checkpoint requires an idle tick boundary");
         var d=ExportState();d["next_person"]=_nextPerson;d["next_household"]=_nextHousehold;
         d["elapsed_days"]=_elapsedDays;d["birth_day"]=_birthDay;
-        d["rng_seed"]=unchecked((long)_rng.Seed);d["rng_state"]=unchecked((long)_rng.State);d["labor_policy"]=ExportLaborPolicyState();return d;
+        d["rng_seed"]=unchecked((long)_rng.Seed);d["rng_state"]=unchecked((long)_rng.State);d["labor_policy"]=ExportLaborPolicyState();d["tax_policy"]=ExportTaxCheckpoint();return d;
     }
 }

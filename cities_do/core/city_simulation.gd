@@ -29,6 +29,9 @@ var _world_dirty:Dictionary={}
 var _meta:Dictionary={}
 var _population_config_dirty:=false
 var _growth_config_dirty:=false
+var _tax_commands:Array=[]
+func note_tax_policy(options:Dictionary):
+ _tax_commands.append(options.duplicate(true));_changed()
 var _edits:Array[Callable]=[]
 var _adapter_script
 var _fault:=""
@@ -172,6 +175,7 @@ func _make_delta(city)->Dictionary:
  var world:Dictionary={}
  for key:String in _world_dirty:world[key]=_world_value(city,key).duplicate(true)
  if not world.is_empty():delta.world=world
+ if not _tax_commands.is_empty():delta.tax_commands=_tax_commands.duplicate(true)
  if _population_config_dirty:delta.population_config=city.population.config.duplicate(true)
  if _growth_config_dirty:delta.growth_config=_adapter_script._capture_object(city.config)
  return delta
@@ -180,7 +184,7 @@ func _submit(city)->bool:
  if not worker.Submit(delta,float(city.config.development_interval_seconds)):return false
  _submitted_funds=int(delta.meta.funds);_submitted_revision=_revision
  _building_changes={};_supplies={};_zones={};_world_dirty={};_meta={}
- _population_config_dirty=false;_growth_config_dirty=false
+ _population_config_dirty=false;_growth_config_dirty=false;_tax_commands=[]
  if _zones_dirty:_known_zones=city.zone_designations.duplicate(true);_zones_dirty=false
  return true
 func advance(seconds:float)->void:advance_society(seconds)
@@ -246,6 +250,7 @@ func _publish()->bool:
  city.appearance_rng.seed=result.appearance_seed;city.appearance_rng.state=result.appearance_state
  city.development_elapsed=result.development_elapsed;city.development_cursor=result.development_cursor
  city.society_elapsed=result.society_elapsed
+ city._tax_day_economy=result.get("tax_day_economy",{}).duplicate(true)
  city.funds+=int(result.funds)-_submitted_funds
  _published_tick=int(result.logical_tick)
  is_publishing_clock=true
