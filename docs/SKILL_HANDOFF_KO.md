@@ -1,5 +1,9 @@
 # CITIES_DO 스킬 인계장
 
+## 복선 선로 견본 (2026-11-17, cities-asset)
+
+`tools/build_rail_track.py`: 신규 rail-track-01, 복선12×7.6m/1140tri, 단선320×288 emission 띠3장. 기존 vehicle/common·subway studio(MIT 고정 출처/NOTICE 아래 참조), 프로필 `software-development/godot-windows-validation` 재사용(로컬 스킬, upstream/pin 별도 없음), 설치 없음. `run_rail_track.py`는 scratch 독립 Godot4.6.3 GL에서 13검사 및 실제1600×1000 여섯 뷰 캡처. fixture 2D 표시는 Sprite2D로 정확한 px/m 축척, 곡선은 동심원32/36m UV 리본. 결과 `docs/rail-park-validation/RAIL_TRACK_RESULTS.txt`. 띠 경계 RGB 차이는 Blender 디더링1/255 이내, 육안 반복 이음 없음. 기존 원본·게임 코드·가격·station v2 변경 없음. 지도 그리기/운행 미구현, main/push 없음.
+
 ## 보도 전용 택시 정류장·버스 정류장 v2 (2026-11-16, cities-asset)
 
 현재 `core/road_profile.gd`의 일반2/3차로는 전체12m·아스팔트10.5m, 한쪽 보도0.75m다. 기존 버스 정류장3m는 초과하므로 v1을 보존하고 길이8m/높이3.28m/색·구성을 유지한 깊이0.72m v2(2942tri)로 재배치했다. 새 taxi-stop-01은 보도체6×0.72×3.08m/1716tri, 차양/벤치1개/TAXI 표지/별도 차도 데칼1대분. `tools/build_sidewalk_transit_stops.py`, 새 원본/GLB/PNG/spec 및 카탈로그만 변경. 기존 common/vehicle/roadside/studio(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.

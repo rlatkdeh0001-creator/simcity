@@ -1,0 +1,86 @@
+{
+  "id": "rail-track-01",
+  "name": "복선 철도 견본",
+  "kind": "rail_track",
+  "width": 2,
+  "depth": 3,
+  "metres": [
+    7.6,
+    12.0
+  ],
+  "height_m": 1.1599999964237213,
+  "triangles": 1140,
+  "status": "inspection_only",
+  "capacity": 0,
+  "source": "assets/rail/rail-track-01/rail.blend",
+  "model": "res://assets/rail/rail-track-01/rail-track-01.glb",
+  "preview": "res://assets/rail/rail-track-01/rail-track-01.png",
+  "gauge_m": 1.435,
+  "rail_inner_face_x_m": [
+    -0.7175,
+    0.7175
+  ],
+  "rail_width_m": 0.15,
+  "rail_top_z_m": 0,
+  "bed_bottom_z_m": -0.35,
+  "bed_width_m": 3.6,
+  "sleeper_pitch_m": 1.0,
+  "sleeper_size_m": [
+    2.6,
+    0.3,
+    0.1
+  ],
+  "strip": {
+    "files": [
+      "strip.png",
+      "strip_end.png",
+      "strip_rails.png"
+    ],
+    "period_m": 4,
+    "width_m": 3.6,
+    "pixels_per_metre": 80,
+    "resolution": [
+      320,
+      288
+    ],
+    "projection": "vertical orthographic emission, no shadows; horizontal pixel axis follows length"
+  },
+  "colors": {
+    "ballast": "a59c8e",
+    "sleeper": "5b5046",
+    "rail": "cfd6d6"
+  },
+  "platform_edge_to_track_centre_m": 1.8,
+  "default_track_count": 2,
+  "double_track_spacing_m": 4.0,
+  "track_centre_offsets_m": [
+    -2.0,
+    2.0
+  ],
+  "double_track_bed_width_m": 7.6,
+  "double_track_gap_m": 0.4,
+  "min_curve_radius_m": 32,
+  "straight_length_m": 8,
+  "end_length_m": 4,
+  "bounds_blender_m": {
+    "min": [
+      -3.799999952316284,
+      -6.0,
+      -0.3499999940395355
+    ],
+    "max": [
+      3.799999952316284,
+      6.0,
+      0.8100000023841858
+    ]
+  },
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 49.76872391751378
+  },
+  "map_placement_implemented": false
+}
