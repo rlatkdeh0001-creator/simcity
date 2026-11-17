@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 화물 기관차 v2 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight_v2.py`: 새 v2 원본/GLB/8방향 PNG, 큰 연속 루버·양끝 운전실 창·밝은 대차와 바퀴·하부 기기함·분할 보호판/발판/손잡이·어두운 낮은 팬터그래프. 차체9m/전체10×3×3.8m,4536tri, 팬터그래프 전체 정점 최고3.799999952m. v1 및 다른 애셋 보존. catalog v2 교체; render_manifest는 재생성 결과 기존24.815891762990255px/m·8각도와 동일하여 diff 없음.
+기존 bogies/couplers/renderer(MIT 고정 출처·NOTICE 아래 기록)와 로컬 `software-development/godot-windows-validation`(upstream/pin 없음)을 사용, 설치 없음. `run_rail_freight_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드·치수·정면·접촉2곳·26m·바퀴/레일·팬터그래프14검사 통과. 단일1600×1000 원시 framebuffer `docs/rail-park-validation/freight-loco-v2-1600.png`: 같은 축척/조명의v1/v2 낮은 측면, 적재편성 및 옆 선두차v3 육안 확인. `FREIGHT_LOCO_V2_RESULTS.txt` 실제 결과. 갱신 요청서192행을 원문 바이트 그대로 복사. 사용자 검수 대기; 게임 코드·운행·가격·main·push 없음.
+
 ## 기차역 v2 지하도 (2026-11-17, cities-asset)
 
 `tools/build_rail_station_v2.py`: v1의 읽기 전용 helper 재사용, 앞 구간 y−6m·기존 원본 보존. 새 v2 `.blend/build.py/spec/preview`와 GLB/PNG, 해당 카탈로그 항목만 교체. 실측32×36m, 지상최고10.56m/최저−3.85m,17461tri. 두 승강장32×4.2m·면1.1m, 계단통 각각 네 벽·유한 바닥−3.6m·중간참·내폭1.8m/옆 보행2.1m. StationFront/StationRear 두 노드와 위아래 빈7.6m 선로 자리; 지하 통로 없음.
