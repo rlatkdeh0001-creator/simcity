@@ -106,6 +106,7 @@ func sync_catenary_depth():
  if view.traffic!=null and view.traffic.running and view.traffic.simulation!=null:
   for vehicle:Dictionary in view.traffic.simulation.vehicles:
    if not cars.has(vehicle.id) or not cars[vehicle.id].visible:continue
+   if float(cars[vehicle.id].get_meta("road_height_m",0))>0:continue # Ground catenary must not undo deck ordering.
    poses.append({"id":vehicle.id,"sprite":cars[vehicle.id],"position":view.traffic.simulation.position(vehicle),"heading":view.traffic.simulation.heading(vehicle),"length_m":vehicle.length,"width_m":2.5})
  var active:bool=not view.transit_view.underground and view.map_zoom>=.4
  var key:=hash([catenary_generation,active,poses])
@@ -187,6 +188,7 @@ func sync_transit_cars():
   if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
  sync_catenary_depth()
 var road_generation:=0
+var elevated
 var grid_generation:=0
 var building_sorts:=0
 var road_signature:=0
@@ -206,6 +208,7 @@ var line_mesh:ArrayMesh
 var line_material:ShaderMaterial
 var line_zoom:float=-1.0
 var car_frames:Dictionary={}
+var car_widths:Dictionary={}
 const DISPLAY_STRIDE:=100
 func setup(owner_view):
  view=owner_view;z_index=-10
@@ -218,6 +221,7 @@ func setup(owner_view):
  shader.code="shader_type canvas_item; render_mode unshaded; uniform float zoom=1.0; varying float across; varying float half_width; void vertex(){half_width=max(0.6,zoom)*0.5; float extent=half_width+1.0; VERTEX+=vec2(cos(UV.x),sin(UV.x))*UV.y*extent/zoom; across=UV.y*extent;} void fragment(){COLOR.a*=clamp(half_width+1.0-abs(across),0.0,1.0);}"
  line_material.shader=shader;marks.material=line_material
  actors=Node2D.new();actors.name="WorldActors";actors.z_index=9;actors.y_sort_enabled=true;add_child(actors)
+ elevated=preload("res://core/elevated_road_renderer.gd").new(self)
  view.transit_view.attach(self)
  view.building_views.changed.connect(refresh_building_images)
  synchronize();_process(0)
@@ -237,6 +241,7 @@ func synchronize():
  var rs:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height])
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
+  elevated.rebuild()
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))
@@ -253,7 +258,7 @@ func synchronize():
   if not changed and zones.cell_slots.size()!=view.city.zoning_grid.count():zones.rebuild()
   zone_signature=zs;grid_generation+=1;zones.update_palette()
  var records:Array=view.city.buildings.duplicate();records.append_array(view.city.public_facilities.lots)
- var signature:Array=[view.city.get_instance_id()]
+ var signature:Array=[view.city.get_instance_id(),rs]
  for record in records:signature.append([record.id,record.get("asset_id",""),record.get("public_asset_id",""),record.get("level",0),view.city.footprint(record),view.city.front_direction(record)])
  var access_key:Array=[rs,signature,records.map(func(record):return [record.get("front_road_id",-1),record.get("entrance_spans_m",[])])]
  if access_key!=access_signature:
@@ -277,6 +282,9 @@ func synchronize():
    center/=4
    # Retain footprint dependency order, including tied far-corner public lots.
    var depth:float=maxf(view.building_depth(record)*view.tile.y,previous_depth+.0001);previous_depth=depth
+   if str(record.get("public_asset_id","")).begins_with("park-"):
+    for deck in elevated.decks:
+     if not Geometry2D.intersect_polygons(view.city.footprint(record),deck.footprint).is_empty():depth=minf(depth,deck.position.y-.01)
    node.position=Vector2(iso(center).x,depth)
    bind_building(node)
   for id in buildings.keys():
@@ -382,6 +390,7 @@ func _process(_delta:float):
  view.transit_view.sync_visibility()
  sync_catenary_visibility()
  if position!=view.origin:position=view.origin
+ if elevated!=null:elevated.sync_visibility()
  if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
  zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
  zones.set_grid_visible(view.map_zoom>=.4)
@@ -394,15 +403,28 @@ func _process(_delta:float):
   var ppm:float=view.tile.x/4*sqrt(2.0)
   for vehicle in view.traffic.simulation.vehicles:
    if not display_eligible(vehicle):continue
-   var p:=iso(view.traffic.simulation.position(vehicle)/4)
-   if not car_frames.has(vehicle.asset_id):car_frames[vehicle.asset_id]=view.traffic.sprite_rect(vehicle.asset_id,Vector2.ZERO,ppm)
-   var rect:Rect2=car_frames[vehicle.asset_id];var visible_box:=Rect2(view.origin+(p+rect.position)*view.map_zoom,rect.size*view.map_zoom)
+   var point:Vector2=view.traffic.simulation.position(vehicle)/4
+   var p:=iso(point)
+   var lane:Dictionary=view.traffic.simulation.network.lanes[vehicle.lane]
+   if int(lane.get("road",-1))<0:lane=view.traffic.simulation.network.lanes[lane.from]
+   var road:Dictionary=view.city.roads[lane.road]
+   var height:float=preload("res://core/road_height.gd").height_at(road,point)
+   if not car_frames.has(vehicle.asset_id):
+    car_frames[vehicle.asset_id]=view.traffic.sprite_rect(vehicle.asset_id,Vector2.ZERO,ppm)
+    car_widths[vehicle.asset_id]=float(view.traffic.catalog.filter(func(a):return a.id==vehicle.asset_id)[0].width_m)
+   var rect:Rect2=car_frames[vehicle.asset_id]
+   var visible_box:=Rect2(view.origin+(p+rect.position-Vector2(0,height*view.tile.x/4*sqrt(1.5)))*view.map_zoom,rect.size*view.map_zoom)
    if not screen_bounds.intersects(visible_box):continue
    active[vehicle.id]=true
    var sprite:Sprite2D=cars.get(vehicle.id)
    if sprite==null:sprite=Sprite2D.new();sprite.centered=false;actors.add_child(sprite);cars[vehicle.id]=sprite
-   sprite.visible=true;sprite.position=p;sprite.texture=view.traffic.texture_for(vehicle.asset_id,view.traffic.simulation.heading(vehicle))
+   var direction:Vector2=view.traffic.simulation.heading(vehicle)
+   sprite.visible=true;sprite.position=p;sprite.texture=view.traffic.texture_for(vehicle.asset_id,direction)
+   sprite.set_meta("road_height_m",height)
    sprite.scale=rect.size/Vector2(sprite.texture.get_size());sprite.offset=rect.position/sprite.scale
+   var along:Vector2=direction*float(vehicle.length)/8
+   var across:Vector2=direction.orthogonal()*float(car_widths[vehicle.asset_id])/8
+   elevated.lift_vehicle(sprite,road,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
  for id in cars:
   if not active.has(id):cars[id].visible=false
  sync_catenary_depth()

@@ -358,7 +358,10 @@ func _polygon_road_distance(polygon_value: PackedVector2Array,road: Dictionary) 
 			result=min(result,_point_segment(c,a,b),_point_segment(d,a,b),_point_segment(a,c,d),_point_segment(b,c,d))
 	return result-road.width/2
 
-func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_buildings: bool=true,sidewalk_road_id:int=-1,station_ports:PackedVector2Array=PackedVector2Array()) -> String:
+func _road_ribbon_overlap(polygon_value:PackedVector2Array,ribbons:Array) -> bool:
+	return ribbons.any(func(ribbon):return Parcels.overlap(polygon_value,ribbon))
+
+func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_buildings: bool=true,sidewalk_road_id:int=-1,station_ports:PackedVector2Array=PackedVector2Array(),allow_under_deck:bool=false) -> String:
 	for point in polygon_value:
 		if point.x< -0.0005 or point.y< -0.0005 or point.x>width+0.0005 or point.y>height+0.0005:return "지도 경계 밖입니다"
 	if check_buildings:
@@ -377,11 +380,13 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 			if facility.get("public_lot_id",-2)==ignore_id:continue
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
 	for junction in junctions+road_joins:
+		if allow_under_deck and float(junction.get("height_m",0))>=5:continue
 		if Parcels.overlap(polygon_value,RoadJunctions.patch(junction)):return "교차로와 충돌합니다"
 	for road in roads:
 		if sidewalk_road_id>=0 and int(road.get("parcel_id",-2))==sidewalk_road_id:continue
-		var distance:=_polygon_road_distance(polygon_value,road)
-		if distance< -0.0005:return "도로와 충돌합니다"
+		if allow_under_deck:
+			if not preload("res://core/road_height.gd").usable_under_deck(road,polygon_value):return "도로와 충돌합니다"
+		elif _road_ribbon_overlap(polygon_value,RoadGeometry.ribbons(road.points,road.width,true,true)):return "도로와 충돌합니다"
 	# Revealed cells may extend deeper than building frontage range.
 	if not check_buildings or sidewalk_road_id>=0:return ""
 	return "" if not Frontage.candidates(polygon_value,roads,config.road_access_distance).is_empty() else "도로 바로 옆 구획이 필요합니다"
@@ -610,6 +615,94 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 		for building in buildings:orient_building(building)
 	return plan
 
+func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String = "local", commit: bool = true, lanes: int = 2, confirmed: bool = false, major_side: int = 1, grid_frame: Dictionary = {},approved_demolition:Variant=null) -> Dictionary:
+	if commit and _defer_simulation_edit(add_elevated_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null)):return _queued_simulation_edit()
+	if points.size()<2 or heights_m.size()!=points.size():return {"ok":false,"reason":"도로 높이 경로가 필요합니다"}
+	for value in heights_m:
+		if not is_finite(value) or value<0:return {"ok":false,"reason":"지원하지 않는 도로 높이입니다"}
+	var road:Dictionary={"points":points.duplicate(),"heights_m":heights_m.duplicate(),"kind":kind,"lanes":lanes,"width":RoadProfile.width_for(kind,lanes,config.road_width),"major_side":major_side}
+	var origin_value:Variant=grid_frame.get("origin")
+	var along:Variant=grid_frame.get("along")
+	var outward:Variant=grid_frame.get("outward")
+	if origin_value is Vector2 and along is Vector2 and outward is Vector2 and origin_value.is_finite() and along.is_normalized() and outward.is_normalized() and absf(along.dot(outward))<.0005:
+		road.grid_frame=grid_frame.duplicate(true)
+	var error:String=preload("res://core/road_height.gd").validate(road,Vector2(width,height))
+	if error!="":return {"ok":false,"reason":error}
+	var coplanar:Array=[]
+	for existing:Dictionary in roads:
+		error=preload("res://core/road_height.gd").overlap_error(road,existing)
+		if error!="":return {"ok":false,"reason":error}
+		if preload("res://core/road_height.gd").same_level_contact(road,existing):coplanar.append(existing)
+		for pier:Dictionary in existing.get("piers",[]):
+			for position:Vector2 in pier.positions:
+				if preload("res://core/road_height.gd").height_at(road,position)>=float(pier.height_m)-.0001:continue
+				if RoadUnits.projection(points,position).distance<float(road.width)/2+.5:return {"ok":false,"reason":"교각과 겹침"}
+	var construction:Dictionary=preload("res://core/road_construction.gd").plan(coplanar,road)
+	for route:Dictionary in transit_routes:
+		if route.kind!="rail":continue
+		var structure:Dictionary=route.duplicate(true);structure.width=2.5
+		error=preload("res://core/road_height.gd").overlap_error(road,structure)
+		if error!="":return {"ok":false,"reason":error}
+		if not preload("res://core/road_height.gd").raised(road) and not TransitRoutes.crossing_allowed(route,road):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
+	if not construction.ok:return construction
+	var additions:Array=construction.new_roads
+	for addition:Dictionary in additions:
+		addition.heights_m=PackedFloat64Array()
+		for point:Vector2 in addition.points:addition.heights_m.append(preload("res://core/road_height.gd").height_at(road,point))
+	var final_patches:Array=[]
+	if not buildings.is_empty() or not public_facilities.lots.is_empty() or not power.plants.is_empty() or not water.facilities.is_empty():
+		final_patches=_changed_road_patches(additions)
+	var final_ribbons:Array[PackedVector2Array]=[]
+	for addition:Dictionary in additions:final_ribbons.append_array(RoadGeometry.ribbons(addition.points,addition.width,true,true))
+	var demolition:Array[int]=[]
+	for b:Dictionary in buildings:
+		var shape:PackedVector2Array=footprint(b)
+		if _road_ribbon_overlap(shape,final_ribbons) or final_patches.any(func(j):return Parcels.overlap(shape,RoadJunctions.patch(j))):demolition.append(int(b.id))
+	for lot:Dictionary in public_facilities.lots:
+		if str(lot.get("public_asset_id",lot.get("asset_id",""))).begins_with("park-"):
+			var solid_patch:bool=final_patches.any(func(j):return float(j.get("height_m",0))<5 and Parcels.overlap(lot.polygon,RoadJunctions.patch(j)))
+			if not solid_patch and additions.all(func(a):return preload("res://core/road_height.gd").usable_under_deck(a,lot.polygon)):continue
+			return {"ok":false,"reason":"공공시설과 겹침"}
+		var overlaps_patch:bool=final_patches.any(func(j):return Parcels.overlap(lot.polygon,RoadJunctions.patch(j)))
+		if _road_ribbon_overlap(lot.polygon,final_ribbons) or overlaps_patch:return {"ok":false,"reason":"공공시설과 겹침"}
+	for facility:Dictionary in power.plants+water.facilities:
+		var shape:PackedVector2Array=power_plant_footprint(facility)
+		if _road_ribbon_overlap(shape,final_ribbons) or final_patches.any(func(j):return Parcels.overlap(shape,RoadJunctions.patch(j))):return {"ok":false,"reason":"공공시설과 겹침"}
+	var support_plan:Dictionary=preload("res://core/road_height.gd").supports(self,road)
+	if not support_plan.ok:return support_plan
+	road.piers=support_plan.piers
+	for addition:Dictionary in additions:
+		var supports:Dictionary=preload("res://core/road_height.gd").supports(self,addition)
+		if not supports.ok:return supports
+		addition.piers=supports.piers
+	var result:Dictionary={"ok":true,"reason":"","new_roads":additions,"demolish_ids":demolition,"piers":support_plan.piers,"warning":not demolition.is_empty(),"height_cost_pending":true}
+	if commit and not demolition.is_empty() and not confirmed:result.ok=false;result.reason="이미 지어진 건물이 파괴됩니다";return result
+	if commit and confirmed and approved_demolition!=null and demolition!=approved_demolition:result.ok=false;result.reason="철거 대상을 다시 확인하세요";return result
+	if commit:
+		for id:int in demolition:demolish("building",id)
+		for addition:Dictionary in additions:
+			addition.parcel_id=next_road_id
+
+			next_road_id+=1
+			roads.append(addition)
+		_update_zoning_for_road(road)
+	return result
+
+func _changed_road_patches(additions: Array) -> Array:
+	var before:=RoadJunctions.analyze(roads)
+	var previous: Dictionary={}
+	for patch: Dictionary in before.junctions+before.joins:
+		previous[patch.key]=patch.footprint
+	var after:=RoadJunctions.analyze(roads+additions)
+	var changed: Array=[]
+	for patch: Dictionary in after.junctions+after.joins:
+		# Node keys include height; compare pavement, not mutable arm metadata or indices.
+		if previous.has(patch.key):
+			var old: PackedVector2Array=previous[patch.key]
+			if old==patch.footprint or Geometry2D.exclude_polygons(old,patch.footprint).is_empty():continue
+		changed.append(patch)
+	return changed
+
 func road_demolition_selection(id: int,point: Vector2,drag_to: Variant=null) -> Dictionary:
 	var selection: Dictionary=preload("res://core/road_demolition.gd").selection(roads,id,point,drag_to)
 	# A held preview belongs to this exact geometry, not to a later replacement.
@@ -637,6 +730,7 @@ func demolish_road_selection(selection: Dictionary) -> Dictionary:
 		if not grouped.has(id):grouped[id]=[]
 		grouped[id].append(Vector2(first,last))
 	var replacement: Array[Dictionary]=[]
+	var fragment_id:=next_road_id
 	var removed:=0.0
 	for road: Dictionary in roads:
 		var id: int=road.parcel_id
@@ -656,9 +750,14 @@ func demolish_road_selection(selection: Dictionary) -> Dictionary:
 		var length: float=RoadJunctions.length_of(road.points)
 		if length-cursor>RoadUnits.EPS:pieces.append(RoadUnits.fragment(road,cursor,length))
 		for i in range(pieces.size()):
+			if preload("res://core/road_height.gd").raised(pieces[i]):
+				var supports:Dictionary=preload("res://core/road_height.gd").supports(self,pieces[i])
+				if not supports.ok:return {"ok":false,"reason":supports.reason}
+				pieces[i].piers=supports.piers
 			if i==0:pieces[i].parcel_id=id
-			else:pieces[i].parcel_id=next_road_id;next_road_id+=1
+			else:pieces[i].parcel_id=fragment_id;fragment_id+=1
 			replacement.append(pieces[i])
+	next_road_id=fragment_id
 	roads=replacement
 	_update_zoning_for_road({})
 	for building in buildings:orient_building(building)
@@ -966,6 +1065,7 @@ func upgrade_chain(id: int) -> Dictionary:
 
 
 func _update_zoning_for_road(_road: Dictionary):
+	if simulation!=null:simulation.note_meta("next_road_id",next_road_id)
 	_labor_world_dirty=true
 	_commuting_generation+=1
 	_simulation_world_changed()
@@ -987,6 +1087,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	var controlled_regions: Array[PackedVector2Array]=[]
 	var transition_paint:Array[Dictionary]=[]
 	for junction in junctions+road_joins:
+		if float(junction.get("height_m",0))>0:continue
 		var paint:=preload("res://core/road_transitions.gd").paint(junction)
 		if not paint.is_empty():transition_paint.append(paint);line_regions.append(paint.region)
 		if not junction.has("box"):continue
@@ -996,6 +1097,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		line_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 		if not junction.get("transition",false):controlled_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 	for visual in road_visuals:
+		if preload("res://core/road_height.gd").raised(visual):continue
 		road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,visual.width,bounds,visual.flat_start,visual.flat_end),intersection_regions))
 		road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
 		road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
@@ -1008,6 +1110,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)
 	for junction in junctions:
+		if float(junction.get("height_m",0))>0:continue
 		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,paint_surfaces))
 		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,paint_surfaces))
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
@@ -1017,6 +1120,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	for road_index in range(roads.size()):
 		var road: Dictionary=roads[road_index]
 		if road.kind!="local":continue
+		if preload("res://core/road_height.gd").raised(road):continue
 		var source: PackedVector2Array=road.get("zoning_source_points",road.points)
 		var source_id: int=road.get("zoning_source_id",road.get("parcel_id",road_index))
 		var frames: Array[Dictionary]=Parcels.blocks(source,road.width/2,source_id,config.parcel_block_length,config.parcel_turn_degrees,config.parcel_max_deviation)

@@ -1,0 +1,33 @@
+E1 five-blocker re-review | perf/render-sim-cadence | base 8ad4117f17a9cfa92b3783fbf26d3b5de4db2348 | unstaged
+Evidence index and supplemental terminal results (transcribed); primary suite logs are raw wrapper output.
+
+Before production changes, actual tests reported:
+1. Upper +20m car at (49.5625, 39.0): lower=672.0, upper rear=672.099975585938, car=672.089965820313, upper front=672.099975585938.
+2. +10 -> 0 -> +10 was rejected with the support-placement reason in both road admission and actual demolition of a legacy authored host.
+3. Native-input test re-phased the accepted grid anchor (30.25, 40.25) to (30.75, 39.75) after changing target height and turning; commit also discarded the explicit frame.
+4. A building outside the flat end added ID 71 to expected confirmation IDs [72]; a public lot outside the same end blocked the confirmed edit.
+5. A +5 -> +4.9 -> +5 road dip and park were accepted in both construction orders. Flat +5 controls passed.
+No RED raw logs saved. The UI RED used the actual main scene and viewport input in headless mode.
+
+Final primary validation: python -X utf8 tools/verify_e1_elevated.py
+  test_elevated_roads 93/93
+  test_elevated_road_ui 50/50
+  test_elevated_roads_fifo 12/12
+  test_road_profile_connections 50/50
+  test_road_side_contacts 46/46
+  test_road_seams 30/30
+  test_road_demolition_model 23/23
+  test_road_junction_boxes 67/67
+  test_building_frontage 204/204
+  All exit 0; no error/warning diagnostics.
+Final native validation: python -X utf8 tools/verify_e1_elevated.py --native-no-capture
+  test_elevated_road_ui-native-no-capture 51/51; exit 0, no error/warning diagnostics. No framebuffer read or image save.
+  Upper crossing sort: lower=672.0, upper rear=672.099975585938, car=672.109985351563, upper front=672.119995117188.
+
+Supplemental correctness commands (not included in primary E1 suite totals):
+  python tools/run_dotnet.py --timeout 60 godot --headless --max-fps 30 --path cities_do --script tests/test_rail_catenary_render.gd
+  CATENARY_RENDER checks=48 failed=0; exit 0; no error/warning diagnostics.
+  python tools/run_dotnet.py --timeout 60 godot --headless --max-fps 30 --path cities_do --script tests/test_road_grid_snap.gd
+  RESULT 39/39 road grid snap checks passed; exit 0, but NOT a clean gate: unfinished Thread, ObjectDB leak and 3 resources in use at exit. The unchanged fixture replaces game.city without shutting down the outgoing model; no out-of-scope fixture repair made.
+
+The existing single PNG is historical and cannot show the five corrections. No new capture, benchmark, measurement, import, build, installation, user-game closure, asset or protected-document edit, staging, commit, push, main change, branch/worktree switch or P5 work. Parent review and commit remain pending.

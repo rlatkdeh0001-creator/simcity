@@ -58,15 +58,16 @@ static func start(city,point: Vector2,width: float,frame: Dictionary) -> Vector2
  if not hit.is_empty():return hit.point
  var local:=coordinates(point,frame)
  return world(Vector2(tick(local.x),tick(local.y,width/2)),frame)
-static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionary) -> PackedVector2Array:
+static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionary,lock_start:bool=false) -> PackedVector2Array:
  var a:=coordinates(first,frame);var b:=coordinates(last,frame)
  var parallel:=absf(b.x-a.x)>=absf(b.y-a.y)
  var cross_axis:=1 if parallel else 0;var along_axis:=1-cross_axis
- var start_hit:=contact(city,first,frame,width)
+ var start_hit:Dictionary={} if lock_start else contact(city,first,frame,width)
  var end_hit:=contact(city,last,frame,width,first)
- if start_hit.is_empty():
-  a[cross_axis]=tick(a[cross_axis],width/2);a[along_axis]=tick(a[along_axis])
- else:a=coordinates(start_hit.point,frame)
+ if not lock_start:
+  if start_hit.is_empty():
+   a[cross_axis]=tick(a[cross_axis],width/2);a[along_axis]=tick(a[along_axis])
+  else:a=coordinates(start_hit.point,frame)
  if end_hit.is_empty():
   b[cross_axis]=tick(b[cross_axis],a[cross_axis])
   var phase:float=width/2 if not start_hit.is_empty() else 0.0
@@ -76,9 +77,9 @@ static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionar
   b[along_axis]=tick(b[along_axis],phase)
  else:
   b=coordinates(end_hit.point,frame)
-  if start_hit.is_empty():a[cross_axis]=tick(a[cross_axis],b[cross_axis])
+  if not lock_start and start_hit.is_empty():a[cross_axis]=tick(a[cross_axis],b[cross_axis])
  var first_world:=world(a,frame);var last_world:=world(b,frame)
- return PackedVector2Array([boundary_endpoint(city,first_world,last_world) if start_hit.is_empty() else first_world,boundary_endpoint(city,last_world,first_world) if end_hit.is_empty() else last_world])
+ return PackedVector2Array([first if lock_start else (boundary_endpoint(city,first_world,last_world) if start_hit.is_empty() else first_world),boundary_endpoint(city,last_world,first_world) if end_hit.is_empty() else last_world])
 static func boundary_endpoint(city,point:Vector2,inside:Vector2)->Vector2:
  # Extend only the terminal cap along its original axis; the shared lattice stays put.
  var direction:Vector2=(point-inside).normalized();var bounds:=Vector2(city.width,city.height)

@@ -14,7 +14,10 @@ func run():
   ["real three-lane mixed-width T",false,Vector2(38.5,40),Vector2(38.5,56),true,3,3]
  ]
  for spec in cases:
-  game.road_drawer.cancel();game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(38,40))
+  game.road_drawer.cancel()
+  # Release the worker owned by this fixture before replacing its model.
+  if game.city.simulation!=null:game.city.simulation.shutdown()
+  game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(38,40))
   if spec[1]:
    # Old authored/saved data stays loadable; do not route restoration through new-build guards.
    game.city.add_road(PackedVector2Array([Vector2(20,40),Vector2(36,40)]))

@@ -72,7 +72,7 @@ static func _walk(topology: Dictionary,start: Dictionary,progress: float,directi
   var finish: float=section.last if direction>0 else section.first
   if absf(finish-progress)>Paths.EPS:
    route.append({"road":section.road,"first":minf(progress,finish),"last":maxf(progress,finish),"direction":direction})
-  var node_key: Vector2i=section.end_node if direction>0 else section.start_node
+  var node_key: Variant=section.end_node if direction>0 else section.start_node
   var arms:Array=topology.nodes[node_key].arms
   if arms.size()!=2:break
   # Only opposite collinear rays belong to one demolition span; a corner is a boundary.

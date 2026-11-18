@@ -13,6 +13,7 @@ func run():
   var city:=City.new(100,100);var centre:=Vector2(50,45);var axis:=Vector2(.8,.6) if kind=="rotated" else Vector2.RIGHT;var normal:=Vector2(-axis.y,axis.x)
   city.add_road(PackedVector2Array([centre,centre+axis*30]),"local",true,8)
   city.add_road(PackedVector2Array([centre-axis*30,centre]),"local",true,2)
+  verify(is_equal_approx(city.roads[0].width,8.0) and is_equal_approx(city.roads[1].width,3.0),kind+" fixture retains approved eight/three-cell width grades")
   var branch:=Vector2.from_angle(deg_to_rad(20)) if kind=="oblique" else normal
   if kind!="transition":city.add_road(PackedVector2Array([centre-branch*25,centre+branch*25 if kind in ["cross","oblique"] else centre]),"local",true,2)
   verify(city.get("intersection_regions")!=null,kind+" derives a common intersection exclusion region")
@@ -58,6 +59,8 @@ func run():
    verify(not city.road_crosswalks.is_empty() and not city.road_stop_lines.is_empty(),kind+" supported approach boundaries retain both crossing stripes and incoming stop lines")
    if kind!="oblique":
     for arm in node.arms:
-     var expected:=1.25 if absf(arm.direction.dot(axis))>.99 else 4.25
+     # Approved 2-lane width is 3 cells including shoulders, not the old 2.
+     # Half crossed width + .22 zebra half-length + .03 edge gap.
+     var expected:=1.75 if absf(arm.direction.dot(axis))>.99 else 4.25
      verify(is_equal_approx(city.RoadJunctions.crosswalk_distance(node,arm),expected),kind+" 8/2-lane zebra uses the crossed road width, not the widest render box")
  print("RESULT %d/%d junction box checks passed"%[checks-failures,checks]);quit(1 if failures else 0)

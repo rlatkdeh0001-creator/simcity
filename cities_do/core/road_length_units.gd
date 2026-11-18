@@ -87,6 +87,10 @@ static func fragment(road: Dictionary,first: float,last: float) -> Dictionary:
  var length:=Paths.length_of(road.points)
  var offset: float=road.get("source_start",0.0)
  result.points=Paths.slice(road.points,first,last)
+ if road.has("heights_m"):
+  result.heights_m=PackedFloat64Array()
+  for point:Vector2 in result.points:result.heights_m.append(preload("res://core/road_height.gd").height_at(road,point))
+  result.erase("piers")
  result.zoning_source_points=road.get("zoning_source_points",road.points).duplicate()
  result.zoning_source_id=road.get("zoning_source_id",road.parcel_id)
  result.source_start=offset+first;result.source_end=offset+last

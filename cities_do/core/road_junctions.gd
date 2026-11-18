@@ -1,6 +1,7 @@
 extends RefCounted
 ## Shared centreline topology in city cells. Curves retain their authored geometry.
 const EPS := .0001
+const Height=preload("res://core/road_height.gd")
 const Profile=preload("res://core/road_profile.gd")
 const CROSSWALK_HALF_LENGTH := .22
 const CROSSWALK_EDGE_GAP := .03
@@ -8,13 +9,13 @@ const STOP_LINE_HALF_LENGTH := .04
 const LANE_MARK_GAP := .03
 static func key(point: Vector2) -> Vector2i:
  return Vector2i(roundi(point.x/EPS),roundi(point.y/EPS))
-static func merged_key(point: Vector2, nodes: Dictionary) -> Vector2i:
+static func merged_key(point: Vector2, nodes: Dictionary, height_m:float=0.0) -> String:
  var base := key(point)
  for x in range(-1,2):
   for y in range(-1,2):
-   var candidate := base+Vector2i(x,y)
+   var candidate:="%d:%d:%d" % [base.x+x,base.y+y,roundi(height_m/EPS)]
    if nodes.has(candidate) and nodes[candidate].position.distance_to(point)<=EPS*2:return candidate
- return base
+ return "%d:%d:%d" % [base.x,base.y,roundi(height_m/EPS)]
 static func snap_point(point: Vector2,roads: Array,distance: float=1.0) -> Vector2:
  if not point.is_finite():return point
  var best:=point;var nearest:=distance+.000001;var found:=false
@@ -87,10 +88,13 @@ static func analyze(roads: Array) -> Dictionary:
       var t0 := (pb[j]-pa[i]).dot(ea)/ea.length_squared()
       var t1 := (pb[j+1]-pa[i]).dot(ea)/ea.length_squared()
       if minf(1,maxf(t0,t1))-maxf(0,minf(t0,t1))>EPS:
+       var mid:Vector2=pa[i].lerp(pa[i+1],clampf((maxf(0,minf(t0,t1))+minf(1,maxf(t0,t1)))/2,0,1))
+       if absf(Height.height_at(roads[a],mid)-Height.height_at(roads[b],mid))>EPS:continue
        if not "겹치는 도로는 주행할 수 없습니다" in errors: errors.append("겹치는 도로는 주행할 수 없습니다")
        continue
      var hit=intersection(pa[i],pa[i+1],pb[j],pb[j+1])
      if hit==null:continue
+     if absf(Height.height_at(roads[a],hit)-Height.height_at(roads[b],hit))>EPS:continue
      cuts[a].append(float(offsets[a][i])+pa[i].distance_to(hit))
      cuts[b].append(float(offsets[b][j])+pb[j].distance_to(hit))
  var nodes := {}
@@ -103,12 +107,12 @@ static func analyze(roads: Array) -> Dictionary:
   for i in range(1,unique.size()):
    var points := slice(roads[road_id].points,unique[i-1],unique[i])
    if points.size()<2:continue
-   var start := merged_key(points[0],nodes)
-   var end := merged_key(points[-1],nodes)
+   var start:Variant = merged_key(points[0],nodes,Height.height_at(roads[road_id],points[0]))
+   var end:Variant = merged_key(points[-1],nodes,Height.height_at(roads[road_id],points[-1]))
    var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end}
    sections.append(section)
    for pair in [[start,points[0],(points[1]-points[0]).normalized(),false],[end,points[-1],(points[-2]-points[-1]).normalized(),true]]:
-    if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"arms":[],"road_ids":[],"junction":-1}
+    if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"height_m":Height.height_at(roads[road_id],pair[1]),"arms":[],"road_ids":[],"junction":-1}
     var node: Dictionary=nodes[pair[0]]
     if not road_id in node.road_ids:node.road_ids.append(road_id)
     var outgoing:=points.duplicate()
@@ -134,6 +138,7 @@ static func analyze(roads: Array) -> Dictionary:
   var radius := 0.0
   for arm in node.arms:radius=maxf(radius,arm.width/2+1.0)
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
+  junction.height_m=node.height_m
   junction.transition=transition
   if (not transition or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
    var widest: Dictionary=node.arms[0]

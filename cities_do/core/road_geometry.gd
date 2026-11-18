@@ -1,5 +1,6 @@
 extends RefCounted
 const Profile=preload("res://core/road_profile.gd")
+const Height=preload("res://core/road_height.gd")
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
@@ -33,11 +34,12 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 	var links := {}
 	var flat_points: Array[Vector2]=[]
 	for i in range(roads.size()):
+
 		if roads[i].get("flat_start",false):flat_points.append(roads[i].points[0])
 		if roads[i].get("flat_end",false):flat_points.append(roads[i].points[-1])
 		for end in [0,1]:
 			var p: Vector2=roads[i].points[0 if end==0 else -1]
-			var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes)
+			var key: String=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes,Height.height_at(roads[i],p))
 			if not links.has(key):links[key]=[]
 			links[key].append({"road":i,"end":end})
 	var used := {}
@@ -46,24 +48,31 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		if used.has(i):continue
 		used[i]=true
 		var chain: PackedVector2Array=roads[i].points.duplicate()
+		var heights:=PackedFloat64Array()
+		for point in chain:heights.append(Height.height_at(roads[i],point))
+		var source_ids:Array=[int(roads[i].get("parcel_id",-1))]
+		var supports:Array=roads[i].get("piers",[]).duplicate(true)
 		var seams: Array[Vector2]=[]
 		for side in [0,1]:
-			if side==1:chain.reverse()
+			if side==1:chain.reverse();heights.reverse()
 			while true:
-				var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes)
+				var key: String=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes,heights[-1])
 				if topology.nodes[key].arms.size()!=2 or links[key].size()!=2:break
 				var next: Dictionary={}
 				for entry in links[key]:
 					if not used.has(entry.road):next=entry
 				if next.is_empty():break
 				var road: Dictionary=roads[next.road]
+				if Height.raised(road)!=Height.raised(roads[i]):break
 				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
 				if int(road.lanes)%2 and int(road.get("major_side",1))*(1 if next.end==0 else -1)!=int(roads[i].get("major_side",1))*(1 if side==0 else -1):break
 				var extension: PackedVector2Array=road.points.duplicate()
 				if next.end==1:extension.reverse()
 				seams.append(chain[-1]);used[next.road]=true
-				for j in range(1,extension.size()):chain.append(extension[j])
-		chain.reverse()
+				source_ids.append(int(road.get("parcel_id",-1)));supports.append_array(road.get("piers",[]))
+				for j in range(1,extension.size()):chain.append(extension[j]);heights.append(Height.height_at(road,extension[j]))
+		chain.reverse();heights.reverse()
+		var height_source:Dictionary={"points":chain,"heights_m":heights}
 		var smooth := PackedVector2Array()
 		for j in range(chain.size()):
 			if j==0 or j==chain.size()-1 or not seams.has(chain[j]):smooth.append(chain[j]);continue
@@ -78,8 +87,12 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
-		var first_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[0],topology.nodes)]
-		var last_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[-1],topology.nodes)]
+		if Height.raised(roads[i]):
+			visual.heights_m=PackedFloat64Array()
+			for point in smooth:visual.heights_m.append(Height.height_at(height_source,point))
+			visual.source_ids=source_ids;visual.piers=supports
+		var first_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[0],topology.nodes,heights[0])]
+		var last_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[-1],topology.nodes,heights[-1])]
 		visual.flat_start=first_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
 		visual.flat_end=last_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
 		result.append(visual)

@@ -111,12 +111,15 @@ func _validate(delta:Dictionary)->String:
     if not row.has(field):return "missing building field: "+field
    if row.zone not in ["residential","commercial","industrial"]:return "invalid building zone"
  for key:Variant in delta.get("meta",{}):
-  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id"]:return "unsupported meta field"
+  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id","next_road_id"]:return "unsupported meta field"
  for key:Variant in delta.get("world",{}):
   if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes","transit_lines"]:return "unsupported world field"
  for key:Variant in delta.get("zones",{}):
   if str(delta.zones[key]) not in ["","residential","commercial","industrial"]:return "invalid zone designation"
  var world:Dictionary=delta.get("world",{})
+ if delta.get("meta",{}).has("next_road_id"):
+  var watermark:Variant=delta.meta.next_road_id
+  if not watermark is int or watermark<city.next_road_id:return "invalid road ID watermark"
  if world.has("transit_lines"):
   var problem:String=Model.validate_transit_lines(world.transit_lines)
   if not problem.is_empty():return problem

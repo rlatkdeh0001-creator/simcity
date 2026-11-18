@@ -716,6 +716,7 @@ func select_category(key: String):
    card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
    palette.content.add_child(card);road_lane_cards.append(card)
   road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
+  var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
   road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
   road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
   road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
@@ -729,6 +730,7 @@ func select_category(key: String):
  if key in ["park","transport"]:
 
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+   if entry.kind=="structure_sample":continue # Inspection-only originals are not map tools.
    var transit:bool=str(entry.kind).begins_with("transit") or str(entry.kind).begins_with("subway")
    if transit!=(key=="transport"):continue
    if transit and not city.public_facilities.entries.has(entry.id):continue
@@ -1036,7 +1038,7 @@ func layout_bottom_hud():
  status_left.add_theme_constant_override("separation",2 if narrow else 12)
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
- var item_count:=road_lane_cards.size()+3 if chosen=="road" else drawer_box.get_child_count()
+ var item_count:=road_lane_cards.size()+5 if chosen=="road" else drawer_box.get_child_count()
 
  var width_value := minf(maxf(410,240+145*(item_count-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2

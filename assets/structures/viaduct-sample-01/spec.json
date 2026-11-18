@@ -1,0 +1,57 @@
+{
+  "id": "viaduct-sample-01",
+  "name": "고가도로 견본",
+  "kind": "structure_sample",
+  "width": 10,
+  "depth": 3,
+  "metres": [
+    40,
+    12
+  ],
+  "height_m": 11.1,
+  "triangles": 4404,
+  "status": "inspection_only",
+  "source": "assets/structures/viaduct-sample-01/structure.blend",
+  "model": "res://assets/structures/viaduct-sample-01/viaduct-sample-01.glb",
+  "preview": "res://assets/structures/viaduct-sample-01/viaduct-sample-01.png",
+  "deck_level_m": 10,
+  "underdeck_clear_m": 8,
+  "pier_positions_blender_m": [
+    [
+      -16,
+      0,
+      0
+    ],
+    [
+      16,
+      0,
+      0
+    ]
+  ],
+  "components": [
+    "viaduct-pier-01",
+    "viaduct-side-01"
+  ],
+  "bounds_blender_m": {
+    "min": [
+      -20.0,
+      -6.0,
+      0.0
+    ],
+    "max": [
+      20.0,
+      6.0,
+      11.100000381469727
+    ]
+  },
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 18.75898075899221
+  },
+  "front_blender": "-Y",
+  "map_placement_implemented": false
+}

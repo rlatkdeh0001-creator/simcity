@@ -5,7 +5,32 @@ const AngleSnap=preload("res://core/road_angle_snap.gd")
 const LengthUnits=preload("res://core/road_length_units.gd")
 const Grid=preload("res://core/road_grid_snap.gd")
 const Construction=preload("res://core/road_construction.gd")
+const Height=preload("res://core/road_height.gd")
 var grid_frame: Dictionary={}
+var target_height_m:=0.0
+var start_height_m:=0.0
+var pending:Dictionary={}
+var warning_panel:PanelContainer
+func clear_warning():
+ pending.clear()
+ if is_instance_valid(warning_panel):warning_panel.hide();warning_panel.queue_free()
+ warning_panel=null
+ if view.world_renderer!=null:
+  for sprite in view.world_renderer.buildings.values():sprite.modulate=Color.WHITE
+func confirm_pending():
+ if pending.is_empty():return
+ var approved:Dictionary=pending.duplicate(true)
+ if approved.city_id!=view.city.get_instance_id():cancel();return
+ var plan:Dictionary=view.city.add_elevated_road(approved.points,approved.heights_m,"local",false,approved.lanes,false,view.road_major_side,approved.grid_frame)
+ if not plan.ok or plan.get("demolish_ids",[])!=approved.demolish_ids:cancel();return
+ clear_warning()
+ commit_path(approved,true)
+func set_height(value:float):
+ target_height_m=maxf(0,roundf(value/5)*5)
+ _preview_signature=null
+ var controls=view.find_child("RoadHeightControls",true,false)
+ if controls!=null:controls.synchronize()
+ view.queue_redraw()
 var owner_reference: WeakRef
 var view:
  get:return owner_reference.get_ref()
@@ -22,6 +47,7 @@ var _legacy_signature=null
 var _legacy_valid:=false
 func _init(owner):owner_reference=weakref(owner)
 func cancel():
+ clear_warning()
  grid_frame.clear()
  cursor_armed=false
  anchors.clear();start_tangent=Vector2.ZERO
@@ -34,9 +60,17 @@ func set_kind(value: String):
  if view.has_method("update_road_modes"):view.update_road_modes()
  view.queue_redraw()
 func grid_on() -> bool:return view.road_grid_enabled and kind!="legacy"
-func grid_reference(point: Vector2) -> Dictionary:return grid_frame if not grid_frame.is_empty() else Grid.frame_near(view.city,point)
+func layer_roads_at(point:Vector2,height:float) -> Array:
+ return view.city.roads.filter(func(road):return absf(Height.height_at(road,point)-height)<Height.EPS)
+func layer_roads() -> Array:return layer_roads_at(view.pointer,target_height_m)
+func layer_city(point:Vector2,height:float) -> Dictionary:
+ var selected:Array=layer_roads_at(point,height);var lattices:Array=[]
+ if view.city.zoning_lattices.size()==view.city.roads.size():
+  for road:Dictionary in selected:lattices.append(view.city.zoning_lattices[view.city.roads.find(road)])
+ return {"roads":selected,"zoning_lattices":lattices,"width":view.city.width,"height":view.city.height}
+func grid_reference(point: Vector2) -> Dictionary:return grid_frame if not grid_frame.is_empty() else Grid.frame_near(layer_city(point,target_height_m),point)
 func snap(point: Vector2) -> Vector2:
- return Grid.start(view.city,point,view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(point)) if grid_on() else view.city.RoadJunctions.snap_point(point,view.city.roads)
+ return Grid.start(layer_city(point,target_height_m),point,view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(point)) if grid_on() else view.city.RoadJunctions.snap_point(point,layer_roads_at(point,target_height_m))
 func arm_cursor():cursor_armed=true;view.queue_redraw()
 func cursor_preview() -> Dictionary:
  if not cursor_armed or view.mode!="road" or kind=="legacy" or not anchors.is_empty() or not view.pointer.is_finite():return {}
@@ -50,7 +84,7 @@ func cursor_preview() -> Dictionary:
  for b in view.city.power.plants+view.city.water.facilities:occupied.append(view.city.power_plant_footprint(b))
  for shape in occupied:
   if view.city._polygon_road_distance(shape,probe)<-.0005:valid=false;break
- return {"center":center,"radius":width/2,"ok":valid,"snapped":not AngleSnap.connection(center,view.city.roads).is_empty()}
+ return {"center":center,"radius":width/2,"ok":valid,"snapped":not AngleSnap.connection(center,layer_roads()).is_empty()}
 func cursor_ring(center: Vector2,radius: float) -> PackedVector2Array:
  var points:=PackedVector2Array()
  for i in range(65):points.append(view.screen(center+Vector2.from_angle(TAU*i/64.0)*radius))
@@ -65,11 +99,11 @@ func draw_cursor(state: Dictionary):
   var ring:=cursor_ring(state.center,state.radius*1.33)
   for i in range(0,64,4):view.draw_polyline(ring.slice(i,i+3),Color("36b7ff"),2,true)
 func destination(point: Vector2,first: Vector2) -> Vector2:
- var result: Vector2=view.city.RoadJunctions.snap_point(point,view.city.roads)
+ var result: Vector2=view.city.RoadJunctions.snap_point(point,layer_roads())
  # The one-cell snap radius must not collapse an intentional four-metre extension.
  return point if result.distance_to(first)<LengthUnits.EPS and point.distance_to(first)>=LengthUnits.CONNECT/2 else result
-func tangent_at(point: Vector2) -> Vector2:
- var roads: Array=view.city.roads.duplicate();roads.reverse()
+func tangent_at(point: Vector2,height:float=NAN) -> Vector2:
+ var roads: Array=layer_roads_at(point,target_height_m if is_nan(height) else height);roads.reverse()
  for road in roads:
   var p: PackedVector2Array=road.points
   if point.distance_to(p[-1])<.0002:return (p[-1]-p[-2]).normalized()
@@ -81,41 +115,52 @@ func tangent_at(point: Vector2) -> Vector2:
 func raw_path() -> PackedVector2Array:
  if anchors.is_empty():return PackedVector2Array()
  var first:=anchors[0];var last:=destination(view.pointer,first)
+ var mixed_height:=absf(start_height_m-target_height_m)>Height.EPS
  if grid_on():
   if kind=="curve" and anchors.size()<2:last=view.pointer
   else:
-   var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
-   var ends:=Grid.ends(view.city,assisted[0],assisted[-1],view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(first))
+   var assisted:=AngleSnap.apply(PackedVector2Array([first,last]),layer_roads(),true) if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO) else PackedVector2Array([first,last])
+   var ends:=Grid.ends(layer_city(last,target_height_m),first if mixed_height else assisted[0],assisted[-1],view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),grid_reference(first),mixed_height)
    first=ends[0];last=ends[-1]
- if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,view.city.roads)])
- if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):return PackedVector2Array([first,last]) if grid_on() else AngleSnap.apply(PackedVector2Array([first,last]),view.city.roads,true)
+ if kind=="curve" and anchors.size()<2:return PackedVector2Array([first,AngleSnap.constrain_point(first,last,layer_roads())])
+ if kind=="straight" or (kind=="free" and start_tangent==Vector2.ZERO):
+  var ends:=PackedVector2Array([first,last])
+  if grid_on() or (mixed_height and not AngleSnap.connection(last,layer_roads()).is_empty()):return ends
+  ends=AngleSnap.apply(ends,layer_roads(),true)
+  if mixed_height:ends[0]=first
+  return ends
  var control: Vector2=anchors[1] if kind=="curve" else first+start_tangent*first.distance_to(last)/2
  if kind=="free":
-  var assisted:=AngleSnap.axis(last-first,AngleSnap.connection(first,view.city.roads))
+  var assisted:=AngleSnap.axis(last-first,AngleSnap.connection(first,layer_roads()))
   if assisted!=Vector2.ZERO and absf(assisted.dot(start_tangent))<.5:control=first+assisted*first.distance_to(last)/2
  var steps:=clampi(ceili((first.distance_to(control)+control.distance_to(last))*2),8,128)
  var points:=PackedVector2Array()
  for i in range(steps+1):
   var t:=float(i)/steps;var u:=1-t
   points.append(first*u*u+control*2*u*t+last*t*t)
- if not grid_on():points=view.city.RoadJunctions.snap_path(points,view.city.roads)
+ if not grid_on() and not mixed_height:points=view.city.RoadJunctions.snap_path(points,layer_roads())
  points[-1]=last
- points=AngleSnap.apply(points,view.city.roads)
+ points=AngleSnap.apply(points,layer_roads())
  if grid_on():
   points[0]=first;points[-1]=last
-  points[1]=AngleSnap.constrain_point(first,points[1],view.city.roads)
-  points[-2]=AngleSnap.constrain_point(last,points[-2],view.city.roads)
+  points[1]=AngleSnap.constrain_point(first,points[1],layer_roads())
+  points[-2]=AngleSnap.constrain_point(last,points[-2],layer_roads())
  return points
 func resolved_path() -> Dictionary:
  var points:=raw_path()
  if grid_on():
   if kind=="curve" and anchors.size()<2:return {"ok":points.size()>=2,"points":points,"reason":""}
-  return Grid.fit(points,view.city.roads)
+  return Grid.fit(points,layer_roads())
  # Control handles are not destination contacts; follow the start road's build step.
- if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),view.city.roads) if not anchors.is_empty() else LengthUnits.BUILD)
- var overdraw:=Construction.fit_overlay(points,view.city.roads,{"kind":"local","lanes":view.road_lanes,"width":view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),"major_side":view.road_major_side})
+ if kind=="curve" and anchors.size()<2:return LengthUnits.fit(points,[],LengthUnits.build_step(PackedVector2Array([anchors[0],anchors[0]]),layer_roads()) if not anchors.is_empty() else LengthUnits.BUILD)
+ var roads:=layer_roads()
+ # Destination-layer snap cannot see the already accepted start on its own layer.
+ # Use the existing fixed-contact fit policy, not the free-start reversal or flat overlay fit.
+ if points.size()>=2 and absf(start_height_m-target_height_m)>Height.EPS and not AngleSnap.connection(points[-1],roads).is_empty():
+  return LengthUnits.fit(points,roads,LengthUnits.CONNECT,true)
+ var overdraw:=Construction.fit_overlay(points,roads,{"kind":"local","lanes":view.road_lanes,"width":view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),"major_side":view.road_major_side})
  if not overdraw.is_empty():return overdraw
- return LengthUnits.fit(points,view.city.roads)
+ return LengthUnits.fit(points,roads)
 func path() -> PackedVector2Array:return resolved_path().points
 func joins_routable(network,points: PackedVector2Array,road_id: int=-1) -> bool:
  # Surface the existing traffic graph's no-U-turn rule, rather than showing a
@@ -133,11 +178,12 @@ func joins_routable(network,points: PackedVector2Array,road_id: int=-1) -> bool:
   if existing and not connected:return false
  return true
 func preview() -> Dictionary:
+ if not pending.is_empty():return pending.duplicate(true)
  # Cache world-space admission, never camera-space drawing. Geometry changes also invalidate.
  var obstacles:Array=[]
  for building in view.city.buildings:obstacles.append(view.city.footprint(building))
  for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
- var signature:=hash([kind,anchors,view.pointer,view.road_lanes,view.road_major_side,grid_on(),grid_frame,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ var signature:=hash([target_height_m,start_height_m,kind,anchors,view.pointer,view.road_lanes,view.road_major_side,grid_on(),grid_frame,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
  if signature!=_preview_signature:
   _preview_signature=signature;preview_computations+=1;_preview_cache=_compute_preview()
  return _preview_cache.duplicate(true)
@@ -152,10 +198,14 @@ func legacy_preview(points:PackedVector2Array)->bool:
  return _legacy_valid
 func _compute_preview() -> Dictionary:
  var resolved:=resolved_path()
- var points: PackedVector2Array=resolved.points
+ var profile:=height_profile(resolved.points)
+ var points: PackedVector2Array=profile.points
  var complete: bool=kind!="curve" or anchors.size()>=2
- var result: Dictionary=view.city.add_road(points,"local",false,view.road_lanes,false,complete,view.road_major_side,grid_reference(points[0]) if grid_on() and points.size()>0 else {})
+ var frame:=grid_reference(points[0]).duplicate(true) if grid_on() and points.size()>0 else {}
+ var result: Dictionary=view.city.add_elevated_road(points,profile.heights_m,"local",false,view.road_lanes,false,view.road_major_side,frame)
  result.points=points
+ result.heights_m=profile.heights_m
+ result.grid_frame=frame
  if not resolved.ok:result.ok=false;result.reason=resolved.reason
  if result.ok:
   var candidate:={"points":points,"kind":"local","lanes":view.road_lanes,"width":view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width),"major_side":view.road_major_side}
@@ -166,10 +216,27 @@ func _compute_preview() -> Dictionary:
    for i in range(additions.size()):
     if not joins_routable(network,additions[i].points,view.city.roads.size()+i):result.ok=false;result.reason="급격한 되돌림 도로는 주행할 수 없습니다";break
  return result
+func height_profile(points:PackedVector2Array)->Dictionary:
+ var result:=points.duplicate();var heights:=PackedFloat64Array()
+ if points.size()<2:return {"points":result,"heights_m":heights}
+ var length:=Height.length_cells(points)
+ var ramp:=Height.minimum_ramp_m(target_height_m-start_height_m,"local")/4
+ if ramp>0 and ramp<length:
+  result=LengthUnits.Paths.slice(points,0,ramp)
+  var rest:=LengthUnits.Paths.slice(points,ramp,length)
+  result.append_array(rest.slice(1))
+ var distance:=0.0
+ for i in range(result.size()):
+  if i>0:distance+=result[i-1].distance_to(result[i])
+  heights.append(target_height_m if ramp==0 else lerpf(start_height_m,target_height_m,clampf(distance/minf(ramp,length),0,1)))
+ return {"points":result,"heights_m":heights}
+func pointer_world(screen_position:Vector2)->Vector2:
+ return view.world(screen_position+Vector2(0,target_height_m*view.tile.x/4*sqrt(1.5)*view.map_zoom))
 func click(point: Vector2):
  view.pointer=point
  if anchors.is_empty():
-  if grid_on():grid_frame=Grid.frame_near(view.city,point).duplicate(true)
+  start_height_m=target_height_m
+  if grid_on():grid_frame=Grid.frame_near(layer_city(point,target_height_m),point).duplicate(true)
   anchors.append(snap(point));start_tangent=tangent_at(anchors[0]);view.queue_redraw();return
  if kind=="curve" and anchors.size()==1:
   var guide:=resolved_path()
@@ -177,27 +244,50 @@ func click(point: Vector2):
   view.queue_redraw();return
  last_result=preview()
  if not last_result.ok:view.queue_redraw();return
+ last_result.lanes=view.road_lanes;last_result.city_id=view.city.get_instance_id()
+ if last_result.get("warning",false):
+  pending=last_result.duplicate(true)
+  warning_panel=preload("res://core/road_demolition_warning.gd").new()
+  view.drawer.get_parent().add_child(warning_panel)
+  var endpoint:Vector2=view.screen(last_result.points[-1])-Vector2(0,target_height_m*view.tile.x/4*sqrt(1.5)*view.map_zoom)
+  warning_panel.setup(self,endpoint,pending.demolish_ids.size())
+  for id in pending.demolish_ids:
+   var sprite=view.world_renderer.buildings.get(id)
+   if sprite!=null:sprite.modulate=Color(1.25,1.12,.35)
+  view.queue_redraw();return
+ commit_path(last_result,false)
+func commit_path(plan:Dictionary,confirmed:bool):
+ last_result=plan
  var points: PackedVector2Array=last_result.points
- var committed_grid: Dictionary=grid_reference(points[0]).duplicate(true) if grid_on() else {}
- last_result=view.city.add_road(points,"local",true,view.road_lanes,false,true,view.road_major_side,committed_grid)
- if last_result.ok:
+ var heights:PackedFloat64Array=plan.heights_m
+ var committed_grid: Dictionary=plan.grid_frame
+ last_result=view.city.add_elevated_road(points,heights,"local",true,view.road_lanes,confirmed,view.road_major_side,committed_grid,plan.get("demolish_ids",[]) if confirmed else null)
+ if last_result.ok or last_result.get("queued",false):
   view.stop_traffic();cancel()
   arm_cursor()
-  if kind=="straight":anchors.append(points[-1]);start_tangent=tangent_at(points[-1])
-  if kind=="straight":grid_frame=Grid.frame_near(view.city,points[-1]).duplicate(true) if grid_on() else {}
+  start_height_m=heights[-1]
+  if kind=="straight":anchors.append(points[-1]);start_tangent=tangent_at(points[-1],start_height_m)
+  if kind=="straight" and grid_on():
+   var endpoint_layer:=layer_city(points[-1],start_height_m)
+   grid_frame=committed_grid.duplicate(true) if endpoint_layer.roads.is_empty() else Grid.frame_near(endpoint_layer,points[-1]).duplicate(true)
   view.refresh()
 func handle_input(event: InputEvent) -> bool:
  if view.mode!="road" or kind=="legacy":return false
+ if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
+  set_height(target_height_m+(5 if event.keycode==KEY_PAGEUP else -5));return true
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel();return true
+ if not pending.is_empty():
+  if event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:cancel()
+  return true
  if event is InputEventMouseMotion:
   if view.panning:return false
-  view.pointer=view.world(event.position);view.queue_redraw();return true
+  view.pointer=pointer_world(event.position);view.queue_redraw();return true
  if event is InputEventMouseButton:
   if event.button_index==MOUSE_BUTTON_RIGHT:
    if event.pressed:cancel()
    return true
   if event.button_index==MOUSE_BUTTON_LEFT:
-   if event.pressed:click(view.world(event.position))
+   if event.pressed:click(pointer_world(event.position))
    return true
  return false
 func measurements(result: Dictionary={}) -> Dictionary:
@@ -245,7 +335,8 @@ func draw_measurements(result: Dictionary):
  for angle in data.angles:
   if angle.degrees>.001:view.draw_polyline(angle.arc,Color("36b7ff"),2,true)
   draw_measure_badge(angle.text,angle.arc[12]+Vector2(0,-28),Color("36b7ff"))
-func preview_colors(valid: bool) -> Dictionary:
+func preview_colors(valid: bool,warning:bool=false) -> Dictionary:
+ if valid and warning:return {"fill":Color(1,.82,.15,.55),"outline":Color("e6c442")}
  return {"fill":Color(.3,.9,.5,.55) if valid else Color(.95,.3,.25,.55),"outline":Color("3ddc84") if valid else Color("ef5350")}
 func preview_polygons(points: PackedVector2Array,width: float) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
@@ -272,15 +363,28 @@ func preview_polygons(points: PackedVector2Array,width: float) -> Array[PackedVe
  return result
 func draw_preview():
  measurement_boxes.clear()
- if view.mode!="road" or kind=="legacy" or view.get_viewport().gui_get_hovered_control()!=null:return
+ if view.mode!="road" or kind=="legacy" or (view.get_viewport().gui_get_hovered_control()!=null and pending.is_empty()):return
  if anchors.is_empty():draw_cursor(cursor_preview());return
  var result:=preview()
  if result.points.size()<2:return
- var colors:=preview_colors(result.ok)
+ var colors:=preview_colors(result.ok,result.get("warning",false))
  var width: float=view.city.RoadProfile.width_for("local",view.road_lanes,view.city.config.road_width)
  for shape in preview_polygons(result.points,width):
   var projected:=PackedVector2Array()
-  for point in shape:projected.append(view.screen(point))
+  var ground:=PackedVector2Array()
+  for point in shape:
+   ground.append(view.screen(point))
+   projected.append(view.screen(point)-Vector2(0,Height.height_at(result,point)*view.tile.x/4*sqrt(1.5)*view.map_zoom))
+  if target_height_m>0 or start_height_m>0:view.draw_colored_polygon(ground,Color(0,0,0,.18))
   view.draw_colored_polygon(projected,colors.fill)
   projected.append(projected[0]);view.draw_polyline(projected,colors.outline,2,true)
+ for index in [0,result.points.size()-1]:
+  var point:Vector2=result.points[index];var height:float=Height.height_at(result,point)
+  if height<=0:continue
+  var ground:Vector2=view.screen(point);var top:=ground-Vector2(0,height*view.tile.x/4*sqrt(1.5)*view.map_zoom)
+  view.draw_dashed_line(ground,top,Color("edf4f5"),1,5);view.draw_arc(ground,5,0,TAU,24,Color("edf4f5"),1,true)
+ for station:Dictionary in result.get("piers",[]):
+  for point:Vector2 in station.positions:
+   var ground:Vector2=view.screen(point)
+   view.draw_line(ground,ground-Vector2(0,(float(station.height_m)-2)*view.tile.x/4*sqrt(1.5)*view.map_zoom),colors.outline,2,true)
  draw_measurements(result)

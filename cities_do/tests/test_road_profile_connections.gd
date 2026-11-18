@@ -22,7 +22,10 @@ func run():
   ["8 to 2 angled endpoint",2,8,Vector2(36,40),Vector2(36,56),true,0]
  ]
  for spec in cases:
-  game.road_drawer.cancel();game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(28,40))
+  game.road_drawer.cancel()
+  # The fixture owns the old model; main._exit_tree only joins the current one.
+  if game.city.simulation!=null:game.city.simulation.shutdown()
+  game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(28,40))
   await select_lanes(spec[1]);await click(game.screen(Vector2(20,40)));await click(game.screen(Vector2(36,40)));await settle()
   verify(game.city.roads.size()==1,spec[0]+" builds its host through the actual lane card")
   if game.city.roads.is_empty():continue

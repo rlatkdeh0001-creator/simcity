@@ -119,7 +119,7 @@ func preview(id: String,point: Vector2,turns: int=0,snap_to_road: bool=false) ->
   record.station_ports=[{"kind":"metro","point":record.internal_points[0],"outward":-side,"rail_top_z_m":-12.7},{"kind":"metro","point":record.internal_points[1],"outward":side,"rail_top_z_m":-12.7}]
   var tunnel:Dictionary=city.TransitRoutes.plan(city,record.internal_points,"metro")
   if not tunnel.ok:return tunnel
- var error: String=city._polygon_error(shape,-1,true,int(record.front_road_id) if sidewalk else -1,record.get("internal_points",PackedVector2Array()))
+ var error: String=city._polygon_error(shape,-1,true,int(record.front_road_id) if sidewalk else -1,record.get("internal_points",PackedVector2Array()),id.begins_with("park-"))
  if not error.is_empty():response.code="geometry";response.reason=error;return response
  for candidate: Dictionary in ([] if sidewalk else city.Frontage.candidates(shape,city.roads,city.config.road_access_distance)):
   if Vector2(candidate.front).dot(record.front_direction)>.999:record.front_road_id=candidate.road;break

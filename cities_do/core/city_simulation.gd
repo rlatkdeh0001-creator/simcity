@@ -3,7 +3,7 @@ extends RefCounted
 ## One outstanding simulation step (including completed/unpublished); editor intents are NOT ticks.
 const Clock=preload("res://core/city_clock.gd")
 const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes","transit_lines"]
-const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id"]
+const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id","next_road_id"]
 const HAPPINESS_KEYS=["happiness","happiness_target","happiness_factors"]
 var owner:WeakRef
 var worker
