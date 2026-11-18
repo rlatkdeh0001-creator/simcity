@@ -1,0 +1,66 @@
+{
+  "id": "center-underpass-sample-01",
+  "name": "중앙 지하차도 4차선 견본",
+  "kind": "structure_sample",
+  "status": "inspection_only",
+  "width": 76,
+  "depth": 5.0,
+  "metres": [
+    304,
+    20
+  ],
+  "height_m": 11.3,
+  "triangles": 17328,
+  "source": "assets/structures/center-underpass-sample-01/sample.blend",
+  "model": "res://assets/structures/center-underpass-sample-01/center-underpass-sample-01.glb",
+  "preview": "res://assets/structures/center-underpass-sample-01/center-underpass-sample-01.png",
+  "bounds_blender_m": {
+    "min": [
+      -152.0,
+      -10.0,
+      -10.199999809265137
+    ],
+    "max": [
+      152.0,
+      10.0,
+      1.100000023841858
+    ]
+  },
+  "center_width_m": 7,
+  "inner_lane_width_m": 3,
+  "outer_lane_width_m": 3.5,
+  "outer_lane_centres_m": [
+    -5.25,
+    5.25
+  ],
+  "ramp_length_m": 128,
+  "road_grade": 0.078125,
+  "flat_length_m": 32,
+  "normal_end_length_m": 8,
+  "deck_level_m": -10,
+  "front_blender": "-Y",
+  "front_gltf": "+Z",
+  "map_placement_implemented": false,
+  "components": [
+    "retaining-wall-01",
+    "tunnel-portal-01"
+  ],
+  "component_specs": {},
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 3.0107007220334356
+  },
+  "cross_road": "Inspection fixture only: width20m, x=-10..10; no sample footprint widening.",
+  "portal_road_z_m": -6,
+  "portal_mouth_top_z_m": -1.5,
+  "mouth_clear_road_m": 4.5,
+  "portal_x_m": [
+    -67.2,
+    67.2
+  ],
+  "closed_floor_and_cover_ends": true
+}

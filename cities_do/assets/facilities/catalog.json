@@ -1165,6 +1165,292 @@
       },
       "front_blender": "-Y",
       "map_placement_implemented": false
+    },
+    {
+      "id": "center-flyover-sample-01",
+      "name": "중앙 고가차도 4차선 견본",
+      "kind": "structure_sample",
+      "status": "inspection_only",
+      "width": 76,
+      "depth": 5.0,
+      "metres": [
+        304,
+        20
+      ],
+      "height_m": 11.4,
+      "triangles": 29856,
+      "source": "assets/structures/center-flyover-sample-01/sample.blend",
+      "model": "res://assets/structures/center-flyover-sample-01/center-flyover-sample-01.glb",
+      "preview": "res://assets/structures/center-flyover-sample-01/center-flyover-sample-01.png",
+      "bounds_blender_m": {
+        "min": [
+          -152.0,
+          -10.0,
+          -0.30000001192092896
+        ],
+        "max": [
+          152.0,
+          10.0,
+          11.100000381469727
+        ]
+      },
+      "center_width_m": 7,
+      "inner_lane_width_m": 3,
+      "outer_lane_width_m": 3.5,
+      "outer_lane_centres_m": [
+        -5.25,
+        5.25
+      ],
+      "ramp_length_m": 128,
+      "road_grade": 0.078125,
+      "flat_length_m": 32,
+      "normal_end_length_m": 8,
+      "deck_level_m": 10,
+      "front_blender": "-Y",
+      "front_gltf": "+Z",
+      "map_placement_implemented": false,
+      "components": [
+        "viaduct-pier-01",
+        "viaduct-side-01",
+        "retaining-wall-01"
+      ],
+      "component_specs": {
+        "viaduct-pier-01": "assets/structures/viaduct-pier-01/v2/spec.json"
+      },
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "camera_elevation_deg": 30,
+        "pixels_per_metre": 3.0107007220334356
+      },
+      "cross_road": "Inspection fixture only: width20m, x=-10..10; no sample footprint widening.",
+      "underdeck_clear_m": 8,
+      "pier_positions_blender_m": [
+        [
+          -80,
+          0,
+          0
+        ],
+        [
+          -48,
+          0,
+          0
+        ],
+        [
+          -16,
+          0,
+          0
+        ],
+        [
+          16,
+          0,
+          0
+        ],
+        [
+          48,
+          0,
+          0
+        ],
+        [
+          80,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "center-flyover-sample-02",
+      "name": "중앙 고가차도 8차선 견본",
+      "kind": "structure_sample",
+      "status": "inspection_only",
+      "width": 76,
+      "depth": 8.0,
+      "metres": [
+        304,
+        32
+      ],
+      "height_m": 11.4,
+      "triangles": 40128,
+      "source": "assets/structures/center-flyover-sample-02/sample.blend",
+      "model": "res://assets/structures/center-flyover-sample-02/center-flyover-sample-02.glb",
+      "preview": "res://assets/structures/center-flyover-sample-02/center-flyover-sample-02.png",
+      "bounds_blender_m": {
+        "min": [
+          -152.0,
+          -16.0,
+          -0.30000001192092896
+        ],
+        "max": [
+          152.0,
+          16.0,
+          11.100000381469727
+        ]
+      },
+      "center_width_m": 14,
+      "inner_lane_width_m": 3,
+      "outer_lane_width_m": 3.5,
+      "outer_lane_centres_m": [
+        -12.25,
+        -8.75,
+        8.75,
+        12.25
+      ],
+      "ramp_length_m": 128,
+      "road_grade": 0.078125,
+      "flat_length_m": 32,
+      "normal_end_length_m": 8,
+      "deck_level_m": 10,
+      "front_blender": "-Y",
+      "front_gltf": "+Z",
+      "map_placement_implemented": false,
+      "components": [
+        "viaduct-pier-01",
+        "viaduct-side-01",
+        "retaining-wall-01"
+      ],
+      "component_specs": {
+        "viaduct-pier-01": "assets/structures/viaduct-pier-01/v2/spec.json"
+      },
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "camera_elevation_deg": 30,
+        "pixels_per_metre": 2.903175469992395
+      },
+      "cross_road": "Inspection fixture only: width20m, x=-10..10; no sample footprint widening.",
+      "underdeck_clear_m": 8,
+      "pier_positions_blender_m": [
+        [
+          -80,
+          -3.5,
+          0
+        ],
+        [
+          -80,
+          3.5,
+          0
+        ],
+        [
+          -48,
+          -3.5,
+          0
+        ],
+        [
+          -48,
+          3.5,
+          0
+        ],
+        [
+          -16,
+          -3.5,
+          0
+        ],
+        [
+          -16,
+          3.5,
+          0
+        ],
+        [
+          16,
+          -3.5,
+          0
+        ],
+        [
+          16,
+          3.5,
+          0
+        ],
+        [
+          48,
+          -3.5,
+          0
+        ],
+        [
+          48,
+          3.5,
+          0
+        ],
+        [
+          80,
+          -3.5,
+          0
+        ],
+        [
+          80,
+          3.5,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "center-underpass-sample-01",
+      "name": "중앙 지하차도 4차선 견본",
+      "kind": "structure_sample",
+      "status": "inspection_only",
+      "width": 76,
+      "depth": 5.0,
+      "metres": [
+        304,
+        20
+      ],
+      "height_m": 11.3,
+      "triangles": 17328,
+      "source": "assets/structures/center-underpass-sample-01/sample.blend",
+      "model": "res://assets/structures/center-underpass-sample-01/center-underpass-sample-01.glb",
+      "preview": "res://assets/structures/center-underpass-sample-01/center-underpass-sample-01.png",
+      "bounds_blender_m": {
+        "min": [
+          -152.0,
+          -10.0,
+          -10.199999809265137
+        ],
+        "max": [
+          152.0,
+          10.0,
+          1.100000023841858
+        ]
+      },
+      "center_width_m": 7,
+      "inner_lane_width_m": 3,
+      "outer_lane_width_m": 3.5,
+      "outer_lane_centres_m": [
+        -5.25,
+        5.25
+      ],
+      "ramp_length_m": 128,
+      "road_grade": 0.078125,
+      "flat_length_m": 32,
+      "normal_end_length_m": 8,
+      "deck_level_m": -10,
+      "front_blender": "-Y",
+      "front_gltf": "+Z",
+      "map_placement_implemented": false,
+      "components": [
+        "retaining-wall-01",
+        "tunnel-portal-01"
+      ],
+      "component_specs": {},
+      "render": {
+        "resolution": [
+          800,
+          680
+        ],
+        "camera_elevation_deg": 30,
+        "pixels_per_metre": 3.0107007220334356
+      },
+      "cross_road": "Inspection fixture only: width20m, x=-10..10; no sample footprint widening.",
+      "portal_road_z_m": -6,
+      "portal_mouth_top_z_m": -1.5,
+      "mouth_clear_road_m": 4.5,
+      "portal_x_m": [
+        -67.2,
+        67.2
+      ],
+      "closed_floor_and_cover_ends": true
     }
   ]
 }

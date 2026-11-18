@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 중앙 고가·지하차도 견본11~13 (2026-11-18, cities-asset)
+
+`build_center_structure_samples.py`는 승인된1~4번 blend 부재를 읽기 전용으로 재사용하고, 신규3종에만 blend/build/spec/preview·GLB/PNG·inspection_only 카탈로그를 만든다. 304m = 8+128+32+128+8, 전체20/32/20m·중앙7/14/7m, 경사7.8125%, 바깥 차선/보도 원래 좌표 유지. 교차20m 도로·세단·1.75m 사람은 독립 fixture. 원본 교각 spec의16m 규칙은 보존하고 `viaduct-pier-01/v2/spec.json`에14m 규칙만 새 버전으로 기록해 신규견본에서 참조한다(요청서 원본수정 지시 대신 AGENTS 원본보호 우선).
+로컬 MIT godot-windows-validation·test-driven-development(obra/superpowers 파생, 로컬 pin 없음) 적용; 기존 MIT helper/NOTICE 재사용, 신규 외부 의존성 없음. 실제 Blender4.3.2 생성/저장/재로드와 새 scratch `--output-root` 재현 경로 실행, Godot4.6.3 독립OpenGL에서 관련50검사(공유27+8+8+7), 캡처⑥⑦⑧ 각각1600×1000/3시점 육안 확인. `docs/elevated-tunnel-validation/center-06-1600.png`~`center-08-1600.png`, 각 CENTER_*_RESULTS.txt. no_focus 네이티브 플래그 확인, 입력 주입/다른 Godot 종료 없음. 실제 게임 배치·높이 로직·가격·설치·push/main 없음; 사용자 최종 검수 대기.
+
 ## 철교·철도 입구 확인 묶음④ (2026-11-18, cities-asset)
 
 신규 tools/capture_rail_structures.gd·run_rail_structures.py: 등록 애셋 없이 기존 교각/옆면/옹벽/입구·rail-track-01 띠와 선두차v3/객차v3/화물v3만 독립 fixture에서 사용. 철교40×10m 상판+10/밑8m, 도상±3.8/전주±4/방호벽안±4.6m, 전차선3.8/조가선4.8→중간4.3/전주5.3m·간격32m. 실제 팬터그래프 접촉면13.80000019m와 전선13.8m 일치. 철도입구 폭10/안9m, 레일−7/윗변−1.5m·통과5.5m, 화물 진입 상태. 레벨 fixture(경사로 없음; 철도3.5% 규칙 변경 없음).

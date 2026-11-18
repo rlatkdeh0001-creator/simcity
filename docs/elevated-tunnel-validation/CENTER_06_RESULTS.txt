@@ -1,0 +1,11 @@
+Actual Blender4.3.2 save/reload; center-flyover-sample-01: [304, 20]m, 29856tri, bounds={'min': [-152.0, -10.0, -0.30000001192092896], 'max': [152.0, 10.0, 11.100000381469727]}
+Shared artifact acceptance checks=27 (count once across batch).
+C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe --path C:\Users\wlgml\AppData\Local\hermes\profiles\cities-asset\cache\scratch\elevated-tunnel\center-godot --audio-driver Dummy --rendering-method gl_compatibility --position -20000,-20000 --max-fps 30 --quit-after 300 --script res://capture.gd -- D:\project\simcity-elevated\docs\elevated-tunnel-validation\center-06-1600.png center-flyover-sample-01
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+NO_FOCUS project=true native=true root=true focused=true
+CENTER_SAMPLE_PASS center-flyover-sample-01 checks=8
+
+PNG IHDR1600x1000; three native 3D viewports. No-focus asserted; no input injection, no process termination.
+Original pier spec preserved; v2 metadata only changes twin threshold W>=14m.
