@@ -76,6 +76,10 @@ func run():
   game.select_category("transport");game.activate_tool("metro");game.drawer.hide();await process_frame
   verify(not adapter.underground and adapter.anchors.is_empty() and game.mode=="select","closing transit tray cancels hidden underground tool")
   game.select_category("transport");game.activate_tool("metro");await process_frame
+  # TEST DRIFT: d5bdad5 (transit facility cards) and 94cac6b (line tool cards) widened the
+  # transport tray; at this camera (60,75)@-12.7m now lands on a tray card, so the GUI took
+  # the click (tool switch, stroke cancelled, nothing built). Pan so both clicks hit the map.
+  var tray_camera:Vector2=game.origin;game.origin.y-=200
   var anchor_screen:Vector2=game.origin+adapter.project_point(Vector2(40,75),-12.7)*game.map_zoom
   for down in [true,false]:
    var event:=InputEventMouseButton.new();event.position=anchor_screen;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true);await process_frame
@@ -85,6 +89,7 @@ func run():
   for down in [true,false]:
    var event:=InputEventMouseButton.new();event.position=end_screen;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true);await process_frame
   verify(game.city.transit_routes[-1].kind=="metro" and game.city.transit_routes[-1].points==candidate.points,"metro viewport commit matches depth-correct preview")
+  game.origin=tray_camera
   verify(adapter.has_method("cursor_preview"),"transit uses existing cursor preview visual language")
   if adapter.has_method("cursor_preview"):
    game.activate_tool("rail");game.pointer=Vector2(-2,20)
