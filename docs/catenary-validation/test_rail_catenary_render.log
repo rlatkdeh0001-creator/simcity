@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS real model ground route creation
+PASS retained WorldActors catenary integration exists
+PASS route event creates retained overhead draw nodes
+PASS exact zoom visibility gate 0.399
+PASS exact detail LOD 0.399
+PASS exact zoom visibility gate 0.4
+PASS exact detail LOD 0.4
+PASS exact zoom visibility gate 0.65
+PASS exact detail LOD 0.65
+PASS exact zoom visibility gate 0.999
+PASS exact detail LOD 0.999
+PASS exact zoom visibility gate 1.0
+PASS exact detail LOD 1.0
+PASS exact zoom visibility gate 3.0
+PASS exact detail LOD 3.0
+PASS zoom retains nodes and cached geometry
+PASS underground view hides every overhead node
+PASS offscreen projected-height bounds culled
+PASS camera returns without geometry rebuild
+PASS camera and catenary gates leave routing and operations unchanged
+PASS actual commands use fixed 1px wire and physical .3m detailed poles
+PASS cached commands use height-aware projection without moving ground anchors
+PASS every 4m overhead fragment covering a full train draws after its longest-depth fragment
+PASS real original v3 train sprite shares WorldActors
+PASS real route edit replaces actual retained commands
+PASS real route deletion accepted
+PASS deletion removes retained draw nodes
+PASS covered gate removes actual retained commands
+PASS underground gate removes actual retained commands
+PASS covered_segments removes only hidden segment in actual renderer
+PASS underground_segments removes only hidden segment in actual renderer
+PASS real model accepts shallow branch portal fixture
+PASS actual retained renderer receives portal beams and track tubes
+PASS portal beam draw pieces at most 4m for vehicle depth sorting
+PASS portal beam visible at fixed 1px zoom 0.65
+PASS portal tube detail gate zoom 0.65
+PASS portal beam visible at fixed 1px zoom 1.0
+PASS portal tube detail gate zoom 1.0
+PASS portal fragments above real train footprint and sprite
+PASS near portal pole follows its beam fragments in y-sort
+PASS real station far group then overhead then near group depth
+PASS actual train sprite remains between station groups
+PASS actual train sprite remains between station groups
+PASS actual train sprite remains between station groups
+PASS every catenary node is in WorldActors y-sort
+PASS far poles use ground base and near poles follow overhead brackets
+PASS actual road fire engine is below every crossing-wire fragment
+PASS depth anchor compensation preserves real road sprite screen position
+PASS original station v2 split textures loaded without import or build
+PASS actual GL framebuffer changes when overhead is hidden
+PASS actual GL framebuffer exactly restores retained overhead
+CATENARY_RENDER checks=51 failed=0

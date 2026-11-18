@@ -14,6 +14,135 @@ class Building extends Sprite2D:
  var world_bounds:Rect2
  func _draw():
   if texture==null:renderer.fallback(self,record,position)
+class Catenary extends Node2D:
+ var renderer
+ var commands:Array=[]
+ var world_bounds:Rect2
+ var zoom:float=-1
+ var base_depth:float
+ var overhead:bool
+ var footprint:PackedVector2Array
+ func command_visible(command:Dictionary)->bool:
+  return zoom>=1 or command.kind in ["pole","horizontal","portal","contact"]
+ func line_width(command:Dictionary)->float:
+  return .3*renderer.view.tile.x/4*sqrt(2.0) if command.kind=="pole" and zoom>=1 else 1/maxf(.001,zoom)
+ func _draw():
+  for command:Dictionary in commands:
+   if command_visible(command):draw_line(command.projected_a-position,command.projected_b-position,command.color,line_width(command),true)
+var catenary_nodes:Array=[]
+var catenary_generation:int=-1
+static func catenary_draw_pieces(source:Dictionary)->Array:
+ if source.kind!="portal":return [source]
+ var pieces:Array=[]
+ var count:=maxi(1,ceili(source.a.distance_to(source.b)))
+ for i in range(count):
+  var piece:Dictionary=source.duplicate(true)
+  piece.a=source.a.lerp(source.b,float(i)/count);piece.b=source.a.lerp(source.b,float(i+1)/count)
+  piece.footprint=PackedVector2Array([piece.a,piece.b]);pieces.append(piece)
+ return pieces
+func sync_catenary():
+ if catenary_generation==view.transit_view.generation:return
+ catenary_generation=view.transit_view.generation
+ for node in catenary_nodes:
+  node.hide();node.queue_free()
+ catenary_nodes.clear()
+ var groups:Dictionary={};var sources:Array=[]
+ for source:Dictionary in view.transit_view.geometry.get("catenary",[]):sources.append_array(catenary_draw_pieces(source))
+ for source:Dictionary in sources:
+  var command:Dictionary=source.duplicate(true)
+  var pole:bool=command.kind in ["pole","cap"]
+  var key:Variant=[command.route_id,command.get("support",command.a) if pole else command.footprint,"pole" if pole else "overhead"]
+  if not groups.has(key):groups[key]=[]
+  command.projected_a=view.transit_view.project_point(command.a,command.a_height)
+  command.projected_b=view.transit_view.project_point(command.b,command.b_height)
+  groups[key].append(command)
+ for key in groups:
+  var node:=Catenary.new();node.renderer=self;node.commands=groups[key]
+  var depth:float=-INF
+  var bounds:=Rect2(node.commands[0].projected_a,Vector2.ZERO)
+  for command:Dictionary in node.commands:
+   for p:Vector2 in command.footprint:depth=maxf(depth,iso(p).y)
+   bounds=bounds.expand(command.projected_a).expand(command.projected_b)
+  node.overhead=key[2]=="overhead";node.base_depth=depth
+  node.footprint=node.commands[0].footprint
+  node.position.y=depth+(.02 if node.overhead else 0.0)
+  node.world_bounds=bounds.grow(2);actors.add_child(node);catenary_nodes.append(node)
+ catenary_depth_signature=null
+ catenary_buckets.clear()
+ for node in catenary_nodes:
+  if not node.overhead:continue
+  var box:=Rect2(node.footprint[0],Vector2.ZERO)
+  for point:Vector2 in node.footprint:box=box.expand(point)
+  for cell:Vector2i in catenary_cells(box):
+   if not catenary_buckets.has(cell):catenary_buckets[cell]=[]
+   catenary_buckets[cell].append(node)
+ sync_catenary_visibility()
+func sync_catenary_visibility():
+ var viewport:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
+ for node in catenary_nodes:
+  node.visible=not view.transit_view.underground and view.map_zoom>=.4 and viewport.intersects(Rect2(view.origin+node.world_bounds.position*view.map_zoom,node.world_bounds.size*view.map_zoom))
+  if node.zoom!=view.map_zoom:node.zoom=view.map_zoom;node.queue_redraw()
+var catenary_depth_signature:Variant=null
+var catenary_buckets:Dictionary={}
+var catenary_vehicle_depths:Dictionary={}
+static func catenary_cells(box:Rect2)->Array[Vector2i]:
+ var cells:Array[Vector2i]=[]
+ for x in range(floori(box.position.x/4),floori(box.end.x/4)+1):
+  for y in range(floori(box.position.y/4),floori(box.end.y/4)+1):cells.append(Vector2i(x,y))
+ return cells
+static func catenary_overlap(footprint:PackedVector2Array,body:PackedVector2Array)->bool:
+ if footprint.size()>=3:return not Geometry2D.intersect_polygons(footprint,body).is_empty()
+ for point:Vector2 in footprint:
+  if Geometry2D.is_point_in_polygon(point,body):return true
+ if footprint.size()==2:
+  for i in range(body.size()):
+   if Geometry2D.segment_intersects_segment(footprint[0],footprint[1],body[i],body[(i+1)%body.size()])!=null:return true
+ return false
+func sync_catenary_depth():
+ var poses:Array=[]
+ for pose:Dictionary in view.city.transit_state.get("visible",[]):
+  if pose.kind!="metro":
+   var copy:=pose.duplicate();copy.sprite=transit_cars.get(pose.id);poses.append(copy)
+ if view.traffic!=null and view.traffic.running and view.traffic.simulation!=null:
+  for vehicle:Dictionary in view.traffic.simulation.vehicles:
+   if not cars.has(vehicle.id) or not cars[vehicle.id].visible:continue
+   poses.append({"id":vehicle.id,"sprite":cars[vehicle.id],"position":view.traffic.simulation.position(vehicle),"heading":view.traffic.simulation.heading(vehicle),"length_m":vehicle.length,"width_m":2.5})
+ var active:bool=not view.transit_view.underground and view.map_zoom>=.4
+ var key:=hash([catenary_generation,active,poses])
+ if key!=catenary_depth_signature:
+  catenary_depth_signature=key;catenary_vehicle_depths.clear()
+  for node in catenary_nodes:node.position.y=node.base_depth+(.02 if node.overhead else 0.0)
+  for pose:Dictionary in poses:
+   var p:Vector2=pose.position/4;var along:Vector2=pose.heading*float(pose.get("length_m",10))/8
+   var side:Vector2=pose.heading.orthogonal()*float(pose.get("width_m",3))/8
+   var body:=PackedVector2Array([p-along-side,p+along-side,p+along+side,p-along+side])
+   var box:=Rect2(body[0],Vector2.ZERO)
+   for point:Vector2 in body:box=box.expand(point)
+   var candidates:Dictionary={}
+   if active:
+    for cell:Vector2i in catenary_cells(box):
+     for node in catenary_buckets.get(cell,[]):candidates[node]=true
+   var overlaps:Array=[];var depth:float=iso(p).y
+   for node in candidates:
+    if catenary_overlap(node.footprint,body):overlaps.append(node);depth=maxf(depth,node.base_depth)
+   catenary_vehicle_depths[pose.id]=depth
+   for node in overlaps:node.position.y=maxf(node.position.y,depth+.02)
+  # A nearby support follows its suspended bracket, but a far support keeps its base.
+  var support_depths:Dictionary={}
+  for node in catenary_nodes:
+   if not node.overhead:continue
+   for command:Dictionary in node.commands:
+    if command.get("near",false):support_depths[command.support]=maxf(support_depths.get(command.support,-INF),node.position.y+.02)
+  for node in catenary_nodes:
+   if not node.overhead and node.commands[0].get("near",false):node.position.y=maxf(node.position.y,support_depths.get(node.commands[0].support,node.base_depth))
+  # Anchor movement requires a redraw; geometry remains cached and artwork stays fixed.
+  for node in catenary_nodes:node.queue_redraw()
+ for pose:Dictionary in poses:
+  var sprite:Sprite2D=pose.sprite
+  if sprite==null or sprite.texture==null:continue
+  var depth:float=catenary_vehicle_depths.get(pose.id,iso(pose.position/4).y)
+  if pose.get("cargo",false):depth+=.001
+  sprite.offset.y-=(depth-sprite.position.y)/sprite.scale.y;sprite.position.y=depth
 var view
 var city_reference
 var ground
@@ -56,6 +185,7 @@ func sync_transit_cars():
   sprite.visible=true
  for id:Variant in transit_cars.keys():
   if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
+ sync_catenary_depth()
 var road_generation:=0
 var grid_generation:=0
 var building_sorts:=0
@@ -250,6 +380,7 @@ func _process(_delta:float):
  if view==null:return
  if city_reference!=view.city:synchronize()
  view.transit_view.sync_visibility()
+ sync_catenary_visibility()
  if position!=view.origin:position=view.origin
  if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
  zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
@@ -274,3 +405,4 @@ func _process(_delta:float):
    sprite.scale=rect.size/Vector2(sprite.texture.get_size());sprite.offset=rect.position/sprite.scale
  for id in cars:
   if not active.has(id):cars[id].visible=false
+ sync_catenary_depth()

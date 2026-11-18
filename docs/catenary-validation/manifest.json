@@ -1,0 +1,117 @@
+{
+  "head": "94cac6b81c11047c08f6115834c3337db79b2ad5",
+  "branch": "perf/render-sim-cadence",
+  "tests": [
+    {
+      "name": "test_rail_catenary.gd",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_rail_catenary.gd",
+        "--headless"
+      ],
+      "exit_code": 0,
+      "passed": 87,
+      "checks": 87,
+      "log": "docs/catenary-validation/test_rail_catenary.log",
+      "sha256": "711cb7ce85314b97f112a7d186a3f5d199d801710dbb2ee28a8baa38311a0b75",
+      "failed": 0,
+      "status": "fresh final opposite-base road/station exclusion regression; RED 79/87 with 8 expected failures, GREEN 87/87"
+    },
+    {
+      "name": "test_transit_render.gd",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_transit_render.gd",
+        "--headless"
+      ],
+      "exit_code": 0,
+      "passed": 28,
+      "checks": 28,
+      "log": "docs/catenary-validation/test_transit_render.log",
+      "sha256": "232a51fb21e1a6971e1be031e021014f526689f70d44f153f6b3f8722738c6df",
+      "failed": 0,
+      "status": "fresh after opposite-base fix; raw output identical to prior log"
+    },
+    {
+      "name": "test_rail_catenary_render.gd",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_rail_catenary_render.gd",
+        "--rendering-method",
+        "gl_compatibility",
+        "--audio-driver",
+        "Dummy",
+        "--resolution",
+        "1920x1080",
+        "--max-fps",
+        "30",
+        "--quit-after",
+        "360"
+      ],
+      "exit_code": 0,
+      "passed": 51,
+      "checks": 51,
+      "log": "docs/catenary-validation/test_rail_catenary_render.log",
+      "sha256": "e17a6c540afedf51333fcf30fd1afdb7e724cf9f91595fefacab9c615f6fdccb",
+      "failed": 0,
+      "status": "fresh native GL after opposite-base fix; raw output identical; no capture saved"
+    }
+  ],
+  "total_checks": 166,
+  "owned_files": {
+    "cities_do/core/rail_catenary.gd": "b4c5ff05e3da21931e4b6cc1339dba42c40e90d2689e04ae7151be3599c53f89",
+    "cities_do/core/transit_view.gd": "a44da43a6e8d171829f69594978d0d8db108679334bda3adcc7a8868fba90c07",
+    "cities_do/core/cached_world_renderer.gd": "10a3bee5183dbf53c581fd09f3cf29293a90301f50ac0a14844d531b1efe284c",
+    "cities_do/tests/test_rail_catenary.gd": "63b9f157e94e986ab324a71750499b7a2d6bf6c871c50c4b025d4b5f96346133",
+    "cities_do/tests/test_rail_catenary_render.gd": "7a7bf5635c89d4c46c8e6e1daefc0f0ad6a1a3e7d43d545011fab30e1ed4a462",
+    "cities_do/tests/rail_catenary_fixture.gd": "49f2058c1063c67f3165795e92be6c47cfb18cc843e40213f7d653ae8c5d58dd",
+    "tools/run_catenary_validation.py": "7abff99726348f1e5f9c345cc30319fe88a55504b7cb46cd4867298511b289c4"
+  },
+  "authoritative_spec_sha256": "de5e805672b2034c5430648e6daf659123e5b86524925dd48f89d58b1e202aef",
+  "no_benchmarks": true,
+  "no_build_import_install": true,
+  "capture": {
+    "path": "D:\\project\\simcity\\docs\\catenary-validation\\catenary-1920.png",
+    "sha256": "47683e36cc184390922d1f44d4afa9acc4338465d73779cfac7cf7d1d1252b6b",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "count": 1,
+    "status": "PRE-PORTAL existing stage capture unchanged; no new capture; does not depict approved portal geometry"
+  },
+  "limits": [
+    "Ground-rail stage only; grade/bridge/trench rendering remains separate.",
+    "covered_segments and underground_segments are optional zero-based display masks; existing route editor does not yet author them.",
+    "Capture is a stationary authored renderer fixture, not an operational performance measurement."
+  ],
+  "total_passed": 166,
+  "total_failed": 0,
+  "status": "Opposite-base exclusion blocker fixed and scoped gates passed; independent parent review and commit pending; P4 untouched",
+  "opposite_base_regression": {"red_checks": 87, "red_failed": 8, "green_checks": 87, "green_failed": 0, "cases": "Actual portal branch with road/station opposite-base exclusions, both mirrored sides", "policy": "Validate both final bases against existing 1m masks; omit rejected portal and both route anchors consistently; retain complete main and branch wires", "max_fixture_span_m": 31.5, "branch_only_exception_added": false},
+  "resolved_regression": {"previous_max_span_m": 76.379, "final_max_span_m": 31.5, "branch_straight_limit_m": 32, "policy": "section 5 item 11 approved portal; no branch 48m exception"},
+  "writes": "Only file-edit tools used for source and evidence; runner emits stdout without writing logs/manifest or saving captures",
+  "modified_this_resume": ["cities_do/core/rail_catenary.gd", "cities_do/core/transit_view.gd", "cities_do/tests/test_rail_catenary.gd", "docs/catenary-validation/test_rail_catenary.log", "docs/catenary-validation/manifest.json"],
+  "preserved": "Existing fixture and capture unchanged; P4 changes untouched; no staging, commit, push, main, protected documents or asset/import/uid edits"
+}

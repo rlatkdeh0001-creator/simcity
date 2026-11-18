@@ -20,7 +20,9 @@ class PaintLayer extends Node2D:
  var shapes:Array=[]
  func _draw():owner_view.paint(self,shapes)
 func setup(owner_view):view=owner_view
+var retained_renderer
 func attach(renderer:Node2D):
+ retained_renderer=renderer
  rail_layer=PaintLayer.new();rail_layer.owner_view=self;rail_layer.z_index=5;renderer.add_child(rail_layer)
  metro_layer=PaintLayer.new();metro_layer.owner_view=self;metro_layer.z_index=10;renderer.add_child(metro_layer)
  for layer in [rail_layer,metro_layer]:
@@ -32,11 +34,12 @@ func synchronize():
  if city_reference!=view.city:
   if city_reference!=null and city_reference.transit_changed.is_connected(synchronize):city_reference.transit_changed.disconnect(synchronize)
   city_reference=view.city;city_reference.transit_changed.connect(synchronize)
- var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.width,view.city.height])
+ var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.public_facilities.lots,view.city.width,view.city.height])
  if key!=geometry_signature:
   geometry_signature=key;generation+=1;geometry=build_geometry(view.city)
   rail_layer.shapes=geometry.rail;metro_layer.shapes=geometry.metro
   rail_layer.queue_redraw();metro_layer.queue_redraw()
+  if retained_renderer!=null:retained_renderer.sync_catenary()
  # Original approved PNGs only; runtime mipmaps do not touch importer metadata.
  for name:String in ["strip","strip_end","strip_rails"]:
   var path:="res://assets/rail/rail-track-01/"+name+".png"
@@ -101,7 +104,7 @@ static func ribbons(route:Dictionary)->Array:
   result.append(PackedVector2Array([points[i-1]-a,points[i]-b,points[i]+b,points[i-1]+a]))
  return result
 static func build_geometry(city)->Dictionary:
- var result:={"rail":[],"metro":[],"tracks":{}}
+ var result:={"rail":[],"metro":[],"tracks":{},"catenary":[]}
  var bounds:=boundary(city)
  var roads:Array=city.road_pavement+city.junction_pavement
  # All ballast first, then textured running strips, so overlapping branches cannot bury rails.
@@ -115,13 +118,33 @@ static func build_geometry(city)->Dictionary:
     for piece:PackedVector2Array in subtract_all(clipped,roads):result.rail.append(shape(piece,Color("a59c8e")))
    else:
     for piece:PackedVector2Array in clipped:result.metro.append(shape(piece,Color("15181a"),-12.7))
+ var pole_masks:Array=[]
+ for pavement:PackedVector2Array in roads:pole_masks.append_array(Geometry2D.offset_polygon(pavement,.25,Geometry2D.JOIN_MITER))
+ for lot:Dictionary in city.public_facilities.lots:
+  if lot.get("public_asset_id","")=="train-station-01":pole_masks.append_array(Geometry2D.offset_polygon(lot.polygon,.25,Geometry2D.JOIN_MITER))
  for route:Dictionary in city.transit_routes:
   if route.kind!="rail":continue
   var masks:Array=roads.duplicate()
   for other:Dictionary in city.transit_routes:
-   if other.kind=="rail" and other.id!=route.id:masks.append_array(ribbons(other))
+   if other.kind=="rail" and other.id!=route.id:
+    masks.append_array(ribbons(other))
+  preload("res://core/rail_catenary.gd").append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks)
   for path:PackedVector2Array in result.tracks[route.id]:
    append_track(result.rail,path,terminal(city,route,0),terminal(city,route,route.points.size()-1),bounds,masks)
+ var catenary=preload("res://core/rail_catenary.gd")
+ var portals:Array=catenary.plan_portals(result.catenary,city.transit_routes,pole_masks)
+ if not portals.is_empty():
+  result.catenary.clear()
+  for route:Dictionary in city.transit_routes:
+   catenary.append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,portals)
+  result.catenary=catenary.apply_portals(result.catenary,portals)
+ result.catenary=catenary.combine_inner_poles(result.catenary)
+ var unique:Array=[];var seen:Dictionary={}
+ for item:Dictionary in result.catenary:
+  var key:Variant=[item.kind,Vector2(snappedf(item.a.x,.0001),snappedf(item.a.y,.0001)),Vector2(snappedf(item.b.x,.0001),snappedf(item.b.y,.0001)),item.a_height,item.b_height]
+  if not seen.has(key):seen[key]=true;unique.append(item)
+ result.catenary=[]
+ catenary.append_clipped(result.catenary,unique,city)
  return result
 static func append_track(output:Array,path:PackedVector2Array,start_cap:bool,end_cap:bool,bounds:PackedVector2Array,masks:Array):
  var total:=Routes.Paths.length_of(path)
