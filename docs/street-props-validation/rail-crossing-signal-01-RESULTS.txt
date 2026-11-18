@@ -1,0 +1,12 @@
+inspection_only; original geometry, Blender4.3.2 + Godot4.6.3 GL Compatibility
+Measured static dimensions XYZ metres: [1.4200000762939453, 0.5100000202655792, 3.8499999046325684]; triangles (arm excluded): 1852; all geometry triangles: 1924
+Source saved/reopened all lamps off. Arm lowered, pivot (-0.30,-0.05,1.0), omitted from sprites (crossing only).
+24 real Blender RGBA sprites,8 azimuths x3 states, elevation30,48px/m; per-sprite base-origin pixels recorded.
+Graphical command: C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe --path C:\Users\wlgml\AppData\Local\hermes\profiles\cities-asset\cache\scratch\street-props\rail-crossing-signal-01 --audio-driver Dummy --rendering-method gl_compatibility --resolution 1600x1000 --borderless --quit-after 360 --script res://capture.gd -- D:\project\simcity-props\docs\street-props-validation\rail-crossing-signal-01-1600.png rail-crossing-signal-01
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+STREET_PROP_GRAPHICAL_PASS rail-crossing-signal-01 checks=8 actual framebuffer1600x1000; loaded source GLB, dimensions, base, front, independent off lamps, pivot/head; reduced sprites11.7/2.5px/m
+
+Reference: car-sedan-03 existing GLB; vehicle pole signal exported read-only from edda3f3 .blend.
+Catalog absent: not created (request section2). No gameplay code, placement, timing, sound, pricing, push or main.

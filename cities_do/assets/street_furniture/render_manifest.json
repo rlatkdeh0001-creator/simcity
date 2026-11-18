@@ -1,0 +1,247 @@
+{
+  "camera_elevation_degrees": 30,
+  "azimuth_degrees": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "assets": {
+    "rail-crossing-signal-01": {
+      "status": "inspection_only",
+      "pixels_per_metre": 48,
+      "states": [
+        "off",
+        "left",
+        "right"
+      ],
+      "sprite_size": [
+        256,
+        256
+      ],
+      "arm_in_sprites": false,
+      "sprites": [
+        {
+          "state": "off",
+          "azimuth_degrees": 0,
+          "file": "sprites/rail-crossing-signal-01/off_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 45,
+          "file": "sprites/rail-crossing-signal-01/off_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 90,
+          "file": "sprites/rail-crossing-signal-01/off_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 135,
+          "file": "sprites/rail-crossing-signal-01/off_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 180,
+          "file": "sprites/rail-crossing-signal-01/off_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 225,
+          "file": "sprites/rail-crossing-signal-01/off_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 270,
+          "file": "sprites/rail-crossing-signal-01/off_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 315,
+          "file": "sprites/rail-crossing-signal-01/off_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 0,
+          "file": "sprites/rail-crossing-signal-01/left_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 45,
+          "file": "sprites/rail-crossing-signal-01/left_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 90,
+          "file": "sprites/rail-crossing-signal-01/left_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 135,
+          "file": "sprites/rail-crossing-signal-01/left_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 180,
+          "file": "sprites/rail-crossing-signal-01/left_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 225,
+          "file": "sprites/rail-crossing-signal-01/left_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 270,
+          "file": "sprites/rail-crossing-signal-01/left_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "left",
+          "azimuth_degrees": 315,
+          "file": "sprites/rail-crossing-signal-01/left_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 0,
+          "file": "sprites/rail-crossing-signal-01/right_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 45,
+          "file": "sprites/rail-crossing-signal-01/right_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 90,
+          "file": "sprites/rail-crossing-signal-01/right_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 135,
+          "file": "sprites/rail-crossing-signal-01/right_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 180,
+          "file": "sprites/rail-crossing-signal-01/right_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 225,
+          "file": "sprites/rail-crossing-signal-01/right_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 270,
+          "file": "sprites/rail-crossing-signal-01/right_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "right",
+          "azimuth_degrees": 315,
+          "file": "sprites/rail-crossing-signal-01/right_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        }
+      ]
+    }
+  }
+}

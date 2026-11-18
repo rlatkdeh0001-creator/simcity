@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 건널목 경보기·차단기 (2026-11-18, cities-asset)
+
+`tools/build_street_props.py`, asset-local `build.py`: 직접 스크립트 지오메트리, 기존 차량 신호등 edda3f3의 frame354640/redf23e32/green3de878 참조(기존 원본 수정 없음). source all-off/arm-down 저장·재로드, 1.42×0.51×3.85m(팔 제외),1852tri/팔 포함1924tri. GLB+48px/m/고도30°/8방향×3상태; 팔 스프라이트 제외, 독립 원점(-.30,-.05,1)m. 요청서 원문 바이트 복사.
+로컬 MIT `software-development/godot-windows-validation`(upstream/pin 없음) 적용; 신규 helper는 저장소 원본 코드, 외부 art/texture/설치 없음. `run_street_props.py`는 edda3f3 blend를 git show로 scratch에 읽어 차량 신호등 GLB를 만들며 다른 worktree는 쓰지 않는다. 실제 Blender4.3.2·Godot4.6.3 GL8검사 통과. 독립 fixed1600×1000 SubViewport의 단일 캡처 `docs/street-props-validation/rail-crossing-signal-01-1600.png` 육안 확인; 팔 올림/내림, 양방향 진입, 실제 기존 차/차량 신호등 축척, 11.7/2.5px/m Sprite2D. 첫 프레이밍 잘림만 수정 후 캡처. 기존 street-furniture 카탈로그가 없어 요청대로 생성하지 않음. 게임 배치/작동은 후속, 사용자 최종 검수 대기; push/main 없음.
+
 ## 화물 기관차 v3 색상만 변경 (2026-11-18, cities-asset)
 
 `tools/build_rail_freight_v3.py`: 기존 열차 Dark `30383b`를 바퀴8·대차 틀6개 슬롯에만 적용. v2 형상/다른 재질 그대로,4536tri/10×3×3.8m. 신규 v3 blend/build/spec/preview/GLB/8방향 PNG 및 catalog 참조, render_manifest 교정값 동일. v1/v2 보존.

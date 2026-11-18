@@ -1,0 +1,133 @@
+{
+  "id": "rail-crossing-signal-01",
+  "name": "건널목 경보기·차단기",
+  "category": "street-furniture",
+  "style": "traffic-signal",
+  "status": "inspection_only",
+  "height_m": 3.8499999046325684,
+  "pole_height_m": 3.85,
+  "pole_diameter_m": 0.16,
+  "head_clearance_m": 1.99,
+  "lamp_materials": {
+    "lamp_left": [
+      "mat_lamp_left_on",
+      "mat_lamp_left_off"
+    ],
+    "lamp_right": [
+      "mat_lamp_right_on",
+      "mat_lamp_right_off"
+    ]
+  },
+  "frame_blender": {
+    "forward": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "up": "+Y"
+  },
+  "origin": "pole base center, z=0",
+  "triangles": 1852,
+  "triangles_including_arm": 1924,
+  "vertex_bounds_m": [
+    [
+      -0.7100000381469727,
+      -0.36000001430511475,
+      0.0
+    ],
+    [
+      0.7100000381469727,
+      0.15000000596046448,
+      3.8499999046325684
+    ]
+  ],
+  "measured_dimensions_m": [
+    1.4200000762939453,
+    0.5100000202655792,
+    3.8499999046325684
+  ],
+  "all_mesh_dimensions_m": [
+    6.260000228881836,
+    0.5100000202655792,
+    3.8499999046325684
+  ],
+  "default_state": "all_off",
+  "source": "original scripted geometry; no external images, textures or models",
+  "game_registered": false,
+  "not_validated": [
+    "placement",
+    "signal timing",
+    "traffic AI"
+  ],
+  "material_definitions": {
+    "mat_lamp_left_on": {
+      "base_color_linear": [
+        0.8879231214523315,
+        0.04817182570695877,
+        0.03189603239297867,
+        1.0
+      ],
+      "emission_strength": 2.0
+    },
+    "mat_lamp_left_off": {
+      "base_color_linear": [
+        0.02955683507025242,
+        0.005181516520678997,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_strength": 0.0
+    },
+    "mat_lamp_right_on": {
+      "base_color_linear": [
+        0.8879231214523315,
+        0.04817182570695877,
+        0.03189603239297867,
+        1.0
+      ],
+      "emission_strength": 2.0
+    },
+    "mat_lamp_right_off": {
+      "base_color_linear": [
+        0.02955683507025242,
+        0.005181516520678997,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_strength": 0.0
+    }
+  },
+  "lamp_centres_blender_m": [
+    [
+      -0.4,
+      -0.181,
+      2.3
+    ],
+    [
+      0.4,
+      -0.181,
+      2.3
+    ]
+  ],
+  "lamp_diameter_m": 0.42,
+  "arm": {
+    "object": "arm",
+    "pivot_blender_m": [
+      -0.3,
+      -0.05,
+      1.0
+    ],
+    "lowered_direction_blender": "-X",
+    "reference_length_m": 5.25,
+    "cross_section_m": [
+      0.16,
+      0.16
+    ],
+    "stripe_length_m": 1.0,
+    "yellow_hex": "efbd32",
+    "black_hex": "151b19",
+    "source_pose": "lowered",
+    "sprite_excluded": true,
+    "runtime_draw": "game procedural arm; GLB arm is preview only"
+  }
+}
