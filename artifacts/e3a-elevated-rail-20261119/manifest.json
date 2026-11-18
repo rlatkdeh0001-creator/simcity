@@ -1,0 +1,562 @@
+{
+  "scope": "E3a elevated rail: per-point rail heights, 3.5% ramps, concrete viaducts, deck track/catenary/trains, under-viaduct rules, rail height UI",
+  "branch": "perf/render-sim-cadence",
+  "head": "960e9c208d461c1cb2b3acb4c14525dcd10b55d2",
+  "verdict": "E3a gates: 2 new suites and 13 regression suites headless; native UI run with one inspected capture.",
+  "owned_source_count": 16,
+  "owned_sources": [
+    {
+      "path": "cities_do/bottom_ui.gd",
+      "sha256": "7195434a77b2b535ec68ca096b44748daf5ace07832ba1b883dfa95e4987b24f",
+      "bytes": 58315
+    },
+    {
+      "path": "cities_do/core/cached_world_renderer.gd",
+      "sha256": "1f2c74287ec27761319460e425a8e980fc84919c229ec6f731566cf4ec70e7ca",
+      "bytes": 27883
+    },
+    {
+      "path": "cities_do/core/city_model.gd",
+      "sha256": "8da0f2184ab51ab6a9b8c6d84b1335c836ee3baa9a27e043118dcff0c1cd8e2a",
+      "bytes": 73617
+    },
+    {
+      "path": "cities_do/core/elevated_road_config.json",
+      "sha256": "3302ab85049f5f7e6c374922c6093d3ec860d1fb7c9b863da60066758aa243ae",
+      "bytes": 1374
+    },
+    {
+      "path": "cities_do/core/elevated_road_renderer.gd",
+      "sha256": "d467c84dd947121963a00f1cfbdce9bac26a6daea39e9d207ace44645e1b5314",
+      "bytes": 16414
+    },
+    {
+      "path": "cities_do/core/rail_catenary.gd",
+      "sha256": "50c78436b22f8dc2d2442c7e0ee9b65b37535fa6294a20dc3bb367743e187621",
+      "bytes": 21856
+    },
+    {
+      "path": "cities_do/core/road_height.gd",
+      "sha256": "9355ca9eb8266589b6c2640476b15d33882f226ba53df66ee970fd1f80a7df1e",
+      "bytes": 16190
+    },
+    {
+      "path": "cities_do/core/road_height_controls.gd",
+      "sha256": "4c92e87f2c53637f47186ff9e9002d0f77964bffe3430380e9285deb6b0a5186",
+      "bytes": 2932
+    },
+    {
+      "path": "cities_do/core/terminal_crossover.gd",
+      "sha256": "104caf84b936c58a3dda2c56d84ca741e8d339afc4d705df2baf5ebbcec0173d",
+      "bytes": 5771
+    },
+    {
+      "path": "cities_do/core/transit_line_planner.gd",
+      "sha256": "5f6859edd55df11719771fe99fc6b367e8704976de99470abaf8c585f3184e62",
+      "bytes": 11212
+    },
+    {
+      "path": "cities_do/core/transit_routes.gd",
+      "sha256": "366260d4801ea65bdb10bc4f2feaa3e7f22dc1f15ff5c9e343cceb0f3bf83d87",
+      "bytes": 25550
+    },
+    {
+      "path": "cities_do/core/transit_view.gd",
+      "sha256": "706159ec4d582bd88a62a4f7aaa727eb674f3382b03ca55e1d5a26e550c6d186",
+      "bytes": 25136
+    },
+    {
+      "path": "cities_do/tests/test_elevated_rail.gd",
+      "sha256": "710a62859fdbfac73458ab80a8aa56bb838907b65e7f119e11ea7c52ad7ad216",
+      "bytes": 20695
+    },
+    {
+      "path": "cities_do/tests/test_elevated_rail_ui.gd",
+      "sha256": "32238875bfd3f8dd8a86eb4add6f38cef60a7f2d3c29c13055fe19a818e769b7",
+      "bytes": 11165
+    },
+    {
+      "path": "tools/manifest_e3a_elevated_rail.py",
+      "sha256": "96716c13f89863e6ec8ea583c70c0fcc6d5760b031e1c856a04fe71b5957a2d4",
+      "bytes": 7138
+    },
+    {
+      "path": "tools/verify_e3a_elevated_rail.py",
+      "sha256": "292fb1d9c53e6fe9018163dd97f087e69aaa3979271b70983a56d604d9ea4dac",
+      "bytes": 3912
+    }
+  ],
+  "original_asset_count": 21,
+  "original_assets": [
+    {
+      "path": "assets/structures/viaduct-pier-01/build.py",
+      "sha256": "c0df0aec23cf3c7bb26fdb1597b717f9a21549186c466e76ef30b331287fe3a5",
+      "bytes": 148,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/preview.png",
+      "sha256": "b6d9b3b243a9d4cd9bdc44d6d8f27035f3bf15c79354e6acc201fe08d330918d",
+      "bytes": 379145,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/spec.json",
+      "sha256": "a5d981f087633e6dddd2bb21bfcc5357d853dfdc61c8e2f57c267a5b39f73739",
+      "bytes": 3225,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/structure.blend",
+      "sha256": "90e0a330beee6f4c6e80a82dadca4d82f97ac50adbd2affcc0cae6a8bb46cdc3",
+      "bytes": 94684,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/member.blend",
+      "sha256": "0bff4a295c82296cf0e6497442d08ddbef058da223e05f85eda2dbb78f2e60d9",
+      "bytes": 95676,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/preview.png",
+      "sha256": "e6317e101b2754f1afb192f00c4277ba491fad7b6646ea3183d403e479693cb7",
+      "bytes": 2543,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/spec.json",
+      "sha256": "d411701460202082aa544d22a51368b1cd1eb3bc8825af4cd071ba1fd140d457",
+      "bytes": 1350,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/member.blend",
+      "sha256": "0db12d0775bb684e04ed556712fb98de4b68fa2e87c674e572478f7e3c997f5f",
+      "bytes": 96205,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/preview.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/spec.json",
+      "sha256": "252cec1a6b8b46c5111b0261f31bdbefd3e354ee7cf5fa3a2c30c8bac238d781",
+      "bytes": 1223,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_base.png",
+      "sha256": "8400a7429066745b492e113a08937918e8800abf3e735c762b780a3cbcc5f611",
+      "bytes": 1789,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_cap.png",
+      "sha256": "71ab669aceb76e5fb4b7f1be3ab2d7b2d60b39204b0227fd82ee4ab7766240ff",
+      "bytes": 3382,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_shaft.png",
+      "sha256": "e3d039fbd58752b3083ab12a27b697ae7a55445810a657aea29807e890ce33df",
+      "bytes": 306,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/render_manifest.json",
+      "sha256": "04897d6defae36b65639de7100d1d1739a749807621164610f46e69974d38ceb",
+      "bytes": 1464,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/viaduct-pier-01.glb",
+      "sha256": "e5a2be6d3e51c1ae652b707e52f170f4beecb77aa458021d83688ec3b128287a",
+      "bytes": 23372,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/viaduct-pier-01.png",
+      "sha256": "b6d9b3b243a9d4cd9bdc44d6d8f27035f3bf15c79354e6acc201fe08d330918d",
+      "bytes": 379145,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-side-01/barrier_inner.png",
+      "sha256": "806924a25baf2de72b672a9ce306f5731537e3f888d9530fb889909d92d8266b",
+      "bytes": 1457,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-side-01/deck_side.png",
+      "sha256": "e6317e101b2754f1afb192f00c4277ba491fad7b6646ea3183d403e479693cb7",
+      "bytes": 2543,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/retaining-wall-01/wall.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "unchanged_vs_head": true
+    }
+  ],
+  "asset_verification": "Approved viaduct-pier-01, viaduct-side-01 and retaining-wall-01 originals used read-only; unchanged against HEAD",
+  "current_headless_results": [
+    {
+      "name": "test_elevated_rail",
+      "exit_code": 0,
+      "passed_lines": 92,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_rail_ui",
+      "exit_code": 0,
+      "passed_lines": 24,
+      "errors": []
+    },
+    {
+      "name": "test_rail_catenary",
+      "exit_code": 0,
+      "passed_lines": 87,
+      "errors": []
+    },
+    {
+      "name": "test_rail_catenary_render",
+      "exit_code": 0,
+      "passed_lines": 48,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback_edit",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback_catenary",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_view",
+      "exit_code": 0,
+      "passed_lines": 35,
+      "errors": []
+    },
+    {
+      "name": "test_transit_routes",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_geometry",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_render",
+      "exit_code": 0,
+      "passed_lines": 28,
+      "errors": []
+    },
+    {
+      "name": "test_transit_operations",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_operation_safety",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_roads",
+      "exit_code": 0,
+      "passed_lines": 128,
+      "errors": []
+    },
+    {
+      "name": "test_underground_roads",
+      "exit_code": 0,
+      "passed_lines": 90,
+      "errors": []
+    }
+  ],
+  "current_headless_passing_assertions": 532,
+  "native_no_capture_results": [],
+  "native_capture_results": [
+    {
+      "name": "test_elevated_rail_ui-native",
+      "exit_code": 0,
+      "passed_lines": 26,
+      "errors": []
+    }
+  ],
+  "known_baseline_failures": {},
+  "suite_logs": [
+    {
+      "name": "test_elevated_rail",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_elevated_rail.log",
+        "sha256": "55c10a4abb63c5b96ca3622e420ebaaad82073bcf39ccc440920d6ebcfc8ea23",
+        "bytes": 5864
+      },
+      "passing_assertion_lines": 92,
+      "summary": [
+        "E3a elevated rail: 92 passed, 0 failed"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_elevated_rail_ui-native",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_elevated_rail_ui-native.log",
+        "sha256": "674a0c7585a31b92ae0b324ab2fd1aeba4ee84cce6cd929eb70c53b1b40e9525",
+        "bytes": 2396
+      },
+      "passing_assertion_lines": 26,
+      "summary": [
+        "E3A_UI checks=26 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_elevated_rail_ui",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_elevated_rail_ui.log",
+        "sha256": "7b551d06d15aa82c7320a3b596ead815d0f1a180a9a69ae3f3823bd0009a2411",
+        "bytes": 1909
+      },
+      "passing_assertion_lines": 24,
+      "summary": [
+        "E3A_UI checks=24 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_elevated_roads",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_elevated_roads.log",
+        "sha256": "c882e84c44001da14883408261ec77e2f19c0d37c13748d190206fd647e0612b",
+        "bytes": 7757
+      },
+      "passing_assertion_lines": 128,
+      "summary": [
+        "E1 elevated roads: 128 passed, 0 failed"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_rail_catenary",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_rail_catenary.log",
+        "sha256": "a4614ba9d953c790f7756d214f82a70eb495b2dba4dea0f44824502ef52b17a7",
+        "bytes": 5797
+      },
+      "passing_assertion_lines": 87,
+      "summary": [
+        "CATENARY_GEOMETRY checks=87 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_rail_catenary_render",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_rail_catenary_render.log",
+        "sha256": "61e0a89a9ff9cff7017147f2b91c7fdbe42a672f8c408b6ea8640380ebbe8222",
+        "bytes": 2928
+      },
+      "passing_assertion_lines": 48,
+      "summary": [
+        "CATENARY_RENDER checks=48 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_terminal_turnback.log",
+        "sha256": "b0e8e5a9f7d48c2be14ebe1122df45157d5404536519a6f2d4a1336108f3fbdf",
+        "bytes": 448
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK checks=65 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback_catenary",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_terminal_turnback_catenary.log",
+        "sha256": "4be95d8f35523d2bd90660c331d2a00357b853ec61d0d4ca9b339f9f71355574",
+        "bytes": 576
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK_CATENARY checks=23 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback_edit",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_terminal_turnback_edit.log",
+        "sha256": "2c1dbc40ae88a130db034308b7e7cc64b7c6536327f10517345d1367bafe7a59",
+        "bytes": 458
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK_EDIT checks=19 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_geometry",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_geometry.log",
+        "sha256": "9081b9463fef0a25b302d922e62bbe88e037b15a5d3bf7a0db1e08443c494151",
+        "bytes": 447
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_GEOMETRY checks=227 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_operation_safety",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_operation_safety.log",
+        "sha256": "2a54afd848b9d5696ff82f8949b3aff002000bec2dfe141b24687693712cf6b4",
+        "bytes": 462
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_OPERATION_SAFETY checks=15 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_operations",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_operations.log",
+        "sha256": "ce45e3bffe21e5db8d96373ebe318cc4228cb0315e4a0d834b97bc52a231491a",
+        "bytes": 450
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_OPERATIONS checks=39 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_render",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_render.log",
+        "sha256": "5d3d683d114688c5f5e92cf81d78d198704b34e0eafec4b5eafa1a81acdaf96f",
+        "bytes": 2004
+      },
+      "passing_assertion_lines": 28,
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_routes",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_routes.log",
+        "sha256": "dd6230aa8416ca403f258997f22536cb2be0668bdfe428a06232d6fb594170b5",
+        "bytes": 442
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_ROUTES checks=23 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_view",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_transit_view.log",
+        "sha256": "ae305fbf4fb5929a76dfe63d538827f8a2673e782a9308f45e6374e3b77b4f82",
+        "bytes": 2299
+      },
+      "passing_assertion_lines": 35,
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_roads",
+      "log": {
+        "path": "artifacts/e3a-elevated-rail-20261119/test_underground_roads.log",
+        "sha256": "96ef97ed80acb736c08dcf7d6c0597c76056c9d5dc0b01597f279560d626683d",
+        "bytes": 5092
+      },
+      "passing_assertion_lines": 90,
+      "summary": [
+        "E2 underground roads: 90 passed, 0 failed"
+      ],
+      "diagnostics": []
+    }
+  ],
+  "captures": [
+    {
+      "path": "artifacts/e3a-elevated-rail-20261119/e3a-viaduct-1920.png",
+      "sha256": "a41fd2327e05602ad55abb21c2edbf52fab08d4b6f935895f93f87172fcc165c",
+      "bytes": 451828,
+      "view": "viaduct",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "inspected": true
+    }
+  ],
+  "baseline_proof": "test_elevated_rail failed before implementation (rail heights, ramps, viaduct rules absent). RED output was not saved.",
+  "temporary_values": [
+    "elevated_road_config.json rail_height_cost: disabled, pending user price; relative factor only"
+  ],
+  "review_notes": {
+    "path": "artifacts/e3a-elevated-rail-20261119/REVIEW_NOTES.md",
+    "sha256": "b734be45f31b535105030dd7bbf1f922a733fc392fa0cf7dce750845c45b9ad1",
+    "bytes": 9010
+  },
+  "security_scan": {
+    "shell_true": false,
+    "unsafe_deserialization": false,
+    "dynamic_eval": false
+  },
+  "excluded": [
+    "all .import/.uid metadata",
+    "protected design/concept/handoff/mistake documents and AGENTS.md",
+    "all other unrelated checkout changes"
+  ],
+  "benchmarks_run": false,
+  "timing_collection": false
+}

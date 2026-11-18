@@ -1,5 +1,6 @@
 extends RefCounted
 ## Display-only metres above rail datum; world XY remains in four-metre cells.
+const Height=preload("res://core/road_height.gd")
 const POLE:=Color("6f7579")
 const BRACKET:=Color("9aa1a4")
 const WIRE:=Color("2a2e30")
@@ -339,10 +340,31 @@ static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bo
     run[-1]+=(run[-1]-run[-2]).normalized()*.25
     start=0;finish=length_of(run)
    var surface:Array=crossovers.filter(func(x):return ground_crossover(x,city))
-   append_run(generated,run,start,finish,masks,portals,int(route.id),surface,city)
+   append_level_runs(generated,route,run,start,finish,masks,portals,surface,city)
   run_start=i+1
- for item:Dictionary in generated:item.route_id=route.id
+ for item:Dictionary in generated:
+  item.route_id=route.id
+  if route.has("heights_m"):
+   # E3a: same 3.8/4.8/5.3m layout measured from the deck/ramp rail top.
+   var ha:=Height.height_at(route,item.a);var hb:=Height.height_at(route,item.b)
+   item.a_height+=ha;item.b_height+=hb
+   if maxf(ha,hb)>Height.EPS:item.deck=true
  append_clipped(output,generated,city)
+## E3a: poles stand on the structure wherever the track is raised, so ground masks
+## (roads, station lots) and ground crossovers apply only to the at-grade parts.
+static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array,crossovers:Array,city):
+ if not Height.raised(route):
+  append_run(output,run,start,finish,masks,portals,int(route.id),crossovers,city);return
+ var heights:=PackedFloat64Array()
+ for point:Vector2 in run:heights.append(Height.height_at(route,point))
+ var carrier:={"points":run,"heights_m":heights}
+ for raised_part:bool in [false,true]:
+  for piece:Dictionary in (Height.pieces_between(carrier,.005,INF) if raised_part else Height.pieces_between(carrier,-INF,.005)):
+   var offset:=distance_on(run,piece.points[0])
+   if not is_finite(offset):continue
+   var first:=maxf(0.0,start-offset);var last:=minf(length_of(piece.points),finish-offset)
+   if last<=first:continue
+   append_run(output,piece.points,first,last,[] if raised_part else masks,portals,int(route.id),[] if raised_part else crossovers,city)
 static func append_clipped(output:Array,generated:Array,city):
  for item:Dictionary in generated:
   # Liang-Barsky clipping keeps XY, height and actual line endpoints consistent.

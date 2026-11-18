@@ -18,8 +18,40 @@ func edge(a:int,b:int,host:int):
  edges.append({"a":a,"b":b,"host":host,"length":nodes[a].distance_to(nodes[b]),"heading":(nodes[b]-nodes[a]).normalized()})
  if not outgoing.has(a):outgoing[a]=[]
  outgoing[a].append(id)
+## E3a: a track only meets another where both are at the same height; a viaduct
+## passing over a ground track adds no node (no switch). Station targets match any level.
+var node_heights:Dictionary={}
+func height_node(point:Vector2,height:float)->int:
+ var id:=node(point)
+ if not node_heights.has(id):node_heights[id]=height
+ return id
+static func segment_height(segment:Dictionary,point:Vector2)->float:
+ var length:float=segment.a.distance_to(segment.b)
+ return lerpf(segment.ha,segment.hb,clampf(segment.a.distance_to(point)/maxf(.000001,length),0,1))
+func build_graph(city,kind:String):
+ var Height=preload("res://core/road_height.gd")
+ var segments:Array=[]
+ for route:Dictionary in city.transit_routes:
+  if route.kind!=kind:continue
+  for i in range(1,route.points.size()):
+   var a:Vector2=route.points[i-1]*4;var b:Vector2=route.points[i]*4
+   var segment:={"a":a,"b":b,"host":route.id,"ha":Height.height_at(route,route.points[i-1]),"hb":Height.height_at(route,route.points[i])}
+   segments.append(segment);height_node(a,segment.ha);height_node(b,segment.hb)
+ # True endpoint/interior contacts and geometric crossings use the same graph in either insertion order.
+ for i in range(segments.size()):
+  for j in range(i):
+   var hit:Variant=Geometry2D.segment_intersects_segment(segments[i].a,segments[i].b,segments[j].a,segments[j].b)
+   if hit!=null and absf(segment_height(segments[i],hit)-segment_height(segments[j],hit))<=Height.EPS:height_node(hit,segment_height(segments[i],hit))
+ for segment:Dictionary in segments:
+  var ids:Array[int]=[]
+  for i in range(nodes.size()):
+   if Geometry2D.get_closest_point_to_segment(nodes[i],segment.a,segment.b).distance_to(nodes[i])>=EPS:continue
+   if node_heights.has(i) and absf(float(node_heights[i])-segment_height(segment,nodes[i]))>Height.EPS:continue
+   ids.append(i)
+  ids.sort_custom(func(a,b):return nodes[a].distance_squared_to(segment.a)<nodes[b].distance_squared_to(segment.a))
+  for i in range(1,ids.size()):edge(ids[i-1],ids[i],segment.host);edge(ids[i],ids[i-1],segment.host)
 func rail_plan(city,line:Dictionary)->Dictionary:
- nodes.clear();edges.clear();outgoing.clear()
+ nodes.clear();edges.clear();outgoing.clear();node_heights.clear()
  var kind:String="metro" if line.kind=="metro" else "rail"
  var targets:Array[int]=[]
  var stations:Array[Dictionary]=[]
@@ -30,23 +62,7 @@ func rail_plan(city,line:Dictionary)->Dictionary:
    var p:PackedVector2Array=lot.internal_points
    targets.append(node((p[0]+p[-1])*2));stations.append(lot);found=true;break
   if not found:return failure()
- var segments:Array=[]
- for route:Dictionary in city.transit_routes:
-  if route.kind!=kind:continue
-  for i in range(1,route.points.size()):
-   var a:Vector2=route.points[i-1]*4;var b:Vector2=route.points[i]*4
-   segments.append({"a":a,"b":b,"host":route.id});node(a);node(b)
- # True endpoint/interior contacts and geometric crossings use the same graph in either insertion order.
- for i in range(segments.size()):
-  for j in range(i):
-   var hit:Variant=Geometry2D.segment_intersects_segment(segments[i].a,segments[i].b,segments[j].a,segments[j].b)
-   if hit!=null:node(hit)
- for segment:Dictionary in segments:
-  var ids:Array[int]=[]
-  for i in range(nodes.size()):
-   if Geometry2D.get_closest_point_to_segment(nodes[i],segment.a,segment.b).distance_to(nodes[i])<EPS:ids.append(i)
-  ids.sort_custom(func(a,b):return nodes[a].distance_squared_to(segment.a)<nodes[b].distance_squared_to(segment.a))
-  for i in range(1,ids.size()):edge(ids[i-1],ids[i],segment.host);edge(ids[i],ids[i-1],segment.host)
+ build_graph(city,kind)
  if targets.size()<2:return failure()
  var best:Dictionary={}
  if not line.get("turnback",false):

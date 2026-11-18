@@ -721,6 +721,10 @@ func select_category(key: String):
   road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
   road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
   update_road_lane_cards();update_road_grid_button()
+ if key=="transport":
+  # E3a: approved C height controls for the rail tool (ground/elevated, -/+5m, PgUp/PgDn).
+  var rail_heights:=preload("res://core/road_height_controls.gd").new();rail_heights.rail=true
+  drawer_box.add_child(rail_heights);rail_heights.setup(self)
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
   if entry.ui_category!=key:continue
   var registered_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))

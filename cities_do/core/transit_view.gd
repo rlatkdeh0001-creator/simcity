@@ -2,7 +2,12 @@ extends Node2D
 ## P1 physical route interaction and retained visuals; no operating lines/stations.
 const Routes=preload("res://core/transit_routes.gd")
 const Crossover=preload("res://core/terminal_crossover.gd")
+const Height=preload("res://core/road_height.gd")
 var view
+## E3a rail tool height (approved C): 0 = ground, +5m steps above; underground waits for E3b.
+var target_height_m:=0.0
+var pending:Dictionary={}
+var warning_panel:PanelContainer
 var anchors:=PackedVector2Array()
 var start_tangent:=Vector2.ZERO
 var last_result:Dictionary={}
@@ -38,19 +43,20 @@ func synchronize():
  var terminals:Array=[]
  for line:Dictionary in view.city.transit_lines:
   if line.has("terminal_ports"):terminals.append([line.id,line.terminal_ports])
- var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.public_facilities.lots,terminals,view.city.width,view.city.height])
- if key!=geometry_signature:
-  geometry_signature=key;generation+=1;geometry=build_geometry(view.city)
-  rail_layer.shapes=geometry.rail;metro_layer.shapes=geometry.metro
-  rail_layer.queue_redraw();metro_layer.queue_redraw()
-  if retained_renderer!=null:retained_renderer.sync_catenary()
  # Original approved PNGs only; runtime mipmaps do not touch importer metadata.
+ # Loaded before geometry so E3a deck pieces can use the same strips.
  for name:String in ["strip","strip_end","strip_rails"]:
   var path:="res://assets/rail/rail-track-01/"+name+".png"
   if not textures.has(name) and FileAccess.file_exists(path):
    var image:=Image.load_from_file(path)
    if image!=null and not image.is_empty():
     image.generate_mipmaps();textures[name]=ImageTexture.create_from_image(image);rail_layer.queue_redraw()
+ var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.public_facilities.lots,terminals,view.city.width,view.city.height])
+ if key!=geometry_signature:
+  geometry_signature=key;generation+=1;geometry=build_geometry(view.city)
+  rail_layer.shapes=geometry.rail;metro_layer.shapes=geometry.metro
+  rail_layer.queue_redraw();metro_layer.queue_redraw()
+  if retained_renderer!=null:retained_renderer.sync_transit_structures()
  sync_visibility()
 func sync_visibility():
  if metro_layer!=null:metro_layer.visible=underground
@@ -103,7 +109,9 @@ static func shape(points:PackedVector2Array,color:Color,depth_m:float=0,texture:
 ## view like metro tunnels (solid 15181a band at their own road height).
 static func append_road_tunnels(output:Array,city,bounds:PackedVector2Array):
  var height=preload("res://core/road_height.gd")
- for visual:Dictionary in city.road_visuals:
+ # Geometry-only callers may pass a transit stub without road topology (read optionally).
+ var visuals:Variant=city.get("road_visuals")
+ for visual:Dictionary in (visuals if visuals is Array else []):
   if not height.sunken(visual):continue
   for part:Dictionary in height.covered_pieces(visual):
    for ribbon:PackedVector2Array in preload("res://core/road_geometry.gd").ribbons(part.points,float(visual.width),true,true):
@@ -112,7 +120,11 @@ static func append_road_tunnels(output:Array,city,bounds:PackedVector2Array):
      var depths:=PackedFloat64Array()
      for point:Vector2 in clipped:depths.append(height.height_at(part,point))
      band.depths=depths;band.road_tunnel=true;output.append(band)
- for junction:Dictionary in city.junctions+city.road_joins:
+ var patches:Array=[]
+ for key:String in ["junctions","road_joins"]:
+  var value:Variant=city.get(key)
+  if value is Array:patches.append_array(value)
+ for junction:Dictionary in patches:
   var level:float=float(junction.get("height_m",0))
   if level>=0 or not height.covered_at(level) or not junction.has("box"):continue
   for clipped:PackedVector2Array in Geometry2D.intersect_polygons(junction.footprint,bounds):
@@ -127,8 +139,27 @@ static func ribbons(route:Dictionary)->Array:
   var b:=normal_at(points,i)*float(route.width)/2
   result.append(PackedVector2Array([points[i-1]-a,points[i]-b,points[i]+b,points[i-1]+a]))
  return result
+## E3a: split a (track) polyline carrying the route heights into ground and raised parts.
+static func level_parts(points:PackedVector2Array,route:Dictionary,raised_part:bool)->Array:
+ if not Routes.raised(route):return [] if raised_part else [points]
+ var carrier:={"points":points,"heights_m":route.heights_m}
+ var result:Array=[]
+ for piece:Dictionary in (Height.pieces_between(carrier,Routes.LEVEL_SPLIT_M,INF) if raised_part else Height.pieces_between(carrier,-INF,Routes.LEVEL_SPLIT_M)):result.append(piece.points)
+ return result
+static func densify(points:PackedVector2Array,step:float)->PackedVector2Array:
+ var result:=PackedVector2Array([points[0]])
+ for i in range(1,points.size()):
+  var count:=maxi(1,ceili(points[i-1].distance_to(points[i])/step))
+  for j in range(1,count+1):result.append(points[i-1].lerp(points[i],float(j)/count))
+ return result
+## Deck shapes keep world points plus one height per vertex; the elevated renderer draws them.
+static func deck_shape(item:Dictionary,route:Dictionary)->Dictionary:
+ var depths:=PackedFloat64Array()
+ for point:Vector2 in item.points:depths.append(Height.height_at(route,point))
+ item.depths=depths;item.route_id=route.id
+ return item
 static func build_geometry(city)->Dictionary:
- var result:={"rail":[],"metro":[],"tracks":{},"catenary":[],"crossovers":{}}
+ var result:={"rail":[],"metro":[],"tracks":{},"catenary":[],"crossovers":{},"deck":[]}
  var bounds:=boundary(city)
  var roads:Array=city.road_pavement+city.junction_pavement
  # All ballast first, then textured running strips, so overlapping branches cannot bury rails.
@@ -136,7 +167,15 @@ static func build_geometry(city)->Dictionary:
   var tracks:Array=[]
   for offset:float in route.track_offsets_m:tracks.append(track_path(route.points,offset))
   result.tracks[route.id]=tracks
-  for polygon:PackedVector2Array in ribbons(route):
+  for part:PackedVector2Array in level_parts(route.points,route,true):
+   var deck_route:Dictionary=route.duplicate();deck_route.points=densify(part,.5)
+   for polygon:PackedVector2Array in ribbons(deck_route):
+    for clipped:PackedVector2Array in Geometry2D.intersect_polygons(polygon,bounds):result.deck.append(deck_shape(shape(clipped,Color("a59c8e")),route))
+  var ground_polygons:Array=[]
+  for part:PackedVector2Array in level_parts(route.points,route,false):
+   var ground_route:Dictionary=route.duplicate();ground_route.points=part
+   ground_polygons.append_array(ribbons(ground_route))
+  for polygon:PackedVector2Array in ground_polygons:
    var clipped:Array=Array(Geometry2D.intersect_polygons(polygon,bounds))
    if route.kind=="rail":
     for piece:PackedVector2Array in subtract_all(clipped,roads):result.rail.append(shape(piece,Color("a59c8e")))
@@ -163,10 +202,18 @@ static func build_geometry(city)->Dictionary:
   var masks:Array=roads.duplicate()
   for other:Dictionary in city.transit_routes:
    if other.kind=="rail" and other.id!=route.id:
-    masks.append_array(ribbons(other))
+    # A deck passing overhead is not a junction with this track.
+    for part:PackedVector2Array in level_parts(other.points,other,false):
+     var ground_other:Dictionary=other.duplicate();ground_other.points=part;masks.append_array(ribbons(ground_other))
   preload("res://core/rail_catenary.gd").append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,[],crossovers)
   for path:PackedVector2Array in result.tracks[route.id]:
-   append_track(result.rail,path,terminal(city,route,0),terminal(city,route,route.points.size()-1),bounds,masks)
+   var caps:=[terminal(city,route,0),terminal(city,route,route.points.size()-1)]
+   for part:PackedVector2Array in level_parts(path,route,false):
+    append_track(result.rail,part,caps[0] and part[0].distance_to(path[0])<.0005,caps[1] and part[-1].distance_to(path[-1])<.0005,bounds,masks)
+   for part:PackedVector2Array in level_parts(path,route,true):
+    var deck_strips:Array=[]
+    append_track(deck_strips,part,caps[0] and part[0].distance_to(path[0])<.0005,caps[1] and part[-1].distance_to(path[-1])<.0005,bounds,[])
+    for item:Dictionary in deck_strips:result.deck.append(deck_shape(item,route))
  var catenary=preload("res://core/rail_catenary.gd")
  var portals:Array=catenary.plan_portals(result.catenary,city.transit_routes,pole_masks)
  if not portals.is_empty():
@@ -238,6 +285,7 @@ static func append_uv_shapes(output:Array,polygons:Array,tri:PackedVector2Array,
   var item:=shape(polygon,Color.WHITE,0,name,mapped)
   item.indices=indices;output.append(item)
 func cancel():
+ clear_warning()
  anchors.clear();start_tangent=Vector2.ZERO;preview_signature=null
  if view!=null:view.queue_redraw()
 func pick(position:Vector2,kind:String="")->Dictionary:
@@ -256,14 +304,45 @@ func pick(position:Vector2,kind:String="")->Dictionary:
  return {}
 func preview()->Dictionary:
  var key:=hash([view.city.get_instance_id(),view.mode,view.road_drawer.kind,anchors,start_tangent,view.pointer,view.city.transit_routes,view.city.roads,view.city.buildings,view.city.public_facilities.lots,view.city.power.plants,view.city.water.facilities])
+ key=hash([key,target_height_m if view.mode=="rail" else 0.0])
+ if not pending.is_empty():return pending.duplicate(true)
  if key!=preview_signature:
   preview_signature=key
-  preview_cache=Routes.resolve(view.city,view.mode,view.road_drawer.kind,anchors,view.pointer,start_tangent)
+  preview_cache=Routes.resolve(view.city,view.mode,view.road_drawer.kind,anchors,view.pointer,start_tangent,target_height_m if view.mode=="rail" else 0.0)
  return preview_cache.duplicate(true)
-func screen_point(point:Vector2)->Vector2:
- return view.origin+project_point(point,-12.7 if view.mode=="metro" else 0.0)*view.map_zoom
+func set_height(value:float):
+ target_height_m=maxf(0.0,roundf(value/5)*5)
+ preview_signature=null
+ var controls=view.find_child("RailHeightControls",true,false)
+ if controls!=null:controls.synchronize()
+ view.queue_redraw()
+func clear_warning():
+ pending.clear()
+ if is_instance_valid(warning_panel):warning_panel.hide();warning_panel.queue_free()
+ warning_panel=null
+ if view!=null and view.get("world_renderer")!=null:
+  for sprite in view.world_renderer.buildings.values():sprite.modulate=Color.WHITE
+func confirm_pending():
+ if pending.is_empty():return
+ var approved:Dictionary=pending.duplicate(true)
+ clear_warning()
+ if approved.city_id!=view.city.get_instance_id():cancel();return
+ commit(approved,true)
+func commit(plan:Dictionary,confirmed:bool):
+ var points:PackedVector2Array=plan.points
+ var heights:PackedFloat64Array=plan.get("heights_m",PackedFloat64Array())
+ last_result=view.city.add_transit_route(points,view.mode,true,heights,confirmed,plan.get("demolish_ids",[]) if confirmed else null)
+ var accepted:bool=last_result.ok or last_result.get("queued",false)
+ view.message="" if accepted else last_result.reason
+ if accepted:
+  cancel()
+  if view.road_drawer.kind=="straight":anchors.append(points[-1]);start_tangent=(points[-1]-points[-2]).normalized()
+ view.refresh()
+func tool_height()->float:return -12.7 if view.mode=="metro" else target_height_m
+func screen_point(point:Vector2,height:float=NAN)->Vector2:
+ return view.origin+project_point(point,tool_height() if is_nan(height) else height)*view.map_zoom
 func input_point(position:Vector2)->Vector2:
- return view.world(position-project_point(Vector2.ZERO,-12.7 if view.mode=="metro" else 0.0)*view.map_zoom)
+ return view.world(position-project_point(Vector2.ZERO,tool_height())*view.map_zoom)
 func cursor_preview()->Dictionary:
  var snap:=Routes.snap(view.city,view.pointer,view.mode)
  var p:Vector2=snap.point
@@ -294,19 +373,27 @@ func click(point:Vector2):
   anchors.append(snap.point);start_tangent=snap.tangent;view.queue_redraw();return
  if view.road_drawer.kind=="curve" and anchors.size()==1:
   anchors.append(point);view.queue_redraw();return
+ if not pending.is_empty():return
  last_result=preview()
  if not last_result.ok:
   view.message=last_result.reason;view.refresh();return
- var points:PackedVector2Array=last_result.points
- last_result=view.city.add_transit_route(points,view.mode,true)
- var accepted:bool=last_result.ok or last_result.get("queued",false)
- view.message="" if accepted else last_result.reason
- if accepted:
-  cancel()
-  if view.road_drawer.kind=="straight":anchors.append(points[-1]);start_tangent=(points[-1]-points[-2]).normalized()
- view.refresh()
+ last_result.city_id=view.city.get_instance_id()
+ if last_result.get("warning",false):
+  # Approved warning B, shared with E1 roads: yellow buildings, bubble, confirm/cancel.
+  pending=last_result.duplicate(true)
+  warning_panel=preload("res://core/road_demolition_warning.gd").new()
+  view.drawer.get_parent().add_child(warning_panel)
+  warning_panel.setup(self,screen_point(last_result.points[-1],Height.height_at(last_result.route,last_result.points[-1])),pending.demolish_ids.size())
+  for id in pending.demolish_ids:
+   var sprite=view.world_renderer.buildings.get(id) if view.get("world_renderer")!=null else null
+   if sprite!=null:sprite.modulate=Color(1.25,1.12,.35)
+  view.queue_redraw();return
+ commit(last_result,false)
 func handle_input(event:InputEvent)->bool:
  if view.mode not in ["rail","metro"]:return false
+ if view.mode=="rail" and event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
+  set_height(target_height_m+(5 if event.keycode==KEY_PAGEUP else -5));return true
+ if not pending.is_empty() and event is InputEventMouseButton:return false
  if event is InputEventMouseMotion:
   if view.panning:return false
   view.pointer=input_point(event.position);view.queue_redraw();return true
@@ -331,8 +418,12 @@ func draw_preview():
  var points:PackedVector2Array=result.get("points",PackedVector2Array([anchors[0],view.pointer]))
  if points.size()<2:return
  var route:=Routes.profile(view.mode);route.points=points
+ var heights:PackedFloat64Array=result.get("heights_m",PackedFloat64Array())
+ if heights.size()==points.size():route.heights_m=heights;route.width=Routes.STRUCTURE_WIDTH if Routes.raised(route) else route.width
+ var color:=Color(.94,.32,.31,.5)
+ if result.ok:color=Color(1,.82,.15,.55) if result.get("warning",false) else Color(.24,.86,.52,.5)
  for polygon in ribbons(route):
   for clipped in Geometry2D.intersect_polygons(polygon,boundary(view.city)):
    var projected:=PackedVector2Array()
-   for p in clipped:projected.append(screen_point(p))
-   view.draw_colored_polygon(projected,Color(.24,.86,.52,.5) if result.ok else Color(.94,.32,.31,.5))
+   for p in clipped:projected.append(screen_point(p,-12.7 if view.mode=="metro" else Height.height_at(route,p)))
+   view.draw_colored_polygon(projected,color)

@@ -4,7 +4,13 @@ extends RefCounted
 const Paths=preload("res://core/road_junctions.gd")
 const Units=preload("res://core/road_length_units.gd")
 const Region=preload("res://core/regional_exchange.gd")
+const Height=preload("res://core/road_height.gd")
 const METRES_PER_CELL:=4.0
+## E3a concrete rail structure: 10.0m wide deck/ramp (ballast +-3.8m, poles +-4.0m, barriers outer 0.4m).
+const STRUCTURE_WIDTH:=10.0/4.0
+## Ground/raised split height: both sides of a ramp abut exactly here (pieces_between keeps flat
+## 0m spans within its EPS tolerance, so the split must sit clearly above that tolerance).
+const LEVEL_SPLIT_M:=0.005
 const EPS:=0.0005
 static func profile(kind:String)->Dictionary:
  if kind=="rail":return {"kind":kind,"width":7.6/4.0,"track_offsets_m":PackedFloat64Array([-2.0,2.0]),"rail_top_z_m":0.0,"min_center_radius_m":34.0}
@@ -66,6 +72,49 @@ static func snapshot_error(rows:Variant,width:int,height:int)->String:
    if not (row.get(key) is float or row.get(key) is int):return "invalid transit profile"
    if not is_finite(float(row[key])) or not is_equal_approx(float(row[key]),float(expected[key])):return "invalid transit profile"
   if not row.get("track_offsets_m") is PackedFloat64Array or row.track_offsets_m!=expected.track_offsets_m:return "invalid transit track offsets"
+  if row.has("heights_m"):
+   # E3a: optional per-point rail heights; records without them stay ground (0m).
+   if row.kind!="rail" or not row.heights_m is PackedFloat64Array or row.heights_m.size()!=row.points.size():return "invalid transit heights"
+   for value:float in row.heights_m:
+    if not is_finite(value) or value< -Height.EPS:return "invalid transit heights"
+   if not Height.profile_error(row.points,row.heights_m,"rail").is_empty():return "invalid transit heights"
+  if row.has("piers") and not row.piers is Array:return "invalid transit piers"
+ return ""
+static func minimum_ramp_m(rise:float)->float:return Height.minimum_ramp_m(rise,"rail")
+static func raised(route:Dictionary)->bool:return route.get("kind","")=="rail" and Height.raised(route)
+## Clearance/support body: the 10m structure where raised, the ballast width on the ground.
+static func structure(route:Dictionary)->Dictionary:
+ var heights:PackedFloat64Array=route.get("heights_m",PackedFloat64Array())
+ if heights.size()!=route.points.size():
+  heights=PackedFloat64Array();heights.resize(route.points.size());heights.fill(0.0)
+ return {"points":route.points,"heights_m":heights,"width":STRUCTURE_WIDTH if raised(route) else float(route.width),"parcel_id":"rail:%d"%int(route.get("id",-1)),"rail_route_id":int(route.get("id",-1))}
+static func raised_ribbons(route:Dictionary)->Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=[]
+ if not raised(route):return result
+ for piece:Dictionary in Height.pieces_between(route,LEVEL_SPLIT_M,INF):
+  result.append_array(Geometry2D.offset_polyline(piece.points,STRUCTURE_WIDTH/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
+ return result
+static func ground_parts(route:Dictionary)->Array:
+ if not raised(route):return [route]
+ var result:Array=[]
+ for piece:Dictionary in Height.pieces_between(route,-INF,LEVEL_SPLIT_M):
+  var part:Dictionary=route.duplicate();part.points=piece.points;part.erase("heights_m");result.append(part)
+ return result
+## Stations and their ports stay on ground track (an elevated station is out of E3a scope).
+static func elevated_port(route:Dictionary,ports:Array)->bool:
+ if not raised(route):return false
+ for port:Vector2 in ports:
+  for i in range(1,route.points.size()):
+   if Geometry2D.get_closest_point_to_segment(port,route.points[i-1],route.points[i]).distance_to(port)<EPS and Height.height_at(route,port)>Height.EPS:return true
+ return false
+## Two tracks may only meet where both are at the same height.
+static func level_joint_error(first:Dictionary,second:Dictionary)->String:
+ for pair:Array in [[first,second],[second,first]]:
+  var a:Dictionary=pair[0];var b:Dictionary=pair[1]
+  for end:Vector2 in [a.points[0],a.points[-1]]:
+   for i in range(1,b.points.size()):
+    if Geometry2D.get_closest_point_to_segment(end,b.points[i-1],b.points[i]).distance_to(end)>EPS:continue
+    if absf(Height.height_at(a,end)-Height.height_at(b,end))>Height.EPS:return "높이가 다른 선로와는 이을 수 없습니다"
  return ""
 
 static func is_external(points:PackedVector2Array,width:int,height:int)->bool:
@@ -73,7 +122,7 @@ static func is_external(points:PackedVector2Array,width:int,height:int)->bool:
  return not Region.endpoint_edge(points[0],points[1],width,height).is_empty() or not Region.endpoint_edge(points[-1],points[-2],width,height).is_empty()
 
 static func failure(code:String,reason:String)->Dictionary:return {"ok":false,"code":code,"reason":reason}
-static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->Dictionary:
+static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,heights_m:PackedFloat64Array=PackedFloat64Array())->Dictionary:
  var route:=profile(kind)
  if route.is_empty():return failure("invalid_kind","철도 또는 지하철 경로가 필요합니다")
  var error:=Region.path_error(points,city.width,city.height)
@@ -81,6 +130,22 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
  error=curve_error(points,float(route.min_center_radius_m))
  if not error.is_empty():return failure("curve",error)
  route.points=points.duplicate()
+ if not heights_m.is_empty():
+  if kind!="rail":return failure("height","지하철 높이는 바꿀 수 없습니다")
+  if heights_m.size()!=points.size():return failure("height","선로 높이 경로가 필요합니다")
+  for value:float in heights_m:
+   if not is_finite(value):return failure("height","지원하지 않는 선로 높이입니다")
+   if value< -Height.EPS:return failure("height","지하 철도는 아직 지을 수 없습니다")
+  if Height.raised({"heights_m":heights_m}):route.heights_m=heights_m.duplicate()
+ var is_raised:=raised(route)
+ if is_raised:
+  error=Height.profile_error(route.points,route.heights_m,"rail")
+  if not error.is_empty():return failure("grade",error)
+  for lot:Dictionary in city.public_facilities.lots:
+   var ports:Array=[]
+   for port:Dictionary in lot.get("station_ports",[]):
+    if port.get("kind","")=="rail":ports.append(Vector2(port.point))
+   if elevated_port(route,ports):return failure("elevated_station","고가 구간에는 역을 둘 수 없습니다")
  var occupied:Array=[]
  for building:Dictionary in city.buildings:occupied.append(city.footprint(building))
  for lot:Dictionary in city.public_facilities.lots:
@@ -94,10 +159,35 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
    occupied.append_array(pieces)
   else:occupied.append(lot.polygon)
  for facility:Dictionary in city.power.plants+city.water.facilities:occupied.append(city.power_plant_footprint(facility))
+ var ground:Array=ground_parts(route)
  for polygon:PackedVector2Array in occupied:
-  if city._polygon_road_distance(polygon,route)<-EPS:return failure("occupied","건물 또는 시설과 충돌합니다")
+  for part:Dictionary in ground:
+   if city._polygon_road_distance(polygon,part)<-EPS:return failure("occupied","건물 또는 시설과 충돌합니다")
+ # E3a over-building rule (ROAD_DRAWING "건물 위로 그을 때"): zoned buildings under the
+ # structure need warning B, public facilities are red, parks pass under +5m and above.
+ var demolition:Array[int]=[]
+ if is_raised:
+  var body:=raised_ribbons(route);var deck:=structure(route)
+  for building:Dictionary in city.buildings:
+   if city._road_ribbon_overlap(city.footprint(building),body):demolition.append(int(building.id))
+  for lot:Dictionary in city.public_facilities.lots:
+   if not city._road_ribbon_overlap(lot.polygon,body):continue
+   if str(lot.get("public_asset_id",lot.get("asset_id",""))).begins_with("park-") and Height.usable_under_deck(deck,lot.polygon):continue
+   return failure("public","공공시설과 겹침")
+  for facility:Dictionary in city.power.plants+city.water.facilities:
+   if city._road_ribbon_overlap(city.power_plant_footprint(facility),body):return failure("public","공공시설과 겹침")
+  for road:Dictionary in city.roads:
+   for pier:Dictionary in road.get("piers",[]):
+    for position:Vector2 in pier.positions:
+     if Height.height_at(route,position)>=float(pier.height_m)-Height.EPS:continue
+     for i in range(1,points.size()):
+      if Geometry2D.get_closest_point_to_segment(position,points[i-1],points[i]).distance_to(position)<STRUCTURE_WIDTH/2+.5:return failure("pier","교각과 겹침")
  if kind=="rail":
   for road:Dictionary in city.roads:
+   if is_raised or Height.off_ground(road):
+    var clearance:=road_rail_error(route,road)
+    if not clearance.is_empty():return failure("vertical_clearance",clearance)
+    continue
    if preload("res://core/road_height.gd").sunken(road):
     var clearance:=road_rail_error(route,road)
     if not clearance.is_empty():return failure("vertical_clearance",clearance)
@@ -109,7 +199,19 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
   if collinear_overlap(points,existing.points):return failure("duplicate_route","이미 설치된 선로 구간과 겹칩니다")
   error=joint_error(points,existing.points,float(route.min_center_radius_m))
   if not error.is_empty():return failure("curve",error)
- return {"ok":true,"route":route,"points":points.duplicate(),"reason":""}
+  if kind=="rail" and (is_raised or raised(existing)):
+   error=Height.overlap_error(structure(route),structure(existing))
+   if not error.is_empty():return failure("vertical_clearance",error)
+   error=level_joint_error(route,existing)
+   if not error.is_empty():return failure("height_joint",error)
+ var result:={"ok":true,"route":route,"points":points.duplicate(),"reason":"","demolish_ids":demolition,"warning":not demolition.is_empty(),"height_cost_factor":Height.height_cost_factor(route),"height_cost_pending":true}
+ if is_raised:
+  route.heights_m=route.heights_m.duplicate()
+  var deck:=structure(route);deck.rail_route_id=ignore_id
+  var support_plan:Dictionary=Height.supports(city,deck)
+  if not support_plan.ok:return failure("support",support_plan.reason)
+  route.piers=support_plan.piers;result.piers=support_plan.piers;result.heights_m=route.heights_m
+ return result
 
 static func station_contact_only(route:Dictionary,polygon:PackedVector2Array,ports:PackedVector2Array)->bool:
  if route.kind!="rail" or ports.size()!=2:return false
@@ -185,15 +287,35 @@ static func ribbons(route:Dictionary)->Array[PackedVector2Array]:
 ## E2: surface rail vs an underground road. Overlaps need 10m clearance; only
 ## at-grade road parts may form level crossings. Shared by both build orders.
 ## Metro never reaches this check (approved metro exception).
+## E3a: the same rule with per-point rail heights; only at-grade parts of BOTH meet.
 static func road_rail_error(route:Dictionary,road:Dictionary)->String:
  var height=preload("res://core/road_height.gd")
- var structure:Dictionary=route.duplicate(true);structure.width=2.5
- var error:String=height.overlap_error(road,structure)
+ var body:Dictionary=route.duplicate(true);body.width=STRUCTURE_WIDTH
+ var error:String=height.overlap_error(road,body)
  if not error.is_empty():return error
+ # Off the ground a road and a rail structure never form a junction, even at equal height.
+ for piece:Dictionary in height.pieces_between(body,LEVEL_SPLIT_M,INF):
+  error=height.overlap_error(road,{"points":piece.points,"heights_m":piece.heights_m,"width":body.width},false)
+  if not error.is_empty():return error
  for piece:Dictionary in height.pieces_between(road,-height.EPS,height.EPS):
   var at_grade:Dictionary=road.duplicate();at_grade.points=piece.points;at_grade.heights_m=piece.heights_m
-  if not crossing_allowed(route,at_grade):return "철도와는 건널목으로만 교차할 수 있습니다"
+  for part:Dictionary in ground_parts(route):
+   if not crossing_allowed(part,at_grade):return "철도와는 건널목으로만 교차할 수 있습니다"
  return ""
+## Drawing profile: ramp from the start height at the 3.5% minimum length, then hold the target.
+static func height_profile(points:PackedVector2Array,start_m:float,target_m:float)->Dictionary:
+ var result:=points.duplicate();var heights:=PackedFloat64Array()
+ if points.size()<2:return {"points":result,"heights_m":heights}
+ var length:=Height.length_cells(points)
+ var ramp:=minimum_ramp_m(target_m-start_m)/4
+ if ramp>0 and ramp<length-Height.EPS:
+  result=Paths.slice(points,0,ramp)
+  result.append_array(Paths.slice(points,ramp,length).slice(1))
+ var distance:=0.0
+ for i in range(result.size()):
+  if i>0:distance+=result[i-1].distance_to(result[i])
+  heights.append(target_m if ramp==0 else lerpf(start_m,target_m,clampf(distance/maxf(Height.EPS,minf(ramp,length)),0,1)))
+ return {"points":result,"heights_m":heights}
 static func crossing_allowed(route:Dictionary,road:Dictionary)->bool:
  var crossings:=PackedVector2Array()
  for i in range(1,route.points.size()):
@@ -242,7 +364,15 @@ static func snap(city,point:Vector2,kind:String,radius:float=1.0)->Dictionary:
 
 ## Pure drawing adapter: feed these exact points to add_transit_route().
 ## Independent and connected transit strokes use the approved 8m build step.
-static func resolve(city,kind:String,mode:String,anchors:PackedVector2Array,cursor:Vector2,start_tangent:Vector2=Vector2.ZERO)->Dictionary:
+static func height_of(city,point:Vector2,kind:String)->float:
+ var best:=INF;var result:=0.0
+ for route:Dictionary in city.transit_routes:
+  if route.kind!=kind:continue
+  for i in range(1,route.points.size()):
+   var distance:=Geometry2D.get_closest_point_to_segment(point,route.points[i-1],route.points[i]).distance_to(point)
+   if distance<best:best=distance;result=Height.height_at(route,point)
+ return result if best<EPS*4 else 0.0
+static func resolve(city,kind:String,mode:String,anchors:PackedVector2Array,cursor:Vector2,start_tangent:Vector2=Vector2.ZERO,target_height_m:float=0.0)->Dictionary:
  if mode not in ["straight","curve","free"] or anchors.is_empty() or (mode=="curve" and anchors.size()!=2):return failure("incomplete","경로 제어점이 필요합니다")
  if not cursor.is_finite() or not start_tangent.is_finite():return failure("invalid_path","유효하지 않은 경로입니다")
  for point:Vector2 in anchors:
@@ -265,6 +395,12 @@ static func resolve(city,kind:String,mode:String,anchors:PackedVector2Array,curs
   if route.kind==kind:hosts.append(route)
  var fit:=Units.fit(points,hosts,Units.BUILD)
  if not fit.ok:return fit
+ var start_m:=height_of(city,fit.points[0],kind) if kind=="rail" else 0.0
+ if kind=="rail" and (absf(target_height_m)>Height.EPS or absf(start_m)>Height.EPS):
+  var profile_value:=height_profile(fit.points,start_m,target_height_m)
+  var raised_result:=plan(city,profile_value.points,kind,-1,profile_value.heights_m)
+  raised_result.points=profile_value.points;raised_result.heights_m=profile_value.heights_m
+  return raised_result
  var result:=plan(city,fit.points,kind)
  result.points=fit.points
  return result

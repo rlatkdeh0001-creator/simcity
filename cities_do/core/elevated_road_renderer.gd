@@ -68,6 +68,18 @@ func rebuild():
  for road:Dictionary in renderer.view.city.road_visuals:
   if not Height.raised(road):continue
   build_road(road)
+ # E3a: rail viaducts reuse the same deck pieces, side strips, retaining walls and piers.
+ var routes=preload("res://core/transit_routes.gd")
+ for route:Dictionary in renderer.view.city.transit_routes:
+  if not routes.raised(route):continue
+  var deck:Dictionary=routes.structure(route)
+  # Only the raised pieces get a structure (like road_visuals); ground track stays a plain strip.
+  var first:=true
+  for piece:Dictionary in Height.pieces_between(deck,routes.LEVEL_SPLIT_M,INF):
+   var part:Dictionary=deck.duplicate();part.points=piece.points;part.heights_m=piece.heights_m
+   part.piers=route.get("piers",[]) if first else []
+   first=false
+   build_road(part)
  for junction:Dictionary in renderer.view.city.junctions+renderer.view.city.road_joins:
   if float(junction.get("height_m",0))>0 and junction.has("box"):build_junction(junction)
  # Raise the entire upper sort slot, not both faces to the same anchor.
@@ -86,10 +98,43 @@ func rebuild():
      if first:node.world_bounds=Rect2(point,Vector2.ZERO);first=false
      else:node.world_bounds=node.world_bounds.expand(point)
   node.world_bounds=node.world_bounds.grow(2);node.queue_redraw()
+static func near_path(points:PackedVector2Array,point:Vector2,limit:float)->bool:
+ for i in range(1,points.size()):
+  if Geometry2D.get_closest_point_to_segment(point,points[i-1],points[i]).distance_to(point)<=limit:return true
+ return false
+static func distance_along(points:PackedVector2Array,point:Vector2)->float:
+ var best:=INF;var result:=0.0;var travelled:=0.0
+ for i in range(1,points.size()):
+  var closest:=Geometry2D.get_closest_point_to_segment(point,points[i-1],points[i])
+  if closest.distance_to(point)<best:best=closest.distance_to(point);result=travelled+points[i-1].distance_to(closest)
+  travelled+=points[i-1].distance_to(points[i])
+ return result
+## E3a deck track: transit_view deck shapes (ballast, then running strips) per 4m piece.
+func rail_commands(road:Dictionary,distances:Array[float],count:int)->Dictionary:
+ var result:Dictionary={}
+ for item:Dictionary in renderer.view.transit_view.geometry.get("deck",[]):
+  if int(item.route_id)!=int(road.rail_route_id):continue
+  var centre:=Vector2.ZERO
+  for point:Vector2 in item.points:centre+=point
+  centre/=item.points.size()
+  if not near_path(road.points,centre,float(road.width)):continue # Another raised piece of the same route.
+  var index:=clampi(distances.bsearch(distance_along(road.points,centre)),1,count-1)
+  var shape:=PackedVector2Array()
+  for k in range(item.points.size()):shape.append(project(item.points[k],item.depths[k]))
+  if Geometry2D.triangulate_polygon(shape).is_empty():continue
+  var command:Dictionary={"polygon":shape,"color":item.color}
+  if not item.texture.is_empty():
+   var image=renderer.view.transit_view.textures.get(item.texture)
+   if image==null:continue
+   command.color=Color.WHITE;command.uv=item.uv;command.texture=image
+  if not result.has(index):result[index]=[]
+  result[index].append(command)
+ return result
 func build_road(road:Dictionary):
+ var rail:=road.has("rail_route_id")
  var regions:Array[PackedVector2Array]=[];var mark_regions:Array[PackedVector2Array]=[]
  var bounds:=Vector2(renderer.view.city.width,renderer.view.city.height)
- for junction:Dictionary in renderer.view.city.junctions+renderer.view.city.road_joins:
+ for junction:Dictionary in ([] if rail else renderer.view.city.junctions+renderer.view.city.road_joins):
   if not junction.has("box") or absf(float(junction.get("height_m",0))-Height.height_at(road,junction.position))>.0001:continue
   regions.append(junction.box);mark_regions.append_array(renderer.view.city.RoadJunctions.lane_mark_regions(junction))
  var length:=Height.length_cells(road.points);var cuts:Array[float]=[0.0]
@@ -106,10 +151,12 @@ func build_road(road:Dictionary):
   if not distances.is_empty() and absf(distances[-1]-distance)<.0001:continue
   distances.append(distance);points.append(Height.point_at(road.points,distance))
  var left:=Profile.offset_path(points,float(road.width)/2);var right:=Profile.offset_path(points,-float(road.width)/2)
- var asphalt_left:=Profile.offset_path(points,Profile.asphalt_width(road)/2);var asphalt_right:=Profile.offset_path(points,-Profile.asphalt_width(road)/2)
+ var asphalt_left:=Profile.offset_path(points,(.0 if rail else Profile.asphalt_width(road))/2);var asphalt_right:=Profile.offset_path(points,-(.0 if rail else Profile.asphalt_width(road))/2)
  var inner_left:=Profile.offset_path(points,float(road.width)/2-.1);var inner_right:=Profile.offset_path(points,-float(road.width)/2+.1)
- var markings:Array=Geometry.lane_marks(road);markings.append_array(Geometry.shoulder_marks(road))
- var median:=Profile.offset_path(road.points,Profile.median_offset(road))
+ var markings:Array=[] if rail else Geometry.lane_marks(road)
+ if not rail:markings.append_array(Geometry.shoulder_marks(road))
+ var median:=PackedVector2Array() if rail else Profile.offset_path(road.points,Profile.median_offset(road))
+ var tracks:Dictionary=rail_commands(road,distances,points.size()) if rail else {}
  for i in range(1,points.size()):
   var footprint:=PackedVector2Array([left[i-1],left[i],right[i],right[i-1]])
   var depth:float=-INF
@@ -119,11 +166,13 @@ func build_road(road:Dictionary):
   front.front_face=true
   decks.append(rear);decks.append(front)
   for shape in Geometry.outside_regions([footprint],regions):polygon(rear,projected(shape,road),Color("c8cbc3"))
-  for shape in Geometry.outside_regions([PackedVector2Array([asphalt_left[i-1],asphalt_left[i],asphalt_right[i],asphalt_right[i-1]])],regions):polygon(rear,projected(shape,road),Color("4c5659"))
+  if rail:rear.commands.append_array(tracks.get(i,[]))
+  else:
+   for shape in Geometry.outside_regions([PackedVector2Array([asphalt_left[i-1],asphalt_left[i],asphalt_right[i],asphalt_right[i-1]])],regions):polygon(rear,projected(shape,road),Color("4c5659"))
   for line in markings:
    for clipped in Geometry2D.intersect_polyline_with_polygon(line,footprint):
     for visible in Geometry.visible_lines(clipped,bounds,mark_regions):rear.commands.append({"line":projected(visible,road),"color":Color("e8e7dc"),"width":.65})
-  for clipped in Geometry2D.intersect_polyline_with_polygon(median,footprint):
+  for clipped in ([] if rail else Geometry2D.intersect_polyline_with_polygon(median,footprint)):
    for visible in Geometry.visible_lines(clipped,bounds,mark_regions):rear.commands.append({"line":projected(visible,road),"color":Color("e8be57"),"width":.8})
   var ha:=Height.height_at(road,points[i-1]);var hb:=Height.height_at(road,points[i]);var retaining:=minf(ha,hb)<5-.0001
   for pair in [[left,inner_left,1.0],[right,inner_right,-1.0]]:

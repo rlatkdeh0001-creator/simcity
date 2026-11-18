@@ -162,34 +162,48 @@ signal transit_changed
 func get_transit_route(id:int)->Dictionary:
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	return {} if index<0 else transit_routes[index].duplicate(true)
-func add_transit_route(points:PackedVector2Array,kind:String="rail",commit:bool=true)->Dictionary:
-	if commit and _defer_simulation_edit(add_transit_route.bind(points.duplicate(),kind,true)):return _queued_simulation_edit()
-	var result:=TransitRoutes.plan(self,points,kind)
+## E3a: optional per-point rail heights (metres, >= 0). Raised parts over zoned buildings
+## follow E1 warning B: commit needs confirmed=true and, when given, the same demolition IDs.
+func add_transit_route(points:PackedVector2Array,kind:String="rail",commit:bool=true,heights_m:PackedFloat64Array=PackedFloat64Array(),confirmed:bool=false,approved_demolition:Variant=null)->Dictionary:
+	if commit and _defer_simulation_edit(add_transit_route.bind(points.duplicate(),kind,true,heights_m.duplicate(),confirmed,approved_demolition.duplicate() if approved_demolition is Array else null)):return _queued_simulation_edit()
+	var result:=TransitRoutes.plan(self,points,kind,-1,heights_m)
 	if not result.ok:return result
 	result.route.id=next_transit_route_id
+	var demolition:Array=result.get("demolish_ids",[])
+	if commit and not demolition.is_empty() and not confirmed:result.ok=false;result.reason="이미 지어진 건물이 파괴됩니다";return result
+	if commit and confirmed and approved_demolition!=null and demolition!=approved_demolition:result.ok=false;result.reason="철거 대상을 다시 확인하세요";return result
 	if commit:
+		for id:int in demolition:demolish("building",id)
 		transit_routes.append(result.route.duplicate(true));next_transit_route_id+=1
 		_transit_routes_changed()
+		if TransitRoutes.raised(result.route):_update_zoning_for_road({})
 	return result
 func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Dictionary:
 	if commit and _defer_simulation_edit(update_transit_route.bind(id,points.duplicate(),true)):return _queued_simulation_edit()
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
 	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
-	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id)
+	var heights:PackedFloat64Array=transit_routes[index].get("heights_m",PackedFloat64Array())
+	if heights.size()!=points.size():heights=PackedFloat64Array() # Reshaped raised track is redrawn at ground level.
+	var was_raised:=TransitRoutes.raised(transit_routes[index])
+	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id,heights)
 	if not result.ok:return result
+	if not result.get("demolish_ids",[]).is_empty():return TransitRoutes.failure("demolition","이미 지어진 건물이 파괴됩니다")
 	result.route.id=id
 	if commit:
 		transit_routes[index]=result.route.duplicate(true)
 		_transit_routes_changed()
+		if was_raised or TransitRoutes.raised(result.route):_update_zoning_for_road({})
 	return result
 func remove_transit_route(id:int)->Dictionary:
 	if _defer_simulation_edit(remove_transit_route.bind(id)):return _queued_simulation_edit()
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
 	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
+	var was_raised:=TransitRoutes.raised(transit_routes[index])
 	transit_routes.remove_at(index)
 	_transit_routes_changed()
+	if was_raised:_update_zoning_for_road({})
 	return {"ok":true,"id":id}
 func _transit_routes_changed():
 	# Reconcile only route-owned terminals; keep manually registered channels intact.
@@ -424,7 +438,12 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 		if point.x< -0.0005 or point.y< -0.0005 or point.x>width+0.0005 or point.y>height+0.0005:return "지도 경계 밖입니다"
 	if check_buildings:
 		for route:Dictionary in transit_routes:
-			if TransitRoutes.station_contact_only(route,polygon_value,station_ports):continue
+			if TransitRoutes.station_contact_only(route,polygon_value,station_ports):
+				if TransitRoutes.elevated_port(route,Array(station_ports)):return "고가 구간에는 역을 둘 수 없습니다"
+				continue
+			if allow_under_deck and TransitRoutes.raised(route):
+				if TransitRoutes.ground_parts(route).any(func(part):return _polygon_road_distance(polygon_value,part)<-0.0005):return "철도 또는 지하철 경로와 충돌합니다"
+				continue # The raised structure is checked below with the park rule.
 			if _polygon_road_distance(polygon_value,route)<-0.0005:return "철도 또는 지하철 경로와 충돌합니다"
 		if public_facilities!=null:
 			for record: Dictionary in public_facilities.lots:
@@ -437,6 +456,12 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 		for facility in water.facilities:
 			if facility.get("public_lot_id",-2)==ignore_id:continue
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
+	# E3a: no zoning cell or building under a rail structure; parks only below a +5m deck.
+	for route:Dictionary in transit_routes:
+		if not TransitRoutes.raised(route):continue
+		if allow_under_deck:
+			if not preload("res://core/road_height.gd").usable_under_deck(TransitRoutes.structure(route),polygon_value):return "고가 철도와 충돌합니다"
+		elif _road_ribbon_overlap(polygon_value,TransitRoutes.raised_ribbons(route)):return "고가 철도와 충돌합니다"
 	for junction in junctions+road_joins:
 		if allow_under_deck and float(junction.get("height_m",0))>=5:continue
 		if preload("res://core/road_height.gd").covered_at(float(junction.get("height_m",0))):continue
@@ -643,7 +668,11 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	var new_roads: Array=plan.new_roads
 	for candidate: Dictionary in new_roads:
 		for route:Dictionary in transit_routes:
-			if route.kind=="rail" and not TransitRoutes.crossing_allowed(route,candidate):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
+			if route.kind!="rail":continue
+			if TransitRoutes.raised(route):
+				var rail_error:String=TransitRoutes.road_rail_error(route,candidate)
+				if rail_error!="":return {"ok":false,"reason":rail_error}
+			elif not TransitRoutes.crossing_allowed(route,candidate):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
 		if enforce_units:
 			var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(candidate.points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(RoadJunctions.length_of(candidate.points),RoadUnits.build_step(candidate.points,roads))
 			if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
@@ -700,8 +729,8 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 	var sunken:bool=preload("res://core/road_height.gd").sunken(road)
 	for route:Dictionary in transit_routes:
 		if route.kind!="rail":continue
-		if sunken:
-			# E2: same clearance/level-crossing function as TransitRoutes.plan, so build order cannot matter.
+		if sunken or TransitRoutes.raised(route):
+			# E2/E3a: same clearance/level-crossing function as TransitRoutes.plan, so build order cannot matter.
 			error=TransitRoutes.road_rail_error(route,road)
 			if error!="":return {"ok":false,"reason":error}
 			continue
@@ -709,6 +738,11 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 		error=preload("res://core/road_height.gd").overlap_error(road,structure)
 		if error!="":return {"ok":false,"reason":error}
 		if not preload("res://core/road_height.gd").raised(road) and not TransitRoutes.crossing_allowed(route,road):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
+	for route:Dictionary in transit_routes:
+		for pier:Dictionary in route.get("piers",[]):
+			for position:Vector2 in pier.positions:
+				if preload("res://core/road_height.gd").height_at(road,position)>=float(pier.height_m)-.0001:continue
+				if RoadUnits.projection(points,position).distance<float(road.width)/2+.5:return {"ok":false,"reason":"교각과 겹침"}
 	if not construction.ok:return construction
 	var additions:Array=construction.new_roads
 	for addition:Dictionary in additions:

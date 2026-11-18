@@ -40,6 +40,32 @@ static func catenary_draw_pieces(source:Dictionary)->Array:
   piece.a=source.a.lerp(source.b,float(i)/count);piece.b=source.a.lerp(source.b,float(i+1)/count)
   piece.footprint=PackedVector2Array([piece.a,piece.b]);pieces.append(piece)
  return pieces
+## E3a: rail decks are rebuilt with roads or transit geometry, then catenary depths follow them.
+var structure_signature:Variant=null
+func sync_transit_structures():
+ if elevated==null or actors==null:return
+ var key:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height,view.transit_view.generation])
+ if key!=structure_signature:
+  structure_signature=key;elevated.rebuild();catenary_generation=-1
+ sync_catenary()
+## Deck catenary draws after its own deck surface and trains, before the near barrier face.
+func deck_catenary_depth(commands:Array,fronts:Array,depth:float)->float:
+ var best:=-INF
+ for piece in fronts:
+  for command:Dictionary in commands:
+   for p:Vector2 in command.footprint:
+    if Geometry2D.is_point_in_polygon(p,piece.footprint):best=maxf(best,piece.position.y-.005)
+ return best if is_finite(best) else depth
+func rail_deck_at(pose:Dictionary)->Dictionary:
+ var point:Vector2=pose.position/4;var heading:Vector2=Vector2(pose.heading).normalized()
+ for route:Dictionary in view.city.transit_routes:
+  if route.kind!="rail" or not route.has("heights_m"):continue
+  for i in range(1,route.points.size()):
+   var a:Vector2=route.points[i-1];var b:Vector2=route.points[i]
+   if Geometry2D.get_closest_point_to_segment(point,a,b).distance_to(point)>.75:continue
+   if absf((b-a).normalized().cross(heading))>.35:continue
+   return preload("res://core/transit_routes.gd").structure(route)
+ return {}
 func sync_catenary():
  if catenary_generation==view.transit_view.generation:return
  catenary_generation=view.transit_view.generation
@@ -56,6 +82,12 @@ func sync_catenary():
   command.projected_a=view.transit_view.project_point(command.a,command.a_height)
   command.projected_b=view.transit_view.project_point(command.b,command.b_height)
   groups[key].append(command)
+ var rail_fronts:Dictionary={}
+ if elevated!=null:
+  for piece in elevated.decks:
+   if piece.front_face and piece.road.has("rail_route_id"):
+    if not rail_fronts.has(piece.road.rail_route_id):rail_fronts[piece.road.rail_route_id]=[]
+    rail_fronts[piece.road.rail_route_id].append(piece)
  for key in groups:
   var node:=Catenary.new();node.renderer=self;node.commands=groups[key]
   var depth:float=-INF
@@ -63,6 +95,7 @@ func sync_catenary():
   for command:Dictionary in node.commands:
    for p:Vector2 in command.footprint:depth=maxf(depth,iso(p).y)
    bounds=bounds.expand(command.projected_a).expand(command.projected_b)
+  if node.commands[0].get("deck",false):depth=deck_catenary_depth(node.commands,rail_fronts.get(int(node.commands[0].route_id),[]),depth)
   node.overhead=key[2]=="overhead";node.base_depth=depth
   node.footprint=node.commands[0].footprint
   node.position.y=depth+(.02 if node.overhead else 0.0)
@@ -124,8 +157,14 @@ func sync_catenary_depth():
     for cell:Vector2i in catenary_cells(box):
      for node in catenary_buckets.get(cell,[]):candidates[node]=true
    var overlaps:Array=[];var depth:float=iso(p).y
+   # E3a: a lifted deck train keeps its deck depth and only reorders deck catenary.
+   var lifted:bool=pose.get("sprite")!=null and float(pose.sprite.get_meta("rail_height_m",0.0))>0
+   if lifted:depth=pose.sprite.position.y
    for node in candidates:
-    if catenary_overlap(node.footprint,body):overlaps.append(node);depth=maxf(depth,node.base_depth)
+    if lifted!=bool(node.commands[0].get("deck",false)):continue
+    if catenary_overlap(node.footprint,body):
+     overlaps.append(node)
+     if not lifted:depth=maxf(depth,node.base_depth)
    catenary_vehicle_depths[pose.id]=depth
    for node in overlaps:node.position.y=maxf(node.position.y,depth+.02)
   # A nearby support follows its suspended bracket, but a far support keeps its base.
@@ -184,6 +223,17 @@ func sync_transit_cars():
   sprite.scale=rect.size/Vector2(sprite.texture.get_size())
   sprite.offset=(rect.position-Vector2(0,height+sprite.position.y-ground_point.y))/sprite.scale
   sprite.visible=true
+  sprite.set_meta("rail_height_m",0.0)
+  if pose.kind!="metro":
+   # E3a: only the picture rises onto the ramp/deck (E1 lift_vehicle); operation is unchanged.
+   var deck:Dictionary=rail_deck_at(pose)
+   var point:Vector2=pose.position/4
+   var lift:float=preload("res://core/road_height.gd").height_at(deck,point) if not deck.is_empty() else 0.0
+   if lift>0:
+    var along:Vector2=pose.heading*float(pose.get("length_m",10))/8;var across:Vector2=pose.heading.orthogonal()*float(pose.get("width_m",3))/8
+    elevated.lift_vehicle(sprite,deck,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
+    if pose.get("cargo",false):sprite.position.y+=.001
+    sprite.set_meta("rail_height_m",lift)
  for id:Variant in transit_cars.keys():
   if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
  sync_catenary_depth()
@@ -243,7 +293,7 @@ func synchronize():
  var rs:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height])
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
-  elevated.rebuild()
+  sync_transit_structures()
   underground.rebuild()
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])

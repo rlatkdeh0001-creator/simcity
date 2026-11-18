@@ -1,0 +1,99 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_elevated_rail.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS a ground rail keeps the previous record shape (no heights_m)
+PASS a rail without heights is read as ground (0m)
+PASS an old saved rail record without heights still loads
+PASS a saved rail with per-point heights loads
+PASS a height list of the wrong length is refused on load
+PASS negative rail heights (E3b) are refused on load
+PASS metro heights cannot be changed: 지하철 높이는 바꿀 수 없습니다
+PASS metro keeps its single -12.7m level
+PASS underground rail ramps stay out of E3a: 지하 철도는 아직 지을 수 없습니다
+PASS rail ramp minimum: 10m -> 288m, 5m -> 144m (3.5%, 8m units)
+PASS 0 -> +10m over exactly 288m passes: 
+PASS 287.6m ramp is refused: 경사로 길이가 부족합니다
+PASS 280m (3.57%) is too steep: 경사가 너무 급합니다
+PASS 0 -> +5m over 144m passes: 
+PASS the same ramp descending passes
+PASS flat rail stays on 5m layers: 높이는 5m 단위입니다
+PASS a two-piece ramp is measured as one run, not by its last piece: 경사로 길이가 부족합니다
+PASS the same two pieces over 288m pass: 
+PASS 10m rail structure: one centreline pier per station (W <= 12m)
+PASS unobstructed pier spacing is 32m: [32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0]
+PASS first pier stands at the +5m end of the earth-filled ramp
+PASS plan stores heights and piers on the route record
+PASS road under the deck fixture 2 lanes
+PASS piers step around a 2-lane road within 16..48m: [32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0]
+PASS road under the deck fixture 8 lanes
+PASS piers step around a 8-lane road within 16..48m: [32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 32.0, 22.0, 36.0, 32.0, 32.0, 38.0]
+PASS clearance road fixture
+PASS road_first: road edge 0.0 cell from the ramp top -> pass ()
+PASS clearance road fixture
+PASS road_first: road edge -0.1 cell from the ramp top -> 수직 간격 부족 (수직 간격 부족)
+PASS clearance rail fixture
+PASS rail_first: road edge 0.0 cell from the ramp top -> pass ()
+PASS clearance rail fixture
+PASS rail_first: road edge -0.1 cell from the ramp top -> 수직 간격 부족 (수직 간격 부족)
+PASS deck for stacked roads
+PASS elevated road at +20m across the +10m deck: 
+PASS elevated road at +15m across the +10m deck: 수직 간격 부족
+PASS elevated road at +10m across the +10m deck: 수직 간격 부족
+PASS a ground road may lie along under the +10m deck between piers (no level-crossing rule): 
+PASS a ground road through a rail pier is red: 교각과 겹침
+PASS ground rail comparison fixture
+PASS the same road along a ground rail is still refused (level crossings only)
+PASS ground rail under fixture
+PASS rail over ground rail at x=100: 
+PASS ground rail under fixture
+PASS rail over ground rail at x=60: 수직 간격 부족
+PASS ground approach
+PASS a ramp continues from the end of a ground track: 
+PASS a track cannot join another track at a different height: 급격한 모서리 대신 부드러운 곡선을 그려 주세요
+PASS zoning road fixture
+PASS zoning cells exist beside the road before the viaduct
+PASS viaduct beside the road: 
+PASS zoning cells under the viaduct are deleted
+PASS cells outside the 10m structure stay
+PASS no building can be placed under the viaduct
+PASS a park may use the open space under the +10m deck
+PASS a park cannot sit on the earth-filled ramp below +5m
+PASS only the overlapped zoned building needs confirmation (yellow B): [91]
+PASS commit without confirmation changes nothing
+PASS a different confirmed list is refused: 철거 대상을 다시 확인하세요
+PASS confirmed commit demolishes exactly the overlapped building
+PASS a public facility under the viaduct is red: 공공시설과 겹침
+PASS a park under the +10m deck passes
+PASS a park on the earth-filled ramp is red
+PASS ground-only rail keeps the existing red building rule
+PASS station fixture
+PASS a station port on an elevated track is red: 고가 구간에는 역을 둘 수 없습니다
+PASS a ramp may start at ground level from the station port: 
+PASS station removal fixture
+PASS a +10m deck ending where the port was
+PASS placing a station onto an elevated track end is red: 고가 구간에는 역을 둘 수 없습니다
+PASS a straight ground double track still allows the X crossover
+PASS no X crossover on an elevated deck
+PASS no X crossover on a ramp
+PASS road under deck for geometry
+PASS geometry viaduct fixture
+PASS track strips above ground are emitted as deck shapes carrying their heights
+PASS deck carries ballast and textured running strips
+PASS the ground rail layer stops where the ramp leaves the ground
+PASS contact wire stays 3.8m above the rail top on ramp and deck
+PASS poles stand on the deck (base at deck level, top +5.3m)
+PASS wire continues over the road under the deck
+PASS no ground pole stands on the road; deck poles above it are allowed
+PASS ground rail crossing below
+PASS viaduct over it
+PASS the line graph has no switch where the viaduct passes over the ground track
+PASS ground diamond fixture
+PASS a same-level ground crossing keeps its graph node
+PASS rail height cost is a disabled, pending reversible placeholder
+PASS placeholder factor grows non-linearly with height: [1.0, 2.0, 5.0]
+PASS off-grid elevated rail commit
+PASS grid OFF keeps every confirmed point and height exactly
+E3a elevated rail: 92 passed, 0 failed
+
+STDERR

@@ -15,7 +15,16 @@
     "exponent": 2.0,
     "fallback": "Preserve existing road charging until a price is approved; the factor is not a price."
   },
+  "rail_height_cost": {
+    "enabled": false,
+    "approval_status": "pending_user_approval",
+    "status": "reversible_placeholder",
+    "relative_factor": "length-weighted 1 + (height_m / reference_height_m) ^ exponent; preview metadata only, never charged",
+    "reference_height_m": 10.0,
+    "exponent": 2.0,
+    "fallback": "Rail routes stay uncharged until a price is approved; the factor is not a price."
+  },
   "support_search_step_m": 1.0,
   "support_search_step_status": "reversible_implementation_default",
-  "scope": "E1 elevated roads and E2 underground roads; E3 elevated rail and E4 central lanes are disabled"
+  "scope": "E1 elevated roads, E2 underground roads and E3a elevated rail; E3b rail trenches/tunnels and E4 central lanes are disabled"
 }

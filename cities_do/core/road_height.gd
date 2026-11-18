@@ -115,8 +115,23 @@ static func usable_under_deck(road:Dictionary,polygon:PackedVector2Array)->bool:
    l1=boundary+normal;r1=boundary-normal
   if parcels.overlap(PackedVector2Array([l0,l1,r1,r0]),polygon):return false
  return true
+## E3a: rail ramps use the approved 3.5% limit (10m -> 288m, 5m -> 144m).
+static func grade_for(kind:String)->float:return 0.05 if kind=="highway" else (0.035 if kind=="rail" else 0.08)
 static func minimum_ramp_m(rise:float,kind:String)->float:
- return ceilf(absf(rise)/(0.05 if kind=="highway" else 0.08)/8.0)*8.0
+ return ceilf(absf(rise)/grade_for(kind)/8.0-EPS)*8.0
+## Reversible placeholder relation only (config rail_height_cost is disabled and unpriced).
+static func height_cost_factor(road:Dictionary)->float:
+ var settings:Dictionary=config.get("rail_height_cost",{})
+ var reference:float=maxf(EPS,float(settings.get("reference_height_m",10.0)))
+ var exponent:float=float(settings.get("exponent",2.0))
+ var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
+ if heights.size()!=road.points.size():return 1.0
+ var total:=0.0;var weighted:=0.0
+ for i in range(1,heights.size()):
+  var length:float=road.points[i-1].distance_to(road.points[i])
+  var lift:=maxf(0.0,(heights[i-1]+heights[i])/2)
+  weighted+=length*(1.0+pow(lift/reference,exponent));total+=length
+ return weighted/total if total>EPS else 1.0
 static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
  var plane:=height_at(a,a.points[0]);var flat:=true
  for road:Dictionary in [a,b]:
@@ -136,9 +151,13 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
     if absf(height_at(a,point)-height_at(b,point))<EPS:return true
  return false
 static func validate(road:Dictionary,bounds:Vector2)->String:
- var points:PackedVector2Array=road.points;var heights:PackedFloat64Array=road.heights_m
  if road.kind not in ["local","highway"] or road.lanes not in ([2,3,4,5,6,7,8] if road.kind=="local" else [2,4]) or road.major_side not in [-1,1]:return "도로 경로가 필요합니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
+ return profile_error(road.points,road.heights_m,road.kind,bounds)
+## Whole-run grade check shared by roads and rail: a run is every consecutive
+## piece rising (or falling) the same way, never only its last piece.
+static func profile_error(points:PackedVector2Array,heights:PackedFloat64Array,kind:String,bounds:Vector2=Vector2(INF,INF))->String:
+ var grade:=grade_for(kind)
  var run_length:=0.0;var run_rise:=0.0;var previous_sign:=0.0
  for i in range(points.size()):
   if not points[i].is_finite() or points[i].x<0 or points[i].y<0 or points[i].x>bounds.x or points[i].y>bounds.y:return "지도 경계 밖입니다"
@@ -148,17 +167,17 @@ static func validate(road:Dictionary,bounds:Vector2)->String:
   var rise:=absf(heights[i]-heights[i-1])
   var sign_value:=signf(heights[i]-heights[i-1])
   if sign_value!=previous_sign:
-   if run_length+EPS<minimum_ramp_m(run_rise,road.kind):return "경사로 길이가 부족합니다"
+   if run_length+EPS<minimum_ramp_m(run_rise,kind):return "경사로 길이가 부족합니다"
    run_length=0;run_rise=0
   if sign_value!=0:run_length+=length;run_rise+=rise
   previous_sign=sign_value
   if rise<=EPS and absf(heights[i]/5-roundf(heights[i]/5))>EPS:return "높이는 5m 단위입니다"
-  if rise/length>(.05 if road.kind=="highway" else .08)+EPS:return "경사가 너무 급합니다"
- if run_length+EPS<minimum_ramp_m(run_rise,road.kind):return "경사로 길이가 부족합니다"
+  if rise/length>grade+EPS:return "경사가 너무 급합니다"
+ if run_length+EPS<minimum_ramp_m(run_rise,kind):return "경사로 길이가 부족합니다"
  return ""
 static func segment(road:Dictionary,index:int)->Dictionary:
  return {"points":PackedVector2Array([road.points[index-1],road.points[index]]),"heights_m":PackedFloat64Array([height_at(road,road.points[index-1]),height_at(road,road.points[index])]),"width":road.width}
-static func overlap_error(a:Dictionary,b:Dictionary)->String:
+static func overlap_error(a:Dictionary,b:Dictionary,same_level_ok:bool=true)->String:
  # Linear height fields reach their extrema at vertices of each full-width overlap.
  # Segment rectangles preserve the complete ribbon width, not centreline-only clearance.
  for i in range(1,a.points.size()):
@@ -172,7 +191,7 @@ static func overlap_error(a:Dictionary,b:Dictionary)->String:
       for point:Vector2 in overlap:
        var delta:=height_at(first,point)-height_at(second,point)
        low=minf(low,delta);high=maxf(high,delta)
-      if absf(low)<=EPS and absf(high)<=EPS:continue # Same-level topology handles ordinary junctions.
+      if same_level_ok and absf(low)<=EPS and absf(high)<=EPS:continue # Same-level topology handles ordinary junctions.
       if low<10-EPS and high>-10+EPS:return "수직 간격 부족"
  return ""
 static func length_cells(points:PackedVector2Array)->float:
@@ -199,7 +218,7 @@ static func support_clear(city,road:Dictionary,distance:float)->bool:
    for i in range(1,other.points.size()):
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,other.points[i-1],other.points[i]))<float(other.width)/2+.5:return false
   for route:Dictionary in city.transit_routes:
-   if route.kind!="rail":continue
+   if route.kind!="rail" or int(route.id)==int(road.get("rail_route_id",-2)):continue
    for i in range(1,route.points.size()):
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,route.points[i-1],route.points[i]))<1.75:return false
  return true

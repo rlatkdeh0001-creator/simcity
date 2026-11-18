@@ -1,6 +1,7 @@
 extends RefCounted
 ## Canonical terminal switch geometry: world metres, from station port outward.
 const Routes = preload("res://core/transit_routes.gd")
+const Height = preload("res://core/road_height.gd")
 const LENGTH := 32.0
 const EPS := 0.002 # Same 2 mm world tolerance as the operating-line graph.
 const ERROR_TEXT := "종점 역 앞에 곧은 복선 8칸이 필요합니다"
@@ -74,6 +75,9 @@ static func available(city, x: Dictionary) -> bool:
    var lo := minf(a.dot(axis), b.dot(axis))
    var hi := maxf(a.dot(axis), b.dot(axis))
    if absf(a.cross(axis))*4.0 <= EPS and absf(b.cross(axis))*4.0 <= EPS and not route.has("station_id"):
+    # E3a: an X crossover only sits on ground track, never on a ramp or deck.
+    if hi > 0.0 and lo < LENGTH / 4.0 and maxf(Height.height_at(route, route.points[i-1]), Height.height_at(route, route.points[i])) > Height.EPS:
+     return false
     if hi > 0.0 and lo < LENGTH / 4.0:
      intervals.append(Vector2(maxf(0.0, lo), minf(LENGTH/4.0, hi)))
    elif _obstructs(a, b, axis, padding):

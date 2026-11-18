@@ -5,8 +5,11 @@ var value_label:Label
 var minus:Button
 var plus:Button
 var mode_buttons:Dictionary={}
+## E3a: the same control drives the rail tool (transit_view); its underground button waits for E3b.
+var rail:=false
+func target():return owner_view.transit_view if rail else owner_view.road_drawer
 func setup(view):
- owner_view=view;name="RoadHeightControls";custom_minimum_size=Vector2(276,84)
+ owner_view=view;name="RailHeightControls" if rail else "RoadHeightControls";custom_minimum_size=Vector2(276,84)
  add_theme_constant_override("separation",4)
  var row:=HBoxContainer.new();add_child(row)
  for spec in [["Underground","지하",-10],["Ground","지상",0],["Elevated","고가",10]]:
@@ -19,13 +22,14 @@ func setup(view):
  plus=Button.new();plus.name="HeightPlus";plus.text="+";plus.custom_minimum_size=Vector2(52,36);adjust.add_child(plus)
  minus.pressed.connect(change.bind(-5));plus.pressed.connect(change.bind(5));synchronize()
 func select(value:int):
- owner_view.road_drawer.set_height(value);synchronize()
+ target().set_height(value);synchronize()
 func change(delta:int):
- var height:float=owner_view.road_drawer.target_height_m+delta
+ var height:float=target().target_height_m+delta
  # -/+ stay inside the selected layer: elevated >= +5m, underground <= -5m.
- owner_view.road_drawer.set_height(minf(-5,height) if owner_view.road_drawer.target_height_m<0 else maxf(5,height));synchronize()
+ target().set_height(minf(-5,height) if target().target_height_m<0 else maxf(5,height));synchronize()
 func synchronize():
- var height:float=owner_view.road_drawer.target_height_m
+ var height:float=target().target_height_m
+ if rail:mode_buttons[-10].disabled=true;mode_buttons[-10].tooltip_text="지하 철도는 다음 단계(E3b)"
  value_label.text="0 m" if height==0 else ("+%d m"%height if height>0 else "−%d m"%absf(height))
  minus.disabled=height==0;plus.disabled=height==0
  for key in mode_buttons:
