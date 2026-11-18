@@ -1,0 +1,97 @@
+Actual shared strips/pier fixture; no new model, catalog entry, or rail gameplay code.
+Bridge40x10m deck+10m; portal32x10m structural width, level rail-7m, clearance5.5m. No ramp; confirmed railway grade3.5% unaltered.
+C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe --path C:\Users\wlgml\AppData\Local\hermes\profiles\cities-asset\cache\scratch\elevated-tunnel\rail-structures-godot --audio-driver Dummy --rendering-method gl_compatibility --resolution 800x500 --borderless --quit-after 300 --script res://capture.gd -- D:\project\simcity-elevated\docs\elevated-tunnel-validation\rail-05-1600.png
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started 프로젝트 초기화 (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | 파일 구조 스캔 중...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | 전역 클래스 이름을 불러오는 중...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | GDExtensions 검증 중...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | 오토로드 스크립트를 만드는 중...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | 플러그인을 초기화 중...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | 파일 스캔 시작 중...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started 전역 클래스를 등록하는 중... (3 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started 액션 스캔 중... (9 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | strip.png[39m[0m
+[  10% ] [90m[1m_update_scan_actions[22m | wall.png[39m[0m
+[  20% ] [90m[1m_update_scan_actions[22m | portal.png[39m[0m
+[  30% ] [90m[1m_update_scan_actions[22m | viaduct-pier-01.glb[39m[0m
+[  40% ] [90m[1m_update_scan_actions[22m | barrier_inner.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | deck_side.png[39m[0m
+[  60% ] [90m[1m_update_scan_actions[22m | train-loco-01-v3.glb[39m[0m
+[  70% ] [90m[1m_update_scan_actions[22m | train-loco-freight-01-v3.glb[39m[0m
+[  80% ] [90m[1m_update_scan_actions[22m | train-passenger-01-v3.glb[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 애셋 (다시) 가져오는 중 (9 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  10% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  20% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  30% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  40% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  50% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  60% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  70% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  80% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져오기 전 작업을 수행 중...[39m[0m
+[   0% ] [90m[1mreimport[22m | strip.png[39m[0m
+[  10% ] [90m[1mreimport[22m | wall.png[39m[0m
+[  20% ] [90m[1mreimport[22m | portal.png[39m[0m
+[  30% ] [90m[1mreimport[22m | barrier_inner.png[39m[0m
+[  40% ] [90m[1mreimport[22m | deck_side.png[39m[0m
+[  50% ] [90m[1mreimport[22m | viaduct-pier-01.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  60% ] [90m[1mreimport[22m | train-loco-01-v3.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  70% ] [90m[1mreimport[22m | train-loco-freight-01-v3.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  80% ] [90m[1mreimport[22m | train-passenger-01-v3.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  90% ] [90m[1mreimport[22m | 애셋 가져오기 마무리 중...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 애셋 (다시) 가져오는 중 (9 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져오기 후 작업을 수행 중...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started 편집기를 불러오는 중 (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | 편집기 레이아웃을 불러오는 중...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | 독을 불러오는 중...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+RAIL_BRIDGE width10 deck10 underside8 ballast+/-3.8 poles+/-4 barrier_inner+/-4.6 contact=13.8000001907349 train_coupler_contact PASS
+RAIL_PORTAL width10 inner9 rail-7 mouth-1.5 clearance5.5 freight partially entering; level fixture/no ramp
+RAIL_STRUCTURES_PASS checks=8
+
+Existing v3 passenger lead/coach and approved freight v3 preserved.

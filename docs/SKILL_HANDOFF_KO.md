@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 철교·철도 입구 확인 묶음④ (2026-11-18, cities-asset)
+
+신규 tools/capture_rail_structures.gd·run_rail_structures.py: 등록 애셋 없이 기존 교각/옆면/옹벽/입구·rail-track-01 띠와 선두차v3/객차v3/화물v3만 독립 fixture에서 사용. 철교40×10m 상판+10/밑8m, 도상±3.8/전주±4/방호벽안±4.6m, 전차선3.8/조가선4.8→중간4.3/전주5.3m·간격32m. 실제 팬터그래프 접촉면13.80000019m와 전선13.8m 일치. 철도입구 폭10/안9m, 레일−7/윗변−1.5m·통과5.5m, 화물 진입 상태. 레벨 fixture(경사로 없음; 철도3.5% 규칙 변경 없음).
+같은 로컬 MIT godot-windows-validation/windows-capture 적용; Godot4.6.3 독립GL8검사, 단일 fixed1600×1000 docs/elevated-tunnel-validation/rail-05-1600.png 및 원본 픽셀 접촉부 육안 확인. RAIL_STRUCTURES_RESULTS.txt. 신규 모델/강철트러스/카탈로그/게임코드/설치/가격/사운드 없음. 승인된①~④ 전 묶음 완료, 사용자 최종 검수 대기; push/main 없음.
+
 ## 원형 교각·고가 견본 승인 묶음③ (2026-11-18, cities-asset)
 
 갱신 요청서216행 재확인/원문 복사(이전 복사본 수정 없음을 Git diff로 확인). viaduct-pier-01 원형48분할/나팔머리852tri·4×4×8m, viaduct-sample-01 4404tri·40×12×11.1m. 신규 build_viaduct_samples.py·원본blend/preview·GLB, 고가견본만 catalog structure_sample 추가. 교각3부품은 실제 Godot 시설 조명/고도30°/36.9504px/m 투명 렌더, 원점·수직32px/m·타원반경 underlap은 manifest. 실제 GL①7검사/③5검사와 단일1600×1000씩 pier-01-1600.png·viaduct-03-1600.png 육안 확인(이음/5·10·20m/쌍기둥/차량·사람/64m곡선). 동일 sprite 재렌더 없이 쌍기둥 카메라 프레이밍만 수정.
