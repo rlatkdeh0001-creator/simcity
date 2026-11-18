@@ -1,0 +1,534 @@
+{
+  "scope": "E3b rail trenches and tunnels: negative rail heights, 3.5% descents, 10m trench clip groups with walls/barriers/catenary/trains, 5.5m rail tunnel portals at -7.0m, covered tunnel underground view, underground rules and metro exception, rail underground button",
+  "branch": "perf/render-sim-cadence",
+  "head": "c665e5d004b453aaa93290ba9d8ff581b1877b4b",
+  "verdict": "E3b gates: 2 new suites and 16 regression suites headless; native UI run with two inspected captures.",
+  "owned_source_count": 16,
+  "owned_sources": [
+    {
+      "path": "cities_do/core/cached_world_renderer.gd",
+      "sha256": "0147d68c07b2bf947f0d80cb2ec0636a367ba202e768c3a9faa9beff50b00f55",
+      "bytes": 28098
+    },
+    {
+      "path": "cities_do/core/city_model.gd",
+      "sha256": "c444acf6f5f7c722447b71cb375880e43a3774cf5a52eebbf074bdfd33339a9e",
+      "bytes": 72860
+    },
+    {
+      "path": "cities_do/core/elevated_road_config.json",
+      "sha256": "b166224099b7d51a090e37bf5eee399271e74a95e5c341346d00d07060f635b6",
+      "bytes": 1755
+    },
+    {
+      "path": "cities_do/core/rail_catenary.gd",
+      "sha256": "234d61f140618d348d67c146ac4779f22e95d26a75889c46440f2c9beb0bfc3b",
+      "bytes": 22324
+    },
+    {
+      "path": "cities_do/core/road_height.gd",
+      "sha256": "92014d404f326124de2df6b23f02cc843a27bcd1f265b1463e7713b305c2ce29",
+      "bytes": 16676
+    },
+    {
+      "path": "cities_do/core/road_height_controls.gd",
+      "sha256": "42c459e120b15c896de32dad0d6c2cc202f53ffe8e368b993a98727c83a2177c",
+      "bytes": 2786
+    },
+    {
+      "path": "cities_do/core/terminal_crossover.gd",
+      "sha256": "766591b7d754ee74559ecfb2cf8e4b8139a3f267b3ee5fe6cf71b155074d1bf7",
+      "bytes": 5660
+    },
+    {
+      "path": "cities_do/core/transit_routes.gd",
+      "sha256": "aa9ef27882ba5087d7b14ac33c30a2e5d2ec5ed8e9bb636e9a679b7954243cd8",
+      "bytes": 28347
+    },
+    {
+      "path": "cities_do/core/transit_view.gd",
+      "sha256": "8590558427ace15cbeddd75acb4dbc074a21ce5cedbe875c37881f09514dbca3",
+      "bytes": 27265
+    },
+    {
+      "path": "cities_do/core/underground_road_renderer.gd",
+      "sha256": "e593c2115e2e9f8e6c20d07e14bc13fd3198c73bf43c7959da78617e2385b649",
+      "bytes": 17148
+    },
+    {
+      "path": "cities_do/tests/test_elevated_rail.gd",
+      "sha256": "bb9365b1e4f9dbb831e7aec0345398e0455c7ada04b3e60ff89e5d6f3d8e3f22",
+      "bytes": 20445
+    },
+    {
+      "path": "cities_do/tests/test_elevated_rail_ui.gd",
+      "sha256": "1d8b354c10bd33581496f4c3e89e86bce3cd5aead32e3f1f37c78da0c055cb32",
+      "bytes": 11126
+    },
+    {
+      "path": "cities_do/tests/test_underground_rail.gd",
+      "sha256": "cbfffc95f5a1bc79caf9fd6541ca5ac2718fdda7792cfed4b31684427d0c8cc9",
+      "bytes": 21268
+    },
+    {
+      "path": "cities_do/tests/test_underground_rail_ui.gd",
+      "sha256": "fe0d6a7e25b89fbc7b5030215260f8d70be062b7929173c7edb0410a52d3fae2",
+      "bytes": 14298
+    },
+    {
+      "path": "tools/manifest_e3b_underground_rail.py",
+      "sha256": "956a82f568a6a7a92b32ec9adce7299059e3b4c043945d4936649e9d16496422",
+      "bytes": 7051
+    },
+    {
+      "path": "tools/verify_e3b_underground_rail.py",
+      "sha256": "c38c17145d012bc20b77777ddde6def833bd09314f92b5871e3a59d14435f734",
+      "bytes": 4068
+    }
+  ],
+  "original_asset_count": 5,
+  "original_assets": [
+    {
+      "path": "assets/structures/retaining-wall-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/member.blend",
+      "sha256": "0db12d0775bb684e04ed556712fb98de4b68fa2e87c674e572478f7e3c997f5f",
+      "bytes": 96205,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/preview.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/spec.json",
+      "sha256": "252cec1a6b8b46c5111b0261f31bdbefd3e354ee7cf5fa3a2c30c8bac238d781",
+      "bytes": 1223,
+      "unchanged_vs_head": true
+    },
+    {
+      "path": "cities_do/assets/structures/retaining-wall-01/wall.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "unchanged_vs_head": true
+    }
+  ],
+  "asset_verification": "No new assets; the E2 trench drawing (retaining-wall-01 originals read-only) is reused; unchanged against HEAD",
+  "current_headless_results": [
+    {
+      "name": "test_underground_rail",
+      "exit_code": 0,
+      "passed_lines": 100,
+      "errors": []
+    },
+    {
+      "name": "test_underground_rail_ui",
+      "exit_code": 0,
+      "passed_lines": 32,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_rail",
+      "exit_code": 0,
+      "passed_lines": 92,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_rail_ui",
+      "exit_code": 0,
+      "passed_lines": 25,
+      "errors": []
+    },
+    {
+      "name": "test_underground_road_ui",
+      "exit_code": 0,
+      "passed_lines": 64,
+      "errors": []
+    },
+    {
+      "name": "test_rail_catenary",
+      "exit_code": 0,
+      "passed_lines": 87,
+      "errors": []
+    },
+    {
+      "name": "test_rail_catenary_render",
+      "exit_code": 0,
+      "passed_lines": 48,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback_edit",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_terminal_turnback_catenary",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_view",
+      "exit_code": 0,
+      "passed_lines": 35,
+      "errors": []
+    },
+    {
+      "name": "test_transit_routes",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_geometry",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_render",
+      "exit_code": 0,
+      "passed_lines": 28,
+      "errors": []
+    },
+    {
+      "name": "test_transit_operations",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_transit_operation_safety",
+      "exit_code": 0,
+      "passed_lines": 0,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_roads",
+      "exit_code": 0,
+      "passed_lines": 128,
+      "errors": []
+    },
+    {
+      "name": "test_underground_roads",
+      "exit_code": 0,
+      "passed_lines": 90,
+      "errors": []
+    }
+  ],
+  "current_headless_passing_assertions": 729,
+  "native_no_capture_results": [],
+  "native_capture_results": [
+    {
+      "name": "test_underground_rail_ui-native",
+      "exit_code": 0,
+      "passed_lines": 35,
+      "errors": []
+    }
+  ],
+  "known_baseline_failures": {},
+  "suite_logs": [
+    {
+      "name": "test_elevated_rail",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_elevated_rail.log",
+        "sha256": "b50cd905ae982db1605c8f6ed03c3364a51db3187b0d92ee9b9c7fa63dbd857a",
+        "bytes": 5825
+      },
+      "passing_assertion_lines": 92,
+      "summary": [
+        "E3a elevated rail: 92 passed, 0 failed"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_elevated_rail_ui",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_elevated_rail_ui.log",
+        "sha256": "00bde8644d8ab94c34f25a070f2eeeb87feb434a203428266e203a2d55a10e21",
+        "bytes": 1952
+      },
+      "passing_assertion_lines": 25,
+      "summary": [
+        "E3A_UI checks=25 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_elevated_roads",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_elevated_roads.log",
+        "sha256": "c882e84c44001da14883408261ec77e2f19c0d37c13748d190206fd647e0612b",
+        "bytes": 7757
+      },
+      "passing_assertion_lines": 128,
+      "summary": [
+        "E1 elevated roads: 128 passed, 0 failed"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_rail_catenary",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_rail_catenary.log",
+        "sha256": "a4614ba9d953c790f7756d214f82a70eb495b2dba4dea0f44824502ef52b17a7",
+        "bytes": 5797
+      },
+      "passing_assertion_lines": 87,
+      "summary": [
+        "CATENARY_GEOMETRY checks=87 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_rail_catenary_render",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_rail_catenary_render.log",
+        "sha256": "61e0a89a9ff9cff7017147f2b91c7fdbe42a672f8c408b6ea8640380ebbe8222",
+        "bytes": 2928
+      },
+      "passing_assertion_lines": 48,
+      "summary": [
+        "CATENARY_RENDER checks=48 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_terminal_turnback.log",
+        "sha256": "b0e8e5a9f7d48c2be14ebe1122df45157d5404536519a6f2d4a1336108f3fbdf",
+        "bytes": 448
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK checks=65 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback_catenary",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_terminal_turnback_catenary.log",
+        "sha256": "4be95d8f35523d2bd90660c331d2a00357b853ec61d0d4ca9b339f9f71355574",
+        "bytes": 576
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK_CATENARY checks=23 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_terminal_turnback_edit",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_terminal_turnback_edit.log",
+        "sha256": "2c1dbc40ae88a130db034308b7e7cc64b7c6536327f10517345d1367bafe7a59",
+        "bytes": 458
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TERMINAL_TURNBACK_EDIT checks=19 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_geometry",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_geometry.log",
+        "sha256": "9081b9463fef0a25b302d922e62bbe88e037b15a5d3bf7a0db1e08443c494151",
+        "bytes": 447
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_GEOMETRY checks=227 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_operation_safety",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_operation_safety.log",
+        "sha256": "2a54afd848b9d5696ff82f8949b3aff002000bec2dfe141b24687693712cf6b4",
+        "bytes": 462
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_OPERATION_SAFETY checks=15 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_operations",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_operations.log",
+        "sha256": "ce45e3bffe21e5db8d96373ebe318cc4228cb0315e4a0d834b97bc52a231491a",
+        "bytes": 450
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_OPERATIONS checks=39 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_render",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_render.log",
+        "sha256": "5d3d683d114688c5f5e92cf81d78d198704b34e0eafec4b5eafa1a81acdaf96f",
+        "bytes": 2004
+      },
+      "passing_assertion_lines": 28,
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_routes",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_routes.log",
+        "sha256": "dd6230aa8416ca403f258997f22536cb2be0668bdfe428a06232d6fb594170b5",
+        "bytes": 442
+      },
+      "passing_assertion_lines": 0,
+      "summary": [
+        "TRANSIT_ROUTES checks=23 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_transit_view",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_transit_view.log",
+        "sha256": "ae305fbf4fb5929a76dfe63d538827f8a2673e782a9308f45e6374e3b77b4f82",
+        "bytes": 2299
+      },
+      "passing_assertion_lines": 35,
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_rail",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_underground_rail.log",
+        "sha256": "2b5f464bd924b05649249d374f3018f6cb77a35964d316ecb4835d15606c11fd",
+        "bytes": 6408
+      },
+      "passing_assertion_lines": 100,
+      "summary": [
+        "E3b underground rail: 100 passed, 0 failed"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_rail_ui-native",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_underground_rail_ui-native.log",
+        "sha256": "126e7b73cff7c98f47492ca6720ae356b819e02c66e328e8a280d7448e2bf79e",
+        "bytes": 3207
+      },
+      "passing_assertion_lines": 35,
+      "summary": [
+        "E3B_UI checks=35 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_rail_ui",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_underground_rail_ui.log",
+        "sha256": "6303d7d648a047b73c0a6863e4ee6a4608275b45e247694edceead366b45155c",
+        "bytes": 2435
+      },
+      "passing_assertion_lines": 32,
+      "summary": [
+        "E3B_UI checks=32 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_road_ui",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_underground_road_ui.log",
+        "sha256": "091ee0729367d53bf3a549c098c64f2b6dae618c93e2a97485b34ee12ca83380",
+        "bytes": 4196
+      },
+      "passing_assertion_lines": 64,
+      "summary": [
+        "E2_UI checks=64 failed=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "test_underground_roads",
+      "log": {
+        "path": "artifacts/e3b-underground-rail-20261119/test_underground_roads.log",
+        "sha256": "96ef97ed80acb736c08dcf7d6c0597c76056c9d5dc0b01597f279560d626683d",
+        "bytes": 5092
+      },
+      "passing_assertion_lines": 90,
+      "summary": [
+        "E2 underground roads: 90 passed, 0 failed"
+      ],
+      "diagnostics": []
+    }
+  ],
+  "captures": [
+    {
+      "path": "artifacts/e3b-underground-rail-20261119/e3b-trench-portal-1920.png",
+      "sha256": "841df4356eef31c5173bea9c960b7ed35d5591ea854913c77ab3ad736cd31d92",
+      "bytes": 249913,
+      "view": "trench",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "inspected": true
+    },
+    {
+      "path": "artifacts/e3b-underground-rail-20261119/e3b-underground-view-1920.png",
+      "sha256": "d726921159cce53d80e274f614437fb2ae9eaed39d7a26e4fad840ab6650ae59",
+      "bytes": 193909,
+      "view": "underground",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "inspected": true
+    }
+  ],
+  "baseline_proof": "test_underground_rail failed before implementation (negative rail heights refused, trench/tunnel API absent). RED output was not saved.",
+  "temporary_values": [
+    "elevated_road_config.json rail_depth_cost: disabled, pending user price; relative depth factor only"
+  ],
+  "review_notes": {
+    "path": "artifacts/e3b-underground-rail-20261119/REVIEW_NOTES.md",
+    "sha256": "289dfec5ecb3140242a275042e09304166a4dd06210736522a65051f890b7135",
+    "bytes": 7407
+  },
+  "security_scan": {
+    "shell_true": false,
+    "unsafe_deserialization": false,
+    "dynamic_eval": false
+  },
+  "excluded": [
+    "all .import/.uid metadata",
+    "protected design/concept/handoff/mistake documents and AGENTS.md",
+    "all other unrelated checkout changes"
+  ],
+  "benchmarks_run": false,
+  "timing_collection": false
+}

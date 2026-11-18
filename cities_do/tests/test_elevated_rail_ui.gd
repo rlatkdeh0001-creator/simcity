@@ -49,7 +49,7 @@ func test_height_controls():
  var control=game.find_child("RailHeightControls",true,false)
  check(control!=null and control.is_visible_in_tree(),"rail tool shows the approved C height controls")
  if control==null:return
- check(control.find_child("Underground",true,false).disabled,"rail underground button stays disabled until E3b")
+ check(not control.find_child("Underground",true,false).disabled,"rail underground button is enabled since E3b")
  await click(control.find_child("Elevated",true,false).get_global_rect().get_center());await settle()
  check(game.transit_view.target_height_m==10 and control.find_child("HeightValue",true,false).text=="+10 m","고가 selects +10 m for the rail tool")
  await key(KEY_PAGEUP)
@@ -60,7 +60,9 @@ func test_height_controls():
  await key(KEY_PAGEDOWN)
  check(game.transit_view.target_height_m==0 and control.find_child("Ground",true,false).button_pressed,"PgDn returns to ground")
  await key(KEY_PAGEDOWN)
- check(game.transit_view.target_height_m==0,"PgDn never takes the rail tool below ground in E3a")
+ check(game.transit_view.target_height_m==-5,"E3b: PgDn takes the rail tool below ground in 5m steps")
+ await key(KEY_PAGEUP)
+ check(game.transit_view.target_height_m==0,"PgUp returns the rail tool to ground")
  check(game.road_drawer.target_height_m==0,"the rail height never changes the road tool height")
 func test_confirmed_points():
  fresh_city(220,90)

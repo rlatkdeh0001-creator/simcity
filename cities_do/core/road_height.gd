@@ -6,6 +6,9 @@ const PORTAL_CLEARANCE_M := 4.5
 const COVER_SLAB_M := 1.0
 const PORTAL_BEAM_M := 0.5
 const PORTAL_M := -(PORTAL_CLEARANCE_M+COVER_SLAB_M+PORTAL_BEAM_M)
+## E3b rail portal: rail top = -(5.5m clearance + 1.0m cover slab + 0.5m portal beam) = -7.0m.
+const RAIL_PORTAL_CLEARANCE_M := 5.5
+const RAIL_PORTAL_M := -(RAIL_PORTAL_CLEARANCE_M+COVER_SLAB_M+PORTAL_BEAM_M)
 static var config:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/elevated_road_config.json"))
 static func height_at(road:Dictionary,point:Vector2)->float:
  var points:PackedVector2Array=road.points
@@ -29,7 +32,9 @@ static func sunken(road:Dictionary)->bool:
 static func off_ground(road:Dictionary)->bool:return raised(road) or sunken(road)
 static func level(road:Dictionary)->int:return 1 if raised(road) else (-1 if sunken(road) else 0)
 ## The portal line and everything deeper is covered; the open trench is above it.
-static func covered_at(height:float)->bool:return height<=PORTAL_M+EPS
+static func covered_at(height:float,portal:float=PORTAL_M)->bool:return height<=portal+EPS
+## Rail structures (E3b) open into a 5.5m portal; roads keep the 4.5m one.
+static func portal_for(road:Dictionary)->float:return RAIL_PORTAL_M if road.has("rail_route_id") or road.get("kind","")=="rail" else PORTAL_M
 ## Sub-paths whose interpolated height lies in [low, high], cut exactly where a
 ## ramp crosses a bound. Each piece keeps per-point heights.
 static func pieces_between(road:Dictionary,low:float,high:float)->Array:
@@ -60,10 +65,10 @@ static func pieces_between(road:Dictionary,low:float,high:float)->Array:
 static func _close_piece(result:Array,current:Dictionary):
  if current.points.size()>=2 and length_cells(current.points)>EPS:result.append({"points":current.points.duplicate(),"heights_m":current.heights_m.duplicate()})
  current.points=PackedVector2Array();current.heights_m=PackedFloat64Array()
-static func covered_pieces(road:Dictionary)->Array:return pieces_between(road,-INF,PORTAL_M) if sunken(road) else []
+static func covered_pieces(road:Dictionary,portal:float=NAN)->Array:return pieces_between(road,-INF,portal_for(road) if is_nan(portal) else portal) if sunken(road) else []
 static func open_pieces(road:Dictionary)->Array:
  if not sunken(road):return [{"points":road.points,"heights_m":road.get("heights_m",PackedFloat64Array())}]
- return pieces_between(road,PORTAL_M,INF)
+ return pieces_between(road,portal_for(road),INF)
 ## Ground-rule footprint: the whole ribbon, except covered underground parts.
 static func surface_ribbons(road:Dictionary)->Array[PackedVector2Array]:
  var geometry=preload("res://core/road_geometry.gd")
@@ -119,17 +124,20 @@ static func usable_under_deck(road:Dictionary,polygon:PackedVector2Array)->bool:
 static func grade_for(kind:String)->float:return 0.05 if kind=="highway" else (0.035 if kind=="rail" else 0.08)
 static func minimum_ramp_m(rise:float,kind:String)->float:
  return ceilf(absf(rise)/grade_for(kind)/8.0-EPS)*8.0
-## Reversible placeholder relation only (config rail_height_cost is disabled and unpriced).
+## Reversible placeholder relation only (config rail_height_cost / rail_depth_cost are disabled and unpriced).
 static func height_cost_factor(road:Dictionary)->float:
  var settings:Dictionary=config.get("rail_height_cost",{})
- var reference:float=maxf(EPS,float(settings.get("reference_height_m",10.0)))
+ # E3b: a tunnel uses its own disabled rail_depth_cost placeholder (never mixed with a viaduct).
+ var deep:=sunken(road)
+ if deep:settings=config.get("rail_depth_cost",settings)
+ var reference:float=maxf(EPS,float(settings.get("reference_depth_m" if deep else "reference_height_m",10.0)))
  var exponent:float=float(settings.get("exponent",2.0))
  var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
  if heights.size()!=road.points.size():return 1.0
  var total:=0.0;var weighted:=0.0
  for i in range(1,heights.size()):
   var length:float=road.points[i-1].distance_to(road.points[i])
-  var lift:=maxf(0.0,(heights[i-1]+heights[i])/2)
+  var lift:=maxf(0.0,(-1.0 if deep else 1.0)*(heights[i-1]+heights[i])/2)
   weighted+=length*(1.0+pow(lift/reference,exponent));total+=length
  return weighted/total if total>EPS else 1.0
 static func same_level_contact(a:Dictionary,b:Dictionary)->bool:

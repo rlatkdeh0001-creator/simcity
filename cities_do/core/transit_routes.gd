@@ -74,30 +74,46 @@ static func snapshot_error(rows:Variant,width:int,height:int)->String:
   if not row.get("track_offsets_m") is PackedFloat64Array or row.track_offsets_m!=expected.track_offsets_m:return "invalid transit track offsets"
   if row.has("heights_m"):
    # E3a: optional per-point rail heights; records without them stay ground (0m).
+   # E3b: below ground is allowed, but one track never mixes viaduct and tunnel.
    if row.kind!="rail" or not row.heights_m is PackedFloat64Array or row.heights_m.size()!=row.points.size():return "invalid transit heights"
    for value:float in row.heights_m:
-    if not is_finite(value) or value< -Height.EPS:return "invalid transit heights"
+    if not is_finite(value):return "invalid transit heights"
+   if Height.raised(row) and Height.sunken(row):return "invalid transit heights"
    if not Height.profile_error(row.points,row.heights_m,"rail").is_empty():return "invalid transit heights"
   if row.has("piers") and not row.piers is Array:return "invalid transit piers"
  return ""
 static func minimum_ramp_m(rise:float)->float:return Height.minimum_ramp_m(rise,"rail")
 static func raised(route:Dictionary)->bool:return route.get("kind","")=="rail" and Height.raised(route)
-## Clearance/support body: the 10m structure where raised, the ballast width on the ground.
+## E3b: rail trench/tunnel (rail top = height_m below ground).
+static func sunken(route:Dictionary)->bool:return route.get("kind","")=="rail" and Height.sunken(route)
+static func off_ground(route:Dictionary)->bool:return raised(route) or sunken(route)
+## Clearance/support body: the 10m structure where raised or sunken, the ballast width on the ground.
 static func structure(route:Dictionary)->Dictionary:
  var heights:PackedFloat64Array=route.get("heights_m",PackedFloat64Array())
  if heights.size()!=route.points.size():
   heights=PackedFloat64Array();heights.resize(route.points.size());heights.fill(0.0)
- return {"points":route.points,"heights_m":heights,"width":STRUCTURE_WIDTH if raised(route) else float(route.width),"parcel_id":"rail:%d"%int(route.get("id",-1)),"rail_route_id":int(route.get("id",-1))}
+ return {"points":route.points,"heights_m":heights,"width":STRUCTURE_WIDTH if off_ground(route) else float(route.width),"parcel_id":"rail:%d"%int(route.get("id",-1)),"rail_route_id":int(route.get("id",-1))}
 static func raised_ribbons(route:Dictionary)->Array[PackedVector2Array]:
  var result:Array[PackedVector2Array]=[]
  if not raised(route):return result
  for piece:Dictionary in Height.pieces_between(route,LEVEL_SPLIT_M,INF):
   result.append_array(Geometry2D.offset_polyline(piece.points,STRUCTURE_WIDTH/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
  return result
+## E3b: the open trench runs from just below ground to the -7.0m portal; deeper is covered.
+static func trench_pieces(route:Dictionary)->Array:
+ return Height.pieces_between(route,Height.RAIL_PORTAL_M,-LEVEL_SPLIT_M) if sunken(route) else []
+static func covered_pieces(route:Dictionary)->Array:
+ return Height.pieces_between(route,-INF,Height.RAIL_PORTAL_M) if sunken(route) else []
+## Ground-rule body of a trench (10m structure); covered parts pass below everything.
+static func trench_ribbons(route:Dictionary)->Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=[]
+ for piece:Dictionary in trench_pieces(route):
+  result.append_array(Geometry2D.offset_polyline(piece.points,STRUCTURE_WIDTH/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
+ return result
 static func ground_parts(route:Dictionary)->Array:
- if not raised(route):return [route]
+ if not off_ground(route):return [route]
  var result:Array=[]
- for piece:Dictionary in Height.pieces_between(route,-INF,LEVEL_SPLIT_M):
+ for piece:Dictionary in Height.pieces_between(route,-LEVEL_SPLIT_M,LEVEL_SPLIT_M):
   var part:Dictionary=route.duplicate();part.points=piece.points;part.erase("heights_m");result.append(part)
  return result
 ## Stations and their ports stay on ground track (an elevated station is out of E3a scope).
@@ -106,6 +122,13 @@ static func elevated_port(route:Dictionary,ports:Array)->bool:
  for port:Vector2 in ports:
   for i in range(1,route.points.size()):
    if Geometry2D.get_closest_point_to_segment(port,route.points[i-1],route.points[i]).distance_to(port)<EPS and Height.height_at(route,port)>Height.EPS:return true
+ return false
+## E3b: stations stay off trenches and tunnels too (an underground station is out of scope).
+static func sunken_port(route:Dictionary,ports:Array)->bool:
+ if not sunken(route):return false
+ for port:Vector2 in ports:
+  for i in range(1,route.points.size()):
+   if Geometry2D.get_closest_point_to_segment(port,route.points[i-1],route.points[i]).distance_to(port)<EPS and Height.height_at(route,port)< -Height.EPS:return true
  return false
 ## Two tracks may only meet where both are at the same height.
 static func level_joint_error(first:Dictionary,second:Dictionary)->String:
@@ -135,10 +158,12 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
   if heights_m.size()!=points.size():return failure("height","선로 높이 경로가 필요합니다")
   for value:float in heights_m:
    if not is_finite(value):return failure("height","지원하지 않는 선로 높이입니다")
-   if value< -Height.EPS:return failure("height","지하 철도는 아직 지을 수 없습니다")
-  if Height.raised({"heights_m":heights_m}):route.heights_m=heights_m.duplicate()
+  # E3b: like E2 roads, one track never mixes viaduct and tunnel.
+  if Height.raised({"heights_m":heights_m}) and Height.sunken({"heights_m":heights_m}):return failure("height","고가와 지하는 지상에서 나눠 그립니다")
+  if Height.off_ground({"heights_m":heights_m}):route.heights_m=heights_m.duplicate()
  var is_raised:=raised(route)
- if is_raised:
+ var is_sunken:=sunken(route)
+ if is_raised or is_sunken:
   error=Height.profile_error(route.points,route.heights_m,"rail")
   if not error.is_empty():return failure("grade",error)
   for lot:Dictionary in city.public_facilities.lots:
@@ -146,6 +171,7 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
    for port:Dictionary in lot.get("station_ports",[]):
     if port.get("kind","")=="rail":ports.append(Vector2(port.point))
    if elevated_port(route,ports):return failure("elevated_station","고가 구간에는 역을 둘 수 없습니다")
+   if sunken_port(route,ports):return failure("underground_station","지하 구간에는 역을 둘 수 없습니다")
  var occupied:Array=[]
  for building:Dictionary in city.buildings:occupied.append(city.footprint(building))
  for lot:Dictionary in city.public_facilities.lots:
@@ -182,9 +208,19 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
      if Height.height_at(route,position)>=float(pier.height_m)-Height.EPS:continue
      for i in range(1,points.size()):
       if Geometry2D.get_closest_point_to_segment(position,points[i-1],points[i]).distance_to(position)<STRUCTURE_WIDTH/2+.5:return failure("pier","교각과 겹침")
+ # E3b trench/portal: the same yellow (warning B) / red rule as an E2 trench road;
+ # covered parts pass below buildings, lots and parks without demolition.
+ if is_sunken:
+  var trench:=trench_ribbons(route)
+  for building:Dictionary in city.buildings:
+   if city._road_ribbon_overlap(city.footprint(building),trench):demolition.append(int(building.id))
+  for lot:Dictionary in city.public_facilities.lots:
+   if city._road_ribbon_overlap(lot.polygon,trench):return failure("public","공공시설과 겹침")
+  for facility:Dictionary in city.power.plants+city.water.facilities:
+   if city._road_ribbon_overlap(city.power_plant_footprint(facility),trench):return failure("public","공공시설과 겹침")
  if kind=="rail":
   for road:Dictionary in city.roads:
-   if is_raised or Height.off_ground(road):
+   if is_raised or is_sunken or Height.off_ground(road):
     var clearance:=road_rail_error(route,road)
     if not clearance.is_empty():return failure("vertical_clearance",clearance)
     continue
@@ -199,7 +235,7 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
   if collinear_overlap(points,existing.points):return failure("duplicate_route","이미 설치된 선로 구간과 겹칩니다")
   error=joint_error(points,existing.points,float(route.min_center_radius_m))
   if not error.is_empty():return failure("curve",error)
-  if kind=="rail" and (is_raised or raised(existing)):
+  if kind=="rail" and (is_raised or is_sunken or off_ground(existing)):
    error=Height.overlap_error(structure(route),structure(existing))
    if not error.is_empty():return failure("vertical_clearance",error)
    error=level_joint_error(route,existing)
@@ -294,7 +330,8 @@ static func road_rail_error(route:Dictionary,road:Dictionary)->String:
  var error:String=height.overlap_error(road,body)
  if not error.is_empty():return error
  # Off the ground a road and a rail structure never form a junction, even at equal height.
- for piece:Dictionary in height.pieces_between(body,LEVEL_SPLIT_M,INF):
+ # E3b: a trench or tunnel never forms a level crossing either; only its 0m part does.
+ for piece:Dictionary in height.pieces_between(body,LEVEL_SPLIT_M,INF)+height.pieces_between(body,-INF,-LEVEL_SPLIT_M):
   error=height.overlap_error(road,{"points":piece.points,"heights_m":piece.heights_m,"width":body.width},false)
   if not error.is_empty():return error
  for piece:Dictionary in height.pieces_between(road,-height.EPS,height.EPS):

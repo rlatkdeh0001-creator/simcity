@@ -176,7 +176,7 @@ func add_transit_route(points:PackedVector2Array,kind:String="rail",commit:bool=
 		for id:int in demolition:demolish("building",id)
 		transit_routes.append(result.route.duplicate(true));next_transit_route_id+=1
 		_transit_routes_changed()
-		if TransitRoutes.raised(result.route):_update_zoning_for_road({})
+		if TransitRoutes.off_ground(result.route):_update_zoning_for_road({})
 	return result
 func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Dictionary:
 	if commit and _defer_simulation_edit(update_transit_route.bind(id,points.duplicate(),true)):return _queued_simulation_edit()
@@ -185,7 +185,7 @@ func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Di
 	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
 	var heights:PackedFloat64Array=transit_routes[index].get("heights_m",PackedFloat64Array())
 	if heights.size()!=points.size():heights=PackedFloat64Array() # Reshaped raised track is redrawn at ground level.
-	var was_raised:=TransitRoutes.raised(transit_routes[index])
+	var was_raised:=TransitRoutes.off_ground(transit_routes[index])
 	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id,heights)
 	if not result.ok:return result
 	if not result.get("demolish_ids",[]).is_empty():return TransitRoutes.failure("demolition","이미 지어진 건물이 파괴됩니다")
@@ -193,14 +193,14 @@ func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Di
 	if commit:
 		transit_routes[index]=result.route.duplicate(true)
 		_transit_routes_changed()
-		if was_raised or TransitRoutes.raised(result.route):_update_zoning_for_road({})
+		if was_raised or TransitRoutes.off_ground(result.route):_update_zoning_for_road({})
 	return result
 func remove_transit_route(id:int)->Dictionary:
 	if _defer_simulation_edit(remove_transit_route.bind(id)):return _queued_simulation_edit()
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
 	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
-	var was_raised:=TransitRoutes.raised(transit_routes[index])
+	var was_raised:=TransitRoutes.off_ground(transit_routes[index])
 	transit_routes.remove_at(index)
 	_transit_routes_changed()
 	if was_raised:_update_zoning_for_road({})
@@ -440,8 +440,10 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 		for route:Dictionary in transit_routes:
 			if TransitRoutes.station_contact_only(route,polygon_value,station_ports):
 				if TransitRoutes.elevated_port(route,Array(station_ports)):return "고가 구간에는 역을 둘 수 없습니다"
+				if TransitRoutes.sunken_port(route,Array(station_ports)):return "지하 구간에는 역을 둘 수 없습니다"
 				continue
-			if allow_under_deck and TransitRoutes.raised(route):
+			# E3b: only the 0m part of a trench/tunnel route is a ground track; the trench is checked below.
+			if (allow_under_deck and TransitRoutes.raised(route)) or TransitRoutes.sunken(route):
 				if TransitRoutes.ground_parts(route).any(func(part):return _polygon_road_distance(polygon_value,part)<-0.0005):return "철도 또는 지하철 경로와 충돌합니다"
 				continue # The raised structure is checked below with the park rule.
 			if _polygon_road_distance(polygon_value,route)<-0.0005:return "철도 또는 지하철 경로와 충돌합니다"
@@ -458,6 +460,10 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 			if Parcels.overlap(polygon_value,power_plant_footprint(facility)):return "상하수도 시설이 있습니다"
 	# E3a: no zoning cell or building under a rail structure; parks only below a +5m deck.
 	for route:Dictionary in transit_routes:
+		# E3b: no zoning cell, building or lot on an open rail trench; covered tunnels pass below.
+		if TransitRoutes.sunken(route):
+			if _road_ribbon_overlap(polygon_value,TransitRoutes.trench_ribbons(route)):return "철도 트렌치와 충돌합니다"
+			continue
 		if not TransitRoutes.raised(route):continue
 		if allow_under_deck:
 			if not preload("res://core/road_height.gd").usable_under_deck(TransitRoutes.structure(route),polygon_value):return "고가 철도와 충돌합니다"
@@ -669,7 +675,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for candidate: Dictionary in new_roads:
 		for route:Dictionary in transit_routes:
 			if route.kind!="rail":continue
-			if TransitRoutes.raised(route):
+			if TransitRoutes.off_ground(route):
 				var rail_error:String=TransitRoutes.road_rail_error(route,candidate)
 				if rail_error!="":return {"ok":false,"reason":rail_error}
 			elif not TransitRoutes.crossing_allowed(route,candidate):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
@@ -729,8 +735,8 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 	var sunken:bool=preload("res://core/road_height.gd").sunken(road)
 	for route:Dictionary in transit_routes:
 		if route.kind!="rail":continue
-		if sunken or TransitRoutes.raised(route):
-			# E2/E3a: same clearance/level-crossing function as TransitRoutes.plan, so build order cannot matter.
+		if sunken or TransitRoutes.off_ground(route):
+			# E2/E3a/E3b: same clearance/level-crossing function as TransitRoutes.plan, so build order cannot matter.
 			error=TransitRoutes.road_rail_error(route,road)
 			if error!="":return {"ok":false,"reason":error}
 			continue

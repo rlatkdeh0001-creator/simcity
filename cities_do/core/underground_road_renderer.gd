@@ -16,6 +16,7 @@ const BARRIER_M:=1.1 # Shared top 88px: barrier above ground; ground level is v=
 const WALL_INSET:=.125 # retaining-wall-01 spec wall_thickness_m 0.5m: inner width W-1.0m.
 const BARRIER_WIDTH:=.1 # 0.4m barrier top band (cells).
 const FAR_RAISE_M:=4.0 # Clip outline far edge raise (ASSET_REQUEST 5절 6번).
+const RAIL_FAR_RAISE_M:=6.0 # E3b: rail trenches carry catenary (5.3m poles), so the far edge rises 6m.
 const MOUTH_TOP_M:=-1.5 # tunnel-portal-01 spec mouth_top_below_ground_m.
 const WALL_SHADE:=[.775339076072665,1.05279764424266] # retaining-wall-01 spec.json face_shade +X/-Y.
 const PORTAL_SHADE:=[.77429849084644,1.05327280147779] # tunnel-portal-01 spec.json face_shade +X/-Y.
@@ -66,9 +67,9 @@ func barrier_piece(road:Dictionary,footprint:PackedVector2Array)->Elevated.Piece
  return node
 func rebuild():
  for trench:Trench in trenches:
-  # Cars are owned by the world renderer: hand them back before freeing the group.
+  # Cars, trains and catenary are owned by the world renderer: hand them back before freeing the group.
   for child in trench.get_children():
-   if child is Sprite2D:child.reparent(renderer.actors,false)
+   if not child is Elevated.Piece:child.reparent(renderer.actors,false)
   trench.hide();trench.queue_free()
  for node in barriers:node.hide();node.queue_free()
  trenches.clear();barriers.clear();portals.clear()
@@ -76,6 +77,15 @@ func rebuild():
  for visual:Dictionary in city.road_visuals:
   if not Height.sunken(visual):continue
   for part:Dictionary in Height.pieces_between(visual,Height.PORTAL_M,-Height.EPS):build_trench(city,visual,part)
+ # E3b: rail trenches reuse the same clip group, walls, barriers and portal as a 10m structure.
+ var routes=preload("res://core/transit_routes.gd")
+ for route:Dictionary in city.transit_routes:
+  if not routes.sunken(route):continue
+  var structure:Dictionary=routes.structure(route)
+  # Like E2 the clip group starts at -EPS, so its 0m mouth gets no end wall across the track.
+  for part:Dictionary in Height.pieces_between(structure,Height.RAIL_PORTAL_M,-Height.EPS):build_trench(city,structure,part)
+ # Trench catenary is re-parented into the new clip groups on the next catenary sync.
+ renderer.catenary_generation=-1
  for trench:Trench in trenches:
   var first:=true
   for outline in trench.outlines:
@@ -95,8 +105,30 @@ func rebuild():
     if first:node.world_bounds=Rect2(point,Vector2.ZERO);first=false
     else:node.world_bounds=node.world_bounds.expand(point)
   node.world_bounds=node.world_bounds.grow(2);node.queue_redraw()
+func trench_key(road:Dictionary)->Variant:return "rail:%d"%int(road.rail_route_id) if road.has("rail_route_id") else int(road.get("parcel_id",-1))
+## E3b: trench track (ballast, then running strips) from the transit geometry, at its own depth.
+func rail_commands(road:Dictionary)->Array:
+ var result:Array=[]
+ var transit=renderer.view.transit_view
+ for item:Dictionary in transit.geometry.get("trench",[]):
+  if int(item.route_id)!=int(road.rail_route_id):continue
+  var centre:=Vector2.ZERO
+  for point:Vector2 in item.points:centre+=point
+  centre/=item.points.size()
+  if not Elevated.near_path(road.points,centre,float(road.width)/2):continue # Another trench part of the same route.
+  var shape:=PackedVector2Array()
+  for k in range(item.points.size()):shape.append(project(item.points[k],item.depths[k]))
+  if Geometry2D.triangulate_polygon(shape).is_empty():continue
+  var command:Dictionary={"polygon":shape,"color":item.color}
+  if not item.texture.is_empty():
+   var image=transit.textures.get(item.texture)
+   if image==null:continue
+   command.color=Color.WHITE;command.uv=item.uv;command.texture=image
+  result.append(command)
+ return result
 func build_trench(city,visual:Dictionary,part:Dictionary):
  var road:Dictionary=visual.duplicate();road.points=part.points;road.heights_m=part.heights_m
+ var rail:=road.has("rail_route_id")
  var source:Dictionary={"points":part.points,"heights_m":part.heights_m}
  # 1-cell stations, like E1 deck pieces, keep each barrier sort slot short.
  var length:=Height.length_cells(part.points);var cuts:Array[float]=[0.0]
@@ -112,15 +144,17 @@ func build_trench(city,visual:Dictionary,part:Dictionary):
  if points.size()<2:return
  var half:float=float(road.width)/2-WALL_INSET
  var left:=Profile.offset_path(points,half);var right:=Profile.offset_path(points,-half)
- var asphalt_half:=minf(Profile.asphalt_width(road)/2,half)
+ var asphalt_half:=half if rail else minf(Profile.asphalt_width(road)/2,half)
  var asphalt_left:=Profile.offset_path(points,asphalt_half);var asphalt_right:=Profile.offset_path(points,-asphalt_half)
- var trench:=Trench.new();trench.name="UndergroundTrench";trench.z_index=7;trench.clip_children=CanvasItem.CLIP_CHILDREN_ONLY
- trench.source_ids=visual.get("source_ids",[visual.get("parcel_id",-1)]).duplicate()
+ var trench:=Trench.new();trench.name="RailTrench" if rail else "UndergroundTrench";trench.z_index=7;trench.clip_children=CanvasItem.CLIP_CHILDREN_ONLY
+ trench.source_ids=[trench_key(visual)] if rail else visual.get("source_ids",[visual.get("parcel_id",-1)]).duplicate()
  if trench.source_ids.is_empty():trench.source_ids=[visual.get("parcel_id",-1)]
  renderer.add_child(trench);trenches.append(trench)
  var body:=piece("TrenchBody",road,PackedVector2Array());trench.add_child(body)
- var markings:Array=Geometry.lane_marks(road);markings.append_array(Geometry.shoulder_marks(road))
- var median:=Profile.offset_path(road.points,Profile.median_offset(road))
+ var markings:Array=[] if rail else Geometry.lane_marks(road)
+ if not rail:markings.append_array(Geometry.shoulder_marks(road))
+ var median:=PackedVector2Array() if rail else Profile.offset_path(road.points,Profile.median_offset(road))
+ var raise:=RAIL_FAR_RAISE_M if rail else FAR_RAISE_M
  var walls:Array=[]
  for i in range(1,points.size()):
   var footprint:=PackedVector2Array([left[i-1],left[i],right[i],right[i-1]])
@@ -131,12 +165,13 @@ func build_trench(city,visual:Dictionary,part:Dictionary):
   for pair in [[left,points],[right,points]]:
    var edge:PackedVector2Array=pair[0]
    var outward:Vector2=edge[i-1]-points[i-1]
-   if outward.x+outward.y<0:trench.outlines.append(PackedVector2Array([project(edge[i-1],0),project(edge[i],0),project(edge[i],FAR_RAISE_M),project(edge[i-1],FAR_RAISE_M)]))
+   if outward.x+outward.y<0:trench.outlines.append(PackedVector2Array([project(edge[i-1],0),project(edge[i],0),project(edge[i],raise),project(edge[i-1],raise)]))
   polygon(body,projected(footprint,source),Color("c8cbc3"))
-  polygon(body,projected(PackedVector2Array([asphalt_left[i-1],asphalt_left[i],asphalt_right[i],asphalt_right[i-1]]),source),Color("4c5659"))
+  if not rail:polygon(body,projected(PackedVector2Array([asphalt_left[i-1],asphalt_left[i],asphalt_right[i],asphalt_right[i-1]]),source),Color("4c5659"))
   for line in markings:
    for clipped in Geometry2D.intersect_polyline_with_polygon(line,footprint):body.commands.append({"line":projected(clipped,source),"color":Color("e8e7dc"),"width":.65})
-  for clipped in Geometry2D.intersect_polyline_with_polygon(median,footprint):body.commands.append({"line":projected(clipped,source),"color":Color("e8be57"),"width":.8})
+  if median.size()>=2:
+   for clipped in Geometry2D.intersect_polyline_with_polygon(median,footprint):body.commands.append({"line":projected(clipped,source),"color":Color("e8be57"),"width":.8})
   var ha:=Height.height_at(source,points[i-1]);var hb:=Height.height_at(source,points[i])
   for edge:PackedVector2Array in [left,right]:
    var a:=edge[i-1];var b:=edge[i]
@@ -145,6 +180,7 @@ func build_trench(city,visual:Dictionary,part:Dictionary):
    # Only the far wall's trench face looks at the camera; it is cut at the road surface.
    if far:walls.append([a,b,ha,hb,distances[i-1],-normal])
    build_barrier(road,a,b,normal,distances[i-1],far)
+ if rail:body.commands.append_array(rail_commands(road))
  for wall:Array in walls:band(body,wall[0],wall[1],0,0,wall[2],wall[3],wall[4],WALL,WALL_STRIP_M,BARRIER_M,shade(WALL_SHADE,wall[5]))
  for end:int in [0,points.size()-1]:
   var h:=Height.height_at(source,points[end])
@@ -153,9 +189,15 @@ func build_trench(city,visual:Dictionary,part:Dictionary):
   var inward:=tangent if end==0 else -tangent
   var a:Vector2=left[end];var b:Vector2=right[end]
   var visual_end:bool=points[end].distance_to(visual.points[0])<.001 or points[end].distance_to(visual.points[-1])<.001
-  if absf(h-Height.PORTAL_M)<.001 and not visual_end:build_portal(trench,road,a,b,inward,h)
+  if absf(h-Height.portal_for(road))<.001 and not visual_end:build_portal(trench,road,a,b,inward,h)
   elif not joined(city,visual,points[end],h):build_end_wall(trench,body,road,a,b,inward,h)
 func joined(city,visual:Dictionary,point:Vector2,h:float)->bool:
+ if visual.has("rail_route_id"):
+  for other:Dictionary in city.transit_routes:
+   if other.kind!="rail" or int(other.id)==int(visual.rail_route_id) or not Height.sunken(other):continue
+   for end:Vector2 in [other.points[0],other.points[-1]]:
+    if end.distance_to(point)<.001 and absf(Height.height_at(other,end)-h)<.001:return true
+  return false
  for other:Dictionary in city.road_visuals:
   if other==visual or not Height.sunken(other):continue
   for end:Vector2 in [other.points[0],other.points[-1]]:
@@ -186,7 +228,7 @@ func build_end_wall(trench:Trench,body,road:Dictionary,a:Vector2,b:Vector2,inwar
  if inward.x+inward.y>0:band(body,a,b,0,0,h,h,0,WALL,WALL_STRIP_M,BARRIER_M,shade(WALL_SHADE,inward))
  build_barrier(road,a,b,-inward,0,inward.x+inward.y>0)
 func trench_at(road:Dictionary,point:Vector2)->Trench:
- var id:int=int(road.get("parcel_id",-1))
+ var id:Variant=trench_key(road)
  for trench:Trench in trenches:
   if not trench.source_ids.has(id):continue
   for footprint in trench.footprints:
@@ -209,6 +251,18 @@ func place_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2):
    if trench!=null:
     parent=trench
     sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
+ if sprite.get_parent()!=parent:sprite.reparent(parent,false)
+## E3b trains: in the open trench they move into its clip group and drop by the rail
+## depth; in the covered tunnel they draw like metro trains (underground view only).
+func place_train(sprite:Sprite2D,structure:Dictionary,point:Vector2):
+ var height:=Height.height_at(structure,point)
+ var parent:Node2D=renderer.actors
+ if height< -Height.EPS:
+  if Height.covered_at(height,Height.RAIL_PORTAL_M):parent=renderer.view.transit_view.metro_layer
+  else:
+   var trench:=trench_at(structure,point)
+   if trench!=null:parent=trench
+  sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
  if sprite.get_parent()!=parent:sprite.reparent(parent,false)
 func sync_visibility():
  var view=renderer.view;var viewport:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)

@@ -349,17 +349,24 @@ static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bo
    var ha:=Height.height_at(route,item.a);var hb:=Height.height_at(route,item.b)
    item.a_height+=ha;item.b_height+=hb
    if maxf(ha,hb)>Height.EPS:item.deck=true
+   # E3b: trench catenary draws inside the trench clip group (never as deck).
+   if minf(ha,hb)< -Height.EPS:item.trench=true
  append_clipped(output,generated,city)
 ## E3a: poles stand on the structure wherever the track is raised, so ground masks
 ## (roads, station lots) and ground crossovers apply only to the at-grade parts.
+## E3b: in a trench the same layout follows the rail top down to the -7.0m portal and
+## ends there; the covered tunnel has no catenary (RAIL_PARK 5절 11번).
 static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array,crossovers:Array,city):
- if not Height.raised(route):
+ if not Height.raised(route) and not Height.sunken(route):
   append_run(output,run,start,finish,masks,portals,int(route.id),crossovers,city);return
  var heights:=PackedFloat64Array()
  for point:Vector2 in run:heights.append(Height.height_at(route,point))
  var carrier:={"points":run,"heights_m":heights}
+ var sunken:=Height.sunken(route)
  for raised_part:bool in [false,true]:
-  for piece:Dictionary in (Height.pieces_between(carrier,.005,INF) if raised_part else Height.pieces_between(carrier,-INF,.005)):
+  var parts:Array=Height.pieces_between(carrier,-.005 if sunken else -INF,.005)
+  if raised_part:parts=Height.pieces_between(carrier,Height.RAIL_PORTAL_M,-.005) if sunken else Height.pieces_between(carrier,.005,INF)
+  for piece:Dictionary in parts:
    var offset:=distance_on(run,piece.points[0])
    if not is_finite(offset):continue
    var first:=maxf(0.0,start-offset);var last:=minf(length_of(piece.points),finish-offset)

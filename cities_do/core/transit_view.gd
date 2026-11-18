@@ -140,11 +140,20 @@ static func ribbons(route:Dictionary)->Array:
   result.append(PackedVector2Array([points[i-1]-a,points[i]-b,points[i]+b,points[i-1]+a]))
  return result
 ## E3a: split a (track) polyline carrying the route heights into ground and raised parts.
+## E3b: the ground part of a trench/tunnel route is only its 0m part.
 static func level_parts(points:PackedVector2Array,route:Dictionary,raised_part:bool)->Array:
- if not Routes.raised(route):return [] if raised_part else [points]
+ if not Routes.off_ground(route):return [] if raised_part else [points]
  var carrier:={"points":points,"heights_m":route.heights_m}
  var result:Array=[]
- for piece:Dictionary in (Height.pieces_between(carrier,Routes.LEVEL_SPLIT_M,INF) if raised_part else Height.pieces_between(carrier,-INF,Routes.LEVEL_SPLIT_M)):result.append(piece.points)
+ if raised_part and not Routes.raised(route):return result
+ for piece:Dictionary in (Height.pieces_between(carrier,Routes.LEVEL_SPLIT_M,INF) if raised_part else Height.pieces_between(carrier,-Routes.LEVEL_SPLIT_M,Routes.LEVEL_SPLIT_M)):result.append(piece.points)
+ return result
+## E3b: open trench (0m..-7.0m portal) or covered tunnel (-7.0m and deeper) parts of a track polyline.
+static func sunken_parts(points:PackedVector2Array,route:Dictionary,covered:bool)->Array:
+ var result:Array=[]
+ if not Routes.sunken(route):return result
+ var carrier:={"points":points,"heights_m":route.heights_m}
+ for piece:Dictionary in (Height.pieces_between(carrier,-INF,Height.RAIL_PORTAL_M) if covered else Height.pieces_between(carrier,Height.RAIL_PORTAL_M,-Routes.LEVEL_SPLIT_M)):result.append(piece.points)
  return result
 static func densify(points:PackedVector2Array,step:float)->PackedVector2Array:
  var result:=PackedVector2Array([points[0]])
@@ -159,7 +168,7 @@ static func deck_shape(item:Dictionary,route:Dictionary)->Dictionary:
  item.depths=depths;item.route_id=route.id
  return item
 static func build_geometry(city)->Dictionary:
- var result:={"rail":[],"metro":[],"tracks":{},"catenary":[],"crossovers":{},"deck":[]}
+ var result:={"rail":[],"metro":[],"tracks":{},"catenary":[],"crossovers":{},"deck":[],"trench":[]}
  var bounds:=boundary(city)
  var roads:Array=city.road_pavement+city.junction_pavement
  # All ballast first, then textured running strips, so overlapping branches cannot bury rails.
@@ -171,6 +180,17 @@ static func build_geometry(city)->Dictionary:
    var deck_route:Dictionary=route.duplicate();deck_route.points=densify(part,.5)
    for polygon:PackedVector2Array in ribbons(deck_route):
     for clipped:PackedVector2Array in Geometry2D.intersect_polygons(polygon,bounds):result.deck.append(deck_shape(shape(clipped,Color("a59c8e")),route))
+  # E3b: trench ballast is drawn in the trench clip group; the covered tunnel is a solid
+  # 15181a band (10m structure) in the underground view at its own depth, like the metro.
+  for covered:bool in [false,true]:
+   for part:PackedVector2Array in sunken_parts(route.points,route,covered):
+    var sunk_route:Dictionary=route.duplicate();sunk_route.points=densify(part,.5)
+    if covered:sunk_route.width=Routes.STRUCTURE_WIDTH
+    for polygon:PackedVector2Array in ribbons(sunk_route):
+     for clipped:PackedVector2Array in Geometry2D.intersect_polygons(polygon,bounds):
+      var item:=deck_shape(shape(clipped,Color("15181a") if covered else Color("a59c8e")),route)
+      if covered:item.rail_tunnel=true;result.metro.append(item)
+      else:result.trench.append(item)
   var ground_polygons:Array=[]
   for part:PackedVector2Array in level_parts(route.points,route,false):
    var ground_route:Dictionary=route.duplicate();ground_route.points=part
@@ -214,6 +234,10 @@ static func build_geometry(city)->Dictionary:
     var deck_strips:Array=[]
     append_track(deck_strips,part,caps[0] and part[0].distance_to(path[0])<.0005,caps[1] and part[-1].distance_to(path[-1])<.0005,bounds,[])
     for item:Dictionary in deck_strips:result.deck.append(deck_shape(item,route))
+   for part:PackedVector2Array in sunken_parts(path,route,false):
+    var trench_strips:Array=[]
+    append_track(trench_strips,part,caps[0] and part[0].distance_to(path[0])<.0005,caps[1] and part[-1].distance_to(path[-1])<.0005,bounds,[])
+    for item:Dictionary in trench_strips:result.trench.append(deck_shape(item,route))
  var catenary=preload("res://core/rail_catenary.gd")
  var portals:Array=catenary.plan_portals(result.catenary,city.transit_routes,pole_masks)
  if not portals.is_empty():
@@ -311,11 +335,17 @@ func preview()->Dictionary:
   preview_cache=Routes.resolve(view.city,view.mode,view.road_drawer.kind,anchors,view.pointer,start_tangent,target_height_m if view.mode=="rail" else 0.0)
  return preview_cache.duplicate(true)
 func set_height(value:float):
- target_height_m=maxf(0.0,roundf(value/5)*5)
+ # E3b: the rail tool also steps below ground (5m layers); a target below ground shows the underground view.
+ target_height_m=roundf(value/5)*5
  preview_signature=null
  var controls=view.find_child("RailHeightControls",true,false)
  if controls!=null:controls.synchronize()
+ sync_underground_view()
  view.queue_redraw()
+func sync_underground_view():
+ if view==null or view.get("mode")!="rail":return
+ var below:=target_height_m< -Height.EPS
+ if underground!=below:underground=below;sync_visibility()
 func clear_warning():
  pending.clear()
  if is_instance_valid(warning_panel):warning_panel.hide();warning_panel.queue_free()
@@ -367,6 +397,7 @@ func cursor_ring(center:Vector2,radius:float)->PackedVector2Array:
  return points
 func click(point:Vector2):
  view.pointer=point
+ sync_underground_view()
  if anchors.is_empty():
   if not cursor_preview().ok:view.queue_redraw();return
   var snap:=Routes.snap(view.city,point,view.mode)
@@ -419,7 +450,7 @@ func draw_preview():
  if points.size()<2:return
  var route:=Routes.profile(view.mode);route.points=points
  var heights:PackedFloat64Array=result.get("heights_m",PackedFloat64Array())
- if heights.size()==points.size():route.heights_m=heights;route.width=Routes.STRUCTURE_WIDTH if Routes.raised(route) else route.width
+ if heights.size()==points.size():route.heights_m=heights;route.width=Routes.STRUCTURE_WIDTH if Routes.off_ground(route) else route.width
  var color:=Color(.94,.32,.31,.5)
  if result.ok:color=Color(1,.82,.15,.55) if result.get("warning",false) else Color(.24,.86,.52,.5)
  for polygon in ribbons(route):

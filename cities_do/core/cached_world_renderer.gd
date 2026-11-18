@@ -47,6 +47,8 @@ func sync_transit_structures():
  var key:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height,view.transit_view.generation])
  if key!=structure_signature:
   structure_signature=key;elevated.rebuild();catenary_generation=-1
+  # E2 road trenches and E3b rail trenches follow roads and transit geometry alike.
+  if underground!=null:underground.rebuild()
  sync_catenary()
 ## Deck catenary draws after its own deck surface and trains, before the near barrier face.
 func deck_catenary_depth(commands:Array,fronts:Array,depth:float)->float:
@@ -99,7 +101,13 @@ func sync_catenary():
   node.overhead=key[2]=="overhead";node.base_depth=depth
   node.footprint=node.commands[0].footprint
   node.position.y=depth+(.02 if node.overhead else 0.0)
-  node.world_bounds=bounds.grow(2);actors.add_child(node);catenary_nodes.append(node)
+  node.world_bounds=bounds.grow(2)
+  # E3b: trench catenary is clipped by its trench outline (far edge raised 6m), like trench trains.
+  var parent:Node2D=actors
+  if node.commands[0].get("trench",false) and underground!=null:
+   var trench=underground.trench_at({"rail_route_id":int(node.commands[0].route_id)},node.footprint[0])
+   if trench!=null:parent=trench
+  parent.add_child(node);catenary_nodes.append(node)
  catenary_depth_signature=null
  catenary_buckets.clear()
  for node in catenary_nodes:
@@ -234,6 +242,10 @@ func sync_transit_cars():
     elevated.lift_vehicle(sprite,deck,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
     if pose.get("cargo",false):sprite.position.y+=.001
     sprite.set_meta("rail_height_m",lift)
+   elif lift< -preload("res://core/road_height.gd").EPS and underground!=null:
+    # E3b: trench trains drop into the trench clip group; tunnel trains draw like metro trains.
+    underground.place_train(sprite,deck,point)
+    sprite.set_meta("rail_height_m",lift)
  for id:Variant in transit_cars.keys():
   if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
  sync_catenary_depth()
@@ -294,7 +306,6 @@ func synchronize():
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
   sync_transit_structures()
-  underground.rebuild()
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))

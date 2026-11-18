@@ -5,7 +5,7 @@ var value_label:Label
 var minus:Button
 var plus:Button
 var mode_buttons:Dictionary={}
-## E3a: the same control drives the rail tool (transit_view); its underground button waits for E3b.
+## E3a/E3b: the same control drives the rail tool (transit_view), including the -10m underground button.
 var rail:=false
 func target():return owner_view.transit_view if rail else owner_view.road_drawer
 func setup(view):
@@ -29,7 +29,6 @@ func change(delta:int):
  target().set_height(minf(-5,height) if target().target_height_m<0 else maxf(5,height));synchronize()
 func synchronize():
  var height:float=target().target_height_m
- if rail:mode_buttons[-10].disabled=true;mode_buttons[-10].tooltip_text="지하 철도는 다음 단계(E3b)"
  value_label.text="0 m" if height==0 else ("+%d m"%height if height>0 else "−%d m"%absf(height))
  minus.disabled=height==0;plus.disabled=height==0
  for key in mode_buttons:

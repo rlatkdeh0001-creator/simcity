@@ -1,0 +1,136 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_elevated_roads.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS E1 exposes the authoritative height-aware road transaction
+PASS 160m local ramp accepts 10m rise
+PASS height preview preserves authoritative road records
+PASS same resolved ramp commits
+PASS committed road preserves per-point heights
+PASS 120m local ramp rejects 10m rise
+PASS 160m highway ramp rejects 10m rise
+PASS height transaction rejects out of map points
+PASS flat layers remain multiples of 5m
+PASS full-width crossing rejects intermediate ramp clearance below 10m
+PASS ground crossing fixture
+PASS 10m separated crossing accepted
+PASS grade separation does not produce a traffic junction
+PASS elevated road generates no adjacent parcels
+PASS raised deck not painted into ground road layer
+PASS equal-height ends remain connected
+PASS equal-height visual chains preserve continuous geometry and every point height
+PASS raised decks never create ground building frontage
+PASS private buildings produce yellow plan with exact IDs
+PASS yellow preview does not demolish
+PASS commit requires demolition confirmation
+PASS confirmed road removes only its overlapping building
+PASS elevated plan contains production support positions
+PASS 20m wide deck has two piers per station
+PASS public facility remains red and is not demolishable
+PASS 8m-rounded 128m ramp then flat deck commits
+PASS duplicate elevated stroke is rejected
+PASS demolition fragment interpolates heights at both cuts
+PASS minimum ramp lengths round up to 8m
+PASS new lower road cannot intersect an existing support
+PASS exact 8 percent 125m ramp still requires 128m construction rounding
+PASS full rail structure width blocks a 5m crossing
+PASS park placement remains allowed beneath existing elevated deck
+PASS boundary support obstacle fixture
+PASS unsupported first/last 160m boundary span rejected
+PASS unsupported boundary rejection is atomic
+PASS boundary support obstacle fixture
+PASS unsupported first/last 160m boundary span rejected
+PASS unsupported boundary rejection is atomic
+PASS short cluster ground obstacle
+PASS actual single emitted pier with legal end spans ground=14.25 demolition=false max_m=48.0
+PASS short cluster ground obstacle
+PASS actual single emitted pier with legal end spans ground=14.0 demolition=false max_m=48.0
+PASS short cluster ground obstacle
+PASS 49m minimum unsupported end rejects atomically ground=13.75 demolition=false
+PASS short cluster ground obstacle
+PASS longer host places legal supports before trimming
+PASS actual demolition selection trims exactly four cells
+PASS actual single emitted pier with legal end spans ground=14.25 demolition=true max_m=48.0
+PASS short cluster ground obstacle
+PASS longer host places legal supports before trimming
+PASS actual demolition selection trims exactly four cells
+PASS actual single emitted pier with legal end spans ground=14.0 demolition=true max_m=48.0
+PASS short cluster ground obstacle
+PASS actual demolition selection trims exactly four cells
+PASS 49m minimum unsupported end rejects atomically ground=13.75 demolition=true
+PASS separate +10 to 0 to +10 deck runs accept without a span across solid ground; survivor=false reason=
+PASS both off-search-grid +5m boundaries are used without placing piers in the solid gap
+PASS actual supports meet 48m independently on each side of the solid interval
+PASS separate +10 to 0 to +10 deck runs accept without a span across solid ground; survivor=true reason=철거 완료
+PASS both off-search-grid +5m boundaries are used without placing piers in the solid gap
+PASS actual supports meet 48m independently on each side of the solid interval
+PASS fragment support host
+PASS legacy fragment obstacle
+PASS actual demolition rejects unsupported fragment boundary atomically
+PASS park frontage fixture
+PASS ramp first valid placement
+PARK_BOUNDARY_DIAGNOSTIC 도로와 충돌합니다
+PASS park under road rejects solid retaining ramp but permits usable deck
+PASS park frontage fixture
+PASS park first valid frontage placement
+PASS road over park rejects solid retaining ramp but permits usable deck
+PASS park frontage fixture
+PASS ramp first valid placement
+PASS park under road rejects solid retaining ramp but permits usable deck
+PASS park frontage fixture
+PASS park first valid frontage placement
+PASS road over park rejects solid retaining ramp but permits usable deck
+PASS shallow dip park frontage
+PASS shallow dip park first fixture
+PASS interior shallow dip road after park; dip=true reason=공공시설과 겹침
+PASS shallow dip park frontage
+PASS shallow dip road first fixture
+PASS park after interior shallow dip road; dip=true reason=도로와 충돌합니다
+PASS shallow dip park frontage
+PASS shallow dip park first fixture
+PASS interior shallow dip road after park; dip=false reason=
+PASS shallow dip park frontage
+PASS shallow dip road first fixture
+PASS park after interior shallow dip road; dip=false reason=
+PASS only actual flat ribbon overlap produces a confirmation ID: [72]
+PASS cap-only public lot cannot block exact confirmed road: 
+PASS lot can reach the flat start without overlapping the road
+PASS junction obstacle host
+PASS unobstructed transaction emits the T/cross addition
+PASS lot misses old patch and emitted ribbons but intersects final T/cross patch; cross=false
+PASS final junction patch public rejection or exact private warning IDs
+PASS junction patch rejection preserves transaction state
+PASS exact confirmation removes the patch-only lot and commits the same final patch
+PASS junction obstacle host
+PASS unobstructed transaction emits the T/cross addition
+PASS lot misses old patch and emitted ribbons but intersects final T/cross patch; cross=false
+PASS final junction patch public rejection or exact private warning IDs
+PASS junction patch rejection preserves transaction state
+PASS junction obstacle host
+PASS cross junction narrow north host
+PASS unobstructed transaction emits the T/cross addition
+PASS lot misses old patch and emitted ribbons but intersects final T/cross patch; cross=true
+PASS final junction patch public rejection or exact private warning IDs
+PASS junction patch rejection preserves transaction state
+PASS exact confirmation removes the patch-only lot and commits the same final patch
+PASS junction obstacle host
+PASS cross junction narrow north host
+PASS unobstructed transaction emits the T/cross addition
+PASS lot misses old patch and emitted ribbons but intersects final T/cross patch; cross=true
+PASS final junction patch public rejection or exact private warning IDs
+PASS junction patch rejection preserves transaction state
+PASS legacy junction horizontal host
+PASS legacy wide T junction
+PASS legacy lot really conflicts with the existing emitted patch
+PASS unrelated stroke preview ignores unchanged patch; public=false result= IDs=[]
+PASS unrelated stroke commits exact geometry; public=false
+PASS existing records and emitted legacy patch remain untouched
+PASS legacy junction horizontal host
+PASS legacy wide T junction
+PASS legacy lot really conflicts with the existing emitted patch
+PASS unrelated stroke preview ignores unchanged patch; public=true result= IDs=[]
+PASS unrelated stroke commits exact geometry; public=true
+PASS existing records and emitted legacy patch remain untouched
+E1 elevated roads: 128 passed, 0 failed
+
+STDERR
