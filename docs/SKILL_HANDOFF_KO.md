@@ -1,5 +1,9 @@
 # CITIES_DO 스킬 인계장
 
+## 지하차도 입구 승인 묶음② (2026-11-18, cities-asset)
+
+신규 tunnel-sample-01: 원본 wall/portal blend를 읽기 전용 append, 경사에 맞춰 하단만 자른 32×16m 견본(2760tri, z−6.84~+1.1). 노면−4.08→−6→−6.64m, 입구 +X/통과4.5m, 닫힌 바닥/덮개 끝. portal·옆벽 상부는 맞댐으로 겹침 제거. 실제 Blender4.3.2 저장/재로드/preview, Godot4.6.3 독립GL9검사/카탈로그 경로로드 및 단일1600×1000 앞뒤2컷 docs/elevated-tunnel-validation/tunnel-04-1600.png 육안 확인; TUNNEL_RESULTS.txt. 같은 로컬 godot-windows-validation/windows-capture 및 기존 MIT helper(studio/common, 아래 출처), 신규 tools/build_tunnel_sample.py·capture_tunnel_sample.gd·run_tunnel_sample.py 사용. 기존 카탈로그 항목 보존하고 structure_sample/inspection_only 1건 추가. 게임 로직·설치·가격·push/main 없음; 후속③④는 새로 승인된 별도 묶음.
+
 ## 고가·터널 띠 승인 묶음① (2026-11-18, cities-asset)
 
 신규 tools/build_elevated_strips.py 및 assets/structures/ 3종: 원본 4m 스크립트 지오메트리·blend·preview, 런타임 emission 띠4장. viaduct-side-01 132tri/4×0.5×3.1m, retaining-wall-01 132tri/4×0.5×9m, tunnel-portal-01 156tri/4×0.5×2.6m. 80px/m, 위112px 실제 동일, 경계 이음/옹벽 가로무늬 없음. 픽셀 경계에 맞춘 mm 디테일+좁은 Gaussian 필터로 실제 렌더의 AA 경계 차이를 없앴으며 이미지 합성 없음.
