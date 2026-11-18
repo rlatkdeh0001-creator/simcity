@@ -12,9 +12,9 @@ func advance(city):
  var exchange:Dictionary=city.regional_exchange()
  planner.refresh_day(city.clock.day(),int(stats.population),exchange)
  var commuters:Dictionary=city.population.core.GetNeighborCommuters()
- var stamp:int=hash([city.clock.day(),stats,city._commuting_generation,commuters])
+ var stamp:int=hash([city.clock.day(),stats,city._commuting_generation,city.transit_lines,city.public_facilities.lots,commuters])
  if stamp==_stamp:return
- var connected:bool=exchange.neighbors.any(func(n):return n.channels.road.connected)
+ var connected:bool=exchange.neighbors.any(func(n):return n.channels.road.connected or n.channels.rail.connected or n.channels.metro.connected)
  if not connected:
   last_apply=city.population.apply_labor_commuting_plan([],[])
   last_plan={"day":city.clock.day(),"inbound":0,"outbound":0,"flows":[]}
@@ -23,7 +23,7 @@ func advance(city):
   var routes:Array=_proven_routes(city,exchange,context)
   last_plan=planner.plan(exchange,context,routes)
   last_apply=city.population.apply_labor_commuting_plan(last_plan.inbound_reservations,last_plan.outbound_assignments)
- _stamp=hash([city.clock.day(),city.population.stats(),city._commuting_generation,city.population.core.GetNeighborCommuters()])
+ _stamp=hash([city.clock.day(),city.population.stats(),city._commuting_generation,city.transit_lines,city.public_facilities.lots,city.population.core.GetNeighborCommuters()])
 func status()->Dictionary:
  return {"day":int(last_plan.get("day",-1)),"inbound":int(last_apply.get("inbound",0)),"outbound":int(last_apply.get("outbound",0)),"rejected_inbound":int(last_apply.get("rejected_inbound",0)),"rejected_outbound":int(last_apply.get("rejected_outbound",0)),"neighbor_count":planner.snapshot().neighbors.size()}
 func _proven_routes(city,exchange:Dictionary,context:Dictionary)->Array:
@@ -48,6 +48,7 @@ func _proven_routes(city,exchange:Dictionary,context:Dictionary)->Array:
      if distances.has(id):routes.append(_route(town.id,id,"inbound",distances[id],point,road.parcel_id,pair[0]))
     for id:Variant in homes:
      if distances.has(id):routes.append(_route(town.id,id,"outbound",distances[id],point,road.parcel_id,pair[0]))
+ routes.append_array(preload("res://core/transit_commuting.gd").new().routes(city,exchange,context))
  return routes
 func _route(neighbor_id:Variant,id:Variant,direction:String,distance:float,boundary:Vector2,road_id:int,end:int)->Dictionary:
  return {"neighbor_id":str(neighbor_id),"local_id":id,"direction":direction,"mode":"road","reachable":true,"distance_m":distance,"route_id":"%s/%s/%s/%s/%s"%[neighbor_id,road_id,end,direction,id],"boundary":boundary,"road_id":road_id}

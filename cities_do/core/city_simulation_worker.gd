@@ -10,6 +10,16 @@ var transit_operations=preload("res://core/transit_operations.gd").new()
 
 # ONE idle initialization capture, never part of a normal frame/tick.
 static func capture(source)->Dictionary:
+ if source.simulation!=null:
+  # A coherent save is an explicit idle operation, never a routine frame read.
+  # Reject unpublished/queued edits instead of mixing main and worker epochs.
+  if source.simulation.has_pending() or source.simulation.queued_edit_count()>0 or source.simulation._revision!=source.simulation._submitted_revision:return {}
+  var owned:Dictionary=source.simulation.worker.ExportCheckpoint()
+  if owned.is_empty():return {}
+  # Utilities/realized ledger remain main-owned between accepted publications.
+  for key:String in ["funds","power","water","utilities","economic_ledger","_treasury_recovered"]:
+   owned.model.values[key]=_capture_value(source.get(key))
+  return owned
  var checkpoint:Dictionary={"model":_capture_object(source,["population","happiness","simulation"]),"population":source.population.core.ExportCityCheckpoint(),"population_config":source.population.config.duplicate(true),"happiness":source.happiness.core.ExportCityCheckpoint(),"happiness_vars":_capture_object(source.happiness,["owner","core","bound","records","background_enabled","_read_view"])}
  return checkpoint
 static func _capture_object(source,skip:Array=[])->Dictionary:
@@ -200,9 +210,9 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
   "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
   "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
   "transit_state":city.transit_state.duplicate(true),"loan_status":city.loan_status(),"loan_checkpoint":_capture_object(city.loans),
-  "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
+  "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"commuting_checkpoint":_capture_object(city.commuting),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
- return {"transit_lines":city.transit_lines.duplicate(true),"transit_state":city.transit_state.duplicate(true),"next_transit_line_id":city.next_transit_line_id,"buildings":city.buildings.duplicate(true),"transit_routes":city.transit_routes.duplicate(true),"next_transit_route_id":city.next_transit_route_id,"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
+ return {"checkpoint":capture(city),"transit_lines":city.transit_lines.duplicate(true),"transit_state":city.transit_state.duplicate(true),"next_transit_line_id":city.next_transit_line_id,"buildings":city.buildings.duplicate(true),"transit_routes":city.transit_routes.duplicate(true),"next_transit_route_id":city.next_transit_route_id,"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
   "loans":_capture_object(city.loans),
   "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}

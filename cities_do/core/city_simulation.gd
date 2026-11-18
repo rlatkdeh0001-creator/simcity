@@ -299,6 +299,7 @@ func _publish()->bool:
   _by_id[id]=row;_published_ids[id]=true
  city.population.attach_read_view(result.population_view)
  city._commuting_summary=result.get("commuting_summary",{}).duplicate(true)
+ if result.has("commuting_checkpoint"):_adapter_script._restore_object(city.commuting,result.commuting_checkpoint)
  city.transit_state=result.transit_state.duplicate(true)
  city.happiness.attach_read_view(result.happiness_view)
  city.next_id=maxi(city.next_id,int(result.next_id))

@@ -108,6 +108,9 @@ func Resume():
  if not GetFault().is_empty():return
  _mutex.lock();var was:=_stop;_stop=false;_mutex.unlock()
  if was:_coordinator.ResumeNative()
+func ExportCheckpoint()->Dictionary:
+ # Export uses the existing native worker-owned request/join path, not stale CLR views.
+ return ExportValidationState().get("checkpoint",{}).duplicate(true)
 func ExportValidationState()->Dictionary:
  assert(_require_owner())
  Suspend()

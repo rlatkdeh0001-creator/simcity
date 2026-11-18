@@ -1,0 +1,154 @@
+{
+  "head": "94cac6b81c11047c08f6115834c3337db79b2ad5",
+  "branch": "perf/render-sim-cadence",
+  "owned_files": {
+    "cities_do/core/transit_access_graph.gd": "e8da90da613a38b8d8bcdca00894d6cfaae0aa5bee3b4dda83ee102ece0ee15c",
+    "cities_do/core/transit_commuting.gd": "2c1611e059430f2ffdd5e32558bb77723dff9566a8fb02b8d9be31c0e3ec06ba",
+    "cities_do/tests/test_transit_commuting_view.gd": "8b93e7d42b387b61529135e5dcf2765b99b2361e77aa130ac16e2d3158da7328",
+    "cities_do/tests/test_transit_commuting_bus_replacement.gd": "ad3886b1fccce4aebaf89823884c5d342b1cd205ae5136f307a2190788852ede",
+    "cities_do/core/transit_commuting_config.json": "7ba0e90ec1894f6f67e69caf87c914bce2d215dad6fbf17a361973770a710776",
+    "cities_do/core/commuting_coordinator.gd": "ba2123863fe8d9f68e3ae1604a8eec04af747252d7ee9a66b21be0844163b0b4",
+    "cities_do/core/city_simulation_worker.gd": "e3aaf27d7177741120ceb30c3a40e05be8bcaa2ad7b35e609407ad68f79f0680",
+    "cities_do/core/city_simulation.gd": "d120127286485b81c3693ec8dd64917a977ddf72779c6027e925fc005e5fcef7",
+    "cities_do/core/city_native_mailbox.gd": "a359d6b22e1e92c74ae14010923f620224510c5244aa331895c82c152a6ed944",
+    "cities_do/tests/test_transit_commuting.gd": "61390c1d9f6fc6a3fb8c3d367c81a50fc2372cf1bb5ff69f0e2997a5e370762a",
+    "tools/run_transit_commuting_validation.py": "56ad8f6379b58d70bd4023ee10ccaffecb5fcaa3e8083bcd1b7985c429631711"
+  },
+  "tests": [
+    {
+      "name": "test_transit_commuting.gd",
+      "exit_code": 0,
+      "checks": 36,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_transit_commuting.log",
+      "sha256": "65d300611af79cde5d0a5714bd4534940e6ebd25d26dca867356c00e080076a6",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_transit_commuting.gd"
+      ]
+    },
+    {
+      "name": "test_transit_operations.gd",
+      "exit_code": 0,
+      "checks": 36,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_transit_operations.log",
+      "sha256": "9b0c8a11b167b56a3ad4a0cc35cf4ffcb8f0aa201da14601924b23db1723614d",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_transit_operations.gd"
+      ]
+    },
+    {
+      "name": "test_transit_operations_fifo.gd",
+      "exit_code": 0,
+      "checks": 20,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_transit_operations_fifo.log",
+      "sha256": "fdf6353860528e65f36987cba2c62a5df781890159f4fce2e2ac1cdcf39bb7ef",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_transit_operations_fifo.gd"
+      ]
+    },
+    {
+      "name": "test_neighbor_commuting.gd",
+      "exit_code": 0,
+      "checks": 130,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_neighbor_commuting.log",
+      "sha256": "2d5eb4b9eb3ac6409a1ef4546ea7c10dd70cb125944a9a3411fe1e23fafbadd2",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_neighbor_commuting.gd"
+      ]
+    },
+    {
+      "name": "test_loan_worker.gd",
+      "exit_code": 0,
+      "checks": 98,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_loan_worker.log",
+      "sha256": "933885dca622d0de61b7ee60c83ddc5939b141eae10191f4273389e6d16fc05f",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_loan_worker.gd"
+      ]
+    },
+    {
+      "name": "test_labor_boundary.gd",
+      "exit_code": 0,
+      "checks": 5,
+      "failed": 0,
+      "log": "docs/transit-commuting-validation/test_labor_boundary.log",
+      "sha256": "5b4580b1ebec5955ff0ddb2443fe304cc92188be6eaa869fb0d9e4d723096858",
+      "command": [
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_labor_boundary.gd"
+      ]
+    }
+  ],
+  "supplemental_tests": [
+    {"name": "test_transit_commuting_bus_replacement.gd", "checks": 54, "failed": 0, "log": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/p4-bus-replacement-final.log", "sha256": "57d7ecf51ba849f16459e71a4e2047614e67da4d138bffbd53b32de1066f5090"},
+    {"name": "test_commuting_transport.gd", "checks": 6, "failed": 0, "log": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/p4-test_commuting_transport-final.log", "sha256": "bb4233c64ad61ebf92b57db026d32c563c22f76ab28497aec9a7245cd12ebb3a"},
+    {"name": "test_transit_commuting_view.gd", "checks": 11, "failed": 0, "log": "docs/transit-commuting-validation/test_transit_commuting_view.log", "sha256": "8fd05a3c7bd21866f4f99ebccc1d91f2b65ed7dddb387477f2edbcae231197f6"}
+  ],
+  "total_checks": 396,
+  "review_mode": "independent review passed after bus replacement fix; parent verified source and log hashes",
+  "capture": {"path": "docs/transit-commuting-validation/p4-native-1920.png", "dimensions": [1920,1080], "sha256": "1a8a8f1bf605f1f5e3a8625980049f9fdc169248adfd2fdb8d279cb4a4de4209"},
+  "performance_measurements": false,
+  "build": false,
+  "defaults": {
+    "walk_access_metres": 400,
+    "walk_transfer_metres": 200
+  },
+  "inherited_failure": "At initial P4 validation, catenary had a separate 116/117 failure. Subsequently resolved and independently reviewed in catenary commit 0685d13 (166/166). P4 source hashes remain verified unchanged."
+}
