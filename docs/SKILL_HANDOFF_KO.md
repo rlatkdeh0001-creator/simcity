@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 원형 교각·고가 견본 승인 묶음③ (2026-11-18, cities-asset)
+
+갱신 요청서216행 재확인/원문 복사(이전 복사본 수정 없음을 Git diff로 확인). viaduct-pier-01 원형48분할/나팔머리852tri·4×4×8m, viaduct-sample-01 4404tri·40×12×11.1m. 신규 build_viaduct_samples.py·원본blend/preview·GLB, 고가견본만 catalog structure_sample 추가. 교각3부품은 실제 Godot 시설 조명/고도30°/36.9504px/m 투명 렌더, 원점·수직32px/m·타원반경 underlap은 manifest. 실제 GL①7검사/③5검사와 단일1600×1000씩 pier-01-1600.png·viaduct-03-1600.png 육안 확인(이음/5·10·20m/쌍기둥/차량·사람/64m곡선). 동일 sprite 재렌더 없이 쌍기둥 카메라 프레이밍만 수정.
+로컬 MIT godot-windows-validation/windows-capture와 systematic-debugging(obra/superpowers 파생, 로컬 pin 미기록) 적용, 기존 MIT common/studio 재사용. Blender BKE_blendfile_link self-append 크래시는 active filepath를 factory-empty로 초기화한 뒤 append하는 방식으로 해결, 이미 통과한 교각 preview 보존하고 견본만 재개. 실제 source 재로드/치수 통과, 교훈은 프로필 스킬에도 반영. 게임코드·가격·설치·push/main 없음; 최종 사용자 검수 대기.
+
 ## 지하차도 입구 승인 묶음② (2026-11-18, cities-asset)
 
 신규 tunnel-sample-01: 원본 wall/portal blend를 읽기 전용 append, 경사에 맞춰 하단만 자른 32×16m 견본(2760tri, z−6.84~+1.1). 노면−4.08→−6→−6.64m, 입구 +X/통과4.5m, 닫힌 바닥/덮개 끝. portal·옆벽 상부는 맞댐으로 겹침 제거. 실제 Blender4.3.2 저장/재로드/preview, Godot4.6.3 독립GL9검사/카탈로그 경로로드 및 단일1600×1000 앞뒤2컷 docs/elevated-tunnel-validation/tunnel-04-1600.png 육안 확인; TUNNEL_RESULTS.txt. 같은 로컬 godot-windows-validation/windows-capture 및 기존 MIT helper(studio/common, 아래 출처), 신규 tools/build_tunnel_sample.py·capture_tunnel_sample.gd·run_tunnel_sample.py 사용. 기존 카탈로그 항목 보존하고 structure_sample/inspection_only 1건 추가. 게임 로직·설치·가격·push/main 없음; 후속③④는 새로 승인된 별도 묶음.

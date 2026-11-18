@@ -1,0 +1,152 @@
+{
+  "id": "viaduct-pier-01",
+  "status": "inspection_only",
+  "column_diameter_m": 2.0,
+  "cap_top_diameter_m": 4.0,
+  "cap_height_m": 2.0,
+  "base_diameter_m": 2.6,
+  "base_height_m": 0.3,
+  "min_deck_level_m": 5.0,
+  "rotationally_symmetric": true,
+  "radial_segments": 48,
+  "twin_rule": "W ≥ 16m: ±W/4",
+  "spacing_m": {
+    "default": 32,
+    "min": 16,
+    "max": 48
+  },
+  "reference_deck_level_m": 10,
+  "shaft_height_m": 5.7,
+  "triangles": 852,
+  "bounds_blender_m": {
+    "min": [
+      -2.0,
+      -2.0,
+      0.0
+    ],
+    "max": [
+      2.0,
+      2.0,
+      8.0
+    ]
+  },
+  "source": "assets/structures/viaduct-pier-01/structure.blend",
+  "model": "res://assets/structures/viaduct-pier-01/viaduct-pier-01.glb",
+  "parts": {
+    "base": {
+      "file": "pier_base.png",
+      "origin_definition": "axis at part bottom",
+      "origin_pixel": [
+        96.0,
+        44.7999267578125
+      ],
+      "resolution": [
+        192.0,
+        80.0
+      ]
+    },
+    "cap": {
+      "file": "pier_cap.png",
+      "origin_definition": "axis at part bottom",
+      "origin_pixel": [
+        96.0,
+        103.999946594238
+      ],
+      "resolution": [
+        192.0,
+        144.0
+      ]
+    },
+    "shaft": {
+      "file": "pier_shaft.png",
+      "origin_definition": "axis x; cropped middle1m with no ellipse ends",
+      "origin_pixel": [
+        96.0,
+        0.0
+      ],
+      "resolution": [
+        192.0,
+        32.0
+      ]
+    }
+  },
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 60.06218147531038
+  },
+  "sprite_render": {
+    "angles_deg": [
+      0
+    ],
+    "assembly": {
+      "base_z_m": 0,
+      "cap_bottom_m": "h-4.0",
+      "draw_order": [
+        "shaft",
+        "base",
+        "cap"
+      ],
+      "shaft_bottom_m": 0.3,
+      "shaft_stretch": "height=(h-4.3)*32+2*underlap; upper y=project(h-4)-underlap",
+      "shaft_underlap_pixels_each_end": 18.475208614068
+    },
+    "camera_elevation_deg": 30,
+    "light": {
+      "ambient_color": "d9e4f0",
+      "ambient_energy": 0.75,
+      "energy": 1.1,
+      "rotation_degrees": [
+        -55,
+        -35,
+        0
+      ],
+      "shadows": false
+    },
+    "parts": {
+      "base": {
+        "file": "pier_base.png",
+        "origin_definition": "axis at part bottom",
+        "origin_pixel": [
+          96.0,
+          44.7999267578125
+        ],
+        "resolution": [
+          192.0,
+          80.0
+        ]
+      },
+      "cap": {
+        "file": "pier_cap.png",
+        "origin_definition": "axis at part bottom",
+        "origin_pixel": [
+          96.0,
+          103.999946594238
+        ],
+        "resolution": [
+          192.0,
+          144.0
+        ]
+      },
+      "shaft": {
+        "file": "pier_shaft.png",
+        "origin_definition": "axis x; cropped middle1m with no ellipse ends",
+        "origin_pixel": [
+          96.0,
+          0.0
+        ],
+        "resolution": [
+          192.0,
+          32.0
+        ]
+      }
+    },
+    "pixels_per_metre": 36.950417228136,
+    "renderer": "Godot4.6.3 Compatibility actual transparent orthographic framebuffer",
+    "rotationally_symmetric": true,
+    "vertical_pixels_per_metre": 32
+  }
+}

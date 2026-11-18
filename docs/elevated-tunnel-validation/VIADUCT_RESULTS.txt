@@ -1,0 +1,73 @@
+Actual Blender4.3.2 original/save/reload: pier852tri 4x4x8m; viaduct4404tri40x12x11.1m.
+C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe --path C:\Users\wlgml\AppData\Local\hermes\profiles\cities-asset\cache\scratch\elevated-tunnel\viaduct-godot --audio-driver Dummy --rendering-method gl_compatibility --resolution 800x500 --borderless --quit-after 300 --script res://viaduct.gd -- D:\project\simcity-elevated\docs\elevated-tunnel-validation\viaduct-03-1600.png D:\project\simcity-elevated\cities_do\assets\structures\viaduct-pier-01
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started 프로젝트 초기화 (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | 파일 구조 스캔 중...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | 전역 클래스 이름을 불러오는 중...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | GDExtensions 검증 중...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | 오토로드 스크립트를 만드는 중...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | 플러그인을 초기화 중...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | 파일 스캔 시작 중...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started 전역 클래스를 등록하는 중... (3 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started 액션 스캔 중... (4 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | viaduct-pier-01.glb[39m[0m
+[  20% ] [90m[1m_update_scan_actions[22m | viaduct-sample-01.glb[39m[0m
+[  40% ] [90m[1m_update_scan_actions[22m | deck_side.png[39m[0m
+[  60% ] [90m[1m_update_scan_actions[22m | car-sedan-03.glb[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 애셋 (다시) 가져오는 중 (4 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  20% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  40% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[  60% ] [90m[1mreimport[22m | 다시 가져올 파일을 준비 중...[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져오기 전 작업을 수행 중...[39m[0m
+[   0% ] [90m[1mreimport[22m | deck_side.png[39m[0m
+[  20% ] [90m[1mreimport[22m | viaduct-pier-01.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  40% ] [90m[1mreimport[22m | viaduct-sample-01.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  60% ] [90m[1mreimport[22m | car-sedan-03.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started 씬 가져오기 (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | 씬 가져오는 중...[39m[0m
+[   1% ] [90m[1mimport[22m | 커스텀 스크립트 실행 중...[39m[0m
+[  99% ] [90m[1mimport[22m | 저장 중...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  80% ] [90m[1mreimport[22m | 애셋 가져오기 마무리 중...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 애셋 (다시) 가져오는 중 (4 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 다시 가져오기 후 작업을 수행 중...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started 편집기를 불러오는 중 (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | 편집기 레이아웃을 불러오는 중...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | 독을 불러오는 중...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+VIADUCT_SAMPLE_PASS checks=5
+
+Actual transparent Godot parts and fixed framebuffer; inspection only, no game logic or price.
