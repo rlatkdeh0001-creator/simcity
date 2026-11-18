@@ -2,6 +2,7 @@ extends RefCounted
 ## Structural routing only. No clock, dispatch, fares, scene or mutable operational state.
 const Network=preload("res://core/traffic_network.gd")
 const Paths=preload("res://core/road_junctions.gd")
+const Crossover=preload("res://core/terminal_crossover.gd")
 const EPS:=0.002
 var nodes:Array[Vector2]=[]
 var edges:Array[Dictionary]=[]
@@ -21,12 +22,13 @@ func rail_plan(city,line:Dictionary)->Dictionary:
  nodes.clear();edges.clear();outgoing.clear()
  var kind:String="metro" if line.kind=="metro" else "rail"
  var targets:Array[int]=[]
+ var stations:Array[Dictionary]=[]
  for id:Variant in line.stops:
   var found:=false
   for lot:Dictionary in city.public_facilities.lots:
    if lot.id!=id or lot.get("internal_kind","")!=kind:continue
    var p:PackedVector2Array=lot.internal_points
-   targets.append(node((p[0]+p[-1])*2));found=true;break
+   targets.append(node((p[0]+p[-1])*2));stations.append(lot);found=true;break
   if not found:return failure()
  var segments:Array=[]
  for route:Dictionary in city.transit_routes:
@@ -47,10 +49,14 @@ func rail_plan(city,line:Dictionary)->Dictionary:
   for i in range(1,ids.size()):edge(ids[i-1],ids[i],segment.host);edge(ids[i],ids[i-1],segment.host)
  if targets.size()<2:return failure()
  var best:Dictionary={}
- for start:int in outgoing.get(targets[0],[]):
-  var candidate:=cycle(start,targets)
-  if not candidate.is_empty() and (best.is_empty() or candidate.length<best.length):best=candidate
- if best.is_empty():return failure()
+ if not line.get("turnback",false):
+  for start:int in outgoing.get(targets[0],[]):
+   var candidate:=cycle(start,targets)
+   if not candidate.is_empty() and (best.is_empty() or candidate.length<best.length):best=candidate
+ if best.is_empty():
+  if not line.get("turnback",false) and not line.get("allow_turnback",false):return failure()
+  var open := _open_path(targets, stations, city, line)
+  return open if not open.is_empty() else Crossover.failure()
  var center:=PackedVector2Array([nodes[targets[0]]]);var hosts:Array=[]
  var stop_vertices:Array[int]=[0];var next_stop:=1
  for id:int in best.edges:
@@ -64,7 +70,75 @@ func rail_plan(city,line:Dictionary)->Dictionary:
  var stops:Array=[]
  for i in range(stop_vertices.size()):stops.append({"id":line.stops[i],"distance":distances[stop_vertices[i]]})
  return {"ok":true,"points":points,"distances":distances,"length":distances[-1],"stops":stops,"hosts":hosts,"kind":kind}
-func cycle(start:int,targets:Array[int])->Dictionary:
+
+func _open_path(targets: Array[int], stations: Array[Dictionary], city, line: Dictionary) -> Dictionary:
+ var best: Dictionary = {}
+ var chosen: Array = []
+ for start: int in outgoing.get(targets[0], []):
+  var first := _switch_at(stations[0], edges[start].heading)
+  if first.is_empty() or not Crossover.available(city, first):continue
+  var fixed: Array = line.get("terminal_ports", [])
+  if not fixed.is_empty() and first.port != fixed[0][1]:continue
+  var finishes: Dictionary = {}
+  for port: int in range(stations[-1].station_ports.size()):
+   if not fixed.is_empty() and port != fixed[1][1]:continue
+   var last := Crossover.geometry(stations[-1], port)
+   if Crossover.available(city, last):finishes[port] = last
+  if finishes.is_empty():continue
+  var candidate := cycle(start, targets, finishes)
+  if candidate.is_empty():continue
+  var last: Dictionary = finishes[candidate.port]
+  if best.is_empty() or candidate.length < best.length:
+   best = candidate
+   chosen = [first, last]
+ if best.is_empty():return {}
+ var center := PackedVector2Array([nodes[targets[0]]])
+ var vertices: Array[int] = [0]
+ var hosts: Array = []
+ for id: int in best.edges:
+  center.append(nodes[edges[id].b])
+  if not edges[id].host in hosts:hosts.append(edges[id].host)
+  if vertices.size() < targets.size() and edges[id].b == targets[vertices.size()]:vertices.append(center.size()-1)
+ var forward := _turnback_leg(center, vertices, line.stops, chosen[0])
+ var backwards := PackedVector2Array(center);backwards.reverse()
+ var reversed_stops: Array = line.stops.duplicate();reversed_stops.reverse()
+ vertices.reverse()
+ for i: int in range(vertices.size()):vertices[i] = center.size()-1-vertices[i]
+ var back := _turnback_leg(backwards, vertices, reversed_stops, chosen[1])
+ if forward.stops.size()!=vertices.size() or back.stops.size()!=vertices.size():return {}
+ var stops: Array = forward.stops.duplicate()
+ for i: int in range(1, back.stops.size()-1):
+  stops.append({"id":back.stops[i].id,"distance":forward.length+back.stops[i].distance})
+ return {"ok":true,"turnback":true,"legs":[forward,back],"length":forward.length+back.length,
+  "stops":stops,"hosts":hosts,"kind":chosen[0].kind,"terminal_ports":[[chosen[0].station_id,chosen[0].port],[chosen[1].station_id,chosen[1].port]]}
+
+func _switch_at(lot: Dictionary, axis: Vector2) -> Dictionary:
+ for i: int in range(lot.station_ports.size()):
+  var x := Crossover.geometry(lot, i)
+  if Vector2(x.axis).dot(axis) > 0.99999:return x
+ return {}
+
+func _turnback_leg(center: PackedVector2Array, vertices: Array[int], ids: Array, x: Dictionary) -> Dictionary:
+ # Path 1 starts on the inbound rail and joins the right-hand outbound rail.
+ var half: float = x.lateral_m/2.0
+ var axis: Vector2 = x.axis
+ var side := Vector2(-axis.y, axis.x)
+ var points := PackedVector2Array([center[0]-side*half])
+ points.append_array(x.paths[1])
+ var last: Vector2 = x.end
+ var track: PackedVector2Array = Network.new()._offset(center, half, false)
+ var distances := PackedFloat64Array([0.0])
+ for i: int in range(1, points.size()):distances.append(distances[-1]+points[i-1].distance_to(points[i]))
+ var stops: Array = [{"id":ids[0],"distance":0.0}]
+ for i: int in range(1, center.size()):
+  if (center[i]-last).dot(axis) < -EPS and Geometry2D.get_closest_point_to_segment(center[i],center[0],last).distance_to(center[i]) < EPS:continue
+  if points[-1].distance_to(track[i]) > EPS:
+   distances.append(distances[-1]+points[-1].distance_to(track[i]));points.append(track[i])
+  if stops.size() < vertices.size() and vertices[stops.size()] == i:
+   stops.append({"id":ids[stops.size()],"distance":distances[-1]})
+ return {"points":points,"distances":distances,"length":distances[-1],"stops":stops}
+
+func cycle(start:int,targets:Array[int],finishes:Dictionary={ })->Dictionary:
  var first:Dictionary=edges[start]
  var stage:int=2 if first.b==targets[1] else 1
  var key:String="%d:%d"%[start,stage]
@@ -72,13 +146,17 @@ func cycle(start:int,targets:Array[int])->Dictionary:
  while not pending.is_empty():
   pending.sort_custom(func(a,b):return float(costs[a])<float(costs[b]))
   var current:String=pending.pop_front();var state:Array=states[current];var incoming:Dictionary=edges[state[0]]
-  if state[1]==targets.size() and incoming.b==targets[0] and incoming.heading.dot(first.heading)>.965:
+  var port := -1
+  if not finishes.is_empty() and state[1]==targets.size() and incoming.b==targets[-1]:
+   for finish_port: int in finishes:
+    if Vector2(finishes[finish_port].axis).dot(incoming.heading)<-0.99999:port=finish_port;break
+  if port>=0 or (finishes.is_empty() and state[1]==targets.size() and incoming.b==targets[0] and incoming.heading.dot(first.heading)>.965):
    var result:Array[int]=[];var cursor:String=current
    while true:
     result.push_front(states[cursor][0])
     if not previous.has(cursor):break
     cursor=previous[cursor]
-   return {"edges":result,"length":costs[current]}
+   return {"edges":result,"length":costs[current],"port":port}
   for next:int in outgoing.get(incoming.b,[]):
    var following:Dictionary=edges[next]
    if incoming.heading.dot(following.heading)<.965:continue
@@ -91,10 +169,11 @@ func cycle(start:int,targets:Array[int])->Dictionary:
    if not next_key in pending:pending.append(next_key)
  return {}
 static func sample(plan:Dictionary,distance:float)->Dictionary:
- distance=fposmod(distance,float(plan.length))
+ return sample_leg(plan,fposmod(distance,float(plan.length)))
+static func sample_leg(plan:Dictionary,distance:float)->Dictionary:
  var points:PackedVector2Array=plan.points;var distances:PackedFloat64Array=plan.distances
  for i in range(1,points.size()):
-  if distance<=distances[i]:
+  if distance<=distances[i] or i==points.size()-1:
    var heading:Vector2=(points[i]-points[i-1]).normalized()
    return {"position":points[i-1]+heading*(distance-distances[i-1]),"heading":heading}
  return {"position":points[0],"heading":(points[1]-points[0]).normalized()}

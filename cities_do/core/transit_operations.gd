@@ -1,14 +1,18 @@
 extends RefCounted
 ## Worker-only fixed-step operations. Persisted state contains primitives, not Curve/scene objects.
 const Planner=preload("res://core/transit_line_planner.gd")
+const Crossover=preload("res://core/terminal_crossover.gd")
 const STEP:=1.0/30.0
 var config:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/transit_operation_config.json"))
 var signature:int=0
 var plans:Dictionary={}
+var conflict_zones:Array=[]
 func rebuild(city):
  var key:int=hash([city.transit_routes,city.roads,city.public_facilities.lots,city.transit_lines])
  if key==signature:return
  signature=key;plans.clear()
+ conflict_zones.clear()
+ for x:Dictionary in Crossover.owned(city).values():conflict_zones.append(Crossover.conflict_zone(x))
  for line:Dictionary in city.transit_lines:
   if line.kind!="bus":plans[line.id]=Planner.new().rail_plan(city,line)
 func advance(city,seconds:float):
@@ -34,7 +38,7 @@ func advance(city,seconds:float):
    if train.is_empty():
     train={"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"dwell_until":state.seconds+line.dwell_seconds,"departures":0,"departure_pending":true,"last_departure":-INF,"kind":line.kind,"visible":[]}
     var initial:=poses(line.id,train)
-    if not clear(initial,state.trains,line.id):state.lines[line.id]={"status":"waiting"};continue
+    if not clear(initial,state.trains,line.id,conflict_zones):state.lines[line.id]={"status":"waiting"};continue
     train.visible=initial;state.trains[line.id]=train
    state.lines[line.id]={"status":"dwelling" if state.seconds<train.dwell_until else "running","departures":train.departures}
    if state.seconds<train.dwell_until:continue
@@ -53,7 +57,7 @@ func advance(city,seconds:float):
    var old:float=train.distance
    train.distance+=minf(remaining,speed*STEP)
    var candidate:=poses(line.id,train)
-   if clear(candidate,state.trains,line.id):
+   if clear(candidate,state.trains,line.id,conflict_zones):
     train.visible=candidate;train.speed=speed
     if train.get("departure_pending",false) and train.distance>old:
      train.departures+=1;train.last_departure=state.seconds;train.departure_pending=false
@@ -128,8 +132,20 @@ static func poses(id:int,train:Dictionary)->Array:
  var cars:Array=consist(train.kind);var length:=0.0
  for car:Array in cars:length+=car[1]
  var offset:float=length/2;var result:Array=[]
+ var leg:Dictionary=train.plan
+ var position:float=train.distance
+ var is_turnback:bool=train.plan.get("turnback",false)
+ var reversed:=false
+ if is_turnback:
+  var phase:=fposmod(position,float(train.plan.length))
+  var forward:Dictionary=train.plan.legs[0]
+  reversed=phase>=forward.length
+  leg=train.plan.legs[int(reversed)]
+  position=phase-float(forward.length) if reversed else phase
  for i in range(cars.size()):
-  var car:Array=cars[i];var pose:=Planner.sample(train.plan,train.distance+offset-float(car[1])/2)
+  var car:Array=cars[i]
+  var car_offset:=offset-float(car[1])/2
+  var pose:=Planner.sample_leg(leg,position+(-car_offset if reversed else car_offset)) if is_turnback else Planner.sample(leg,position+car_offset)
   pose.merge({"id":"%d:%d"%[id,i],"line_id":id,"asset_id":car[0],"length_m":car[1],"width_m":3.0,"kind":train.kind,"height_m":-12.7 if train.kind=="metro" else 0.0})
   result.append(pose);offset-=float(car[1])
   if train.kind=="freight" and i==1:
@@ -140,9 +156,14 @@ static func body(pose:Dictionary)->PackedVector2Array:
  var side:=Vector2(-pose.heading.y,pose.heading.x)*float(pose.width_m)/2
  var p:Vector2=pose.position
  return PackedVector2Array([p-along-side,p+along-side,p+along+side,p-along+side])
-static func clear(candidate:Array,trains:Dictionary,own:int)->bool:
+static func clear(candidate:Array,trains:Dictionary,own:int,zones:Array=[])->bool:
+ var claimed:Array=[]
+ for zone:Dictionary in zones:
+  if _occupies_zone(candidate,zone):claimed.append(zone)
  for id:Variant in trains:
   if id==own:continue
+  for zone:Dictionary in claimed:
+   if _occupies_zone(trains[id].visible,zone):return false
   for other:Dictionary in trains[id].visible:
    if other.get("cargo",false):continue
    for pose:Dictionary in candidate:
@@ -150,3 +171,9 @@ static func clear(candidate:Array,trains:Dictionary,own:int)->bool:
     if pose.position.distance_to(other.position)>(pose.length_m+other.length_m)/2+4:continue
     if not Geometry2D.intersect_polygons(body(pose),body(other)).is_empty():return false
  return true
+static func _occupies_zone(poses:Array,zone:Dictionary)->bool:
+ for pose:Dictionary in poses:
+  if pose.get("cargo",false) or (pose.kind=="metro")!=(zone.kind=="metro"):continue
+  if pose.position.distance_squared_to(zone.center)>pow(float(pose.length_m)/2+10,2):continue
+  if not Geometry2D.intersect_polygons(body(pose),zone.polygon).is_empty():return true
+ return false

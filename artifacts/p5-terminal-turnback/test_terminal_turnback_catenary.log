@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+P5 facing-32m X 1:1 span=30.000m max_wire_to_S=0.438m
+P5 facing-32m X 2:0 span=30.000m max_wire_to_S=0.438m
+TERMINAL_TURNBACK_CATENARY checks=23 failed=0

@@ -37,14 +37,55 @@ static func append_span(output:Array,points:PackedVector2Array,start:float,finis
  for side:float in [-1.0,1.0]:
   var a:Vector2=wire_anchor(first,side,portals,route_id)
   var b:Vector2=wire_anchor(last,side,portals,route_id)
-  var count:=maxi(2,ceili(a.distance_to(b)/2)*2)
-  for i in range(count):
-   var t0:=float(i)/count;var t1:=float(i+1)/count
-   var p:=a.lerp(b,t0);var q:=a.lerp(b,t1)
-   var n:Vector2=(b-a).normalized().orthogonal()*.45
-   var footprint:=PackedVector2Array([p-n,q-n,q+n,p+n])
-   output.append(line("contact",p,q,3.8,3.8,WIRE,footprint))
-   output.append(line("messenger",p,q,4.8-2*t0*(1-t0),4.8-2*t1*(1-t1),WIRE,footprint))
+  append_wire_pair(output,a,b)
+static func append_wire_pair(output:Array,a:Vector2,b:Vector2):
+ var count:=maxi(2,ceili(a.distance_to(b)/2)*2)
+ for i in range(count):
+  var t0:=float(i)/count;var t1:=float(i+1)/count
+  var p:=a.lerp(b,t0);var q:=a.lerp(b,t1)
+  var n:Vector2=(b-a).normalized().orthogonal()*.45
+  var footprint:=PackedVector2Array([p-n,q-n,q+n,p+n])
+  output.append(line("contact",p,q,3.8,3.8,WIRE,footprint))
+  output.append(line("messenger",p,q,4.8-2*t0*(1-t0),4.8-2*t1*(1-t1),WIRE,footprint))
+static func crossover_supports(x:Dictionary,city=null)->PackedVector2Array:
+ # The station-side support shares the required 1m lot setback support. The far
+ # support moves 1m inside the fixed 32m host only when its poles would break
+ # another station lot's 1m setback (ports facing at exactly 32m: 30m span).
+ var far:Vector2=x.end
+ if city!=null and far_end_at_station(x,city):far-=x.axis
+ return PackedVector2Array([(x.start+x.axis)/4.0,far/4.0])
+static func far_end_at_station(x:Dictionary,city)->bool:
+ var end:Vector2=x.end/4.0
+ var side:=Vector2(-x.axis.y,x.axis.x)
+ for lot:Dictionary in city.public_facilities.lots:
+  if lot.get("public_asset_id","")!="train-station-01" or lot.id==x.station_id:continue
+  # Same 1m lot mask and pole bases (+/-4m) as the ordinary support check.
+  var masks:Array=Geometry2D.offset_polygon(lot.polygon,.25,Geometry2D.JOIN_MITER)
+  for sign_value:float in [-1.0,1.0]:
+   if not base_allowed(end+side*sign_value,masks):return true
+ return false
+static func ground_crossover(x:Dictionary,city)->bool:
+ var axis:Vector2=x.axis
+ var origin:Vector2=x.start/4.0
+ for route:Dictionary in city.transit_routes:
+  if route.kind!="rail":continue
+  for i in range(1,route.points.size()):
+   var a:Vector2=route.points[i-1]-origin;var b:Vector2=route.points[i]-origin
+   if absf(a.cross(axis))>.0005 or absf(b.cross(axis))>.0005:continue
+   if maxf(a.dot(axis),b.dot(axis))<=.0005 or minf(a.dot(axis),b.dot(axis))>=7.9995:continue
+   if route.get("covered",false) or route.get("underground",false) or not is_zero_approx(float(route.rail_top_z_m)) or hidden_segment(route,i-1):return false
+ return true
+static func append_crossover(output:Array,x:Dictionary,city,masks:Array):
+ if not ground_crossover(x,city):return
+ var points:=crossover_supports(x,city)
+ var length:=length_of(points)
+ if not support_allowed(points,0,masks) or not support_allowed(points,length,masks):return
+ var normal:=normal_at(points,0)*.5
+ var start:=output.size()
+ for side:float in [-1.0,1.0]:append_wire_pair(output,points[0]+normal*side,points[1]-normal*side)
+ for i in range(start,output.size()):
+  output[i].crossover_key=x.key
+  output[i].route_id=-1
 static func append_poles(output:Array,points:PackedVector2Array,distance:float):
  var at:=sample(points,distance)
  for side:float in [-1.0,1.0]:
@@ -222,7 +263,7 @@ static func base_allowed(point:Vector2,masks:Array)->bool:
   for i in range(mask.size()):edge_distance=minf(edge_distance,point.distance_to(Geometry2D.get_closest_point_to_segment(point,mask[i],mask[(i+1)%mask.size()])))
   if edge_distance>.00001:return false
  return true
-static func append_run(output:Array,points:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array=[],route_id:int=-1):
+static func append_run(output:Array,points:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array=[],route_id:int=-1,crossovers:Array=[],city=null):
  if finish<=start:return
  # Group equal local pitch sections, then divide each into equal legal spans.
  var sections:Array=[];var distance:=0.0
@@ -245,6 +286,18 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
   positions=positions.filter(func(d):return d<=interval.x+.00001 or d>=interval.y-.00001)
   if interval.x>=start and interval.x<=finish:positions.append(interval.x)
   if interval.y>=start and interval.y<=finish:positions.append(interval.y)
+ for x:Dictionary in crossovers:
+  var supports:=crossover_supports(x,city)
+  var origin:Vector2=x.start/4.0;var axis:Vector2=x.axis
+  if not support_allowed(supports,0,masks) or not support_allowed(supports,length_of(supports),masks):continue
+  positions=positions.filter(func(d):
+   var at:=sample(points,d)
+   var relative:Vector2=at.point-origin
+   var axial:=relative.dot(axis)
+   return absf(relative.cross(axis))>.0005 or axial<-.0005 or axial>8.0005)
+  for point:Vector2 in supports:
+   var distance_on_run:=distance_on(points,point)
+   if distance_on_run>=start-.0001 and distance_on_run<=finish+.0001:positions.append(distance_on_run)
  # Resolve the shared section after ordinary-pole exclusions. Valid outer
  # bases replace the inner pair; rejected sections omit support, never wire.
  var portal_positions:Dictionary={}
@@ -268,7 +321,7 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
  if wires[-1]<finish-.0001:wires.append(finish)
  for d:float in unique:append_poles(output,points,d)
  for i in range(1,wires.size()):append_span(output,points,wires[i-1],wires[i],portals,route_id)
-static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bool,city,masks:Array,portals:Array=[]):
+static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bool,city,masks:Array,portals:Array=[],crossovers:Array=[]):
  if route.kind!="rail" or route.get("covered",false) or route.get("underground",false) or not is_zero_approx(float(route.rail_top_z_m)):return
  var generated:Array=[];var points:PackedVector2Array=route.points
  var station:=false
@@ -285,7 +338,8 @@ static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bo
     run[0]-=(run[1]-run[0]).normalized()*.25
     run[-1]+=(run[-1]-run[-2]).normalized()*.25
     start=0;finish=length_of(run)
-   append_run(generated,run,start,finish,masks,portals,int(route.id))
+   var surface:Array=crossovers.filter(func(x):return ground_crossover(x,city))
+   append_run(generated,run,start,finish,masks,portals,int(route.id),surface,city)
   run_start=i+1
  for item:Dictionary in generated:item.route_id=route.id
  append_clipped(output,generated,city)

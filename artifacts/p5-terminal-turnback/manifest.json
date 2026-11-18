@@ -1,0 +1,68 @@
+{
+  "branch": "perf/render-sim-cadence",
+  "base_commit": "bb6ca4c47824d32a4fc59d8b31bcf713a8c981ec",
+  "policy": "Working-copy docs/design/ASSET_REQUEST_RAIL_PARK_KO.md §5.12 (with §5.11 ground catenary setbacks), including the 2026-11-18 cities-claude decisions on the line edit contract (BLOCK 1) and X catenary supports (BLOCK 2)",
+  "review": "Implemented by cities-gpt; independent review BLOCK 1 (line edit contract) and BLOCK 2 (catenary supports at exactly facing 32m ports) fixed by cities-claude with one regression suite each. Final native GL capture saved and visually inspected by cities-claude.",
+  "owned_source_sha256": {
+    "cities_do/core/city_model.gd": "b595b85f3a2c961c54ac911041b6bb5e8215a0c95cf490beb820168b4efeb19d",
+    "cities_do/core/rail_catenary.gd": "229792ffd72200ce476901bbf68fc819a1d6fdd83fc2700c005caede3ecfc768",
+    "cities_do/core/terminal_crossover.gd": "987a25bc3723c5af25b80675f0a547c5bf222a747d00064e900e7f958e6d93e3",
+    "cities_do/core/transit_commuting.gd": "dd607f205af6f99ba4b994561d1ad89745ea78c5aaea3a8273d461db0347b6b4",
+    "cities_do/core/transit_line_planner.gd": "7d79459194f69bf6b6a1b490be875da93b461bf858cce99898e30249728d565c",
+    "cities_do/core/transit_operations.gd": "318ed4fd30f81f9f70079111fe4b8db695af30df98884f866f0b2073e6cd1fa6",
+    "cities_do/core/transit_view.gd": "2d4750895dea970bdbeb7b7e7cfc3c46fe9871d726c8e46f7e3c4384b0e6d048",
+    "cities_do/tests/test_rail_catenary.gd": "2cc616a38c66b43960927484ee3042ebadd9f6e43e08da662aa096a38f26a7f2",
+    "cities_do/tests/test_transit_operations.gd": "ff9a879f9c808033b071b08fe52527b11695bbe7a3db5dcfdc7d395559712038",
+    "cities_do/tests/test_terminal_turnback.gd": "43579d12b47ca22b3203bfd89d0c05316e18e6c83525ed2f9e4b0952db7d1794",
+    "cities_do/tests/test_terminal_turnback_native.gd": "6451236399ef0e50233cf66dd02e0c258070e56c7a16e3b038dfee8f3080b392",
+    "cities_do/tests/test_terminal_turnback_edit.gd": "bc70f26400b91bc113d9cf81910ea6bf933386711fc2828f6f1b90c7f391ed77",
+    "cities_do/tests/test_terminal_turnback_catenary.gd": "49150901a82ab359a5f19d97044bf51eb4cf338e6c537f9b5d71113cb51611f6"
+  },
+  "validation": {
+    "wrapper": "python tools/run_dotnet.py",
+    "engine": "4.6.3.stable.mono.official.7d41c59c4",
+    "headless_template": "python tools/run_dotnet.py --timeout 45 godot --headless --path cities_do --script res://tests/<log-basename>.gd",
+    "native_capture": "python tools/run_dotnet.py --timeout 35 godot --path cities_do --rendering-method gl_compatibility --rendering-driver opengl3 --max-fps 30 --resolution 1280x820 --script res://tests/test_terminal_turnback_native.gd -- --p5-capture=D:/project/simcity/artifacts/p5-terminal-turnback/turnback-1280.png",
+    "log_provenance": "Raw combined stdout/stderr redirected directly from the wrapper; exit zero and no SCRIPT ERROR, ERROR, FAIL or WARNING lines in final runs. All headless except test_terminal_turnback_native, whose log is the capture run (its 12th check is the explicit framebuffer save).",
+    "regressions": {
+      "test_terminal_turnback_edit.log": "BLOCK 1: native worker consist running on a turnback line; a physical loop is added and only the dwell time is edited -> stored turnback mode, terminal ports, both X and the plan are kept and the same consist keeps running and reverses through the far X. A stop-changing edit re-plans onto the loop and the extant consist is frozen in place (P3), then resumes from its own position when the original route is restored. Fails 5 checks with the old update path.",
+      "test_terminal_turnback_catenary.log": "BLOCK 2: real stations whose ports face at exactly 32m -> both X keep two contact wires, every support pole is at least 1m from both station lots and the span is 30m (max wire-to-S 0.438m <= 0.62m). Fails 14 checks with the old far support."
+    },
+    "logs": {
+      "test_rail_catenary.log": {"checks":87,"sha256":"711cb7ce85314b97f112a7d186a3f5d199d801710dbb2ee28a8baa38311a0b75"},
+      "test_rail_catenary_render.log": {"checks":48,"sha256":"54087fa70cc8d4e4d80d7d9f0628661b39ada936ebf64ea082bbf5d32cd23d6f"},
+      "test_terminal_turnback.log": {"checks":65,"sha256":"a22b9e28dfe374b58959e0c0efb993abb4f51803d8b5a850c20d20032893df92"},
+      "test_terminal_turnback_catenary.log": {"checks":23,"sha256":"4c578226c7e161bfef50c8cbce5dfee3ec7c503acbeedc8e2e7d4ac4752afa18"},
+      "test_terminal_turnback_edit.log": {"checks":19,"sha256":"f863f3613651e2f6a787d34213cc8b7dbbf089ac160d78424bd6f3a298b2ae6f"},
+      "test_terminal_turnback_native.log": {"checks":12,"sha256":"926a1a4518fed9ba34cc83f364bf755d929393f7d4518b5271ce794fb5351fcf"},
+      "test_transit_commuting.log": {"checks":36,"sha256":"65d300611af79cde5d0a5714bd4534940e6ebd25d26dca867356c00e080076a6"},
+      "test_transit_geometry.log": {"checks":227,"sha256":"64694659c39fcaf2969662ba33a5e98ef601e4d351bf4a3fc84add8cce96c5c7"},
+      "test_transit_operation_safety.log": {"checks":15,"sha256":"1397f473c8ab669537c9564b5ba690493f917b6446f497eae722db3aa1904ed9"},
+      "test_transit_operations.log": {"checks":39,"sha256":"e5f4d6787af39afc2e3e96305632b429e42065a1f42f946f29132c6fa28b407c"},
+      "test_transit_operations_fifo.log": {"checks":20,"sha256":"fdf6353860528e65f36987cba2c62a5df781890159f4fce2e2ac1cdcf39bb7ef"},
+      "test_transit_render.log": {"checks":28,"sha256":"232a51fb21e1a6971e1be031e021014f526689f70d44f153f6b3f8722738c6df"}
+    },
+    "suites": 12,
+    "total_checks_passed": 619,
+    "failed": 0
+  },
+  "capture": {
+    "file": "turnback-1280.png",
+    "sha256": "46ed934271620e19e98f78fb09fa574e7cdc08efec5dafeccc1623d888096903",
+    "invocation": "python tools/run_dotnet.py --timeout 35 godot --path cities_do --rendering-method gl_compatibility --rendering-driver opengl3 --max-fps 30 --resolution 1280x820 --script res://tests/test_terminal_turnback_native.gd -- --p5-capture=D:/project/simcity/artifacts/p5-terminal-turnback/turnback-1280.png",
+    "client_px": [1280,820],
+    "map_zoom": 2.0,
+    "crossover_center_world_m": [152.0,122.0],
+    "crossover_center_viewport_px": [580.0,245.0],
+    "expected_assertion": "A rail car in the current native worker publication has its center within 4m of the departing X center; the retained composition contains the full 3-car consist, X meshes and wires, and loaded station artwork. No framebuffer read or save occurs without the explicit flag.",
+    "inspection": "Opened and inspected: the white 3-car consist created by real viewport clicks leaves the original station artwork; its lead car sits between the X end supports (1m and 31m pole pairs) around the X center at the viewport anchor, with the crossing X contact wires overhead. The line is created at zoom 0.70; the capture composition zooms to 2.0 on the same X center only for legibility."
+  },
+  "notes": [
+    "Rail radius is 65m; metro uses the exact radius implied by 32m longitudinal and 8.3m lateral dimensions (nominal 32.9m).",
+    "Near X wires share the existing required 1m station setback support (span 31m, max 0.54m from the S path). The far support stays at the 32m host end unless its poles would break another station lot's 1m setback; then it also moves 1m inside. Ports facing at exactly 32m therefore get a 30m span (measured max 0.438m from the S path). All within the 0.62m half-width; no straight longer than 32m is required and no poles are added.",
+    "Edit contract: an update with the same stop list is a schedule-only edit. The stored row (turnback mode, terminal ports, X ownership) is kept and only validated as stored, so an obstructed route still rejects atomically with the exact message and nothing is re-chosen; a running consist keeps running even if a physical loop appeared meanwhile. Only a changed stop list re-plans; if an extant train's rebuilt path differs, the inherited P3 freeze blocks it in place (no teleport/respawn) until the route is restored or the line is recreated.",
+    "Freight and old physical-loop rows retain loop behavior. Road buses use the existing road plan and simulation.",
+    "No additional management UI, no E2/E3/E4 edits, no edits to protected docs or source assets/import metadata. No builds, installs, imports or performance measurements."
+  ],
+  "pending": []
+}

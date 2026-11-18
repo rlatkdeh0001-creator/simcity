@@ -6,6 +6,7 @@ class City extends RefCounted:
  var width:=120
  var height:=120
  var transit_routes:Array=[]
+ var transit_lines:Array=[]
  var road_pavement:Array=[]
  var junction_pavement:Array=[]
  var public_facilities={"lots":[]}

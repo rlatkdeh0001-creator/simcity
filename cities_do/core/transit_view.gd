@@ -1,6 +1,7 @@
 extends Node2D
 ## P1 physical route interaction and retained visuals; no operating lines/stations.
 const Routes=preload("res://core/transit_routes.gd")
+const Crossover=preload("res://core/terminal_crossover.gd")
 var view
 var anchors:=PackedVector2Array()
 var start_tangent:=Vector2.ZERO
@@ -34,7 +35,10 @@ func synchronize():
  if city_reference!=view.city:
   if city_reference!=null and city_reference.transit_changed.is_connected(synchronize):city_reference.transit_changed.disconnect(synchronize)
   city_reference=view.city;city_reference.transit_changed.connect(synchronize)
- var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.public_facilities.lots,view.city.width,view.city.height])
+ var terminals:Array=[]
+ for line:Dictionary in view.city.transit_lines:
+  if line.has("terminal_ports"):terminals.append([line.id,line.terminal_ports])
+ var key:=hash([view.city.get_instance_id(),view.city.transit_routes,view.city.roads,view.city.public_facilities.lots,terminals,view.city.width,view.city.height])
  if key!=geometry_signature:
   geometry_signature=key;generation+=1;geometry=build_geometry(view.city)
   rail_layer.shapes=geometry.rail;metro_layer.shapes=geometry.metro
@@ -104,7 +108,7 @@ static func ribbons(route:Dictionary)->Array:
   result.append(PackedVector2Array([points[i-1]-a,points[i]-b,points[i]+b,points[i-1]+a]))
  return result
 static func build_geometry(city)->Dictionary:
- var result:={"rail":[],"metro":[],"tracks":{},"catenary":[]}
+ var result:={"rail":[],"metro":[],"tracks":{},"catenary":[],"crossovers":{}}
  var bounds:=boundary(city)
  var roads:Array=city.road_pavement+city.junction_pavement
  # All ballast first, then textured running strips, so overlapping branches cannot bury rails.
@@ -122,13 +126,24 @@ static func build_geometry(city)->Dictionary:
  for pavement:PackedVector2Array in roads:pole_masks.append_array(Geometry2D.offset_polygon(pavement,.25,Geometry2D.JOIN_MITER))
  for lot:Dictionary in city.public_facilities.lots:
   if lot.get("public_asset_id","")=="train-station-01":pole_masks.append_array(Geometry2D.offset_polygon(lot.polygon,.25,Geometry2D.JOIN_MITER))
+ var crossovers: Array = []
+ var crossover_rails: Array = []
+ for x:Dictionary in Crossover.owned(city).values():
+  if x.kind!="rail":continue
+  result.crossovers[x.key]=x
+  crossovers.append(x)
+  for path_m:PackedVector2Array in x.paths:
+   var path:=PackedVector2Array()
+   for point:Vector2 in path_m:path.append(point/4.0)
+   append_track(result.rail,path,false,false,bounds,[])
+   append_track(crossover_rails,path,false,false,bounds,[],"strip_rails")
  for route:Dictionary in city.transit_routes:
   if route.kind!="rail":continue
   var masks:Array=roads.duplicate()
   for other:Dictionary in city.transit_routes:
    if other.kind=="rail" and other.id!=route.id:
     masks.append_array(ribbons(other))
-  preload("res://core/rail_catenary.gd").append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks)
+  preload("res://core/rail_catenary.gd").append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,[],crossovers)
   for path:PackedVector2Array in result.tracks[route.id]:
    append_track(result.rail,path,terminal(city,route,0),terminal(city,route,route.points.size()-1),bounds,masks)
  var catenary=preload("res://core/rail_catenary.gd")
@@ -136,8 +151,10 @@ static func build_geometry(city)->Dictionary:
  if not portals.is_empty():
   result.catenary.clear()
   for route:Dictionary in city.transit_routes:
-   catenary.append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,portals)
+   catenary.append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,portals,crossovers)
   result.catenary=catenary.apply_portals(result.catenary,portals)
+ result.rail.append_array(crossover_rails)
+ for x:Dictionary in crossovers:catenary.append_crossover(result.catenary,x,city,pole_masks)
  result.catenary=catenary.combine_inner_poles(result.catenary)
  var unique:Array=[];var seen:Dictionary={}
  for item:Dictionary in result.catenary:
@@ -146,7 +163,7 @@ static func build_geometry(city)->Dictionary:
  result.catenary=[]
  catenary.append_clipped(result.catenary,unique,city)
  return result
-static func append_track(output:Array,path:PackedVector2Array,start_cap:bool,end_cap:bool,bounds:PackedVector2Array,masks:Array):
+static func append_track(output:Array,path:PackedVector2Array,start_cap:bool,end_cap:bool,bounds:PackedVector2Array,masks:Array,texture:String="strip"):
  var total:=Routes.Paths.length_of(path)
  var samples:=PackedVector2Array([path[0]])
  var distances:=PackedFloat64Array([0.0])
@@ -166,7 +183,7 @@ static func append_track(output:Array,path:PackedVector2Array,start_cap:bool,end
   var a:=samples[i-1];var b:=samples[i]
   var n0:=normal_at(samples,i-1)*.45;var n1:=normal_at(samples,i)*.45
   var quad:=PackedVector2Array([a-n0,b-n1,b+n1,a+n0])
-  var u0:=distances[i-1];var u1:=distances[i];var name:="strip"
+  var u0:=distances[i-1];var u1:=distances[i];var name:=texture
   if start_cap and u1<=1.00001:name="strip_end";u0=1-distances[i-1];u1=1-distances[i]
   elif end_cap and u0>=total-1.00001:name="strip_end";u0=distances[i-1]-(total-1);u1=distances[i]-(total-1)
   var uv:=PackedVector2Array([Vector2(u0,0),Vector2(u1,0),Vector2(u1,1),Vector2(u0,1)])

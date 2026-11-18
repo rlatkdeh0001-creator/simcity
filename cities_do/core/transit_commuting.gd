@@ -55,14 +55,17 @@ func routes(city,exchange:Dictionary,context:Dictionary)->Array:
    var train:Dictionary=city.transit_state.trains.get(line.id,{})
    if not train.is_empty() and train.plan!=plan:continue
   if not plan.get("ok",false):continue
-  # P3 rail loops carry passengers in stop order, including the physical return leg.
-  for i in range(line.stops.size()):
-   var a:int=line.stops[i];var b:int=line.stops[(i+1)%line.stops.size()]
+   # The operational timetable includes intermediate stops again on the P5
+  # return leg. Do not invent a B -> A express leg past these stops.
+  var served_stops:Array=line.stops if line.kind=="bus" else plan.stops.map(func(stop):return stop.id)
+  for i in range(served_stops.size()):
+   var next:int=(i+1)%served_stops.size()
+   var a:int=served_stops[i];var b:int=served_stops[next]
    if not lots.has(a) or not lots.has(b):continue
    if not served.has(a):served[a]=[]
    served[a].append(line.kind)
    var length:float=0.0
-   if line.kind!="bus":length=fposmod(float(plan.stops[(i+1)%line.stops.size()].distance)-float(plan.stops[i].distance),float(plan.length))
+   if line.kind!="bus":length=fposmod(float(plan.stops[next].distance)-float(plan.stops[i].distance),float(plan.length))
    else:length=_bus_distance(plan,i)
    add_edge(edges,a,b,{"kind":line.kind,"line_id":line.id,"from_stop":a,"to_stop":b,"distance_m":length})
  for a:int in served:

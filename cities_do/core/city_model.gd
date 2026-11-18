@@ -42,6 +42,7 @@ var height: int
 var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
 const TransitRoutes=preload("res://core/transit_routes.gd")
+const TerminalCrossover=preload("res://core/terminal_crossover.gd")
 var transit_routes:Array[Dictionary]=[]
 var next_transit_route_id:=1
 # Plans are editable; operational state is advanced only by the detached worker.
@@ -50,6 +51,44 @@ var next_transit_line_id:=1
 var transit_state:Dictionary={"seconds":0.0,"trains":{},"bus":{},"lines":{},"visible":[]}
 func create_transit_line(kind:String,stops:Array,options:Dictionary={})->Dictionary:
 	if _defer_simulation_edit(create_transit_line.bind(kind,stops.duplicate(),options.duplicate(true))):return _queued_simulation_edit()
+	return _set_transit_line(-1,kind,stops,options)
+func update_transit_line(id:int,stops:Array,options:Dictionary={})->Dictionary:
+	if _defer_simulation_edit(update_transit_line.bind(id,stops.duplicate(),options.duplicate(true))):return _queued_simulation_edit()
+	for i in range(transit_lines.size()):
+		var current:Dictionary=transit_lines[i]
+		if current.id!=id:continue
+		var schedule:Dictionary={"headway_seconds":current.headway_seconds,"dwell_seconds":current.dwell_seconds}
+		schedule.merge(options,true)
+		# P5 edit contract: an unchanged stop list is a schedule-only edit. Never
+		# re-plan it, so the stored turnback mode/terminal ports and the running
+		# consist survive even if a physical loop appeared meanwhile.
+		if _same_transit_stops(stops,current.stops):return _set_transit_schedule(i,schedule)
+		return _set_transit_line(i,current.kind,stops,schedule)
+	return TransitRoutes.failure("unknown_line","없는 노선입니다")
+static func _same_transit_stops(stops:Array,current:Array)->bool:
+	if stops.size()!=current.size():return false
+	for i in range(stops.size()):
+		if not stops[i] is int or stops[i]!=current[i]:return false
+	return true
+func _set_transit_schedule(index:int,schedule:Dictionary)->Dictionary:
+	var line:Dictionary=transit_lines[index].duplicate(true)
+	for key:String in ["headway_seconds","dwell_seconds"]:
+		if not (schedule[key] is int or schedule[key] is float) or not is_finite(float(schedule[key])) or schedule[key]<1:return TransitRoutes.failure("invalid_schedule","운행 간격을 확인하세요")
+		line[key]=float(schedule[key])
+	# Validate the stored row as stored (fixed turnback mode and terminal ports, no
+	# allow_turnback): an obstructed route still rejects atomically, nothing is re-chosen.
+	var plan:Dictionary
+	if line.kind=="bus":
+		var network=preload("res://core/scheduled_bus_network.gd").new();network.build_city(self);plan=network.line_plan(line.stops)
+	else:plan=preload("res://core/transit_line_planner.gd").new().rail_plan(self,line)
+	if not plan.ok:return plan
+	transit_lines[index]=line
+	if simulation!=null:simulation.note_world_dirty("transit_lines")
+	transit_changed.emit()
+	return {"ok":true,"line":line.duplicate(true)}
+func terminal_crossovers()->Dictionary:
+	return TerminalCrossover.owned(self)
+func _set_transit_line(index:int,kind:String,stops:Array,options:Dictionary)->Dictionary:
 	if kind not in ["bus","rail","metro","freight"] or stops.size()<2:return TransitRoutes.failure("invalid_line","정류장을 두 곳 이상 선택하세요")
 	var seen:Dictionary={}
 	for id:Variant in stops:
@@ -68,11 +107,21 @@ func create_transit_line(kind:String,stops:Array,options:Dictionary={})->Diction
 	var plan:Dictionary
 	if kind=="bus":
 		var network=preload("res://core/scheduled_bus_network.gd").new();network.build_city(self);plan=network.line_plan(stops)
-	else:plan=preload("res://core/transit_line_planner.gd").new().rail_plan(self,line)
+	else:
+		if kind in ["rail","metro"]:line.allow_turnback=true
+		plan=preload("res://core/transit_line_planner.gd").new().rail_plan(self,line)
+		line.erase("allow_turnback")
 	if not plan.ok:return plan
-	transit_lines.append(line);next_transit_line_id+=1
+	if plan.get("turnback",false):
+		line.turnback=true
+		line.terminal_ports=plan.terminal_ports
+	if index<0:
+		transit_lines.append(line);next_transit_line_id+=1
+	else:
+		line.id=transit_lines[index].id;transit_lines[index]=line
 	if simulation!=null:
 		simulation.note_world_dirty("transit_lines");simulation.note_meta("next_transit_line_id",next_transit_line_id)
+	transit_changed.emit()
 	return {"ok":true,"line":line.duplicate(true)}
 func remove_transit_line(id:int)->Dictionary:
 	if _defer_simulation_edit(remove_transit_line.bind(id)):return _queued_simulation_edit()
@@ -80,6 +129,7 @@ func remove_transit_line(id:int)->Dictionary:
 		if transit_lines[i].id==id:
 			transit_lines.remove_at(i)
 			if simulation!=null:simulation.note_world_dirty("transit_lines")
+			transit_changed.emit()
 			return {"ok":true}
 	return TransitRoutes.failure("unknown_line","없는 노선입니다")
 static func validate_transit_lines(rows:Variant)->String:
@@ -95,6 +145,14 @@ static func validate_transit_lines(rows:Variant)->String:
 		for id:Variant in row.stops:
 			if not id is int or id<1 or stops.has(id):return "invalid line stop"
 			stops[id]=true
+		if row.has("turnback") or row.has("terminal_ports"):
+			if row.kind not in ["rail","metro"] or not row.get("turnback") is bool or not row.turnback:return "invalid turnback"
+			var ports:Variant=row.get("terminal_ports")
+			if not ports is Array or ports.size()!=2:return "invalid terminal ports"
+			for i in range(2):
+				var port:Variant=ports[i]
+				if not port is Array or port.size()!=2 or not port[0] is int or not port[1] is int:return "invalid terminal port"
+				if port[0]!=row.stops[0 if i==0 else -1] or port[1] not in [0,1]:return "invalid terminal ownership"
 		for key:String in ["headway_seconds","dwell_seconds"]:
 			if not (row.get(key) is float or row.get(key) is int) or not is_finite(float(row[key])) or row[key]<1:return "invalid line schedule"
 	return ""
