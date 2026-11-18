@@ -1,5 +1,83 @@
 # CITIES_DO 스킬 인계장
 
+## 화물 기관차 v3 색상만 변경 (2026-11-18, cities-asset)
+
+`tools/build_rail_freight_v3.py`: 기존 열차 Dark `30383b`를 바퀴8·대차 틀6개 슬롯에만 적용. v2 형상/다른 재질 그대로,4536tri/10×3×3.8m. 신규 v3 blend/build/spec/preview/GLB/8방향 PNG 및 catalog 참조, render_manifest 교정값 동일. v1/v2 보존.
+로컬 `software-development/godot-windows-validation`(upstream/pin 없음), 기존 MIT helper/NOTICE(아래 출처) 재사용. 실제 Blender4.3.2 렌더 성공, `run_rail_freight_v3.py` 독립 Godot4.6.3 GL 로드/크기/정면/레일/바퀴6검사 통과. v2/v3 GLB geometry BIN·nodes·accessors 동일, 허용14슬롯만 변경. 단일1600×1000 실화면 `docs/rail-park-validation/freight-loco-v3-1600.png` 육안 확인; 간단 결과 `FREIGHT_LOCO_V3_RESULTS.txt`. 최신 요청서 바이트 그대로 복사. 설치·게임 코드·운행·push·main 없음.
+
+
+## 화물 기관차 v2 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight_v2.py`: 새 v2 원본/GLB/8방향 PNG, 큰 연속 루버·양끝 운전실 창·밝은 대차와 바퀴·하부 기기함·분할 보호판/발판/손잡이·어두운 낮은 팬터그래프. 차체9m/전체10×3×3.8m,4536tri, 팬터그래프 전체 정점 최고3.799999952m. v1 및 다른 애셋 보존. catalog v2 교체; render_manifest는 재생성 결과 기존24.815891762990255px/m·8각도와 동일하여 diff 없음.
+기존 bogies/couplers/renderer(MIT 고정 출처·NOTICE 아래 기록)와 로컬 `software-development/godot-windows-validation`(upstream/pin 없음)을 사용, 설치 없음. `run_rail_freight_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드·치수·정면·접촉2곳·26m·바퀴/레일·팬터그래프14검사 통과. 단일1600×1000 원시 framebuffer `docs/rail-park-validation/freight-loco-v2-1600.png`: 같은 축척/조명의v1/v2 낮은 측면, 적재편성 및 옆 선두차v3 육안 확인. `FREIGHT_LOCO_V2_RESULTS.txt` 실제 결과. 갱신 요청서192행을 원문 바이트 그대로 복사. 사용자 검수 대기; 게임 코드·운행·가격·main·push 없음.
+
+## 기차역 v2 지하도 (2026-11-17, cities-asset)
+
+`tools/build_rail_station_v2.py`: v1의 읽기 전용 helper 재사용, 앞 구간 y−6m·기존 원본 보존. 새 v2 `.blend/build.py/spec/preview`와 GLB/PNG, 해당 카탈로그 항목만 교체. 실측32×36m, 지상최고10.56m/최저−3.85m,17461tri. 두 승강장32×4.2m·면1.1m, 계단통 각각 네 벽·유한 바닥−3.6m·중간참·내폭1.8m/옆 보행2.1m. StationFront/StationRear 두 노드와 위아래 빈7.6m 선로 자리; 지하 통로 없음.
+기존 common/studio MIT 출처·NOTICE(아래 기록), 로컬 `godot-windows-validation`(upstream/pin 없음) 사용, 설치 없음. `run_rail_station_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드/치수/분리/계단통/편성접촉/간격/정면11검사 통과. 요청 단일 최종 `docs/rail-park-validation/station-v2-1600.png`에 앞/뒤·동일축척v1·택시/사람·캐노피만 숨긴 명시적 검사 컷어웨이 포함; source visibility 유지. 최초 구도 잘림·계단 과노출은 fixture 카메라/조명만 보정해 최종 확인. `STATION_V2_RESULTS.txt`에 실제 명령/결과. 지형 절개·배치·터널 연결·운행은 코드측 후속, 사용자 검수 대기. 게임 코드·가격·main·push 없음.
+
+## 대형 공원 v2 나무 축척 (2026-11-17, cities-asset)
+
+`tools/build_rail_park_large_v2.py`와 `measure_park_trees.py`: 기존 plaza/play .blend world 정점 읽기 전용 실측 후 동일 subdivision-1 수관·전체 높이4.5/4.8m로24그루 교체. 32×32×4.8m,4356tri(요청 하한6000 미달은 참조 지오메트리 우선, 불필요한 면 추가 없음). 부지·연못·길·정자·벤치·나무 위치 유지, 원본v1 보존. 신규 v2 소스/build.py/spec/GLB/800×680 studio PNG, 해당 catalog 항목만 갱신.
+프로필 `software-development/godot-windows-validation`(로컬, upstream/pin 없음) 및 기존 common/studio MIT 고정 출처·NOTICE(아래 참조) 재사용, 설치 없음. `run_rail_park_large_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 GLB 로드·32m·정면·높이·24줄기/72수관 검사 통과, `park-large-v2-1600.png` 기존4×4 공원 옆 단일 실제 캡처 육안 확인. 결과 `PARK_LARGE_V2_RESULTS.txt`. 보호 원본·게임 코드·station v2·main·push 변경 없음.
+
+
+## 박스형 전기 화물 기관차 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight.py`: train-loco-freight-01 차체9m/전체10×3×3.8m,4536tri. 저채도 황토 상자 차체·양끝 창2개·앞 전조등/뒤 미등·측면 루버/점검문·오목부 팬터그래프1기(최고3.8m), 디젤/노즈 없음. 기존 bogies/couplers/8방향 renderer(MIT 고정 출처/NOTICE 아래 참조), 프로필 godot-windows-validation 사용. `.blend`·build.py·spec·GLB·8×430×245 PNG와 catalog/manifest 등록. `run_rail_freight.py` 실제 Godot4.6.3 독립GL 검사14항목 통과, `freight-loco-1600.png`에서26m 적재 편성/옆 선두차v3/제작 복선 확인. 결과 FREIGHT_LOCO_RESULTS.txt. 스킬에 Sprite2D px/m·동심원 UV·디더링 경계 허용오차 교훈 추가. 기존 park/subway/역/차량 원본 보존; station v2 미승인으로 미착수. 설치·가격·게임 코드·운행·main·push 없음.
+
+## 복선 선로 견본 (2026-11-17, cities-asset)
+
+`tools/build_rail_track.py`: 신규 rail-track-01, 복선12×7.6m/1140tri, 단선320×288 emission 띠3장. 기존 vehicle/common·subway studio(MIT 고정 출처/NOTICE 아래 참조), 프로필 `software-development/godot-windows-validation` 재사용(로컬 스킬, upstream/pin 별도 없음), 설치 없음. `run_rail_track.py`는 scratch 독립 Godot4.6.3 GL에서 13검사 및 실제1600×1000 여섯 뷰 캡처. fixture 2D 표시는 Sprite2D로 정확한 px/m 축척, 곡선은 동심원32/36m UV 리본. 결과 `docs/rail-park-validation/RAIL_TRACK_RESULTS.txt`. 띠 경계 RGB 차이는 Blender 디더링1/255 이내, 육안 반복 이음 없음. 기존 원본·게임 코드·가격·station v2 변경 없음. 지도 그리기/운행 미구현, main/push 없음.
+
+## 보도 전용 택시 정류장·버스 정류장 v2 (2026-11-16, cities-asset)
+
+현재 `core/road_profile.gd`의 일반2/3차로는 전체12m·아스팔트10.5m, 한쪽 보도0.75m다. 기존 버스 정류장3m는 초과하므로 v1을 보존하고 길이8m/높이3.28m/색·구성을 유지한 깊이0.72m v2(2942tri)로 재배치했다. 새 taxi-stop-01은 보도체6×0.72×3.08m/1716tri, 차양/벤치1개/TAXI 표지/별도 차도 데칼1대분. `tools/build_sidewalk_transit_stops.py`, 새 원본/GLB/PNG/spec 및 카탈로그만 변경. 기존 common/vehicle/roadside/studio(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`capture_sidewalk_transit_stops.gd`는 실제 RoadProfile/RoadGeometry/RoadParcels를 사용했다. 일반도로변 버스/택시 및 실제 구획40셀과 파란 경계를 사선/수직뷰로 표시한 `sidewalk-stops-1600.png` 1장, 보도내0.72m·격자비침범·분리데칼24검사항목 통과. 데칼은 차도 쪽 별도 메시여서 보도 점유 치수에서 제외한다. 원점은 **아스팔트-보도 경계(연석)**이며 전체 도로 바깥 경계가 아니다. 이후 배치 구현은 asphalt_width/2 기준과 보도폭 검사를 써야 한다. 메타데이터 zoning_occupancy_cells=0이며 실제 배치/교통/보행 로직은 아직 없다. 기차역57aea50 원본/캡처 유지, 수치·명령은 `SIDEWALK_STOPS_RESULTS.txt`; main/push 없음.
+
+## 기차역 32×24m (2026-11-16, cities-asset)
+
+`tools/build_transit_train_station.py`: 8×6칸/32×24×10.56m,14493tri. 2층 날개·높은 유리 아트리움/시계/역 표식·앞 승하차 광장/드롭오프3칸·뒤32m 승강장/캐노피를 직접 제작해 원본·생성기·spec·GLB·투명 PNG 및 시설 검사 카탈로그에 추가했다. 승강장면1.1m, 역 원본에 선로·차량·연장 모듈은 없다. 기존 road-edge/subway studio/vehicle/common(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치/기존 원본 수정 없음.
+
+실제 Godot `train-station-1600.png` 1장에 전면 광장(기존 택시/세단/사람 크기 기준)과 후면 승강장의 선두차v3+객차v3 2량32m 편성을 표시했다. 실제GLB·부지/정면·승강장1.1m·편성연결/32m·승강장간격0.3m16/16 통과. 선로/자갈은 검사 fixture에서만 그렸고 역 소스에 추가하지 않았다. `TRAIN_STATION_RESULTS.txt`에 수치·명령. 실제 배치·회차궤적·운행·승하차·가격/정원·main·push 없음, 1차 검수 대기.
+
+## 지하철 입구·지하 실루엣 (2026-11-16, cities-asset)
+
+`tools/build_transit_subway.py`에서 입구8×8m/3432tri(지상3.71m, 최저-2.88m, 유한한 계단 바닥-2.52m)와 지하 실루엣64×12m/96tri(승강장-12m, 단색 재질1개·단순8박스)를 직접 제작했다. 입구는 실제 개구부·계단/에스컬레이터 형상·유리캐노피·가상M·환기구. 실루엣은 섬식 승강장·양쪽 홈·접근 통로만. 새 원본/생성기/spec/GLB/PNG와 검사 카탈로그만 추가, 기존 원본 보존. 기존 road-edge/vehicle/common(MIT 고정 출처·NOTICE 아래 기록) 및 프로필 godot-windows-validation 재사용, 설치 없음.
+
+Godot GL 실제 `subway-1600.png` 1장: 일반 입구/택시·사람 크기 비교, 지붕 패널만 숨긴 것으로 명시한 별도 검사 컷어웨이, 좌표를 들어 올리지 않은 지하 단색 모델. 부지/원점·유한 바닥/깊이·실루엣-12m/1재질8/8 통과. `SUBWAY_RESULTS.txt`에 수치/명령. 지형 구멍 마스킹·지하보기 연동·승하차·에스컬레이터 작동은 미구현/미검증이며 spec 요구로만 기록했다. 프로필 검증 스킬에 음수 깊이 bounds 카메라·명시적 컷어웨이 인스턴스만 숨김 절차를 추가했다. 게임 코드·경제·main·push 없음.
+
+## 선두차·객차 v3 통일 (2026-11-16, cities-asset)
+
+사용자 v2 인상 피드백·기관차/객차 맞춤 지시에 따라 `tools/build_transit_train_v3.py`에서 두 원본을 신규 제작했다. 선두차4452tri(차체9m/전체10×3×3.8m), 객차4264tri(차체10m/전체11×3×3.8m). 선두차의 앞4.5m가 직선으로 낮아지는 쐐기, 끝폭1.2m/높이1.02m, 길게 누운 앞유리, 대차를 스커트 안으로 재배치, 낮은 팬터그래프는 지붕 recess에 수용. 객차는 한 줄 띠창·둥근 끝/지붕·스커트, 두 차종의 지붕/연결단면/띠선·색을 통일했다. v1/v2 소스·GLB·PNG는 그대로 두고 v3 폴더/새 GLB/스프라이트16장만 등록. 기존 common/vehicle 제작 helper(MIT·아래 기존 고정 출처/NOTICE)와 프로필 godot-windows-validation 재사용, 설치 없음.
+
+실제 Godot `train-v3-consist-1600.png` 한 장에 동일32m 편성의 측면/3·4 시점, 두 차종 로드·연결·폭/높이·정면16/16 통과. 수치·재현 명령 `TRAIN_V3_RESULTS.txt`. 사용자 재검수 대기; 시뮬레이션·main·push 없음. 앞선 버스 스테이션v2 48×20m/5대 캡처는 b8de232에 별도 보존했다.
+
+## 버스 스테이션 v2 확대 (2026-11-16, cities-asset)
+
+기획 1차 반려 후 사용자 최신 확대값48×20m·30°5베이로 `tools/build_bus_station_v2.py`에서 재제작. 앞3.5m 일방향 주행로·입출구 화살표, 뒤4.2m 대합 승강장 전체 캐노피, 작은 대합실 포함. 3831tri. 원본v1 보존, v2 폴더/GLB/PNG로 카탈로그 교체. 앞선32×16m 미승인 결과는 작업 트리 밖 scratch에 보존하고 제출하지 않는다. 기존 road-edge/vehicle/common(MIT 고정판·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`bus-station-v2-1600.png` 한 장에 기존 버스5대 정차, 실제GLB 로드·부지/원점·주행로 침범/인접 차체 겹침12/12 통과. 수치·명령 `BUS_STATION_V2_RESULTS.txt`. 화살표는 설계 표시이며 실제 회차 궤적·부착·운행·승하차 검증이 아니다. 게임 코드·가격·main·push 없음. 요청서의 다음 기차역32×24m 변경도 원문 그대로 함께 보존한다.
+
+## 고속열차 선두차 v2 (2026-11-16, cities-asset)
+
+사용자 "트럭 같다" 반려와 갱신 요청서를 적용해 `tools/build_transit_loco_v2.py`에서 연속 loft 곡면·노즈 띠창·하부 스커트·팬터그래프 1개로 재제작했다. v1 원본/GLB/스프라이트는 그대로 두고 `assets/vehicle-fleet/train-loco-01/v2`, `train-loco-01-v2.glb`, 새 스프라이트 폴더로 카탈로그만 교체했다. 차체9m/전체10×3×3.8m,3940tri, 8방향 PNG. 기존 common/vehicle 제작 helper(MIT, 기존 고정판/NOTICE 아래 기록)와 godot-windows-validation 재사용, 설치 없음. 별도 생성기는 `--output-root <새 빈 폴더>` 지원.
+
+실제 Godot `loco-v2-consist-1600.png` 1장에 동일 객차v2 2량 편성을 측면/3·4 시점으로 표시했고 연결·32m·치수·정면 12/12 통과. 객차 원본은 수정하지 않았다. 선두차 지붕3.66m/전체3.8m와 기존 객차 지붕4.0m 사이 높이차는 요청 치수대로 유지하고 spec rear_interface에 명시했다. 상세 `LOCO_V2_RESULTS.txt`; 사용자 재검수 대기. 본게임 운행·push·main 없음. 도로 부착형 3종은 앞선 로컬 커밋6f41a95에 이미 보존되어 재제작하지 않았다.
+
+## 도로 부착형 대중교통 3종 (2026-11-16, cities-asset)
+
+`tools/build_transit_roadside.py`: 정류장 8×3m/1660tri, 버스 스테이션 32×12m/2918tri, 택시 스테이션 24×8m/2368tri. 직접 제작 원본·스크립트·spec·투명 PNG·GLB 및 시설 검사 카탈로그 추가. `placement=road_edge`, 도로 접촉 변 중앙 원점, Blender -Y / glTF +Z 정면, 보도 점유 폭 기록. 노란 정차 표시는 독립 메시, 벤치 등받이 지지대 포함. 기존 build_vehicle_fleet/common(MIT, 아래 기존 고정 출처·LICENSE/NOTICE)와 프로필 godot-windows-validation 재사용, 신규 설치 없음. 원본 보존을 위해 기존 폴더에는 생성기가 덮어쓰기를 거부하며 재현은 `--output-root <새 빈 폴더>` 사용.
+
+실제 Godot GLB 캡처 `transit-validation/roadside-1600.png` 1장에 버스 4대·택시 4대와 사람 크기 기준을 배치했다. 로드·원점/경계·분리 데칼·버스3칸/택시4칸 크기 맞음 20/20. `ROADSIDE_RESULTS.txt`에 수치·명령 기록. 검사는 정적 형상/주차 칸만 확인하며 실제 회차 궤적·보도 부착 로직·승하차/운행·시뮬레이션·가격은 미구현/미검증. 원본 차량/기존 시설은 수정하지 않았고 push·main 없음.
+
+## 대중교통 차량 첫 묶음 (2026-11-16, cities-asset)
+
+`assets/transit-20261116`, 별도 `D:/project/simcity-transit`에서 요청서 최신판 적용. 기관차/객차/평판차/20ft 컨테이너의 직접 제작 지오메트리·원본·GLB·8방향 PNG와 검사 카탈로그만 추가했다. Blender4.3.2 기존 실행파일 재사용, 설치 없음. `tools/build_transit_vehicles.py`는 기존 `tools/build_vehicle_fleet.py`의 팔레트·primitive·Cycles24/430×245/30° 렌더러를 호출한다. 상류 `.agents/skills/vehicle/blender/common.py` 및 MIT LICENSE/NOTICE는 수정하지 않았다(기존 인계 고정판 zstack `74f7786e9931b9ced858a0e2df880f23e4c2430e`, 출처 `https://github.com/duolahypercho/zstack/tree/74f7786e9931b9ced858a0e2df880f23e4c2430e/skills/vehicle`). 재현은 생성기에 `--output-root <새 빈 폴더>` 지정; 저장된 소스가 있으면 덮어쓰지 않고 거부, 수정은 `--revision` 새 경로로 생성한다.
+
+적용: 사용자 제공 asset-production SKILL/CONTRACTS/RECIPES/VERIFICATION을 원격 브랜치 `skills/asset-production-20261116`에서 읽었으며 설치하지 않았다. 프로필 `godot-windows-validation` 적용. 창/문의 공면은 첫 실제 GLB 캡처에서 발견해 객차 `v2`의 외피/씰/유리 깊이를 분리하고 새 GLB/스프라이트 경로로 등록했다. 첫 미승인 산출물은 작업 트리 밖 scratch로 격리해 덮어쓰지 않았다. 현재 최종 Godot GL 캡처 `transit-validation/vehicles-v2-1600.png`: 4종 로드, 연결기 접촉·32m 편성·적재 기준 5/5, 버스/택시/1.75m 기준 비교. 수치는 `transit-validation/RESULTS.txt`. 지도 배치·운행·가격/용량·main·push 없음. 표준 Godot 편집기 import는 C# 기반 main의 PopulationCore/HappinessCore 로더 오류를 출력했으므로 전체 게임 검증으로 주장하지 않는다; 독립 검사 fixture 실행은 오류 없이 통과했다.
+
 ## A: 7차로 카드·폭 등급·갓길·가로 스크롤 (2026-11-13)
 
 승인 문서 `1fbcde2` 원문 기준으로 2/3=3폭, 4/5=5폭, 6/7=7폭, 8=8폭 적용. 짝수 2·4·6 갓길은 실선 표시만 추가(주차·속도 시뮬 미변경), 복원 도로 폭·구획은 재계산하되 ID/점/기존 건물은 삭제·이동하지 않는다. 2·4·6·7 실제 대각선 썸네일 재렌더, 기존 3·5·8 PNG와 원본 렌더러 보존.

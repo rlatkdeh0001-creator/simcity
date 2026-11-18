@@ -1,0 +1,21 @@
+CITIES_DO transit vehicles - final first-batch evidence
+Branch: assets/transit-20261116, base cc1423f
+Original Blender 4.3.2 geometry, Cycles CPU 24 samples, transparent 430x245 sprites, 30-degree camera.
+ID                         Body L x W x H (m)    Overall L x W x H (m)   Triangles
+train-loco-01              9 x 3 x 4.2           10 x 3 x 4.2              4472
+train-passenger-01         10 x 3 x 4             11 x 3 x 4                4368
+train-flatcar-01            7 x 2.9 x 1.4          8 x 2.9 x 1.4            3448
+container-20ft-01           6.06 x 2.44 x 2.6      6.06 x 2.44 x 2.6        3488
+4 source .blend files; 4 GLBs; 32 directional PNGs (8 per asset) registered in the existing vehicle inspection catalog.
+Coach final source/export/sprites use the v2 revision paths listed in catalog.json. The first unapproved source was not overwritten.
+Godot 4.6.3 graphical GL Compatibility fixture: TRANSIT_GRAPHICAL_PASS 5 connection/load checks; 4 new GLBs loaded; 32m consist.
+Checks: first head contact, second head contact, total consist 32m, deck anchor 1.2m, container underside 1.2m.
+Final unmodified framebuffer: docs/transit-validation/vehicles-v2-1600.png, 1600x1000.
+The same capture includes bus-city-01 (10.8m), taxi-sedan-01 (4.65m), a 1.75m reference mannequin, loaded flatcar and four single-material container tints.
+Generator: tools/build_transit_vehicles.py; dependencies tools/build_vehicle_fleet.py and .agents/skills/vehicle/blender/common.py (existing MIT helper, existing LICENSE/NOTICE retained).
+Reproduction without overwriting originals:
+blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_vehicles.py -- --output-root <new-empty-workspace>
+For the final coach add --only train-passenger-01 --revision v2. Both commands use final geometry.
+Graphical inspection command:
+godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_transit_vehicles.gd
+Limits: inspection registration only; no transport simulation, map placement, economics, main merge or push. Editor import on this C#-based checkout emits PopulationCore/HappinessCore loader errors under standard non-.NET Godot; the independent asset fixture passed without script or rendering errors. This is not a claim of full game verification.

@@ -1,0 +1,71 @@
+{
+  "id": "subway-entrance-01",
+  "name": "지하철역 입구",
+  "kind": "subway_entrance",
+  "width": 2,
+  "depth": 2,
+  "metres": [
+    8.0,
+    8.0
+  ],
+  "storeys": 0,
+  "capacity": null,
+  "capacity_status": "not a passenger throughput proposal",
+  "model": "res://assets/facilities/subway-entrance-01.glb",
+  "preview": "res://assets/facilities/subway-entrance-01.png",
+  "source": "assets/facilities/subway-entrance-01/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 51.55307436981426
+  },
+  "triangles": 3432,
+  "height_m": 6.59,
+  "width_m": 8.0,
+  "length_m": 8.0,
+  "bounds_blender_m": {
+    "min": [
+      -4.0,
+      -4.0,
+      -2.88
+    ],
+    "max": [
+      4.0,
+      4.0,
+      3.71
+    ]
+  },
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "origin": "lot centre at ground datum",
+  "status": "inspection_only",
+  "map_placement_implemented": false,
+  "above_ground_height_m": 3.71,
+  "opening_size_m": [
+    5.2,
+    5.2
+  ],
+  "opening_bottom_blender_z_m": -2.7,
+  "landing_surface_blender_z_m": -2.52,
+  "requires_ground_cutout": true,
+  "ground_cutout_rect_blender_m": [
+    -2.6,
+    -2.6,
+    5.2,
+    5.2
+  ],
+  "not_validated": [
+    "game terrain cutout integration",
+    "passenger pathing",
+    "escalator animation"
+  ]
+}

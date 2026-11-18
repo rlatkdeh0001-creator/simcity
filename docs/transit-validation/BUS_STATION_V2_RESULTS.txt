@@ -1,0 +1,12 @@
+Bus station v2 final approved size: 48 x 20m (12 x 5 cells), height 4.31m, 3831 triangles.
+Five 30-degree sawtooth bays; reserved front aisle 3.5m. Right entry at x=21.5m, left exit x=-21.5m, both at road edge y=0; authored one-way floor arrows inside apron. Each bay 11.15 x 2.85m, centres (-18,-9,0,9,18), y=7.60m.
+Rear waiting platform 48 x 4.2m covered by 48 x 4.2m canopy with supported columns; small waiting-room body 14 x 3.6 x 3.1m, separate lobby paving, doors and windows.
+placement=road_edge; origin is road-contact edge centre, Blender front -Y / glTF +Z. Catalog width=12 depth=5 and metres=[48,20].
+New original assets/facilities/bus-station-01/v2/facility.blend, spec.json, build.py and transparent 800x680 preview; new bus-station-01-v2 GLB/PNG registered. v1 untouched. Superseded uncommitted 32x16 study moved outside checkout without overwriting source files.
+Blender4.3.2 / CPU Cycles24 / 30-degree orthographic studio; existing helpers and MIT notices retained.
+Godot4.6.3 GL Compatibility: BUS_STATION_V2_GRAPHICAL_PASS 12 checks; 5 parked buses clear 3.5m aisle, no pair overlap.
+Checks: correct catalog revision/dimensions, full footprint bounds, road-edge origin, five bus-to-aisle bounds, four adjacent bay-width separation checks.
+Final raw capture docs/transit-validation/bus-station-v2-1600.png, 1600x1000, five instances of the unchanged bus-city-01 model.
+Generate: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_bus_station_v2.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_bus_station_v2.gd
+Limits: static asset registration and layout only. Floor arrows are a circulation design, not proof of swept turning clearance or live road attachment. No bus movement/passenger logic, main merge or push.

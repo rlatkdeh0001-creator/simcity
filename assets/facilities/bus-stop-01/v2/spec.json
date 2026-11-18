@@ -1,0 +1,80 @@
+{
+  "id": "bus-stop-01",
+  "name": "버스 정류장",
+  "kind": "transit_sidewalk_stop",
+  "width": 2.0,
+  "depth": 0.18,
+  "metres": [
+    8.0,
+    0.72
+  ],
+  "storeys": 0,
+  "capacity": 1,
+  "capacity_unit": "static curbside stopping position, not passengers",
+  "placement": "road_edge",
+  "placement_surface": "sidewalk_only",
+  "road_side": {
+    "blender": "-Y",
+    "gltf": "+Z",
+    "edge_coordinate_m": 0
+  },
+  "origin": "curb-contact edge centre at ground datum",
+  "sidewalk_occupied_width_m": 0.72,
+  "required_sidewalk_width_m": 0.75,
+  "minimum_sidewalk_derived_from": "core/road_profile.gd local2/3, total12m/asphalt10.5m, per-side sidewalk0.75m",
+  "zoning_occupancy_cells": 0,
+  "zoning_footprint_cells": [
+    0,
+    0
+  ],
+  "height_m": 3.28,
+  "width_m": 8.0,
+  "length_m": 0.72,
+  "triangles": 2942,
+  "body_bounds_blender_m": {
+    "min": [
+      -4.0,
+      0.0,
+      0.0
+    ],
+    "max": [
+      4.0,
+      0.72,
+      3.28
+    ]
+  },
+  "all_geometry_bounds_blender_m": {
+    "min": [
+      -4.0,
+      -0.12,
+      0.0
+    ],
+    "max": [
+      4.0,
+      0.72,
+      3.28
+    ]
+  },
+  "model": "res://assets/facilities/bus-stop-01-v2.glb",
+  "preview": "res://assets/facilities/bus-stop-01-v2.png",
+  "source": "assets/facilities/bus-stop-01/v2/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 98.19474300547782
+  },
+  "separate_decal_mesh": "StopZoneYellowDecal",
+  "road_decal_excluded_from_sidewalk_footprint": true,
+  "status": "inspection_only",
+  "road_attachment_implemented": false,
+  "not_validated": [
+    "live road attachment",
+    "passenger paths",
+    "curbside vehicle stopping simulation"
+  ],
+  "supersedes": "bus-stop-01 v1 retained",
+  "revision_scope": "X extent/height/palette/components retained, only depth repacked from3m to0.72m"
+}

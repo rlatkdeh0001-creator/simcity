@@ -1,0 +1,72 @@
+{
+  "id": "park-large-8x8",
+  "name": "대형 공원",
+  "kind": "park",
+  "style": "large_pond",
+  "width": 8,
+  "depth": 8,
+  "metres": [
+    32,
+    32
+  ],
+  "height_m": 7.17,
+  "triangles": 7716,
+  "tree_count": 24,
+  "gazebo_count": 1,
+  "bench_count": 6,
+  "capacity": 0,
+  "status": "inspection_only",
+  "source": "assets/facilities/park-large-8x8/facility.blend",
+  "model": "res://assets/facilities/park-large-8x8.glb",
+  "preview": "res://assets/facilities/park-large-8x8.png",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "camera_elevation_deg": 30,
+    "pixels_per_metre": 15.241672377942821
+  },
+  "origin": "lot centre at ground z=0",
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "pond_surface_m": 0.315,
+  "continuous_lawn_surface_m": 0.28,
+  "pond_is_shallow_overlay_not_hole": true,
+  "entrance_edges": [
+    "front",
+    "rear",
+    "left",
+    "right"
+  ],
+  "palette": {
+    "curb": "c8cbc3",
+    "grass": "8c9b75",
+    "leaf": "6f895c",
+    "leaf_light": "809769",
+    "wood": "aa8059",
+    "metal": "344b53",
+    "paving": "ded6bf",
+    "water": "73aeb8",
+    "roof": "526b70"
+  },
+  "bounds_blender_m": {
+    "min": [
+      -16.0,
+      -16.0,
+      0.0
+    ],
+    "max": [
+      16.0,
+      16.0,
+      7.170000076293945
+    ]
+  },
+  "map_placement_implemented": false
+}
