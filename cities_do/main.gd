@@ -29,6 +29,7 @@ var painter_order=preload("res://core/isometric_order.gd").new()
 var building_views
 var public_controller
 var road_drawer
+var transit_view
 var mode := "select"
 var demolition_hover := {}
 var demolition_press := {}
@@ -87,6 +88,8 @@ func _ready():
 	public_controller.view=self
 	add_child(public_controller)
 	road_drawer=preload("res://core/road_drawing.gd").new(self)
+	transit_view=preload("res://core/transit_view.gd").new()
+	add_child(transit_view);transit_view.setup(self)
 	keyboard_camera=preload("res://core/keyboard_camera.gd").new(self)
 	add_child(keyboard_camera)
 
@@ -340,6 +343,7 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if transit_view!=null and mode not in ["rail","metro"]:transit_view.cancel()
 	if mode!="demolish":cancel_demolition_drag()
 	if road_drawer!=null and mode!="road":road_drawer.cancel()
 	if labor_panel!=null:
@@ -399,6 +403,8 @@ func cancel_demolition_drag() -> void:
 
 func update_demolition_drag(position: Vector2) -> void:
 	if demolition_press.is_empty():return
+	if demolition_press.get("kind","")=="transit_route":
+		demolition_hover=demolition_press.duplicate(true);return
 	if position.distance_to(demolition_press_screen)>3.0:demolition_dragged=true
 	var selection: Dictionary=city.road_demolition_selection(demolition_press.id,demolition_press.world_point,world(position) if demolition_dragged else null)
 	demolition_hover={"kind":"road","id":demolition_press.id,"selection":selection}
@@ -408,13 +414,17 @@ func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
 	if demolition_press.is_empty():return
 	if mode!="demolish" or over_hud:cancel_demolition_drag();return
 	update_demolition_drag(position)
-	var result: Dictionary=city.demolish_road_selection(demolition_hover.selection)
+	var transit:bool=demolition_press.get("kind","")=="transit_route"
+	var result: Dictionary=city.remove_transit_route(demolition_press.id) if transit else city.demolish_road_selection(demolition_hover.selection)
 	message="" if result.ok else result.reason
-	if result.ok:stop_traffic()
+	if result.ok and not transit:stop_traffic()
 	cancel_demolition_drag()
 	refresh()
 
 func _unhandled_input(event):
+	if transit_view!=null and transit_view.handle_input(event):
+		get_viewport().set_input_as_handled()
+		return
 	if road_drawer!=null and road_drawer.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -436,7 +446,7 @@ func _unhandled_input(event):
 				if event.pressed:
 					var target := demolition_target(event.position)
 					if not target.is_empty():
-						if target.kind=="road":
+						if target.kind in ["road","transit_route"]:
 							demolition_press=target.duplicate(true)
 							demolition_press_screen=event.position
 							demolition_dragged=false
@@ -595,6 +605,9 @@ func visible_zoning_parcels() -> Array[Dictionary]:
 	return empty
 
 func demolition_target(position: Vector2) -> Dictionary:
+	if transit_view!=null and transit_view.underground:
+		var metro_target:Dictionary=transit_view.pick(position,"metro")
+		if not metro_target.is_empty():return metro_target
 	var public_record: Dictionary=public_controller.target(position)
 	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
@@ -627,6 +640,9 @@ func demolition_target(position: Vector2) -> Dictionary:
 	var building: Dictionary=pick_rendered_building(position)
 	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
 	var point := world(position)
+	if transit_view!=null:
+		var rail_target:Dictionary=transit_view.pick(position,"rail")
+		if not rail_target.is_empty():return rail_target
 	for i in range(city.roads.size()):
 		var road: Dictionary=city.roads[i]
 		for j in range(road.points.size()-1):
@@ -672,9 +688,12 @@ func _draw():
 		draw_ribbon(snapped, city.RoadProfile.width_for("local",road_lanes,city.config.road_width), Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
 	if road_drawer!=null:road_drawer.draw_preview()
+	if transit_view!=null:transit_view.draw_preview()
 	if mode=="demolish" and not demolition_hover.is_empty():
 		var tint := Color(1,.35,.20,.65)
-		if demolition_hover.has("polygon"):
+		if demolition_hover.has("polygons"):
+			for shape:PackedVector2Array in demolition_hover.polygons:draw_colored_polygon(shape,tint)
+		elif demolition_hover.has("polygon"):
 			draw_colored_polygon(demolition_hover.polygon,tint)
 		elif demolition_hover.has("line"):
 			draw_polyline(demolition_hover.line,tint,10,true)

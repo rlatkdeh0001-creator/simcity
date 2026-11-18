@@ -41,6 +41,66 @@ var width: int
 var height: int
 var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
+const TransitRoutes=preload("res://core/transit_routes.gd")
+var transit_routes:Array[Dictionary]=[]
+var next_transit_route_id:=1
+signal transit_changed
+func get_transit_route(id:int)->Dictionary:
+	var index:=TransitRoutes.index_of(transit_routes,id)
+	return {} if index<0 else transit_routes[index].duplicate(true)
+func add_transit_route(points:PackedVector2Array,kind:String="rail",commit:bool=true)->Dictionary:
+	if commit and _defer_simulation_edit(add_transit_route.bind(points.duplicate(),kind,true)):return _queued_simulation_edit()
+	var result:=TransitRoutes.plan(self,points,kind)
+	if not result.ok:return result
+	result.route.id=next_transit_route_id
+	if commit:
+		transit_routes.append(result.route.duplicate(true));next_transit_route_id+=1
+		_transit_routes_changed()
+	return result
+func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Dictionary:
+	if commit and _defer_simulation_edit(update_transit_route.bind(id,points.duplicate(),true)):return _queued_simulation_edit()
+	var index:=TransitRoutes.index_of(transit_routes,id)
+	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
+	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id)
+	if not result.ok:return result
+	result.route.id=id
+	if commit:
+		transit_routes[index]=result.route.duplicate(true)
+		_transit_routes_changed()
+	return result
+func remove_transit_route(id:int)->Dictionary:
+	if _defer_simulation_edit(remove_transit_route.bind(id)):return _queued_simulation_edit()
+	var index:=TransitRoutes.index_of(transit_routes,id)
+	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
+	transit_routes.remove_at(index)
+	_transit_routes_changed()
+	return {"ok":true,"id":id}
+func _transit_routes_changed():
+	# Reconcile only route-owned terminals; keep manually registered channels intact.
+	var terminals:Dictionary={}
+	for route:Dictionary in transit_routes:
+		if TransitRoutes.is_external(route.points,width,height):terminals[int(route.id)]=route
+	for i in range(external_infrastructure.size()-1,-1,-1):
+		var link:Dictionary=external_infrastructure[i]
+		if not link.has("transit_route_id"):continue
+		var route_id:int=link.transit_route_id
+		if not terminals.has(route_id):external_infrastructure.remove_at(i)
+		else:
+			link.points=terminals[route_id].points.duplicate()
+			link.kind=terminals[route_id].kind
+			terminals.erase(route_id)
+	for route_id:int in terminals:
+		var route:Dictionary=terminals[route_id]
+		var added:=add_external_link(route.kind,route.points)
+		assert(added.ok,"Validated transit terminal must be registrable")
+		added.link.transit_route_id=route_id
+	_commuting_generation+=1
+	if simulation!=null:
+		simulation.note_world_dirty("transit_routes")
+		simulation.note_meta("next_transit_route_id",next_transit_route_id)
+		simulation.note_world_dirty("external_infrastructure")
+	transit_changed.emit()
+
 var rng := RandomNumberGenerator.new()
 const Clock=preload("res://core/city_clock.gd")
 const Population=preload("res://core/population.gd")
@@ -244,6 +304,8 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 	for point in polygon_value:
 		if point.x< -0.0005 or point.y< -0.0005 or point.x>width+0.0005 or point.y>height+0.0005:return "지도 경계 밖입니다"
 	if check_buildings:
+		for route:Dictionary in transit_routes:
+			if _polygon_road_distance(polygon_value,route)<-0.0005:return "철도 또는 지하철 경로와 충돌합니다"
 		if public_facilities!=null:
 			for record: Dictionary in public_facilities.lots:
 				if record.id!=ignore_id and Parcels.overlap(polygon_value,record.polygon):return "공공시설과 충돌합니다"
@@ -456,6 +518,8 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	if not plan.ok:return plan
 	var new_roads: Array=plan.new_roads
 	for candidate: Dictionary in new_roads:
+		for route:Dictionary in transit_routes:
+			if route.kind=="rail" and not TransitRoutes.crossing_allowed(route,candidate):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
 		if enforce_units:
 			var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(candidate.points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(RoadJunctions.length_of(candidate.points),RoadUnits.build_step(candidate.points,roads))
 			if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
@@ -752,6 +816,7 @@ func remove_external_link(id: int) -> bool:
 	if _defer_simulation_edit(remove_external_link.bind(id)):return true
 	for i in range(external_infrastructure.size()):
 		if external_infrastructure[i].id == id:
+			if external_infrastructure[i].has("transit_route_id"):return false
 			external_infrastructure.remove_at(i)
 			_commuting_generation+=1
 			if simulation!=null:simulation.note_world_dirty("external_infrastructure")

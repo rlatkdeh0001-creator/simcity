@@ -100,12 +100,18 @@ func _validate(delta:Dictionary)->String:
     if not row.has(field):return "missing building field: "+field
    if row.zone not in ["residential","commercial","industrial"]:return "invalid building zone"
  for key:Variant in delta.get("meta",{}):
-  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name"]:return "unsupported meta field"
+  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id"]:return "unsupported meta field"
  for key:Variant in delta.get("world",{}):
-  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure"]:return "unsupported world field"
+  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes"]:return "unsupported world field"
  for key:Variant in delta.get("zones",{}):
   if str(delta.zones[key]) not in ["","residential","commercial","industrial"]:return "invalid zone designation"
  var world:Dictionary=delta.get("world",{})
+ if world.has("transit_routes"):
+  var transit_error:String=Model.TransitRoutes.snapshot_error(world.transit_routes,city.width,city.height)
+  if not transit_error.is_empty():return transit_error
+ if delta.get("meta",{}).has("next_transit_route_id"):
+  var next:Variant=delta.meta.next_transit_route_id
+  if not next is int or next<city.next_transit_route_id:return "invalid transit ID watermark"
  if world.has("public_lots"):
   var lot_ids:Dictionary={};var old_lot_ids:Dictionary={}
   for lot:Dictionary in city.public_facilities.lots:old_lot_ids[int(lot.id)]=true
@@ -140,6 +146,10 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  if delta.has("growth_config"):_restore_object(city.config,delta.growth_config)
  if delta.has("population_config"):city.population.config=delta.population_config.duplicate(true)
  var world:Dictionary=delta.get("world",{})
+ if world.has("transit_routes"):
+  city.transit_routes.assign(world.transit_routes.duplicate(true))
+  city._commuting_generation+=1
+  for route:Dictionary in city.transit_routes:city.next_transit_route_id=maxi(city.next_transit_route_id,int(route.id)+1)
  if world.has("external_infrastructure"):
   city.external_infrastructure.assign(world.external_infrastructure.duplicate(true))
   city._commuting_generation+=1
@@ -181,7 +191,7 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
   "loan_status":city.loan_status(),"loan_checkpoint":_capture_object(city.loans),
   "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
- return {"buildings":city.buildings.duplicate(true),"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
+ return {"buildings":city.buildings.duplicate(true),"transit_routes":city.transit_routes.duplicate(true),"next_transit_route_id":city.next_transit_route_id,"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
   "loans":_capture_object(city.loans),
   "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}

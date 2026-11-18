@@ -2,8 +2,8 @@ extends RefCounted
 ## Main-thread coordinator. Default-off: CityModel's legacy path is untouched until initialize().
 ## One outstanding simulation step (including completed/unpublished); editor intents are NOT ticks.
 const Clock=preload("res://core/city_clock.gd")
-const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure"]
-const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name"]
+const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes"]
+const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id"]
 const HAPPINESS_KEYS=["happiness","happiness_target","happiness_factors"]
 var owner:WeakRef
 var worker

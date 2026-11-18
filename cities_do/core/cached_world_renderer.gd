@@ -55,6 +55,7 @@ func setup(owner_view):
  shader.code="shader_type canvas_item; render_mode unshaded; uniform float zoom=1.0; varying float across; varying float half_width; void vertex(){half_width=max(0.6,zoom)*0.5; float extent=half_width+1.0; VERTEX+=vec2(cos(UV.x),sin(UV.x))*UV.y*extent/zoom; across=UV.y*extent;} void fragment(){COLOR.a*=clamp(half_width+1.0-abs(across),0.0,1.0);}"
  line_material.shader=shader;marks.material=line_material
  actors=Node2D.new();actors.name="WorldActors";actors.z_index=9;actors.y_sort_enabled=true;add_child(actors)
+ view.transit_view.attach(self)
  view.building_views.changed.connect(refresh_building_images)
  synchronize();_process(0)
 func iso(p:Vector2)->Vector2:return Vector2((p.x-p.y)*view.tile.x,(p.x+p.y)*view.tile.y)
@@ -69,6 +70,7 @@ func synchronize():
   if city_reference!=null and city_reference.society_changed.is_connected(synchronize):city_reference.society_changed.disconnect(synchronize)
   view.city.society_changed.connect(synchronize)
  city_reference=view.city
+ view.transit_view.synchronize()
  var rs:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height])
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
@@ -179,6 +181,7 @@ static func display_eligible(vehicle:Dictionary)->bool:
 func _process(_delta:float):
  if view==null:return
  if city_reference!=view.city:synchronize()
+ view.transit_view.sync_visibility()
  if position!=view.origin:position=view.origin
  if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
  zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4

@@ -321,6 +321,10 @@ func _input(event):
 func sync_utility_visibility():
  # Keep above-ground facility models; only their tab-gated network drawing changes.
  var tray_open:=drawer.is_visible_in_tree()
+ if transit_view!=null and not tray_open and mode!="demolish":
+  transit_view.underground=false;transit_view.cancel()
+  if mode in ["rail","metro"]:mode="select";update_road_modes()
+ if transit_view!=null:transit_view.sync_visibility()
  for pair in [["power",power_overlay],["water",water_overlay]]:
   var overlay=pair[1]
   var active: bool=tray_open and chosen==pair[0]
@@ -357,14 +361,18 @@ func build_road_modes(root: Control):
    var skin:=style(Color("36b7ff") if state=="pressed" else Color("38515e"))
    skin.content_margin_left=6;skin.content_margin_right=6;skin.content_margin_top=6;skin.content_margin_bottom=6
    button.add_theme_stylebox_override(state,skin)
-  button.pressed.connect(road_drawer.set_kind.bind(key));row.add_child(button);road_mode_buttons.append(button)
+  button.pressed.connect(set_route_drawing_kind.bind(key));row.add_child(button);road_mode_buttons.append(button)
  for i in range(road_mode_buttons.size()):
   road_mode_buttons[i].focus_neighbor_left=road_mode_buttons[posmod(i-1,3)].get_path()
   road_mode_buttons[i].focus_neighbor_right=road_mode_buttons[(i+1)%3].get_path()
  update_road_modes()
+func set_route_drawing_kind(key:String):
+ if mode in ["rail","metro"]:
+  transit_view.cancel();road_drawer.kind=key;update_road_modes();queue_redraw()
+ else:road_drawer.set_kind(key)
 func update_road_modes():
  if road_modes==null:return
- road_modes.visible=chosen=="road"
+ road_modes.visible=chosen=="road" or mode in ["rail","metro"]
  for button in road_mode_buttons:
   var active: bool=button.get_meta("road_kind")==road_drawer.kind
   button.set_pressed_no_signal(active);button.icon=road_mode_icon(button.get_meta("road_kind"),active)
@@ -615,6 +623,7 @@ func developer_tools_enabled() -> bool:
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ if transit_view!=null:transit_view.cancel();transit_view.underground=false
  road_lane_cards.clear();road_grid_button=null
  drawer_box.add_theme_constant_override("separation",8 if key=="road" else 16)
  drawer_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL if key=="road" else Control.SIZE_FILL
@@ -651,6 +660,7 @@ func select_category(key: String):
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[] # The seven lane cards are the drawing actions.
+  "transport": choices=[["철도","rail"],["지하철 터널","metro"]]
 
   _:
    pass
@@ -750,6 +760,7 @@ func show_zoning_tiles() -> bool:
 
 func toggle_demolition():
  hide_asset_info();clear_money_toast()
+ if transit_view!=null:transit_view.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  mode="select" if mode=="demolish" else "demolish"
@@ -762,6 +773,8 @@ func toggle_demolition():
  demolition_hover.clear()
  drawer.hide()
  bulldozer.set_pressed_no_signal(mode=="demolish")
+ if mode!="demolish" and transit_view!=null:transit_view.underground=false;transit_view.sync_visibility()
+ update_road_modes()
  queue_redraw()
 
 func fit_preview():
@@ -826,7 +839,7 @@ func capture():
 func _unhandled_input(event):
  if budget_window!=null and budget_window.visible:
   get_viewport().set_input_as_handled();return
- if mode=="road" and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
+ if mode in ["road","rail","metro"] and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
   activate_tool("select")
   get_viewport().set_input_as_handled()
   return
@@ -838,7 +851,7 @@ func _unhandled_key_input(event):
   if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
-  elif mode=="road":activate_tool("select")
+  elif mode in ["road","rail","metro"]:activate_tool("select")
   drawer.hide()
 
 func asset_info_rows(id: String) -> Array[Dictionary]:return preload("res://core/asset_money_info.gd").rows(city,id)
@@ -1051,6 +1064,7 @@ func update_road_grid_button():
  for state in ["normal","hover","pressed"]:road_grid_button.add_theme_stylebox_override(state,style(Color("36b7ff") if road_grid_enabled else Color("38515e")))
 func activate_tool(tool: String):
  hide_asset_info();clear_money_toast()
+ if transit_view!=null:transit_view.cancel();transit_view.underground=tool=="metro"
  if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
@@ -1075,6 +1089,7 @@ func activate_tool(tool: String):
    zone="" if tool=="build_erase" else ("commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential"))
    mode="build" if tool.begins_with("build") else tool
  if tool=="road" and road_drawer!=null:road_drawer.arm_cursor()
+ update_road_modes()
  refresh()
 
 func refresh():
