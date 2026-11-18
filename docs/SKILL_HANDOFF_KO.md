@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 보행자 신호등 (2026-11-18, cities-asset)
+
+`ped-signal-01` 원본 all-off blend/build/spec, GLB, 미리보기2장, 48px/m·고도30°·8방향×off/red/green24장. 0.48×0.53×3.35m/480tri, 머리0.48×0.22×0.98m 하단2.30m. 위 서 있는 빨강/아래 걷는 초록은 독립 지오메트리와 지정 on/off 재질. 실제 최소축척에서 가느다란 사람만으로 색이 사라지는 문제를 렌즈의 낮은 밝기 색확산 재질로 보완(치수 불변, spec lens_backing_materials 동시 전환). source 기본 렌즈/사람 모두 off.
+같은 로컬 MIT godot-windows-validation 및 신규 저장소 helper 사용, 설치 없음. 실제 Blender4.3.2 저장·재로드/24렌더, Godot4.6.3 독립GL7검사 통과; 최종 `docs/street-props-validation/ped-signal-01-1600.png` 단일1600×1000 framebuffer와 native2.5px/m 영역 육안 확인. 최소축척에서는 사람 형태 아닌 작은 색 점으로만 구분된다. 교차 횡단보도/기존 세단·edda3f3차량 신호등 같은 축척 비교 포함. 기존 건널목 결과 보존, 카탈로그 없음으로 신규 생성하지 않음; inspection_only, 실제 배치/작동·사용자 승인·push/main 없음.
+
 ## 건널목 경보기·차단기 (2026-11-18, cities-asset)
 
 `tools/build_street_props.py`, asset-local `build.py`: 직접 스크립트 지오메트리, 기존 차량 신호등 edda3f3의 frame354640/redf23e32/green3de878 참조(기존 원본 수정 없음). source all-off/arm-down 저장·재로드, 1.42×0.51×3.85m(팔 제외),1852tri/팔 포함1924tri. GLB+48px/m/고도30°/8방향×3상태; 팔 스프라이트 제외, 독립 원점(-.30,-.05,1)m. 요청서 원문 바이트 복사.

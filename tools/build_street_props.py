@@ -83,7 +83,10 @@ def build(ident):
   box('HeadFront',(0,-.242,2.79),(.455,.004,.95),black)
   for i,n in enumerate(names):
    z=3.02 if i==0 else 2.56
-   box(n+'_lens',(0,-.250,z),(.40,.012,.40),black)
+   lens_off=material('mat_'+n+'_lens_off','170909' if i==0 else '08150c')
+   lens_on=material('mat_'+n+'_lens_on','b02c22' if i==0 else '24aa50',True)
+   lens_on.node_tree.nodes['Principled BSDF'].inputs['Emission Strength'].default_value=.5
+   box(n+'_lens',(0,-.250,z),(.40,.012,.40),lens_off)
    box(n+'_hood',(0,-.295,z+.207),(.44,.19,.018),frame)
    for x in [-.212,.212]:box(n+'_hood_side',(x,-.295,z+.155),(.016,.19,.10),frame)
    m=bpy.data.materials['mat_'+n+'_off'];y=-.266
@@ -100,18 +103,22 @@ def build(ident):
   for n in names:
    o=bpy.data.objects[n]
    for j in range(len(o.data.materials)):o.data.materials[j]=bpy.data.materials['mat_'+n+('_on' if n in enabled else '_off')]
+   if not crossing:bpy.data.objects[n+'_lens'].data.materials[0]=bpy.data.materials['mat_'+n+'_lens'+('_on' if n in enabled else '_off')]
  lo,hi,tri=geometry(True);alllo,allhi,alltri=geometry()
  assert (800<=tri<=2000) if crossing else (300<=tri<=900),(ident,tri)
  src=ROOT/'assets/street-furniture'/ident;src.mkdir(parents=True,exist_ok=True)
  runtime=ROOT/'cities_do/assets/street_furniture';runtime.mkdir(parents=True,exist_ok=True)
  spec=dict(id=ident,name='건널목 경보기·차단기' if crossing else '보행자 신호등',category='street-furniture',style='traffic-signal',status='inspection_only',height_m=hi[2],pole_height_m=height,pole_diameter_m=radius*2,head_clearance_m=1.99 if crossing else 2.30,lamp_materials={n:['mat_'+n+'_on','mat_'+n+'_off'] for n in names},frame_blender={'forward':'-Y','up':'+Z'},frame_gltf={'forward':'+Z','up':'+Y'},origin='pole base center, z=0',triangles=tri,triangles_including_arm=alltri,vertex_bounds_m=[lo,hi],measured_dimensions_m=[hi[i]-lo[i] for i in range(3)],all_mesh_dimensions_m=[allhi[i]-alllo[i] for i in range(3)],default_state='all_off',source='original scripted geometry; no external images, textures or models',game_registered=False,not_validated=['placement','signal timing','traffic AI'],material_definitions={})
- for n in names:
+ for n in names+([] if crossing else [n+'_lens' for n in names]):
   for st in ['on','off']:
    key='mat_'+n+'_'+st;b=bpy.data.materials[key].node_tree.nodes['Principled BSDF'];spec['material_definitions'][key]={'base_color_linear':list(b.inputs['Base Color'].default_value),'emission_strength':b.inputs['Emission Strength'].default_value}
  if crossing:
   spec['lamp_centres_blender_m']=[[-.4,-.181,2.30],[.4,-.181,2.30]];spec['lamp_diameter_m']=.42
   spec['arm']={'object':'arm','pivot_blender_m':[-.30,-.05,1.0],'lowered_direction_blender':'-X','reference_length_m':5.25,'cross_section_m':[.16,.16],'stripe_length_m':1.0,'yellow_hex':'efbd32','black_hex':'151b19','source_pose':'lowered','sprite_excluded':True,'runtime_draw':'game procedural arm; GLB arm is preview only'}
- else:spec['head_dimensions_m']=[.48,.22,.98];spec['lens_dimensions_m']=[.40,.40];spec['lamp_order_top_to_bottom']=names
+ else:
+  spec['head_dimensions_m']=[.48,.22,.98];spec['lens_dimensions_m']=[.40,.40];spec['lamp_order_top_to_bottom']=names
+  spec['lens_backing_materials']={n+'_lens':['mat_'+n+'_lens_on','mat_'+n+'_lens_off'] for n in names}
+  spec['lens_backing_note']='Switch backing with matching human lamp; dim coloured optical diffusion preserves state colour at native 2.5px/m without enlarging geometry.'
  (src/'spec.json').write_text(json.dumps(spec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  cd=bpy.data.cameras.new('Camera');cam=bpy.data.objects.new('Camera',cd);s.collection.objects.link(cam);s.camera=cam;cd.type='ORTHO'
  def camera(az,scale,target):

@@ -44,6 +44,8 @@ func run():
 		prop(context,Vector3(5.75,0,5.3),0,"left");prop(context,Vector3(-5.75,0,-5.3),180,"right")
 		for z in [-9.,9.]:box(context,Vector3(0,.03,z),Vector3(.12,.01,5),Color("efbd32"))
 	else:
+		box(context,Vector3(0,-.10,-2.5),Vector3(25,.18,12),Color("a5a6a1"))
+		box(context,Vector3(0,.001,-2.5),Vector3(25,.025,10.5),Color("4c5659"))
 		for x in range(-5,6):box(context,Vector3(x,.03,4.5),Vector3(.5,.01,1.76),Color("e6e7df"))
 		prop(context,Vector3(5.75,0,4.5),90,"green");prop(context,Vector3(-5.75,0,4.5),-90,"red")
 	model(context,"res://car.glb",Vector3(2.3,0,9),0)
@@ -52,7 +54,7 @@ func run():
 	var example:=prop(compare,Vector3(-4,0,0),0,states[1])
 	if crossing:example.find_child("arm",true,false).rotation_degrees.z=-90
 	model(compare,"res://car.glb",Vector3(0,0,0),0);model(compare,"res://vehicle-signal.glb",Vector3(4,0,0),0)
-	label("Actual sprite reductions (arm excluded) / 11.7 px/m",Vector2(20,850),21)
+	label("Actual sprite reductions"+(" (arm excluded)" if crossing else "")+" / 11.7 px/m",Vector2(20,850),21)
 	label("2.5 px/m / native pixels (not magnified)",Vector2(830,850),21)
 	for i in range(3):
 		label(states[i],Vector2(35+i*200,882),18);sprite(states[i],Vector2(100+i*200,883),11.7)
@@ -74,6 +76,9 @@ func prop(v:SubViewport,p:Vector3,yaw:float,state:String)->Node3D:
 			var o:MeshInstance3D=n.find_child(key,true,false);var mat:=StandardMaterial3D.new()
 			var c:Array=spec.material_definitions["mat_"+key+"_on"].base_color_linear
 			mat.albedo_color=Color(c[0],c[1],c[2],1).linear_to_srgb();mat.emission_enabled=true;mat.emission=mat.albedo_color;mat.emission_energy_multiplier=2;o.material_override=mat
+			if not crossing:
+				var lens:MeshInstance3D=n.find_child(key+"_lens",true,false);var lm:=StandardMaterial3D.new();var lc:Array=spec.material_definitions["mat_"+key+"_lens_on"].base_color_linear
+				lm.albedo_color=Color(lc[0],lc[1],lc[2],1).linear_to_srgb();lm.emission_enabled=true;lm.emission=lm.albedo_color;lm.emission_energy_multiplier=.5;lens.material_override=lm
 	return n
 func bounds(n:Node3D)->AABB:
 	if n is MeshInstance3D:return n.global_transform*n.get_aabb()

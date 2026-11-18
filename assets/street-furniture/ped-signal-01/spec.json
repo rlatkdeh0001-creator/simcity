@@ -1,0 +1,160 @@
+{
+  "id": "ped-signal-01",
+  "name": "보행자 신호등",
+  "category": "street-furniture",
+  "style": "traffic-signal",
+  "status": "inspection_only",
+  "height_m": 3.3499999046325684,
+  "pole_height_m": 3.35,
+  "pole_diameter_m": 0.12,
+  "head_clearance_m": 2.3,
+  "lamp_materials": {
+    "lamp_ped_red": [
+      "mat_lamp_ped_red_on",
+      "mat_lamp_ped_red_off"
+    ],
+    "lamp_ped_green": [
+      "mat_lamp_ped_green_on",
+      "mat_lamp_ped_green_off"
+    ]
+  },
+  "frame_blender": {
+    "forward": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "up": "+Y"
+  },
+  "origin": "pole base center, z=0",
+  "triangles": 480,
+  "triangles_including_arm": 480,
+  "vertex_bounds_m": [
+    [
+      -0.23999999463558197,
+      -0.38999998569488525,
+      0.0
+    ],
+    [
+      0.23999999463558197,
+      0.14000000059604645,
+      3.3499999046325684
+    ]
+  ],
+  "measured_dimensions_m": [
+    0.47999998927116394,
+    0.5299999862909317,
+    3.3499999046325684
+  ],
+  "all_mesh_dimensions_m": [
+    0.47999998927116394,
+    0.5299999862909317,
+    3.3499999046325684
+  ],
+  "default_state": "all_off",
+  "source": "original scripted geometry; no external images, textures or models",
+  "game_registered": false,
+  "not_validated": [
+    "placement",
+    "signal timing",
+    "traffic AI"
+  ],
+  "material_definitions": {
+    "mat_lamp_ped_red_on": {
+      "base_color_linear": [
+        0.8879231214523315,
+        0.04817182570695877,
+        0.03189603239297867,
+        1.0
+      ],
+      "emission_strength": 2.0
+    },
+    "mat_lamp_ped_red_off": {
+      "base_color_linear": [
+        0.02955683507025242,
+        0.005181516520678997,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_strength": 0.0
+    },
+    "mat_lamp_ped_green_on": {
+      "base_color_linear": [
+        0.04666508734226227,
+        0.8069522380828857,
+        0.18782077729701996,
+        1.0
+      ],
+      "emission_strength": 2.0
+    },
+    "mat_lamp_ped_green_off": {
+      "base_color_linear": [
+        0.005181516520678997,
+        0.024157632142305374,
+        0.009134058840572834,
+        1.0
+      ],
+      "emission_strength": 0.0
+    },
+    "mat_lamp_ped_red_lens_on": {
+      "base_color_linear": [
+        0.43415364623069763,
+        0.02518685907125473,
+        0.01599629409611225,
+        1.0
+      ],
+      "emission_strength": 0.5
+    },
+    "mat_lamp_ped_red_lens_off": {
+      "base_color_linear": [
+        0.008568125776946545,
+        0.0027317428030073643,
+        0.0027317428030073643,
+        1.0
+      ],
+      "emission_strength": 0.0
+    },
+    "mat_lamp_ped_green_lens_on": {
+      "base_color_linear": [
+        0.017641954123973846,
+        0.4019777774810791,
+        0.0802198201417923,
+        1.0
+      ],
+      "emission_strength": 0.5
+    },
+    "mat_lamp_ped_green_lens_off": {
+      "base_color_linear": [
+        0.002428215928375721,
+        0.007499032188206911,
+        0.0036765073891729116,
+        1.0
+      ],
+      "emission_strength": 0.0
+    }
+  },
+  "head_dimensions_m": [
+    0.48,
+    0.22,
+    0.98
+  ],
+  "lens_dimensions_m": [
+    0.4,
+    0.4
+  ],
+  "lamp_order_top_to_bottom": [
+    "lamp_ped_red",
+    "lamp_ped_green"
+  ],
+  "lens_backing_materials": {
+    "lamp_ped_red_lens": [
+      "mat_lamp_ped_red_lens_on",
+      "mat_lamp_ped_red_lens_off"
+    ],
+    "lamp_ped_green_lens": [
+      "mat_lamp_ped_green_lens_on",
+      "mat_lamp_ped_green_lens_off"
+    ]
+  },
+  "lens_backing_note": "Switch backing with matching human lamp; dim coloured optical diffusion preserves state colour at native 2.5px/m without enlarging geometry."
+}

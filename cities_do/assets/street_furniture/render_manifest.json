@@ -242,6 +242,238 @@
           ]
         }
       ]
+    },
+    "ped-signal-01": {
+      "status": "inspection_only",
+      "pixels_per_metre": 48,
+      "states": [
+        "off",
+        "red",
+        "green"
+      ],
+      "sprite_size": [
+        256,
+        256
+      ],
+      "arm_in_sprites": false,
+      "sprites": [
+        {
+          "state": "off",
+          "azimuth_degrees": 0,
+          "file": "sprites/ped-signal-01/off_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 45,
+          "file": "sprites/ped-signal-01/off_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 90,
+          "file": "sprites/ped-signal-01/off_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 135,
+          "file": "sprites/ped-signal-01/off_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 180,
+          "file": "sprites/ped-signal-01/off_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 225,
+          "file": "sprites/ped-signal-01/off_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 270,
+          "file": "sprites/ped-signal-01/off_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "off",
+          "azimuth_degrees": 315,
+          "file": "sprites/ped-signal-01/off_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 0,
+          "file": "sprites/ped-signal-01/red_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 45,
+          "file": "sprites/ped-signal-01/red_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 90,
+          "file": "sprites/ped-signal-01/red_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 135,
+          "file": "sprites/ped-signal-01/red_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 180,
+          "file": "sprites/ped-signal-01/red_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 225,
+          "file": "sprites/ped-signal-01/red_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 270,
+          "file": "sprites/ped-signal-01/red_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "red",
+          "azimuth_degrees": 315,
+          "file": "sprites/ped-signal-01/red_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 0,
+          "file": "sprites/ped-signal-01/green_000.png",
+          "origin_pixel": [
+            128.0,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 45,
+          "file": "sprites/ped-signal-01/green_045.png",
+          "origin_pixel": [
+            127.99999237060547,
+            202.82468032836914
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 90,
+          "file": "sprites/ped-signal-01/green_090.png",
+          "origin_pixel": [
+            128.00006103515625,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 135,
+          "file": "sprites/ped-signal-01/green_135.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 180,
+          "file": "sprites/ped-signal-01/green_180.png",
+          "origin_pixel": [
+            128.00009155273438,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 225,
+          "file": "sprites/ped-signal-01/green_225.png",
+          "origin_pixel": [
+            128.0,
+            202.8244972229004
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 270,
+          "file": "sprites/ped-signal-01/green_270.png",
+          "origin_pixel": [
+            127.99993133544922,
+            202.8246726989746
+          ]
+        },
+        {
+          "state": "green",
+          "azimuth_degrees": 315,
+          "file": "sprites/ped-signal-01/green_315.png",
+          "origin_pixel": [
+            128.0,
+            202.82468032836914
+          ]
+        }
+      ]
     }
   }
 }
