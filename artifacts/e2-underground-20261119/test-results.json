@@ -1,0 +1,94 @@
+[
+  {
+    "name": "test_underground_roads",
+    "exit_code": 0,
+    "passed_lines": 90,
+    "errors": []
+  },
+  {
+    "name": "test_underground_road_ui",
+    "exit_code": 0,
+    "passed_lines": 64,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_roads",
+    "exit_code": 0,
+    "passed_lines": 128,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_road_ui",
+    "exit_code": 0,
+    "passed_lines": 60,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_roads_fifo",
+    "exit_code": 0,
+    "passed_lines": 12,
+    "errors": []
+  },
+  {
+    "name": "test_road_profile_connections",
+    "exit_code": 0,
+    "passed_lines": 50,
+    "errors": []
+  },
+  {
+    "name": "test_road_side_contacts",
+    "exit_code": 0,
+    "passed_lines": 46,
+    "errors": []
+  },
+  {
+    "name": "test_road_seams",
+    "exit_code": 0,
+    "passed_lines": 30,
+    "errors": []
+  },
+  {
+    "name": "test_road_demolition_model",
+    "exit_code": 0,
+    "passed_lines": 23,
+    "errors": []
+  },
+  {
+    "name": "test_road_junction_boxes",
+    "exit_code": 0,
+    "passed_lines": 67,
+    "errors": []
+  },
+  {
+    "name": "test_building_frontage",
+    "exit_code": 0,
+    "passed_lines": 204,
+    "errors": []
+  },
+  {
+    "name": "test_transit_routes",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_view",
+    "exit_code": 1,
+    "passed_lines": 34,
+    "errors": [
+      "ERROR: FAIL metro viewport commit matches depth-correct preview"
+    ]
+  },
+  {
+    "name": "test_transit_geometry",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_render",
+    "exit_code": 0,
+    "passed_lines": 28,
+    "errors": []
+  }
+]

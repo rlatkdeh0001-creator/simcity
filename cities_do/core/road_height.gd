@@ -1,6 +1,11 @@
 extends RefCounted
-## E1 height geometry. Units: horizontal city cells (4m), vertical metres.
+## E1/E2 height geometry. Units: horizontal city cells (4m), vertical metres.
 const EPS := .0001
+## E2 portal: road surface = -(4.5m clearance + 1.0m cover slab + 0.5m portal beam).
+const PORTAL_CLEARANCE_M := 4.5
+const COVER_SLAB_M := 1.0
+const PORTAL_BEAM_M := 0.5
+const PORTAL_M := -(PORTAL_CLEARANCE_M+COVER_SLAB_M+PORTAL_BEAM_M)
 static var config:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/elevated_road_config.json"))
 static func height_at(road:Dictionary,point:Vector2)->float:
  var points:PackedVector2Array=road.points
@@ -17,13 +22,76 @@ static func raised(road:Dictionary)->bool:
  for value in road.get("heights_m",[]):
   if value>EPS:return true
  return false
+static func sunken(road:Dictionary)->bool:
+ for value in road.get("heights_m",[]):
+  if value< -EPS:return true
+ return false
+static func off_ground(road:Dictionary)->bool:return raised(road) or sunken(road)
+static func level(road:Dictionary)->int:return 1 if raised(road) else (-1 if sunken(road) else 0)
+## The portal line and everything deeper is covered; the open trench is above it.
+static func covered_at(height:float)->bool:return height<=PORTAL_M+EPS
+## Sub-paths whose interpolated height lies in [low, high], cut exactly where a
+## ramp crosses a bound. Each piece keeps per-point heights.
+static func pieces_between(road:Dictionary,low:float,high:float)->Array:
+ var points:PackedVector2Array=road.points
+ var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
+ if heights.size()!=points.size():
+  heights=PackedFloat64Array();heights.resize(points.size());heights.fill(0.0)
+ var result:Array=[]
+ var current:={"points":PackedVector2Array(),"heights_m":PackedFloat64Array()}
+ for i in range(1,points.size()):
+  var a:=heights[i-1];var b:=heights[i]
+  var t0:=0.0;var t1:=1.0
+  if absf(b-a)<=EPS:
+   if a<low-EPS or a>high+EPS:t0=1.0;t1=0.0
+  else:
+   var tl:=(low-a)/(b-a);var th:=(high-a)/(b-a)
+   t0=maxf(0.0,minf(tl,th));t1=minf(1.0,maxf(tl,th))
+  var span:=points[i-1].distance_to(points[i])
+  if (t1-t0)*span<=EPS:
+   _close_piece(result,current);continue
+  if t0>EPS or current.points.is_empty():
+   _close_piece(result,current)
+   current.points.append(points[i-1].lerp(points[i],t0));current.heights_m.append(lerpf(a,b,t0))
+  current.points.append(points[i-1].lerp(points[i],t1));current.heights_m.append(lerpf(a,b,t1))
+  if t1<1.0-EPS:_close_piece(result,current)
+ _close_piece(result,current)
+ return result
+static func _close_piece(result:Array,current:Dictionary):
+ if current.points.size()>=2 and length_cells(current.points)>EPS:result.append({"points":current.points.duplicate(),"heights_m":current.heights_m.duplicate()})
+ current.points=PackedVector2Array();current.heights_m=PackedFloat64Array()
+static func covered_pieces(road:Dictionary)->Array:return pieces_between(road,-INF,PORTAL_M) if sunken(road) else []
+static func open_pieces(road:Dictionary)->Array:
+ if not sunken(road):return [{"points":road.points,"heights_m":road.get("heights_m",PackedFloat64Array())}]
+ return pieces_between(road,PORTAL_M,INF)
+## Ground-rule footprint: the whole ribbon, except covered underground parts.
+static func surface_ribbons(road:Dictionary)->Array[PackedVector2Array]:
+ var geometry=preload("res://core/road_geometry.gd")
+ var result:Array[PackedVector2Array]=[]
+ for piece:Dictionary in open_pieces(road):
+  for ribbon:PackedVector2Array in geometry.ribbons(piece.points,float(road.width),true,true):result.append(ribbon)
+ return result
+## Reversible placeholder relation only (config depth_cost is disabled and unpriced).
+static func depth_cost_factor(road:Dictionary)->float:
+ var settings:Dictionary=config.get("depth_cost",{})
+ var reference:float=maxf(EPS,float(settings.get("reference_depth_m",10.0)))
+ var exponent:float=float(settings.get("exponent",2.0))
+ var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
+ if heights.size()!=road.points.size():return 1.0
+ var total:=0.0;var weighted:=0.0
+ for i in range(1,heights.size()):
+  var length:float=road.points[i-1].distance_to(road.points[i])
+  var depth:=maxf(0.0,-(heights[i-1]+heights[i])/2)
+  weighted+=length*(1.0+pow(depth/reference,exponent));total+=length
+ return weighted/total if total>EPS else 1.0
 static func usable_under_deck(road:Dictionary,polygon:PackedVector2Array)->bool:
  # Parks may use open space, never the earth-filled part below the +5m abutment.
  var points:PackedVector2Array=road.points
  var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
  var parcels=preload("res://core/road_parcels.gd")
  if heights.size()!=points.size() or not raised(road):
-  for ribbon in preload("res://core/road_geometry.gd").ribbons(points,float(road.width),true,true):
+  # Covered underground parts never block parks; open trench parts do.
+  for ribbon in surface_ribbons(road):
    if parcels.overlap(ribbon,polygon):return false
   return true
  var profile=preload("res://core/road_profile.gd")
@@ -70,6 +138,7 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
 static func validate(road:Dictionary,bounds:Vector2)->String:
  var points:PackedVector2Array=road.points;var heights:PackedFloat64Array=road.heights_m
  if road.kind not in ["local","highway"] or road.lanes not in ([2,3,4,5,6,7,8] if road.kind=="local" else [2,4]) or road.major_side not in [-1,1]:return "도로 경로가 필요합니다"
+ if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
  var run_length:=0.0;var run_rise:=0.0;var previous_sign:=0.0
  for i in range(points.size()):
   if not points[i].is_finite() or points[i].x<0 or points[i].y<0 or points[i].x>bounds.x or points[i].y>bounds.y:return "지도 경계 밖입니다"

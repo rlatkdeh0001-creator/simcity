@@ -34,7 +34,7 @@ func run():
   check(game.road_drawer.target_height_m==15,"PgUp changes selected height by 5m")
   var down:=InputEventKey.new();down.keycode=KEY_PAGEDOWN;down.pressed=true;root.push_input(down,true);await settle()
   check(game.road_drawer.target_height_m==10,"PgDn changes selected height by 5m")
-  check(control.find_child("Underground",true,false).disabled,"E1 exposes but does not enable deferred underground mode")
+  check(not control.find_child("Underground",true,false).disabled,"E2 enables the underground mode button")
   game.road_grid_enabled=false;game.road_drawer.set_height(0)
   game.map_zoom=.8;game.origin=Vector2(960,260)-Vector2((20-50)*14,(20+50)*7)*game.map_zoom
   await click(game.screen(Vector2(20,50)))

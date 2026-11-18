@@ -1,0 +1,53 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_road_side_contacts.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS parallel side boundary builds its eight-lane host through real mouse input
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS parallel side boundary preview rejects surface-only contact but permits actual crossings
+PASS parallel side boundary rejected final click leaves every existing road intact
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS perpendicular curb-only end builds its eight-lane host through real mouse input
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS perpendicular curb-only end preview rejects surface-only contact but permits actual crossings
+PASS perpendicular curb-only end rejected final click leaves every existing road intact
+PASS legacy widened box boundary rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS legacy widened box boundary preview rejects surface-only contact but permits actual crossings
+PASS legacy widened box boundary rejected final click leaves every existing road intact
+PASS legacy widened box overlap rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS legacy widened box overlap preview rejects surface-only contact but permits actual crossings
+PASS legacy widened box overlap rejected final click leaves every existing road intact
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS real mixed-width T builds its eight-lane host through real mouse input
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS real mixed-width T preview rejects surface-only contact but permits actual crossings
+PASS real mixed-width T actual final click creates its real junction
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS real mixed-width cross builds its eight-lane host through real mouse input
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS real mixed-width cross preview rejects surface-only contact but permits actual crossings
+PASS real mixed-width cross actual final click creates its real junction
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS three-lane parallel side boundary builds its eight-lane host through real mouse input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS three-lane parallel side boundary preview rejects surface-only contact but permits actual crossings
+PASS three-lane parallel side boundary rejected final click leaves every existing road intact
+PASS three-lane legacy widened box overlap rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS three-lane legacy widened box overlap preview rejects surface-only contact but permits actual crossings
+PASS three-lane legacy widened box overlap rejected final click leaves every existing road intact
+PASS five-lane legacy widened box overlap rebuilds legacy records without deleting or moving them
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS five-lane legacy widened box overlap preview rejects surface-only contact but permits actual crossings
+PASS five-lane legacy widened box overlap rejected final click leaves every existing road intact
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS real three-lane mixed-width T builds its eight-lane host through real mouse input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS real three-lane mixed-width T preview rejects surface-only contact but permits actual crossings
+PASS real three-lane mixed-width T actual final click creates its real junction
+RESULT 46/46 road side-contact checks passed
+
+STDERR

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "test_underground_road_ui-native-no-capture",
+    "exit_code": 0,
+    "passed_lines": 64,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_road_ui-native-no-capture",
+    "exit_code": 0,
+    "passed_lines": 61,
+    "errors": []
+  }
+]

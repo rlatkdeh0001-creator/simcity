@@ -7,7 +7,7 @@ static func candidates(polygon: PackedVector2Array, roads: Array, access_distanc
 	for point in polygon:center+=point
 	center/=polygon.size()
 	for road in roads:
-		if preload("res://core/road_height.gd").raised(road):continue
+		if preload("res://core/road_height.gd").off_ground(road):continue
 		if road.kind!="local":continue
 		for edge in range(polygon.size()):
 			var a:=polygon[edge]

@@ -649,6 +649,8 @@ func demolition_target(position: Vector2) -> Dictionary:
 		if not rail_target.is_empty():return rail_target
 	for i in range(city.roads.size()):
 		var road: Dictionary=city.roads[i]
+		# E2: covered underground parts are hidden in the ground view, so only the underground view picks them.
+		if preload("res://core/road_height.gd").covered_at(preload("res://core/road_height.gd").height_at(road,point)) and not (transit_view!=null and transit_view.underground):continue
 		for j in range(road.points.size()-1):
 			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
 				var id: int=road.get("parcel_id",i)

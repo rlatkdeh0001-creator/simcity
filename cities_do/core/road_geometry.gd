@@ -63,7 +63,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 					if not used.has(entry.road):next=entry
 				if next.is_empty():break
 				var road: Dictionary=roads[next.road]
-				if Height.raised(road)!=Height.raised(roads[i]):break
+				if Height.level(road)!=Height.level(roads[i]):break
 				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
 				if int(road.lanes)%2 and int(road.get("major_side",1))*(1 if next.end==0 else -1)!=int(roads[i].get("major_side",1))*(1 if side==0 else -1):break
 				var extension: PackedVector2Array=road.points.duplicate()
@@ -87,7 +87,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
-		if Height.raised(roads[i]):
+		if Height.off_ground(roads[i]):
 			visual.heights_m=PackedFloat64Array()
 			for point in smooth:visual.heights_m.append(Height.height_at(height_source,point))
 			visual.source_ids=source_ids;visual.piers=supports

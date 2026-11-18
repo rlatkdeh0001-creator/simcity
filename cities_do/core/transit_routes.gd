@@ -98,6 +98,10 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
   if city._polygon_road_distance(polygon,route)<-EPS:return failure("occupied","건물 또는 시설과 충돌합니다")
  if kind=="rail":
   for road:Dictionary in city.roads:
+   if preload("res://core/road_height.gd").sunken(road):
+    var clearance:=road_rail_error(route,road)
+    if not clearance.is_empty():return failure("vertical_clearance",clearance)
+    continue
    if not crossing_allowed(route,road):return failure("road_overlap","도로를 가로지르는 건널목만 허용합니다")
  for existing:Dictionary in city.transit_routes:
   if int(existing.id)==ignore_id or existing.kind!=kind:continue
@@ -178,6 +182,18 @@ static func curve_error(points:PackedVector2Array,minimum_m:float)->String:
 static func ribbons(route:Dictionary)->Array[PackedVector2Array]:
  return Geometry2D.offset_polyline(route.points,float(route.width)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT)
 
+## E2: surface rail vs an underground road. Overlaps need 10m clearance; only
+## at-grade road parts may form level crossings. Shared by both build orders.
+## Metro never reaches this check (approved metro exception).
+static func road_rail_error(route:Dictionary,road:Dictionary)->String:
+ var height=preload("res://core/road_height.gd")
+ var structure:Dictionary=route.duplicate(true);structure.width=2.5
+ var error:String=height.overlap_error(road,structure)
+ if not error.is_empty():return error
+ for piece:Dictionary in height.pieces_between(road,-height.EPS,height.EPS):
+  var at_grade:Dictionary=road.duplicate();at_grade.points=piece.points;at_grade.heights_m=piece.heights_m
+  if not crossing_allowed(route,at_grade):return "철도와는 건널목으로만 교차할 수 있습니다"
+ return ""
 static func crossing_allowed(route:Dictionary,road:Dictionary)->bool:
  var crossings:=PackedVector2Array()
  for i in range(1,route.points.size()):

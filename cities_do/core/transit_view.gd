@@ -59,7 +59,9 @@ func project_point(point:Vector2,depth_m:float=0)->Vector2:
 func paint(canvas:CanvasItem,shapes:Array):
  for shape:Dictionary in shapes:
   var points:=PackedVector2Array()
-  for p:Vector2 in shape.points:points.append(project_point(p,shape.depth_m))
+  # E2 road tunnels carry one depth per vertex (ramps); metro uses one depth.
+  var depths:PackedFloat64Array=shape.get("depths",PackedFloat64Array())
+  for i in range(shape.points.size()):points.append(project_point(shape.points[i],depths[i] if depths.size()==shape.points.size() else shape.depth_m))
   if shape.texture.is_empty():canvas.draw_colored_polygon(points,shape.color)
   elif textures.has(shape.texture):
    # Reuse world-space triangulation: projection can lose the winding of tiny
@@ -97,6 +99,24 @@ static func subtract_all(polygons:Array,masks:Array)->Array:
  return result
 static func shape(points:PackedVector2Array,color:Color,depth_m:float=0,texture:String="",uv:PackedVector2Array=PackedVector2Array())->Dictionary:
  return {"points":points,"color":color,"depth_m":depth_m,"texture":texture,"uv":uv}
+## E2: covered road sections and covered junctions are painted in the underground
+## view like metro tunnels (solid 15181a band at their own road height).
+static func append_road_tunnels(output:Array,city,bounds:PackedVector2Array):
+ var height=preload("res://core/road_height.gd")
+ for visual:Dictionary in city.road_visuals:
+  if not height.sunken(visual):continue
+  for part:Dictionary in height.covered_pieces(visual):
+   for ribbon:PackedVector2Array in preload("res://core/road_geometry.gd").ribbons(part.points,float(visual.width),true,true):
+    for clipped:PackedVector2Array in Geometry2D.intersect_polygons(ribbon,bounds):
+     var band:=shape(clipped,Color("15181a"))
+     var depths:=PackedFloat64Array()
+     for point:Vector2 in clipped:depths.append(height.height_at(part,point))
+     band.depths=depths;band.road_tunnel=true;output.append(band)
+ for junction:Dictionary in city.junctions+city.road_joins:
+  var level:float=float(junction.get("height_m",0))
+  if level>=0 or not height.covered_at(level) or not junction.has("box"):continue
+  for clipped:PackedVector2Array in Geometry2D.intersect_polygons(junction.footprint,bounds):
+   var band:=shape(clipped,Color("15181a"),level);band.road_tunnel=true;output.append(band)
 static func ribbons(route:Dictionary)->Array:
  # Segment quads, not independent fill of offset_polyline outer/hole contours.
  # A closed route's interior is terrain, never a solid ballast/tunnel polygon.
@@ -122,6 +142,7 @@ static func build_geometry(city)->Dictionary:
     for piece:PackedVector2Array in subtract_all(clipped,roads):result.rail.append(shape(piece,Color("a59c8e")))
    else:
     for piece:PackedVector2Array in clipped:result.metro.append(shape(piece,Color("15181a"),-12.7))
+ append_road_tunnels(result.metro,city,bounds)
  var pole_masks:Array=[]
  for pavement:PackedVector2Array in roads:pole_masks.append_array(Geometry2D.offset_polygon(pavement,.25,Geometry2D.JOIN_MITER))
  for lot:Dictionary in city.public_facilities.lots:

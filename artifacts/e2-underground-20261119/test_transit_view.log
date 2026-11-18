@@ -1,0 +1,46 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_transit_view.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS transport reuses existing tool chooser for rail
+PASS main owns independent transit drawing adapter
+PASS rail reuses existing three-mode palette
+PASS preview does not commit
+PASS second viewport click commits independent rail
+PASS preview and commit use identical resolver points
+PASS transit leaves roads and zoning untouched
+PASS camera and refresh retain geometry cache
+PASS viewport click snaps to existing rail endpoint
+PASS route edit immediately invalidates retained cache
+PASS duplicate rail preview is invalid
+PASS invalid duplicate click does not commit
+PASS shared curve palette builds sampled transit preview
+PASS curve third click commits preview exactly
+PASS shared free curve follows transit terminal tangent
+PASS free curve commits on second click
+PASS out-of-map transit preview rejects
+PASS right click exits transit and clears stroke
+PASS shared bulldozer picks visible rail instead of road
+PASS shared bulldozer removes physical rail route
+PASS metro tool opens underground layer
+PASS metro fixture installs independent route
+PASS bulldozer preserves underground view and picks depth-projected metro
+PASS switching category hides underground rendering and picking
+PASS closing transit tray cancels hidden underground tool
+PASS metro input uses same depth projection as tunnel and picking
+PASS transit uses existing cursor preview visual language
+PASS outside-map first-anchor cursor is red
+PASS first-anchor ring shows actual transit connection
+PASS curved-route demolition preview highlights the complete record being removed
+PASS transit demolition press waits for release
+PASS escape cancels captured transit deletion
+PASS road edit invalidates crossing mask cache
+PASS depth-projected metro deletes through shared viewport bulldozer
+RESULT 34/35 transit view checks passed
+
+STDERR
+ERROR: FAIL metro viewport commit matches depth-correct preview
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_transit_view.gd:7)
+       [1] run (res://tests/test_transit_view.gd:87)

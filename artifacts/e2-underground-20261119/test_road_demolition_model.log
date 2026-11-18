@@ -1,0 +1,30 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_road_demolition_model.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS player selection and transactional mutation APIs exist
+PASS model click selects whole free-end to actual junction span
+PASS model preview never mutates roads
+PASS transaction deletes exactly selected click arc length
+PASS survivor retains original ID and source offset
+PASS far parcel records and painted zoning remain unchanged
+PASS stale selection cannot delete a different interval
+PASS model drag uses exact press and clamps at junction
+PASS drag mutation is exactly preview with original plus unique fragment IDs
+PASS new fragment preserves source identity and does not reuse IDs
+PASS overlapping duplicated touching and disjoint cuts consolidate once per original record
+PASS consolidation keeps exact surviving original-coordinate intervals
+PASS multiple fragments keep stable source offsets and monotonic IDs
+PASS mixed valid and missing IDs fail atomically
+PASS click traverses authored two-arm seam
+PASS multi-record click deletes whole selected span and no phantom parcels
+PASS legacy four-metre internal API remains unchanged
+PASS separately built horizontal and vertical roads form a true T
+PASS remove one T arm and retain an ordinary L-shaped connection
+PASS drag toward horizontal road stops at L corner
+PASS vertical whole-span preview excludes horizontal road and does not mutate
+PASS T then arm removal then vertical removal leaves original horizontal road only
+PASS surviving horizontal corner end has a flat butt cap with no painted extension
+RESULT 23/23 road demolition model checks passed
+
+STDERR

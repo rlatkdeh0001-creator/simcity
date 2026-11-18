@@ -1,5 +1,5 @@
 extends VBoxContainer
-## Approved C: three mode buttons, then - / height / +. E2 stays disabled in E1.
+## Approved C: three mode buttons, then - / height / +. E2: underground steps by 5m below ground.
 var owner_view
 var value_label:Label
 var minus:Button
@@ -11,7 +11,7 @@ func setup(view):
  var row:=HBoxContainer.new();add_child(row)
  for spec in [["Underground","지하",-10],["Ground","지상",0],["Elevated","고가",10]]:
   var button:=Button.new();button.name=spec[0];button.text=spec[1];button.custom_minimum_size=Vector2(88,38)
-  button.toggle_mode=true;button.disabled=spec[2]<0;button.add_theme_font_size_override("font_size",20)
+  button.toggle_mode=true;button.add_theme_font_size_override("font_size",20)
   button.pressed.connect(select.bind(spec[2]));row.add_child(button);mode_buttons[spec[2]]=button
  var adjust:=HBoxContainer.new();add_child(adjust)
  minus=Button.new();minus.name="HeightMinus";minus.text="−";minus.custom_minimum_size=Vector2(52,36);adjust.add_child(minus)
@@ -21,13 +21,15 @@ func setup(view):
 func select(value:int):
  owner_view.road_drawer.set_height(value);synchronize()
 func change(delta:int):
- owner_view.road_drawer.set_height(maxf(5,owner_view.road_drawer.target_height_m+delta));synchronize()
+ var height:float=owner_view.road_drawer.target_height_m+delta
+ # -/+ stay inside the selected layer: elevated >= +5m, underground <= -5m.
+ owner_view.road_drawer.set_height(minf(-5,height) if owner_view.road_drawer.target_height_m<0 else maxf(5,height));synchronize()
 func synchronize():
  var height:float=owner_view.road_drawer.target_height_m
- value_label.text="0 m" if height==0 else "+%d m"%height
+ value_label.text="0 m" if height==0 else ("+%d m"%height if height>0 else "−%d m"%absf(height))
  minus.disabled=height==0;plus.disabled=height==0
  for key in mode_buttons:
-  var active:bool=(key==0 and height==0) or (key==10 and height>0)
+  var active:bool=(key==0 and height==0) or (key==10 and height>0) or (key<0 and height<0)
   var button:Button=mode_buttons[key];button.set_pressed_no_signal(active)
   var box:=StyleBoxFlat.new();box.bg_color=Color("36b7ff") if active else Color("142b37");box.set_corner_radius_all(4)
   box.border_width_bottom=3 if active else 0;box.border_color=Color("edf4f5")

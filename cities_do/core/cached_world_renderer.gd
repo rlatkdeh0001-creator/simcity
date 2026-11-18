@@ -106,7 +106,7 @@ func sync_catenary_depth():
  if view.traffic!=null and view.traffic.running and view.traffic.simulation!=null:
   for vehicle:Dictionary in view.traffic.simulation.vehicles:
    if not cars.has(vehicle.id) or not cars[vehicle.id].visible:continue
-   if float(cars[vehicle.id].get_meta("road_height_m",0))>0:continue # Ground catenary must not undo deck ordering.
+   if absf(float(cars[vehicle.id].get_meta("road_height_m",0)))>0:continue # Deck/trench cars never reorder ground catenary.
    poses.append({"id":vehicle.id,"sprite":cars[vehicle.id],"position":view.traffic.simulation.position(vehicle),"heading":view.traffic.simulation.heading(vehicle),"length_m":vehicle.length,"width_m":2.5})
  var active:bool=not view.transit_view.underground and view.map_zoom>=.4
  var key:=hash([catenary_generation,active,poses])
@@ -189,6 +189,7 @@ func sync_transit_cars():
  sync_catenary_depth()
 var road_generation:=0
 var elevated
+var underground
 var grid_generation:=0
 var building_sorts:=0
 var road_signature:=0
@@ -222,6 +223,7 @@ func setup(owner_view):
  line_material.shader=shader;marks.material=line_material
  actors=Node2D.new();actors.name="WorldActors";actors.z_index=9;actors.y_sort_enabled=true;add_child(actors)
  elevated=preload("res://core/elevated_road_renderer.gd").new(self)
+ underground=preload("res://core/underground_road_renderer.gd").new(self)
  view.transit_view.attach(self)
  view.building_views.changed.connect(refresh_building_images)
  synchronize();_process(0)
@@ -242,6 +244,7 @@ func synchronize():
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
   elevated.rebuild()
+  underground.rebuild()
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))
@@ -391,6 +394,7 @@ func _process(_delta:float):
  sync_catenary_visibility()
  if position!=view.origin:position=view.origin
  if elevated!=null:elevated.sync_visibility()
+ if underground!=null:underground.sync_visibility()
  if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
  zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
  zones.set_grid_visible(view.map_zoom>=.4)
@@ -425,6 +429,7 @@ func _process(_delta:float):
    var along:Vector2=direction*float(vehicle.length)/8
    var across:Vector2=direction.orthogonal()*float(car_widths[vehicle.asset_id])/8
    elevated.lift_vehicle(sprite,road,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
+   underground.place_vehicle(sprite,road,point)
  for id in cars:
   if not active.has(id):cars[id].visible=false
  sync_catenary_depth()

@@ -26,11 +26,19 @@ func confirm_pending():
  clear_warning()
  commit_path(approved,true)
 func set_height(value:float):
- target_height_m=maxf(0,roundf(value/5)*5)
+ # E2: below ground is allowed; PgDn/- step 5m into the underground layers.
+ target_height_m=roundf(value/5)*5
  _preview_signature=null
  var controls=view.find_child("RoadHeightControls",true,false)
  if controls!=null:controls.synchronize()
+ sync_underground_view()
  view.queue_redraw()
+## A target below ground shows the underground view (covered roads, metro).
+func sync_underground_view():
+ var transit=view.get("transit_view")
+ if transit==null or view.get("mode")!="road":return
+ var below:=target_height_m< -Height.EPS
+ if transit.underground!=below:transit.underground=below;transit.sync_visibility()
 var owner_reference: WeakRef
 var view:
  get:return owner_reference.get_ref()
@@ -228,12 +236,13 @@ func height_profile(points:PackedVector2Array)->Dictionary:
  var distance:=0.0
  for i in range(result.size()):
   if i>0:distance+=result[i-1].distance_to(result[i])
-  heights.append(target_height_m if ramp==0 else lerpf(start_height_m,target_height_m,clampf(distance/minf(ramp,length),0,1)))
+  heights.append(target_height_m if ramp==0 else lerpf(start_height_m,target_height_m,clampf(distance/maxf(Height.EPS,minf(ramp,length)),0,1)))
  return {"points":result,"heights_m":heights}
 func pointer_world(screen_position:Vector2)->Vector2:
  return view.world(screen_position+Vector2(0,target_height_m*view.tile.x/4*sqrt(1.5)*view.map_zoom))
 func click(point: Vector2):
  view.pointer=point
+ sync_underground_view()
  if anchors.is_empty():
   start_height_m=target_height_m
   if grid_on():grid_frame=Grid.frame_near(layer_city(point,target_height_m),point).duplicate(true)
@@ -375,12 +384,12 @@ func draw_preview():
   for point in shape:
    ground.append(view.screen(point))
    projected.append(view.screen(point)-Vector2(0,Height.height_at(result,point)*view.tile.x/4*sqrt(1.5)*view.map_zoom))
-  if target_height_m>0 or start_height_m>0:view.draw_colored_polygon(ground,Color(0,0,0,.18))
+  if not is_zero_approx(target_height_m) or not is_zero_approx(start_height_m):view.draw_colored_polygon(ground,Color(0,0,0,.18))
   view.draw_colored_polygon(projected,colors.fill)
   projected.append(projected[0]);view.draw_polyline(projected,colors.outline,2,true)
  for index in [0,result.points.size()-1]:
   var point:Vector2=result.points[index];var height:float=Height.height_at(result,point)
-  if height<=0:continue
+  if not is_finite(height) or absf(height)<=Height.EPS:continue
   var ground:Vector2=view.screen(point);var top:=ground-Vector2(0,height*view.tile.x/4*sqrt(1.5)*view.map_zoom)
   view.draw_dashed_line(ground,top,Color("edf4f5"),1,5);view.draw_arc(ground,5,0,TAU,24,Color("edf4f5"),1,true)
  for station:Dictionary in result.get("piers",[]):
