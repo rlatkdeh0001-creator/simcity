@@ -26,6 +26,36 @@ var buildings:Dictionary={}
 var station_parts:Dictionary={}
 var metro_stations:Dictionary={}
 var cars:Dictionary={}
+var transit_cars:Dictionary={}
+var transit_snapshot_signature:int=0
+func sync_transit_cars():
+ if view.traffic==null:return
+ var snapshot:Array=view.city.transit_state.get("visible",[])
+ var key:int=hash([view.city.get_instance_id(),snapshot])
+ if key==transit_snapshot_signature:return
+ transit_snapshot_signature=key
+ var keep:Dictionary={};var ppm:float=view.tile.x/4*sqrt(2.0)
+ for pose:Dictionary in snapshot:
+  keep[pose.id]=true
+  var sprite:Sprite2D=transit_cars.get(pose.id)
+  if sprite==null:
+   sprite=Sprite2D.new();sprite.centered=false;sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+   var parent:Node2D=view.transit_view.metro_layer if pose.kind=="metro" else actors
+   parent.add_child(sprite);transit_cars[pose.id]=sprite
+  var target_parent:Node2D=view.transit_view.metro_layer if pose.kind=="metro" else actors
+  if sprite.get_parent()!=target_parent:sprite.reparent(target_parent,false)
+  var ground_point:=iso(pose.position/4)
+  var rect:Rect2=view.traffic.sprite_rect(pose.asset_id,Vector2.ZERO,ppm)
+  sprite.position=ground_point
+  if pose.get("cargo",false):sprite.position.y+=.001
+  sprite.texture=view.traffic.texture_for(pose.asset_id,pose.heading)
+  if sprite.texture==null:sprite.visible=false;continue
+  var height:float=pose.height_m*view.tile.x/4*sqrt(1.5)
+  sprite.scale=rect.size/Vector2(sprite.texture.get_size())
+  sprite.offset=(rect.position-Vector2(0,height+sprite.position.y-ground_point.y))/sprite.scale
+  sprite.visible=true
+ for id:Variant in transit_cars.keys():
+  if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
 var road_generation:=0
 var grid_generation:=0
 var building_sorts:=0
@@ -123,6 +153,7 @@ func synchronize():
    if not keep.has(id):buildings[id].queue_free();buildings.erase(id)
  sync_station_parts()
  sync_metro_stations()
+ sync_transit_cars()
 func sync_metro_stations():
  var keep:Dictionary={}
  for lot:Dictionary in view.city.public_facilities.lots:

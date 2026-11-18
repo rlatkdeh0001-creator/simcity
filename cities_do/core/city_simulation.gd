@@ -2,8 +2,8 @@ extends RefCounted
 ## Main-thread coordinator. Default-off: CityModel's legacy path is untouched until initialize().
 ## One outstanding simulation step (including completed/unpublished); editor intents are NOT ticks.
 const Clock=preload("res://core/city_clock.gd")
-const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes"]
-const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id"]
+const WORLD_KEYS=["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes","transit_lines"]
+const META_KEYS=["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id"]
 const HAPPINESS_KEYS=["happiness","happiness_target","happiness_factors"]
 var owner:WeakRef
 var worker
@@ -299,6 +299,7 @@ func _publish()->bool:
   _by_id[id]=row;_published_ids[id]=true
  city.population.attach_read_view(result.population_view)
  city._commuting_summary=result.get("commuting_summary",{}).duplicate(true)
+ city.transit_state=result.transit_state.duplicate(true)
  city.happiness.attach_read_view(result.happiness_view)
  city.next_id=maxi(city.next_id,int(result.next_id))
  city.rng.seed=result.rng_seed;city.rng.state=result.rng_state

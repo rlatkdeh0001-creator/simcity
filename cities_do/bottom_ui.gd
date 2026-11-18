@@ -323,7 +323,9 @@ func sync_utility_visibility():
  var tray_open:=drawer.is_visible_in_tree()
  if transit_view!=null and not tray_open and mode!="demolish":
   transit_view.underground=false;transit_view.cancel()
-  if mode in ["rail","metro"]:mode="select";update_road_modes()
+  if mode in ["rail","metro","transit_line","freight_line","remove_line"]:
+   mode="select";update_road_modes()
+   if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.sync_visibility()
  for pair in [["power",power_overlay],["water",water_overlay]]:
   var overlay=pair[1]
@@ -623,6 +625,7 @@ func developer_tools_enabled() -> bool:
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.cancel();transit_view.underground=false
  road_lane_cards.clear();road_grid_button=null
  drawer_box.add_theme_constant_override("separation",8 if key=="road" else 16)
@@ -660,7 +663,7 @@ func select_category(key: String):
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[] # The seven lane cards are the drawing actions.
-  "transport": choices=[["철도","rail"],["지하철 터널","metro"]]
+  "transport": choices=[["철도","rail"],["지하철 터널","metro"],["노선","transit_line"],["화물 노선","freight_line"],["노선 삭제","remove_line"]]
 
   _:
    pass
@@ -1070,6 +1073,7 @@ func update_road_grid_button():
  for state in ["normal","hover","pressed"]:road_grid_button.add_theme_stylebox_override(state,style(Color("36b7ff") if road_grid_enabled else Color("38515e")))
 func activate_tool(tool: String):
  hide_asset_info();clear_money_toast()
+ if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.cancel();transit_view.underground=tool=="metro"
  if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()

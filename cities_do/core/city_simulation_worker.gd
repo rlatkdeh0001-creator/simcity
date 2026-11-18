@@ -6,6 +6,7 @@ var city
 var logical_tick:=0
 var edit_revision:=0
 var previous:Dictionary={}
+var transit_operations=preload("res://core/transit_operations.gd").new()
 
 # ONE idle initialization capture, never part of a normal frame/tick.
 static func capture(source)->Dictionary:
@@ -100,12 +101,18 @@ func _validate(delta:Dictionary)->String:
     if not row.has(field):return "missing building field: "+field
    if row.zone not in ["residential","commercial","industrial"]:return "invalid building zone"
  for key:Variant in delta.get("meta",{}):
-  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id"]:return "unsupported meta field"
+  if str(key) not in ["funds","population_enabled","happiness_enabled","difficulty","city_name","next_transit_route_id","next_transit_line_id"]:return "unsupported meta field"
  for key:Variant in delta.get("world",{}):
-  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes"]:return "unsupported world field"
+  if str(key) not in ["roads","public_lots","power_plants","water_facilities","junctions","road_joins","external_infrastructure","transit_routes","transit_lines"]:return "unsupported world field"
  for key:Variant in delta.get("zones",{}):
   if str(delta.zones[key]) not in ["","residential","commercial","industrial"]:return "invalid zone designation"
  var world:Dictionary=delta.get("world",{})
+ if world.has("transit_lines"):
+  var problem:String=Model.validate_transit_lines(world.transit_lines)
+  if not problem.is_empty():return problem
+ if delta.get("meta",{}).has("next_transit_line_id"):
+  var next:Variant=delta.meta.next_transit_line_id
+  if not next is int or next<city.next_transit_line_id:return "invalid line ID watermark"
  if world.has("transit_routes"):
   var transit_error:String=Model.TransitRoutes.snapshot_error(world.transit_routes,city.width,city.height)
   if not transit_error.is_empty():return transit_error
@@ -146,6 +153,9 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  if delta.has("growth_config"):_restore_object(city.config,delta.growth_config)
  if delta.has("population_config"):city.population.config=delta.population_config.duplicate(true)
  var world:Dictionary=delta.get("world",{})
+ if world.has("transit_lines"):
+  city.transit_lines.assign(world.transit_lines.duplicate(true))
+  for line:Dictionary in city.transit_lines:city.next_transit_line_id=maxi(city.next_transit_line_id,int(line.id)+1)
  if world.has("transit_routes"):
   city.transit_routes.assign(world.transit_routes.duplicate(true))
   city._commuting_generation+=1
@@ -178,6 +188,7 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  for target:Variant in delta.get("loan_commands",[]):
   city.loans.last_command_result=city.set_loan_amount(target)
  city.advance_society(seconds)
+ transit_operations.advance(city,seconds)
  logical_tick=tick;edit_revision=int(delta.get("revision",edit_revision))
  var current:=_geometry_snapshot();var changed:Array[Dictionary]=[];var removed:=PackedInt64Array()
  for id:Variant in current:
@@ -188,10 +199,10 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  return {"ok":true,"logical_tick":logical_tick,"revision":edit_revision,"building_upserts":changed,"building_removals":removed,
   "clock_seconds":city.clock.game_seconds,"society_elapsed":city.society_elapsed,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,
   "next_id":city.next_id,"rng_seed":city.rng.seed,"rng_state":city.rng.state,"appearance_seed":city.appearance_rng.seed,"appearance_state":city.appearance_rng.state,
-  "loan_status":city.loan_status(),"loan_checkpoint":_capture_object(city.loans),
+  "transit_state":city.transit_state.duplicate(true),"loan_status":city.loan_status(),"loan_checkpoint":_capture_object(city.loans),
   "funds":city.funds,"tax_day_economy":city._tax_day_economy.duplicate(true),"commuting_summary":city.commuting.status(),"population_view":city.population.core.CaptureCityReadView(),"happiness_view":city.happiness.core.CaptureCityReadView()}
 func export_validation()->Dictionary:
- return {"buildings":city.buildings.duplicate(true),"transit_routes":city.transit_routes.duplicate(true),"next_transit_route_id":city.next_transit_route_id,"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
+ return {"transit_lines":city.transit_lines.duplicate(true),"transit_state":city.transit_state.duplicate(true),"next_transit_line_id":city.next_transit_line_id,"buildings":city.buildings.duplicate(true),"transit_routes":city.transit_routes.duplicate(true),"next_transit_route_id":city.next_transit_route_id,"external_infrastructure":city.external_infrastructure.duplicate(true),"population":city.population.core.ExportCityCheckpoint(),"happiness":city.happiness.core.ExportCityCheckpoint(),
   "rng_state":city.rng.state,"appearance_state":city.appearance_rng.state,"clock_seconds":city.clock.game_seconds,
   "loans":_capture_object(city.loans),
   "funds":city.funds,"next_id":city.next_id,"development_elapsed":city.development_elapsed,"development_cursor":city.development_cursor,"society_elapsed":city.society_elapsed}

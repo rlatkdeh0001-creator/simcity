@@ -1,0 +1,49 @@
+{
+  "head": "d5bdad56e646e94b6c3d0a74d6401eca0f76eba6",
+  "source_sha256": {
+    "cities_do/core/transit_operations.gd": "03d604aca7784d92f50bed89a7f24e1f2101ad6130eef8d93af1f8fc600f6f53",
+    "cities_do/tests/test_scheduled_buses.gd": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+    "cities_do/tests/test_transit_operations_fifo.gd": "27d42bdc046dfbcf5531d0c080b365de394499ffcc820538ea27b9c44ab05ee9"
+  },
+  "suites": [
+    {
+      "suite": "test_scheduled_buses",
+      "checks": 121,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_scheduled_buses.log",
+      "sha256": "3db2e7d60e499899b041e40b57cc0e329f71823ccda7346c3e1555a68a7d0a05"
+    },
+    {
+      "suite": "test_transit_operation_safety",
+      "checks": 15,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operation_safety.log",
+      "sha256": "eaf38236572bddf5c7067dc638f510a3575d523ac46b5f3f2d7199a09380fdff"
+    },
+    {
+      "suite": "test_transit_operations",
+      "checks": 36,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operations.log",
+      "sha256": "2fa6fad30b8e33471f28450a6fef1abeca3dcb8dc60ac7da5eb56b96fede70e0"
+    },
+    {
+      "suite": "test_transit_operations_fifo",
+      "checks": 20,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operations_fifo.log",
+      "sha256": "5d6f7fd31fd20568f339b6132b83f59578767ed1144cb94de23165f26585fe1c"
+    },
+    {
+      "suite": "test_transit_traffic_regression",
+      "checks": 28,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_traffic_regression.log",
+      "sha256": "b553f0f9a31181d8e7baa2a1ae75596cc709d2ca8a506f446b05b68c2fc2a4de"
+    }
+  ],
+  "total_checks": 220,
+  "note": "Scheduled bus and FIFO logs transcribed verbatim from successful terminal tool stdout with normalized line endings; other logs captured directly. RED failures were observed before production edits, not saved.",
+  "command": "python tools/run_dotnet.py --timeout 120 godot --path cities_do --headless --script res://tests/<suite>.gd",
+  "parent_action": "Re-review then commit. Existing top-level P3 manifest fingerprints are superseded for the three listed sources; merge these focused results before reporting aggregate totals."
+}

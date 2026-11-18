@@ -1,0 +1,11 @@
+{
+  "status": "Reversible P3 operational defaults, not economic policy. Seconds are accepted simulation seconds (1x wall seconds), not game-clock seconds. One reusable vehicle per line; cyclic routes require physically connected return geometry. No automatic crossover, depot, fare or upkeep.",
+  "headway_seconds": 60.0,
+  "dwell_seconds": 5.0,
+  "rail_speed_mps": 12.0,
+  "metro_speed_mps": 16.0,
+  "freight_speed_mps": 10.0,
+  "bus_speed_mps": 12.0,
+  "rail_acceleration_mps2": 1.0,
+  "rail_braking_mps2": 2.0
+}

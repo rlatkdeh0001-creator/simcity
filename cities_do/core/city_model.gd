@@ -44,6 +44,62 @@ var roads: Array[Dictionary] = []
 const TransitRoutes=preload("res://core/transit_routes.gd")
 var transit_routes:Array[Dictionary]=[]
 var next_transit_route_id:=1
+# Plans are editable; operational state is advanced only by the detached worker.
+var transit_lines:Array[Dictionary]=[]
+var next_transit_line_id:=1
+var transit_state:Dictionary={"seconds":0.0,"trains":{},"bus":{},"lines":{},"visible":[]}
+func create_transit_line(kind:String,stops:Array,options:Dictionary={})->Dictionary:
+	if _defer_simulation_edit(create_transit_line.bind(kind,stops.duplicate(),options.duplicate(true))):return _queued_simulation_edit()
+	if kind not in ["bus","rail","metro","freight"] or stops.size()<2:return TransitRoutes.failure("invalid_line","정류장을 두 곳 이상 선택하세요")
+	var seen:Dictionary={}
+	for id:Variant in stops:
+		if not id is int or seen.has(id):return TransitRoutes.failure("invalid_stop","중복되거나 없는 정류장입니다")
+		seen[id]=true
+		var found:=false
+		for lot:Dictionary in public_facilities.lots:
+			if lot.id==id and lot.public_asset_id=={"bus":"bus-stop-01","rail":"train-station-01","freight":"train-station-01","metro":"subway-entrance-01"}[kind]:found=true
+		if not found:return TransitRoutes.failure("invalid_stop","종류가 같은 정류장을 선택하세요")
+	var defaults:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/transit_operation_config.json"))
+	var line:Dictionary={"id":next_transit_line_id,"kind":kind,"stops":stops.duplicate(),"enabled":true,"headway_seconds":defaults.headway_seconds,"dwell_seconds":defaults.dwell_seconds}
+	for key:String in ["headway_seconds","dwell_seconds"]:
+		if options.has(key):
+			if not (options[key] is int or options[key] is float) or not is_finite(float(options[key])) or options[key]<1:return TransitRoutes.failure("invalid_schedule","운행 간격을 확인하세요")
+			line[key]=float(options[key])
+	var plan:Dictionary
+	if kind=="bus":
+		var network=preload("res://core/scheduled_bus_network.gd").new();network.build_city(self);plan=network.line_plan(stops)
+	else:plan=preload("res://core/transit_line_planner.gd").new().rail_plan(self,line)
+	if not plan.ok:return plan
+	transit_lines.append(line);next_transit_line_id+=1
+	if simulation!=null:
+		simulation.note_world_dirty("transit_lines");simulation.note_meta("next_transit_line_id",next_transit_line_id)
+	return {"ok":true,"line":line.duplicate(true)}
+func remove_transit_line(id:int)->Dictionary:
+	if _defer_simulation_edit(remove_transit_line.bind(id)):return _queued_simulation_edit()
+	for i in range(transit_lines.size()):
+		if transit_lines[i].id==id:
+			transit_lines.remove_at(i)
+			if simulation!=null:simulation.note_world_dirty("transit_lines")
+			return {"ok":true}
+	return TransitRoutes.failure("unknown_line","없는 노선입니다")
+static func validate_transit_lines(rows:Variant)->String:
+	if not rows is Array:return "invalid transit lines"
+	var seen:Dictionary={}
+	for row:Variant in rows:
+		if not row is Dictionary:return "invalid line"
+		if not row.get("id") is int or row.id<1 or seen.has(row.id):return "invalid line ID"
+		seen[row.id]=true
+		if not row.get("kind") is String or row.kind not in ["rail","metro","freight","bus"]:return "invalid line kind"
+		if not row.get("stops") is Array or row.stops.size()<2:return "invalid line stops"
+		var stops:Dictionary={}
+		for id:Variant in row.stops:
+			if not id is int or id<1 or stops.has(id):return "invalid line stop"
+			stops[id]=true
+		for key:String in ["headway_seconds","dwell_seconds"]:
+			if not (row.get(key) is float or row.get(key) is int) or not is_finite(float(row[key])) or row[key]<1:return "invalid line schedule"
+	return ""
+func transit_snapshot()->Dictionary:
+	return transit_state.duplicate(true)
 signal transit_changed
 func get_transit_route(id:int)->Dictionary:
 	var index:=TransitRoutes.index_of(transit_routes,id)

@@ -68,15 +68,22 @@ func stop():
 	bridge = null
 	simulation = null
 
+func sprite_path(asset_id:String,heading:Vector2)->String:
+	var azimuth:=wrapf(heading.angle()-deg_to_rad(45.0),0,TAU)
+	var angle:=(int(round(rad_to_deg(azimuth)/45.0))*45)%360
+	var directory:="res://assets/vehicles/sprites/"+asset_id
+	for asset:Dictionary in catalog:
+		if asset.id==asset_id and asset.has("preview"):directory=str(asset.preview).get_base_dir();break
+	return "%s/%03d.png"%[directory,angle]
 func texture_for(asset_id: String, heading: Vector2) -> Texture2D:
-	# The 2D isometric projection has screen-right = world X - world Y.
-	# Hence world +Y maps to Blender -Y for the sprite camera at azimuth 45°.
-	var azimuth := wrapf(heading.angle()-deg_to_rad(45.0), 0, TAU)
-	var angle := (int(round(rad_to_deg(azimuth)/45.0))*45)%360
-	var key := "%s/%03d" % [asset_id, angle]
-	if not textures.has(key):
-		textures[key] = load("res://assets/vehicles/sprites/%s/%03d.png" % [asset_id, angle])
-	return textures[key]
+	var path:=sprite_path(asset_id,heading)
+	if not textures.has(path):
+		if FileAccess.file_exists(path+".import") and ResourceLoader.exists(path):
+			textures[path]=load(path);return textures[path]
+		var image:=Image.load_from_file(ProjectSettings.globalize_path(path))
+		if image==null or image.is_empty():return null
+		image.generate_mipmaps();textures[path]=ImageTexture.create_from_image(image)
+	return textures[path]
 
 func sprite_rect(asset_id: String, position: Vector2, pixels_per_metre: float) -> Rect2:
 	var ppm: float = render_entries[asset_id].pixels_per_metre

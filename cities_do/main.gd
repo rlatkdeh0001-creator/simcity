@@ -30,6 +30,7 @@ var building_views
 var public_controller
 var road_drawer
 var transit_view
+var transit_line_tool
 var mode := "select"
 var demolition_hover := {}
 var demolition_press := {}
@@ -90,6 +91,7 @@ func _ready():
 	road_drawer=preload("res://core/road_drawing.gd").new(self)
 	transit_view=preload("res://core/transit_view.gd").new()
 	add_child(transit_view);transit_view.setup(self)
+	transit_line_tool=preload("res://core/transit_line_tool.gd").new(self)
 	keyboard_camera=preload("res://core/keyboard_camera.gd").new(self)
 	add_child(keyboard_camera)
 
@@ -422,6 +424,8 @@ func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
 	refresh()
 
 func _unhandled_input(event):
+	if transit_line_tool!=null and transit_line_tool.handle_input(event):
+		get_viewport().set_input_as_handled();return
 	if transit_view!=null and transit_view.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -689,6 +693,7 @@ func _draw():
 
 	if road_drawer!=null:road_drawer.draw_preview()
 	if transit_view!=null:transit_view.draw_preview()
+	if transit_line_tool!=null:transit_line_tool.draw_preview()
 	if mode=="demolish" and not demolition_hover.is_empty():
 		var tint := Color(1,.35,.20,.65)
 		if demolition_hover.has("polygons"):
