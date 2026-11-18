@@ -1,5 +1,10 @@
 # CITIES_DO 스킬 인계장
 
+## 고가·터널 띠 승인 묶음① (2026-11-18, cities-asset)
+
+신규 tools/build_elevated_strips.py 및 assets/structures/ 3종: 원본 4m 스크립트 지오메트리·blend·preview, 런타임 emission 띠4장. viaduct-side-01 132tri/4×0.5×3.1m, retaining-wall-01 132tri/4×0.5×9m, tunnel-portal-01 156tri/4×0.5×2.6m. 80px/m, 위112px 실제 동일, 경계 이음/옹벽 가로무늬 없음. 픽셀 경계에 맞춘 mm 디테일+좁은 Gaussian 필터로 실제 렌더의 AA 경계 차이를 없앴으며 이미지 합성 없음.
+로컬 MIT godot-windows-validation 및 references/windows-capture.md(외부 upstream/pin 없음), 기존 MIT common helper/NOTICE 아래 출처 사용. Blender4.3.2 실제 렌더, Godot4.6.3 독립 GL10검사와 각 면의 실제 조명 평균으로 face_shade 측정. 단일 fixed1600×1000 캡처 docs/elevated-tunnel-validation/strips-02-1600.png 육안 확인, STRIPS_RESULTS.txt. 요청서 원문 복사, 기존 원본/게임 코드/카탈로그 변경 없음; 설치·가격·교각·고가 견본·철도 fixture·push/main 없음. 사용자 최종 검수 대기.
+
 ## 보행자 신호등 (2026-11-18, cities-asset)
 
 `ped-signal-01` 원본 all-off blend/build/spec, GLB, 미리보기2장, 48px/m·고도30°·8방향×off/red/green24장. 0.48×0.53×3.35m/480tri, 머리0.48×0.22×0.98m 하단2.30m. 위 서 있는 빨강/아래 걷는 초록은 독립 지오메트리와 지정 on/off 재질. 실제 최소축척에서 가느다란 사람만으로 색이 사라지는 문제를 렌즈의 낮은 밝기 색확산 재질로 보완(치수 불변, spec lens_backing_materials 동시 전환). source 기본 렌즈/사람 모두 off.
