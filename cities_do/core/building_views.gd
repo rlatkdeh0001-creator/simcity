@@ -8,13 +8,13 @@ var pending := {}
 var queue: Array[Dictionary] = []
 var busy := false
 
-func view(asset: Dictionary, facing: Vector2) -> Dictionary:
+func view(asset: Dictionary, facing: Vector2, part:String="") -> Dictionary:
 	if DisplayServer.get_name()=="headless" or not asset.has("model"):return {}
-	var key := "%s:%.10f:%.10f" % [asset.id,facing.x,facing.y]
+	var key := "%s:%.10f:%.10f:%s" % [asset.id,facing.x,facing.y,part]
 	if cache.has(key):return cache[key]
 	if not pending.has(key):
 		pending[key]=true
-		queue.append({"key":key,"asset":asset,"facing":facing})
+		queue.append({"key":key,"asset":asset,"facing":facing,"part":part})
 		_start_next.call_deferred()
 	return {}
 
@@ -31,8 +31,19 @@ func _start_next():
 	add_child(viewport)
 	var stage:=Node3D.new()
 	viewport.add_child(stage)
-	var model=load(asset.model).instantiate()
+	var model
+	if ResourceLoader.exists(asset.model):model=load(asset.model).instantiate()
+	else:
+		var document:=GLTFDocument.new();var state:=GLTFState.new()
+		if document.append_from_file(asset.model,state)!=OK:
+			pending.erase(request.key);viewport.queue_free();busy=false;_start_next.call_deferred();return
+		model=document.generate_scene(state)
 	stage.add_child(model)
+	model.position.y+=float(asset.get("render_height_offset_m",0))
+	if not request.part.is_empty():
+		for name_value:String in ["StationFront","StationRear"]:
+			var layer=model.find_child(name_value,true,false)
+			if layer!=null:layer.visible=name_value==request.part
 	model.rotation.y=atan2(request.facing.x,request.facing.y)
 	var environment:=WorldEnvironment.new()
 	environment.environment=Environment.new()

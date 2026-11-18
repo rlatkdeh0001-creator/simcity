@@ -21,6 +21,8 @@ static func insert_record(city,value:Dictionary):
 func run():
  root.size=Vector2i(1280,820)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
+ # This fixture replaces the live model below; join its test-owned worker first.
+ if game.city.simulation!=null:game.city.simulation.shutdown()
  for sizes in [[2,4],[2,8],[4,8]]:
   for turns in range(4):
    var city=City.new(150,150);var raw:Array=[]

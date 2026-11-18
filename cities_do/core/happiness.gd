@@ -75,6 +75,7 @@ func _rebuild(city):
    if int(road.get("lanes",2))>=4 and city._polygon_road_distance(polygon,road)<=city.config.road_access_distance+.00001:noise=true;break
   buildings.append({"id":b.id,"road":b.get("front_road_id",-1),"level":b.level,"zone":b.zone,"position":_center(polygon)*4,"polygon":_shape(polygon),"power":b.get("has_power",false),"water":b.get("has_water",false),"noise":noise})
  for f:Dictionary in city.public_facilities.lots:
+  if not f.get("effect_enabled",true):continue
   var asset:String=f.public_asset_id;var kind:="";var capacity:=0.0;var school:=0
   if asset.begins_with("medical-"):kind="health";capacity=float(f.capacity.get("outpatient_day",0))
   elif asset.contains("police-station"):kind="police";capacity=float(f.capacity.get("population_capacity",0))

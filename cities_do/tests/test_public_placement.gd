@@ -10,7 +10,7 @@ func run():
  var city=preload("res://core/city_model.gd").new(100,100,42)
  verify(city.get("public_facilities")!=null,"public placements have a separate real city model, not inspection scenes")
  if city.get("public_facilities")!=null:
-  verify(city.public_facilities.entries.size()==34,"all thirty-four approved service/infrastructure/park cards are placeable, excluding hydro")
+  verify(city.public_facilities.entries.size()==39,"thirty-four existing facilities plus five P2 registrations, excluding hydro")
   verify(city.public_facilities.has_method("place"),"public placement commits real geometry and charges construction cost")
   if city.public_facilities.has_method("place"):
    city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
@@ -33,6 +33,7 @@ func check_lifecycle():
  var ids: Array=town().public_facilities.entries.keys()
  for id: String in ids:
   var city=town();var public=city.public_facilities;var e: Dictionary=public.entries[id]
+  if e.has("construction_default"):continue # P2's explicitly provisional/free entries have their own lifecycle suite.
   var position:=Vector2(12,38-float(e.depth)/2)
   verify(not public.preview(id,Vector2(12,10)).ok,id+" rejects disconnected frontage")
   verify(not public.preview(id,position,2).ok,id+" rejects model front away from road")

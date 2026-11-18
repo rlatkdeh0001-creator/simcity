@@ -44,7 +44,8 @@ func _unhandled_input(event):
    view.refresh();queue_redraw();get_viewport().set_input_as_handled()
 func asset(id: String) -> Dictionary:
  if assets.has(id):return assets[id]
- var entry: Dictionary=view.city.public_facilities.entries[id].duplicate(true)
+ var entry: Dictionary=(view.city.public_facilities.subway_platform if id=="subway-platform-silhouette-01" else view.city.public_facilities.entries[id]).duplicate(true)
+ if id=="subway-platform-silhouette-01":entry.render_height_offset_m=12.7
  entry.footprint=[maxi(int(entry.width),int(entry.depth)),maxi(int(entry.width),int(entry.depth))]
  if not entry.has("height_m"):
   var model=load(entry.model).instantiate();var bounds:=AABB();var first:=true
@@ -57,11 +58,16 @@ func asset(id: String) -> Dictionary:
   model.free()
  assets[id]=entry
  return entry
-func visual(record: Dictionary) -> Dictionary:
- var rendered: Dictionary=view.building_views.view(asset(record.public_asset_id),record.front_direction)
+func visual(record: Dictionary,part:String="") -> Dictionary:
+ var entry:=asset(record.public_asset_id)
+ var rendered: Dictionary=view.building_views.view(entry,record.front_direction,part)
  if rendered.is_empty():return {}
  var factor: float=view.tile.x/4*sqrt(2.0)*view.map_zoom/rendered.ppm
- return {"texture":rendered.texture,"image":rendered.image,"rect":Rect2(view.screen(record.position)-rendered.anchor*factor,Vector2(rendered.image.get_size())*factor)}
+ var origin:Vector2=record.position
+ if entry.get("origin","")=="centre of road-contact edge, ground z=0":origin+=Vector2(record.front_direction)*float(entry.depth)/2
+ var ground:Vector2=view.screen(origin)
+ if record.has("render_depth_m"):ground=view.origin+view.transit_view.project_point(origin,float(record.render_depth_m))*view.map_zoom
+ return {"texture":rendered.texture,"image":rendered.image,"rect":Rect2(ground-rendered.anchor*factor,Vector2(rendered.image.get_size())*factor)}
 func target(position: Vector2) -> Dictionary:
  var ordered: Array=view.building_draw_order().filter(func(record):return record.has("public_asset_id"))
  ordered.reverse()

@@ -61,6 +61,7 @@ func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Di
 	if commit and _defer_simulation_edit(update_transit_route.bind(id,points.duplicate(),true)):return _queued_simulation_edit()
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
+	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
 	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id)
 	if not result.ok:return result
 	result.route.id=id
@@ -72,6 +73,7 @@ func remove_transit_route(id:int)->Dictionary:
 	if _defer_simulation_edit(remove_transit_route.bind(id)):return _queued_simulation_edit()
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
+	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
 	transit_routes.remove_at(index)
 	_transit_routes_changed()
 	return {"ok":true,"id":id}
@@ -300,11 +302,12 @@ func _polygon_road_distance(polygon_value: PackedVector2Array,road: Dictionary) 
 			result=min(result,_point_segment(c,a,b),_point_segment(d,a,b),_point_segment(a,c,d),_point_segment(b,c,d))
 	return result-road.width/2
 
-func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_buildings: bool=true) -> String:
+func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_buildings: bool=true,sidewalk_road_id:int=-1,station_ports:PackedVector2Array=PackedVector2Array()) -> String:
 	for point in polygon_value:
 		if point.x< -0.0005 or point.y< -0.0005 or point.x>width+0.0005 or point.y>height+0.0005:return "지도 경계 밖입니다"
 	if check_buildings:
 		for route:Dictionary in transit_routes:
+			if TransitRoutes.station_contact_only(route,polygon_value,station_ports):continue
 			if _polygon_road_distance(polygon_value,route)<-0.0005:return "철도 또는 지하철 경로와 충돌합니다"
 		if public_facilities!=null:
 			for record: Dictionary in public_facilities.lots:
@@ -320,10 +323,11 @@ func _polygon_error(polygon_value: PackedVector2Array,ignore_id: int=-1,check_bu
 	for junction in junctions+road_joins:
 		if Parcels.overlap(polygon_value,RoadJunctions.patch(junction)):return "교차로와 충돌합니다"
 	for road in roads:
+		if sidewalk_road_id>=0 and int(road.get("parcel_id",-2))==sidewalk_road_id:continue
 		var distance:=_polygon_road_distance(polygon_value,road)
 		if distance< -0.0005:return "도로와 충돌합니다"
 	# Revealed cells may extend deeper than building frontage range.
-	if not check_buildings:return ""
+	if not check_buildings or sidewalk_road_id>=0:return ""
 	return "" if not Frontage.candidates(polygon_value,roads,config.road_access_distance).is_empty() else "도로 바로 옆 구획이 필요합니다"
 
 func placement_error(x: int,y: int,size: int,ignore_id: int=-1) -> String:
@@ -914,6 +918,7 @@ func _update_zoning_for_road(_road: Dictionary):
 		if road.kind!="local":continue
 		var target:=RoadProfile.width_for(road.kind,road.lanes,config.road_width)
 		if not is_equal_approx(road.width,target):road.width=target;road.erase("grid_frame")
+	public_facilities.refresh_road_bindings()
 	var topology: Dictionary=RoadJunctions.analyze(roads)
 	junctions=topology.junctions
 	road_joins=topology.joins

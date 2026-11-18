@@ -211,7 +211,12 @@ func cursor_preview()->Dictionary:
  var probe:={"points":PackedVector2Array([p,p]),"width":width}
  var obstacles:Array=[]
  for b:Dictionary in view.city.buildings:obstacles.append(view.city.footprint(b))
- for lot:Dictionary in view.city.public_facilities.lots:obstacles.append(lot.polygon)
+ for lot:Dictionary in view.city.public_facilities.lots:
+  var station_port:=false
+  if view.mode=="rail" and lot.has("station_ports"):
+   for port:Dictionary in lot.station_ports:
+    if Vector2(port.point).distance_to(p)<Routes.EPS:station_port=true
+  if not station_port:obstacles.append(lot.polygon)
  for facility:Dictionary in view.city.power.plants+view.city.water.facilities:obstacles.append(view.city.power_plant_footprint(facility))
  for polygon:PackedVector2Array in obstacles:
   if view.city._polygon_road_distance(polygon,probe)<-.0005:valid=false

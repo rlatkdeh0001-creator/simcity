@@ -10,6 +10,7 @@ class Layer extends Node2D:
 class Building extends Sprite2D:
  var renderer
  var record:Dictionary
+ var part:String=""
  var world_bounds:Rect2
  func _draw():
   if texture==null:renderer.fallback(self,record,position)
@@ -22,6 +23,8 @@ var roads
 var marks
 var actors:Node2D
 var buildings:Dictionary={}
+var station_parts:Dictionary={}
+var metro_stations:Dictionary={}
 var cars:Dictionary={}
 var road_generation:=0
 var grid_generation:=0
@@ -101,6 +104,7 @@ func synchronize():
   building_signature=signature;ordered=view.building_draw_order();building_sorts+=1
   var keep:Dictionary={};var previous_depth:float=-INF;var rank:=0
   for record in ordered:
+   if record.get("public_asset_id","")=="train-station-01":continue
    keep[record.id]=true
    var node:Building=buildings.get(record.id)
    if node==null:node=Building.new();node.renderer=self;node.centered=false;actors.add_child(node);buildings[record.id]=node
@@ -117,9 +121,42 @@ func synchronize():
    bind_building(node)
   for id in buildings.keys():
    if not keep.has(id):buildings[id].queue_free();buildings.erase(id)
+ sync_station_parts()
+ sync_metro_stations()
+func sync_metro_stations():
+ var keep:Dictionary={}
+ for lot:Dictionary in view.city.public_facilities.lots:
+  if lot.get("public_asset_id","")!="subway-entrance-01":continue
+  keep[lot.id]=true
+  var node:Building=metro_stations.get(lot.id)
+  if node==null:
+   node=Building.new();node.renderer=self;node.centered=false;view.transit_view.metro_layer.add_child(node);metro_stations[lot.id]=node
+  node.record=lot.duplicate(true);node.record.public_asset_id="subway-platform-silhouette-01";node.record.render_depth_m=-12.7
+  node.position=iso(lot.position);bind_building(node)
+ for id in metro_stations.keys():
+  if not keep.has(id):metro_stations[id].queue_free();metro_stations.erase(id)
+func sync_station_parts():
+ var keep:Dictionary={}
+ for record:Dictionary in view.city.public_facilities.lots:
+  if record.get("public_asset_id","")!="train-station-01":continue
+  var front:Vector2=record.front_direction
+  var near_part:String="StationFront" if front.x+front.y>=0 else "StationRear"
+  var low:float=INF;var high:float=-INF
+  for point:Vector2 in record.internal_points:
+   low=minf(low,iso(point).y);high=maxf(high,iso(point).y)
+  for part:String in ["StationFront","StationRear"]:
+   var key:String="%d:%s"%[record.id,part];keep[key]=true
+   var node:Building=station_parts.get(key)
+   if node==null:
+    node=Building.new();node.renderer=self;node.centered=false;node.part=part;actors.add_child(node);station_parts[key]=node
+   node.record=record
+   node.position=Vector2(iso(record.position).x,high+view.tile.y*2 if part==near_part else low-view.tile.y*2)
+   bind_building(node)
+ for key in station_parts.keys():
+  if not keep.has(key):station_parts[key].queue_free();station_parts.erase(key)
 func bind_building(node:Building):
  var b:Dictionary=node.record
- var visual:Dictionary=view.public_controller.visual(b) if b.has("public_asset_id") else view.building_visual(b)
+ var visual:Dictionary=view.public_controller.visual(b,node.part) if b.has("public_asset_id") else view.building_visual(b)
  if not visual.is_empty():
   node.texture=visual.texture;node.scale=visual.rect.size/Vector2(node.texture.get_size())/view.map_zoom
   node.offset=((visual.rect.position-view.origin)/view.map_zoom-node.position)/node.scale
@@ -132,7 +169,7 @@ func bind_building(node:Building):
   box.position.y-=lift;box.size.y+=lift;node.world_bounds=box
  node.queue_redraw()
 func refresh_building_images():
- for node in buildings.values():bind_building(node)
+ for node in buildings.values()+station_parts.values()+metro_stations.values():bind_building(node)
 func build_marks():
  var vertices:=PackedVector3Array();var colors:=PackedColorArray();var uv:=PackedVector2Array()
  for pair in [[view.city.road_medians,Color("e4bd5f")],[view.city.road_lane_marks,Color("e8e7dc")]]:
@@ -189,7 +226,7 @@ func _process(_delta:float):
  if line_zoom!=view.map_zoom:
   line_zoom=view.map_zoom;line_material.set_shader_parameter("zoom",line_zoom)
  var screen_bounds:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
- for node in buildings.values():node.visible=screen_bounds.intersects(Rect2(view.origin+node.world_bounds.position*view.map_zoom,node.world_bounds.size*view.map_zoom))
+ for node in buildings.values()+station_parts.values()+metro_stations.values():node.visible=screen_bounds.intersects(Rect2(view.origin+node.world_bounds.position*view.map_zoom,node.world_bounds.size*view.map_zoom))
  var active:Dictionary={}
  if view.traffic!=null and view.traffic.running and view.traffic.simulation!=null:
   var ppm:float=view.tile.x/4*sqrt(2.0)

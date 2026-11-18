@@ -723,8 +723,12 @@ func select_category(key: String):
   registered_button.name="Registered_"+str(entry.id)
   registered_button.set_meta("registered_asset_id",str(entry.id))
   drawer_box.add_child(registered_button)
- if key=="park":
+ if key in ["park","transport"]:
+
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+   var transit:bool=str(entry.kind).begins_with("transit") or str(entry.kind).begins_with("subway")
+   if transit!=(key=="transport"):continue
+   if transit and not city.public_facilities.entries.has(entry.id):continue
    var facility_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
    facility_button.name="Facility_"+str(entry.id)
    drawer_box.add_child(facility_button)
@@ -883,7 +887,8 @@ func show_asset_info(card):
  for child in asset_info.get_children():asset_info.remove_child(child);child.queue_free()
  var body:=VBoxContainer.new();body.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_theme_constant_override("separation",6);asset_info.add_child(body)
  var title:=label(card.get_meta("asset_name",""),20);title.add_theme_color_override("font_color",Color("edf4f5"));title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;title.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_child(title)
- var picture:=TextureRect.new();picture.texture=load(card.get_meta("source_preview",""));picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ var preview_path:String=card.get_meta("source_preview","")
+ var picture:=TextureRect.new();picture.texture=load(preview_path) if ResourceLoader.exists(preview_path) else ImageTexture.create_from_image(Image.load_from_file(preview_path));picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
  picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
  picture.custom_minimum_size=Vector2(270,90 if get_viewport_rect().size.y<760 else 150);body.add_child(picture)
  var rows:=asset_info_rows(card.get_meta("thumbnail_asset_id",""));asset_info.set_meta("rows",rows)
@@ -900,7 +905,7 @@ func show_asset_info(card):
 
 func update_asset_affordability():
  if drawer_box==null:return
- for card in drawer_box.get_children():
+ for card in drawer_box.find_children("*","Button",true,false):
   var id: String=str(card.get_meta("thumbnail_asset_id",""))
   if card is ThumbnailButton and city.public_facilities.entries.has(id):card.set_unaffordable(city.public_facilities.price(id)>city.utility_balance())
 func clear_money_toast():
@@ -956,7 +961,7 @@ func select_public_asset(id: String) -> bool:
  if city.public_facilities.entries.has(id):
   if city.public_facilities.price(id)>city.utility_balance():
    public_controller.cancel();road_drawer.cancel();mode="select"
-   for card in drawer_box.get_children():
+   for card in drawer_box.find_children("*","Button",true,false):
     if card is Button and card.get_meta("thumbnail_asset_id","")==id:show_money_toast(card);break
    return false
   clear_money_toast()
@@ -1029,6 +1034,7 @@ func layout_bottom_hud():
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
  var item_count:=road_lane_cards.size()+3 if chosen=="road" else drawer_box.get_child_count()
+
  var width_value := minf(maxf(410,240+145*(item_count-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2

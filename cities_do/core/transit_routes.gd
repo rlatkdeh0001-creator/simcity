@@ -83,7 +83,16 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
  route.points=points.duplicate()
  var occupied:Array=[]
  for building:Dictionary in city.buildings:occupied.append(city.footprint(building))
- for lot:Dictionary in city.public_facilities.lots:occupied.append(lot.polygon)
+ for lot:Dictionary in city.public_facilities.lots:
+  if kind=="rail" and lot.get("internal_kind","")=="rail" and lot.has("internal_points"):
+   var corridor:=profile("rail");corridor.points=lot.internal_points
+   var pieces:Array[PackedVector2Array]=[lot.polygon]
+   for strip:PackedVector2Array in ribbons(corridor):
+    var remaining:Array[PackedVector2Array]=[]
+    for piece:PackedVector2Array in pieces:remaining.append_array(Geometry2D.clip_polygons(piece,strip))
+    pieces=remaining
+   occupied.append_array(pieces)
+  else:occupied.append(lot.polygon)
  for facility:Dictionary in city.power.plants+city.water.facilities:occupied.append(city.power_plant_footprint(facility))
  for polygon:PackedVector2Array in occupied:
   if city._polygon_road_distance(polygon,route)<-EPS:return failure("occupied","건물 또는 시설과 충돌합니다")
@@ -97,6 +106,18 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1)->D
   error=joint_error(points,existing.points,float(route.min_center_radius_m))
   if not error.is_empty():return failure("curve",error)
  return {"ok":true,"route":route,"points":points.duplicate(),"reason":""}
+
+static func station_contact_only(route:Dictionary,polygon:PackedVector2Array,ports:PackedVector2Array)->bool:
+ if route.kind!="rail" or ports.size()!=2:return false
+ var contact:=false
+ for end:Vector2 in [route.points[0],route.points[-1]]:
+  for port:Vector2 in ports:
+   if end.distance_to(port)<EPS:contact=true
+ if not contact:return false
+ for strip:PackedVector2Array in ribbons(route):
+  for overlap:PackedVector2Array in Geometry2D.intersect_polygons(strip,polygon):
+   if not Geometry2D.triangulate_polygon(overlap).is_empty():return false
+ return true
 
 static func collinear_overlap(first:PackedVector2Array,second:PackedVector2Array)->bool:
  for i in range(1,first.size()):
