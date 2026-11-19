@@ -3,6 +3,7 @@ extends Node2D
 const Routes=preload("res://core/transit_routes.gd")
 const Crossover=preload("res://core/terminal_crossover.gd")
 const Height=preload("res://core/road_height.gd")
+const Operations=preload("res://core/transit_operations.gd")
 var view
 ## E3a rail tool height (approved C): 0 = ground, +5m steps above; underground waits for E3b.
 var target_height_m:=0.0
@@ -440,6 +441,15 @@ func confirm_pending():
  if approved.city_id!=view.city.get_instance_id():cancel();return
  commit(approved,true)
 func commit(plan:Dictionary,confirmed:bool):
+ # Edit warning (user rule 2026-11-19): a track that changes the route of a running rail line waits
+ # for 확인 (main.gd guard_route_edit); 취소 keeps the drawing as it was.
+ var after:Variant=null
+ var trial:Dictionary=view.city.add_transit_route(plan.points,view.mode,false,plan.get("heights_m",PackedFloat64Array()))
+ if trial.get("ok",false):
+  after=Operations.draft(view.city);after.transit_routes.append(trial.route)
+ if view.has_method("guard_route_edit"):view.guard_route_edit(after,build.bind(plan,confirmed))
+ else:build(plan,confirmed)
+func build(plan:Dictionary,confirmed:bool):
  var points:PackedVector2Array=plan.points
  var heights:PackedFloat64Array=plan.get("heights_m",PackedFloat64Array())
  last_result=view.city.add_transit_route(points,view.mode,true,heights,confirmed,plan.get("demolish_ids",[]) if confirmed else null)

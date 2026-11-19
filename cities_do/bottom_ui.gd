@@ -311,6 +311,9 @@ func open_budget():
  budget_window.open(city)
 
 func _input(event):
+ # The route edit warning (main.gd guard_route_edit) is modal: its own _input takes Enter/Esc first.
+ if route_warning_open():
+  keyboard_camera.clear();return
  if budget_window!=null and budget_window.visible:
   keyboard_camera.clear()
   if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
@@ -323,7 +326,7 @@ func sync_utility_visibility():
  var tray_open:=drawer.is_visible_in_tree()
  if transit_view!=null and not tray_open and mode!="demolish":
   transit_view.underground=false;transit_view.cancel()
-  if mode in ["rail","metro","transit_line","freight_line","remove_line"]:
+  if mode in ["rail","metro","transit_line","freight_line","remove_line","edit_line"]:
    mode="select";update_road_modes()
    if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.sync_visibility()
@@ -663,7 +666,7 @@ func select_category(key: String):
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[] # The seven lane cards are the drawing actions.
-  "transport": choices=[["철도","rail"],["지하철 터널","metro"],["노선","transit_line"],["화물 노선","freight_line"],["노선 삭제","remove_line"]]
+  "transport": choices=[["철도","rail"],["지하철 터널","metro"],["노선","transit_line"],["화물 노선","freight_line"],["노선 삭제","remove_line"],["노선 수정","edit_line"]]
 
   _:
    pass
@@ -850,7 +853,7 @@ func capture():
  get_tree().quit(0 if error==OK else 1)
 
 func _unhandled_input(event):
- if budget_window!=null and budget_window.visible:
+ if route_warning_open() or (budget_window!=null and budget_window.visible):
   get_viewport().set_input_as_handled();return
  if mode in ["road","rail","metro"] and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
   activate_tool("select")

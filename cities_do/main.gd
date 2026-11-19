@@ -30,6 +30,8 @@ var building_views
 var public_controller
 var road_drawer
 var transit_view
+const Operations = preload("res://core/transit_operations.gd")
+var route_warning
 var transit_line_tool
 var mode := "select"
 var demolition_hover := {}
@@ -429,10 +431,76 @@ func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
 	if mode!="demolish" or over_hud:cancel_demolition_drag();return
 	update_demolition_drag(position)
 	var transit:bool=demolition_press.get("kind","")=="transit_route"
-	var result: Dictionary=city.remove_transit_route(demolition_press.id) if transit else city.demolish_road_selection(demolition_hover.selection)
+	if transit:
+		var id:int=demolition_press.id
+		cancel_demolition_drag()
+		guard_route_edit(route_removal_draft(id),apply_route_removal.bind(id))
+		refresh()
+		return
+	var result: Dictionary=city.demolish_road_selection(demolition_hover.selection)
 	message="" if result.ok else result.reason
-	if result.ok and not transit:stop_traffic()
+	if result.ok:stop_traffic()
 	cancel_demolition_drag()
+	refresh()
+
+## Edit warning (user rule 2026-11-19, ASSET_REQUEST_RAIL_PARK_KO.md 5절 12번): an edit that changes the
+## route of a rail, metro or freight line with a consist is applied only after 확인; 취소 changes nothing.
+## `after` is the city as the edit would leave it (Operations.draft, null when nothing re-plans); the
+## lines are judged by Operations.reset_lines, the same route_changed rule advance() moves consists by.
+## One warning per edit however many lines it touches. Returns true while the warning waits.
+func guard_route_edit(after:Variant,apply:Callable,cancelled:Callable=Callable())->bool:
+	if after==null or Operations.reset_lines(city,after).is_empty():
+		apply.call()
+		return false
+	if route_warning==null:
+		var layer:=CanvasLayer.new();layer.name="RouteWarningLayer";layer.layer=100;add_child(layer)
+		route_warning=preload("res://core/route_reset_warning.gd").new();layer.add_child(route_warning)
+	if keyboard_camera!=null:keyboard_camera.clear()
+	route_warning.open(apply,cancelled)
+	return true
+
+func route_warning_open()->bool:
+	return route_warning!=null and route_warning.visible
+
+## Stop edit of a line (노선 수정 tool). Schedule-only, bus and rejected edits never warn.
+func edit_transit_line(id:int,stops:Array,options:Dictionary={})->bool:
+	return guard_route_edit(Operations.line_edit_draft(city,id,stops),apply_line_edit.bind(id,stops.duplicate(),options.duplicate(true)))
+
+func apply_line_edit(id:int,stops:Array,options:Dictionary)->void:
+	var result:Dictionary=city.update_transit_line(id,stops,options)
+	message="" if result.get("ok",false) or result.get("queued",false) else str(result.get("reason",""))
+	refresh()
+
+func route_removal_draft(id:int)->Variant:
+	var route:Dictionary=city.get_transit_route(id)
+	if route.is_empty() or route.has("station_id"):return null
+	var after:Dictionary=Operations.draft(city)
+	after.transit_routes=after.transit_routes.filter(func(r):return int(r.id)!=id)
+	return after
+
+func apply_route_removal(id:int)->void:
+	var result:Dictionary=city.remove_transit_route(id)
+	message="" if result.ok else result.reason
+	refresh()
+
+## A demolished station takes its own track with it (public_facilities.remove).
+func station_removal_draft(kind:String,id:int)->Variant:
+	if kind!="public_facility":return null
+	var owned:=false
+	for lot:Dictionary in city.public_facilities.lots:
+		if lot.id==id and lot.has("internal_route_id"):owned=true
+	if not owned:return null
+	var after:Dictionary=Operations.draft(city)
+	after.public_facilities.lots=after.public_facilities.lots.filter(func(lot):return lot.id!=id)
+	after.transit_routes=after.transit_routes.filter(func(r):return int(r.get("station_id",-1))!=id)
+	return after
+
+func apply_demolition(kind:String,id:int)->void:
+	var result: Dictionary=city.demolish(kind,id)
+	message="" if result.ok else result.reason
+	if result.ok:
+		if kind=="building" and selected==id: selected=-1
+		demolition_hover.clear()
 	refresh()
 
 func _unhandled_input(event):
@@ -474,11 +542,7 @@ func _unhandled_input(event):
 							demolition_dragged=false
 							update_demolition_drag(event.position)
 							return
-						var result: Dictionary=city.demolish(target.kind,target.id)
-						message="" if result.ok else result.reason
-						if result.ok:
-							if target.kind=="building" and selected==target.id: selected=-1
-							demolition_hover.clear()
+						guard_route_edit(station_removal_draft(target.kind,target.id),apply_demolition.bind(target.kind,target.id))
 						refresh()
 				else:finish_demolition_drag(event.position)
 				return

@@ -110,6 +110,36 @@ static func corners(points:PackedVector2Array)->PackedVector2Array:
   if kept.size()>=2 and Geometry2D.get_closest_point_to_segment(kept[kept.size()-1],kept[kept.size()-2],p).distance_to(kept[kept.size()-1])<=PATH_EPS:kept[kept.size()-1]=p
   else:kept.append(p)
  return kept
+## Plain copy of every input rail_plan reads, to plan an edit before it is applied.
+static func draft(city)->Dictionary:
+ return {"transit_routes":city.transit_routes.duplicate(),"transit_lines":city.transit_lines.duplicate(true),"public_facilities":{"lots":city.public_facilities.lots.duplicate()},"road_pavement":city.road_pavement,"junction_pavement":city.junction_pavement}
+## Edit warning: IDs of the rail, metro and freight lines with a consist whose route changes when the
+## city becomes `after` (a draft()).
+static func reset_lines(city,after:Dictionary)->Array:
+ var ids:Array=[]
+ var planner=Planner.new()
+ for line:Dictionary in after.transit_lines:
+  if line.kind=="bus" or city.transit_state.trains.get(line.id,{}).is_empty():continue
+  var before:Dictionary={}
+  for row:Dictionary in city.transit_lines:
+   if row.id==line.id:before=planner.rail_plan(city,row)
+  if route_changed(before,planner.rail_plan(after,line)):ids.append(line.id)
+ return ids
+## The draft of a stop edit (same plan rules as update_transit_line). null when nothing would
+## re-plan (bus, unchanged stops, unknown line) or the new stops are rejected.
+static func line_edit_draft(city,id:int,stops:Array)->Variant:
+ var after:=draft(city)
+ for i in range(after.transit_lines.size()):
+  var line:Dictionary=after.transit_lines[i]
+  if line.id!=id:continue
+  if line.kind=="bus" or line.stops==stops:return null
+  var edited:Dictionary=line.duplicate(true);edited.stops=stops.duplicate()
+  edited.erase("turnback");edited.erase("terminal_ports")
+  if edited.kind in ["rail","metro"]:edited.allow_turnback=true
+  if not Planner.new().rail_plan(after,edited).get("ok",false):return null
+  after.transit_lines[i]=edited
+  return after
+ return null
 var bus_network
 var bus_simulation
 var bus_key:int=0
