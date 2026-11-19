@@ -4,6 +4,8 @@ extends SceneTree
 ## counters kept) is moved to the line start and leaves by the first-stop rules (clear check, headway).
 ## A cut path stops it where it is; once rejoined it is moved to the start. Schedule-only edits and
 ## buses keep running. Consists sent to one start leave one after another and are never drawn overlapping.
+## A route changes only when the line the consist runs or its stops change: a branch laid on the line
+## splits track pieces under it and keeps it running (Operations.route_changed).
 const City=preload("res://core/city_model.gd")
 const Operations=preload("res://core/transit_operations.gd")
 const Planner=preload("res://core/transit_line_planner.gd")
@@ -20,6 +22,7 @@ func check(ok:bool,label:String):
  else:failures+=1;printerr("FAIL ",label)
 func run():
  test_rail_line()
+ test_branch()
  for kind:String in ["metro","freight"]:test_loop_kind(kind)
  test_bus()
  test_shared_start()
@@ -155,6 +158,49 @@ func test_rail_line():
  line_of(city,id).stops=stops
  operation.advance(city,1.0)
  check(plan_of(city,id)==before.plan and at_start(city,id) and kept(city,id,ref,before),"when the same path runs again the consist still restarts from the first stop: "+describe(train(city,id)))
+## A branch laid on the line's track splits the track graph under the running consist but keeps its
+## path and stops: no route change, so the consist keeps running where it is (cities-claude 2026-11-19).
+func test_branch():
+ var built:=row_city()
+ check(not built.is_empty(),"branch fixture: three real stations joined in a row")
+ if built.is_empty():return
+ var city=built.city;var ids:Array=built.ids
+ var made:Dictionary=city.create_transit_line("rail",ids,{"dwell_seconds":4.0,"headway_seconds":20.0})
+ check(made.ok,"branch: line A-B-C operates: "+str(made.get("reason","")))
+ if not made.ok:return
+ var id:int=int(made.line.id)
+ var operation=Operations.new()
+ for i in range(60):operation.advance(city,1.0)
+ var ref:Dictionary=train(city,id)
+ check(not ref.is_empty() and float(ref.distance)>5.0 and int(ref.departures)>=1,"branch: a consist is running before the branch: "+describe(ref))
+ if ref.is_empty():return
+ ref.merge(LOAD,true)
+ var old_plan:Dictionary=plan_of(city,id)
+ # A branch leaving the middle of the A-B track tangentially (outside the X crossover in front of A).
+ var join:PackedVector2Array=built.joins[0];var at:Vector2=(join[0]+join[1])/2;var added:Dictionary={}
+ for side:float in [-1.0,1.0]:
+  var branch:=PackedVector2Array()
+  for i in range(29):
+   var s:=float(i)/28.0
+   branch.append(at+Vector2(14*s,side*4*s*s))
+  added=city.add_transit_route(branch)
+  if added.get("ok",false):break
+ check(added.get("ok",false),"a branch is laid on the line's track between A and B: "+str(added.get("reason","")))
+ var new_plan:Dictionary=plan_of(city,id)
+ var pieces:Callable=func(plan:Dictionary)->int:return plan.legs[0].points.size() if plan.get("turnback",false) else plan.points.size()
+ check(new_plan.get("ok",false) and new_plan!=old_plan and not Operations.route_changed(old_plan,new_plan),"the branch splits the line's track (plan points %d -> %d) but keeps its path and stops: no route change"%[pieces.call(old_plan),pieces.call(new_plan) if new_plan.get("ok",false) else -1])
+ var before:Dictionary=ref.duplicate(true)
+ operation.advance(city,1.0)
+ var t:Dictionary=train(city,id)
+ check(is_same(ref,t) and t.plan==new_plan and float(t.distance)>=float(before.distance) and float(t.distance)>5.0 and int(t.departures)==int(before.departures),"the consist is not moved to the start: it keeps running where it is on the new pieces: %s was %s"%[describe(t),describe(before)])
+ var last:=float(t.distance);var kept_running:=true
+ for i in range(20):
+  operation.advance(city,1.0)
+  t=train(city,id)
+  if not is_same(ref,t) or float(t.distance)<last or status(city,id)=="blocked":kept_running=false;break
+  last=float(t.distance)
+ check(kept_running and last>float(before.distance)+5.0 and t.get("passengers")==LOAD.passengers,"after the branch the same consist keeps running with its load: "+describe(t))
+ check(Operations.route_changed(old_plan,{"ok":false}) and Operations.route_changed({"ok":false},old_plan) and not Operations.route_changed({"ok":false},{"ok":false}),"a plan turning blocked or running again is a route change")
 ## Metro and freight follow the same rule (loop fixture, stop order A-B changed to B-A).
 func test_loop_kind(kind:String):
  var city=Fixture.rail_city("metro" if kind=="metro" else "rail")

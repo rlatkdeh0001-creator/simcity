@@ -36,12 +36,17 @@ func advance(city,seconds:float):
     # A cut path stops the consist where it is; once rejoined it restarts from the line start.
     if not train.is_empty():train.restart=true
     state.lines[line.id]={"status":"blocked"};continue
-   if not train.is_empty() and (train.plan!=plan or train.get("restart",false)):
-    # Route path changed (any reason): the same consist, its load and counters kept,
-    # goes back to the first stop of the new path. It is placed there by the spawn
-    # rule below (clear first stop, else waiting and not drawn) and leaves on headway.
-    train.merge({"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"departure_pending":true,"visible":[]},true)
-    train.erase("restart")
+   if not train.is_empty() and (train.get("restart",false) or train.plan!=plan):
+    if train.get("restart",false) or route_changed(train.plan,plan):
+     # Route path changed (any reason): the same consist, its load and counters kept,
+     # goes back to the first stop of the new path. It is placed there by the spawn
+     # rule below (clear first stop, else waiting and not drawn) and leaves on headway.
+     train.merge({"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"departure_pending":true,"visible":[]},true)
+     train.erase("restart")
+    else:
+     # Same path and stops in new track pieces (e.g. a branch laid on the line): it keeps
+     # running where it is; only the per-segment route IDs of the new plan are taken over.
+     train.plan=plan.duplicate(true)
    if train.is_empty() or train.visible.is_empty():
     var moved:=not train.is_empty()
     if not moved:train={"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"dwell_until":state.seconds+line.dwell_seconds,"departures":0,"departure_pending":true,"last_departure":-INF,"kind":line.kind,"visible":[]}
@@ -76,6 +81,35 @@ func advance(city,seconds:float):
  state.visible=[]
  for train:Dictionary in state.trains.values():state.visible.append_array(train.visible.duplicate(true))
  advance_buses(city,seconds)
+## Route change (user rule 2026-11-19, cities-claude definition): a line's route changed only when
+## the line its consist runs (positions) or its stop order changed, or when its plan turns blocked or
+## runs again. Track pieces split or merged under the same path (a branch laid on the line) are no
+## change. advance() and the edit warning (main.gd guard_route_edit) both decide with this function.
+const PATH_EPS:=0.01
+static func route_changed(before:Dictionary,after:Dictionary)->bool:
+ if before.get("ok",false)!=after.get("ok",false):return true
+ if not after.get("ok",false):return false
+ if str(before.get("kind",""))!=str(after.get("kind","")) or bool(before.get("turnback",false))!=bool(after.get("turnback",false)):return true
+ if before.stops.size()!=after.stops.size():return true
+ for i in range(before.stops.size()):
+  if int(before.stops[i].id)!=int(after.stops[i].id) or absf(float(before.stops[i].distance)-float(after.stops[i].distance))>PATH_EPS:return true
+ var a:Array=before.legs if before.get("turnback",false) else [before]
+ var b:Array=after.legs if after.get("turnback",false) else [after]
+ if a.size()!=b.size():return true
+ for i in range(a.size()):
+  var p:=corners(a[i].points);var q:=corners(b[i].points)
+  if p.size()!=q.size():return true
+  for k in range(p.size()):
+   if p[k].distance_to(q[k])>PATH_EPS:return true
+ return false
+## The polyline without repeated points and without points on the straight run between neighbours.
+static func corners(points:PackedVector2Array)->PackedVector2Array:
+ var kept:=PackedVector2Array()
+ for p:Vector2 in points:
+  if not kept.is_empty() and kept[kept.size()-1].distance_to(p)<=PATH_EPS:continue
+  if kept.size()>=2 and Geometry2D.get_closest_point_to_segment(kept[kept.size()-1],kept[kept.size()-2],p).distance_to(kept[kept.size()-1])<=PATH_EPS:kept[kept.size()-1]=p
+  else:kept.append(p)
+ return kept
 var bus_network
 var bus_simulation
 var bus_key:int=0
