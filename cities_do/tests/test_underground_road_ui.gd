@@ -224,7 +224,16 @@ func test_underground_view_and_pick():
  check(game.demolition_target(game.screen(trench_point)).get("kind","")=="road","trench stays pickable in the ground view")
  game.road_drawer.set_height(-10);await settle()
  check(game.transit_view.underground and game.transit_view.metro_layer.visible and game.world_renderer.underground.trenches[0].visible,"underground view shows bands and still shows the trench")
- check(game.demolition_target(game.screen(covered_point)).get("kind","")=="road","underground view picks the covered road")
+ # Review fix 1: the underground view picks a covered part where it is drawn, at its depth.
+ var depth:=0.0
+ for road:Dictionary in game.city.roads:
+  if road.get("heights_m",PackedFloat64Array()).size()==road.points.size():depth=minf(depth,preload("res://core/road_height.gd").height_at(road,covered_point))
+ var drawn:Vector2=game.screen(covered_point)-Vector2(0,depth*game.tile.x/4*sqrt(1.5)*game.map_zoom)
+ check(depth<-6 and game.demolition_target(drawn).get("kind","")=="road","underground view picks the covered road where it is drawn (%.1fm)"%depth)
+ # Review fix 1 (user rule 2026-11-19): the underground view picks only underground objects, plus
+ # the trench and portal, which both views show.
+ check(game.demolition_target(game.screen(trench_point)).get("kind","")=="road","trench stays pickable in the underground view")
+ check(game.demolition_target(game.screen(Vector2(95,60))).is_empty(),"underground view does not pick the ground approach road")
  game.road_drawer.set_height(0);await settle()
 func native_capture(ground_path:String,underground_path:String):
  for path in [ground_path,underground_path]:

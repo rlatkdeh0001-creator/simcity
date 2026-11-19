@@ -403,6 +403,18 @@ func cancel_demolition_drag() -> void:
 	demolition_dragged=false
 	queue_redraw()
 
+## Review fix 1: bulldozer view switch (PgDn underground, PgUp ground). A press picked in the other
+## view is dropped and the hover is picked again in the new view.
+func set_demolition_view(below: bool) -> void:
+	if transit_view==null or mode!="demolish":return
+	cancel_demolition_drag()
+	if transit_view.underground!=below:
+		transit_view.underground=below
+		transit_view.sync_visibility()
+		refresh()
+	demolition_hover=demolition_target(get_viewport().get_mouse_position())
+	queue_redraw()
+
 func update_demolition_drag(position: Vector2) -> void:
 	if demolition_press.is_empty():return
 	if demolition_press.get("kind","")=="transit_route":
@@ -436,6 +448,12 @@ func _unhandled_input(event):
 		cancel_zoning_drag()
 		return
 	if mode=="demolish":
+		# Review fix 1: the bulldozer has no height steps, so PgDn shows the underground view and
+		# PgUp returns to the ground view; each view picks only its own objects.
+		if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
+			set_demolition_view(event.keycode==KEY_PAGEDOWN)
+			get_viewport().set_input_as_handled()
+			return
 		if event is InputEventMouseMotion:
 			if not demolition_press.is_empty():update_demolition_drag(event.position)
 			else:demolition_hover=demolition_target(event.position)
@@ -609,9 +627,14 @@ func visible_zoning_parcels() -> Array[Dictionary]:
 	return empty
 
 func demolition_target(position: Vector2) -> Dictionary:
-	if transit_view!=null and transit_view.underground:
-		var metro_target:Dictionary=transit_view.pick(position,"metro")
-		if not metro_target.is_empty():return metro_target
+	# Review fix 1 (user rule 2026-11-19): the ground view (the bulldozer default) picks only ground
+	# objects and the underground view (PgDn) only underground ones: covered road/rail parts and
+	# metro. Trenches and portals are picked in both. The underground layer is drawn above the
+	# world, so that view checks it first, where it is drawn (at depth).
+	var below: bool=transit_view!=null and transit_view.underground
+	if below:
+		var buried:Dictionary=transit_view.pick_drawn(position,["covered"])
+		if not buried.is_empty():return buried
 	var public_record: Dictionary=public_controller.target(position)
 	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
@@ -643,18 +666,10 @@ func demolition_target(position: Vector2) -> Dictionary:
 		if not result.is_empty(): return result
 	var building: Dictionary=pick_rendered_building(position)
 	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
-	var point := world(position)
-	if transit_view!=null:
-		var rail_target:Dictionary=transit_view.pick(position,"rail")
-		if not rail_target.is_empty():return rail_target
-	for i in range(city.roads.size()):
-		var road: Dictionary=city.roads[i]
-		# E2: covered underground parts are hidden in the ground view, so only the underground view picks them.
-		if preload("res://core/road_height.gd").covered_at(preload("res://core/road_height.gd").height_at(road,point)) and not (transit_view!=null and transit_view.underground):continue
-		for j in range(road.points.size()-1):
-			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
-				var id: int=road.get("parcel_id",i)
-				return {"kind":"road","id":id,"selection":city.road_demolition_selection(id,point),"world_point":point}
+	# Review fix 1: roads and rails alike at the height they are drawn (decks raised, trenches at
+	# their opening); the top-most drawn hit wins. The underground view never falls back to ground
+	# roads, rails or decks: only trenches and portals, which both views show.
+	if transit_view!=null:return transit_view.pick_drawn(position,["open"] if below else ["surface","open"])
 	return {}
 
 func draw_front_door(b: Dictionary):

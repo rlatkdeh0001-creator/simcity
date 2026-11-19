@@ -312,20 +312,101 @@ func cancel():
  clear_warning()
  anchors.clear();start_tangent=Vector2.ZERO;preview_signature=null
  if view!=null:view.queue_redraw()
-func pick(position:Vector2,kind:String="")->Dictionary:
- for i in range(view.city.transit_routes.size()-1,-1,-1):
-  var route:Dictionary=view.city.transit_routes[i]
-  if not kind.is_empty() and route.kind!=kind:continue
-  if route.kind=="metro" and not underground:continue
-  var polygons:Array=[];var hit:=false
-  for ribbon:PackedVector2Array in ribbons(route):
-   for clipped:PackedVector2Array in Geometry2D.intersect_polygons(ribbon,boundary(view.city)):
-    var projected:=PackedVector2Array()
-    for p:Vector2 in clipped:projected.append(view.origin+project_point(p,route.rail_top_z_m)*view.map_zoom)
-    polygons.append(projected)
-    if Geometry2D.is_point_in_polygon(position,projected):hit=true
-  if hit:return {"kind":"transit_route","id":route.id,"polygons":polygons}
+## Review fix 1 (user rule 2026-11-19): the bulldozer picks only what its current view shows, roads
+## and rails alike, each part where it is drawn. Layers of one road or rail record:
+## - "surface": ground parts (flat) and raised parts (ramps, decks) at their height. Ground view only.
+## - "open": trenches and portals at their opening on the ground (their content is clipped to it).
+##   Both views.
+## - "covered": parts at or below the portal, and metro, at their depth. Underground view only.
+static func drawn_pieces(record:Dictionary,layer:String,rail:bool)->Array:
+ var width:float=float(record.width)
+ var count:int=record.points.size()
+ if record.get("kind","")=="metro":
+  if layer!="covered":return []
+  var depths:=PackedFloat64Array();depths.resize(count);depths.fill(float(record.get("rail_top_z_m",-12.7)))
+  return [{"points":record.points,"heights":depths,"width":width}]
+ if record.get("heights_m",PackedFloat64Array()).size()!=count or not Height.off_ground(record):
+  if layer!="surface":return []
+  var flat:=PackedFloat64Array();flat.resize(count);flat.fill(0.0)
+  return [{"points":record.points,"heights":flat,"width":width}]
+ var portal:float=Height.RAIL_PORTAL_M if rail else Height.portal_for(record)
+ var structure:float=Routes.STRUCTURE_WIDTH if rail else width
+ # [lowest height, highest height, pick width, drawn flat on the ground]
+ var bands:Array=[]
+ match layer:
+  "surface":bands=[[Height.EPS,INF,structure,false],[-Height.EPS,Height.EPS,width,true]]
+  "open":bands=[[portal,-Height.EPS,structure,true]]
+  "covered":bands=[[-INF,portal,structure,false]]
+ var result:Array=[]
+ for band:Array in bands:
+  for piece:Dictionary in Height.pieces_between(record,band[0],band[1]):
+   var heights:PackedFloat64Array=piece.heights_m
+   if band[3]:heights=PackedFloat64Array();heights.resize(piece.points.size());heights.fill(0.0)
+   result.append({"points":piece.points,"heights":heights,"width":band[2]})
+ return result
+## Exact hit on straight ribbon segments whose height is linear along them (round vertex joins).
+## A point p drawn at height h covers the ground point under the click q when p=q+(1,1)*lift*h.
+static func hit_piece(piece:Dictionary,q:Vector2,lift:float)->Dictionary:
+ var points:PackedVector2Array=piece.points;var heights:PackedFloat64Array=piece.heights
+ var half:float=float(piece.width)/2;var best:Dictionary={}
+ for i in range(points.size()):
+  var at:Vector2=q+Vector2.ONE*lift*heights[i]
+  if at.distance_to(points[i])<=half and (best.is_empty() or heights[i]>best.height):best={"height":heights[i],"point":at}
+  if i==0:continue
+  var a:Vector2=points[i-1];var d:Vector2=points[i]-a;var dh:float=heights[i]-heights[i-1]
+  if d.length_squared()<1e-12:continue
+  var n:Vector2=d.normalized().orthogonal();var e:Vector2=d-Vector2.ONE*lift*dh
+  var det:float=e.cross(n)
+  if absf(det)<1e-9:continue
+  var r:Vector2=q-a+Vector2.ONE*lift*heights[i-1]
+  var t:float=r.cross(n)/det;var u:float=e.cross(r)/det
+  if t<0 or t>1 or absf(u)>half:continue
+  var h:float=heights[i-1]+dh*t
+  if best.is_empty() or h>best.height:best={"height":h,"point":a+d*t+n*u}
+ return best
+static func ahead(a:Array,b:Array)->bool:
+ for i in range(a.size()):
+  if a[i]!=b[i]:return a[i]>b[i]
+ return false
+## The top-most drawn hit among the given layers wins: higher first, then the later drawn layer
+## (rails over roads on the ground, road tunnels over rail tunnels underground), then the old
+## per-kind order (the later rail route, the first road).
+func pick_drawn(position:Vector2,layers:Array)->Dictionary:
+ var city=view.city;var q:Vector2=view.world(position)
+ var lift:float=view.tile.x/4*sqrt(1.5)/(2*view.tile.y)
+ var covered:bool=layers.has("covered")
+ var best:Dictionary={};var best_key:Array=[]
+ for i in range(city.transit_routes.size()):
+  var route:Dictionary=city.transit_routes[i]
+  for layer:String in layers:
+   for piece:Dictionary in drawn_pieces(route,layer,true):
+    var hit:=hit_piece(piece,q,lift)
+    var key:Array=[hit.get("height",0.0),0 if covered else 1,i]
+    if not hit.is_empty() and (best.is_empty() or ahead(key,best_key)):best={"route":route};best_key=key
+ for i in range(city.roads.size()):
+  var road:Dictionary=city.roads[i]
+  for layer:String in layers:
+   for piece:Dictionary in drawn_pieces(road,layer,false):
+    var hit:=hit_piece(piece,q,lift)
+    var key:Array=[hit.get("height",0.0),1 if covered else 0,-i]
+    if not hit.is_empty() and (best.is_empty() or ahead(key,best_key)):best={"road":road,"index":i,"point":hit.point};best_key=key
+ if best.has("road"):
+  var id:int=best.road.get("parcel_id",best.index)
+  return {"kind":"road","id":id,"selection":city.road_demolition_selection(id,best.point),"world_point":best.point}
+ if best.has("route"):return {"kind":"transit_route","id":best.route.id,"polygons":drawn_polygons(best.route)}
  return {}
+## Hover tint of the whole route, each part where it is drawn in the current view.
+func drawn_polygons(route:Dictionary)->Array:
+ var pieces:Array=[]
+ for layer:String in (["surface","open","covered"] if underground else ["surface","open"]):pieces.append_array(drawn_pieces(route,layer,true))
+ var result:Array=[]
+ for piece:Dictionary in pieces:
+  var quads:Array=ribbons({"points":piece.points,"width":piece.width})
+  for i in range(quads.size()):
+   var projected:=PackedVector2Array()
+   for k in range(4):projected.append(view.origin+project_point(quads[i][k],piece.heights[i] if k in [0,3] else piece.heights[i+1])*view.map_zoom)
+   result.append(projected)
+ return result
 func preview()->Dictionary:
  var key:=hash([view.city.get_instance_id(),view.mode,view.road_drawer.kind,anchors,start_tangent,view.pointer,view.city.transit_routes,view.city.roads,view.city.buildings,view.city.public_facilities.lots,view.city.power.plants,view.city.water.facilities])
  key=hash([key,target_height_m if view.mode=="rail" else 0.0])
