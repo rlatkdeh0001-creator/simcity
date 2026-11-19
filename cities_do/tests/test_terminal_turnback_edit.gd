@@ -1,7 +1,8 @@
 extends SceneTree
 ## P5 review BLOCK 1: line edits while a terminal-turnback consist is actually
 ## running in the native worker. An unchanged stop list is a schedule-only edit
-## (no re-plan); only a changed stop list re-plans and inherits the P3 freeze.
+## (no re-plan); only a changed stop list re-plans and moves the running consist
+## to the start of the new path (user rule 2026-11-19, replaces the P3 freeze).
 
 const Fixture = preload("res://tests/transit_operations_fixture.gd")
 const Planner = preload("res://core/transit_line_planner.gd")
@@ -98,30 +99,38 @@ func test_schedule_only(city, id: int, ids: Array, loop_points: PackedVector2Arr
  check(running and monotonic,"running consist is never frozen or respawned by the schedule-only edit")
  check(turned,"same consist reverses at the far terminal through its retained X")
 
+## Same consist as `before` (worker state is copied, so compare its counters): a respawn starts at 0/-INF.
+func same_consist(train: Dictionary, before: Dictionary) -> bool:
+ return not train.is_empty() and train.kind==before.kind and before.departures>=1 and train.departures>=before.departures and train.last_departure>=before.last_departure
+
 func test_stop_change(city, id: int, ids: Array, stored: Dictionary, switches: Array, plan: Dictionary):
- # Only a changed stop list re-plans; the running consist then follows the
- # inherited P3 rule: frozen in place (no teleport/respawn), resumes on restore.
+ # Only a changed stop list re-plans. User rule 2026-11-19 (replaces the P3 freeze):
+ # the running consist itself is moved to the start of the new path and runs it.
  var before: Dictionary = train_of(city,id).duplicate(true)
  check(city.update_transit_line(id,[ids[1],ids[0]]).get("queued",false),"stop-changing edit queued")
  step(city)
  var line: Dictionary = line_of(city,id)
  check(line.get("stops",[])==[ids[1],ids[0]] and not line.has("terminal_ports") and city.terminal_crossovers().is_empty(),"stop-changing edit re-plans the line (now onto the physical loop)")
- var held: Dictionary = train_of(city,id).duplicate(true)
- check(status_of(city,id)=="blocked" and not held.is_empty() and held.plan==plan and held.distance>=before.distance,"existing consist keeps its old route and is frozen by the re-plan")
- var frozen := not held.is_empty()
- for i in range(3):
+ var replanned: Dictionary = Planner.new().rail_plan(city,line)
+ var moved: Dictionary = train_of(city,id).duplicate(true)
+ check(status_of(city,id)!="blocked" and same_consist(moved,before) and moved.departures==before.departures and moved.plan==replanned and moved.distance==0.0 and moved.visible!=before.visible,"existing consist is moved to the start of the new route, not frozen or respawned")
+ var ran := false
+ for i in range(10):
   step(city)
   var train: Dictionary = train_of(city,id)
-  if status_of(city,id)!="blocked" or train.is_empty() or train.visible!=held.visible or train.distance!=held.distance or train.plan!=plan:frozen=false
- check(frozen,"frozen consist stays in place, never teleported or respawned")
+  if not same_consist(train,before) or train.plan!=replanned:break
+  if train.distance>8.0 and status_of(city,id)=="running":ran=true;break
+ check(ran,"the moved consist runs the new route from its start")
  var loop_id: int = city.transit_routes[-1].id
  check(city.remove_transit_route(loop_id).get("queued",false) and city.update_transit_line(id,ids).get("queued",false),"loop removal and original stop order queued")
  step(city)
  line = line_of(city,id)
  check(line.get("terminal_ports",[])==stored.terminal_ports and city.terminal_crossovers().keys()==switches,"restored stop order re-plans the same terminal ports")
+ var back: Dictionary = train_of(city,id)
+ check(status_of(city,id)!="blocked" and same_consist(back,before) and back.plan==plan and back.distance==0.0,"restored route moves the same consist to its start again")
  var resumed := false
- for i in range(3):
-  var train: Dictionary = train_of(city,id)
-  if not train.is_empty() and train.plan==plan and status_of(city,id)!="blocked" and train.distance>held.distance:resumed=true;break
+ for i in range(10):
   step(city)
- check(resumed,"frozen consist resumes from its own position once the original route is restored")
+  var train: Dictionary = train_of(city,id)
+  if same_consist(train,before) and train.plan==plan and status_of(city,id)=="running" and train.distance>8.0:resumed=true;break
+ check(resumed,"the consist runs the restored turnback route from its start")

@@ -31,14 +31,23 @@ func advance(city,seconds:float):
   for line:Dictionary in city.transit_lines:
    if line.kind=="bus":continue
    var plan:Dictionary=plans.get(line.id,{})
-   if not plan.get("ok",false):state.lines[line.id]={"status":"blocked"};continue
    var train:Dictionary=state.trains.get(line.id,{})
-   if not train.is_empty() and train.plan!=plan:
-    state.lines[line.id]={"status":"blocked"};continue # Never move an existing vehicle onto edited geometry.
-   if train.is_empty():
-    train={"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"dwell_until":state.seconds+line.dwell_seconds,"departures":0,"departure_pending":true,"last_departure":-INF,"kind":line.kind,"visible":[]}
+   if not plan.get("ok",false):
+    # A cut path stops the consist where it is; once rejoined it restarts from the line start.
+    if not train.is_empty():train.restart=true
+    state.lines[line.id]={"status":"blocked"};continue
+   if not train.is_empty() and (train.plan!=plan or train.get("restart",false)):
+    # Route path changed (any reason): the same consist, its load and counters kept,
+    # goes back to the first stop of the new path. It is placed there by the spawn
+    # rule below (clear first stop, else waiting and not drawn) and leaves on headway.
+    train.merge({"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"departure_pending":true,"visible":[]},true)
+    train.erase("restart")
+   if train.is_empty() or train.visible.is_empty():
+    var moved:=not train.is_empty()
+    if not moved:train={"plan":plan.duplicate(true),"distance":0.0,"speed":0.0,"next_stop":1,"target":float(plan.stops[1].distance),"dwell_until":state.seconds+line.dwell_seconds,"departures":0,"departure_pending":true,"last_departure":-INF,"kind":line.kind,"visible":[]}
     var initial:=poses(line.id,train)
     if not clear(initial,state.trains,line.id,conflict_zones):state.lines[line.id]={"status":"waiting"};continue
+    if moved:train.dwell_until=maxf(state.seconds+line.dwell_seconds,ceil(state.seconds/line.headway_seconds)*line.headway_seconds)
     train.visible=initial;state.trains[line.id]=train
    state.lines[line.id]={"status":"dwelling" if state.seconds<train.dwell_until else "running","departures":train.departures}
    if state.seconds<train.dwell_until:continue
