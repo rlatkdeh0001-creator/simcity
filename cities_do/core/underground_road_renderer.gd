@@ -2,8 +2,9 @@ extends RefCounted
 ## E2 trench and portal pieces. Everything below ground (far retaining-wall face,
 ## road surface, portal strip, portal mouth and cars in the trench) sits in one
 ## clip_children group per trench, drawn before WorldActors. Barriers above
-## ground are retained pieces sorted in WorldActors. Covered parts are not drawn
-## here: the underground view paints them like metro tunnels (transit_view.gd).
+## ground are retained pieces in TrenchBarriers, y-sorted together with WorldActors
+## and shown in both views. Covered parts are not drawn here: the underground view
+## paints them like metro tunnels (transit_view.gd).
 const Height=preload("res://core/road_height.gd")
 const Profile=preload("res://core/road_profile.gd")
 const Geometry=preload("res://core/road_geometry.gd")
@@ -63,7 +64,7 @@ func barrier_piece(road:Dictionary,footprint:PackedVector2Array)->Elevated.Piece
  var depth:float=-INF
  for point in footprint:depth=maxf(depth,renderer.iso(point).y)
  node.base_depth=depth;node.position.y=depth
- renderer.actors.add_child(node);barriers.append(node)
+ renderer.trench_actors.add_child(node);barriers.append(node)
  return node
 func rebuild():
  for trench:Trench in trenches:
@@ -240,17 +241,16 @@ func trench_at(road:Dictionary,point:Vector2)->Trench:
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,footprint[i],footprint[(i+1)%footprint.size()]))<.5:return trench
  return null
 ## Cars in the open trench move into its clip group and drop by their depth;
-## cars in covered parts are hidden (ground and underground view alike).
+## cars in covered parts drop by their depth into the underground layer (like tunnel
+## trains), so only the underground view shows them.
 func place_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2):
  var height:=Height.height_at(road,point)
  var parent:Node2D=renderer.actors
  if height< -Height.EPS:
-  if Height.covered_at(height):sprite.visible=false
-  else:
-   var trench:=trench_at(road,point)
-   if trench!=null:
-    parent=trench
-    sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
+  var trench:Trench=null if Height.covered_at(height) else trench_at(road,point)
+  if trench!=null or Height.covered_at(height):
+   parent=trench if trench!=null else renderer.view.transit_view.metro_layer
+   sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
  if sprite.get_parent()!=parent:sprite.reparent(parent,false)
 ## E3b trains: in the open trench they move into its clip group and drop by the rail
 ## depth; in the covered tunnel they draw like metro trains (underground view only).

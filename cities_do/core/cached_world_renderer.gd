@@ -203,6 +203,8 @@ var grid
 var roads
 var marks
 var actors:Node2D
+var actor_sort:Node2D
+var trench_actors:Node2D
 var buildings:Dictionary={}
 var station_parts:Dictionary={}
 var metro_stations:Dictionary={}
@@ -287,7 +289,12 @@ func setup(owner_view):
  line_material=ShaderMaterial.new();var shader:=Shader.new()
  shader.code="shader_type canvas_item; render_mode unshaded; uniform float zoom=1.0; varying float across; varying float half_width; void vertex(){half_width=max(0.6,zoom)*0.5; float extent=half_width+1.0; VERTEX+=vec2(cos(UV.x),sin(UV.x))*UV.y*extent/zoom; across=UV.y*extent;} void fragment(){COLOR.a*=clamp(half_width+1.0-abs(across),0.0,1.0);}"
  line_material.shader=shader;marks.material=line_material
- actors=Node2D.new();actors.name="WorldActors";actors.z_index=9;actors.y_sort_enabled=true;add_child(actors)
+ # Underground view (user rule 2026-11-19): WorldActors holds every ground actor and is hidden as one
+ # layer; trench barriers and portal tops stay in TrenchBarriers. Both are y-sorted children of the
+ # y-sorted ActorSort, so the engine sorts all their children together as one WorldActors did.
+ actor_sort=Node2D.new();actor_sort.name="ActorSort";actor_sort.z_index=9;actor_sort.y_sort_enabled=true;add_child(actor_sort)
+ actors=Node2D.new();actors.name="WorldActors";actors.y_sort_enabled=true;actor_sort.add_child(actors)
+ trench_actors=Node2D.new();trench_actors.name="TrenchBarriers";trench_actors.y_sort_enabled=true;actor_sort.add_child(trench_actors)
  elevated=preload("res://core/elevated_road_renderer.gd").new(self)
  underground=preload("res://core/underground_road_renderer.gd").new(self)
  view.transit_view.attach(self)
@@ -421,7 +428,9 @@ func build_marks():
 func paint(canvas:CanvasItem,kind:String):
  match kind:
   "ground":
-   canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),Color("7e9275"))
+   canvas.draw_colored_polygon(project(PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])),terrain_color())
+   # Verges and entrance paving belong to ground roads and lots: the underground view leaves them out.
+   if terrain_faded:return
    for polygon in verges:canvas.draw_colored_polygon(polygon,preload("res://core/roadside_verges.gd").COLOR)
    for polygon in accessways:canvas.draw_colored_polygon(polygon,preload("res://core/entrance_accessways.gd").COLOR)
 
@@ -431,6 +440,23 @@ func paint(canvas:CanvasItem,kind:String):
    for polygon in arrows:canvas.draw_colored_polygon(polygon,Boundary.PAINT)
   "marks":
    if line_mesh!=null and line_mesh.get_surface_count()>0:canvas.draw_mesh(line_mesh,null)
+## Underground view (user rule 2026-11-19, ASSET_REQUEST_ELEVATED_TUNNEL_KO.md 8항): only underground
+## roads, rails and metro show, with trenches and portals (both views). Every entry path sets
+## transit_view.underground and calls transit_view.sync_visibility(), which comes here. Ground layers
+## (zoning, roads, marks, WorldActors, power and water) are hidden as whole parents, so objects built
+## while the view is open stay hidden too. The terrain stays, desaturated and a little lighter, never
+## darker: the 15181a tunnel bands keep more than 3:1 contrast on it.
+const TERRAIN:=Color("7e9275")
+const UNDERGROUND_TERRAIN:=Color("9a9e97")
+var terrain_faded:=false
+func terrain_color()->Color:return UNDERGROUND_TERRAIN if terrain_faded else TERRAIN
+func sync_view_layers():
+ var shown:bool=not view.transit_view.underground
+ for node:CanvasItem in [roads,marks,actors]:node.visible=shown
+ zones.visible=shown and view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
+ for overlay in [view.get("power_overlay"),view.get("water_overlay")]:
+  if overlay is CanvasItem:overlay.visible=shown
+ if terrain_faded==shown:terrain_faded=not shown;ground.queue_redraw()
 func fallback(canvas:CanvasItem,b:Dictionary,anchor:Vector2):
  if b.has("public_asset_id"):return
  var base:=project(view.city.footprint(b));var top:=base.duplicate();var lift:float=view.visual_lift(b)
@@ -461,7 +487,6 @@ func _process(_delta:float):
  if elevated!=null:elevated.sync_visibility()
  if underground!=null:underground.sync_visibility()
  if scale!=Vector2.ONE*view.map_zoom:scale=Vector2.ONE*view.map_zoom
- zones.visible=view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
  zones.set_grid_visible(view.map_zoom>=.4)
  if line_zoom!=view.map_zoom:
   line_zoom=view.map_zoom;line_material.set_shader_parameter("zoom",line_zoom)

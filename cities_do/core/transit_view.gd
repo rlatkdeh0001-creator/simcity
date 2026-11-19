@@ -59,8 +59,14 @@ func synchronize():
   rail_layer.queue_redraw();metro_layer.queue_redraw()
   if retained_renderer!=null:retained_renderer.sync_transit_structures()
  sync_visibility()
+## Underground view (user rule 2026-11-19, ASSET_REQUEST_ELEVATED_TUNNEL_KO.md 8항): every entry path
+## (road or rail tool below 0m, metro tool, bulldozer PgDn) sets `underground` and comes here. The metro
+## layer (tunnels, covered parts, platform silhouettes, trains and cars under cover) shows only
+## underground; ground rails and the world renderer's ground layers only on the ground.
 func sync_visibility():
  if metro_layer!=null:metro_layer.visible=underground
+ if rail_layer!=null:rail_layer.visible=not underground
+ if retained_renderer!=null and retained_renderer.has_method("sync_view_layers"):retained_renderer.sync_view_layers()
 func project_point(point:Vector2,depth_m:float=0)->Vector2:
  return Vector2((point.x-point.y)*view.tile.x,(point.x+point.y)*view.tile.y-depth_m*view.tile.x/4*sqrt(1.5))
 func paint(canvas:CanvasItem,shapes:Array):

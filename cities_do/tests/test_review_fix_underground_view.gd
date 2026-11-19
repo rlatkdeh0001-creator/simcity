@@ -1,9 +1,15 @@
 extends SceneTree
 ## Underground view (user rule 2026-11-19, ASSET_REQUEST_ELEVATED_TUNNEL_KO.md 8항: "지하보기에서는
 ## 지하에있는 도로,철도,지하철만 보여야해") in the actual main scene, with real keys and clicks.
+## Display: every entry path (road tool below 0m, rail tool below 0m, metro tool, bulldozer PgDn)
+## hides the ground layers as whole parents (zoning, grid, ground roads and rails, WorldActors with
+## buildings, decks, stations, catenary and ground cars, power and water) and shows the underground
+## layer, trenches and portals; the terrain stays, desaturated and not darker. The ground view returns
+## everything, including a building built while the underground view was open.
 ## Bulldozer: the underground view (PgDn) picks covered road/rail parts and metro, then metro stations
 ## on their platform silhouette, then trenches and portals. Buildings, public facilities, power and
 ## ground stations are never picked there.
+## Captures are explicit: --underground-capture=<png> and --ground-capture=<png> (native display).
 const City=preload("res://core/city_model.gd")
 var checks:=0
 var failures:=0
@@ -104,14 +110,169 @@ func run():
  ids_of={"tunnel":road_at(c,Vector2(70,60)),"deck":road_at(c,Vector2(70,76)),"road":road_at(c,Vector2(50,40)),
   "metro":int(built[8].route.id),"rail":int(built[5].route.id),"station":int(lot_of(c,"train-station-01").id),
   "bus_stop":int(lot_of(c,"bus-stop-01").id),"subway":int(lot_of(c,"subway-entrance-01").id),"plant":int(built[-1].id)}
+ await display(c)
  await bulldozer(c)
  finish()
+## WCAG relative luminance and contrast ratio.
+func luminance(colour:Color)->float:
+ var linear:=func(v:float)->float:return v/12.92 if v<=.04045 else pow((v+.055)/1.055,2.4)
+ return .2126*linear.call(colour.r)+.7152*linear.call(colour.g)+.0722*linear.call(colour.b)
+func contrast(a:Color,b:Color)->float:
+ var la:=luminance(a);var lb:=luminance(b)
+ return (maxf(la,lb)+.05)/(minf(la,lb)+.05)
+func capture_arg(name:String)->String:
+ for arg:String in OS.get_cmdline_user_args():
+  if arg.begins_with("--%s="%name):return arg.trim_prefix("--%s="%name)
+ return ""
+func save_capture(path:String,label:String)->Image:
+ if path.is_empty():return null
+ if DisplayServer.get_name()=="headless" or FileAccess.file_exists(path):
+  check(false,"native capture requires a real display and a new destination: "+path);return null
+ await RenderingServer.frame_post_draw
+ var image:=root.get_texture().get_image()
+ check(image.get_size()==Vector2i(1920,1080),label+" capture is 1920x1080")
+ check(image.save_png(path)==OK,label+" capture saved")
+ print("UNDERGROUND_CAPTURE ",path," display=",DisplayServer.get_name())
+ return image
+## Nodes the underground view hides (ground objects) and shows (underground roads, rails, metro,
+## trenches and portals). Missing nodes are reported as failures by the callers.
+func hidden_nodes()->Dictionary:
+ var r=game.world_renderer
+ return {"zoning colours":r.zones,"zoning grid":r.grid,"ground roads":r.roads,"road marks":r.marks,"ground rails":game.transit_view.rail_layer,
+  "WorldActors":r.actors,"a building":r.buildings.get(901),"the building over the covered road":r.buildings.get(902),
+  "an E1 deck piece":r.elevated.nodes[0] if not r.elevated.nodes.is_empty() else null,
+  "a ground station part":r.station_parts.values()[0] if not r.station_parts.is_empty() else null,
+  "the bus stop":r.buildings.get(ids_of.bus_stop),"the metro station entrance":r.buildings.get(ids_of.subway),
+  "a catenary node":r.catenary_nodes[0] if not r.catenary_nodes.is_empty() else null,
+  "power":game.power_overlay,"water":game.water_overlay}
+func shown_nodes()->Dictionary:
+ var r=game.world_renderer
+ return {"the terrain":r.ground,"the underground layer":game.transit_view.metro_layer,
+  "the trench":r.underground.trenches[0] if not r.underground.trenches.is_empty() else null,
+  "a trench barrier":r.underground.barriers[0] if not r.underground.barriers.is_empty() else null,
+  "the metro station silhouette":r.metro_stations.get(ids_of.subway)}
+func states()->Dictionary:
+ var result:={}
+ for group:Dictionary in [hidden_nodes(),shown_nodes()]:
+  for label:String in group:result[label]=group[label]!=null and group[label].is_visible_in_tree()
+ return result
+func terrain()->Color:
+ var r=game.world_renderer
+ return r.terrain_color() if r.has_method("terrain_color") else Color("7e9275")
+## The underground view of one entry path: ground layers hidden, underground ones shown, terrain faded.
+func underground_layers(path_name:String):
+ check(game.transit_view.underground and game.transit_view.metro_layer.visible,path_name+": the underground view is on")
+ var hidden:Dictionary=hidden_nodes();var shown:Dictionary=shown_nodes()
+ var leaked:Array=[];var missing:Array=[]
+ for label:String in hidden:
+  if hidden[label]==null or hidden[label].is_visible_in_tree():leaked.append(label)
+ for label:String in shown:
+  if shown[label]==null or not shown[label].is_visible_in_tree():missing.append(label)
+ check(leaked.is_empty(),path_name+": ground layers are hidden: shown=%s"%str(leaked))
+ check(missing.is_empty(),path_name+": the underground layer, trench, barrier, silhouette and terrain show: hidden=%s"%str(missing))
+ var catenary:Array=game.world_renderer.catenary_nodes.filter(func(n):return n.is_visible_in_tree())
+ check(not game.world_renderer.catenary_nodes.is_empty() and catenary.is_empty(),path_name+": no catenary shows: %d"%catenary.size())
+ var ground:=Color("7e9275");var faded:=terrain()
+ check(faded.s<ground.s*.5 and luminance(faded)>=luminance(ground) and contrast(faded,Color("15181a"))>=3.0,path_name+": the terrain is desaturated, not darker, and keeps 3:1 contrast with the 15181a bands: %s s=%.2f/%.2f L=%.3f/%.3f contrast=%.2f"%[faded.to_html(false),faded.s,ground.s,luminance(faded),luminance(ground),contrast(faded,Color("15181a"))])
+## Back in the ground view every layer is as it was before the underground view.
+func restored(path_name:String,before:Dictionary):
+ var now:=states();var changed:Array=[]
+ for label:String in before:
+  if now[label]!=before[label]:changed.append(label)
+ check(not game.transit_view.underground and changed.is_empty() and terrain()==Color("7e9275"),path_name+": the ground view restores every layer and the terrain: changed=%s terrain=%s"%[str(changed),terrain().to_html(false)])
+func ground_baseline(path_name:String)->Dictionary:
+ var before:=states();var off:Array=[]
+ for label:String in ["ground roads","road marks","ground rails","WorldActors","a building","an E1 deck piece","a ground station part","the bus stop","the metro station entrance","power","water","the trench","a trench barrier","the terrain"]:
+  if not before[label]:off.append(label)
+ check(not game.transit_view.underground and off.is_empty() and not before["the underground layer"],path_name+": the ground view shows the ground layers first: hidden=%s"%str(off))
+ return before
+func lane_on(c,index:int,direction:int)->int:
+ for lane in game.traffic.simulation.network.lanes:
+  if int(lane.get("road",-1))==index and int(lane.direction)==direction:return int(lane.id)
+ return -1
+func display(c):
+ game.mode="select";game.refresh();await settle()
+ # 1. Road tool below 0m (real PgDn/PgUp).
+ game.select_category("road");game.activate_tool("road");await settle()
+ var before:=ground_baseline("road tool")
+ await key(KEY_PAGEDOWN)
+ check(game.mode=="road" and game.road_drawer.target_height_m<0,"road tool: PgDn steps below 0m: %.1fm"%game.road_drawer.target_height_m)
+ underground_layers("road tool")
+ await key(KEY_PAGEUP)
+ restored("road tool",before)
+ # 2. Rail tool below 0m.
+ game.select_category("transport");game.activate_tool("rail");await settle()
+ before=ground_baseline("rail tool")
+ await key(KEY_PAGEDOWN)
+ check(game.mode=="rail" and game.transit_view.target_height_m<0,"rail tool: PgDn steps below 0m: %.1fm"%game.transit_view.target_height_m)
+ underground_layers("rail tool")
+ await key(KEY_PAGEUP)
+ restored("rail tool",before)
+ # 3. Metro tool; closing the tray returns to the ground view.
+ game.drawer.hide();await settle()
+ game.select_category("transport");await settle()
+ before=ground_baseline("metro tool")
+ game.activate_tool("metro");await settle()
+ check(game.mode=="metro","metro tool is active")
+ underground_layers("metro tool")
+ game.drawer.hide();await settle()
+ restored("metro tool",before)
+ # 4. Bulldozer PgDn, with a car on the ground road and one in the covered part of the road tunnel.
+ game.mode="select";game.refresh();await settle()
+ game.bulldozer.pressed.emit();await settle()
+ var tunnel_index:=-1;var road_index:=-1
+ for i in range(c.roads.size()):
+  if preload("res://core/road_height.gd").sunken(c.roads[i]):tunnel_index=i
+  elif int(c.roads[i].get("parcel_id",i))==ids_of.road:road_index=i
+ check(game.traffic.rebuild(c.roads),"traffic builds the ground and tunnel lanes")
+ var asset:Dictionary=game.traffic.catalog.filter(func(a):return a.id=="car-sedan-03")[0]
+ var cars:={}
+ for item in [["covered",tunnel_index,160.0],["ground",road_index,150.0]]:
+  var lane:=lane_on(c,item[1],1)
+  var vehicle:Dictionary=game.traffic.simulation.spawn(asset,[lane],item[2]) if lane>=0 else {}
+  if not vehicle.is_empty():vehicle.progress=item[2];cars[item[0]]=vehicle.id
+ game.traffic.simulation.paused=true;await settle()
+ check(cars.size()==2,"a car on the ground road and one in the covered part: %s"%str(cars))
+ var covered=game.world_renderer.cars.get(cars.get("covered",-1));var ground_car=game.world_renderer.cars.get(cars.get("ground",-1))
+ before=ground_baseline("bulldozer")
+ check(ground_car!=null and ground_car.is_visible_in_tree() and covered!=null and not covered.is_visible_in_tree(),"ground view: the ground car shows, the car under cover does not")
+ # Park the pointer off the map so no hover tint covers the subject.
+ var parked:=InputEventMouseMotion.new();parked.position=Vector2(1840,140);root.push_input(parked,true)
+ await key(KEY_PAGEDOWN)
+ check(game.mode=="demolish","bulldozer: PgDn keeps the bulldozer")
+ underground_layers("bulldozer")
+ check(ground_car!=null and not ground_car.is_visible_in_tree(),"bulldozer: the car on the ground road is hidden")
+ check(covered!=null and covered.is_visible_in_tree() and covered.get_parent()==game.transit_view.metro_layer,"bulldozer: the car in the covered part shows in the underground layer at its depth")
+ await settle()
+ var image:Image=await save_capture(capture_arg("underground-capture"),"underground view")
+ if image!=null:
+  # Darkest underground band (covered road and metro tunnels, solid 15181a) against bare terrain.
+  var bands:Array=[drawn(Vector2(80,60),-10),drawn(Vector2(70,50),-12.7),drawn(Vector2(88,60),-10)]
+  var band:=Color.WHITE
+  for p:Vector2 in bands:
+   var pixel:=image.get_pixelv(Vector2i(p))
+   if luminance(pixel)<luminance(band):band=pixel
+  var soil:Color=image.get_pixelv(Vector2i(game.screen(Vector2(70,15))))
+  print("UNDERGROUND_CONTRAST band=#%s terrain=#%s ratio=%.2f"%[band.to_html(false),soil.to_html(false),contrast(band,soil)])
+  check(contrast(band,soil)>=3.0,"capture: darkest underground band against the terrain is at least 3:1: %.2f"%contrast(band,soil))
+ # A building built while the underground view is open stays hidden until the ground view returns.
+ c.buildings.append({"id":903,"x":48,"y":44,"size":4,"level":3,"zone":"residential","asset_id":"mansion-a-4x4-4f"})
+ c.next_id=maxi(c.next_id,904)
+ game.refresh();await settle()
+ var late=game.world_renderer.buildings.get(903)
+ check(late!=null and not late.is_visible_in_tree(),"a building built in the underground view stays hidden")
+ await key(KEY_PAGEUP)
+ restored("bulldozer",before)
+ check(late!=null and late.is_visible_in_tree(),"the building built in the underground view shows in the ground view")
+ check(ground_car!=null and ground_car.is_visible_in_tree() and covered!=null and not covered.is_visible_in_tree(),"ground view again: the ground car shows, the car under cover does not")
+ await save_capture(capture_arg("ground-capture"),"ground view")
+ game.traffic.simulation.vehicles.clear();await settle()
 func bulldozer(c):
  var station:=centre(lot_of(c,"train-station-01").polygon);var stop:=centre(lot_of(c,"bus-stop-01").polygon)
  var subway:=centre(lot_of(c,"subway-entrance-01").polygon)
  var corner:Vector2=lot_of(c,"subway-entrance-01").polygon[0].lerp(subway,.2)
  var plant:Vector2=c.power.plants.filter(func(p):return int(p.id)==ids_of.plant)[0].position/4
- game.bulldozer.pressed.emit();await settle()
+ if game.mode!="demolish":game.bulldozer.pressed.emit();await settle()
  check(game.mode=="demolish" and not game.transit_view.underground,"the bulldozer starts in the ground view")
  # The ground view keeps picking ground objects (unchanged), so the same spots are real targets.
  expect("ground",[

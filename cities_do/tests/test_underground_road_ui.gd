@@ -123,7 +123,7 @@ func test_trench_geometry():
   check(renderer.trenches.size()==1 and renderer.portals.size()==1,"one trench and one portal (faces=%s)"%faces)
   if renderer.trenches.size()!=1 or renderer.portals.size()!=1:continue
   var trench=renderer.trenches[0]
-  check(trench.clip_children==CanvasItem.CLIP_CHILDREN_ONLY and trench.z_index>game.world_renderer.marks.z_index and trench.z_index<game.world_renderer.actors.z_index,"trench is a clip_children group drawn after road marks and before WorldActors")
+  check(trench.clip_children==CanvasItem.CLIP_CHILDREN_ONLY and trench.z_index>game.world_renderer.marks.z_index and trench.z_index<game.world_renderer.actor_sort.z_index,"trench is a clip_children group drawn after road marks and before WorldActors")
   var half:float=float(game.city.roads.filter(func(r):return Height.sunken(r))[0].width)/2-.125
   var far_y:float=60-half
   var top:=INF
@@ -153,13 +153,13 @@ func test_trench_geometry():
   check(mouth==faces and strip==faces,"facing portal draws portal.png and a 15181a mouth down to the -6.0m road; a back-facing portal draws neither inside the trench")
   var barrier_bottoms:=true;var barrier_count:=0;var sorted:=true
   for node in renderer.barriers:
-   barrier_count+=1;sorted=sorted and node.get_parent()==game.world_renderer.actors
+   barrier_count+=1;sorted=sorted and node.get_parent()==game.world_renderer.trench_actors and node.get_parent().get_parent()==game.world_renderer.actors.get_parent() and node.get_parent().y_sort_enabled
    for command:Dictionary in node.commands:
     if not command.has("texture"):continue
     var ground_a:float=command.polygon[3].y
     var top_a:float=command.polygon[0].y
     barrier_bottoms=barrier_bottoms and absf((ground_a-top_a)-1.1*metre())<.01
-  check(barrier_count>0 and sorted,"barriers above ground sort in WorldActors")
+  check(barrier_count>0 and sorted,"barriers above ground sort with WorldActors (TrenchBarriers, nested y-sort)")
   check(barrier_count>0 and barrier_bottoms,"every barrier stands exactly on the ground, 1.1m tall: no floating barrier")
   var sunken:Dictionary=game.city.roads.filter(func(r):return Height.sunken(r))[0]
   var leaked:=0.0
@@ -196,8 +196,14 @@ func test_trench_cars():
  var rect:Rect2=game.traffic.sprite_rect(asset.id,Vector2.ZERO,game.tile.x/4*sqrt(2.0))
  var expected:Vector2=game.world_renderer.iso(point)+rect.position-Vector2(0,height*metre())
  check((sprite.position+sprite.offset*sprite.scale).distance_to(expected)<.001,"trench car artwork sits on the lowered road surface, not floating")
+ # Underground view rule (2026-11-19): a car under cover draws at its depth in the underground layer.
+ game.activate_tool("road");game.road_drawer.set_height(0)
  vehicle.progress=100.0;await settle()
- check(not sprite.visible,"car inside the covered section is hidden in the ground view")
+ check(not game.transit_view.underground and not sprite.is_visible_in_tree(),"car inside the covered section is hidden in the ground view")
+ check(sprite.get_parent()==game.transit_view.metro_layer,"car inside the covered section draws in the underground layer")
+ game.road_drawer.set_height(-10);await settle()
+ check(game.transit_view.underground and sprite.is_visible_in_tree(),"car inside the covered section shows in the underground view")
+ game.road_drawer.set_height(0)
  vehicle.progress=40.0;await settle()
  var before=renderer.trenches[0]
  check(game.city.add_road(PackedVector2Array([Vector2(130,20),Vector2(130,40)])).ok,"unrelated road edit rebuilds trench pieces")
