@@ -692,13 +692,24 @@ func visible_zoning_parcels() -> Array[Dictionary]:
 
 func demolition_target(position: Vector2) -> Dictionary:
 	# Review fix 1 (user rule 2026-11-19): the ground view (the bulldozer default) picks only ground
-	# objects and the underground view (PgDn) only underground ones: covered road/rail parts and
-	# metro. Trenches and portals are picked in both. The underground layer is drawn above the
-	# world, so that view checks it first, where it is drawn (at depth).
-	var below: bool=transit_view!=null and transit_view.underground
-	if below:
+	# objects and the underground view (PgDn) only underground ones. Trenches and portals are picked
+	# in both.
+	# Underground view (user rule 2026-11-19, ASSET_REQUEST_ELEVATED_TUNNEL_KO.md 8항): covered
+	# road/rail parts and metro where they are drawn (at depth), then metro stations on their
+	# platform silhouette, then trenches and portals. Buildings, public facilities, power, water and
+	# ground stations are never picked there: the underground view does not show them.
+	if transit_view!=null and transit_view.underground:
 		var buried:Dictionary=transit_view.pick_drawn(position,["covered"])
+		# A metro station's own platform track is part of the station, as a ground station's track is
+		# on the ground: it picks the station.
+		if buried.get("kind","")=="transit_route" and world_renderer!=null:
+			var owner_id:int=int(city.get_transit_route(buried.id).get("station_id",-1))
+			if world_renderer.metro_stations.has(owner_id):
+				return {"kind":"public_facility","id":owner_id,"polygon":metro_station_outline(world_renderer.metro_stations[owner_id].record)}
 		if not buried.is_empty():return buried
+		var station:Dictionary=pick_metro_station(position)
+		if not station.is_empty():return station
+		return transit_view.pick_drawn(position,["open"])
 	var public_record: Dictionary=public_controller.target(position)
 	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
@@ -731,9 +742,33 @@ func demolition_target(position: Vector2) -> Dictionary:
 	var building: Dictionary=pick_rendered_building(position)
 	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
 	# Review fix 1: roads and rails alike at the height they are drawn (decks raised, trenches at
-	# their opening); the top-most drawn hit wins. The underground view never falls back to ground
-	# roads, rails or decks: only trenches and portals, which both views show.
-	if transit_view!=null:return transit_view.pick_drawn(position,["open"] if below else ["surface","open"])
+	# their opening); the top-most drawn hit wins.
+	if transit_view!=null:return transit_view.pick_drawn(position,["surface","open"])
+	return {}
+
+## Footprint of a metro station silhouette record projected to the depth it is drawn at.
+func metro_station_outline(record: Dictionary) -> PackedVector2Array:
+	var outline:=PackedVector2Array()
+	for point: Vector2 in record.polygon:outline.append(origin+transit_view.project_point(point,float(record.get("render_depth_m",0.0)))*map_zoom)
+	return outline
+
+## Underground view: a metro station is picked on its platform silhouette where the underground
+## layer draws it (the world renderer's silhouette record, at its depth), or on its footprint
+## projected to that depth. The later drawn silhouette wins.
+func pick_metro_station(position: Vector2) -> Dictionary:
+	if world_renderer==null:return {}
+	var nodes: Array=world_renderer.metro_stations.values()
+	nodes.reverse()
+	for node in nodes:
+		var record: Dictionary=node.record
+		var outline:=metro_station_outline(record)
+		var hit: bool=Geometry2D.is_point_in_polygon(position,outline)
+		var rendered: Dictionary={} if hit else public_controller.visual(record)
+		if not rendered.is_empty() and rendered.rect.has_point(position):
+			var image: Image=rendered.image
+			var pixel:=Vector2i((position-rendered.rect.position)/rendered.rect.size*Vector2(image.get_size()))
+			hit=image.get_pixelv(pixel.clamp(Vector2i.ZERO,image.get_size()-Vector2i.ONE)).a>.1
+		if hit:return {"kind":"public_facility","id":int(record.id),"polygon":outline}
 	return {}
 
 func draw_front_door(b: Dictionary):
