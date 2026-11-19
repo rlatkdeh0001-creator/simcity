@@ -75,8 +75,10 @@ func rail_plan(city,line:Dictionary)->Dictionary:
   return open if not open.is_empty() else Crossover.failure()
  var center:=PackedVector2Array([nodes[targets[0]]]);var hosts:Array=[]
  var stop_vertices:Array[int]=[0];var next_stop:=1
+ # Review fix 2: one route id per plan segment, so each car knows the route it runs on.
+ var routes:=PackedInt32Array()
  for id:int in best.edges:
-  center.append(nodes[edges[id].b])
+  center.append(nodes[edges[id].b]);routes.append(edges[id].host)
   if not edges[id].host in hosts:hosts.append(edges[id].host)
   if next_stop<targets.size() and edges[id].b==targets[next_stop]:stop_vertices.append(center.size()-1);next_stop+=1
  var network=Network.new()
@@ -85,7 +87,7 @@ func rail_plan(city,line:Dictionary)->Dictionary:
  for i in range(1,points.size()):distances.append(distances[-1]+points[i-1].distance_to(points[i]))
  var stops:Array=[]
  for i in range(stop_vertices.size()):stops.append({"id":line.stops[i],"distance":distances[stop_vertices[i]]})
- return {"ok":true,"points":points,"distances":distances,"length":distances[-1],"stops":stops,"hosts":hosts,"kind":kind}
+ return {"ok":true,"points":points,"distances":distances,"length":distances[-1],"stops":stops,"hosts":hosts,"kind":kind,"routes":routes}
 
 func _open_path(targets: Array[int], stations: Array[Dictionary], city, line: Dictionary) -> Dictionary:
  var best: Dictionary = {}
@@ -111,16 +113,18 @@ func _open_path(targets: Array[int], stations: Array[Dictionary], city, line: Di
  var center := PackedVector2Array([nodes[targets[0]]])
  var vertices: Array[int] = [0]
  var hosts: Array = []
+ var edge_hosts := PackedInt32Array()
  for id: int in best.edges:
-  center.append(nodes[edges[id].b])
+  center.append(nodes[edges[id].b]);edge_hosts.append(edges[id].host)
   if not edges[id].host in hosts:hosts.append(edges[id].host)
   if vertices.size() < targets.size() and edges[id].b == targets[vertices.size()]:vertices.append(center.size()-1)
- var forward := _turnback_leg(center, vertices, line.stops, chosen[0])
+ var forward := _turnback_leg(center, vertices, line.stops, chosen[0], edge_hosts)
  var backwards := PackedVector2Array(center);backwards.reverse()
+ var back_hosts := edge_hosts.duplicate();back_hosts.reverse()
  var reversed_stops: Array = line.stops.duplicate();reversed_stops.reverse()
  vertices.reverse()
  for i: int in range(vertices.size()):vertices[i] = center.size()-1-vertices[i]
- var back := _turnback_leg(backwards, vertices, reversed_stops, chosen[1])
+ var back := _turnback_leg(backwards, vertices, reversed_stops, chosen[1], back_hosts)
  if forward.stops.size()!=vertices.size() or back.stops.size()!=vertices.size():return {}
  var stops: Array = forward.stops.duplicate()
  for i: int in range(1, back.stops.size()-1):
@@ -134,25 +138,41 @@ func _switch_at(lot: Dictionary, axis: Vector2) -> Dictionary:
   if Vector2(x.axis).dot(axis) > 0.99999:return x
  return {}
 
-func _turnback_leg(center: PackedVector2Array, vertices: Array[int], ids: Array, x: Dictionary) -> Dictionary:
+func _turnback_leg(center: PackedVector2Array, vertices: Array[int], ids: Array, x: Dictionary, hosts := PackedInt32Array()) -> Dictionary:
  # Path 1 starts on the inbound rail and joins the right-hand outbound rail.
  var half: float = x.lateral_m/2.0
  var axis: Vector2 = x.axis
  var side := Vector2(-axis.y, axis.x)
  var points := PackedVector2Array([center[0]-side*half])
  points.append_array(x.paths[1])
+ var switch_segments: int = points.size()-1
  var last: Vector2 = x.end
  var track: PackedVector2Array = Network.new()._offset(center, half, false)
  var distances := PackedFloat64Array([0.0])
  for i: int in range(1, points.size()):distances.append(distances[-1]+points[i-1].distance_to(points[i]))
  var stops: Array = [{"id":ids[0],"distance":0.0}]
+ var routes := PackedInt32Array()
+ var first_track := -1
  for i: int in range(1, center.size()):
   if (center[i]-last).dot(axis) < -EPS and Geometry2D.get_closest_point_to_segment(center[i],center[0],last).distance_to(center[i]) < EPS:continue
   if points[-1].distance_to(track[i]) > EPS:
    distances.append(distances[-1]+points[-1].distance_to(track[i]));points.append(track[i])
+   routes.append(hosts[i-1] if i-1 < hosts.size() else -1)
+   if first_track < 0:first_track = i
   if stops.size() < vertices.size() and vertices[stops.size()] == i:
    stops.append({"id":ids[stops.size()],"distance":distances[-1]})
- return {"points":points,"distances":distances,"length":distances[-1],"stops":stops}
+ # Review fix 2: X crossover segments take the route of the centre edge they run along.
+ var lead := PackedInt32Array()
+ var reach: int = first_track if first_track > 0 else center.size()-1
+ for k: int in range(switch_segments):
+  var middle: Vector2 = (points[k]+points[k+1])/2
+  var nearest := 0;var gap := INF
+  for e: int in range(mini(reach, hosts.size())):
+   var d: float = Geometry2D.get_closest_point_to_segment(middle,center[e],center[e+1]).distance_to(middle)
+   if d < gap:gap = d;nearest = e
+  lead.append(hosts[nearest] if not hosts.is_empty() else -1)
+ lead.append_array(routes)
+ return {"points":points,"distances":distances,"length":distances[-1],"stops":stops,"routes":lead}
 
 func cycle(start:int,targets:Array[int],finishes:Dictionary={ })->Dictionary:
  var first:Dictionary=edges[start]
@@ -188,8 +208,15 @@ static func sample(plan:Dictionary,distance:float)->Dictionary:
  return sample_leg(plan,fposmod(distance,float(plan.length)))
 static func sample_leg(plan:Dictionary,distance:float)->Dictionary:
  var points:PackedVector2Array=plan.points;var distances:PackedFloat64Array=plan.distances
+ # Review fix 2: the car carries the route id of the plan segment it is on (no geometric guess).
+ var routes:PackedInt32Array=plan.get("routes",PackedInt32Array())
+ var tagged:bool=routes.size()==points.size()-1
  for i in range(1,points.size()):
   if distance<=distances[i] or i==points.size()-1:
    var heading:Vector2=(points[i]-points[i-1]).normalized()
-   return {"position":points[i-1]+heading*(distance-distances[i-1]),"heading":heading}
- return {"position":points[0],"heading":(points[1]-points[0]).normalized()}
+   var pose:={"position":points[i-1]+heading*(distance-distances[i-1]),"heading":heading}
+   if tagged:pose.route_id=routes[i-1]
+   return pose
+ var start:={"position":points[0],"heading":(points[1]-points[0]).normalized()}
+ if tagged:start.route_id=routes[0]
+ return start

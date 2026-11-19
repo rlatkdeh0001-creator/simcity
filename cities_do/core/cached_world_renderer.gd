@@ -58,16 +58,20 @@ func deck_catenary_depth(commands:Array,fronts:Array,depth:float)->float:
    for p:Vector2 in command.footprint:
     if Geometry2D.is_point_in_polygon(p,piece.footprint):best=maxf(best,piece.position.y-.005)
  return best if is_finite(best) else depth
+## Review fix 2: a train picture follows only the structure of the route its car runs on (the
+## plan leg's route id). No id means 0m. One cached dictionary lookup per call.
+var rail_structures:Dictionary={}
+var rail_structure_key:Variant=null
+var rail_deck_checks:=0
 func rail_deck_at(pose:Dictionary)->Dictionary:
- var point:Vector2=pose.position/4;var heading:Vector2=Vector2(pose.heading).normalized()
- for route:Dictionary in view.city.transit_routes:
-  if route.kind!="rail" or not route.has("heights_m"):continue
-  for i in range(1,route.points.size()):
-   var a:Vector2=route.points[i-1];var b:Vector2=route.points[i]
-   if Geometry2D.get_closest_point_to_segment(point,a,b).distance_to(point)>.75:continue
-   if absf((b-a).normalized().cross(heading))>.35:continue
-   return preload("res://core/transit_routes.gd").structure(route)
- return {}
+ if not pose.has("route_id"):return {}
+ var key:Array=[view.city.get_instance_id(),view.transit_view.generation]
+ if key!=rail_structure_key:
+  rail_structure_key=key;rail_structures.clear()
+  for route:Dictionary in view.city.transit_routes:
+   if route.kind=="rail" and route.has("heights_m"):rail_structures[int(route.id)]=preload("res://core/transit_routes.gd").structure(route)
+ rail_deck_checks+=1
+ return rail_structures.get(int(pose.route_id),{})
 func sync_catenary():
  if catenary_generation==view.transit_view.generation:return
  catenary_generation=view.transit_view.generation
