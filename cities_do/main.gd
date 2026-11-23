@@ -452,12 +452,15 @@ func guard_route_edit(after:Variant,apply:Callable,cancelled:Callable=Callable()
 	if after==null or Operations.reset_lines(city,after).is_empty():
 		apply.call()
 		return false
+	show_route_confirmation(apply,cancelled)
+	return true
+
+func show_route_confirmation(apply:Callable,cancelled:Callable=Callable(),caption:String=""):
 	if route_warning==null:
 		var layer:=CanvasLayer.new();layer.name="RouteWarningLayer";layer.layer=100;add_child(layer)
 		route_warning=preload("res://core/route_reset_warning.gd").new();layer.add_child(route_warning)
 	if keyboard_camera!=null:keyboard_camera.clear()
-	route_warning.open(apply,cancelled)
-	return true
+	route_warning.open(apply,cancelled,caption)
 
 func route_warning_open()->bool:
 	return route_warning!=null and route_warning.visible
@@ -504,8 +507,6 @@ func apply_demolition(kind:String,id:int)->void:
 	refresh()
 
 func _unhandled_input(event):
-	if transit_line_tool!=null and transit_line_tool.handle_input(event):
-		get_viewport().set_input_as_handled();return
 	if transit_view!=null and transit_view.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -809,7 +810,6 @@ func _draw():
 
 	if road_drawer!=null:road_drawer.draw_preview()
 	if transit_view!=null:transit_view.draw_preview()
-	if transit_line_tool!=null:transit_line_tool.draw_preview()
 	if mode=="demolish" and not demolition_hover.is_empty():
 		var tint := Color(1,.35,.20,.65)
 		if demolition_hover.has("polygons"):

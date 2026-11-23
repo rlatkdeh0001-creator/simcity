@@ -45,8 +45,9 @@ func button(row:HBoxContainer,id:String,caption:String,fill:Color,ink:Color)->Bu
 	for state:String in ["font_color","font_hover_color","font_pressed_color","font_focus_color"]:b.add_theme_color_override(state,ink)
 	row.add_child(b)
 	return b
-func open(apply:Callable,cancelled:Callable=Callable()):
+func open(apply:Callable,cancelled:Callable=Callable(),caption:String=""):
 	on_confirm=apply;on_cancel=cancelled
+	message.text=TEXT if caption.is_empty() else caption
 	show()
 func confirm():
 	if not visible:return

@@ -25,6 +25,14 @@ var stations:Dictionary={}
 var station_world:Dictionary={}
 var paths:Array=[]
 var world_paths:Array=[]
+var hosts:Dictionary={}
+var bus_network
+var creation_paths:Array=[]
+var dots:Array=[]
+var dragged:Dictionary={}
+var pointer:=Vector2.ZERO
+var preview_paths:Array=[]
+const DRAG_DEAD_ZONE:=24.0
 var observed_city:WeakRef
 var signature:Variant
 var camera_key:Variant
@@ -52,14 +60,12 @@ func setup(view):
 
 func open(kind:String):
  mode=kind
- game.transit_line_tool.overlay_active=true
  show()
  set_process(true)
  observe_city()
  synchronize()
 
 func close():
- game.transit_line_tool.overlay_active=false
  if observed_city!=null:
   var previous=observed_city.get_ref()
   if previous!=null:previous.transit_changed.disconnect(invalidate)
@@ -67,7 +73,9 @@ func close():
  hide()
  set_process(false)
  mode="";hovered_id=-1;phase=0.0;signature=null;camera_key=null
- stations.clear();station_world.clear();paths.clear();world_paths.clear();lines.clear();colors.clear()
+ stations.clear();station_world.clear();paths.clear();world_paths.clear();lines.clear();colors.clear();dots.clear()
+ hosts.clear();bus_network=null;creation_paths.clear()
+ cancel_drag()
  clear_children(rows);clear_children(actions);create_buttons.clear()
 
 func observe_city():
@@ -103,8 +111,8 @@ func synchronize():
  var rebuild_list:bool=lines.map(func(line):return line.id)!=ids or create_buttons.is_empty()
  lines=next_lines.duplicate(true)
  station_world.clear();world_paths.clear()
- var rails:Dictionary={}
- for route:Dictionary in city.transit_routes:rails[route.id]=route
+ hosts.clear()
+ for route:Dictionary in city.transit_routes:hosts[route.id]=route
  for lot:Dictionary in city.public_facilities.lots:
   if lot.public_asset_id!=STATION[mode]:continue
   var p:Vector2=lot.position
@@ -112,13 +120,13 @@ func synchronize():
   if mode!="bus":
    var points:PackedVector2Array=lot.internal_points
    p=(points[0]+points[-1])/2
-   height=world_point(p,rails.get(lot.get("internal_route_id",-1),{}),mode).z
+   height=world_point(p,hosts.get(lot.get("internal_route_id",-1),{}),mode).z
   station_world[lot.id]=Vector3(p.x,p.y,height)
- var network
- if mode=="bus" and not lines.is_empty():
-  network=Bus.new();network.build_city(city)
- for line:Dictionary in lines:world_paths.append_array(plan_paths(line,network,rails))
+ bus_network=null
+ if mode=="bus":bus_network=Bus.new();bus_network.build_city(city)
+ for line:Dictionary in lines:world_paths.append_array(plan_paths(line,bus_network,hosts))
  if rebuild_list:build_list()
+ else:sync_creation()
  camera_key=null
  project_paths()
 
@@ -136,7 +144,9 @@ func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
   for i in range(plan.route.size()):
    var lane:Dictionary=network.lanes[plan.route[i]]
    var points:PackedVector2Array=network.points_of(lane)
-   var road:Dictionary=game.city.roads[lane.road] if lane.has("road") and lane.road>=0 else {}
+   var road_index:int=lane.get("road",-1)
+   if road_index<0 and lane.has("from"):road_index=network.lanes[lane.from].road
+   var road:Dictionary=game.city.roads[road_index] if road_index>=0 else {}
    var cursor:=0.0
    while stop_index<plan.stops.size() and plan.stops[stop_index].route_index==i:
     var stop:Dictionary=plan.stops[stop_index]
@@ -199,6 +209,104 @@ func project_paths():
   var cursor:float=accumulated.get(piece.id,0.0)
   paths.append({"id":piece.id,"index":piece.index,"freight":piece.freight,"a":a+side,"b":b+side,"start":cursor})
   accumulated[piece.id]=cursor+a.distance_to(b)
+ dots.clear()
+ var groups:Dictionary={}
+ for line:Dictionary in lines:
+  for i in range(line.stops.size()):
+   var id:int=line.stops[i]
+   if not stations.has(id):continue
+   if not groups.has(id):groups[id]=[]
+   groups[id].append({"id":line.id,"index":i,"p":stations[id]})
+ for group:Array in groups.values():
+  for i in range(group.size()):
+   if group.size()>1:
+    var angle:=TAU*i/group.size()
+    var radius:=maxf(9.0,group.size()*2.4)
+    group[i].p+=Vector2.from_angle(angle)*radius
+   dots.append(group[i])
+
+func pick(p:Vector2)->Dictionary:
+ var hit:Dictionary={}
+ var best:=8.0*8.0
+ for dot:Dictionary in dots:
+  var d:float=p.distance_squared_to(dot.p)
+  if d<best:hit=dot;best=d
+ if not hit.is_empty():return {"id":hit.id,"index":hit.index,"stop":true}
+ best=8.0*8.0
+ for piece:Dictionary in paths:
+  var d:=p.distance_squared_to(Geometry2D.get_closest_point_to_segment(p,piece.a,piece.b))
+  if d<best:hit=piece;best=d
+ if hit.is_empty():return {}
+ return {"id":hit.id,"index":hit.index,"stop":false}
+
+func line_at(id:int)->Dictionary:
+ for line:Dictionary in game.city.transit_lines:
+  if line.id==id:return line
+ return {}
+
+func begin_drag(p:Vector2):
+ dragged=pick(p)
+ if dragged.is_empty():return
+ var line:=line_at(dragged.id)
+ if line.is_empty():cancel_drag();return
+ dragged.from=p;dragged.stops=line.stops.duplicate();dragged.city=game.city.get_instance_id()
+ pointer=p
+
+func cancel_drag():
+ dragged.clear();preview_paths.clear()
+
+func candidate(p:Vector2)->Array:
+ if dragged.is_empty() or p.distance_to(dragged.from)<=DRAG_DEAD_ZONE:return []
+ var stops:Array=dragged.stops.duplicate()
+ var station:=station_at(p)
+ if station in stops:return []
+ if dragged.stop:
+  if station<0:stops.remove_at(dragged.index)
+  else:stops[dragged.index]=station
+ elif station>=0:stops.insert(dragged.index+1,station)
+ else:return []
+ return stops
+
+func move_drag(p:Vector2):
+ pointer=p
+ var stops:=candidate(p)
+ if stops==dragged.get("preview",[]):return
+ dragged.preview=stops
+ preview_paths.clear()
+ if stops.size()>=2:
+  var line:=line_at(dragged.id).duplicate()
+  if not line.is_empty():
+   line.stops=stops
+   line.erase("turnback");line.erase("terminal_ports")
+   if line.kind in ["rail","metro"]:line.allow_turnback=true
+   preview_paths=preview_plan(line)
+
+func preview_plan(line:Dictionary)->Array:
+ return plan_paths(line,bus_network,hosts)
+
+func drop(p:Vector2,over_gui:bool):
+ if dragged.is_empty():return
+ var stops:=[] if over_gui else candidate(p)
+ var id:int=dragged.id
+ var line:=line_at(id)
+ var current:bool=game.city.get_instance_id()==dragged.city and line.get("stops",[])==dragged.stops
+ cancel_drag()
+ if current and not stops.is_empty():commit_stops(id,stops)
+
+func right_click(p:Vector2)->bool:
+ var hit:=pick(p)
+ if hit.is_empty():return false
+ if hit.stop:
+  var line:=line_at(hit.id)
+  if not line.is_empty() and hit.index<line.stops.size():
+   var stops:Array=line.stops.duplicate();stops.remove_at(hit.index)
+   commit_stops(hit.id,stops)
+ else:request_delete(hit.id)
+ return true
+
+func commit_stops(id:int,stops:Array):
+ if stops.size()<2:request_delete(id)
+ else:game.edit_transit_line(id,stops)
 
 func build_list():
  clear_children(rows);clear_children(actions);create_buttons.clear();hovered_id=-1
@@ -237,15 +345,19 @@ func request_delete(id:int):
  delete_requested.emit(id)
 
 func start_creation(kind:String):
+ cancel_drag()
  var tool=game.transit_line_tool
  var was_active:bool=tool.kind==kind
  tool.cancel()
- game.mode="route_overlay" if was_active else ("freight_line" if kind=="freight" else "transit_line")
  if not was_active:tool.kind=kind
  sync_creation()
 
 func sync_creation():
- for kind in create_buttons:create_buttons[kind].set_pressed_no_signal(game.transit_line_tool.kind==kind)
+ var tool=game.transit_line_tool
+ for kind in create_buttons:create_buttons[kind].set_pressed_no_signal(tool.kind==kind)
+ creation_paths.clear()
+ if tool.stops.size()>=2:
+  creation_paths=preview_plan({"id":-1,"kind":tool.kind,"stops":tool.stops,"allow_turnback":tool.kind in ["rail","metro"]})
 
 func _process(delta:float):
  if signature==null:synchronize()
@@ -277,11 +389,18 @@ func _draw():
    var arrow:=Color(INK,tint.a)
    draw_polyline(PackedVector2Array([tail+side,tip,tail-side]),arrow,2,true)
    step+=34
+ var new_color:=next_color() if not game.transit_line_tool.stops.is_empty() else Color.TRANSPARENT
+ for piece:Dictionary in creation_paths:draw_line(project(piece.a),project(piece.b),new_color,3,true)
  for point:Vector2 in stations.values():draw_arc(point,8,0,TAU,24,INK,2,true)
- for line:Dictionary in lines:
-  for id in line.stops:
-   if not stations.has(id):continue
-   var tint:Color=colors[line.id];tint.a=opacity(line.id)
-   draw_circle(stations[id],6,tint,true,-1,true)
+ for dot:Dictionary in dots:
+  var tint:Color=colors[dot.id];tint.a=opacity(dot.id)
+  draw_circle(dot.p,6,tint,true,-1,true)
+ if not dragged.is_empty() and pointer.distance_to(dragged.from)>DRAG_DEAD_ZONE:
+  var tint:Color=colors.get(dragged.id,ACCENT)
+  for piece:Dictionary in preview_paths:draw_line(project(piece.a),project(piece.b),tint,3,true)
+  var target:=station_at(pointer)
+  var position:Vector2=stations.get(target,pointer)
+  if target>=0:draw_arc(position,16,0,TAU,24,ACCENT,2,true)
+  draw_circle(position,5,tint,true,-1,true)
  for id in game.transit_line_tool.stops:
-  if stations.has(id):draw_circle(stations[id],6,next_color(),true,-1,true)
+  if stations.has(id):draw_circle(stations[id],6,new_color,true,-1,true)

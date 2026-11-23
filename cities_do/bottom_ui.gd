@@ -195,6 +195,7 @@ func build_bottom_hud():
  layer.add_child(root)
  route_overlay=preload("res://core/route_overlay.gd").new()
  root.add_child(route_overlay);route_overlay.setup(self)
+ route_overlay.delete_requested.connect(confirm_route_deletion)
  utility_popup=PopupPanel.new()
  utility_popup.name="UtilitySettings"
  utility_popup.theme=theme_value
@@ -339,6 +340,12 @@ func _input(event):
   if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
    budget_window.close();get_viewport().set_input_as_handled()
   return
+ if route_overlay!=null and route_overlay.visible and not route_overlay.dragged.is_empty():
+  if event is InputEventMouseMotion:
+   route_overlay.move_drag(event.position)
+  elif event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+   route_overlay.drop(event.position,get_viewport().gui_get_hovered_control()!=null)
+   get_viewport().set_input_as_handled();return
  super._input(event)
 
 func sync_utility_visibility():
@@ -348,7 +355,7 @@ func sync_utility_visibility():
  if not transport_tabs.visible:close_route_overlay()
  if transit_view!=null and not tray_open and mode!="demolish":
   transit_view.underground=false;transit_view.cancel()
-  if mode in ["rail","metro","transit_line","freight_line","remove_line","edit_line"]:
+  if mode in ["rail","metro","route_overlay"]:
    mode="select";update_road_modes()
    if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.sync_visibility()
@@ -898,10 +905,13 @@ func _unhandled_input(event):
  if route_warning_open() or (budget_window!=null and budget_window.visible):
   get_viewport().set_input_as_handled();return
  if route_overlay.visible and event is InputEventMouseButton and event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT]:
-  if event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:cancel_route_overlay_action()
-  elif event.pressed and transit_line_tool.kind!="":
-   transit_line_tool.choose_stop(route_overlay.station_at(event.position))
-   route_overlay.sync_creation()
+  if event.pressed:
+   if event.button_index==MOUSE_BUTTON_RIGHT:
+    if transit_line_tool.kind!="" or not route_overlay.dragged.is_empty() or not route_overlay.right_click(event.position):cancel_route_overlay_action()
+   elif transit_line_tool.kind!="":
+    transit_line_tool.choose_stop(route_overlay.station_at(event.position))
+    route_overlay.sync_creation()
+   else:route_overlay.begin_drag(event.position)
   get_viewport().set_input_as_handled();return
  if mode in ["road","rail","metro"] and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
   activate_tool("select")
@@ -1192,7 +1202,7 @@ func close_route_overlay():
  if route_overlay==null or not route_overlay.visible:return
  route_overlay.close()
  transit_line_tool.cancel()
- if mode in ["route_overlay","transit_line","freight_line"]:mode="select"
+ if mode=="route_overlay":mode="select"
  transit_view.underground=false
  transit_view.sync_visibility()
  update_route_card()
@@ -1205,7 +1215,18 @@ func update_route_card():
 func cancel_route_overlay_action():
  if transit_line_tool.kind!="":
   transit_line_tool.cancel();mode="route_overlay";route_overlay.sync_creation()
+ elif not route_overlay.dragged.is_empty():route_overlay.cancel_drag()
  else:close_route_overlay()
+
+func confirm_route_deletion(id:int):
+ if not route_overlay.visible or route_warning_open() or route_overlay.line_at(id).is_empty():return
+ show_route_confirmation(apply_route_deletion.bind(weakref(city),id),Callable(),"이 노선이 삭제됩니다!")
+
+func apply_route_deletion(owner:WeakRef,id:int):
+ if owner.get_ref()!=city:return
+ var result:Dictionary=city.remove_transit_line(id)
+ message="" if result.get("ok",false) or result.get("queued",false) else result.get("reason","")
+ refresh()
 
 func open_utility_settings(kind: String):
  if utility_popup.visible: utility_popup.hide()
