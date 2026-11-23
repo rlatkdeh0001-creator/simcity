@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>교통 탭 v2 — 노선 묶음과 노선 오버레이 (2026-11-19)</title>
+<style>
+  html, body { margin: 0; background: #0b1117; }
+  body { font-family: "Malgun Gothic", sans-serif; color: #edf4f5; }
+  #stage { display: block; width: 100%; max-width: 1920px; height: auto; margin: 0 auto; user-select: none; }
+  body.shot #stage { width: auto; max-width: none; margin: 0; }
+  #tweaks { position: fixed; top: 12px; right: 12px; display: flex; gap: 8px; align-items: center;
+            background: #142b37; border: 1px solid #38515e; border-radius: 8px; padding: 10px 12px; font-size: 18px; }
+  #tweaks button { font: inherit; font-size: 18px; background: #152831; color: #edf4f5; border: 1px solid #38515e;
+                   border-radius: 6px; padding: 4px 12px; cursor: pointer; }
+  #tweaks button.on { background: #36b7ff; border-color: #36b7ff; color: #ffffff; }
+  body.shot #tweaks { display: none; }
+  #src { display: none; }
+</style>
+</head>
+<body>
+<img id="src" src="mock/tray-src.png" alt="">
+<canvas id="stage" width="1920" height="1080"></canvas>
+<div id="tweaks"><span>새 노선 추가</span>
+  <button data-v="A">A 카드</button><button data-v="B">B 말풍선</button><button data-v="C">C 목록</button></div>
+<script>
+// Background = real capture mock/tray-src.png. Tray cards are cut from it; tabs, overlay and dialogs are drawn.
+// Only the train station at the top is real; other stations are examples placed on the capture's road,
+// ground-rail and viaduct centre lines (measured with PIL).
+const Q = new URLSearchParams(location.search);
+const SHOT = Q.has('shot');
+if (SHOT) document.body.classList.add('shot');
+const P = { panel: '#142e3c', dlg: '#142b37', border: '#38515e', card: '#152d3b', label: '#e4eef1', text: '#edf4f5',
+            white: '#ffffff', accent: '#36b7ff', muted: '#9aa8ae', btn: '#152831', cancel: '#364f5c' };
+const F = (s, b) => (b ? 'bold ' : '') + s + 'px "Malgun Gothic", sans-serif';
+const LC = ['#ff6b5b', '#ffc23d', '#4dd9a6', '#b48cff', '#ff9f43', '#ff8fd0', '#9be15d', '#f6f08a'];
+const KN = { bus: '버스', rail: '철도', freight: '화물', metro: '지하철' };
+const TRAINS = { bus: false, rail: true, freight: true, metro: true };
+const RESET = '수정사항이 있는 모든 열차가 초기화됩니다!', REMOVE = '이 노선이 삭제됩니다!';
+
+const Y0 = 758, HH = 98, GAP = 18, X0 = 288;
+const SRC = { rail: [288, 110], metro: [416, 110], line: [544, 110], ctrl: [927, 276],
+              busstop: [1220, 126], busstation: [1364, 126], metrost: [1508, 126], trainst: [1652, 126] };
+const TABS = [['bus', '버스'], ['metro', '지하철'], ['train', '기차']];
+const ITEMS = { bus: ['busstop', 'busstation', 'line'], metro: ['metro', 'metrost', 'line'],
+                train: ['rail', 'ctrl', 'trainst', 'line'] };
+const NEW = { bus: [['bus', '새 노선 추가', '새 노선']], metro: [['metro', '새 노선 추가', '새 노선']],
+              train: [['rail', '새 노선 추가', '새 노선'], ['freight', '새 화물 노선 추가', '새 화물 노선']] };
+const KINDS = { bus: ['bus'], metro: ['metro'], train: ['rail', 'freight'] };
+const ST = {
+  bus: { B1: [678, 60], B2: [958, 200], B3: [1238, 340], B4: [1470, 456], C1: [1178, 450], C2: [958, 560], C3: [758, 660] },
+  train: { T1: [990, 36], T2: [1391, 250], T3: [1831, 470], T4: [360, 230], T5: [616, 350], T6: [979, 520], T7: [1279, 660] },
+  metro: { M1: [380, 620], M2: [700, 460], M3: [1020, 300], M4: [1340, 140], M5: [1340, 460] },
+};
+const TUNNELS = [['M1', 'M2'], ['M2', 'M3'], ['M3', 'M4'], ['M3', 'M5']];
+let lines = [
+  { id: 1, kind: 'bus', stops: ['B1', 'B2', 'B3'], c: 0 }, { id: 2, kind: 'bus', stops: ['C1', 'C2', 'C3'], c: 3 },
+  { id: 1, kind: 'rail', stops: ['T1', 'T2', 'T3'], c: 1 }, { id: 2, kind: 'rail', stops: ['T4', 'T5', 'T6'], c: 2 },
+  { id: 1, kind: 'metro', stops: ['M1', 'M2', 'M3', 'M4'], c: 5 },
+];
+const st = { v: (Q.get('v') || 'C').toUpperCase(), t: Q.get('t') || 'bus', ov: Q.get('ov') === '1',
+             mouse: null, drag: null, creating: null, dialog: null, hoverLine: null };
+let SPR = null, ui = [];
+const MC = document.createElement('canvas').getContext('2d');
+
+function makeSprites(img) {
+  const out = {};
+  for (const [k, [x, w]] of Object.entries(SRC)) {
+    const c = document.createElement('canvas'); c.width = w; c.height = HH;
+    c.getContext('2d').drawImage(img, x, Y0, w, HH, 0, 0, w, HH);
+    out[k] = c;
+  }
+  for (const [, , short] of [...NEW.bus, ...NEW.train]) out['new:' + short] = newCard(out.line, short);
+  return out;
+}
+function newCard(line, label) {               // A: same card look, 126 px like the station cards
+  const c = document.createElement('canvas'); c.width = 126; c.height = HH;
+  const g = c.getContext('2d');
+  g.fillStyle = P.card; g.fillRect(0, 0, 126, HH);
+  g.strokeStyle = '#2b4451'; g.lineWidth = 1; g.strokeRect(0.5, 0.5, 125, HH - 1);
+  g.drawImage(line, 38, 10, 34, 38, 46, 10, 34, 38);
+  g.fillStyle = P.label; g.font = F(18, 1); g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.fillText(label, 63, 72);
+  return c;
+}
+
+const inR = (p, r) => p && p[0] >= r[0] && p[0] < r[0] + r[2] && p[1] >= r[1] && p[1] < r[1] + r[3];
+function rr(g, x, y, w, h, r) {
+  g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+  g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+}
+function tabPath(g, x, y, w, h, r) {
+  g.beginPath(); g.moveTo(x + 0.5, y + h); g.lineTo(x + 0.5, y + r + 0.5);
+  g.arcTo(x + 0.5, y + 0.5, x + r + 0.5, y + 0.5, r); g.lineTo(x + w - r - 0.5, y + 0.5);
+  g.arcTo(x + w - 0.5, y + 0.5, x + w - 0.5, y + r + 0.5, r); g.lineTo(x + w - 0.5, y + h);
+}
+
+function layout() {
+  MC.font = F(18, 1);
+  const L = { tabs: [], cards: [] };
+  let x = 116;
+  for (const [id, label] of TABS) {
+    const w = Math.ceil(MC.measureText(label).width) + 32;
+    L.tabs.push({ id, label, r: [x, 720, w, 30] }); x += w + 4;
+  }
+  const items = ITEMS[st.t].map(k => ({ k }));
+  if (st.ov && st.v === 'A') for (const [kind, , short] of NEW[st.t]) items.push({ k: 'new:' + short, kind });
+  x = X0;
+  for (const it of items) { const w = SPR[it.k].width; it.r = [x, Y0, w, HH]; L.cards.push(it); x += w + GAP; }
+  return L;
+}
+
+function drawTray(g, L) {
+  g.fillStyle = P.panel; g.fillRect(280, 752, 1520, 104);
+  g.font = F(18, 1); g.textAlign = 'center'; g.textBaseline = 'middle';
+  for (const t of L.tabs) {
+    const [x, y, w, h] = t.r, on = t.id === st.t;
+    tabPath(g, x, y, w, h, 5); g.fillStyle = on ? P.accent : P.panel; g.fill();
+    if (!on) { tabPath(g, x, y, w, h, 5); g.strokeStyle = P.border; g.lineWidth = 1; g.stroke(); }
+    g.fillStyle = on ? P.white : P.muted; g.fillText(t.label, x + w / 2, y + h / 2 + 1);
+    ui.push({ r: t.r, act: () => selectTab(t.id) });
+  }
+  for (const c of L.cards) {
+    g.drawImage(SPR[c.k], c.r[0], c.r[1]);
+    const sel = (c.k === 'line' && st.ov) || (c.kind && st.creating && st.creating.kind === c.kind);
+    if (sel) { g.strokeStyle = P.accent; g.lineWidth = 2; rr(g, c.r[0] + 1, c.r[1] + 1, c.r[2] - 2, c.r[3] - 2, 4); g.stroke(); }
+    ui.push({ r: c.r, act: () => cardClick(c) });
+  }
+}
+
+// ---------- overlay geometry ----------
+const visibleLines = () => lines.filter(l => KINDS[st.t].includes(l.kind));
+const stopPts = Ln => Ln.stops.map(s => ST[st.t][s]);
+const colorOf = Ln => LC[Ln.c % LC.length];
+function lanesOf(pts) {            // one lane per direction, offset 6 px to the right of travel
+  const out = [];
+  for (let i = 0; i < pts.length; i++) {
+    const a = pts[i], b = pts[(i + 1) % pts.length];
+    const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy) || 1, ux = dx / len, uy = dy / len;
+    out.push({ i, a: [a[0] - uy * 6, a[1] + ux * 6], b: [b[0] - uy * 6, b[1] + ux * 6], len, ux, uy });
+  }
+  return out;
+}
+function distSeg(p, a, b) {
+  const dx = b[0] - a[0], dy = b[1] - a[1], L2 = dx * dx + dy * dy || 1;
+  const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / L2));
+  return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
+}
+function stationAt(p, r = 18) {
+  let best = null, bd = r;
+  for (const [id, q] of Object.entries(ST[st.t])) { const d = Math.hypot(q[0] - p[0], q[1] - p[1]); if (d < bd) { bd = d; best = id; } }
+  return best;
+}
+function dotAt(p) {
+  for (const Ln of visibleLines().slice().reverse())
+    for (let i = 0; i < Ln.stops.length; i++) { const q = ST[st.t][Ln.stops[i]]; if (Math.hypot(q[0] - p[0], q[1] - p[1]) < 13) return { Ln, idx: i }; }
+  return null;
+}
+function laneAt(p) {
+  for (const Ln of visibleLines().slice().reverse())
+    for (const s of lanesOf(stopPts(Ln))) if (distSeg(p, s.a, s.b) < 8) return { Ln, seg: s.i };
+  return null;
+}
+function nextColor() {
+  const used = new Set(visibleLines().map(l => l.c % LC.length));
+  for (let i = 0; i < LC.length; i++) if (!used.has(i)) return i;
+  return lines.length % LC.length;
+}
+
+// ---------- overlay drawing ----------
+function chevron(g, x, y, ux, uy) {
+  const px = -uy, py = ux;
+  g.beginPath(); g.moveTo(x - ux * 4 + px * 3.4, y - uy * 4 + py * 3.4); g.lineTo(x + ux * 1.6, y + uy * 1.6);
+  g.lineTo(x - ux * 4 - px * 3.4, y - uy * 4 - py * 3.4); g.stroke();
+}
+function drawLine(g, Ln, pts, a, phase, dashIdx) {
+  if (pts.length < 2) return;
+  const segs = lanesOf(pts), col = colorOf(Ln), fr = Ln.kind === 'freight';
+  g.save(); g.globalAlpha = a;
+  g.lineCap = 'round'; g.strokeStyle = 'rgba(6,12,18,0.6)'; g.lineWidth = 11;
+  for (const s of segs) { g.beginPath(); g.moveTo(s.a[0], s.a[1]); g.lineTo(s.b[0], s.b[1]); g.stroke(); }
+  g.strokeStyle = col; g.lineWidth = 7;
+  for (const s of segs) {
+    const dash = fr || (dashIdx && dashIdx.includes(s.i));
+    g.setLineDash(dash ? [16, 9] : []); g.lineCap = dash ? 'butt' : 'round';
+    g.beginPath(); g.moveTo(s.a[0], s.a[1]); g.lineTo(s.b[0], s.b[1]); g.stroke();
+  }
+  g.setLineDash([]); g.lineCap = 'round'; g.lineJoin = 'round';
+  g.strokeStyle = 'rgba(255,255,255,0.95)'; g.lineWidth = 2.2;
+  for (const s of segs) for (let d = 16 + (phase % 34); d < s.len - 16; d += 34)
+    chevron(g, s.a[0] + s.ux * d, s.a[1] + s.uy * d, s.ux, s.uy);
+  g.restore();
+}
+function ring(g, p) {
+  g.beginPath(); g.arc(p[0], p[1], 8, 0, 7); g.fillStyle = 'rgba(16,36,48,0.92)'; g.fill();
+  g.lineWidth = 2.5; g.strokeStyle = P.text; g.stroke();
+}
+function dot(g, p, col, a, ghost) {
+  g.save(); g.globalAlpha = a;
+  g.beginPath(); g.arc(p[0], p[1], 9, 0, 7); g.fillStyle = col; g.fill(); g.lineWidth = 3; g.strokeStyle = P.white; g.stroke();
+  if (ghost) {
+    g.lineWidth = 2.4; g.strokeStyle = P.dlg; g.beginPath();
+    g.moveTo(p[0] - 4, p[1] - 4); g.lineTo(p[0] + 4, p[1] + 4); g.moveTo(p[0] + 4, p[1] - 4); g.lineTo(p[0] - 4, p[1] + 4); g.stroke();
+  }
+  g.restore();
+}
+function halo(g, p) { g.beginPath(); g.arc(p[0], p[1], 16, 0, 7); g.lineWidth = 3; g.strokeStyle = P.accent; g.stroke(); }
+function button(g, r, label, on) {
+  const [x, y, w, h] = r;
+  g.fillStyle = on ? P.accent : P.btn; rr(g, x, y, w, h, 4); g.fill();
+  if (!on) { g.strokeStyle = P.border; g.lineWidth = 1; rr(g, x + 0.5, y + 0.5, w - 1, h - 1, 4); g.stroke(); }
+  g.fillStyle = on ? P.white : P.text; g.font = F(18, 1); g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText(label, x + w / 2, y + h / 2 + 1);
+}
+
+function dragPlan() {                // the dragged line: points, dashed legs, dots, halo
+  const D = st.drag, Ln = D.Ln, S = ST[st.t], col = colorOf(Ln), tgt = stationAt(D.p);
+  const R = { pts: stopPts(Ln), dash: null, dots: [], halo: null };
+  if (D.type === 'dot') {
+    const orig = Ln.stops[D.idx], o = S[orig];
+    const ok = tgt && (tgt === orig || !Ln.stops.includes(tgt));
+    if (!ok && Math.hypot(D.p[0] - o[0], D.p[1] - o[1]) > 24) {   // thrown away: the line already skips this stop
+      const rest = Ln.stops.filter((_, i) => i !== D.idx);
+      R.pts = rest.length >= 2 ? rest.map(s => S[s]) : [];
+      rest.forEach(s => R.dots.push([S[s], col, 1]));
+      R.dots.push([D.p, col, 0.85, true]);
+    } else {                                                       // rubber band, or moved onto another station
+      const p = ok ? S[tgt] : D.p; R.pts[D.idx] = p;
+      Ln.stops.forEach((s, i) => { if (i !== D.idx) R.dots.push([S[s], col, 1]); });
+      if (ok && tgt !== orig) R.halo = p;
+      R.dots.push([p, col, 1]);
+    }
+  } else {                                                         // an arrow pulled onto a station inserts it
+    const ok = tgt && !Ln.stops.includes(tgt), p = ok ? S[tgt] : D.p;
+    R.pts.splice(D.seg + 1, 0, p); R.dash = [D.seg, D.seg + 1];
+    Ln.stops.forEach(s => R.dots.push([S[s], col, 1]));
+    if (ok) R.halo = p;
+    R.dots.push([p, ok ? col : P.white, ok ? 1 : 0.85]);
+  }
+  return R;
+}
+function linePath(g, pts, end) {
+  g.beginPath(); pts.forEach((q, i) => (i ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1])));
+  if (end && pts.length) g.lineTo(end[0], end[1]);
+}
+function createState() {
+  const C = st.creating, S = ST[st.t], tgt = st.mouse ? stationAt(st.mouse) : null;
+  const closing = tgt && C.stops.length >= 2 && tgt === C.stops[0];
+  const valid = tgt && (closing || !C.stops.includes(tgt));
+  return { col: LC[nextColor()], pts: C.stops.map(s => S[s]),
+           end: st.mouse ? (valid ? S[tgt] : st.mouse) : null, halo: valid ? S[tgt] : null };
+}
+function drawCreatePath(g) {
+  const K = createState();
+  g.save(); g.lineJoin = 'round';
+  g.lineCap = 'round'; g.strokeStyle = 'rgba(6,12,18,0.6)'; g.lineWidth = 11; linePath(g, K.pts, K.end); g.stroke();
+  g.lineCap = 'butt'; g.strokeStyle = K.col; g.lineWidth = 7; g.setLineDash([14, 9]); linePath(g, K.pts, K.end); g.stroke();
+  g.restore();
+}
+function drawCreateDots(g) { const K = createState(); if (K.halo) halo(g, K.halo); K.pts.forEach(q => dot(g, q, K.col, 1)); }
+function drawPopover(g, L) {         // B: a small bubble on the selected '노선' card
+  const card = L.cards.find(c => c.k === 'line'); if (!card) return;
+  const items = NEW[st.t], bw = 214, bh = 40, pad = 10, gap = 8;
+  const w = bw + pad * 2, h = items.length * bh + (items.length - 1) * gap + pad * 2;
+  const cx = card.r[0] + card.r[2] / 2, x = Math.round(cx - w / 2), y = 744 - 9 - h;
+  g.fillStyle = P.dlg; g.strokeStyle = P.border; g.lineWidth = 1;
+  rr(g, x + 0.5, y + 0.5, w - 1, h - 1, 6); g.fill(); g.stroke();
+  g.beginPath(); g.moveTo(cx - 9, y + h - 1.5); g.lineTo(cx, y + h + 8); g.lineTo(cx + 9, y + h - 1.5); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(cx - 9.5, y + h - 0.5); g.lineTo(cx, y + h + 8.5); g.lineTo(cx + 9.5, y + h - 0.5); g.stroke();
+  items.forEach(([kind, label], i) => {
+    const r = [x + pad, y + pad + i * (bh + gap), bw, bh];
+    button(g, r, label, st.creating && st.creating.kind === kind);
+    ui.push({ r, act: () => startCreate(kind) });
+  });
+}
+function listRows() {                // C: line list at the top left
+  const ls = visibleLines(), x = 24, y = 24, w = 300, pad = 8, rh = 44;
+  const rows = ls.map((Ln, i) => ({ Ln, r: [x + pad, y + pad + i * rh, w - pad * 2, rh] }));
+  const by = y + pad + ls.length * rh + (ls.length ? 9 : 0);
+  const btns = NEW[st.t].map(([kind, label], i) => ({ kind, label, r: [x + pad, by + i * 48, w - pad * 2, 40] }));
+  const bottom = btns.length ? btns[btns.length - 1].r[1] + 40 : by;
+  return { x, y, w, h: bottom + pad - y, rows, btns, divider: ls.length ? y + pad + ls.length * rh + 4 : null };
+}
+function drawList(g) {
+  const Lr = listRows();
+  g.fillStyle = P.dlg; g.strokeStyle = P.border; g.lineWidth = 1;
+  rr(g, Lr.x + 0.5, Lr.y + 0.5, Lr.w - 1, Lr.h - 1, 6); g.fill(); g.stroke();
+  g.textBaseline = 'middle';
+  for (const row of Lr.rows) {
+    const [x, y, w, h] = row.r, hov = st.hoverLine === row.Ln;
+    if (hov) { g.fillStyle = '#1d3a4a'; rr(g, x, y + 2, w, h - 4, 4); g.fill(); }
+    g.fillStyle = colorOf(row.Ln); g.beginPath(); g.arc(x + 18, y + h / 2, 8, 0, 7); g.fill();
+    g.fillStyle = P.text; g.font = F(20); g.textAlign = 'left'; g.fillText(KN[row.Ln.kind] + ' ' + row.Ln.id, x + 36, y + h / 2 + 1);
+    const xr = [x + w - 36, y + 6, 32, 32];
+    g.strokeStyle = hov ? P.white : P.muted; g.lineWidth = 2.4; g.beginPath();
+    g.moveTo(xr[0] + 10, xr[1] + 10); g.lineTo(xr[0] + 22, xr[1] + 22); g.moveTo(xr[0] + 22, xr[1] + 10); g.lineTo(xr[0] + 10, xr[1] + 22);
+    g.stroke();
+    ui.push({ r: xr, act: () => askDelete(row.Ln) });
+  }
+  if (Lr.divider) { g.fillStyle = P.border; g.fillRect(Lr.x + 8, Lr.divider, Lr.w - 16, 1); }
+  for (const b of Lr.btns) { button(g, b.r, b.label, st.creating && st.creating.kind === b.kind); ui.push({ r: b.r, act: () => startCreate(b.kind) }); }
+}
+function drawOverlay(g, phase, L) {
+  const S = ST[st.t], D = st.drag, plan = D ? dragPlan() : null;
+  st.hoverLine = null;
+  if (st.v === 'C' && st.mouse && !D) for (const row of listRows().rows) if (inR(st.mouse, row.r)) st.hoverLine = row.Ln;
+  const alpha = Ln => (st.hoverLine && st.hoverLine !== Ln ? 0.3 : 1);
+  const others = visibleLines().filter(Ln => !(D && D.Ln === Ln));
+  for (const Ln of others) drawLine(g, Ln, stopPts(Ln), alpha(Ln), phase);            // 1. lines
+  if (plan) drawLine(g, D.Ln, plan.pts, 1, phase, plan.dash);
+  if (st.creating) drawCreatePath(g);
+  for (const id in S) ring(g, S[id]);                                                  // 2. every station on top, so a skipped one shows
+  for (const Ln of others) for (const s of Ln.stops) dot(g, S[s], colorOf(Ln), alpha(Ln)); // 3. stops
+  if (plan) { if (plan.halo) halo(g, plan.halo); plan.dots.forEach(d => dot(g, d[0], d[1], d[2], d[3])); }
+  if (st.creating) drawCreateDots(g);
+  if (st.v === 'B') drawPopover(g, L);
+  if (st.v === 'C') drawList(g);
+}
+function drawDialog(g) {             // same geometry as the real reset warning (warning-dialog.png)
+  g.fillStyle = 'rgba(0,0,0,0.45)'; g.fillRect(0, 0, 1920, 1080);
+  g.fillStyle = P.dlg; g.strokeStyle = P.border; g.lineWidth = 1; rr(g, 715.5, 466.5, 489, 146, 4); g.fill(); g.stroke();
+  g.fillStyle = P.text; g.font = F(22); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(st.dialog.text, 960, 507);
+  const ok = [825, 545, 128, 44], no = [967, 545, 128, 44];
+  g.fillStyle = P.accent; rr(g, ok[0], ok[1], ok[2], ok[3], 4); g.fill();
+  g.fillStyle = P.white; g.font = F(20); g.fillText('확인', ok[0] + 64, ok[1] + 23);
+  g.fillStyle = P.cancel; rr(g, no[0], no[1], no[2], no[3], 4); g.fill();
+  g.fillStyle = P.text; g.fillText('취소', no[0] + 64, no[1] + 23);
+  ui = [{ r: ok, act: dialogOk }, { r: no, act: dialogNo }];
+}
+function cursorGlyph(g, p) {
+  g.save(); g.translate(p[0], p[1]); g.beginPath();
+  g.moveTo(0, 0); g.lineTo(0, 22); g.lineTo(6, 17); g.lineTo(10, 26); g.lineTo(14, 24); g.lineTo(10, 15); g.lineTo(17, 15); g.closePath();
+  g.fillStyle = '#ffffff'; g.fill(); g.strokeStyle = '#000000'; g.lineWidth = 1.5; g.stroke(); g.restore();
+}
+
+function frame(g, ts) {
+  const img = document.getElementById('src'), phase = SHOT ? 14 : ts / 1000 * 46;
+  ui = [];
+  const L = layout();
+  if (st.ov && st.t === 'metro') {   // metro lines open on the underground view: pale terrain, black tunnels
+    g.fillStyle = '#a9b0a6'; g.fillRect(0, 0, 1920, 1080);
+    g.strokeStyle = '#15181a'; g.lineWidth = 26; g.lineCap = 'round';
+    for (const [a, b] of TUNNELS) { g.beginPath(); g.moveTo(ST.metro[a][0], ST.metro[a][1]); g.lineTo(ST.metro[b][0], ST.metro[b][1]); g.stroke(); }
+  } else {
+    g.drawImage(img, 0, 0);
+    if (st.ov) { g.fillStyle = 'rgba(8,14,20,0.55)'; g.fillRect(0, 0, 1920, 1080); }
+  }
+  if (st.ov) { g.drawImage(img, 0, 880, 1920, 200, 0, 880, 1920, 200); g.drawImage(img, 112, 748, 1696, 130, 112, 748, 1696, 130); }
+  drawTray(g, L);
+  if (st.ov) drawOverlay(g, phase, L);
+  if (st.dialog) drawDialog(g);
+  else if (SHOT && st.mouse) cursorGlyph(g, st.drag ? st.drag.p : st.mouse);
+}
+
+// ---------- actions ----------
+function selectTab(id) { st.t = id; st.ov = false; st.creating = null; st.drag = null; }
+function closeOverlay() { st.ov = false; st.creating = null; st.drag = null; }
+function startCreate(kind) { st.drag = null; st.creating = st.creating && st.creating.kind === kind ? null : { kind, stops: [] }; }
+function cardClick(c) {
+  if (c.k === 'line') { if (st.ov) closeOverlay(); else st.ov = true; return; }
+  if (c.kind) { startCreate(c.kind); return; }
+  closeOverlay();                    // any other tool leaves the line overlay
+}
+function addCreateStop(id) {
+  const C = st.creating;
+  if (C.stops.length >= 2 && id === C.stops[0]) {
+    const same = lines.filter(l => l.kind === C.kind);
+    lines.push({ id: Math.max(0, ...same.map(l => l.id)) + 1, kind: C.kind, stops: C.stops.slice(), c: nextColor() });
+    st.creating = null; return;
+  }
+  if (!C.stops.includes(id)) C.stops.push(id);
+}
+function askDelete(Ln) { st.dialog = { text: REMOVE, ok: () => { lines = lines.filter(x => x !== Ln); } }; }
+function commit(Ln, stops) {
+  const apply = () => { if (stops.length < 2) lines = lines.filter(x => x !== Ln); else Ln.stops = stops; };
+  if (st.drag) st.drag.frozen = true;
+  if (stops.length < 2) { st.dialog = { text: REMOVE, ok: apply }; return; }
+  if (TRAINS[Ln.kind]) { st.dialog = { text: RESET, ok: apply }; return; }
+  apply(); st.drag = null;
+}
+function dialogOk() { const d = st.dialog; st.dialog = null; st.drag = null; d.ok(); }
+function dialogNo() { st.dialog = null; st.drag = null; }
+function drop() {
+  const D = st.drag, Ln = D.Ln, S = ST[st.t];
+  if (Math.hypot(D.p[0] - D.from[0], D.p[1] - D.from[1]) <= 4) { st.drag = null; return; }
+  const tgt = stationAt(D.p);
+  if (D.type === 'dot') {
+    const orig = Ln.stops[D.idx], o = S[orig];
+    if (tgt === orig) { st.drag = null; return; }
+    if (tgt && !Ln.stops.includes(tgt)) { const s = Ln.stops.slice(); s[D.idx] = tgt; commit(Ln, s); return; }
+    if (!tgt && Math.hypot(D.p[0] - o[0], D.p[1] - o[1]) > 24) { commit(Ln, Ln.stops.filter((_, i) => i !== D.idx)); return; }
+    st.drag = null; return;
+  }
+  if (tgt && !Ln.stops.includes(tgt)) { const s = Ln.stops.slice(); s.splice(D.seg + 1, 0, tgt); commit(Ln, s); return; }
+  st.drag = null;
+}
+
+// ---------- input ----------
+const cv = document.getElementById('stage');
+function cp(e) { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 1920 / r.width, (e.clientY - r.top) * 1080 / r.height]; }
+cv.addEventListener('mousedown', e => {
+  const p = cp(e); st.mouse = p;
+  if (e.button !== 0) return;
+  for (const u of ui) if (inR(p, u.r)) { u.act(); return; }
+  if (st.dialog || !st.ov) return;
+  if (st.creating) { const id = stationAt(p); if (id) addCreateStop(id); return; }
+  const d = dotAt(p); if (d) { st.drag = { type: 'dot', Ln: d.Ln, idx: d.idx, p, from: p }; return; }
+  const l = laneAt(p); if (l) { st.drag = { type: 'arrow', Ln: l.Ln, seg: l.seg, p, from: p }; }
+});
+window.addEventListener('mousemove', e => {
+  st.mouse = cp(e);
+  if (st.drag && !st.drag.frozen) st.drag.p = st.mouse;
+  let c = 'default';
+  if (ui.some(u => inR(st.mouse, u.r))) c = 'pointer';
+  else if (st.ov && !st.dialog) {
+    if (st.drag) c = 'grabbing';
+    else if (st.creating) c = stationAt(st.mouse) ? 'pointer' : 'crosshair';
+    else if (dotAt(st.mouse) || laneAt(st.mouse)) c = 'grab';
+  }
+  cv.style.cursor = c;
+});
+window.addEventListener('mouseup', e => { if (e.button === 0 && st.drag && !st.drag.frozen) drop(); });
+cv.addEventListener('contextmenu', e => {
+  e.preventDefault();
+  const p = cp(e);
+  if (st.dialog) return;
+  if (st.creating) { st.creating = null; return; }
+  if (!st.ov) return;
+  const d = dotAt(p); if (d) { commit(d.Ln, d.Ln.stops.filter((_, i) => i !== d.idx)); return; }
+  const l = laneAt(p); if (l) { askDelete(l.Ln); return; }
+  closeOverlay();
+});
+window.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && st.dialog) { dialogOk(); return; }
+  if (e.key !== 'Escape') return;
+  if (st.dialog) dialogNo(); else if (st.creating) st.creating = null; else if (st.drag) st.drag = null; else if (st.ov) closeOverlay();
+});
+document.querySelectorAll('#tweaks button').forEach(b => b.addEventListener('click', () => {
+  st.v = b.dataset.v; st.creating = null;
+  document.querySelectorAll('#tweaks button').forEach(x => x.classList.toggle('on', x.dataset.v === st.v));
+}));
+
+function applyDemo() {               // frozen states for the PNG captures
+  const d = Q.get('demo'); if (!d) return;
+  const find = (kind, id) => lines.find(l => l.kind === kind && l.id === id);
+  if (d === 'dragdot') {
+    st.t = 'bus'; st.ov = true;
+    st.drag = { type: 'dot', Ln: find('bus', 1), idx: 1, from: ST.bus.B2.slice(), p: [860, 330], frozen: true }; st.mouse = [860, 330];
+  }
+  if (d === 'dragarrow') {
+    st.t = 'bus'; st.ov = true;
+    st.drag = { type: 'arrow', Ln: find('bus', 1), seg: 1, from: [1098, 270], p: ST.bus.C1.slice(), frozen: true };
+    st.mouse = ST.bus.C1.slice();
+  }
+  if (d === 'dialog') {
+    st.t = 'train'; st.ov = true;
+    st.drag = { type: 'arrow', Ln: find('rail', 2), seg: 2, from: [700, 400], p: ST.train.T7.slice(), frozen: true };
+    st.mouse = ST.train.T7.slice(); st.dialog = { text: RESET, ok: () => {} };
+  }
+  if (d === 'new') { st.t = 'metro'; st.ov = true; st.creating = { kind: 'metro', stops: ['M5', 'M3'] }; st.mouse = [1332, 148]; }
+}
+function board() {                   // every tab's tray, overlay closed
+  cv.width = 1720; cv.height = TABS.length * 196 - 12;
+  const g = cv.getContext('2d'); g.fillStyle = '#0b1117'; g.fillRect(0, 0, cv.width, cv.height);
+  const off = document.createElement('canvas'); off.width = 1920; off.height = 1080;
+  const o = off.getContext('2d');
+  TABS.forEach(([id], i) => { st.t = id; st.ov = false; frame(o, 0); g.drawImage(off, 100, 696, 1720, 184, 0, i * 196, 1720, 184); });
+}
+function loop(ts) { frame(cv.getContext('2d'), ts || 0); if (!SHOT) requestAnimationFrame(loop); }
+window.addEventListener('load', () => {
+  SPR = makeSprites(document.getElementById('src'));
+  document.querySelectorAll('#tweaks button').forEach(x => x.classList.toggle('on', x.dataset.v === st.v));
+  if (Q.get('view') === 'board') { board(); return; }
+  applyDemo(); loop(0);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>교통 트레이 탭 시안 (2026-11-19)</title>
+<style>
+  html, body { margin: 0; background: #0b1117; }
+  body { font-family: "Malgun Gothic", sans-serif; color: #edf4f5; }
+  #stage { display: block; max-width: 100vw; height: auto; margin: 0 auto; cursor: pointer; }
+  body.shot #stage { max-width: none; margin: 0; }
+  #tweaks { position: fixed; top: 12px; right: 12px; display: flex; gap: 8px; align-items: center;
+            background: #142b37; border: 1px solid #38515e; border-radius: 8px; padding: 10px 12px; font-size: 18px; }
+  #tweaks button { font: inherit; font-size: 18px; background: #152831; color: #edf4f5; border: 1px solid #38515e;
+                   border-radius: 6px; padding: 4px 12px; cursor: pointer; }
+  #tweaks button.on { background: #36b7ff; border-color: #36b7ff; color: #ffffff; }
+  body.shot #tweaks { display: none; }
+  #src { display: none; }
+</style>
+</head>
+<body>
+<img id="src" src="mock/tray-src.png" alt="">
+<canvas id="stage" width="1920" height="1080"></canvas>
+<div id="tweaks">
+  <span>안</span><button data-v="A">A</button><button data-v="B">B</button><button data-v="C">C</button>
+  <span style="margin-left:10px">보기</span><button data-view="screen">화면</button><button data-view="board">탭 전체</button>
+</div>
+<script>
+// Background = real game capture mock/tray-src.png (copy of artifacts/e3a-elevated-rail-20261119/e3a-viaduct-1920.png).
+// Cards, height control and heading are pixels cut from that capture; only tabs, the divider and the
+// '노선 수정' label are drawn here.
+const Q = new URLSearchParams(location.search);
+const st = { v: (Q.get('v') || 'B').toUpperCase(), t: Q.get('t') || 'bus', view: Q.get('view') || 'screen' };
+const SHOT = Q.has('shot');
+if (SHOT) document.body.classList.add('shot');
+
+const PAL = { panel: '#142e3c', border: '#38515e', card: '#152d3b', label: '#e4eef1', text: '#edf4f5',
+              white: '#ffffff', accent: '#36b7ff', muted: '#9aa8ae', tabOff: '#0f2531' };
+const FONT = 'bold 18px "Malgun Gothic", sans-serif';   // game labels are Godot's emboldened fallback; bold matches
+
+// Measured with PIL on the capture: panel x115-1804 y750-873 (border #38515e, bg #142e3c); cards y758-855;
+// tool cards 110 px wide at a 128 px pitch, station cards 126 px at 144 px; labels 18 px #e4eef1.
+const Y0 = 758, HH = 98, GAP = 18, X0 = 288;
+const SRC = { rail: [288, 110], metro: [416, 110], line: [544, 110], freight: [672, 110], remove: [800, 110],
+              ctrl: [927, 276], busstop: [1220, 126], busstation: [1364, 126], metrost: [1508, 126], trainst: [1652, 126] };
+
+const VARIANTS = {
+  A: { tabs: [['bus', '버스'], ['metro', '지하철'], ['train', '기차']], pinned: [],
+       items: { bus: ['line', 'remove', 'edit', 'busstop', 'busstation'],
+                metro: ['metro', 'line', 'remove', 'edit', 'metrost'],
+                train: ['rail', 'line', 'freight', 'remove', 'edit', 'ctrl', 'trainst'] } },
+  B: { tabs: [['bus', '버스'], ['metro', '지하철'], ['train', '기차']], pinned: ['line', 'remove', 'edit'],
+       items: { bus: ['busstop', 'busstation'], metro: ['metro', 'metrost'], train: ['rail', 'freight', 'ctrl', 'trainst'] } },
+  C: { tabs: [['bus', '버스'], ['metro', '지하철'], ['train', '기차'], ['lines', '노선']], pinned: [],
+       items: { bus: ['busstop', 'busstation'], metro: ['metro', 'metrost'], train: ['rail', 'ctrl', 'trainst'],
+                lines: ['line', 'freight', 'remove', 'edit'] } },
+};
+
+let SPR = null, hits = [];
+
+function makeSprites(img) {
+  const out = {};
+  for (const [k, [x, w]] of Object.entries(SRC)) {
+    const c = document.createElement('canvas'); c.width = w; c.height = HH;
+    c.getContext('2d').drawImage(img, x, Y0, w, HH, 0, 0, w, HH);
+    out[k] = c;
+  }
+  // '노선 수정' (da6c8b0) is newer than the capture: the '노선 삭제' card with its own label.
+  const e = document.createElement('canvas'); e.width = 110; e.height = HH;
+  const g = e.getContext('2d');
+  g.drawImage(out.remove, 0, 0);
+  g.fillStyle = PAL.card; g.fillRect(8, 54, 94, 24);
+  g.fillStyle = PAL.label; g.font = FONT; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.fillText('노선 수정', 55, 72);
+  out.edit = e;
+  return out;
+}
+
+function growPanel(ctx) {            // C: the tray grows 38 px upward to hold the tab row
+  const top = 712;
+  ctx.fillStyle = PAL.panel; ctx.fillRect(116, top + 1, 1688, 758 - top - 1);
+  ctx.strokeStyle = PAL.border; ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(115.5, 762); ctx.lineTo(115.5, top + 6.5);
+  ctx.arcTo(115.5, top + 0.5, 121.5, top + 0.5, 6);
+  ctx.lineTo(1798.5, top + 0.5);
+  ctx.arcTo(1804.5, top + 0.5, 1804.5, top + 6.5, 6);
+  ctx.lineTo(1804.5, 762);
+  ctx.stroke();
+}
+
+function tabPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + 0.5, y + h);
+  ctx.lineTo(x + 0.5, y + r + 0.5);
+  ctx.arcTo(x + 0.5, y + 0.5, x + r + 0.5, y + 0.5, r);
+  ctx.lineTo(x + w - r - 0.5, y + 0.5);
+  ctx.arcTo(x + w - 0.5, y + 0.5, x + w - 0.5, y + r + 0.5, r);
+  ctx.lineTo(x + w - 0.5, y + h);
+}
+
+function drawTabs(ctx, v, t, x0) {
+  const V = VARIANTS[v];
+  ctx.font = FONT; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  hits = [];
+  let x = v === 'A' ? 116 : x0;
+  for (const [id, label] of V.tabs) {
+    const tw = Math.ceil(ctx.measureText(label).width);
+    const on = id === t;
+    if (v === 'A') {                  // CS2-like: small tabs on the tray's top-left edge, selected = accent fill
+      const w = tw + 32, y = 720, h = 30;
+      tabPath(ctx, x, y, w, h, 5);
+      ctx.fillStyle = on ? PAL.accent : PAL.panel; ctx.fill();
+      if (!on) { tabPath(ctx, x, y, w, h, 5); ctx.strokeStyle = PAL.border; ctx.lineWidth = 1; ctx.stroke(); }
+      ctx.fillStyle = on ? PAL.white : PAL.muted; ctx.fillText(label, x + w / 2, y + h / 2 + 1);
+      hits.push([id, x, y, w, h]); x += w + 4;
+    } else if (v === 'B') {           // folder tabs above the part they switch; selected tab opens into the tray
+      const w = tw + 36, y = 718, h = 32;
+      tabPath(ctx, x, y, w, h, 5);
+      ctx.fillStyle = on ? PAL.panel : PAL.tabOff; ctx.fill();
+      tabPath(ctx, x, y, w, h, 5); ctx.strokeStyle = PAL.border; ctx.lineWidth = 1; ctx.stroke();
+      if (on) {
+        ctx.fillStyle = PAL.panel; ctx.fillRect(x + 1, 750, w - 2, 2);
+        ctx.fillStyle = PAL.accent; ctx.fillRect(x + 3, y + 1, w - 6, 3);
+      }
+      ctx.fillStyle = on ? PAL.text : PAL.muted; ctx.fillText(label, x + w / 2, y + h / 2 + 2);
+      hits.push([id, x, y, w, h]); x += w + 4;
+    } else {                          // C: text tabs inside the taller tray, selected = accent underline
+      const w = tw + 28, y = 716, h = 32;
+      ctx.fillStyle = on ? PAL.text : PAL.muted; ctx.fillText(label, x + w / 2, y + h / 2);
+      if (on) { ctx.fillStyle = PAL.accent; ctx.fillRect(x + 6, 745, w - 12, 3); }
+      hits.push([id, x, y, w, h]); x += w + 8;
+    }
+  }
+}
+
+function drawScreen(ctx, img, v, t) {
+  const V = VARIANTS[v];
+  if (!V.items[t]) t = V.tabs[0][0];
+  ctx.drawImage(img, 0, 0);
+  ctx.fillStyle = PAL.panel; ctx.fillRect(280, 752, 1520, 104);   // empty the tray, keep heading, edges, scrollbar
+  if (v === 'C') growPanel(ctx);
+  let x = X0, tabX = X0;
+  const place = (k) => { ctx.drawImage(SPR[k], x, Y0); x += SPR[k].width + GAP; };
+  V.pinned.forEach(place);
+  if (V.pinned.length) {
+    const dx = x - GAP + 9;
+    ctx.fillStyle = PAL.border; ctx.fillRect(dx, 768, 1, 78);
+    x = dx + 10; tabX = x;
+  }
+  V.items[t].forEach(place);
+  drawTabs(ctx, v, t, tabX);
+  return t;
+}
+
+function renderBoard(canvas, img, v) {   // every tab of one variant, tray area only, stacked
+  const V = VARIANTS[v], CROP = [100, 696, 1720, 184], gap = 12, rows = V.tabs.length;
+  canvas.width = CROP[2]; canvas.height = rows * CROP[3] + (rows - 1) * gap;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#0b1117'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const off = document.createElement('canvas'); off.width = 1920; off.height = 1080;
+  const o = off.getContext('2d');
+  V.tabs.forEach(([id], i) => {
+    drawScreen(o, img, v, id);
+    ctx.drawImage(off, CROP[0], CROP[1], CROP[2], CROP[3], 0, i * (CROP[3] + gap), CROP[2], CROP[3]);
+  });
+  hits = [];
+}
+
+function render() {
+  const img = document.getElementById('src');
+  if (!SPR) SPR = makeSprites(img);
+  const cv = document.getElementById('stage');
+  if (st.view === 'board') renderBoard(cv, img, st.v);
+  else { cv.width = 1920; cv.height = 1080; st.t = drawScreen(cv.getContext('2d'), img, st.v, st.t); }
+  document.querySelectorAll('#tweaks button').forEach(b =>
+    b.classList.toggle('on', b.dataset.v === st.v || b.dataset.view === st.view));
+  const p = new URLSearchParams({ v: st.v, t: st.t, view: st.view });
+  if (SHOT) p.set('shot', '1');
+  try { history.replaceState(null, '', '?' + p); } catch (err) { /* file:// may refuse; harmless */ }
+}
+
+document.getElementById('stage').addEventListener('click', (e) => {
+  const cv = e.currentTarget, k = cv.width / cv.clientWidth;
+  const x = e.offsetX * k, y = e.offsetY * k;
+  for (const [id, hx, hy, hw, hh] of hits)
+    if (x >= hx && x < hx + hw && y >= hy && y < hy + hh) { st.t = id; render(); return; }
+});
+document.querySelectorAll('#tweaks button').forEach(b => b.addEventListener('click', () => {
+  if (b.dataset.v) st.v = b.dataset.v;
+  if (b.dataset.view) st.view = b.dataset.view;
+  render();
+}));
+window.addEventListener('load', render);
+</script>
+</body>
+</html>
