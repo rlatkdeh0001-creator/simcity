@@ -14,11 +14,14 @@ func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
  root.add_child(game);await process_frame;game.map_zoom=.75;game.origin=Vector2(850,20)
- game.select_category("transport");await process_frame
+ game.select_transport_tab(2);await process_frame
  var button=game.drawer_box.find_child("Tool_rail",true,false)
  verify(button!=null,"transport reuses existing tool chooser for rail")
  verify(game.get("transit_view")!=null,"main owns independent transit drawing adapter")
  if button!=null and game.get("transit_view")!=null:
+  var motion:=InputEventMouseMotion.new()
+  motion.position=button.get_global_rect().get_center();root.push_input(motion,true)
+  await process_frame
   for down in [true,false]:
    var event:=InputEventMouseButton.new();event.position=button.get_global_rect().get_center();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true);await process_frame
   verify(game.mode=="rail" and game.road_modes.visible,"rail reuses existing three-mode palette")
@@ -63,7 +66,7 @@ func run():
   verify(target.get("kind","")=="transit_route","shared bulldozer picks visible rail instead of road")
   await click(game,Vector2(15,20))
   verify(game.city.transit_routes.size()==3,"shared bulldozer removes physical rail route")
-  game.select_category("transport");game.activate_tool("metro");await process_frame
+  game.select_transport_tab(1);game.activate_tool("metro");await process_frame
   verify(adapter.underground and adapter.metro_layer.visible,"metro tool opens underground layer")
   var metro_result:Dictionary=game.city.add_transit_route(PackedVector2Array([Vector2(10,75),Vector2(30,75)]),"metro")
   verify(metro_result.ok,"metro fixture installs independent route")
@@ -73,9 +76,9 @@ func run():
   verify(adapter.metro_layer.visible and target.get("kind","")=="transit_route","bulldozer preserves underground view and picks depth-projected metro")
   game.select_category("road");await process_frame
   verify(not adapter.underground and not adapter.metro_layer.visible and game.demolition_target(metro_screen).get("kind","")!="transit_route","switching category hides underground rendering and picking")
-  game.select_category("transport");game.activate_tool("metro");game.drawer.hide();await process_frame
+  game.select_transport_tab(1);game.activate_tool("metro");game.drawer.hide();await process_frame
   verify(not adapter.underground and adapter.anchors.is_empty() and game.mode=="select","closing transit tray cancels hidden underground tool")
-  game.select_category("transport");game.activate_tool("metro");await process_frame
+  game.select_transport_tab(1);game.activate_tool("metro");await process_frame
   # TEST DRIFT: d5bdad5 (transit facility cards) and 94cac6b (line tool cards) widened the
   # transport tray; at this camera (60,75)@-12.7m now lands on a tray card, so the GUI took
   # the click (tool switch, stroke cancelled, nothing built). Pan so both clicks hit the map.
@@ -110,7 +113,7 @@ func run():
   var crossing:Dictionary=game.city.add_road(PackedVector2Array([Vector2(35,10),Vector2(35,30)]))
   game.refresh()
   verify(crossing.ok and adapter.generation==generation+1,"road edit invalidates crossing mask cache")
-  game.select_category("transport");game.activate_tool("metro");game.toggle_demolition()
+  game.select_transport_tab(1);game.activate_tool("metro");game.toggle_demolition()
   var metro_count:int=game.city.transit_routes.size()
   for down in [true,false]:
    var event:=InputEventMouseButton.new();event.position=metro_screen;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true);await process_frame

@@ -44,7 +44,7 @@ func run():
  print("E3A_UI checks=%d failed=%d"%[checks,failures]);quit(1 if failures else 0)
 func test_height_controls():
  await create_timer(1.0).timeout # A native window settles (focus, layout) before the first press.
- game.select_category("transport");await settle()
+ game.select_transport_tab(2);await settle()
  game.activate_tool("rail");await settle()
  var control=game.find_child("RailHeightControls",true,false)
  check(control!=null and control.is_visible_in_tree(),"rail tool shows the approved C height controls")
@@ -66,7 +66,7 @@ func test_height_controls():
  check(game.road_drawer.target_height_m==0,"the rail height never changes the road tool height")
 func test_confirmed_points():
  fresh_city(220,90)
- game.select_category("transport");game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
+ game.select_transport_tab(2);game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
  game.transit_view.set_height(10)
  game.transit_view.click(Vector2(20.37,30.11))
  game.pointer=Vector2(120.61,30.42)
@@ -82,7 +82,7 @@ func test_warning_b():
  game.city.buildings.append({"id":501,"x":110,"y":49,"size":2,"level":1,"zone":"residential","asset_id":""})
  game.city.buildings.append({"id":502,"x":110,"y":53,"size":2,"level":1,"zone":"residential","asset_id":""})
  game.city.next_id=503;game.refresh();await settle()
- game.select_category("transport");game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
+ game.select_transport_tab(2);game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
  game.transit_view.set_height(10)
  game.transit_view.click(Vector2(20,50))
  game.pointer=Vector2(140,50)
@@ -131,7 +131,7 @@ func native_capture(path:String):
    var p:Vector2=pose.position/4
    if pose.kind=="rail" and p.x>91 and p.x<109 and absf(p.y-(y+30))<1:target=pose
   if not target.is_empty():break
- game.public_controller.cancel();game.select_category("transport");game.mode="select"
+ game.public_controller.cancel();game.select_transport_tab(2);game.mode="select"
  game.map_zoom=1.25;game.origin=Vector2(960,560)-game.world_renderer.iso(Vector2(100,y+30))*game.map_zoom
  city.simulation.resume();game.paused=true
  check(not target.is_empty(),"an operating train reaches the deck above the road: fault=%s ready=%s state=%s lines=%s"%[str(city.simulation.get_fault()),str(city.simulation.is_ready()),str(city.transit_state.keys().map(func(k):return [k,city.transit_state[k].size() if city.transit_state[k] is Array or city.transit_state[k] is Dictionary else city.transit_state[k]])),str(city.transit_lines.map(func(l):return [l.get("status",""),l.get("reason",""),l.get("vehicles",[]).size() if l.get("vehicles") is Array else l.get("vehicles")]))])

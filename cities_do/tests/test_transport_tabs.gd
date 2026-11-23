@@ -57,6 +57,8 @@ func run():
     var names:Array=[]
     for child in game.drawer_box.get_children().slice(1,-1):names.append(str(child.name))
     check(names==expected[i],"exact card order: %s %d: %s"%[resolution,i,names])
+    var route:Control=game.drawer_box.get_node("Tool_transit_line")
+    check(route.get_global_rect().end.x<=game.drawer.get_global_rect().end.x-12,"last card is fully inside the tray: %s %d"%[resolution,i])
     check(game.drawer.size.x==width and tabs.global_position==tab_pos,"tray and tabs stay fixed: %s %d"%[resolution,i])
     check(root.get_visible_rect().encloses(tabs.get_global_rect()) and not tabs.get_global_rect().intersects(game.drawer.get_global_rect()) and not game.drawer.get_global_rect().intersects(game.dock.get_global_rect()),"HUD regions do not overlap: %s %d"%[resolution,i])
   game.select_category("road")

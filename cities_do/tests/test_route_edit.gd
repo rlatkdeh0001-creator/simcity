@@ -87,16 +87,44 @@ func bus_edits():
  var d:=dot(a.line.id,0)
  check(d!=Vector2.ZERO and d!=dot(b.line.id,0),"shared station supplies two separately selectable route dots")
  var other:Dictionary=city.transit_lines[1].duplicate(true)
- drag(d,d+Vector2(0,-23))
- check(city.transit_lines[0].stops==a.line.stops,"23px drag does not edit")
+ var center:Vector2=overlay.stations[s[0]]
+ var offset:Vector2=(d-center).normalized()
+ mouse(d);mouse(d,MOUSE_BUTTON_LEFT,true);mouse(center-offset*23)
+ check(overlay.candidate(center-offset*23).is_empty(),"23px empty drop from original station is ignored despite offset dot")
+ if not overlay.candidate(center-offset*23).is_empty():key(KEY_ESCAPE)
+ mouse(center-offset*23,MOUSE_BUTTON_LEFT,false)
+ check(city.transit_lines[0].stops==a.line.stops,"inside-radius release preserves route")
+
  drag(d,overlay.panel.get_global_rect().get_center())
  check(city.transit_lines[0].stops==a.line.stops and overlay.dragged.is_empty(),"release on the list neither edits nor sticks")
- drag(d,d+Vector2(0,-25))
- check(city.transit_lines[0].stops==[s[2],s[1]] and city.transit_lines[1]==other and not game.route_warning_open(),"25px removes only A's dot and bus applies directly")
+ drag(d,center+offset*25)
+ check(city.transit_lines[0].stops==[s[2],s[1]] and city.transit_lines[1]==other and not game.route_warning_open(),"25px empty drop from original station removes only A's stop")
  await settle()
- drag(dot(a.line.id,0),overlay.stations[s[3]])
- check(city.transit_lines[0].stops==[s[3],s[1]] and city.transit_lines[1]==other,"drop on B's station replaces A's stop and preserves B")
+ # Zoom so this real destination is near the start, then drop within its snap ring.
+ center=overlay.stations[s[2]]
+ var zoom:float=game.map_zoom;var origin:Vector2=game.origin
+ var scale:=24.0/center.distance_to(overlay.stations[s[3]])
+ game.map_zoom*=scale;game.origin=center-(center-origin)*scale
  await settle()
+ d=dot(a.line.id,0)
+ var short_drop:Vector2=d.move_toward(overlay.stations[s[3]],20)
+ check(d.distance_to(short_drop)>4 and d.distance_to(short_drop)<24 and overlay.station_at(short_drop)==s[3],"fixture offers a valid station in a short drag")
+ drag(d,short_drop)
+ check(city.transit_lines[0].stops==[s[3],s[1]] and city.transit_lines[1]==other,"short drop on B's station replaces A's stop and preserves B")
+ game.map_zoom=zoom;game.origin=origin
+ await settle()
+ var stale:=dot(a.line.id,0)
+ var before_drop:Dictionary=city.transit_lines[0].duplicate(true)
+ mouse(stale);mouse(stale,MOUSE_BUTTON_LEFT,true);mouse(stale+Vector2(0,-90))
+ check(not overlay.dragged.is_empty(),"viewport press actually starts the drag before focus loss")
+ root.focus_exited.emit()
+ check(overlay.dragged.is_empty() and overlay.preview_paths.is_empty(),"window focus exit clears captured drag and preview")
+ mouse(stale+Vector2(0,-90),MOUSE_BUTTON_LEFT,false)
+ check(not game.route_warning_open() and city.transit_lines[0]==before_drop,"late release after focus loss does not edit")
+ if game.route_warning_open():key(KEY_ESCAPE)
+ drag(stale,Vector2(root.get_visible_rect().end.x+20,stale.y))
+ check(overlay.dragged.is_empty() and not game.route_warning_open() and city.transit_lines[0]==before_drop,"out-of-viewport release cancels without edit or confirmation")
+ if game.route_warning_open():key(KEY_ESCAPE)
  var x:Button=overlay.rows.get_child(0).get_child(2)
  click(x)
  check(game.route_warning_open() and game.route_warning.message.text=="이 노선이 삭제됩니다!","actual X opens the line deletion confirmation")
@@ -197,4 +225,32 @@ func review_fixture(which:String):
   _:
    push_error("Unknown route review fixture: "+which);quit(1);return
  print("Route review ready: ",which," ",root.get_visible_rect().size)
+ for arg:String in OS.get_cmdline_user_args():
+  if arg.begins_with("--capture-route-review="):
+   await capture_review(which,arg.trim_prefix("--capture-route-review="))
+   quit(1 if failures else 0)
+   return
  if "--fixture-check" in OS.get_cmdline_user_args():quit()
+
+func capture_review(which:String,directory:String):
+ if which=="tray":
+  for tab in range(3):
+   click(game.transport_tabs.get_child(tab))
+   await settle()
+   if not await save_review(directory.path_join("tray-"+str(tab)+".png")):return
+ else:
+  await save_review(directory.path_join(which+".png"))
+
+func save_review(path:String)->bool:
+ for frame in range(120):
+  await process_frame
+  if not game.building_views.busy and game.building_views.queue.is_empty():break
+ await RenderingServer.frame_post_draw
+ var frame_image:=root.get_texture().get_image()
+ if frame_image==null or frame_image.get_size()!=Vector2i(1920,1080):
+  check(false,"capture needs a real 1920x1080 framebuffer")
+  return false
+ var saved:=frame_image.save_png(path)==OK
+ check(saved,"saved "+path)
+ if saved:print("Route review captured: ",path)
+ return saved

@@ -1110,7 +1110,9 @@ func layout_bottom_hud():
  var item_count:=road_lane_cards.size()+5 if chosen=="road" else drawer_box.get_child_count()
  if chosen=="transport":item_count=TRANSPORT_WIDTH_ITEMS
 
- var width_value := minf(maxf(410,240+145*(item_count-2)),get_viewport_rect().size.x-32)
+ # The widest transport tab includes the rail height controls, wider than a card.
+ var transport_extra := 64 if chosen=="transport" else 0
+ var width_value := minf(maxf(410,240+145*(item_count-2)+transport_extra),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
  transport_tabs.offset_left=drawer.offset_left

@@ -28,6 +28,7 @@ func run():
   await process_frame
   await process_frame
   check(overlay.colors[result.line.id]!=overlay.colors[report.line.id],"uses an unused palette color before reuse")
+  check_shared_corridor(overlay,result.line.id,report.line.id)
   var row:Control=overlay.rows.get_child(0)
   var hover:=InputEventMouseMotion.new()
   hover.position=row.get_global_rect().get_center()
@@ -54,3 +55,38 @@ func run():
   check(overlay.stations[lot.id].is_equal_approx(game.origin+game.transit_view.project_point(p,-12.7)*game.map_zoom),"metro rings use the drawn platform height")
  print("Route overlay: %d passed, %d failed"%[checks-failures,failures])
  quit(1 if failures else 0)
+
+func check_shared_corridor(overlay,first:int,second:int):
+ var a_paths:Array=overlay.paths.filter(func(p):return p.id==first)
+ var b_paths:Array=overlay.paths.filter(func(p):return p.id==second)
+ check(a_paths.size()==b_paths.size() and not a_paths.is_empty() and not a_paths.any(func(a):
+  return b_paths.any(func(b):return a.a.is_equal_approx(b.a) and a.b.is_equal_approx(b.b))
+ ),"two real bus lines sharing the full corridor have no coincident draw pieces")
+ # Isolate a partial, reversed overlap as rail plans need not segment the track identically.
+ var original:Array=overlay.world_paths.duplicate()
+ var a:=Vector3(100,100,0);var b:=Vector3(160,100,0)
+ var mid:=a.lerp(b,.5)
+ overlay.world_paths=[
+  {"id":first,"index":0,"freight":false,"a":a,"b":b},
+  {"id":first,"index":1,"freight":false,"a":b,"b":a},
+  {"id":second,"index":0,"freight":true,"a":mid,"b":b},
+  {"id":second,"index":1,"freight":true,"a":b,"b":mid},
+ ]
+ overlay.project_paths()
+ var screen_a:Vector2=overlay.project(a);var screen_b:Vector2=overlay.project(b)
+ var normal:Vector2=(screen_b-screen_a).normalized().orthogonal()
+ var centers:Dictionary={}
+ var owned:=true
+ for p:Dictionary in overlay.paths:
+  var point:Vector2=p.a.lerp(p.b,.5)
+  var hit:Dictionary=overlay.pick(point)
+  owned=owned and hit.get("id",-1)==p.id and hit.get("index",-1)==p.index and not hit.get("stop",true)
+  if not centers.has(p.id):centers[p.id]=[]
+  centers[p.id].append((point-screen_a).dot(normal))
+ check(owned,"drawn path centers pick their exact line and direction segment on shared rail/freight")
+ check(is_equal_approx(centers[first][0]-centers[first][1],12.0) and is_equal_approx(centers[second][0]-centers[second][1],12.0),"each direction stays 6px from its route center")
+ check(absf(centers[first][0]-centers[second][0])>=20.0,"partially overlapping bidirectional route pairs have separate centers")
+ var before:Array=overlay.paths.duplicate(true)
+ overlay.world_paths.reverse();overlay.project_paths()
+ check(before.all(func(p):return overlay.paths.any(func(q):return p.id==q.id and p.index==q.index and p.a==q.a and p.b==q.b)),"corridor positions are deterministic under input reordering")
+ overlay.world_paths=original;overlay.project_paths()

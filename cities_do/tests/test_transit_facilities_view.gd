@@ -23,7 +23,7 @@ func run():
  root.add_child(game);await process_frame
  game.map_zoom=.65;game.origin=Vector2(620,-100)
  game.city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
- game.select_category("transport");await process_frame
+ game.select_transport_tab(2);await process_frame
  var card=game.drawer_box.find_child("Facility_train-station-01",true,false)
  check(card!=null,"station in existing transport chooser")
  if card!=null:
@@ -60,7 +60,9 @@ func run():
   check(game.city.public_facilities.lots.is_empty(),"shared viewport bulldozer removes station")
   check(game.city.transit_routes.size()==1,"viewport demolition retains external extension")
  for id in ["bus-stop-01","bus-station-01","subway-entrance-01","park-large-8x8"]:
-  game.select_category("park" if id=="park-large-8x8" else "transport");await process_frame
+  if id=="park-large-8x8":game.select_category("park")
+  else:game.select_transport_tab(1 if id=="subway-entrance-01" else 0)
+  await process_frame
   var item=game.drawer_box.find_child("Facility_"+id,true,false)
   check(item!=null,"existing chooser card "+id)
   if item==null:continue
@@ -93,7 +95,7 @@ func run():
      var node=game.world_renderer.metro_stations.values()[0]
      check(node.texture!=null and node.texture.get_image().get_used_rect().has_area(),"underground original GLB rendered")
      check(not node.is_visible_in_tree(),"silhouette hidden above ground")
-     game.select_category("transport");game.activate_tool("metro");await process_frame
+     game.select_transport_tab(1);game.activate_tool("metro");await process_frame
      check(node.is_visible_in_tree(),"existing metro view reveals silhouette")
    game.city.public_facilities.remove(record.id)
  var fixture=load("res://tests/transit_facilities_fixture.gd")

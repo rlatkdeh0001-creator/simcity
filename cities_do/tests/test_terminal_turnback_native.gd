@@ -36,7 +36,7 @@ func run():
  var center: Vector2 = port.point + Vector2(port.outward)*4.0
  game.map_zoom=0.70
  game.origin += Vector2(580,245) - game.screen(center)
- game.refresh();game.select_category("transport");await process_frame
+ game.refresh();game.select_transport_tab(2);await process_frame
  var action = game.drawer_box.find_child("Tool_transit_line",true,false)
  check(action!=null,"existing transit chooser reused")
  if action!=null:
@@ -44,11 +44,15 @@ func run():
   while scroll!=null and not scroll is ScrollContainer:scroll=scroll.get_parent()
   if scroll!=null:scroll.ensure_control_visible(action);await process_frame
   await click(action.get_global_rect().get_center())
-  check(game.mode=="transit_line","visible chooser button activates transit line tool")
-  for index: int in [0,1,0]:
-   var point: Vector2 = game.screen(lots[index].position)
-   check(Rect2(Vector2.ZERO,Vector2(root.size)).has_point(point) and not game.drawer.get_global_rect().has_point(point),"station click clear of chooser: %s" % point)
-   await click(point)
+  var overlay=game.route_overlay
+  check(overlay.visible and overlay.create_buttons.has("rail"),"rail chooser opens the route overlay")
+  if overlay.visible and overlay.create_buttons.has("rail"):
+   await click(overlay.create_buttons.rail.get_global_rect().get_center())
+   check(game.transit_line_tool.kind=="rail","overlay's new route button activates rail creation")
+   for index: int in [0,1,0]:
+    var point: Vector2 = overlay.stations[lots[index].id]
+    check(root.get_visible_rect().has_point(point) and not game.drawer.get_global_rect().has_point(point) and not overlay.panel.get_global_rect().has_point(point),"station click clear of UI: %s" % point)
+    await click(point)
  check(game.city.transit_lines.size()==1,"real viewport clicks create out/back service")
  game.city.enable_simulation_worker()
  var train_in_crossing := false
@@ -63,7 +67,7 @@ func run():
  # crossing car are legible; the X center stays at the same viewport point.
  game.map_zoom=2.0
  game.origin += Vector2(580,245) - game.screen(center)
- game.select_category("transport");game.mode="select";game.refresh()
+ game.select_transport_tab(2);game.mode="select";game.refresh()
  game.world_renderer.synchronize();await process_frame
  var geometry: Dictionary = game.transit_view.geometry
  check(geometry.get("crossovers",{}).size()==2,"two retained surface crossover meshes")

@@ -10,6 +10,9 @@ const NAMES:={"bus":"버스","metro":"지하철","rail":"철도","freight":"화�
 const STATION:={"bus":"bus-stop-01","metro":"subway-entrance-01","rail":"train-station-01"}
 const INK:=Color("edf4f5")
 const ACCENT:=Color("36b7ff")
+const DIRECTION_OFFSET:=6.0
+const CORRIDOR_SPACING:=24.0
+const CORRIDOR_EPSILON:=.0001
 var game
 var panel:PanelContainer
 var scroll:ScrollContainer
@@ -32,10 +35,14 @@ var dots:Array=[]
 var dragged:Dictionary={}
 var pointer:=Vector2.ZERO
 var preview_paths:Array=[]
-const DRAG_DEAD_ZONE:=24.0
+const EMPTY_DROP_RADIUS:=24.0
+const DRAG_MOTION_THRESHOLD:=4.0
 var observed_city:WeakRef
 var signature:Variant
 var camera_key:Variant
+
+func _ready():
+ get_window().focus_exited.connect(cancel_drag)
 
 func setup(view):
  game=view
@@ -198,14 +205,66 @@ func station_at(p:Vector2)->int:
 func project(p:Vector3)->Vector2:
  return game.origin+game.transit_view.project_point(Vector2(p.x,p.y),p.z)*game.map_zoom
 
+# Join overlapping collinear world pieces, including reversed and differently
+# subdivided plans. Touching endpoints and projected crossings aren't shared track.
+func corridor_lanes()->PackedInt32Array:
+ var parents:=PackedInt32Array();parents.resize(world_paths.size())
+ var order:Array[int]=[]
+ var bounds:Array[AABB]=[]
+ for i in range(world_paths.size()):
+  var piece:Dictionary=world_paths[i]
+  var a:Vector3=piece.a;var b:Vector3=piece.b
+  bounds.append(AABB(a.min(b),(b-a).abs()))
+  parents[i]=i;order.append(i)
+ order.sort_custom(func(a:int,b:int):return bounds[a].position.x<bounds[b].position.x)
+ for i in range(order.size()):
+  var a:int=order[i]
+  for j in range(i+1,order.size()):
+   var b:int=order[j]
+   if bounds[b].position.x>bounds[a].end.x+CORRIDOR_EPSILON:break
+   if not bounds[a].grow(CORRIDOR_EPSILON).intersects(bounds[b]):continue
+   var root_a:=corridor_root(parents,a);var root_b:=corridor_root(parents,b)
+   if root_a!=root_b and corridor_overlap(world_paths[a],world_paths[b]):parents[root_b]=root_a
+ var groups:Dictionary={}
+ var lanes:=PackedInt32Array();lanes.resize(world_paths.size())
+ for i in range(world_paths.size()):
+  var root_index:=corridor_root(parents,i)
+  if not groups.has(root_index):groups[root_index]=[]
+  groups[root_index].append(i)
+ for group:Array in groups.values():
+  if group.size()<2:continue
+  var ids:Dictionary={}
+  for i:int in group:ids[world_paths[i].id]=true
+  var ordered:=ids.keys();ordered.sort()
+  for lane in range(ordered.size()):ids[ordered[lane]]=lane
+  for i:int in group:lanes[i]=ids[world_paths[i].id]
+ return lanes
+
+func corridor_root(parents:PackedInt32Array,index:int)->int:
+ while parents[index]!=index:index=parents[index]
+ return index
+
+func corridor_overlap(first:Dictionary,second:Dictionary)->bool:
+ var span:Vector3=first.b-first.a
+ var direction:=span.normalized()
+ var a:Vector3=second.a-first.a;var b:Vector3=second.b-first.a
+ if a.cross(direction).length()>CORRIDOR_EPSILON or b.cross(direction).length()>CORRIDOR_EPSILON:return false
+ var start:=a.dot(direction);var end:=b.dot(direction)
+ return minf(span.length(),maxf(start,end))-maxf(0,minf(start,end))>CORRIDOR_EPSILON
+
 func project_paths():
  stations.clear();paths.clear()
  for id in station_world:stations[id]=project(station_world[id])
  var accumulated:Dictionary={}
- for piece:Dictionary in world_paths:
+ var lanes:=corridor_lanes()
+ for i in range(world_paths.size()):
+  var piece:Dictionary=world_paths[i]
   var a:=project(piece.a);var b:=project(piece.b)
   if a.distance_squared_to(b)<.00001:continue
-  var side:=(b-a).normalized().orthogonal()*6.0
+  var span:Vector3=piece.b-piece.a
+  # The corridor center must move the same way for both directions.
+  var axis:=span.x if absf(span.x)>CORRIDOR_EPSILON else (span.y if absf(span.y)>CORRIDOR_EPSILON else span.z)
+  var side:=(b-a).normalized().orthogonal()*(DIRECTION_OFFSET+signf(axis)*lanes[i]*CORRIDOR_SPACING)
   var cursor:float=accumulated.get(piece.id,0.0)
   paths.append({"id":piece.id,"index":piece.index,"freight":piece.freight,"a":a+side,"b":b+side,"start":cursor})
   accumulated[piece.id]=cursor+a.distance_to(b)
@@ -250,18 +309,22 @@ func begin_drag(p:Vector2):
  var line:=line_at(dragged.id)
  if line.is_empty():cancel_drag();return
  dragged.from=p;dragged.stops=line.stops.duplicate();dragged.city=game.city.get_instance_id()
+ if dragged.stop:
+  dragged.station_origin=stations[dragged.stops[dragged.index]]
  pointer=p
 
 func cancel_drag():
  dragged.clear();preview_paths.clear()
 
 func candidate(p:Vector2)->Array:
- if dragged.is_empty() or p.distance_to(dragged.from)<=DRAG_DEAD_ZONE:return []
+ if dragged.is_empty() or not get_viewport_rect().has_point(p) or p.distance_to(dragged.from)<=DRAG_MOTION_THRESHOLD:return []
  var stops:Array=dragged.stops.duplicate()
  var station:=station_at(p)
  if station in stops:return []
  if dragged.stop:
-  if station<0:stops.remove_at(dragged.index)
+  if station<0:
+   if p.distance_to(dragged.station_origin)<=EMPTY_DROP_RADIUS:return []
+   stops.remove_at(dragged.index)
   else:stops[dragged.index]=station
  elif station>=0:stops.insert(dragged.index+1,station)
  else:return []
@@ -395,7 +458,7 @@ func _draw():
  for dot:Dictionary in dots:
   var tint:Color=colors[dot.id];tint.a=opacity(dot.id)
   draw_circle(dot.p,6,tint,true,-1,true)
- if not dragged.is_empty() and pointer.distance_to(dragged.from)>DRAG_DEAD_ZONE:
+ if not dragged.is_empty() and get_viewport_rect().has_point(pointer) and pointer.distance_to(dragged.from)>DRAG_MOTION_THRESHOLD:
   var tint:Color=colors.get(dragged.id,ACCENT)
   for piece:Dictionary in preview_paths:draw_line(project(piece.a),project(piece.b),tint,3,true)
   var target:=station_at(pointer)

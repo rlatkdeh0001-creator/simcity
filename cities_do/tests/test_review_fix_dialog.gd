@@ -3,7 +3,7 @@ extends SceneTree
 ## with its simulation worker, real clicks and keys. An edit that changes the route of a rail, metro or
 ## freight line with a consist first shows "수정사항이 있는 모든 열차가 초기화됩니다!" and is applied only on
 ## 확인 (or Enter); 취소 (or Esc) leaves tracks, stops and consists exactly as they were. Stop edits
-## (노선 수정 tool), bulldozing a line's track or station and rebuilding a cut track warn; a branch, a
+## (route overlay), bulldozing a line's track or station and rebuilding a cut track warn; a branch, a
 ## schedule-only edit, a line without a consist and a bus line do not. Capture is explicit
 ## (--review-capture=) and native only.
 const City=preload("res://core/city_model.gd")
@@ -23,11 +23,11 @@ func check(ok:bool,label:String):
 func settle():
 	for i in range(4):await process_frame
 ## Real input through the viewport: GUI first, then the scene's _input/_unhandled_input.
-func click(position:Vector2):
+func click(position:Vector2,button:=MOUSE_BUTTON_LEFT):
 	var motion:=InputEventMouseMotion.new();motion.position=position;motion.global_position=position
 	root.push_input(motion,true);await process_frame
 	for pressed in [true,false]:
-		var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=pressed;event.position=position;event.global_position=position
+		var event:=InputEventMouseButton.new();event.button_index=button;event.pressed=pressed;event.position=position;event.global_position=position
 		root.push_input(event,true);await process_frame
 	await settle()
 func key(code:int):
@@ -77,9 +77,32 @@ func run_until(city,id:int,done:Callable)->int:
 	return -1
 func running(t:Dictionary)->bool:return not t.is_empty() and float(t.distance)>5.0 and int(t.departures)>=1 and not t.visible.is_empty()
 func choose(tool:String):
-	game.select_category("transport");await settle()
+	game.select_transport_tab(2);await settle()
 	var card:Control=game.find_child("Tool_"+tool,true,false)
 	if card!=null:await press(card)
+func remove_middle_stop(id:int):
+	for dot:Dictionary in game.route_overlay.dots:
+		if dot.id==id and dot.index==1:
+			await click(dot.p,MOUSE_BUTTON_RIGHT);return
+	check(false,"overlay exposes the owned middle stop")
+func insert_middle_stop(id:int,station:int):
+	var overlay=game.route_overlay
+	var target:Vector2=overlay.stations[station]
+	for piece:Dictionary in overlay.paths:
+		if piece.id!=id or piece.index!=0:continue
+		var point:Vector2=piece.a.lerp(piece.b,.5)
+		var hit:Dictionary=overlay.pick(point)
+		if hit.get("id",-1)!=id or hit.get("stop",true) or point.distance_to(target)<=20:continue
+		if not root.get_visible_rect().has_point(point) or overlay.panel.get_global_rect().has_point(point):continue
+		var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point
+		root.push_input(motion,true);await process_frame
+		var down:=InputEventMouseButton.new();down.button_index=MOUSE_BUTTON_LEFT;down.pressed=true;down.position=point;down.global_position=point
+		root.push_input(down,true);await process_frame
+		motion=InputEventMouseMotion.new();motion.position=target;motion.global_position=target
+		root.push_input(motion,true);await process_frame
+		var up:=InputEventMouseButton.new();up.button_index=MOUSE_BUTTON_LEFT;up.position=target;up.global_position=target
+		root.push_input(up,true);await settle();return
+	check(false,"overlay exposes an owned insertion segment")
 ## Three real stations in a row (A-B-C) joined by ground track (the regen fixture).
 func row_city()->Dictionary:
 	var city=City.new(160,90,42)
@@ -124,9 +147,9 @@ func run():
 	print("development step %.2fs zoom %.2f A=%s C=%s"%[city.config.development_interval_seconds,game.map_zoom,str(station_click(city,ids[0])),str(station_click(city,ids[2]))])
 	# A line without a consist yet: its stop edit applies without a warning.
 	check(train(city,id).is_empty(),"no consist runs before the first development step")
-	await choose("edit_line")
-	check(game.mode=="edit_line","the 노선 수정 card selects the stop edit tool")
-	for stop:int in [ids[0],ids[0],ids[2],ids[0]]:await click(station_click(city,stop))
+	await choose("transit_line")
+	check(game.route_overlay.visible and game.route_overlay.mode=="rail","the rail route card opens the stop edit overlay")
+	await remove_middle_stop(id)
 	check(not shown(),"a stop edit of a line without a consist shows no warning")
 	await step()
 	check(line_of(city,id).stops==[ids[0],ids[2]],"it applies at once: stops %s"%str(line_of(city,id).stops))
@@ -163,17 +186,16 @@ func look():
 	var centre:Vector2=w.panel.get_global_rect().get_center()
 	check(centre.distance_to(Vector2(root.size)/2)<2.0 and w.get_global_rect().size==Vector2(root.size),"a modal panel centred on screen: %s"%str(centre))
 func stop_edits(city,id:int,ids:Array):
-	# Add stop B back with real clicks: the warning opens before anything changes.
+	# Add stop B back with a real arrow drag: the warning opens before anything changes.
 	var before:=state(city)
-	await choose("edit_line")
-	for stop:int in [ids[0],ids[0],ids[1],ids[2],ids[0]]:await click(station_click(city,stop))
-	check(shown() and game.route_warning.message.text==TEXT,"adding stop B with 노선 수정 shows the warning: %s"%str(game.route_warning.message.text if game.route_warning!=null else "none"))
+	await insert_middle_stop(id,ids[1])
+	check(shown() and game.route_warning.message.text==TEXT,"adding stop B through the overlay shows the warning: %s"%str(game.route_warning.message.text if game.route_warning!=null else "none"))
 	if not shown():return
 	look()
 	check(state(city)==before,"while it is open nothing has changed")
 	var zoom:float=game.map_zoom;var origin:Vector2=game.origin
 	var wheel:=InputEventMouseButton.new();wheel.button_index=MOUSE_BUTTON_WHEEL_UP;wheel.pressed=true;wheel.position=Vector2(960,540);wheel.global_position=wheel.position
-	root.push_input(wheel,true);await settle()
+	root.push_input(wheel,true);wheel=wheel.duplicate();wheel.pressed=false;root.push_input(wheel,true);await settle()
 	for code:int in [KEY_W,KEY_LEFT,KEY_PAGEDOWN,KEY_DELETE]:await key(code)
 	await click(station_click(city,ids[2]))
 	check(shown() and game.map_zoom==zoom and game.origin==origin and state(city)==before,"other input (wheel, camera keys, map clicks) is blocked while it is open")
@@ -190,8 +212,7 @@ func stop_edits(city,id:int,ids:Array):
 	await step()
 	check(line_of(city,id).stops==[ids[0],ids[2]] and train(city,id).plan==held.plan and int(train(city,id).departures)>=int(held.departures) and not at_start(city,id),"after 취소 the consist keeps running its route: %s"%describe(train(city,id)))
 	# The same edit confirmed with a click on 확인.
-	await choose("edit_line")
-	for stop:int in [ids[0],ids[0],ids[1],ids[2],ids[0]]:await click(station_click(city,stop))
+	await insert_middle_stop(id,ids[1])
 	check(shown(),"the same edit warns again")
 	if not shown():return
 	var count:=int(train(city,id).departures)
@@ -202,8 +223,7 @@ func stop_edits(city,id:int,ids:Array):
 	var took:=await run_until(city,id,running)
 	check(took>0,"it runs the A-B-C route again: %s"%describe(train(city,id)))
 	# Remove B again, confirmed with Enter.
-	await choose("edit_line")
-	for stop:int in [ids[0],ids[0],ids[2],ids[0]]:await click(station_click(city,stop))
+	await remove_middle_stop(id)
 	check(shown(),"removing stop B warns")
 	await key(KEY_ENTER)
 	check(not shown(),"Enter (확인) closes it")

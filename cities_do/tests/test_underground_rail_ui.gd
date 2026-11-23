@@ -44,7 +44,7 @@ func run():
  print("E3B_UI checks=%d failed=%d"%[checks,failures]);quit(1 if failures else 0)
 func test_height_controls():
  await create_timer(1.0).timeout # A native window settles (focus, layout) before the first press.
- game.select_category("transport");await settle()
+ game.select_transport_tab(2);await settle()
  game.activate_tool("rail");await settle()
  var control=game.find_child("RailHeightControls",true,false)
  check(control!=null and control.is_visible_in_tree(),"rail tool shows the approved C height controls")
@@ -70,7 +70,7 @@ func test_height_controls():
  check(game.road_drawer.target_height_m==0,"the rail height never changes the road tool height")
 func test_confirmed_points():
  fresh_city(220,90)
- game.select_category("transport");game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
+ game.select_transport_tab(2);game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
  game.transit_view.set_height(-10)
  game.transit_view.click(Vector2(20.37,30.11))
  game.pointer=Vector2(120.61,30.42)
@@ -86,7 +86,7 @@ func test_warning_b():
  game.city.buildings.append({"id":501,"x":40,"y":49,"size":2,"level":1,"zone":"residential","asset_id":""}) # open trench
  game.city.buildings.append({"id":502,"x":110,"y":49,"size":2,"level":1,"zone":"residential","asset_id":""}) # covered tunnel
  game.city.next_id=503;game.refresh();await settle()
- game.select_category("transport");game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
+ game.select_transport_tab(2);game.activate_tool("rail");game.set_route_drawing_kind("straight");await settle()
  game.transit_view.set_height(-10)
  game.transit_view.click(Vector2(20,50))
  game.pointer=Vector2(140,50)
@@ -144,7 +144,7 @@ func native_capture(trench_path:String,underground_path:String):
  # A train running down the upper trench (cars about -1..-3m) with the -7.0m portal ahead in the same frame.
  # Deeper cars are physically hidden by the near wall of a 9m trench from the iso camera (only roof slivers).
  var target:=await advance_until(city,func(p:Vector2):return p.x>portal_x+30 and p.x<portal_x+42 and absf(p.y-(y+30))<1)
- game.public_controller.cancel();game.select_category("transport");game.mode="select"
+ game.public_controller.cancel();game.select_transport_tab(2);game.mode="select"
  var span:=absf((game.world_renderer.iso(Vector2(portal_x-6,y+30))-game.world_renderer.iso(Vector2(184,y+30))).x)
  game.map_zoom=clampf(1500.0/span,.6,1.6)
  game.origin=Vector2(960,400)-game.world_renderer.iso(Vector2((portal_x+184)/2,y+30))*game.map_zoom
