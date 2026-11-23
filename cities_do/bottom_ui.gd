@@ -6,6 +6,10 @@ var dock: PanelContainer
 var drawer: PanelContainer
 var drawer_scroll: ScrollContainer
 var drawer_box: HBoxContainer
+var transport_tabs: HBoxContainer
+var transport_tab := 0
+const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
+const TRANSPORT_WIDTH_ITEMS := 6 # Heading + four train items + collapse.
 var categories: Array[Button] = []
 var bulldozer: Button
 var money: Label
@@ -297,6 +301,19 @@ func build_bottom_hud():
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
  drawer_scroll.add_child(drawer_box)
+ transport_tabs=HBoxContainer.new()
+ transport_tabs.name="TransportTabs"
+ transport_tabs.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ root.add_child(transport_tabs)
+ transport_tabs.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+ for title in ["버스","지하철","기차"]:
+  var tab:=Button.new()
+  tab.text=title
+  tab.custom_minimum_size=Vector2(65,30)
+  tab.add_theme_font_size_override("font_size",18)
+  tab.pressed.connect(select_transport_tab.bind(transport_tabs.get_child_count()))
+  transport_tabs.add_child(tab)
+ transport_tabs.hide()
  build_road_modes(root)
  drawer.visibility_changed.connect(sync_utility_visibility)
  budget_window=preload("res://core/budget_window.gd").new()
@@ -324,6 +341,7 @@ func _input(event):
 func sync_utility_visibility():
  # Keep above-ground facility models; only their tab-gated network drawing changes.
  var tray_open:=drawer.is_visible_in_tree()
+ transport_tabs.visible=tray_open and chosen=="transport"
  if transit_view!=null and not tray_open and mode!="demolish":
   transit_view.underground=false;transit_view.cancel()
   if mode in ["rail","metro","transit_line","freight_line","remove_line","edit_line"]:
@@ -626,6 +644,11 @@ static func developer_tools_allowed(debug_build: bool,arguments: PackedStringArr
 func developer_tools_enabled() -> bool:
  return developer_tools_allowed(OS.is_debug_build(),OS.get_cmdline_user_args())
 
+func select_transport_tab(index:int):
+ transport_tab=index
+ select_category("transport")
+ transport_tabs.get_child(index).grab_focus()
+
 func select_category(key: String):
  if not NAMES.has(key): return
  if transit_line_tool!=null:transit_line_tool.cancel()
@@ -666,7 +689,10 @@ func select_category(key: String):
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[] # The seven lane cards are the drawing actions.
-  "transport": choices=[["철도","rail"],["지하철 터널","metro"],["노선","transit_line"],["화물 노선","freight_line"],["노선 삭제","remove_line"],["노선 수정","edit_line"]]
+  "transport":
+   if transport_tab==1:choices.append(["지하철 터널","metro"])
+   if transport_tab==2:choices.append(["철도","rail"])
+   choices.append(["노선","transit_line"])
 
   _:
    pass
@@ -724,11 +750,12 @@ func select_category(key: String):
   road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
   road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
   update_road_lane_cards();update_road_grid_button()
- if key=="transport":
+ if key=="transport" and transport_tab==2:
   # E3a: approved C height controls for the rail tool (ground/elevated, -/+5m, PgUp/PgDn).
   var rail_heights:=preload("res://core/road_height_controls.gd").new();rail_heights.rail=true
   drawer_box.add_child(rail_heights);rail_heights.setup(self)
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
+  if key=="transport":break
   if entry.ui_category!=key:continue
   var registered_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
   registered_button.name="Registered_"+str(entry.id)
@@ -740,10 +767,19 @@ func select_category(key: String):
    if entry.kind=="structure_sample":continue # Inspection-only originals are not map tools.
    var transit:bool=str(entry.kind).begins_with("transit") or str(entry.kind).begins_with("subway")
    if transit!=(key=="transport"):continue
-   if transit and not city.public_facilities.entries.has(entry.id):continue
+   if transit and (entry.id not in TRANSPORT_ASSETS[transport_tab] or not city.public_facilities.entries.has(entry.id)):continue
    var facility_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
    facility_button.name="Facility_"+str(entry.id)
    drawer_box.add_child(facility_button)
+ if key=="transport":
+  drawer_box.move_child(drawer_box.get_node("Tool_transit_line"),-1)
+  for tab:Button in transport_tabs.get_children():
+   var active:=tab.get_index()==transport_tab
+   var accent:=Color("36b7ff")
+   for state in ["normal","pressed","hover"]:
+    tab.add_theme_stylebox_override(state,style(accent if active else Color("142b37"), accent if active or state=="hover" else Color("38515e")))
+    tab.add_theme_color_override("font_"+state+"_color",Color("142b37") if active else Color("edf4f5"))
+   tab.add_theme_color_override("font_color",Color("142b37") if active else Color("edf4f5"))
  for slot in service_slots():
   if slot.category!=key:continue
   var entry:=slot_asset(slot)
@@ -1046,10 +1082,15 @@ func layout_bottom_hud():
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
  var item_count:=road_lane_cards.size()+5 if chosen=="road" else drawer_box.get_child_count()
+ if chosen=="transport":item_count=TRANSPORT_WIDTH_ITEMS
 
  var width_value := minf(maxf(410,240+145*(item_count-2)),get_viewport_rect().size.x-32)
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
+ transport_tabs.offset_left=drawer.offset_left
+ transport_tabs.offset_right=drawer.offset_left+transport_tabs.get_combined_minimum_size().x
+ transport_tabs.offset_bottom=drawer.offset_top
+ transport_tabs.offset_top=drawer.offset_top-transport_tabs.get_combined_minimum_size().y
  if road_modes!=null:
   var margin:=344 if drawer.visible and (get_viewport_rect().size.x-width_value)/2<188 else 206
   road_modes.offset_left=16;road_modes.offset_right=172
