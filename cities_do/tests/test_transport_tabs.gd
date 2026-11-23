@@ -48,6 +48,7 @@ func run():
    await process_frame
    var width:float=game.drawer.size.x
    var tab_pos:=tabs.global_position
+   var bottom:float=game.drawer.get_global_rect().end.y
    for i in range(3):
     game.activate_tool("rail")
     click(tabs.get_child(i))
@@ -61,6 +62,33 @@ func run():
     check(route.get_global_rect().end.x<=game.drawer.get_global_rect().end.x-12,"last card is fully inside the tray: %s %d"%[resolution,i])
     check(game.drawer.size.x==width and tabs.global_position==tab_pos,"tray and tabs stay fixed: %s %d"%[resolution,i])
     check(root.get_visible_rect().encloses(tabs.get_global_rect()) and not tabs.get_global_rect().intersects(game.drawer.get_global_rect()) and not game.drawer.get_global_rect().intersects(game.dock.get_global_rect()),"HUD regions do not overlap: %s %d"%[resolution,i])
+    var tag:="%s tab %d"%[resolution,i]
+    var tab:Button=tabs.get_child(i)
+    var face:=tab.get_theme_stylebox("normal") as StyleBoxFlat
+    check(face.corner_radius_top_left==12 and face.corner_radius_top_right==12 and face.corner_radius_bottom_left==0 and face.corner_radius_bottom_right==0 and face.border_width_bottom==0 and tab.get_theme_font_size("font_size")==18 and face.bg_color==Color("36b7ff") and tab.get_theme_color("font_color")==Color("142b37"),"folder shape, joined bottom and selected palette: "+tag)
+    check(tab.size.y>=30 and tab.size.y<=34,"folder tab is about 30px tall after theme layout: %s (%.1fpx)"%[tag,tab.size.y])
+    check(tab.has_focus() and not tab.has_focus(true),"pointer selection does not paint dotted focus: "+tag)
+    var scroll:ScrollContainer=game.drawer_scroll
+    var close:Button=game.drawer_box.get_child(-1)
+    var viewport:=scroll.get_global_rect()
+    var drawer_rect:Rect2=game.drawer.get_global_rect()
+    var border:StyleBox=game.drawer.get_theme_stylebox("panel")
+    check(not scroll.get_h_scroll_bar().visible and not scroll.get_v_scroll_bar().visible and scroll.scroll_horizontal==0,"no visible tray scroll or scroll displacement: "+tag)
+    check(viewport.encloses(close.get_global_rect()) and close.get_global_rect().end.x<=drawer_rect.end.x-border.get_margin(SIDE_RIGHT) and close.get_global_rect().end.y<=drawer_rect.end.y-border.get_margin(SIDE_BOTTOM),"actual chevron is inside the tray clip and frame: %s %s %s"%[tag,viewport,close.get_global_rect()])
+    check(is_equal_approx(drawer_rect.end.y,bottom),"tray bottom edge is invariant: "+tag)
+    click(close)
+    check(not game.drawer.visible and not tabs.visible,"actual chevron closes the transport tray: "+tag)
+    game.select_category("transport")
+    await process_frame
+    await process_frame
+   var keyboard_tab:Button=tabs.get_child(1)
+   keyboard_tab.grab_focus()
+   for down in [true,false]:
+    var accept:=InputEventAction.new();accept.action="ui_accept";accept.pressed=down;root.push_input(accept,true)
+   check(game.transport_tab==1 and keyboard_tab.has_focus(true),"keyboard activation keeps visible focus")
+   click(keyboard_tab)
+   check(keyboard_tab.has_focus() and not keyboard_tab.has_focus(true),"click on the already keyboard-focused tab hides the outline")
+   click(tabs.get_child(2))
   game.select_category("road")
   check(not tabs.visible,"other categories hide the transport tab row")
   game.select_category("transport")

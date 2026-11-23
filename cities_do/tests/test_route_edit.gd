@@ -37,9 +37,9 @@ func bus_city():
 
 func ids()->Array:return game.city.public_facilities.lots.map(func(lot):return lot.id)
 
-func setup(city,tab:int,center:Vector2):
+func setup(city,tab:int,center:Vector2,zoom:=.82):
  game.city=city
- game.map_zoom=.82
+ game.map_zoom=zoom
  game.origin=Vector2(root.size.x*.54,root.size.y*.34)-game.transit_view.project_point(center)*game.map_zoom
  game.select_transport_tab(tab);game.refresh()
  await settle()
@@ -56,8 +56,9 @@ func dot(line_id:int,index:int)->Vector2:
 func track(line_id:int,index:int)->Vector2:
  for piece:Dictionary in overlay.paths:
   if piece.id==line_id and piece.index==index and piece.a.distance_to(piece.b)>22:
-   var p:Vector2=(piece.a+piece.b)/2
-   if overlay.station_at(p)<0:return p
+   for t in [.5,.33,.67]:
+    var p:Vector2=piece.a.lerp(piece.b,t)
+    if overlay.station_at(p)<0 and overlay.pick(p).get("id",-1)==line_id:return p
  return Vector2.ZERO
 
 func run():
@@ -196,12 +197,24 @@ func rail_edits():
 
 func review_fixture(which:String):
  match which:
-  "tray","bus":
+  "tray":
    await setup(bus_city(),0,Vector2(50,45))
    var stops:=ids()
    assert(game.city.create_transit_line("bus",[stops[0],stops[2],stops[1]]).ok)
    assert(game.city.create_transit_line("bus",[stops[0],stops[1],stops[3]]).ok)
-   if which=="bus":await open_overlay()
+  "bus":
+   var city=BusFixture.fixture(4)
+   assert(city.add_road(PackedVector2Array([Vector2(10,50),Vector2(90,50)]),"local",true,4).ok)
+   var curb:float=city.RoadProfile.asphalt_width(city.roads[0])/2
+   var shared:Dictionary=city.public_facilities.place("bus-stop-01",Vector2(32,50+curb))
+   var west_a:Dictionary=city.public_facilities.place("bus-stop-01",Vector2(66,50-curb))
+   var west_b:Dictionary=city.public_facilities.place("bus-stop-01",Vector2(48,50-curb))
+   assert(shared.ok and west_a.ok and west_b.ok)
+   await setup(city,0,Vector2(50,50),.60)
+   # Two actual services share an eastbound stop and use both carriageways.
+   assert(city.create_transit_line("bus",[shared.record.id,west_a.record.id]).ok)
+   assert(city.create_transit_line("bus",[shared.record.id,west_b.record.id,ids()[1]]).ok)
+   await open_overlay()
   "metro","freight":
    var metro:=which=="metro"
    await setup(RailFixture.rail_city("metro" if metro else "rail"),1 if metro else 2,Vector2(54,42))
@@ -224,13 +237,62 @@ func review_fixture(which:String):
    assert(game.route_warning_open())
   _:
    push_error("Unknown route review fixture: "+which);quit(1);return
+ if which=="tray":
+  for i in range(3):
+   click(game.transport_tabs.get_child(i));await settle()
+   var close:Button=game.drawer_box.get_child(-1)
+   check(game.transport_tab==i and not game.drawer_scroll.get_h_scroll_bar().visible and game.drawer_scroll.get_global_rect().encloses(close.get_global_rect()),"review tray %d has its full chevron and no scrollbar"%i)
+  click(game.transport_tabs.get_child(0));await settle()
+ elif which=="bus":check_review_bus()
+ elif which in ["metro","freight"]:
+  check(overlay.visible and overlay.paths.size()>4 and overlay.paths.all(func(p):return p.freight==(which=="freight")),"review is showing the planned "+which+" overlay")
+  if which=="freight":
+   var dash_lengths:Array=overlay.stroke_primitives.map(func(p):return p.a.distance_to(p.b))
+   check(not dash_lengths.is_empty() and dash_lengths.max()<=9.01 and overlay.stroke_primitives.size()>overlay.paths.size(),"freight review emits actual 9px dashed strokes")
+ elif which=="warning":
+  check(game.route_warning_open(),"review has the real train reset confirmation open")
+ if failures>0:quit(1);return
  print("Route review ready: ",which," ",root.get_visible_rect().size)
+ if "--fixture-check" in OS.get_cmdline_user_args():
+  print("Route review checks: %d passed, %d failed"%[checks-failures,failures]);quit(1 if failures else 0);return
  for arg:String in OS.get_cmdline_user_args():
   if arg.begins_with("--capture-route-review="):
    await capture_review(which,arg.trim_prefix("--capture-route-review="))
    quit(1 if failures else 0)
    return
- if "--fixture-check" in OS.get_cmdline_user_args():quit()
+
+func check_review_bus():
+ var lines:Array=game.city.transit_lines
+ var network=overlay.bus_network
+ var opposed_stretch:=true
+ for line:Dictionary in lines:
+  var plan:Dictionary=network.line_plan(line.stops)
+  var metres:Dictionary={}
+  for lane_id in plan.get("route",[]):
+   var lane:Dictionary=network.lanes[lane_id]
+   var road:int=lane.get("road",-1)
+   if road<0 or lane.get("bus_pocket",false):continue
+   if not metres.has(road):metres[road]={}
+   metres[road][lane.direction]=metres[road].get(lane.direction,0.0)+lane.length
+  opposed_stretch=opposed_stretch and metres.values().any(func(direction):return direction.get(-1,0.0)>80 and direction.get(1,0.0)>80)
+ check(lines.size()==2 and opposed_stretch,"review fixture has actual opposing bus runs on a shared road stretch")
+ check(lines.size()==2 and lines[0].stops[0] in lines[1].stops and dot(lines[0].id,0)!=dot(lines[1].id,0),"bus review has distinct dots at a real shared stop")
+ var map_rect:=Rect2(0,0,root.get_visible_rect().size.x,game.transport_tabs.get_global_rect().position.y).grow(-8)
+ var list_rect:Rect2=overlay.panel.get_global_rect().grow(8)
+ check(overlay.paths.all(func(p):return map_rect.has_point(p.a) and map_rect.has_point(p.b) and not list_rect.has_point(p.a) and not list_rect.has_point(p.b)),"bus review frames the entire route clear of the HUD")
+ var normal:Vector2=(overlay.project(Vector3(1,50,0))-overlay.project(Vector3(0,50,0))).normalized().orthogonal()
+ for x in [30.0,43.0,57.0,71.0]:
+  var center:Vector2=overlay.project(Vector3(x,50,0))
+  var offsets:Array=[[],[]]
+  var owns:=true
+  for p:Dictionary in overlay.paths:
+   var hit:Variant=Geometry2D.segment_intersects_segment(p.a,p.b,center-normal*64,center+normal*64)
+   if hit==null:continue
+   var picked:Dictionary=overlay.pick(hit)
+   owns=owns and picked.get("id",-1)==p.id and picked.get("index",-1)==p.index
+   offsets[0 if p.id==lines[0].id else 1].append((hit-center).dot(normal))
+  for pair:Array in offsets:pair.sort()
+  check(offsets[0].size()==2 and offsets[1].size()==2 and absf(offsets[0][1]-offsets[0][0]-12)<.5 and absf(offsets[1][1]-offsets[1][0]-12)<.5 and absf(offsets[1][0]-offsets[0][0])>=20 and owns,"four actual owned bus lanes on shared road at x=%s: %s"%[x,offsets])
 
 func capture_review(which:String,directory:String):
  if which=="tray":

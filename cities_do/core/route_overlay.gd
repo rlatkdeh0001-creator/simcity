@@ -13,6 +13,7 @@ const ACCENT:=Color("36b7ff")
 const DIRECTION_OFFSET:=6.0
 const CORRIDOR_SPACING:=24.0
 const CORRIDOR_EPSILON:=.0001
+const ARROW_SPACING:=34.0
 var game
 var panel:PanelContainer
 var scroll:ScrollContainer
@@ -27,6 +28,8 @@ var lines:Array=[]
 var stations:Dictionary={}
 var station_world:Dictionary={}
 var paths:Array=[]
+var stroke_primitives:Array=[]
+var arrow_primitives:Array=[]
 var world_paths:Array=[]
 var hosts:Dictionary={}
 var bus_network
@@ -40,6 +43,7 @@ const DRAG_MOTION_THRESHOLD:=4.0
 var observed_city:WeakRef
 var signature:Variant
 var camera_key:Variant
+var delete_icon:Texture2D
 
 func _ready():
  get_window().focus_exited.connect(cancel_drag)
@@ -63,6 +67,9 @@ func setup(view):
  rows=VBoxContainer.new();scroll.add_child(rows)
  rows.size_flags_horizontal=Control.SIZE_EXPAND_FILL
  actions=VBoxContainer.new();column.add_child(actions)
+ var image:=Image.new()
+ image.load_svg_from_string('<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M1 1l10 10m0-10L1 11" fill="none" stroke="#edf4f5" stroke-width="2" stroke-linecap="round"/></svg>')
+ delete_icon=ImageTexture.create_from_image(image)
  close()
 
 func open(kind:String):
@@ -80,7 +87,8 @@ func close():
  hide()
  set_process(false)
  mode="";hovered_id=-1;phase=0.0;signature=null;camera_key=null
- stations.clear();station_world.clear();paths.clear();world_paths.clear();lines.clear();colors.clear();dots.clear()
+ stations.clear();station_world.clear();paths.clear();stroke_primitives.clear();arrow_primitives.clear()
+ world_paths.clear();lines.clear();colors.clear();dots.clear()
  hosts.clear();bus_network=null;creation_paths.clear()
  cancel_drag()
  clear_children(rows);clear_children(actions);create_buttons.clear()
@@ -152,8 +160,10 @@ func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
    var lane:Dictionary=network.lanes[plan.route[i]]
    var points:PackedVector2Array=network.points_of(lane)
    var road_index:int=lane.get("road",-1)
-   if road_index<0 and lane.has("from"):road_index=network.lanes[lane.from].road
    var road:Dictionary=game.city.roads[road_index] if road_index>=0 else {}
+   if road_index<0 and lane.has("from"):
+    add_bus_turn(result,line,stop_index-1,lane,network)
+    continue
    var cursor:=0.0
    while stop_index<plan.stops.size() and plan.stops[stop_index].route_index==i:
     var stop:Dictionary=plan.stops[stop_index]
@@ -174,22 +184,59 @@ func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
     var route:Dictionary=rails.get(leg.routes[v-1],{})
     var a:Vector2=leg.points[v-1]/4
     var b:Vector2=leg.points[v]/4
-    result.append({"id":line.id,"index":stop_index,"freight":line.kind=="freight","a":world_point(a,route,line.kind),"b":world_point(b,route,line.kind)})
+    # Rail plans already include physical track and terminal crossover offsets.
+    # Draw the service on the traversed ribbon center, not an offset of that rail.
+    a=on_center(a,route);b=on_center(b,route)
+    add_piece(result,line,stop_index,world_point(a,route,line.kind),world_point(b,route,line.kind),i,not plan.get("turnback",false))
  return result
 
 func add_bus_piece(result:Array,line:Dictionary,index:int,points:PackedVector2Array,road:Dictionary,first:float,last:float):
  if last-first<.001:return
  var sliced:=Paths.slice(points,first,last)
- # Lane bake points can be every 20cm. Merge only collinear runs with the same lift.
- var a:=world_point(sliced[0]/4,road,"bus")
- var b:=a
+ var a:=world_point(on_center(sliced[0]/4,road),road,"bus")
  for i in range(1,sliced.size()):
-  var c:=world_point(sliced[i]/4,road,"bus")
-  if a!=b and (b-a).normalized().dot((c-b).normalized())<.9999:
-   result.append({"id":line.id,"index":index,"freight":false,"a":a,"b":b})
-   a=b
-  b=c
- if a!=b:result.append({"id":line.id,"index":index,"freight":false,"a":a,"b":b})
+  var b:=world_point(on_center(sliced[i]/4,road),road,"bus")
+  add_piece(result,line,index,a,b,0,true)
+  a=b
+
+func add_bus_turn(result:Array,line:Dictionary,index:int,lane:Dictionary,network):
+ var incoming:Dictionary=network.lanes[lane.from]
+ var outgoing:Dictionary=network.lanes[lane.to]
+ var from:Dictionary=game.city.roads[incoming.road]
+ var to:Dictionary=game.city.roads[outgoing.road]
+ var a:=world_point(on_center(lane.start/4,from),from,"bus")
+ var b:=world_point(on_center(lane.end/4,to),to,"bus")
+ # Reciprocal turns use the same center curve, through the planned connection's
+ # node. Do not use the physical lane/pocket offsets as another UI lane offset.
+ var node:=world_point(incoming.end/4,from,"bus")
+ var previous:=a
+ for i in range(1,9):
+  var t:=i/8.0
+  var p:=a.lerp(node,t).lerp(node.lerp(b,t),t)
+  add_piece(result,line,index,previous,p,0,true)
+  previous=p
+
+func on_center(p:Vector2,host:Dictionary)->Vector2:
+ if host.is_empty():return p
+ var best:=INF;var result:=p
+ var points:PackedVector2Array=host.points
+ for i in range(1,points.size()):
+  var nearest:=Geometry2D.get_closest_point_to_segment(p,points[i-1],points[i])
+  var distance:=p.distance_squared_to(nearest)
+  if distance<best:best=distance;result=nearest
+ return result
+
+func add_piece(result:Array,line:Dictionary,index:int,a:Vector3,b:Vector3,run:int,closed:bool):
+ if a.distance_to(b)<=CORRIDOR_EPSILON:return
+ # Merge densely baked straight samples, without losing a stop boundary or a turn.
+ if not result.is_empty():
+  var previous:Dictionary=result[-1]
+  var span:Vector3=previous.b-previous.a
+  var next:=b-a
+  if previous.run==run and previous.index==index and a.distance_to(previous.b)<=CORRIDOR_EPSILON and span.dot(next)>0 and (b-previous.a).cross(span.normalized()).length()<CORRIDOR_EPSILON:
+   previous.b=b
+   return
+ result.append({"id":line.id,"index":index,"freight":line.kind=="freight","a":a,"b":b,"run":run,"closed":closed})
 
 func world_point(p:Vector2,host:Dictionary,kind:String)->Vector3:
  return Vector3(p.x,p.y,-12.7 if kind=="metro" else (0.0 if host.is_empty() else Height.height_at(host,p)))
@@ -237,7 +284,16 @@ func corridor_lanes()->PackedInt32Array:
   for i:int in group:ids[world_paths[i].id]=true
   var ordered:=ids.keys();ordered.sort()
   for lane in range(ordered.size()):ids[ordered[lane]]=lane
-  for i:int in group:lanes[i]=ids[world_paths[i].id]
+  # Use the lowest route's travel direction on this corridor, not a world
+  # axis sign (which flips at ordinary corners). Both directions share a slot.
+  var reference:int=group[0]
+  for i:int in group:
+   var candidate:Dictionary=world_paths[i];var current:Dictionary=world_paths[reference]
+   if candidate.id<current.id or (candidate.id==current.id and candidate.get("run",0)<current.get("run",0)):reference=i
+  var axis:Vector3=world_paths[reference].b-world_paths[reference].a
+  for i:int in group:
+   var direction:Vector3=world_paths[i].b-world_paths[i].a
+   lanes[i]=ids[world_paths[i].id]*(1 if axis.dot(direction)>0 else -1)
  return lanes
 
 func corridor_root(parents:PackedInt32Array,index:int)->int:
@@ -255,19 +311,9 @@ func corridor_overlap(first:Dictionary,second:Dictionary)->bool:
 func project_paths():
  stations.clear();paths.clear()
  for id in station_world:stations[id]=project(station_world[id])
- var accumulated:Dictionary={}
- var lanes:=corridor_lanes()
- for i in range(world_paths.size()):
-  var piece:Dictionary=world_paths[i]
-  var a:=project(piece.a);var b:=project(piece.b)
-  if a.distance_squared_to(b)<.00001:continue
-  var span:Vector3=piece.b-piece.a
-  # The corridor center must move the same way for both directions.
-  var axis:=span.x if absf(span.x)>CORRIDOR_EPSILON else (span.y if absf(span.y)>CORRIDOR_EPSILON else span.z)
-  var side:=(b-a).normalized().orthogonal()*(DIRECTION_OFFSET+signf(axis)*lanes[i]*CORRIDOR_SPACING)
-  var cursor:float=accumulated.get(piece.id,0.0)
-  paths.append({"id":piece.id,"index":piece.index,"freight":piece.freight,"a":a+side,"b":b+side,"start":cursor})
-  accumulated[piece.id]=cursor+a.distance_to(b)
+ paths=project_runs(world_paths,corridor_lanes())
+ stroke_primitives=clip_freight_dashes(paths)
+ rebuild_arrows()
  dots.clear()
  var groups:Dictionary={}
  for line:Dictionary in lines:
@@ -284,6 +330,138 @@ func project_paths():
     group[i].p+=Vector2.from_angle(angle)*radius
    dots.append(group[i])
 
+func project_runs(source:Array,lanes:=PackedInt32Array())->Array:
+ var output:Array=[]
+ var run:Array=[]
+ for i in range(source.size()):
+  var piece:Dictionary=source[i]
+  var a:=project(piece.a);var b:=project(piece.b)
+  if a.distance_squared_to(b)<.00001:continue
+  if not run.is_empty() and (run[-1].id!=piece.id or run[-1].run!=piece.run):
+   emit_run(run,output);run.clear()
+  run.append({"id":piece.id,"index":piece.index,"freight":piece.freight,"run":piece.run,"closed":piece.closed,"a":a,"b":b,"offset":DIRECTION_OFFSET+(lanes[i]*CORRIDOR_SPACING if not lanes.is_empty() else 0.0)})
+ if not run.is_empty():emit_run(run,output)
+ return output
+
+func emit_run(run:Array,output:Array):
+ var closed:bool=run[0].closed
+ var cursor:=0.0
+ var joins:=PackedVector2Array()
+ for i in range(run.size()+1):
+  if closed or (i>0 and i<run.size()):
+   var previous:Dictionary=run[posmod(i-1,run.size())];var next:Dictionary=run[i%run.size()]
+   joins.append(offset_join(previous,next))
+  elif i==0:
+   joins.append(run[0].a+piece_normal(run[0])*run[0].offset)
+  else:
+   joins.append(run[-1].b+piece_normal(run[-1])*run[-1].offset)
+ var stroke:Array=[]
+ for i in range(run.size()):
+  var piece:Dictionary=run[i]
+  var a:=joins[i];var b:=joins[i+1]
+  var normal:=piece_normal(piece)
+  var length:float=piece.a.distance_to(piece.b)
+  var fade:=minf(CORRIDOR_SPACING,length*.3)/length
+  # Do not smear a slot change along an entire long shared straight.
+  if (closed or i>0) and run[posmod(i-1,run.size())].offset!=piece.offset:
+   var at:Vector2=piece.a.lerp(piece.b,fade)+normal*piece.offset
+   emit_piece(stroke,piece,a,at);a=at
+  if (closed or i+1<run.size()) and run[(i+1)%run.size()].offset!=piece.offset:
+   var at:Vector2=piece.a.lerp(piece.b,1.0-fade)+normal*piece.offset
+   emit_piece(stroke,piece,a,at);a=at
+  emit_piece(stroke,piece,a,b)
+ trim_local_loops(stroke,closed)
+ for piece:Dictionary in stroke:
+  piece.start=cursor
+  cursor+=piece.a.distance_to(piece.b)
+  output.append(piece)
+
+func emit_piece(stroke:Array,piece:Dictionary,a:Vector2,b:Vector2):
+ if a.distance_squared_to(b)>.00001:
+  stroke.append({"id":piece.id,"index":piece.index,"freight":piece.freight,"a":a,"b":b,"run":piece.run,"closed":piece.closed})
+
+func piece_normal(piece:Dictionary)->Vector2:
+ return (piece.b-piece.a).normalized().orthogonal()
+
+func offset_join(previous:Dictionary,next:Dictionary)->Vector2:
+ var n:=piece_normal(previous);var m:=piece_normal(next)
+ var vertex:Vector2=(previous.b+next.a)*.5
+ var offset:float=(previous.offset+next.offset)*.5
+ var normal:Vector2=(n+m).normalized()
+ # Keep miters bounded at acute bends. In the ordinary equal-offset case,
+ # the same vertex lies on both parallel supports, including on curved track.
+ return vertex+normal*offset/maxf(.55,normal.dot(n))
+
+func trim_local_loops(stroke:Array,closed:bool):
+ # A large inside offset can double back on a tight bend. Clip only local
+ # loops; distant/at-grade crossings in the authoritative itinerary stay.
+ var i:=0
+ while i<stroke.size():
+  var first:Dictionary=stroke[i]
+  var distance:=0.0
+  var j:=i+2
+  while j<(i+stroke.size()-1 if closed else stroke.size()):
+   var middle:Dictionary=stroke[(j-1)%stroke.size()]
+   distance+=middle.a.distance_to(middle.b)
+   if distance>2.0*CORRIDOR_SPACING:break
+   var k:=j%stroke.size()
+   var last:Dictionary=stroke[k]
+   var hit:Variant=Geometry2D.segment_intersects_segment(first.a,first.b,last.a,last.b)
+   if hit!=null and first.b.distance_to(hit)>.01 and last.a.distance_to(hit)>.01:
+    first.b=hit;last.a=hit
+    if k>i:
+     for index in range(k-1,i,-1):stroke.remove_at(index)
+    else:
+     stroke.resize(i+1)
+     for index in range(k):stroke.pop_front()
+    break
+   j+=1
+  i+=1
+
+func clip_freight_dashes(projected:Array)->Array:
+ var strokes:Array=[]
+ for piece:Dictionary in projected:
+  if not piece.freight:
+   strokes.append(piece)
+   continue
+  var length:float=piece.a.distance_to(piece.b)
+  var dir:Vector2=(piece.b-piece.a)/length
+  var d:float=-fposmod(piece.start,16.0)
+  while d<length:
+   if d+9>0:
+    emit_piece(strokes,piece,piece.a+dir*maxf(d,0),piece.a+dir*minf(d+9,length))
+   d+=16
+ return strokes
+
+func rebuild_arrows():
+ arrow_primitives.clear()
+ for i in range(paths.size()):
+  var piece:Dictionary=paths[i]
+  var length:float=piece.a.distance_to(piece.b)
+  var dir:Vector2=(piece.b-piece.a)/length
+  var step:=fposmod(phase-piece.start,ARROW_SPACING)
+  while step<length:
+   var tip:Vector2=piece.a+dir*step
+   var behind:=5.0-step
+   var tail:=tip-dir*5.0
+   # Measure 5px back along the same joined path so the arrow's direction
+   # doesn't snap to an isolated short edge at a curve sample.
+   var j:=i
+   while behind>0 and j>0 and paths[j].start>0:
+    j-=1
+    var previous:Dictionary=paths[j]
+    var span:float=previous.a.distance_to(previous.b)
+    if behind<=span:
+     tail=previous.b.lerp(previous.a,behind/span)
+     break
+    behind-=span
+   var heading:=(tip-tail).normalized()
+   if heading==Vector2.ZERO:heading=dir
+   tail=tip-heading*5.0
+   var side:=heading.orthogonal()*3.0
+   arrow_primitives.append({"id":piece.id,"index":piece.index,"points":PackedVector2Array([tail+side,tip,tail-side])})
+   step+=ARROW_SPACING
+
 func pick(p:Vector2)->Dictionary:
  var hit:Dictionary={}
  var best:=8.0*8.0
@@ -292,9 +470,13 @@ func pick(p:Vector2)->Dictionary:
   if d<best:hit=dot;best=d
  if not hit.is_empty():return {"id":hit.id,"index":hit.index,"stop":true}
  best=8.0*8.0
- for piece:Dictionary in paths:
+ for piece:Dictionary in stroke_primitives:
   var d:=p.distance_squared_to(Geometry2D.get_closest_point_to_segment(p,piece.a,piece.b))
   if d<best:hit=piece;best=d
+ for arrow:Dictionary in arrow_primitives:
+  for i in range(2):
+   var d:=p.distance_squared_to(Geometry2D.get_closest_point_to_segment(p,arrow.points[i],arrow.points[i+1]))
+   if d<best:hit=arrow;best=d
  if hit.is_empty():return {}
  return {"id":hit.id,"index":hit.index,"stop":false}
 
@@ -376,11 +558,15 @@ func build_list():
  for line:Dictionary in lines:
   var id:int=line.id
   var row:=HBoxContainer.new();row.custom_minimum_size.y=44;rows.add_child(row)
-  var swatch:=ColorRect.new();swatch.custom_minimum_size=Vector2(16,16);swatch.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-  swatch.color=colors[id];swatch.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(swatch)
+  var swatch:=Panel.new();swatch.custom_minimum_size=Vector2(16,16);swatch.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+  var disc:=StyleBoxFlat.new();disc.bg_color=colors[id];disc.set_corner_radius_all(8)
+  swatch.add_theme_stylebox_override("panel",disc)
+  swatch.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(swatch)
   var title:=game.label("%s %d"%[NAMES[line.kind],id],20) as Label
   title.mouse_filter=Control.MOUSE_FILTER_IGNORE;title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(title)
-  var x:=Button.new();x.text="×";x.custom_minimum_size=Vector2(36,36);row.add_child(x)
+  var x:=Button.new();x.name="DeleteRoute";x.icon=delete_icon;x.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
+  x.expand_icon=true;x.add_theme_constant_override("icon_max_width",12)
+  x.custom_minimum_size=Vector2(44,36);x.tooltip_text="노선 삭제";row.add_child(x)
   x.pressed.connect(request_delete.bind(id))
   row.mouse_entered.connect(set_hover.bind(id));row.mouse_exited.connect(clear_hover.bind(id))
   x.mouse_entered.connect(set_hover.bind(id));x.mouse_exited.connect(clear_hover.bind(id))
@@ -394,10 +580,13 @@ func build_list():
 
 func layout_list():
  if not visible:return
- var max_height:float=maxf(44,game.transport_tabs.get_global_rect().position.y-panel.position.y-actions.get_combined_minimum_size().y-32)
+ var column:VBoxContainer=scroll.get_parent()
+ var chrome:=panel.get_theme_stylebox("panel").get_minimum_size().y+column.get_theme_constant("separation")
+ var max_height:float=floorf(game.transport_tabs.get_global_rect().position.y-panel.position.y-actions.get_combined_minimum_size().y-chrome-8)
  scroll.visible=not lines.is_empty()
- scroll.custom_minimum_size.y=minf(max_height,lines.size()*48-4) if scroll.visible else 0.0
- panel.size=Vector2(300,0)
+ var full_height:=ceilf(rows.get_combined_minimum_size().y+scroll.get_theme_stylebox("panel").get_minimum_size().y)
+ scroll.custom_minimum_size.y=clampf(max_height,0,full_height) if scroll.visible else 0.0
+ panel.reset_size()
 
 func set_hover(id:int):hovered_id=id
 func clear_hover(id:int):
@@ -427,7 +616,8 @@ func _process(delta:float):
  var key:=[game.origin,game.map_zoom]
  if camera_key!=key:
   camera_key=key;project_paths()
- phase=fposmod(phase+delta*56.0,34.0)
+ phase=fposmod(phase+delta*56.0,ARROW_SPACING)
+ rebuild_arrows()
  queue_redraw()
 
 func opacity(id:int)->float:
@@ -436,31 +626,20 @@ func opacity(id:int)->float:
 func _draw():
  if not visible:return
  draw_rect(Rect2(Vector2.ZERO,size),Color(.03,.055,.08,.55))
- for piece:Dictionary in paths:
+ for piece:Dictionary in stroke_primitives:
   var tint:Color=colors[piece.id];tint.a=opacity(piece.id)
-  var a:Vector2=piece.a;var b:Vector2=piece.b
-  var length:=a.distance_to(b);var dir:=(b-a)/length
-  if piece.freight:
-   var d:float=-fposmod(piece.start,16.0)
-   while d<length:
-    if d+9>0:draw_line(a+dir*maxf(d,0),a+dir*minf(d+9,length),tint,4,true)
-    d+=16
-  else:draw_line(a,b,tint,4,true)
-  var step:=fposmod(phase-piece.start,34.0)
-  while step<length:
-   var tip:=a+dir*step;var tail:=tip-dir*5;var side:=dir.orthogonal()*3
-   var arrow:=Color(INK,tint.a)
-   draw_polyline(PackedVector2Array([tail+side,tip,tail-side]),arrow,2,true)
-   step+=34
+  draw_line(piece.a,piece.b,tint,4,true)
+ for arrow:Dictionary in arrow_primitives:
+  draw_polyline(arrow.points,Color(INK,opacity(arrow.id)),2,true)
  var new_color:=next_color() if not game.transit_line_tool.stops.is_empty() else Color.TRANSPARENT
- for piece:Dictionary in creation_paths:draw_line(project(piece.a),project(piece.b),new_color,3,true)
+ for piece:Dictionary in clip_freight_dashes(project_runs(creation_paths)):draw_line(piece.a,piece.b,new_color,3,true)
  for point:Vector2 in stations.values():draw_arc(point,8,0,TAU,24,INK,2,true)
  for dot:Dictionary in dots:
   var tint:Color=colors[dot.id];tint.a=opacity(dot.id)
   draw_circle(dot.p,6,tint,true,-1,true)
  if not dragged.is_empty() and get_viewport_rect().has_point(pointer) and pointer.distance_to(dragged.from)>DRAG_MOTION_THRESHOLD:
   var tint:Color=colors.get(dragged.id,ACCENT)
-  for piece:Dictionary in preview_paths:draw_line(project(piece.a),project(piece.b),tint,3,true)
+  for piece:Dictionary in clip_freight_dashes(project_runs(preview_paths)):draw_line(piece.a,piece.b,tint,3,true)
   var target:=station_at(pointer)
   var position:Vector2=stations.get(target,pointer)
   if target>=0:draw_arc(position,16,0,TAU,24,ACCENT,2,true)

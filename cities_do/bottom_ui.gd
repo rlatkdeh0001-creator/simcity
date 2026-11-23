@@ -10,7 +10,7 @@ var transport_tabs: HBoxContainer
 var transport_tab := 0
 var route_overlay
 const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
-const TRANSPORT_WIDTH_ITEMS := 6 # Heading + four train items + collapse.
+var transport_content_minimum:=Vector2.ZERO
 var categories: Array[Button] = []
 var bulldozer: Button
 var money: Label
@@ -656,9 +656,11 @@ func developer_tools_enabled() -> bool:
  return developer_tools_allowed(OS.is_debug_build(),OS.get_cmdline_user_args())
 
 func select_transport_tab(index:int):
+ var tab:Button=transport_tabs.get_child(index)
+ var show_focus:=tab.has_focus(true)
  transport_tab=index
  select_category("transport")
- transport_tabs.get_child(index).grab_focus()
+ tab.grab_focus(not show_focus)
 
 func select_category(key: String):
  if not NAMES.has(key): return
@@ -701,10 +703,7 @@ func select_category(key: String):
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
   "road": choices=[] # The seven lane cards are the drawing actions.
-  "transport":
-   if transport_tab==1:choices.append(["지하철 터널","metro"])
-   if transport_tab==2:choices.append(["철도","rail"])
-   choices.append(["노선","transit_line"])
+
 
   _:
    pass
@@ -718,8 +717,13 @@ func select_category(key: String):
     service_button.name="Tool_"+str(choice[1])
     drawer_box.add_child(service_button)
     continue
+  add_drawer_tool(drawer_box,key,choice)
+ if key=="road":add_road_drawer_controls()
+ finish_drawer(key,heading)
+
+func add_drawer_tool(box:HBoxContainer,key:String,choice:Array):
   var button := Button.new()
-  button.name="Tool_"+choice[1]
+  button.name="Tool_"+str(choice[1])
   button.tooltip_text=choice[0]
   button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN if key=="road" else Control.SIZE_EXPAND_FILL
   button.custom_minimum_size=Vector2(112,84)
@@ -746,8 +750,9 @@ func select_category(key: String):
    button.tooltip_text=choice[0]+" · 애셋 보기"
   if tool=="transit_line":button.pressed.connect(toggle_route_overlay)
   else:button.pressed.connect(activate_tool.bind(tool))
-  drawer_box.add_child(button)
- if key=="road":
+  box.add_child(button)
+
+func add_road_drawer_controls():
   var group:=ButtonGroup.new()
   var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
   for count in preload("res://core/road_profile.gd").LOCAL_LANES:
@@ -763,10 +768,8 @@ func select_category(key: String):
   road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
   road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
   update_road_lane_cards();update_road_grid_button()
- if key=="transport" and transport_tab==2:
-  # E3a: approved C height controls for the rail tool (ground/elevated, -/+5m, PgUp/PgDn).
-  var rail_heights:=preload("res://core/road_height_controls.gd").new();rail_heights.rail=true
-  drawer_box.add_child(rail_heights);rail_heights.setup(self)
+
+func finish_drawer(key:String,heading:VBoxContainer):
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
   if key=="transport":break
   if entry.ui_category!=key:continue
@@ -774,23 +777,36 @@ func select_category(key: String):
   registered_button.name="Registered_"+str(entry.id)
   registered_button.set_meta("registered_asset_id",str(entry.id))
   drawer_box.add_child(registered_button)
- if key in ["park","transport"]:
+ if key=="park":
 
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
    if entry.kind=="structure_sample":continue # Inspection-only originals are not map tools.
    var transit:bool=str(entry.kind).begins_with("transit") or str(entry.kind).begins_with("subway")
-   if transit!=(key=="transport"):continue
-   if transit and (entry.id not in TRANSPORT_ASSETS[transport_tab] or not city.public_facilities.entries.has(entry.id)):continue
+   if transit:continue
    var facility_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
    facility_button.name="Facility_"+str(entry.id)
    drawer_box.add_child(facility_button)
  if key=="transport":
-  drawer_box.move_child(drawer_box.get_node("Tool_transit_line"),-1)
+  build_transport_row(drawer_box,transport_tab)
+  transport_content_minimum=drawer_box.get_combined_minimum_size()
+  # Measure the same controls with the same inherited theme, not estimated card counts.
+  for i in range(TRANSPORT_ASSETS.size()):
+   if i==transport_tab:continue
+   var probe:=HBoxContainer.new();probe.hide();drawer_scroll.add_child(probe)
+   probe.add_theme_constant_override("separation",drawer_box.get_theme_constant("separation"))
+   probe.add_child(heading.duplicate())
+   build_transport_row(probe,i)
+   transport_content_minimum=transport_content_minimum.max(probe.get_combined_minimum_size())
+   probe.free()
   for tab:Button in transport_tabs.get_children():
    var active:=tab.get_index()==transport_tab
    var accent:=Color("36b7ff")
    for state in ["normal","pressed","hover"]:
-    tab.add_theme_stylebox_override(state,style(accent if active else Color("142b37"), accent if active or state=="hover" else Color("38515e")))
+    var face:=style(accent if active else Color("142b37"),accent if active or state=="hover" else Color("38515e"))
+    face.corner_radius_top_left=12;face.corner_radius_top_right=12
+    face.corner_radius_bottom_left=0;face.corner_radius_bottom_right=0;face.border_width_bottom=0
+    face.content_margin_top=2;face.content_margin_bottom=2
+    tab.add_theme_stylebox_override(state,face)
     tab.add_theme_color_override("font_"+state+"_color",Color("142b37") if active else Color("edf4f5"))
    tab.add_theme_color_override("font_color",Color("142b37") if active else Color("edf4f5"))
  for slot in service_slots():
@@ -810,15 +826,31 @@ func select_category(key: String):
  update_road_modes()
  bulldozer.set_pressed_no_signal(false)
  demolition_hover.clear()
- var close := Button.new()
- close.text="⌄"
- close.custom_minimum_size.x=42
- close.pressed.connect(func():drawer.hide();layout_bottom_hud())
- drawer_box.add_child(close)
+ if key!="transport":add_drawer_close(drawer_box)
  drawer.show()
  sync_utility_visibility()
  layout_bottom_hud()
  queue_redraw()
+
+func build_transport_row(box:HBoxContainer,index:int):
+ if index==1:add_drawer_tool(box,"transport",["지하철 터널","metro"])
+ if index==2:
+  add_drawer_tool(box,"transport",["철도","rail"])
+  var rail_heights:=preload("res://core/road_height_controls.gd").new();rail_heights.rail=true
+  box.add_child(rail_heights);rail_heights.setup(self)
+ for entry:Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+  if entry.id not in TRANSPORT_ASSETS[index] or not city.public_facilities.entries.has(entry.id):continue
+  var button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
+  button.name="Facility_"+str(entry.id);box.add_child(button)
+ add_drawer_tool(box,"transport",["노선","transit_line"])
+ add_drawer_close(box)
+
+func add_drawer_close(box:HBoxContainer):
+ var close:=Button.new()
+ close.text="⌄"
+ close.custom_minimum_size.x=42
+ close.pressed.connect(func():drawer.hide();layout_bottom_hud())
+ box.add_child(close)
 
 func show_zoning_tiles() -> bool:
  return chosen in ["build","road"] and mode!="demolish"
@@ -1108,11 +1140,14 @@ func layout_bottom_hud():
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
  var item_count:=road_lane_cards.size()+5 if chosen=="road" else drawer_box.get_child_count()
- if chosen=="transport":item_count=TRANSPORT_WIDTH_ITEMS
-
- # The widest transport tab includes the rail height controls, wider than a card.
- var transport_extra := 64 if chosen=="transport" else 0
- var width_value := minf(maxf(410,240+145*(item_count-2)+transport_extra),get_viewport_rect().size.x-32)
+ var nominal_width:=maxf(410,240+145*(item_count-2))
+ var tray_height:=120.0
+ if chosen=="transport":
+  var chrome:=drawer.get_theme_stylebox("panel").get_minimum_size()+drawer_scroll.get_theme_stylebox("panel").get_minimum_size()
+  nominal_width=ceilf(transport_content_minimum.x+chrome.x)
+  tray_height=maxf(tray_height,ceilf(transport_content_minimum.y+chrome.y))
+ var width_value:=minf(nominal_width,get_viewport_rect().size.x-32)
+ drawer.offset_top=drawer.offset_bottom-tray_height
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
  transport_tabs.offset_left=drawer.offset_left
