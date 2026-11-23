@@ -7,9 +7,20 @@ var stops:Array=[]
 var kind:=""
 var mode:=""
 var line_id:=-1
+var overlay_active:=false
 func _init(owner_view):view=owner_view
 func cancel():stops.clear();kind="";line_id=-1
+func choose_stop(id:int):
+ if id<0:return
+ if stops.size()>=2 and id==stops[0]:
+  var result:Dictionary=view.city.create_transit_line(kind,stops)
+  var accepted:bool=result.get("ok",false) or result.get("queued",false)
+  view.message="" if accepted else result.reason
+  if accepted:cancel();view.mode="route_overlay"
+  view.refresh()
+ elif id not in stops:stops.append(id)
 func handle_input(event:InputEvent)->bool:
+ if overlay_active:return false
  if view.mode not in ["transit_line","freight_line","remove_line","edit_line"]:cancel();mode="";return false
  if mode!=view.mode:cancel();mode=view.mode
  if (event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE) or (event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT):
@@ -47,6 +58,7 @@ func handle_input(event:InputEvent)->bool:
  elif not lot.id in stops:stops.append(lot.id)
  view.refresh();return true
 func draw_preview():
+ if overlay_active:return
  if view.mode=="edit_line" and line_id>=0:
   for line:Dictionary in view.city.transit_lines:
    if int(line.id)!=line_id:continue

@@ -8,6 +8,7 @@ var drawer_scroll: ScrollContainer
 var drawer_box: HBoxContainer
 var transport_tabs: HBoxContainer
 var transport_tab := 0
+var route_overlay
 const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
 const TRANSPORT_WIDTH_ITEMS := 6 # Heading + four train items + collapse.
 var categories: Array[Button] = []
@@ -192,6 +193,8 @@ func build_bottom_hud():
  theme_value.set_color("font_color","Button",INK)
  root.theme=theme_value
  layer.add_child(root)
+ route_overlay=preload("res://core/route_overlay.gd").new()
+ root.add_child(route_overlay);route_overlay.setup(self)
  utility_popup=PopupPanel.new()
  utility_popup.name="UtilitySettings"
  utility_popup.theme=theme_value
@@ -342,6 +345,7 @@ func sync_utility_visibility():
  # Keep above-ground facility models; only their tab-gated network drawing changes.
  var tray_open:=drawer.is_visible_in_tree()
  transport_tabs.visible=tray_open and chosen=="transport"
+ if not transport_tabs.visible:close_route_overlay()
  if transit_view!=null and not tray_open and mode!="demolish":
   transit_view.underground=false;transit_view.cancel()
   if mode in ["rail","metro","transit_line","freight_line","remove_line","edit_line"]:
@@ -651,6 +655,7 @@ func select_transport_tab(index:int):
 
 func select_category(key: String):
  if not NAMES.has(key): return
+ close_route_overlay()
  if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.cancel();transit_view.underground=false
  road_lane_cards.clear();road_grid_button=null
@@ -732,7 +737,8 @@ func select_category(key: String):
   var tool: String=choice[1]
   if key in ["health","education"]:
    button.tooltip_text=choice[0]+" · 애셋 보기"
-  button.pressed.connect(activate_tool.bind(tool))
+  if tool=="transit_line":button.pressed.connect(toggle_route_overlay)
+  else:button.pressed.connect(activate_tool.bind(tool))
   drawer_box.add_child(button)
  if key=="road":
   var group:=ButtonGroup.new()
@@ -891,6 +897,12 @@ func capture():
 func _unhandled_input(event):
  if route_warning_open() or (budget_window!=null and budget_window.visible):
   get_viewport().set_input_as_handled();return
+ if route_overlay.visible and event is InputEventMouseButton and event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT]:
+  if event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:cancel_route_overlay_action()
+  elif event.pressed and transit_line_tool.kind!="":
+   transit_line_tool.choose_stop(route_overlay.station_at(event.position))
+   route_overlay.sync_creation()
+  get_viewport().set_input_as_handled();return
  if mode in ["road","rail","metro"] and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
   activate_tool("select")
   get_viewport().set_input_as_handled()
@@ -899,6 +911,9 @@ func _unhandled_input(event):
 
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  if route_overlay.visible:
+   if not event.echo:cancel_route_overlay_action()
+   get_viewport().set_input_as_handled();return
   hide_asset_info();clear_money_toast()
   if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
@@ -1006,6 +1021,7 @@ func make_asset_button(entry: Dictionary,action: Callable) -> Button:
  return item
 
 func select_public_asset(id: String) -> bool:
+ close_route_overlay()
  if city.public_facilities.entries.has(id):
   if city.public_facilities.price(id)>city.utility_balance():
    public_controller.cancel();road_drawer.cancel();mode="select"
@@ -1091,6 +1107,7 @@ func layout_bottom_hud():
  transport_tabs.offset_right=drawer.offset_left+transport_tabs.get_combined_minimum_size().x
  transport_tabs.offset_bottom=drawer.offset_top
  transport_tabs.offset_top=drawer.offset_top-transport_tabs.get_combined_minimum_size().y
+ if route_overlay.visible:route_overlay.layout_list()
  if road_modes!=null:
   var margin:=344 if drawer.visible and (get_viewport_rect().size.x-width_value)/2<188 else 206
   road_modes.offset_left=16;road_modes.offset_right=172
@@ -1122,6 +1139,7 @@ func update_road_grid_button():
  road_grid_button.icon=ImageTexture.create_from_image(image)
  for state in ["normal","hover","pressed"]:road_grid_button.add_theme_stylebox_override(state,style(Color("36b7ff") if road_grid_enabled else Color("38515e")))
 func activate_tool(tool: String):
+ close_route_overlay()
  hide_asset_info();clear_money_toast()
  if transit_line_tool!=null:transit_line_tool.cancel()
  if transit_view!=null:transit_view.cancel();transit_view.underground=tool=="metro"
@@ -1154,10 +1172,40 @@ func activate_tool(tool: String):
 
 func refresh():
  super.refresh()
+ if route_overlay!=null and route_overlay.visible:route_overlay.synchronize()
  if money==null: return
  bind_status_events()
  refresh_status()
  money.tooltip_text=message
+
+func toggle_route_overlay():
+ if route_overlay.visible:
+  close_route_overlay();refresh();return
+ activate_tool("route_overlay")
+ var kind:String=["bus","metro","rail"][transport_tab]
+ transit_view.underground=kind=="metro"
+ transit_view.sync_visibility()
+ route_overlay.open(kind)
+ update_route_card()
+
+func close_route_overlay():
+ if route_overlay==null or not route_overlay.visible:return
+ route_overlay.close()
+ transit_line_tool.cancel()
+ if mode in ["route_overlay","transit_line","freight_line"]:mode="select"
+ transit_view.underground=false
+ transit_view.sync_visibility()
+ update_route_card()
+
+func update_route_card():
+ var button:=drawer_box.get_node_or_null("Tool_transit_line") as Button
+ if button!=null:
+  button.add_theme_stylebox_override("normal",style(Color("152d3b"),Color("36b7ff") if route_overlay.visible else Color.TRANSPARENT))
+
+func cancel_route_overlay_action():
+ if transit_line_tool.kind!="":
+  transit_line_tool.cancel();mode="route_overlay";route_overlay.sync_creation()
+ else:close_route_overlay()
 
 func open_utility_settings(kind: String):
  if utility_popup.visible: utility_popup.hide()
