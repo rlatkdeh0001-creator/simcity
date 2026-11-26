@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+RENDERER_COMPARE_ACTIVE method=gl_compatibility driver=opengl3
+RENDERER_COMPARE_FIXTURE sha256=15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c target=24 asset=small-2x2-a cell=(37.0, 50.5)
+RENDERER_COMPARE_RESULT average_ms=4.12134603501545 p95_ms=4.908 frames=971
+RENDERER_COMPARE_PASS gl_compatibility

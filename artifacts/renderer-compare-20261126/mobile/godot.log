@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+Vulkan 1.4.329 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+RENDERER_COMPARE_ACTIVE method=mobile driver=vulkan
+RENDERER_COMPARE_FIXTURE sha256=15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c target=24 asset=small-2x2-a cell=(37.0, 50.5)
+RENDERER_COMPARE_RESULT average_ms=2.24042553191489 p95_ms=2.762 frames=1786
+RENDERER_COMPARE_PASS mobile
