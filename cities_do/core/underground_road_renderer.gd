@@ -18,6 +18,7 @@ const WALL_INSET:=.125 # retaining-wall-01 spec wall_thickness_m 0.5m: inner wid
 const BARRIER_WIDTH:=.1 # 0.4m barrier top band (cells).
 const FAR_RAISE_M:=4.0 # Clip outline far edge raise (ASSET_REQUEST 5절 6번).
 const RAIL_FAR_RAISE_M:=6.0 # E3b: rail trenches carry catenary (5.3m poles), so the far edge rises 6m.
+const RAIL_TRENCH_CAR_HIDE_BELOW_M:=-5.0
 const MOUTH_TOP_M:=-1.5 # tunnel-portal-01 spec mouth_top_below_ground_m.
 const WALL_SHADE:=[.775339076072665,1.05279764424266] # retaining-wall-01 spec.json face_shade +X/-Y.
 const PORTAL_SHADE:=[.77429849084644,1.05327280147779] # tunnel-portal-01 spec.json face_shade +X/-Y.
@@ -252,14 +253,15 @@ func place_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2):
    parent=trench if trench!=null else renderer.view.transit_view.metro_layer
    sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
  if sprite.get_parent()!=parent:sprite.reparent(parent,false)
-## E3b trains: in the open trench they move into its clip group and drop by the rail
-## depth; in the covered tunnel they draw like metro trains (underground view only).
+## E3b trains: each car follows its own rail depth. Deep open-trench cars do not
+## draw in either view; covered cars still draw in the underground view only.
 func place_train(sprite:Sprite2D,structure:Dictionary,point:Vector2):
  var height:=Height.height_at(structure,point)
  var parent:Node2D=renderer.actors
  if height< -Height.EPS:
   if Height.covered_at(height,Height.RAIL_PORTAL_M):parent=renderer.view.transit_view.metro_layer
   else:
+   if height<RAIL_TRENCH_CAR_HIDE_BELOW_M:sprite.hide()
    var trench:=trench_at(structure,point)
    if trench!=null:parent=trench
   sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
