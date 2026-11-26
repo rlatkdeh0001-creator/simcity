@@ -90,18 +90,20 @@ func insert_middle_stop(id:int,station:int):
 	var target:Vector2=overlay.stations[station]
 	for piece:Dictionary in overlay.paths:
 		if piece.id!=id or piece.index!=0:continue
-		var point:Vector2=piece.a.lerp(piece.b,.5)
-		var hit:Dictionary=overlay.pick(point)
-		if hit.get("id",-1)!=id or hit.get("stop",true) or point.distance_to(target)<=20:continue
-		if not root.get_visible_rect().has_point(point) or overlay.panel.get_global_rect().has_point(point):continue
-		var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point
-		root.push_input(motion,true);await process_frame
-		var down:=InputEventMouseButton.new();down.button_index=MOUSE_BUTTON_LEFT;down.pressed=true;down.position=point;down.global_position=point
-		root.push_input(down,true);await process_frame
-		motion=InputEventMouseMotion.new();motion.position=target;motion.global_position=target
-		root.push_input(motion,true);await process_frame
-		var up:=InputEventMouseButton.new();up.button_index=MOUSE_BUTTON_LEFT;up.position=target;up.global_position=target
-		root.push_input(up,true);await settle();return
+		# A joined A-C stroke can have its midpoint inside B's snap ring.
+		for fraction:float in [.5,.25,.75]:
+			var point:Vector2=piece.a.lerp(piece.b,fraction)
+			var hit:Dictionary=overlay.pick(point)
+			if hit.get("id",-1)!=id or hit.get("index",-1)!=0 or hit.get("stop",true) or point.distance_to(target)<=20:continue
+			if not root.get_visible_rect().has_point(point) or overlay.panel.get_global_rect().has_point(point):continue
+			var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point
+			root.push_input(motion,true);await process_frame
+			var down:=InputEventMouseButton.new();down.button_index=MOUSE_BUTTON_LEFT;down.pressed=true;down.position=point;down.global_position=point
+			root.push_input(down,true);await process_frame
+			motion=InputEventMouseMotion.new();motion.position=target;motion.global_position=target
+			root.push_input(motion,true);await process_frame
+			var up:=InputEventMouseButton.new();up.button_index=MOUSE_BUTTON_LEFT;up.position=target;up.global_position=target
+			root.push_input(up,true);await settle();return
 	check(false,"overlay exposes an owned insertion segment")
 ## Three real stations in a row (A-B-C) joined by ground track (the regen fixture).
 func row_city()->Dictionary:
