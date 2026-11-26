@@ -214,10 +214,10 @@ static func point_at(points:PackedVector2Array,distance:float)->Vector2:
  return points[-1]
 static func support_positions(road:Dictionary,distance:float)->Array[Vector2]:
  var point:=point_at(road.points,distance)
+ if float(road.width)*4<14:return [point]
  var direction:Vector2=(point_at(road.points,minf(length_cells(road.points),distance+.01))-point_at(road.points,maxf(0,distance-.01))).normalized()
  var half_offset:float=float(road.width)/4
- if float(road.width)*4>=14:return [point+direction.orthogonal()*half_offset,point-direction.orthogonal()*half_offset]
- return [point]
+ return [point+direction.orthogonal()*half_offset,point-direction.orthogonal()*half_offset]
 ## A shaft stops at the ground and at its own deck. Its half-width clearance
 ## is the same 2m used when placing a new shaft beside pavement.
 static func intersects_support(path:Dictionary,deck:Dictionary)->bool:
@@ -236,14 +236,41 @@ static func intersects_support(path:Dictionary,deck:Dictionary)->bool:
      h=lerpf(levels[i-1],levels[i],t)
     if not covered_at(h,portal) and h<float(pier.height_m)-EPS:return true
  return false
-static func support_clear(city,road:Dictionary,distance:float)->bool:
+static func path_bounds(points:PackedVector2Array)->Rect2:
+ var bounds:=Rect2(points[0],Vector2.ZERO)
+ for point in points:bounds=bounds.expand(point)
+ return bounds
+
+## A per-plan broad phase only. The full exact predicates, nearest-height
+## interpolation and candidate search order stay unchanged. Never retain
+## this across previews/edits or assume that unchanged counts mean unchanged paths.
+static func support_candidates(city,road:Dictionary)->Dictionary:
+ var half_offset:=float(road.width)/4 if float(road.width)*4>=14 else 0.0
+ var search:=path_bounds(road.points).grow(half_offset+EPS)
+ var roads:Array=[];var rails:Array=[]
+ for other:Dictionary in city.roads:
+  if other.points.size()<2:continue
+  var bounds:=path_bounds(other.points).grow(float(other.width)/2+.5+EPS)
+  if bounds.intersects(search):roads.append([other,bounds])
+ for route:Dictionary in city.transit_routes:
+  if route.kind!="rail" or int(route.id)==int(road.get("rail_route_id",-2)) or route.points.size()<2:continue
+  var bounds:=path_bounds(route.points).grow(1.75+EPS)
+  if bounds.intersects(search):rails.append([route,bounds])
+ return {"roads":roads,"rails":rails}
+
+static func support_clear(city,road:Dictionary,distance:float,candidates:Dictionary={})->bool:
  var height:=height_at(road,point_at(road.points,distance))
+ var prepared:=not candidates.is_empty()
  for point in support_positions(road,distance):
-  for other:Dictionary in city.roads:
+  for entry in candidates.roads if prepared else city.roads:
+   if prepared and not entry[1].has_point(point):continue
+   var other:Dictionary=entry[0] if prepared else entry
    if height_at(other,point)>=height-EPS:continue
    for i in range(1,other.points.size()):
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,other.points[i-1],other.points[i]))<float(other.width)/2+.5:return false
-  for route:Dictionary in city.transit_routes:
+  for entry in candidates.rails if prepared else city.transit_routes:
+   if prepared and not entry[1].has_point(point):continue
+   var route:Dictionary=entry[0] if prepared else entry
    if route.kind!="rail" or int(route.id)==int(road.get("rail_route_id",-2)):continue
    for i in range(1,route.points.size()):
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,route.points[i-1],route.points[i]))<1.75:return false
@@ -254,6 +281,7 @@ static func supports(city,road:Dictionary)->Dictionary:
  if heights.size()!=road.points.size():return {"ok":true,"piers":[],"reason":""}
  var first_boundary:=INF
  var piers:Array=[]
+ var candidates:Dictionary={}
  for i in range(1,heights.size()):
   var span:float=road.points[i-1].distance_to(road.points[i])
   var a:=heights[i-1];var b:=heights[i]
@@ -261,21 +289,22 @@ static func supports(city,road:Dictionary)->Dictionary:
    if first_boundary==INF:first_boundary=travelled if a>=5 else travelled+span*(5-a)/(b-a)
    if b<5 or i==heights.size()-1:
     var last_boundary:=travelled+span if b>=5 else travelled+span*(5-a)/(b-a)
-    var stations:=support_run(city,road,first_boundary,last_boundary)
+    if candidates.is_empty():candidates=support_candidates(city,road)
+    var stations:=support_run(city,road,first_boundary,last_boundary,candidates)
     if stations.is_empty():return {"ok":false,"piers":[],"reason":"교각을 세울 자리가 없습니다"}
     for d in stations:piers.append({"distance":d,"height_m":height_at(road,point_at(road.points,d)),"positions":support_positions(road,d)})
     first_boundary=INF
   travelled+=span
  return {"ok":true,"piers":piers,"reason":""}
-static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:float)->Array[float]:
+static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:float,obstacles:Dictionary={})->Array[float]:
  var stations:Array[float]=[];var candidates:Array[float]=[]
  # Quarter-cell search resolution is a reversible geometric placement default.
  var step:float=maxf(.01,float(config.support_search_step_m)/4)
- if support_clear(city,road,first_boundary):candidates.append(first_boundary)
+ if support_clear(city,road,first_boundary,obstacles):candidates.append(first_boundary)
  for i in range(floori(first_boundary/step)+1,ceili(last_boundary/step)):
   var d:=float(i)*step
-  if support_clear(city,road,d):candidates.append(d)
- if last_boundary>first_boundary and support_clear(city,road,last_boundary):candidates.append(last_boundary)
+  if support_clear(city,road,d,obstacles):candidates.append(d)
+ if last_boundary>first_boundary and support_clear(city,road,last_boundary,obstacles):candidates.append(last_boundary)
  if candidates.is_empty():return []
  if candidates[0]-first_boundary>12+EPS or last_boundary-candidates[-1]>12+EPS:
   return []
