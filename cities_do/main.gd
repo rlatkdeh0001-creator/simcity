@@ -35,6 +35,8 @@ var route_warning
 var transit_line_tool
 var mode := "select"
 var demolition_hover := {}
+const DEMOLITION_TINT := Color(1,.35,.20,.65)
+var metro_station_hover_layer: Node2D
 var demolition_press := {}
 var demolition_press_screen := Vector2.ZERO
 var demolition_dragged := false
@@ -121,6 +123,13 @@ func _ready():
 	world_renderer=preload("res://core/cached_world_renderer.gd").new()
 	add_child(world_renderer)
 	world_renderer.setup(self)
+	# The metro layer shares main's effective z, and otherwise covers main's station hover tint.
+	metro_station_hover_layer=Node2D.new()
+	metro_station_hover_layer.name="MetroStationHover"
+	metro_station_hover_layer.z_index=1
+	metro_station_hover_layer.hide()
+	add_child(metro_station_hover_layer)
+	metro_station_hover_layer.draw.connect(draw_metro_station_hover)
 
 func _build_controls(layer: CanvasLayer):
 	var panel := PanelContainer.new()
@@ -695,18 +704,20 @@ func demolition_target(position: Vector2) -> Dictionary:
 	# Review fix 1 (user rule 2026-11-19): the ground view (the bulldozer default) picks only ground
 	# objects and the underground view (PgDn) only underground ones. Trenches and portals are picked
 	# in both.
-	# Underground view (user rule 2026-11-19, ASSET_REQUEST_ELEVATED_TUNNEL_KO.md 8항): covered
-	# road/rail parts and metro where they are drawn (at depth), then metro stations on their
-	# platform silhouette, then trenches and portals. Buildings, public facilities, power, water and
-	# ground stations are never picked there: the underground view does not show them.
+	# Pick covered routes at their drawn depth, then station silhouettes, then trenches and portals.
+	# A station silhouette wins over an independent metro ribbon at the same click.
 	if transit_view!=null and transit_view.underground:
 		var buried:Dictionary=transit_view.pick_drawn(position,["covered"])
 		# A metro station's own platform track is part of the station, as a ground station's track is
 		# on the ground: it picks the station.
 		if buried.get("kind","")=="transit_route" and world_renderer!=null:
-			var owner_id:int=int(city.get_transit_route(buried.id).get("station_id",-1))
+			var route:Dictionary=city.get_transit_route(buried.id)
+			var owner_id:int=int(route.get("station_id",-1))
 			if world_renderer.metro_stations.has(owner_id):
 				return {"kind":"public_facility","id":owner_id,"polygon":metro_station_outline(world_renderer.metro_stations[owner_id].record)}
+			if owner_id==-1 and route.get("kind","")=="metro":
+				var silhouette:=pick_metro_station(position)
+				if not silhouette.is_empty():return silhouette
 		if not buried.is_empty():return buried
 		var station:Dictionary=pick_metro_station(position)
 		if not station.is_empty():return station
@@ -787,12 +798,17 @@ func draw_front_door(b: Dictionary):
 	if screen(middle).y<screen(center).y-.001:return
 	draw_colored_polygon(PackedVector2Array([left,right,right-lift,left-lift]),Color("293c46"))
 
+func draw_metro_station_hover() -> void:
+	if demolition_hover.has("polygon"):
+		metro_station_hover_layer.draw_colored_polygon(demolition_hover.polygon,DEMOLITION_TINT)
+
 func _draw():
 	# Only active interaction feedback is screen-space; static layers and actors are retained.
-	var b:Dictionary=city.find_building(selected)
-	if not b.is_empty():
-		var outline:=projected_footprint(b) if not building_visual(b).is_empty() else lifted_footprint(b,visual_lift(b))
-		outline.append(outline[0]);draw_polyline(outline,Color.WHITE,2)
+	if transit_view==null or not transit_view.underground:
+		var b:Dictionary=city.find_building(selected)
+		if not b.is_empty():
+			var outline:=projected_footprint(b) if not building_visual(b).is_empty() else lifted_footprint(b,visual_lift(b))
+			outline.append(outline[0]);draw_polyline(outline,Color.WHITE,2)
 	if zoning_drag:
 		var selection := zoning_selection()
 		if selection.size()>=3:
@@ -810,8 +826,14 @@ func _draw():
 
 	if road_drawer!=null:road_drawer.draw_preview()
 	if transit_view!=null:transit_view.draw_preview()
+	if metro_station_hover_layer!=null:
+		var station_hover:bool=mode=="demolish" and transit_view.underground and demolition_hover.get("kind","")=="public_facility"
+		metro_station_hover_layer.visible=station_hover
+		if station_hover:
+			metro_station_hover_layer.queue_redraw()
+			return
 	if mode=="demolish" and not demolition_hover.is_empty():
-		var tint := Color(1,.35,.20,.65)
+		var tint := DEMOLITION_TINT
 		if demolition_hover.has("polygons"):
 			for shape:PackedVector2Array in demolition_hover.polygons:draw_colored_polygon(shape,tint)
 		elif demolition_hover.has("polygon"):

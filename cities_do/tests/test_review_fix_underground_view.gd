@@ -6,15 +6,17 @@ extends SceneTree
 ## buildings, decks, stations, catenary and ground cars, power and water) and shows the underground
 ## layer, trenches and portals; the terrain stays, desaturated and not darker. The ground view returns
 ## everything, including a building built while the underground view was open.
-## Bulldozer: the underground view (PgDn) picks covered road/rail parts and metro, then metro stations
-## on their platform silhouette, then trenches and portals. Buildings, public facilities, power and
-## ground stations are never picked there.
+## Bulldozer: in the underground view (PgDn), an independent metro ribbon can be picked outside a
+## station silhouette, but inside the silhouette the station wins. Ground objects are not picked.
 ## Captures are explicit: --underground-capture=<png> and --ground-capture=<png> (native display).
+## Part 1 captures: --outline-ground-capture=<png>, --outline-underground-capture=<png>,
+## --station-overlap-capture=<png>.
 const City=preload("res://core/city_model.gd")
 var checks:=0
 var failures:=0
 var game
 var ids_of:={}
+var depth_car:Sprite2D
 func _initialize():run.call_deferred()
 func check(ok:bool,label:String):
  checks+=1
@@ -58,6 +60,8 @@ func click(position:Vector2):
   var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=pressed;event.position=position
   game._unhandled_input(event)
  for i in range(4):await process_frame
+ await publish_edit()
+func publish_edit():
  # The running simulation may queue the edit; a full development step publishes and replays it.
  var sim=game.city.simulation
  for i in range(20):
@@ -91,27 +95,41 @@ func fixture()->Dictionary:
   plant=c.add_power_plant(spot)
   if plant.ok:break
  built.append(plant)
- c.buildings.append({"id":901,"x":40,"y":44,"size":4,"level":3,"zone":"residential","asset_id":"mansion-a-4x4-4f"})
+ c.buildings.append({"id":901,"x":40,"y":44,"size":4,"level":3,"zone":"residential","asset_id":"mansion-a-4x4-4f","score":0.0})
  # A building standing over the covered road: the tunnel passes under it.
  c.buildings.append({"id":902,"x":60,"y":58,"size":4,"level":3,"zone":"residential","asset_id":"mansion-a-4x4-4f"})
  c.next_id=maxi(c.next_id,903)
- return {"city":c,"built":built}
+ var station:=lot_of(c,"subway-entrance-01")
+ var result:Dictionary={}
+ if not station.is_empty():
+  var center:=centre(station.polygon)
+  var across:=station_cross_direction(station)
+  # Author a saved-layout overlap: current construction rejects a ribbon crossing the existing lot.
+  # Both records use normal model APIs and silhouettes; this fixture does not relax construction.
+  var lot_index:int=c.public_facilities.lots.find(station)
+  c.public_facilities.lots.remove_at(lot_index)
+  result=c.add_transit_route(path([center-across*12,center+across*12]),"metro")
+  c.public_facilities.lots.insert(lot_index,station)
+ return {"city":c,"built":built,"crossing":result}
 func run():
  Engine.max_fps=30
  root.size=Vector2i(1920,1080)
  var made:Dictionary=fixture();var c=made.city;var built:Array=made.built
  check(built.all(func(r):return r.get("ok",false)),"fixture: ground road, ground station, bus stop, metro station, ground rail, road tunnel, E1 deck, metro, power plant: "+str(built.map(func(r):return r.get("reason",""))))
+ check(made.crossing.get("ok",false),"fixture: independent metro crosses the station silhouette: %s"%made.crossing.get("reason",""))
+ if not built.all(func(r):return r.get("ok",false)) or not made.crossing.get("ok",false):
+  finish();return
  game=load("res://main.tscn").instantiate();game.city=c;root.add_child(game);current_scene=game
  await settle()
  game.map_zoom=.55;game.origin=Vector2(960,500)-game.world_renderer.iso(Vector2(52,55))*game.map_zoom
  game.refresh();await settle()
- if not built.all(func(r):return r.get("ok",false)):
-  finish();return
  ids_of={"tunnel":road_at(c,Vector2(70,60)),"deck":road_at(c,Vector2(70,76)),"road":road_at(c,Vector2(50,40)),
-  "metro":int(built[8].route.id),"rail":int(built[5].route.id),"station":int(lot_of(c,"train-station-01").id),
+  "metro":int(built[8].route.id),"crossing":int(made.crossing.route.id),"rail":int(built[5].route.id),"station":int(lot_of(c,"train-station-01").id),
   "bus_stop":int(lot_of(c,"bus-stop-01").id),"subway":int(lot_of(c,"subway-entrance-01").id),"plant":int(built[-1].id)}
  await display(c)
+ if DisplayServer.get_name()!="headless":await selected_outline(c)
  await bulldozer(c)
+ if DisplayServer.get_name()!="headless":await trench_occlusion(c)
  finish()
 ## WCAG relative luminance and contrast ratio.
 func luminance(colour:Color)->float:
@@ -124,12 +142,62 @@ func capture_arg(name:String)->String:
  for arg:String in OS.get_cmdline_user_args():
   if arg.begins_with("--%s="%name):return arg.trim_prefix("--%s="%name)
  return ""
-func save_capture(path:String,label:String)->Image:
+func framebuffer()->Image:
+ await RenderingServer.frame_post_draw
+ return root.get_texture().get_image()
+func move_pointer(position:Vector2):
+ var event:=InputEventMouseMotion.new();event.position=position;root.push_input(event,true)
+ await settle()
+func viewport_click(position:Vector2):
+ await move_pointer(position)
+ for pressed in [true,false]:
+  var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=pressed;event.position=position
+  root.push_input(event,true)
+  await settle()
+func white_added(before:Image,after:Image,area:Rect2i)->int:
+ var count:=0
+ for y in range(area.position.y,area.end.y):
+  for x in range(area.position.x,area.end.x):
+   if after.get_pixel(x,y).is_equal_approx(Color.WHITE) and not before.get_pixel(x,y).is_equal_approx(Color.WHITE):count+=1
+ return count
+func selected_outline(c):
+ var old_zoom:float=game.map_zoom;var old_origin:Vector2=game.origin
+ game.map_zoom=1.0
+ game.origin=Vector2(960,470)-game.world_renderer.iso(Vector2(47,50))*game.map_zoom
+ game.mode="select";game.refresh();await settle()
+ var building:Dictionary=c.find_building(901)
+ var area:=Rect2i(Rect2(game.screen(Vector2(42,46))-Vector2(45,75),Vector2(90,110)))
+ var baseline:Image=await framebuffer()
+ # Click the actual rendered sprite (not the ground footprint behind its transparent pixels).
+ var visual:Dictionary=game.building_visual(building)
+ var target:Vector2=visual.rect.get_center() if not visual.is_empty() else game.screen(Vector2(42,46))-Vector2(0,game.visual_lift(building)*game.map_zoom)
+ await viewport_click(target)
+ check(game.selected==901,"native map click selects the building")
+ await viewport_click(game.bulldozer.get_global_rect().get_center())
+ await move_pointer(Vector2(1830,140))
+ check(game.mode=="demolish" and game.selected==901,"bulldozer preserves the selected building above ground")
+ var selected_ground:Image=await framebuffer()
+ var outline_pixels:=white_added(baseline,selected_ground,area)
+ check(outline_pixels>20,"selected building shows a white contour above ground (%d pixels)"%outline_pixels)
+ await key(KEY_PAGEDOWN)
+ check(game.transit_view.underground and game.selected==901,"PgDn preserves the selected building ID")
+ var selected_below:Image=await framebuffer()
+ await save_capture(capture_arg("outline-underground-capture"),"selected building: underground view",selected_below)
+ game.selected=-1;game.queue_redraw();await settle()
+ var unselected_below:Image=await framebuffer()
+ check(selected_below.get_region(area).get_data()==unselected_below.get_region(area).get_data(),"the selected building leaves no contour pixels underground")
+ game.selected=901;game.queue_redraw();await settle()
+ await key(KEY_PAGEUP)
+ var restored_ground:Image=await framebuffer()
+ check(game.selected==901 and restored_ground.get_region(area).get_data()==selected_ground.get_region(area).get_data(),"PgUp restores the identical selected-building contour")
+ await save_capture(capture_arg("outline-ground-capture"),"selected building: restored ground view",restored_ground)
+ game.map_zoom=old_zoom;game.origin=old_origin
+ game.selected=-1;game.refresh();await settle()
+func save_capture(path:String,label:String,image:Image=null)->Image:
  if path.is_empty():return null
  if DisplayServer.get_name()=="headless" or FileAccess.file_exists(path):
   check(false,"native capture requires a real display and a new destination: "+path);return null
- await RenderingServer.frame_post_draw
- var image:=root.get_texture().get_image()
+ if image==null:image=await framebuffer()
  check(image.get_size()==Vector2i(1920,1080),label+" capture is 1920x1080")
  check(image.save_png(path)==OK,label+" capture saved")
  print("UNDERGROUND_CAPTURE ",path," display=",DisplayServer.get_name())
@@ -234,6 +302,7 @@ func display(c):
  game.traffic.simulation.paused=true;await settle()
  check(cars.size()==2,"a car on the ground road and one in the covered part: %s"%str(cars))
  var covered=game.world_renderer.cars.get(cars.get("covered",-1));var ground_car=game.world_renderer.cars.get(cars.get("ground",-1))
+ depth_car=ground_car
  before=ground_baseline("bulldozer")
  check(ground_car!=null and ground_car.is_visible_in_tree() and covered!=null and not covered.is_visible_in_tree(),"ground view: the ground car shows, the car under cover does not")
  # Park the pointer off the map so no hover tint covers the subject.
@@ -298,17 +367,106 @@ func bulldozer(c):
   ["the covered road where it is drawn (-10m) picks the road tunnel",Vector2(80,60.3),-10.0,"road",ids_of.tunnel],
   ["under the building, the covered road where it is drawn (-10m) picks the road tunnel",Vector2(62,60.3),-10.0,"road",ids_of.tunnel],
   ["metro where it is drawn (-12.7m) picks the metro",Vector2(70,50.3),-12.7,"transit_route",ids_of.metro],
-  ["the metro station silhouette where it is drawn (-12.7m) picks the metro station",subway,-12.7,"public_facility",ids_of.subway],
   ["a corner of the metro station silhouette picks the metro station",corner,-12.7,"public_facility",ids_of.subway],
   ["the trench picks the road tunnel",Vector2(20,60.3),0.0,"road",ids_of.tunnel]])
  var buildings:int=c.buildings.size();var lots:int=c.public_facilities.lots.size();var plants:int=c.power.plants.size()
  for spot:Vector2 in [Vector2(42,46),Vector2(62,60),station,stop,plant]:await click(game.screen(spot))
  check(c.buildings.size()==buildings and c.public_facilities.lots.size()==lots and c.power.plants.size()==plants,"underground view: clicking buildings, the ground station, the bus stop and the power plant removes nothing: %d/%d %d/%d %d/%d %s"%[c.buildings.size(),buildings,c.public_facilities.lots.size(),lots,c.power.plants.size(),plants,game.message])
- await click(drawn(subway,-12.7))
- check(lot_of(c,"subway-entrance-01").is_empty() and c.public_facilities.lots.size()==lots-1 and c.buildings.size()==buildings and c.transit_routes.any(func(r):return int(r.id)==ids_of.metro),"underground view: clicking the metro station silhouette removes the metro station only: %s"%game.message)
+ await station_overlap(c,buildings,lots)
  await key(KEY_PAGEUP)
  check(game.mode=="demolish" and not game.transit_view.underground,"PgUp returns the bulldozer to the ground view")
  expect("ground after PgUp",[["a building",Vector2(42,46),0.0,"building",901]])
+func station_cross_direction(station:Dictionary)->Vector2:
+ var platform:PackedVector2Array=station.internal_points
+ return platform[0].direction_to(platform[-1]).orthogonal()
+func station_overlap(c,buildings:int,lots:int):
+ var station:=lot_of(c,"subway-entrance-01")
+ var center:=centre(station.polygon)
+ var id:int=ids_of.crossing
+ # Tighten framing around the intersection without altering its world coordinates or projection.
+ game.map_zoom=1.2
+ game.origin=Vector2(960,430)-game.transit_view.project_point(center,-12.7)*game.map_zoom
+ game.refresh();await settle()
+ var inside:=drawn(center,-12.7)
+ var outside:=drawn(center+station_cross_direction(station)*9,-12.7)
+ check(is_target(game.transit_view.pick_drawn(inside,["covered"]),"transit_route",id),"the independent metro ribbon really lies under the station hit")
+ await move_pointer(outside)
+ check(is_target(game.demolition_hover,"transit_route",id),"hover outside the silhouette picks the independent metro ribbon")
+ var unhovered:Image
+ var native:=DisplayServer.get_name()!="headless"
+ if native:
+  var platform:Sprite2D=game.world_renderer.metro_stations.get(ids_of.subway)
+  check(platform!=null and platform.is_visible_in_tree() and platform.texture!=null,"the real station silhouette texture is visible at the overlap")
+  await move_pointer(Vector2(1830,140))
+  unhovered=await framebuffer()
+ await move_pointer(inside)
+ check(is_target(game.demolition_hover,"public_facility",ids_of.subway),"hover at the overlap highlights the station, not the independent ribbon")
+ if native:
+  var hovered:Image=await framebuffer()
+  var plain:=unhovered.get_pixelv(Vector2i(inside));var tint:=hovered.get_pixelv(Vector2i(inside))
+  var outside_before:=unhovered.get_pixelv(Vector2i(outside));var outside_after:=hovered.get_pixelv(Vector2i(outside))
+  check(tint.r>plain.r+.15 and outside_before==outside_after,"framebuffer tints the overlap but not the rest of the independent ribbon (inside %s → %s; outside %s → %s)"%[plain.to_html(false),tint.to_html(false),outside_before.to_html(false),outside_after.to_html(false)])
+  await save_capture(capture_arg("station-overlap-capture"),"station hover over an independent metro ribbon",hovered)
+ await viewport_click(inside)
+ await publish_edit()
+ check(lot_of(c,"subway-entrance-01").is_empty() and c.public_facilities.lots.size()==lots-1 and c.buildings.size()==buildings,"click inside the overlap removes only the station lot")
+ check(not c.get_transit_route(id).is_empty() and not c.get_transit_route(ids_of.metro).is_empty() and c.get_transit_route(int(station.internal_route_id)).is_empty(),"the station's own platform is removed but both independent routes remain")
+ game.map_zoom=.55;game.origin=Vector2(960,500)-game.world_renderer.iso(Vector2(52,55))*game.map_zoom
+ game.refresh();await settle()
+## Native depth oracle: compare the production nested groups to the original flat y-sort on the
+## same framebuffer. Confirm both directions actually overlap with two isolated visibility masks.
+func trench_occlusion(c):
+ var r=game.world_renderer
+ c.buildings.append({"id":904,"x":25,"y":61.6,"size":4,"level":3,"zone":"residential","asset_id":"mansion-a-4x4-4f","score":0.0})
+ game.map_zoom=2.0
+ game.origin=Vector2(960,500)-r.iso(Vector2(26,61.5))*game.map_zoom
+ await move_pointer(Vector2(1830,140));game.refresh();await settle()
+ var building:CanvasItem=r.buildings.get(904)
+ check(building!=null and building.is_visible_in_tree() and depth_car!=null and depth_car.texture!=null,"occlusion fixture uses the retained mansion and traffic sedan")
+ if building==null or depth_car==null or depth_car.texture==null:return
+ # Pose the production ground-traffic sprite at a tightly framed overlap. Freeze auto placement
+ # and culling for the visibility passes, without changing its offset, scale, texture or shader.
+ r.set_process(false)
+ var group:Node2D=r.trench_actors
+ var barriers:=group.get_children()
+ var car_cell:=Vector2(20.0,61.2)
+ depth_car.position=r.iso(car_cell);depth_car.show()
+ var building_area:=Rect2i(Rect2(game.screen(Vector2(26,61.5))-Vector2(80,55),Vector2(160,115)))
+ var car_area:=Rect2i(Rect2(game.screen(car_cell)-Vector2(25,25),Vector2(50,50)))
+ var nested:Image=await framebuffer()
+ for barrier in barriers:barrier.reparent(r.actors,false)
+ var flat:Image=await framebuffer()
+ for barrier in barriers:barrier.reparent(group,false)
+ group.hide()
+ var actor_only:Image=await framebuffer()
+ building.hide();depth_car.hide()
+ var neither:Image=await framebuffer()
+ group.show()
+ var barrier_only:Image=await framebuffer()
+ building.show();depth_car.show()
+ # Known-bad orders are negative controls: each must fail the same overlap comparison.
+ group.z_index=1
+ var barrier_front:Image=await framebuffer()
+ group.z_index=-1
+ var barrier_back:Image=await framebuffer()
+ group.z_index=0;depth_car.hide();r.set_process(true)
+ check_overlap("foreground building",building_area,nested,flat,actor_only,barrier_only,neither,actor_only,barrier_front)
+ check_overlap("foreground trench barrier over ground car",car_area,nested,flat,actor_only,barrier_only,neither,barrier_only,barrier_back)
+func check_overlap(label:String,area:Rect2i,nested:Image,flat:Image,actor_only:Image,barrier_only:Image,neither:Image,winner:Image,bad:Image):
+ var overlap:=0;var matched:=0;var flat_mismatch:=0;var bad_mismatch:=0
+ for y in range(area.position.y,area.end.y):
+  for x in range(area.position.x,area.end.x):
+   var empty:=neither.get_pixel(x,y)
+   var actor:=actor_only.get_pixel(x,y);var barrier:=barrier_only.get_pixel(x,y)
+   if actor==empty or barrier==empty or actor==barrier:continue
+   overlap+=1
+   var actual:=nested.get_pixel(x,y)
+   if actual==winner.get_pixel(x,y):matched+=1
+   if actual!=flat.get_pixel(x,y):flat_mismatch+=1
+   if actual!=bad.get_pixel(x,y):bad_mismatch+=1
+ check(overlap>=10 and matched>=10,"%s has real overlap pixels in the correct foreground (match %d/%d)"%[label,matched,overlap])
+ check(overlap>=10 and flat_mismatch==0,"%s: nested y-sort matches flat y-sort on all %d overlap pixels (mismatches %d)"%[label,overlap,flat_mismatch])
+ check(bad_mismatch>=10,"%s: forced reverse draw order changes %d overlap pixels"%[label,bad_mismatch])
 func finish():
  if game!=null and game.city!=null and game.city.simulation!=null:game.city.simulation.shutdown()
  print("UNDERGROUND_VIEW checks=%d failed=%d"%[checks,failures]);quit(1 if failures else 0)
