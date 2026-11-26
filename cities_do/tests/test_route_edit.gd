@@ -263,6 +263,8 @@ func review_fixture(which:String):
 
 func check_review_bus():
  var lines:Array=game.city.transit_lines
+ var original_lines:=lines.duplicate(true)
+ var original_roads:Array=game.city.roads.duplicate(true)
  var network=overlay.bus_network
  var opposed_stretch:=true
  for line:Dictionary in lines:
@@ -281,18 +283,169 @@ func check_review_bus():
  var list_rect:Rect2=overlay.panel.get_global_rect().grow(8)
  check(overlay.paths.all(func(p):return map_rect.has_point(p.a) and map_rect.has_point(p.b) and not list_rect.has_point(p.a) and not list_rect.has_point(p.b)),"bus review frames the entire route clear of the HUD")
  var normal:Vector2=(overlay.project(Vector3(1,50,0))-overlay.project(Vector3(0,50,0))).normalized().orthogonal()
+ var road:Dictionary=game.city.roads[-1]
+ var half:float=game.city.RoadProfile.asphalt_width(road)/2
+ var edge:Vector2=overlay.project(Vector3(0,50+half,0))-overlay.project(Vector3(0,50,0))
+ var half_width:=absf(edge.dot(normal))
  for x in [30.0,43.0,57.0,71.0]:
   var center:Vector2=overlay.project(Vector3(x,50,0))
   var offsets:Array=[[],[]]
   var owns:=true
-  for p:Dictionary in overlay.paths:
-   var hit:Variant=Geometry2D.segment_intersects_segment(p.a,p.b,center-normal*64,center+normal*64)
+  var fits:=true
+  for p:Dictionary in overlay.stroke_primitives:
+   var hit:Variant=Geometry2D.segment_intersects_segment(p.a,p.b,center-normal*55,center+normal*55)
    if hit==null:continue
    var picked:Dictionary=overlay.pick(hit)
+   var offset:float=(hit-center).dot(normal)
    owns=owns and picked.get("id",-1)==p.id and picked.get("index",-1)==p.index
-   offsets[0 if p.id==lines[0].id else 1].append((hit-center).dot(normal))
+   fits=fits and absf(offset)+p.get("width",4.0)/2<=half_width+.05
+   offsets[0 if p.id==lines[0].id else 1].append(offset)
   for pair:Array in offsets:pair.sort()
-  check(offsets[0].size()==2 and offsets[1].size()==2 and absf(offsets[0][1]-offsets[0][0]-12)<.5 and absf(offsets[1][1]-offsets[1][0]-12)<.5 and absf(offsets[1][0]-offsets[0][0])>=20 and owns,"four actual owned bus lanes on shared road at x=%s: %s"%[x,offsets])
+  check(offsets[0].size()==2 and offsets[1].size()==2 and offsets[0][0]<0 and offsets[0][1]>0 and offsets[1][0]<0 and offsets[1][1]>0 and owns and fits,"four unique owned bus lanes inside asphalt at x=%s: %s"%[x,offsets])
+ check_bus_junctions(lines)
+ check_bus_stop_alignment(lines)
+ check_bus_repeat_coverage(lines)
+ check_bus_pavement()
+ check_bus_narrow_bundle(lines)
+ check(game.city.transit_lines==original_lines and game.city.roads==original_roads,"display fitting does not modify authoritative lines or roads")
+
+func check_bus_junctions(lines:Array):
+ var junctions:Array=[overlay.project(Vector3(10,50,0)),overlay.project(Vector3(90,50,0))]
+ for center:Vector2 in junctions:
+  var smooth:=true
+  var joins:=0
+  for line:Dictionary in lines:
+   var pieces:Array=overlay.stroke_primitives.filter(func(piece):return piece.id==line.id)
+   for a:Dictionary in pieces:
+    if a.b.distance_to(center)>45:continue
+    for b:Dictionary in pieces:
+     if a.b.distance_to(b.a)>.01:continue
+     joins+=1
+     var incoming:Vector2=(a.b-a.a).normalized()
+     var outgoing:Vector2=(b.b-b.a).normalized()
+     smooth=smooth and incoming.dot(outgoing)>.5
+  check(joins>=6 and smooth,"T junction has smooth displayed joins without reversals at %s"%center)
+  var turns:Array=[]
+  for p:Dictionary in overlay.stroke_primitives:
+   if p.get("section",0)>=0 or p.a.distance_to(center)>45:continue
+   if turns.is_empty() or turns[-1][-1].id!=p.id or turns[-1][-1].b.distance_to(p.a)>.01:turns.append([])
+   turns[-1].append(p)
+  var clean_crossings:=turns.size()>=4
+  for i in range(turns.size()):
+   for j in range(i):
+    var crossings:=0
+    for a:Dictionary in turns[i]:
+     for b:Dictionary in turns[j]:
+      var hit:Variant=Geometry2D.segment_intersects_segment(a.a,a.b,b.a,b.b)
+      if hit!=null and hit.distance_to(turns[i][0].a)>.02 and hit.distance_to(turns[i][-1].b)>.02 and hit.distance_to(turns[j][0].a)>.02 and hit.distance_to(turns[j][-1].b)>.02:
+       crossings+=1
+    clean_crossings=clean_crossings and crossings<=1
+  check(clean_crossings,"each pair of directed movements crosses at most once inside T junction %s"%center)
+  check(overlay.arrow_primitives.all(func(arrow):return arrow.points[1].distance_to(center)>=10),"no arrow tips crowd the T-junction center at %s"%center)
+ var clearance:=INF
+ var correct_size:=true
+ for i in range(overlay.arrow_primitives.size()):
+  var a:PackedVector2Array=overlay.arrow_primitives[i].points
+  correct_size=correct_size and absf(a[1].distance_to((a[0]+a[2])/2)-8)<.05
+  for j in range(i):
+   var b:PackedVector2Array=overlay.arrow_primitives[j].points
+   clearance=minf(clearance,a[1].distance_to(b[1]))
+ check(overlay.arrow_primitives.size()>20 and clearance>=8 and correct_size,"8px bus arrows are separated across the drawn bundle (nearest %.2fpx)"%clearance)
+
+func check_bus_stop_alignment(lines:Array):
+ var network=overlay.bus_network
+ var aligned:=true
+ var ownership:=true
+ var ring_fits:=true
+ for line:Dictionary in lines:
+  var plan:Dictionary=network.line_plan(line.stops)
+  for i in range(plan.stops.size()):
+   var stop:Dictionary=plan.stops[i]
+   var lane:Dictionary=network.lanes[stop.lane]
+   var road:Dictionary=game.city.roads[lane.road]
+   var start:Vector2=road.points[0]
+   var end:Vector2=road.points[-1]
+   var direction:Vector2=(overlay.project(Vector3(end.x,end.y,0))-overlay.project(Vector3(start.x,start.y,0))).normalized()*lane.direction
+   var point:=dot(line.id,i)
+   var distance:=INF
+   for piece:Dictionary in overlay.stroke_primitives:
+    if piece.id!=line.id or (piece.b-piece.a).normalized().dot(direction)<.99:continue
+    distance=minf(distance,point.distance_to(Geometry2D.get_closest_point_to_segment(point,piece.a,piece.b)))
+   aligned=aligned and distance<=.1
+   var picked:Dictionary=overlay.pick(point)
+   ownership=ownership and picked.get("stop",false) and picked.get("id",-1)==line.id and picked.get("index",-1)==i and overlay.station_at(point)==stop.id
+   ring_fits=ring_fits and point.distance_to(overlay.stations[stop.id])+6<=overlay.station_radii.get(stop.id,8)+.01
+ check(aligned,"every bus stop dot is on its own line's served direction")
+ check(ownership,"each bus dot picks its own route and stop and resolves its shared station")
+ check(ring_fits and overlay.station_radii.get(lines[0].stops[0],8)>8,"one white ring encloses the distinct shared stop dots")
+
+func check_bus_repeat_coverage(lines:Array):
+ var repeat:=false
+ var coincident:=false
+ for line:Dictionary in lines:
+  var plan:Dictionary=overlay.bus_network.line_plan(line.stops)
+  var seen:Dictionary={}
+  for id in plan.route:
+   repeat=repeat or seen.has(id)
+   seen[id]=true
+  var pieces:Array=overlay.stroke_primitives.filter(func(p):return p.id==line.id)
+  for i in range(pieces.size()):
+   var a:Dictionary=pieces[i]
+   var span:Vector2=a.b-a.a
+   var axis:=span.normalized()
+   for j in range(i):
+    var b:Dictionary=pieces[j]
+    var from:Vector2=b.a-a.a;var to:Vector2=b.b-a.a
+    if absf(from.cross(axis))>.02 or absf(to.cross(axis))>.02:continue
+    coincident=coincident or minf(span.length(),to.dot(axis))-maxf(0.0,from.dot(axis))>.1
+ check(repeat and not coincident,"fixture revisits a directed lane but emits no same-line same-direction overlap")
+
+func check_bus_narrow_bundle(lines:Array):
+ var before:float=game.map_zoom
+ for zoom:float in [.25,.15]:
+  game.map_zoom=zoom
+  overlay.project_paths()
+  var center:Vector2=overlay.project(Vector3(57,50,0))
+  var normal:Vector2=(overlay.project(Vector3(58,50,0))-center).normalized().orthogonal()
+  var half:float=game.city.RoadProfile.asphalt_width(game.city.roads[-1])/2
+  var edge:Vector2=overlay.project(Vector3(57,50+half,0))-center
+  var count:=0
+  var fits:=true
+  for p:Dictionary in overlay.stroke_primitives:
+   if p.id not in [lines[0].id,lines[1].id]:continue
+   var hit:Variant=Geometry2D.segment_intersects_segment(p.a,p.b,center-normal*20,center+normal*20)
+   if hit==null:continue
+   count+=1
+   var width:float=p.get("width",4.0)
+   fits=fits and width>=2 and absf((hit-center).dot(normal))+width/2<=absf(edge.dot(normal))+.05
+  check(count==4 and fits,"zoom %.2f fits four road strokes without shrinking below half width"%zoom)
+ game.map_zoom=before
+ overlay.project_paths()
+
+func check_bus_pavement():
+ var geometry=preload("res://core/road_geometry.gd")
+ var surfaces:Array[PackedVector2Array]=[]
+ for road:Dictionary in game.city.roads:
+  surfaces.append_array(geometry.ribbons(road.points,game.city.RoadProfile.asphalt_width(road)))
+ for junction:Dictionary in overlay.bus_network.junctions:surfaces.append(junction.asphalt)
+ var screen:Array[PackedVector2Array]=[]
+ for polygon:PackedVector2Array in surfaces:
+  var projected:=PackedVector2Array()
+  for p:Vector2 in polygon:projected.append(overlay.project(Vector3(p.x,p.y,0)))
+  screen.append(projected)
+ var misses:=0
+ for piece:Dictionary in overlay.stroke_primitives:
+  var side:Vector2=(piece.b-piece.a).normalized().orthogonal()*piece.get("width",4.0)/2
+  for t:float in [0,.25,.5,.75,1]:
+   var p:Vector2=piece.a.lerp(piece.b,t)
+   for q:Vector2 in [p-side,p+side]:
+    if not screen.any(func(polygon):return Geometry2D.is_point_in_polygon(q,polygon)):misses+=1
+ check(misses==0,"stroke edges fit the actual asphalt polygons, including the junction turns (%d outside)"%misses)
+ var wing_misses:=0
+ for arrow:Dictionary in overlay.arrow_primitives:
+  for q:Vector2 in arrow.points:
+   if not screen.any(func(polygon):return Geometry2D.is_point_in_polygon(q,polygon)):wing_misses+=1
+ check(wing_misses==0,"bus arrowheads stay on the rendered asphalt (%d vertices outside)"%wing_misses)
 
 func capture_review(which:String,directory:String):
  if which=="tray":

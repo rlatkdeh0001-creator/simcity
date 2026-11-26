@@ -14,6 +14,9 @@ const DIRECTION_OFFSET:=6.0
 const CORRIDOR_SPACING:=24.0
 const CORRIDOR_EPSILON:=.0001
 const ARROW_SPACING:=34.0
+const BUS_ARROW_SPACING:=30.0
+const BUS_ARROW_LENGTH:=8.0
+const STROKE_WIDTH:=4.0
 var game
 var panel:PanelContainer
 var scroll:ScrollContainer
@@ -33,6 +36,9 @@ var arrow_primitives:Array=[]
 var world_paths:Array=[]
 var hosts:Dictionary={}
 var bus_network
+var bus_stops:Dictionary={}
+var station_radii:Dictionary={}
+var bus_junction_centers:Array[Vector2]=[]
 var creation_paths:Array=[]
 var dots:Array=[]
 var dragged:Dictionary={}
@@ -90,6 +96,7 @@ func close():
  stations.clear();station_world.clear();paths.clear();stroke_primitives.clear();arrow_primitives.clear()
  world_paths.clear();lines.clear();colors.clear();dots.clear()
  hosts.clear();bus_network=null;creation_paths.clear()
+ bus_stops.clear();station_radii.clear();bus_junction_centers.clear()
  cancel_drag()
  clear_children(rows);clear_children(actions);create_buttons.clear()
 
@@ -125,7 +132,7 @@ func synchronize():
   if not colors.has(id):colors[id]=next_color()
  var rebuild_list:bool=lines.map(func(line):return line.id)!=ids or create_buttons.is_empty()
  lines=next_lines.duplicate(true)
- station_world.clear();world_paths.clear()
+ station_world.clear();world_paths.clear();bus_stops.clear()
  hosts.clear()
  for route:Dictionary in city.transit_routes:hosts[route.id]=route
  for lot:Dictionary in city.public_facilities.lots:
@@ -139,7 +146,7 @@ func synchronize():
   station_world[lot.id]=Vector3(p.x,p.y,height)
  bus_network=null
  if mode=="bus":bus_network=Bus.new();bus_network.build_city(city)
- for line:Dictionary in lines:world_paths.append_array(plan_paths(line,bus_network,hosts))
+ for line:Dictionary in lines:world_paths.append_array(plan_paths(line,bus_network,hosts,bus_stops))
  if rebuild_list:build_list()
  else:sync_creation()
  camera_key=null
@@ -150,12 +157,13 @@ func next_color()->Color:
   if color not in colors.values():return color
  return COLORS[colors.size()%COLORS.size()]
 
-func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
+func plan_paths(line:Dictionary,network,rails:Dictionary,stop_anchors:Variant=null)->Array:
  var result:Array=[]
  if line.kind=="bus":
   var plan:Dictionary=network.line_plan(line.stops)
   if not plan.ok:return result
   var stop_index:=0
+  var before_first_stop:Array=[]
   for i in range(plan.route.size()):
    var lane:Dictionary=network.lanes[plan.route[i]]
    var points:PackedVector2Array=network.points_of(lane)
@@ -167,9 +175,16 @@ func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
    var cursor:=0.0
    while stop_index<plan.stops.size() and plan.stops[stop_index].route_index==i:
     var stop:Dictionary=plan.stops[stop_index]
-    add_bus_piece(result,line,(stop_index-1+line.stops.size())%line.stops.size(),points,road,cursor,float(stop.progress))
+    var target:Array=before_first_stop if stop_index==0 else result
+    add_bus_piece(target,line,posmod(stop_index-1,line.stops.size()),points,road,lane,cursor,float(stop.progress))
+    if stop_anchors!=null:
+     var p:=on_center(network.sample(lane.id,stop.progress)/4,road)
+     if not stop_anchors.has(stop.id):stop_anchors[stop.id]=[]
+     stop_anchors[stop.id].append({"id":line.id,"index":stop_index,"p":world_point(p,road,"bus"),"section":lane.section,"direction":lane.direction})
     cursor=float(stop.progress);stop_index+=1
-   add_bus_piece(result,line,stop_index-1,points,road,cursor,float(lane.length))
+   add_bus_piece(result,line,stop_index-1,points,road,lane,cursor,float(lane.length))
+  # First traversal from the first stop owns any repeated visible interval.
+  result.append_array(before_first_stop)
  else:
   var plan:=Rail.new().rail_plan(game.city,line)
   if not plan.ok:return result
@@ -190,13 +205,13 @@ func plan_paths(line:Dictionary,network,rails:Dictionary)->Array:
     add_piece(result,line,stop_index,world_point(a,route,line.kind),world_point(b,route,line.kind),i,not plan.get("turnback",false))
  return result
 
-func add_bus_piece(result:Array,line:Dictionary,index:int,points:PackedVector2Array,road:Dictionary,first:float,last:float):
+func add_bus_piece(result:Array,line:Dictionary,index:int,points:PackedVector2Array,road:Dictionary,lane:Dictionary,first:float,last:float):
  if last-first<.001:return
  var sliced:=Paths.slice(points,first,last)
  var a:=world_point(on_center(sliced[0]/4,road),road,"bus")
  for i in range(1,sliced.size()):
   var b:=world_point(on_center(sliced[i]/4,road),road,"bus")
-  add_piece(result,line,index,a,b,0,true)
+  add_piece(result,line,index,a,b,0,true,{"road":lane.road,"section":lane.section,"direction":lane.direction})
   a=b
 
 func add_bus_turn(result:Array,line:Dictionary,index:int,lane:Dictionary,network):
@@ -206,15 +221,8 @@ func add_bus_turn(result:Array,line:Dictionary,index:int,lane:Dictionary,network
  var to:Dictionary=game.city.roads[outgoing.road]
  var a:=world_point(on_center(lane.start/4,from),from,"bus")
  var b:=world_point(on_center(lane.end/4,to),to,"bus")
- # Reciprocal turns use the same center curve, through the planned connection's
- # node. Do not use the physical lane/pocket offsets as another UI lane offset.
- var node:=world_point(incoming.end/4,from,"bus")
- var previous:=a
- for i in range(1,9):
-  var t:=i/8.0
-  var p:=a.lerp(node,t).lerp(node.lerp(b,t),t)
-  add_piece(result,line,index,previous,p,0,true)
-  previous=p
+ result.append({"id":line.id,"index":index,"a":a,"b":b,"road":-1,
+  "movement":Vector4i(incoming.section,incoming.direction,outgoing.section,outgoing.direction)})
 
 func on_center(p:Vector2,host:Dictionary)->Vector2:
  if host.is_empty():return p
@@ -226,27 +234,30 @@ func on_center(p:Vector2,host:Dictionary)->Vector2:
   if distance<best:best=distance;result=nearest
  return result
 
-func add_piece(result:Array,line:Dictionary,index:int,a:Vector3,b:Vector3,run:int,closed:bool):
+func add_piece(result:Array,line:Dictionary,index:int,a:Vector3,b:Vector3,run:int,closed:bool,display:Dictionary={}):
  if a.distance_to(b)<=CORRIDOR_EPSILON:return
  # Merge densely baked straight samples, without losing a stop boundary or a turn.
  if not result.is_empty():
   var previous:Dictionary=result[-1]
   var span:Vector3=previous.b-previous.a
   var next:=b-a
-  if previous.run==run and previous.index==index and a.distance_to(previous.b)<=CORRIDOR_EPSILON and span.dot(next)>0 and (b-previous.a).cross(span.normalized()).length()<CORRIDOR_EPSILON:
+  if previous.get("run",-1)==run and previous.index==index and previous.get("section",-1)==display.get("section",-1) and previous.get("direction",0)==display.get("direction",0) and a.distance_to(previous.b)<=CORRIDOR_EPSILON and span.dot(next)>0 and (b-previous.a).cross(span.normalized()).length()<CORRIDOR_EPSILON:
    previous.b=b
    return
- result.append({"id":line.id,"index":index,"freight":line.kind=="freight","a":a,"b":b,"run":run,"closed":closed})
+ var piece:Dictionary={"id":line.id,"index":index,"freight":line.kind=="freight","a":a,"b":b,"run":run,"closed":closed}
+ piece.merge(display)
+ result.append(piece)
 
 func world_point(p:Vector2,host:Dictionary,kind:String)->Vector3:
  return Vector3(p.x,p.y,-12.7 if kind=="metro" else (0.0 if host.is_empty() else Height.height_at(host,p)))
 
 func station_at(p:Vector2)->int:
  var id:=-1
- var best:=18.0*18.0
+ var best:=INF
  for candidate:int in stations:
   var d:float=p.distance_squared_to(stations[candidate])
-  if d<best:id=candidate;best=d
+  var radius:float=maxf(18.0,station_radii.get(candidate,8.0)+2.0)
+  if d<best and d<radius*radius:id=candidate;best=d
  return id
 
 func project(p:Vector3)->Vector2:
@@ -311,6 +322,16 @@ func corridor_overlap(first:Dictionary,second:Dictionary)->bool:
 func project_paths():
  stations.clear();paths.clear()
  for id in station_world:stations[id]=project(station_world[id])
+ station_radii.clear();bus_junction_centers.clear()
+ if mode=="bus":
+  for junction:Dictionary in bus_network.junctions:
+   var p:Vector2=junction.position
+   bus_junction_centers.append(project(Vector3(p.x,p.y,junction.height_m)))
+  paths=project_bus_paths(world_paths)
+  stroke_primitives=paths
+  project_bus_stops()
+  rebuild_arrows()
+  return
  paths=project_runs(world_paths,corridor_lanes())
  stroke_primitives=clip_freight_dashes(paths)
  rebuild_arrows()
@@ -329,6 +350,153 @@ func project_paths():
     var radius:=maxf(9.0,group.size()*2.4)
     group[i].p+=Vector2.from_angle(angle)*radius
    dots.append(group[i])
+
+func project_bus_paths(source:Array)->Array:
+ # Allocate by directed topology section, not by stop-to-stop interval. An
+ # intermediate stop or a pocket split must never change the display slot.
+ var slots:Dictionary={}
+ for piece:Dictionary in source:
+  if piece.road<0:continue
+  if not slots.has(piece.section):slots[piece.section]={1:[],-1:[]}
+  var ids:Array=slots[piece.section][piece.direction]
+  if piece.id not in ids:ids.append(piece.id)
+ for pair:Dictionary in slots.values():
+  pair[1].sort();pair[-1].sort()
+ var output:Array=[]
+ var run:Array=[]
+ for piece:Dictionary in source:
+  if not run.is_empty() and run[-1].id!=piece.id:
+   emit_bus_run(run,output);run.clear()
+  var screen:=piece.duplicate()
+  screen.a=project(piece.a);screen.b=project(piece.b)
+  if piece.road>=0:
+   var tangent:=Vector2(piece.b.x-piece.a.x,piece.b.y-piece.a.y)
+   if screen.a.distance_squared_to(screen.b)<.00001:continue
+   var normal:=piece_normal(screen)
+   var road:Dictionary=game.city.roads[piece.road]
+   var lateral:Vector2=tangent.normalized().orthogonal()*game.city.RoadProfile.asphalt_width(road)/2
+   var half_width:=absf((project(piece.a+Vector3(lateral.x,lateral.y,0))-screen.a).dot(normal))
+   var pair:Dictionary=slots[piece.section]
+   var count:=maxi(pair[1].size(),pair[-1].size())
+   var available:=maxf(0.0,half_width-.25)
+   # Compress spacing, then reduce the stroke to half width. If that still
+   # doesn't fit, the strokes overlap instead of expanding onto the sidewalk.
+   var width:=clampf(available/count,STROKE_WIDTH/2,STROKE_WIDTH)
+   var spacing:=clampf((available-width/2)/(count-.5),0.0,2*DIRECTION_OFFSET)
+   screen.width=width
+   screen.offset=spacing*(pair[piece.direction].find(piece.id)+.5)
+   screen.arrow_side=minf(3.0,half_width-float(screen.offset)-1.0)
+   screen.world=piece
+  run.append(screen)
+ if not run.is_empty():emit_bus_run(run,output)
+ return output
+
+func emit_bus_run(run:Array,output:Array):
+ var joins_a:=PackedVector2Array();var joins_b:=PackedVector2Array()
+ var movements:Dictionary={}
+ var covered:Dictionary={}
+ var cursor:=0.0
+ joins_a.resize(run.size());joins_b.resize(run.size())
+ for i in range(run.size()):
+  var piece:Dictionary=run[i]
+  if piece.road<0:continue
+  var previous:Dictionary=run[posmod(i-1,run.size())]
+  var next:Dictionary=run[(i+1)%run.size()]
+  var offset:=piece_normal(piece)*float(piece.offset)
+  joins_a[i]=offset_join(previous,piece) if previous.road>=0 else piece.a+offset
+  joins_b[i]=offset_join(piece,next) if next.road>=0 else piece.b+offset
+ for i in range(run.size()):
+  var piece:Dictionary=run[i]
+  if piece.road<0:
+   if movements.has(piece.movement):continue
+   movements[piece.movement]=true
+   var j:=posmod(i-1,run.size());var k:=(i+1)%run.size()
+   var incoming:Dictionary=run[j];var outgoing:Dictionary=run[k]
+   if incoming.road<0 or outgoing.road<0:continue
+   cursor=emit_bus_turn(output,piece,joins_b[j],joins_a[k],incoming,outgoing,cursor)
+   continue
+  var a:=joins_a[i];var b:=joins_b[i]
+  var key:=Vector2i(piece.section,piece.direction)
+  if not covered.has(key):covered[key]=[]
+  for interval:Vector2 in uncovered_bus_intervals(piece.world,covered[key]):
+   cursor=emit_bus_stroke(output,piece,a.lerp(b,interval.x),a.lerp(b,interval.y),piece.width,cursor)
+
+func uncovered_bus_intervals(piece:Dictionary,covered:Array)->Array[Vector2]:
+ # Subtract earlier visits in world space. A later visit often has different
+ # stop or pocket cuts, and removing only identical segment pairs misses it.
+ var span:Vector3=piece.b-piece.a
+ var axis:=span.normalized()
+ var length:=span.length()
+ var overlaps:Array[Vector2]=[]
+ for earlier:Dictionary in covered:
+  var from:Vector3=earlier.a-piece.a;var to:Vector3=earlier.b-piece.a
+  if from.cross(axis).length()>CORRIDOR_EPSILON or to.cross(axis).length()>CORRIDOR_EPSILON:continue
+  var lo:=maxf(0.0,from.dot(axis));var hi:=minf(length,to.dot(axis))
+  if hi-lo>CORRIDOR_EPSILON:overlaps.append(Vector2(lo,hi))
+ overlaps.sort_custom(func(a:Vector2,b:Vector2):return a.x<b.x)
+ var result:Array[Vector2]=[]
+ var cursor:=0.0
+ for overlap:Vector2 in overlaps:
+  if overlap.x-cursor>CORRIDOR_EPSILON:result.append(Vector2(cursor,overlap.x)/length)
+  cursor=maxf(cursor,overlap.y)
+ if length-cursor>CORRIDOR_EPSILON:result.append(Vector2(cursor,length)/length)
+ if not result.is_empty():covered.append(piece)
+ return result
+
+func emit_bus_turn(output:Array,piece:Dictionary,a:Vector2,b:Vector2,incoming:Dictionary,outgoing:Dictionary,cursor:float)->float:
+ # Join the final offset approaches directly. Offsetting a tight centerline
+ # corner after sampling (the old method) can invert the inside of the turn.
+ var first:=piece_normal(incoming).orthogonal()*-1
+ var last:=piece_normal(outgoing).orthogonal()*-1
+ var span:=b-a
+ var handle:=span.length()/3
+ var first_handle:=handle;var last_handle:=handle
+ var cross:=first.cross(last)
+ if absf(cross)>.001:
+  first_handle=clampf(span.cross(last)/cross*.65,handle*.1,handle*2.5)
+  last_handle=clampf(first.cross(span)/cross*.65,handle*.1,handle*2.5)
+ var c1:=a+first*first_handle;var c2:=b-last*last_handle
+ var previous:=a
+ for step in range(1,17):
+  var p:=a.bezier_interpolate(c1,c2,b,step/16.0)
+  cursor=emit_bus_stroke(output,piece,previous,p,lerpf(incoming.width,outgoing.width,(step-.5)/16),cursor)
+  previous=p
+ return cursor
+
+func emit_bus_stroke(output:Array,piece:Dictionary,a:Vector2,b:Vector2,width:float,start:float)->float:
+ if a.distance_squared_to(b)<=.00001:return start
+ output.append({"id":piece.id,"index":piece.index,"freight":false,"a":a,"b":b,"width":width,"start":start,
+  "section":piece.get("section",-1),"direction":piece.get("direction",0),"arrow_side":piece.get("arrow_side",0.0)})
+ return start+a.distance_to(b)
+
+func project_bus_stops():
+ dots.clear()
+ var approaches:Dictionary={}
+ for piece:Dictionary in paths:
+  if piece.section<0:continue
+  var key:=Vector3i(piece.id,piece.section,piece.direction)
+  if not approaches.has(key):approaches[key]=[]
+  approaches[key].append(piece)
+ for id in bus_stops:
+  var bundle:=PackedVector2Array()
+  for stop:Dictionary in bus_stops[id]:
+   var anchor:=project(stop.p)
+   var closest:=INF
+   var dot:=anchor
+   for piece:Dictionary in approaches.get(Vector3i(stop.id,stop.section,stop.direction),[]):
+    var p:=Geometry2D.get_closest_point_to_segment(anchor,piece.a,piece.b)
+    var distance:=anchor.distance_squared_to(p)
+    if distance<closest:closest=distance;dot=p
+   dots.append({"id":stop.id,"index":stop.index,"p":dot})
+   bundle.append(dot)
+  if bundle.is_empty():continue
+  var bounds:=Rect2(bundle[0],Vector2.ZERO)
+  for p:Vector2 in bundle:bounds=bounds.expand(p)
+  var center:=bounds.get_center()
+  stations[id]=center
+  var radius:=8.0
+  for p:Vector2 in bundle:radius=maxf(radius,p.distance_to(center)+8.0)
+  station_radii[id]=radius
 
 func project_runs(source:Array,lanes:=PackedInt32Array())->Array:
  var output:Array=[]
@@ -435,6 +603,9 @@ func clip_freight_dashes(projected:Array)->Array:
 
 func rebuild_arrows():
  arrow_primitives.clear()
+ if mode=="bus":
+  rebuild_bus_arrows()
+  return
  for i in range(paths.size()):
   var piece:Dictionary=paths[i]
   var length:float=piece.a.distance_to(piece.b)
@@ -461,6 +632,42 @@ func rebuild_arrows():
    var side:=heading.orthogonal()*3.0
    arrow_primitives.append({"id":piece.id,"index":piece.index,"points":PackedVector2Array([tail+side,tip,tail-side])})
    step+=ARROW_SPACING
+
+func rebuild_bus_arrows():
+ var bins:Dictionary={}
+ for i in range(paths.size()):
+  var piece:Dictionary=paths[i]
+  if piece.section<0 or piece.arrow_side<.5:continue
+  var length:float=piece.a.distance_to(piece.b)
+  var direction:Vector2=(piece.b-piece.a)/length
+  var tail:=direction*BUS_ARROW_LENGTH
+  var side:=direction.orthogonal()*float(piece.arrow_side)
+  # Don't extrapolate wings off the pavement at the start of a bend. Stop
+  # boundaries on a straight can share the preceding support without a gap.
+  var lookback:=0.0
+  if i>0:
+   var previous:Dictionary=paths[i-1]
+   if previous.id==piece.id and previous.section==piece.section and previous.b.distance_to(piece.a)<.01 and (previous.b-previous.a).normalized().dot(direction)>.9999:
+    lookback=previous.a.distance_to(previous.b)
+  var step:=fposmod(phase+piece.id*11.0-piece.start,BUS_ARROW_SPACING)
+  while step<length:
+   var tip:Vector2=piece.a+direction*step
+   var supported:=step+lookback>=BUS_ARROW_LENGTH
+   step+=BUS_ARROW_SPACING
+   if not supported or bus_arrow_blocked(tip,bins):continue
+   arrow_primitives.append({"id":piece.id,"index":piece.index,"points":PackedVector2Array([tip-tail+side,tip,tip-tail-side])})
+
+func bus_arrow_blocked(tip:Vector2,bins:Dictionary)->bool:
+ for center:Vector2 in bus_junction_centers:
+  if center.distance_squared_to(tip)<144.0:return true
+ var bin:=Vector2i((tip/BUS_ARROW_LENGTH).floor())
+ for x in range(-1,2):
+  for y in range(-1,2):
+   for neighbor:Vector2 in bins.get(bin+Vector2i(x,y),[]):
+    if neighbor.distance_squared_to(tip)<BUS_ARROW_LENGTH*BUS_ARROW_LENGTH:return true
+ if not bins.has(bin):bins[bin]=[]
+ bins[bin].append(tip)
+ return false
 
 func pick(p:Vector2)->Dictionary:
  var hit:Dictionary={}
@@ -616,30 +823,33 @@ func _process(delta:float):
  var key:=[game.origin,game.map_zoom]
  if camera_key!=key:
   camera_key=key;project_paths()
- phase=fposmod(phase+delta*56.0,ARROW_SPACING)
+ phase=fposmod(phase+delta*56.0,BUS_ARROW_SPACING if mode=="bus" else ARROW_SPACING)
  rebuild_arrows()
  queue_redraw()
 
 func opacity(id:int)->float:
  return 1.0 if hovered_id<0 or hovered_id==id else .3
 
+func projected_preview(source:Array)->Array:
+ return project_bus_paths(source) if mode=="bus" else clip_freight_dashes(project_runs(source))
+
 func _draw():
  if not visible:return
  draw_rect(Rect2(Vector2.ZERO,size),Color(.03,.055,.08,.55))
  for piece:Dictionary in stroke_primitives:
   var tint:Color=colors[piece.id];tint.a=opacity(piece.id)
-  draw_line(piece.a,piece.b,tint,4,true)
+  draw_line(piece.a,piece.b,tint,piece.get("width",STROKE_WIDTH),true)
  for arrow:Dictionary in arrow_primitives:
   draw_polyline(arrow.points,Color(INK,opacity(arrow.id)),2,true)
  var new_color:=next_color() if not game.transit_line_tool.stops.is_empty() else Color.TRANSPARENT
- for piece:Dictionary in clip_freight_dashes(project_runs(creation_paths)):draw_line(piece.a,piece.b,new_color,3,true)
- for point:Vector2 in stations.values():draw_arc(point,8,0,TAU,24,INK,2,true)
+ for piece:Dictionary in projected_preview(creation_paths):draw_line(piece.a,piece.b,new_color,minf(3,piece.get("width",STROKE_WIDTH)),true)
+ for id in stations:draw_arc(stations[id],station_radii.get(id,8.0),0,TAU,24,INK,2,true)
  for dot:Dictionary in dots:
   var tint:Color=colors[dot.id];tint.a=opacity(dot.id)
   draw_circle(dot.p,6,tint,true,-1,true)
  if not dragged.is_empty() and get_viewport_rect().has_point(pointer) and pointer.distance_to(dragged.from)>DRAG_MOTION_THRESHOLD:
   var tint:Color=colors.get(dragged.id,ACCENT)
-  for piece:Dictionary in clip_freight_dashes(project_runs(preview_paths)):draw_line(piece.a,piece.b,tint,3,true)
+  for piece:Dictionary in projected_preview(preview_paths):draw_line(piece.a,piece.b,tint,minf(3,piece.get("width",STROKE_WIDTH)),true)
   var target:=station_at(pointer)
   var position:Vector2=stations.get(target,pointer)
   if target>=0:draw_arc(position,16,0,TAU,24,ACCENT,2,true)

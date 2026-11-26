@@ -71,6 +71,7 @@ func run():
   check_ink(overlay)
   await check_rail_gap(game,overlay)
   check_ink(overlay)
+  check_reversed_corridor(overlay,1,2)
  print("Route overlay: %d passed, %d failed"%[checks-failures,failures])
  quit(1 if failures else 0)
 
@@ -169,7 +170,11 @@ func check_shared_corridor(overlay,first:int,second:int):
   corners+=1
   for other:Dictionary in b_paths:
    corner_clearance=minf(corner_clearance,a.b.distance_to(Geometry2D.get_closest_point_to_segment(a.b,other.a,other.b)))
- check(corners>=4 and corner_clearance>=15.0,"real shared bus turns stay separated (nearest %.2fpx)"%corner_clearance)
+ # The road-width cap replaces the fixed 24px route spacing. Distinct
+ # centerlines must still survive on this two-service, four-lane fixture.
+ check(corners>=4 and corner_clearance>2.0,"real shared bus turns retain distinct centers (nearest %.2fpx)"%corner_clearance)
+
+func check_reversed_corridor(overlay,first:int,second:int):
  # Isolate a partial, reversed overlap as rail plans need not segment the track identically.
  var original:Array=overlay.world_paths.duplicate()
  var a:=Vector3(100,100,0);var b:=Vector3(160,100,0)
@@ -192,7 +197,7 @@ func check_shared_corridor(overlay,first:int,second:int):
   if not centers.has(p.id):centers[p.id]=[]
   centers[p.id].append((point-screen_a).dot(normal))
  check(owned,"drawn path centers pick their exact line and direction segment on shared rail/freight")
- check(is_equal_approx(centers[first][0]-centers[first][1],12.0) and is_equal_approx(centers[second][0]-centers[second][1],12.0),"each direction stays 6px from its route center")
+ check(absf(centers[first][0]-centers[first][1]-12.0)<.01 and absf(centers[second][0]-centers[second][1]-12.0)<.01,"each direction stays 6px from its route center")
  check(absf(centers[first][0]-centers[second][0])>=20.0,"partially overlapping bidirectional route pairs have separate centers")
  var before:Array=overlay.paths.duplicate(true)
  overlay.world_paths.reverse();overlay.project_paths()
