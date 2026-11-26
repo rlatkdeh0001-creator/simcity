@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+Vulkan 1.4.329 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+P11_ACTIVE method=forward_plus driver=vulkan workload=paused
+P11_FIXTURE recipe=05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55 initial=8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85 camera_cell=(57.0, 47.5) workplace=61
+P11_PASS

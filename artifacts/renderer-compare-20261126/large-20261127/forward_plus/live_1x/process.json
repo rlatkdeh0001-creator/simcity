@@ -1,0 +1,31 @@
+{
+  "requested_method": "forward_plus",
+  "workload": "live_1x",
+  "argv": [
+    "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+    "tools/run_dotnet.py",
+    "--timeout",
+    "95",
+    "godot",
+    "--path",
+    "cities_do",
+    "--rendering-method",
+    "forward_plus",
+    "--rendering-driver",
+    "vulkan",
+    "--resolution",
+    "1920x1080",
+    "--fullscreen",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "D:/project/simcity/tools/compare_renderers_large_20261127.gd",
+    "--",
+    "--p11-measure",
+    "forward_plus",
+    "live_1x",
+    "D:/project/simcity/artifacts/renderer-compare-20261126/large-20261127/forward_plus/live_1x/frames.json"
+  ],
+  "exit_code": 0,
+  "bounded_stop": null
+}
