@@ -10,7 +10,9 @@ func verify(value: bool, description: String):
   push_error("FAIL "+description)
 func run():
  var preview=load("res://bottom_ui_preview.tscn").instantiate()
+ preview.paused=true
  root.add_child(preview)
+ preview.set_process(false)
  current_scene=preview
  await process_frame
  await process_frame
@@ -86,19 +88,32 @@ func run():
  preview._unhandled_key_input(escape)
  verify(not preview.drawer.visible,"escape closes bottom context tray")
  preview.select_category("power")
- preview.paused=true
+ var worker=preview.city.simulation
+ for frame in range(600):
+  if worker.is_ready():break
+  await process_frame
+ verify(worker.is_ready(),"production worker ready before the speed fixture")
+ for step in range(2):
+  worker.resume()
+  preview.city.advance_society(preview.city.config.development_interval_seconds)
+  verify(worker.validation_publish(),"accepted utility time comes from the real worker")
+ worker.resume()
  var before: float=preview.city.water.supplied_m3
  preview._process(1)
  verify(preview.city.water.supplied_m3==before,"preview pause actually stops water simulation time")
  preview.paused=false
  preview.simulation_speed=3
- var rate: float=preview.city.water_state().water_supplied_m3_day
+ var rate: float=preview.water_snapshot.water_supplied_m3_day
  preview._process(1)
+ verify(rate>0,"fixture has a working supply before time controls")
  verify(is_equal_approx(preview.city.water.supplied_m3-before,rate*3*24/86400),"3x control advances the actual model 72 game seconds")
  verify(preview.money.text==preview.city.Economy.format_amount(preview.city.funds) and preview.population_label.text==str(preview.city.population.stats().population),"status uses actual funds and population without a building counter")
+ verify(worker.validation_publish(),"resume submits a worker step")
+ worker.resume()
  var added: Dictionary=preview.city.add_building(28,67)
+ if added.ok:added.building.asset_id=""
  preview.fit_preview()
- verify(added.ok and is_finite(preview.map_zoom),"camera fitting supports newly built procedural lots too")
+ verify(added.ok and is_finite(preview.map_zoom),"camera fitting supports newly built procedural lots too: "+str(added.get("reason","")))
  preview.queue_free()
  await process_frame
  print("RESULT %d/%d bottom UI checks passed" % [checks-failed,checks])

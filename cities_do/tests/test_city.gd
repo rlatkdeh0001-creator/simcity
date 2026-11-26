@@ -12,7 +12,7 @@ func check(value: bool, description: String):
 func _initialize():
 	var city = Model.new(40, 40, 12)
 	check(not city.add_building(1, 1).ok, "road access required")
-	check(city.add_road(PackedVector2Array([Vector2(0.5, 20.3), Vector2(39, 20.3)])).ok, "continuous non-grid road")
+	check(city.add_road(PackedVector2Array([Vector2(0.5, 20.55), Vector2(39, 20.55)])).ok, "continuous non-grid road")
 	check(city.add_building(10, 17).ok, "new buildings start 2x2")
 	check(not city.add_building(11, 17).ok, "overlap rejected")
 	check(not city.add_building(39, 17).ok, "map boundary rejected")
@@ -26,7 +26,7 @@ func _initialize():
 	for stage in range(2,6):city.upgrade_chain(a.id)
 	check(a.level==5 and a.size == 4, "single fractional road reaches stage5 without inventing unsupported 8x8 zoning")
 	var chain = Model.new()
-	chain.add_road(PackedVector2Array([Vector2(0, 20), Vector2(39, 20)]))
+	chain.add_road(PackedVector2Array([Vector2(0, 20.5), Vector2(39, 20.5)]))
 	for x in [10, 12, 14, 16]: chain.add_building(x, 17, "residential", 0)
 	chain.config.size_weights = {8: 0.0, 4: 0.0, 2: 1.0}
 	chain.config.neighbor_chance = 1.0
@@ -46,7 +46,7 @@ func _initialize():
 	var deterministic:=true
 	for seed_value in range(20):
 		var sample=Model.new(40,40,seed_value)
-		sample.add_road(PackedVector2Array([Vector2(0,20),Vector2(39,20)]))
+		sample.add_road(PackedVector2Array([Vector2(0,20.5),Vector2(39,20.5)]))
 		sample.add_building(10,17,"residential",100)
 		sample.upgrade_chain(1)
 		if sample.buildings[0].size!=4 or sample.buildings[0].level!=2:deterministic=false
@@ -55,12 +55,12 @@ func _initialize():
 	for b in city.buildings:
 		check(city.placement_error(b.x,b.y,b.size,b.id) == "", "post-growth spatial invariants")
 	var small = Model.new(3, 6)
-	small.add_road(PackedVector2Array([Vector2(0,5),Vector2(3,5)]))
-	small.add_building(0,2,"residential",100)
+	small.add_road(PackedVector2Array([Vector2(0,4.5),Vector2(3,4.5)]))
+	small.add_building(0,1,"residential",100)
 	small.config.size_weights = {8:1.0,4:0.0,2:0.0}
 	check(small.upgrade_chain(1).ok and small.buildings[0].size == 2, "blocked large footprint falls back to 2x2 without demolition")
 	var medium = Model.new(6,6)
-	medium.add_road(PackedVector2Array([Vector2(0,5),Vector2(6,5)]))
+	medium.add_road(PackedVector2Array([Vector2(0,5.5),Vector2(6,5.5)]))
 	medium.add_building(1,2,"commercial",100)
 	medium.config.size_weights = {8:1.0,4:0.0,2:0.0}
 	check(medium.upgrade_chain(1).ok and medium.buildings[0].size == 4, "8x8 falls back to valid 4x4 before 2x2")
@@ -69,7 +69,7 @@ func _initialize():
 	check(city.roads.size() == preview_count, "road preview does not mutate city")
 	var stress = Model.new(80,80,321)
 	for y in [10, 30, 50, 70]:
-		stress.add_road(PackedVector2Array([Vector2(0,y),Vector2(79,y)]))
+		stress.add_road(PackedVector2Array([Vector2(0,y+.5),Vector2(79,y+.5)]))
 		for x in range(2,75,4): stress.add_building(x,y-3,"residential",100)
 	for iteration in range(100):
 		stress.upgrade_chain(stress.buildings[iteration % stress.buildings.size()].id)

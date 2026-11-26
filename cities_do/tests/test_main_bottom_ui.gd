@@ -10,6 +10,7 @@ func verify(value: bool, description: String):
   push_error("FAIL "+description)
 func run():
  var game=load("res://main.tscn").instantiate()
+ game.paused=true # Frame advances must come from the explicit playback fixture below.
  root.add_child(game)
  current_scene=game
  await process_frame
@@ -41,7 +42,8 @@ func run():
    verify(before==after,"asset browsing preserves city, funds and clock")
    verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
-  verify(game.road_lane_cards.size()==5 and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools expose five actual-render lane cards and the grid toggle instead of the old selector")
+  var lane_counts:Array=game.road_lane_cards.map(func(card):return card.get_meta("lanes"))
+  verify(lane_counts==[2,3,4,5,6,7,8] and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools expose the approved 2–8 lane cards and grid toggle instead of the old selector")
   var zoom_before: float=game.map_zoom
   var origin_before: Vector2=game.origin
   game.select_category("fire")
@@ -98,13 +100,18 @@ func run():
   escape.pressed=true
   game._unhandled_key_input(escape)
   verify(not game.drawer.visible,"main Escape collapses drawer")
+  var sim=game.city.simulation
+  sim.worker.Suspend() # Wait for native boot; do not suspend the coordinator.
   var clock_before: float=game.city.clock.game_seconds
-  game._process(1)
-  verify(game.city.clock.game_seconds==clock_before,"main pause freezes unified clock")
+  game._process(2)
+  verify(game.city.clock.game_seconds==clock_before and not sim.has_pending(),"main pause freezes the unified clock and submits no tick")
   game.paused=false
   game.simulation_speed=3
+  sim.worker.SetValidationGate(true)
   game._process(1)
-  verify(is_equal_approx(game.city.clock.game_seconds-clock_before,72),"main 3x uses existing clock conversion")
+  verify(sim.has_pending() and game.city.clock.game_seconds==clock_before,"1 real second at 3x submits a tick without advancing unpublished time")
+  var published:bool=sim.validation_publish() # Release the gate and publish the accepted fixed tick.
+  verify(published and is_equal_approx(game.city.clock.game_seconds-clock_before,48),"main 3x publishes exactly one accepted 2-second tick at 24 game seconds per simulated second")
   verify(game.population_label.text==str(game.city.population.stats().population) and "년" in game.date_label.text,"main status exposes actual population and date")
  game.queue_free()
  await process_frame

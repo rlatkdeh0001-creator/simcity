@@ -1,4 +1,5 @@
 extends SceneTree
+const FixtureAssets = preload("res://tests/test_facilities.gd")
 var checks:=0
 var failed:=0
 func _initialize():run.call_deferred()
@@ -24,9 +25,10 @@ func run():
  print("RESULT %d/%d thumbnail HUD checks passed" % [checks-failed,checks])
  quit(1 if failed else 0)
 func check_cards(game):
- var expected: Dictionary={"fire":3,"police":4,"health":4,"education":4,"park":8}
+ var expected: Dictionary={"fire":3,"police":4,"health":4,"education":4,"park":10}
  var total:=0
  var before: String=JSON.stringify(game.city.buildings)+str(game.city.funds)
+ var lots_before: Array=game.city.public_facilities.lots.duplicate(true)
  for key in expected:
   game.select_category(key)
   await process_frame
@@ -41,18 +43,24 @@ func check_cards(game):
    verify(card.size.x>=128 and card.size.y>=96,str(card.name)+" C card minimum size")
    verify(band is Panel and caption is Label and caption.text==card.get_meta("asset_name") and caption.get_theme_font_size("font_size")>=18,str(card.name)+" bottom name band and readable real name")
    if band is Panel:verify(band.get_theme_stylebox("panel").bg_color.a>.5 and band.get_theme_stylebox("panel").bg_color.a<1,str(card.name)+" dark translucent name band")
+   var id: String=card.get_meta("thumbnail_asset_id")
+   game.public_controller.cancel()
    card.pressed.emit()
    await process_frame
    var windows: Array=game.find_children("ServiceAssetPreview","Window",true,false)
-   var id: String=card.get_meta("thumbnail_asset_id")
-   if game.city.public_facilities.price(id)>game.city.utility_balance():
+   if id=="rail-track-01":
+    # The park tray currently shows the inspection sample, not a placeable facility.
+    var sample:=FixtureAssets.fixture_model("res://assets/rail/rail-track-01/rail-track-01.glb")
+    verify(sample!=null and not game.city.public_facilities.entries.has(id) and game.mode!="public_placement" and game.public_controller.asset_id.is_empty(),str(card.name)+" is a real rail sample, not a placeable facility")
+   elif game.city.public_facilities.price(id)>game.city.utility_balance():
     verify(windows.is_empty() and game.mode!="public_placement" and game.public_controller.asset_id.is_empty() and game.money_toast.visible,str(card.name)+" insufficient funds blocks ghost and shows approved card bubble")
    else:
-    verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==id and ResourceLoader.exists(game.city.public_facilities.entries[id].model),str(card.name)+" selects its actual affordable GLB ghost without changing the C card")
+    var entry: Dictionary=game.city.public_facilities.entries.get(id,{})
+    verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==id and not entry.is_empty() and FixtureAssets.fixture_model(entry.model)!=null,str(card.name)+" selects its actual affordable GLB ghost without changing the C card")
    for window in windows:window.close_requested.emit()
    await process_frame
- verify(total==23,"all 23 existing PNG-backed facilities use C cards")
- verify(before==JSON.stringify(game.city.buildings)+str(game.city.funds),"thumbnail inspection never builds or charges")
+ verify(total==25,"all 25 PNG-backed cards in these categories use C cards")
+ verify(before==JSON.stringify(game.city.buildings)+str(game.city.funds) and game.city.public_facilities.lots==lots_before,"thumbnail activation alone never builds or charges")
 
 func check_focus_and_pause(game):
  game.categories[0].grab_focus()

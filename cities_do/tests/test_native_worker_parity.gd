@@ -45,12 +45,18 @@ func run():
   check(result.logical_tick==i+1,"boundary publication")
   source.advance_society(2)
   var expected:Dictionary=canonical(source)
-  var actual:Dictionary=worker.ExportValidationState()
+  var exported:Dictionary=worker.ExportValidationState()
+  # The export also carries save/transport data outside this parity fixture.
+  var actual:Dictionary={}
+  for key:Variant in expected:
+   if exported.has(key):actual[key]=exported[key]
+  checks+=1
   if actual!=expected:
+   var mismatches:=PackedStringArray()
    for key:Variant in expected:
-    if actual.get(key)!=expected[key]:print("DIFF ",key,"\nEXPECTED ",expected[key],"\nACTUAL ",actual.get(key))
+    if not actual.has(key) or actual[key]!=expected[key]:mismatches.append(str(key))
+   push_error("STAGE2 FAILED: exact state at logical tick %d (missing/unequal fields: %s)"%[i+1,", ".join(mismatches)])
    worker.Shutdown();quit(1);return
-  check(actual==expected,"exact full-state tick %d"%i)
   check(result.population_view.Stats()==source.population.stats(),"population stats read view")
   check(result.scalars.stats==source.population.stats(),"scalar stats")
   check(result.scalars.demand==source.population.demand(source.buildings),"scalar demand")

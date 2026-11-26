@@ -1,5 +1,9 @@
 extends SceneTree
 
+const FixtureAssets = preload("res://tests/test_facilities.gd")
+const ROAD_CATEGORIES := {"bus":1,"taxi":1,"civilian":20,"industrial":16,"service":3}
+const OTHER_CATEGORIES := {"rail_locomotive":2,"rail_passenger":1,"rail_freight":1,"rail_metro":1,"cargo":1}
+
 var checked := 0
 var failed := 0
 
@@ -15,18 +19,27 @@ func verify(condition: bool, detail: String):
 
 func run():
 	var doc = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vehicles/catalog.json"))
-	verify(doc is Dictionary and doc.vehicles.size() == 41, "catalog contains 23 registered plus 18 original variants")
-	var categories := {}
-	var ids := {}
+	verify(doc is Dictionary and doc.vehicles.size() == 47, "catalog contains 41 road vehicles and six rail/cargo assets")
+	var road_categories := {}
+	var other_categories := {}
+	var models := {}
 	for entry in doc.vehicles:
-		verify(not ids.has(entry.id), entry.id + " unique ID")
-		ids[entry.id] = true
+		verify(not models.has(entry.id), entry.id + " unique ID")
+		var road_vehicle: bool = ROAD_CATEGORIES.has(entry.category)
+		var categories := road_categories if road_vehicle else other_categories
 		categories[entry.category] = categories.get(entry.category, 0) + 1
-		var resource = load(entry.model)
-		verify(resource is PackedScene, entry.id + " imports as PackedScene")
-		if not resource is PackedScene: continue
+		var resource := FixtureAssets.fixture_model(entry.model, true)
+		models[entry.id] = resource
+		verify(resource != null, entry.id + " real GLB loads as PackedScene")
+		if resource == null: continue
 		var model: Node3D = resource.instantiate()
 		root.add_child(model)
+		if not road_vehicle:
+			# Rail consists and cargo do not follow the road vehicle seat/wheel rig schema.
+			var rail_meshes := model.find_children("*", "MeshInstance3D", true, false)
+			verify(rail_meshes.any(func(node):return node.mesh != null), entry.id + " has real rail/cargo geometry")
+			model.free()
+			continue
 		var spins := model.find_children("Wheel_*_Spin", "Node3D", true, false)
 		verify(spins.size() >= 4, entry.id + " has at least four wheel spin pivots")
 		var hierarchy_ok := true
@@ -65,7 +78,11 @@ func run():
 			var pivot_name: String="Mixer_Drum_Pivot" if entry.get("rig_schema","")=="recovered-original" else "MixerSpin"
 			verify(model.find_children(pivot_name, "Node3D", true, false).size() == 1, entry.id + " mixer drum spin pivot")
 		model.free()
-	verify(categories == {"bus":1, "taxi":1, "civilian":20, "industrial":16, "service":3}, "required category counts; bus and taxi originals excluded")
+	verify(road_categories == ROAD_CATEGORIES, "required road category counts; bus and taxi originals excluded")
+	verify(other_categories == OTHER_CATEGORIES, "required rail and cargo category counts")
+	if models.values().has(null):
+		quit(1) # Do not enter a gallery whose asset dependency already failed.
+		return
 	var main: Node2D = load("res://main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
@@ -81,7 +98,7 @@ func run():
 	await process_frame
 	var showcase = current_scene
 	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "standalone vehicle showcase fixture remains usable")
-	verify(showcase.rigs.size() == 41 and showcase.cameras.size() == 41, "showcase creates forty-one real model viewports")
+	verify(showcase.rigs.size() == models.size() and showcase.cameras.size() == models.size(), "showcase creates a real model viewport for every road, rail and cargo asset")
 	showcase.same_scale = true
 	showcase.update_scale()
 	verify(is_equal_approx(showcase.cameras[0].size, showcase.cameras[19].size), "same-scale mode uses identical camera scale")

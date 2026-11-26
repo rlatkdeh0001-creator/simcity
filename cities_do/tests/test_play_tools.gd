@@ -10,7 +10,7 @@ func run():
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game)
  await process_frame;await process_frame
  var forbidden:=["power_plant","power_settings","power_demo","water_supply","water_treatment","water_demo","score","residential_gallery","parcel_demo","facilities_gallery","vehicles_gallery","traffic_demo","water_settings","traffic","upgrade","reset","power_select","select","water_select","road"]
- var retained:={"power":["power_wire"],"water":["water_pipe"],"build":["build","build_commercial","build_industrial","build_erase"],"road":[],"park":[],"transport":[],"health":["hospital","clinic","large_hospital","crematorium"],"education":["elementary","high_school","college","university"],"environment":[],"fire":[],"police":[]}
+ var retained:={"power":["power_wire"],"water":["water_pipe"],"build":["build","build_commercial","build_industrial","build_erase"],"road":[],"park":[],"transport":["transit_line"],"health":["hospital","clinic","large_hospital","crematorium"],"education":["elementary","high_school","college","university"],"environment":[],"fire":[],"police":[]}
  var inventory:={}
  if game.developer_tools_enabled():
   forbidden.erase("upgrade");retained.build.append("upgrade")

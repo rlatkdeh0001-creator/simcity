@@ -12,7 +12,9 @@ func select_lanes(count:int):
 func run():
  root.size=Vector2i(1280,820);game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);current_scene=game;await settle()
  for spec in [[2,3,true,false],[4,5,true,false],[6,7,true,false],[2,4,true,false],[5,7,true,false],[7,8,true,false],[8,7,true,false],[5,3,true,true],[2,6,false,false],[4,8,false,false],[8,2,false,false]]:
-  game.road_drawer.cancel();game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=.5;game.origin=Vector2.ZERO;game.origin=Vector2(640,220)-game.screen(Vector2(28,40))
+  game.road_drawer.cancel()
+  if game.city.simulation!=null:game.city.simulation.shutdown()
+  game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=.5;game.origin=Vector2.ZERO;game.origin=Vector2(640,220)-game.screen(Vector2(28,40))
   await select_lanes(spec[0]);await click(game.screen(Vector2(20,40)));await click(game.screen(Vector2(36,40)));await settle();verify(game.city.roads.size()==1,"native grade host "+str(spec))
   var before:=var_to_str(game.city.roads)
   await select_lanes(spec[1]);var start:=Vector2(20,40) if spec[3] else Vector2(36,40);var end:=Vector2(4,40) if spec[3] else Vector2(52,40);await click(game.screen(start));var motion:=InputEventMouseMotion.new();motion.position=game.screen(end);root.push_input(motion,true);await process_frame

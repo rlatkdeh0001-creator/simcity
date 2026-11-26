@@ -16,6 +16,8 @@ func verify(value: bool, label: String):
   failed+=1
   push_error("FAIL "+label)
 func road(points: Array, count: int = 2) -> Dictionary:
+ # Synthetic topology/traffic inputs retain their explicit widths. Model-built
+ # roads in test_footprints use the current local-road width grades instead.
  return {"points":PackedVector2Array(points),"lanes":count,"width":float(count),"kind":"local"}
 func roads() -> Array:
  return [road([Vector2(10,50),Vector2(90,50)]),road([Vector2(50,10),Vector2(50,90)])]
@@ -90,11 +92,12 @@ func test_footprints() -> bool:
  city.add_road(roads()[0].points)
  city.add_road(roads()[1].points)
  var outline: PackedVector2Array=Topology.patch(city.junctions[0])
- verify(outline.size()>16 and city.Parcels.bounds(outline).size.distance_to(Vector2(2,2))<.001,"right-angle junction uses rounded curbs inside its shared road-width box, not diagonal flares")
- verify(city.Parcels.area(outline)>3.8 and city.Parcels.area(outline)<4.0,"two-lane crossing uses one compact four-cell box with rounded corners")
+ verify(outline.size()>16 and city.Parcels.bounds(outline).size.distance_to(Vector2(3,3))<.001,"right-angle junction uses rounded curbs inside its shared road-width box, not diagonal flares")
+ verify(city.Parcels.area(outline)>8.9 and city.Parcels.area(outline)<9.0,"two-lane crossing uses one compact three-by-three box with rounded corners")
  var restored := true
- for point in [Vector2(47.5,48.5),Vector2(51.5,48.5),Vector2(47.5,51.5),Vector2(51.5,51.5)]:
-  restored=restored and city.add_building_at(point).ok
+ # Click the front row of the through road, beyond the crossed road's 1.5-cell half-width.
+ for point in [Vector2(46.5,48),Vector2(52.5,48),Vector2(46.5,52),Vector2(52.5,52)]:
+  restored=city.add_building_at(point).ok and restored
  verify(restored,"all four formerly clipped road-local 2x2 corner lots remain buildable")
  verify(not city.add_building(50,47).ok,"building still cannot occupy the actual road")
  verify(not city.add_power_plant(Vector2(50,47)).ok,"utility footprint still respects the rectangular pavement")
@@ -105,7 +108,7 @@ func test_footprints() -> bool:
  verify(corner_clear,"placement tiles exclude actual pavement without diagonal corner loss")
  var occupied := City.new(100,100)
  occupied.add_road(roads()[0].points)
- var house: Dictionary=occupied.add_building(51,47)
+ var house: Dictionary=occupied.add_building_at(Vector2(52.5,48))
  verify(house.ok,"corner lot exists before a crossing road is added")
  var before: int=occupied.roads.size()
  var preview: Dictionary=occupied.add_road(roads()[1].points,"local",false)

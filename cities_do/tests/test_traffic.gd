@@ -119,10 +119,12 @@ func test_fleet() -> bool:
 	for lane in network.lanes:
 		for i in range(50): sim.spawn(asset,[lane.id],8+i*(lane.length-16)/50,true)
 	verify(sim.vehicles.size() == 100, "100 vehicle fixture spawns with valid spacing")
-	var started := Time.get_ticks_usec()
+	var benchmark := "--benchmark-traffic" in OS.get_cmdline_user_args()
+	var started := Time.get_ticks_usec() if benchmark else 0
 	advance(sim,10)
-	var duration := (Time.get_ticks_usec()-started)/1000.0
-	print("BENCHMARK 100 vehicles / 300 fixed ticks: %.2f ms total, %.3f ms per tick" % [duration,duration/300.0])
+	if benchmark:
+		var duration := (Time.get_ticks_usec()-started)/1000.0
+		print("BENCHMARK 100 vehicles / 300 fixed ticks: %.2f ms total, %.3f ms per tick" % [duration,duration/300.0])
 	var valid := true
 	for lane in network.lanes:
 		var ordered: Array = sim.vehicles.filter(func(v): return v.lane == lane.id)

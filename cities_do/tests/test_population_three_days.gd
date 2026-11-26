@@ -3,7 +3,14 @@ const Model=preload("res://core/city_model.gd")
 func town(script,pop_script,seed_value:int):
  var city=script.new(100,100,seed_value);city.population=pop_script.new(seed_value)
  # This is the frozen unchanged-policy port oracle, not a test of newly enabled growth.
- if script==Model:city.happiness_enabled=false
+ if script==Model:
+  city.happiness_enabled=false
+ else:
+  # The frozen model still preloads live public_facilities.gd. Restore its original
+  # day-change callback rather than calling the worker/ledger-aware live callback.
+  city.clock.day_changed.disconnect(city.public_facilities.bill_months)
+  var connected:int=city.clock.day_changed.connect(frozen_bill_months.bind(weakref(city)))
+  assert(connected==OK)
  assert(city.add_road(PackedVector2Array([Vector2(10,40),Vector2(42,40)])).ok)
  var i:=0
  for frame in city.zoning_grid.frames.values():
@@ -11,6 +18,10 @@ func town(script,pop_script,seed_value:int):
   var family:String="residential" if i%4<2 else ("commercial" if i%4==2 else "industrial")
   city.paint_zones(city.Parcels.polygon(frame,0,0,2),family);i+=1
  assert(city.zone_designations.size()>0);return city
+func frozen_bill_months(previous:int,current:int,owner:WeakRef):
+ var city=owner.get_ref()
+ var crossed:=maxi(0,current-previous)
+ if crossed>0:city.funds-=crossed*city.public_facilities.monthly_upkeep()
 func original(file:String):
  var script:=GDScript.new();script.source_code=FileAccess.get_file_as_string("D:/project/simcity/docs/csharp-population-validation/reference/"+file+".txt");assert(script.reload()==OK);return script
 func run():

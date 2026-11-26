@@ -21,12 +21,22 @@
 
 ## 파트 10 — 병합 전 전체 테스트
 
-- 최종 7–9 커밋에서 헤드리스와 실제 게임 창이 필요한 테스트를 각각 실행한다. 준비 단계에서 구 테스트의 증거 파일 쓰기를 scratch로 돌려 `visible_sample.*` 및 이전 검수 자료가 덮어써지지 않게 했다.
-- 전체 테스트 집계에서 제외한 기준 SHA 사전 실행: `test_experimental_test_movement` 26/26. `test_growth_appearance` 273/274(초기 상가 배치/파사드 확인 실패, 뒤의 `check_city_growth`에서 빈 건물 배열 참조). 배치가 거부된 원인은 조사 대상이며, 사전 실행 결과로 최종 통과 여부를 판단하지 않는다.
+- 로컬 커밋: 파트 7 `092d8a5`, 파트 8 `5f52945`, 파트 9 `4cda9db`.
+- `4cda9db` 최초 전수 실행: **헤드리스 137/172, 네이티브 30/43 스위트 통과**. 모드별 35·13 스위트 실패에 엔진/종료 진단도 포함한다. 정상 종료·무진단 스위트의 보고된 단언 수는 각각 168,991·1,308개이며, 같은 단언의 두 모드 재검증은 합산하지 않는다. 카운트 없는 헤드리스 통과 스위트 6개는 단언 수에 넣지 않았다. `test_neighbor_commuting_contract.gd`는 헬퍼라 `test_neighbor_commuting`을 통해 검증했다. 원본 로그와 SHA·결과는 프로필 scratch `transport-20261127-full-4cda9db/{run.json,results.jsonl}`. 구 테스트의 증거 쓰기는 scratch로 돌려 보호 파일을 덮어쓰지 않았다.
+- 최초 헤드리스 실패(이름의 `test_` 생략): `bottom_ui`, `building_assets`, `city`, `city_worker_parity`, `facilities`, `growth_appearance`, `junctions`, `main_bottom_ui`, `native_worker_parity`, `play_tools`, `population`, `population_three_days`, `public_road_snap`, `recovered_assets`, `registered_30_assets`, `road_angle_snap`, `road_cursor`, `road_demolition_input`, `road_draw_modes`, `road_grade_flow`, `road_grid_snap`, `road_junction_spacing_input`, `road_length_units`, `road_midpoint_connections`, `road_parcels`, `road_preview_round`, `road_setback`, `showcase`, `thumbnail_hud`, `traffic`, `transit_facilities_fifo`, `transit_facilities_view`, `ui`, `vehicles`, `zoning_development`.
+- 최초 네이티브 실패(이름의 `test_` 생략): `horizontal_card_strip`, `main_bottom_ui`, `public_road_snap`, `registered_30_assets`, `road_continue`, `road_demolition_input`, `road_draw_modes`, `road_grade_flow`, `road_junction_spacing_input`, `road_length_units`, `road_midpoint_connections`, `thumbnail_hud`, `underground_rail_ui`. 실제 GL이 필요한 `transit_facilities_view`는 네이티브 49/49. 교통 탭/노선/대화상자 자체는 양쪽 모드에서 통과했다.
+- 기준 SHA 사전 실행(전체 수에 미포함): `test_growth_appearance` 273/274와 중간 배열 오류. 기존 4차선 중심선에서 승인된 폭(5칸)이 기존 건물과 0.5칸 겹쳤다. 테스트 사본에서 중심선을 y=40.5로 옮기고 양쪽 배치/성장 성공을 먼저 확인하자 308/308이었다. 소비자 게임이나 원본은 수정하지 않았다.
+- `test_bottom_ui` 최초 39/43. 미리보기의 기존 도로 폭과 8×8 맞은편 구획이 승인된 규칙과 맞지 않았고, 배속 검사는 worker의 확정 시각을 기다리지 않았다. 도로/부지 좌표와 테스트의 worker 경계만 바꾼 scratch 재현에서 48/48이었다. `test_building_assets`도 같은 폭 변경으로 처음 부지를 만들지 못했다. scratch 사본에서 실제 맞은편 도로 간격을 맞추고 도시 교체 전 기존 worker를 종료한 결과 27/27 및 정상 종료를 확인했다. `test_city`는 새 도로 폭에 맞게 중심선을 조정한 사본에서 당초 24개 단언을 모두 통과했다. 이 실험들은 기준 실행의 입력 파일을 바꾸지 않았다.
+- `test_traffic` 재검증 44/44 및 정상 종료, `test_transit_traffic_regression` 28/28. 별도 교통 데모가 모델 교체 전에 빈 도시의 worker를 종료하도록 수정했다. 100대의 고정 스텝 간격 검사는 그대로 두고 비용 계측만 `--benchmark-traffic`으로 명시할 때 실행한다. 재검증 로그는 scratch `transport-20261127-traffic-rerun/`.
+
+- `8611121` 위 작업 사본에서 회귀 fixture 보정 후 선별 재시험: 헤드리스 40/40, 네이티브 13/16. 원래 전체 로그에 이 결과를 같은 모드·스위트별로 대체하고 소스/로그 해시를 검사하면 헤드리스 171/171, 네이티브 40/43이다. 역 SubViewport 픽셀 단언은 네이티브 전용으로 재분류해 헤드리스 대상이 하나 줄었다. 새 전체 실행이 아닌 최초 전체 + 선별 재시험 합산이다. 원시 로그는 프로필 scratch `transport-20261127-repair-8611121/`.
+- 도로·부지 좌표와 카탈로그 기대값을 현행 규칙에 맞추고, 테스트가 도시를 교체할 때 이전 worker를 종료한다. Worker parity는 원래 비교하던 11개 필드를 누락 없이 비교하고, 3일 oracle은 옛 모델의 청구 콜백을 그 fixture에만 사용한다. 주거 전시는 기존 10개 건물과 8×8 부지를 보존하고 도로 중심을 현행 연석에 맞췄다(28/28).
+- 네이티브에서 남았던 세 스위트: `road_continue` 10/17, `road_length_units` 41/42, `road_profile_connections` 44/46. `road_continue` 재현에서는 초기 실제 포인터 움직임이 첫 합성 드래그에 끼어 `(10,40)` 다음에 의도하지 않은 `(57.615,175.144)`가 기록됐다. 테스트의 첫 입력 전 창 안정화, 불도저 클릭 전 hover 갱신, 좁은 차로 띠에서 클릭 전 대상 카드를 스크롤로 드러내기를 적용해 세 스위트를 두 모드에서 20/20·42/42·50/50으로 통과했다(`transport-20261127-road-final-8611121/`). 최종 기록은 **헤드리스 171/171, 네이티브 43/43 스위트**, 실패 0. 로그에 집계값이 있는 단언은 각각 311,927개·2,568개(헤드리스 무집계 7개, 모드 간 중복은 합산하지 않음). 소스·원시 로그 SHA-256 대조를 완료했다. 공원 탭 철도 견본의 클릭 동작은 배치가 일어나지 않는 것만 확인했다. 별도 검사창 연결은 이번 검수 범위 밖이다.
 
 ## 파트 11 — 큰 도시 렌더러 비교
 
-- 기존 대도시 고정 시드 장면을 확인 중이다. 설정 변경 없이 측정하며, 다른 Godot 프로세스가 있으면 측정을 미룬다.
+- `PERFORMANCE_NOTES_KO.md`의 240명 실화면 항목에 연결된 `727a9e1`의 최대 네이티브 렌더 장면을 사용한다. 시드 20261114, 100×100칸, 도로 6개, 건물 61채, 120가구·240명, 지정 32칸. 30만 장면은 렌더·HUD가 없는 별도 규모 계측이라 이 비교에 넣지 않는다. 당시 카메라 위치와 0.9배를 고정하며 당시 WASD 이동을 재생하지 않는다. 앞선 실화면의 배치 지문은 남아 있지 않아 당시 레시피를 재현한 결과다.
+- 최초 전체 테스트가 끝난 뒤 다른 Godot 프로세스가 없는 상태에서 6건을 순차 계측했다. 결과: 커밋 `8611121`의 [정지·실행 비교 표](../renderer-compare-20261126/README.md#기존-최대-실화면-도시--2026-11-27)와 [원시 표본](../renderer-compare-20261126/large-20261127/summary.json). 오류·경고·렌더러 대체 없음.
 
 ## 확인 대기
 

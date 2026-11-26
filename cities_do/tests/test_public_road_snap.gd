@@ -9,22 +9,27 @@ func _initialize():run.call_deferred()
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
- game.city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
+ var road:Dictionary=game.city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
+ verify(road.ok and is_equal_approx(float(game.city.roads[0].width),5.0),"four-lane fixture has the approved five-cell sidewalk-inclusive width")
  root.add_child(game);await process_frame
+ game.city.simulation.worker.Suspend() # Wait for boot so the click is an idle worker edit.
+ # Centre y=40, half-road width 2.5, half of the 6x6 lot 3.0.
+ var north:=Vector2(12,34.5)
+ var south:=Vector2(28,45.5)
  var controller=game.public_controller;controller.begin("fire-station")
  game.pointer=Vector2(12,33.4)
  var result: Dictionary=controller.preview()
  verify(result.ok,"cursor-front within two cells snaps public ghost into valid road frontage")
- verify(result.record.position.distance_to(Vector2(12,35))<.001,"6x6 ghost front sits on sidewalk edge, not rounded free cursor")
+ verify(result.record.position.distance_to(north)<.001,"6x6 ghost front sits on sidewalk edge, not rounded free cursor")
  verify(result.record.front_direction.distance_to(Vector2.DOWN)<.001,"snapped actual model front faces road")
  verify(game.city.funds==50000 and game.city.public_facilities.lots.is_empty(),"snapping preview has no debit or placement side effect")
  for down in [true,false]:
   var event:=InputEventMouseButton.new();event.position=game.screen(game.pointer);event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;root.push_input(event,true)
  await process_frame
  verify(controller.last_result.get("ok",false) and game.city.public_facilities.lots.size()==1,"actual world click commits the snapped ghost instead of original cursor")
- if not game.city.public_facilities.lots.is_empty():verify(game.city.public_facilities.lots[0].position.distance_to(Vector2(12,35))<.001 and game.city.funds==30000,"committed snapped position matches ghost and charges exactly once")
+ if not game.city.public_facilities.lots.is_empty():verify(game.city.public_facilities.lots[0].position.distance_to(north)<.001 and game.city.funds==30000,"committed snapped position matches ghost and charges exactly once")
  controller.begin("fire-station");game.pointer=Vector2(28,46.5);result=controller.preview()
- verify(result.ok and result.record.position.distance_to(Vector2(28,45))<.001 and result.record.front_direction.distance_to(Vector2.UP)<.001,"opposite sidewalk snaps and automatically reverses facing")
+ verify(result.ok and result.record.position.distance_to(south)<.001 and result.record.front_direction.distance_to(Vector2.UP)<.001,"opposite sidewalk snaps and automatically reverses facing")
  controller.turns=1;result=controller.preview()
  verify(result.record.front_direction.distance_to(Vector2.UP.rotated(PI/2))<.001 and not result.ok,"R is relative to snapped road orientation and still validates frontage")
  controller.turns=0;game.pointer=Vector2(28,28);result=controller.preview()

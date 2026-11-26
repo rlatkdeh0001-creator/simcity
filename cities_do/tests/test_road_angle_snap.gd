@@ -6,9 +6,10 @@ func verify(ok: bool,detail: String):
  checks+=1
  if ok:print("PASS "+detail)
  else:failed+=1;push_error("FAIL "+detail)
-func reset(game):
+func reset(game, host: PackedVector2Array=PackedVector2Array([Vector2(10,30),Vector2(70,30)])):
+ if game.city.simulation!=null:game.city.simulation.shutdown()
  game.activate_tool("reset");game.activate_tool("road")
- game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(70,30)]))
+ game.city.add_road(host)
 func run():
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
  game.road_grid_enabled=false # Retain exact free-position threshold expectations when the grid is OFF.
@@ -44,7 +45,7 @@ func run():
   var incoming: Dictionary=drawing.preview();var path: PackedVector2Array=incoming.points
   verify(incoming.ok and absf((path[-1]-path[-2]).normalized().dot(Vector2.RIGHT))<.00001,kind+" ending at existing road also constrains the actual final segment")
  for host in [PackedVector2Array([Vector2(10,30),Vector2(70,50)]),PackedVector2Array([Vector2(10,30),Vector2(40,30),Vector2(60,45)])]:
-  game.activate_tool("reset");game.activate_tool("road");game.city.add_road(host);drawing.set_kind("straight")
+  reset(game,host);drawing.set_kind("straight")
   var tangent: Vector2=(host[-1]-host[-2]).normalized();var normal:=Vector2(-tangent.y,tangent.x);var contact: Vector2=(host[-1]+host[-2])/2
   drawing.click(contact);game.pointer=contact+normal.rotated(deg_to_rad(8))*20
   var path: PackedVector2Array=drawing.path()

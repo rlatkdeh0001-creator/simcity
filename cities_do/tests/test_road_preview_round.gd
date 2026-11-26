@@ -36,7 +36,9 @@ func run():
    for p in shape:inside=inside and p.x>=-.0001 and p.y>=-.0001 and p.x<=100.0001 and p.y<=100.0001
   verify(inside and not clipped.is_empty(),"preview keeps the existing map-edge clipping")
   for kind in ["straight","curve","free"]:
-   drawing.cancel();game.city=City.new(100,100);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]));game.road_lanes=3;drawing.set_kind(kind);drawing.click(Vector2(30.2,30.1))
+   drawing.cancel()
+   if game.city.simulation!=null:game.city.simulation.shutdown()
+   game.city=City.new(100,100);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]));game.road_lanes=3;drawing.set_kind(kind);drawing.click(Vector2(30.2,30.1))
    if kind=="curve":drawing.click(Vector2(45.17,38.23))
    game.pointer=Vector2(32.31,50.28)
    var result: Dictionary=drawing.preview();var before:=var_to_str(result.points);var model:=var_to_str(game.city.roads);var anchors:=var_to_str(drawing.anchors);var measurements:=var_to_str(drawing.measurements(result))

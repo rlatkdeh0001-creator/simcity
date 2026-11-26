@@ -25,7 +25,9 @@ func run():
   ["grid corner three",true,Vector2(40,43),Vector2(60,43),false,true]
  ]
  for spec in cases:
-  game.road_drawer.cancel();game.city=fixture(spec[1]);game.road_grid_enabled=spec[5];game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(960,400)-game.screen(Vector2(44,43))
+  game.road_drawer.cancel()
+  if game.city.simulation!=null:game.city.simulation.shutdown()
+  game.city=fixture(spec[1]);game.road_grid_enabled=spec[5];game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(960,400)-game.screen(Vector2(44,43))
   await select_lanes(2)
   var before:=var_to_bytes(game.city.roads);var count:int=game.city.roads.size()
   await click(game.screen(spec[2]))

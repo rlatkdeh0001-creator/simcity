@@ -19,7 +19,7 @@ func run():
  clock=Clock.new();clock.advance_real(43200)
  check(clock.year()==2 and clock.day()==12,"twelve real hours complete one twelve-day year")
  var c=Model.new(64,64,42)
- check(c.population.demand(c.buildings)=={"residential":8,"commercial":0,"industrial":0},"empty city has only residential demand")
+ check(c.population.demand(c.buildings)=={"residential":4,"commercial":0,"industrial":0},"empty city's eight household units request four 2x2 homes and no businesses")
  c.add_road(PackedVector2Array([Vector2(10,30),Vector2(50,30)]))
  var f: Dictionary=c.zoning_grid.frames.values()[0]
  c.paint_zones(c.Parcels.polygon(f,0,0,2),"commercial")
@@ -35,9 +35,12 @@ func run():
  check(c.population.households.size()==2,"dwelling household capacity prevents overfill")
  var resident=c.population.people[0]
  resident.education=0
- var jobs := [{"id":100,"zone":"commercial","size":2,"level":1}]
- c.population.sync(c.buildings+jobs)
- check(resident.workplace_id==100 and resident.job_stage==0,"uneducated adult can fill food retail job")
+ # Production matching needs real frontage on a connected road for the home and job.
+ var retail:Dictionary=c.add_building_at(Vector2(f.origin)+Vector2(f.along)*4.5+Vector2(f.outward)*0.5,"commercial")
+ check(retail.ok,"food retail fixture has valid road frontage")
+ var workplace_id:int=retail.get("building",{}).get("id",-1)
+ c.population.sync(c.buildings)
+ check(retail.ok and resident.workplace_id==workplace_id and resident.job_stage==0,"uneducated adult can fill a connected food retail job")
  var stages := {}
  for i in range(100):stages[c.population.random_education()]=true
  check(stages.size()==5,"immigration can draw all five configured education levels")
@@ -59,8 +62,8 @@ func run():
    pop.workplaces={1:{"slots":slots,"filled":[0,0,0,0,0]}}
    pop.match_jobs()
    check((person.workplace_id==1)==(absi(education-stage)<=1),"education tolerance %d to %d" % [education,stage])
- c.population.sync(c.buildings)
- check(c.population.people.all(func(p):return p.workplace_id==-1),"demolished workplace clears old assignments")
+ var removed:Dictionary=c.demolish("building",workplace_id)
+ check(removed.ok and c.population.people.all(func(p):return p.workplace_id==-1),"demolished workplace clears old assignments")
  var before: int=c.population.people.size()
  c.buildings.clear();c.population.sync(c.buildings)
  check(c.population.people.size()==before and c.population.households.all(func(h):return h.home_id==-1),"demolished home preserves residents as displaced households")
@@ -83,15 +86,16 @@ func run():
  view.city=Model.new(64,64,42);view.paused=true
  view.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(50,30)]))
  var fixture_parcel:Dictionary=view.city.zoning_grid.parcels.values()[0]
- assert(view.city.add_building_at(fixture_parcel.center).ok)
+ var business:Dictionary=view.city.add_building_at(fixture_parcel.center,"commercial")
+ check(business.ok,"inspector fixture has a real commercial building before worker boot")
  root.add_child(view);await process_frame
- view.city.population.sync(view.city.buildings)
- var target: Dictionary=view.city.buildings[0]
- target.zone="commercial"
- view.city.population.sync(view.city.buildings)
- view.selected=target.id;view.refresh()
- check(view.labor_panel.visible and view.labor_rings.work.slots.size()==5,"business inspector exposes five labor rings")
- view.paused=true
+ var sim=view.city.simulation
+ sim.worker.Suspend()
+ view.city.advance_society(2)
+ check(sim.validation_publish(),"worker publishes commercial staffing to the real HUD")
+ view.selected=business.get("building",{}).get("id",-1);view.refresh()
+ check(business.ok and view.labor_panel.visible and view.labor_rings.work.get("slots",[]).size()==5,"business inspector exposes five labor rings")
+ sim.resume()
  var seconds: float=view.city.clock.game_seconds
  view._process(10)
  check(view.city.clock.game_seconds==seconds,"pause freezes unified city clock")

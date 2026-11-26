@@ -31,7 +31,9 @@ func branch(first: Vector2,last: Vector2,label: String,arms: int) -> bool:
 func run():
  root.size=Vector2i(1280,820);game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);current_scene=game;await settle()
  for kind in ["angled_both_sides","cardinal_both_sides","start_extension","end_extension"]:
-  game.road_drawer.cancel();game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1.0;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(48,40.5))
+  game.road_drawer.cancel()
+  if game.city.simulation!=null:game.city.simulation.shutdown()
+  game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1.0;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(48,40.5))
   await road_tool();var first:=Vector2(40,40);var last:=Vector2(56,40) if kind=="cardinal_both_sides" else Vector2(56,41)
   await click(game.screen(first));await click(game.screen(last));await settle()
   verify(game.city.roads.size()==1,kind+" builds the roughly 64m host using the actual lane card and world mouse input")

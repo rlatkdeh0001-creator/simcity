@@ -5,7 +5,12 @@ func select_lanes(count: int):
  await road_tool()
  if count!=2:
   for card in game.road_lane_cards:
-   if int(card.get_meta("lanes"))==count:await click(card.get_global_rect().get_center());break
+   if int(card.get_meta("lanes"))!=count:continue
+   var strip:ScrollContainer=game.find_child("RoadCardStrip",true,false)
+   await settle()
+   if strip!=null:strip.ensure_control_visible(card)
+   await settle()
+   await click(card.get_global_rect().get_center());break
  await settle()
  verify(game.mode=="road" and game.road_lanes==count,"actual lane card selects "+str(count)+" lanes and drawing mode before world input")
 func run():

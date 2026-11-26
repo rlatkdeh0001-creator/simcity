@@ -7,22 +7,22 @@ func _ready():
  select_category("power")
 
 func make_town():
- for y in [30,50,70]:
-  city.add_road(PackedVector2Array([Vector2(15,y),Vector2(85,y)]),"local",true,4 if y==50 else 2)
+ for y in [29.5,50.5,70.5]:
+  city.add_road(PackedVector2Array([Vector2(15,y),Vector2(85,y)]),"local",true,4 if y==50.5 else 2)
  # Existing review examples retain their positions, now with real opposite frontage.
  # Claim their aligned strips before perpendicular review roads, using normal ownership rules.
- for x in [24,55]:city.add_road(PackedVector2Array([Vector2(x,40),Vector2(x+8,40)]))
- for x in [20,50,80]: city.add_road(PackedVector2Array([Vector2(x,20),Vector2(x,80)]))
+ for x in [24,55]:city.add_road(PackedVector2Array([Vector2(x,40.5),Vector2(x+8,40.5)]))
+ for x in [20.5,50,79.5]: city.add_road(PackedVector2Array([Vector2(x,20),Vector2(x,80)]))
  var examples := [
-  ["small-4x4-a",24,25],["small-4x4-b",32,25],["mansion-a-4x4-4f",40,25],
-  ["small-2x2-a",55,27],["small-2x2-b",60,27],["small-4x4-a",66,25],["mansion-b-4x4-4f",72,25],
+  ["small-4x4-a",24,24],["small-4x4-b",32,24],["mansion-a-4x4-4f",40,24],
+  ["small-2x2-a",55,26],["small-2x2-b",60,26],["small-4x4-a",66,24],["mansion-b-4x4-4f",72,24],
   ["large-8x8-a",24,31],["mansion-b-4x4-4f",38,31],["small-4x4-a",43,31],
   ["small-2x2-b",24,46],["small-2x2-a",29,46],["small-4x4-b",35,44],["mansion-a-4x4-4f",42,44],
   ["large-8x8-b",55,31],["small-4x4-b",66,31],["small-4x4-a",73,31],
   ["mansion-b-4x4-4f",55,44],["small-2x2-b",64,46],["small-2x2-a",69,46],["small-2x2-b",74,46],
-  ["small-4x4-b",24,52],["mansion-a-4x4-4f",32,52],["small-4x4-a",40,52],
+  ["small-4x4-b",24,53],["mansion-a-4x4-4f",32,53],["small-4x4-a",40,53],
   ["small-2x2-a",25,67],["small-4x4-b",32,65],["mansion-b-4x4-4f",40,65],
-  ["large-4x4-a",55,52],["small-4x4-a",63,52],["mansion-a-4x4-4f",72,52],
+  ["large-4x4-a",55,53],["small-4x4-a",63,53],["mansion-a-4x4-4f",72,53],
   ["small-4x4-b",55,65],["small-2x2-a",63,67],["small-2x2-b",68,67],["small-4x4-a",73,65]]
  for entry in examples:
   var result: Dictionary=city.place_catalog_building(entry[0],entry[1],entry[2])

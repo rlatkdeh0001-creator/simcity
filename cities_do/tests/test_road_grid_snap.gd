@@ -9,7 +9,9 @@ func verify(ok: bool,label: String):
  if ok:print("PASS "+label)
  else:failures+=1;push_error("FAIL "+label)
 func reset(game,host: int=2,new_count: int=2):
- game.road_drawer.cancel();game.city=City.new(100,100);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]),"local",true,host);game.road_lanes=new_count;game.road_grid_enabled=true;game.road_drawer.set_kind("straight")
+ game.road_drawer.cancel()
+ if game.city.simulation!=null:game.city.simulation.shutdown()
+ game.city=City.new(100,100);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]),"local",true,host);game.road_lanes=new_count;game.road_grid_enabled=true;game.road_drawer.set_kind("straight")
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame

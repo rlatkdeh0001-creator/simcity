@@ -14,8 +14,11 @@ func length_ok(points: PackedVector2Array,step: float=1.0) -> bool:
  var length:=Paths.length_of(points)
  return length>=step-.001 and absf(length-roundf(length/step)*step)<.001
 func reset(game):
- game.activate_tool("reset");game.activate_tool("road")
+ reset_city(game);game.activate_tool("road")
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(30,30)]))
+func reset_city(game):
+ if game.city.simulation!=null:game.city.simulation.shutdown()
+ game.activate_tool("reset")
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame
@@ -107,12 +110,16 @@ func check_demolition(game):
  verify(absf(before-after-1)<.001 and network.build(loop.roads),"closed-loop cut retains remaining arc geometry and a valid lane graph")
  var short:=City.new(100,100);short.add_road(PackedVector2Array([Vector2(10,20),Vector2(10.4,20)]));short.demolish_road_unit(0,Vector2(10.2,20))
  verify(short.roads.is_empty(),"old terminal shorter than four metres can be removed without leaving an undeletable stub")
- game.activate_tool("reset");game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(70,30)]));game.map_zoom=.8;game.origin=Vector2(850,20);game.toggle_demolition()
+ reset_city(game);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(70,30)]));game.map_zoom=.8;game.origin=Vector2(850,20);game.toggle_demolition()
  var target: Dictionary=game.demolition_target(game.screen(Vector2(40.2,30)))
  # The 4m internal model API above remains; approved player clicks select the complete span.
  verify(target.get("kind","")=="road" and target.selection.ok and target.selection.cuts.size()==1 and is_equal_approx(Paths.length_of(target.selection.cuts[0].points),Paths.length_of(game.city.roads[0].points)),"player bulldozer hover selects the complete free-end-to-free-end span")
- var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=true;event.position=game.screen(Vector2(40.2,30));root.push_input(event,true);await process_frame
- event.pressed=false;root.push_input(event,true);await process_frame
+ var point:Vector2=game.screen(Vector2(40.2,30))
+ var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point;root.push_input(motion,true)
+ for i in range(8):await process_frame
+ for down in [true,false]:
+  var event:=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down;event.position=point;event.global_position=point;root.push_input(event,true)
+  for i in range(8):await process_frame
  after=0
  for road in game.city.roads:after+=Paths.length_of(road.points)
  verify(is_zero_approx(after) and game.city.roads.is_empty() and game.mode=="demolish","actual player click removes the approved complete span while keeping demolition mode")

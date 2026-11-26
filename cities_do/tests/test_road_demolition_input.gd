@@ -21,7 +21,9 @@ func key(code: int):
  for down in [true,false]:
   var event:=InputEventKey.new();event.keycode=code;event.physical_keycode=code;event.pressed=down;root.push_input(event,true);await settle()
 func fixture():
- game.cancel_zoning_drag();game.city=City.new(100,100)
+ game.cancel_zoning_drag()
+ if game.city.simulation!=null:game.city.simulation.shutdown()
+ game.city=City.new(100,100)
  game.city.add_road(PackedVector2Array([Vector2(10,40),Vector2(80,40)]))
  game.city.add_road(PackedVector2Array([Vector2(50,20),Vector2(50,65)]))
  game.map_zoom=.6;game.origin=Vector2.ZERO;game.origin=Vector2(600,300)-game.screen(Vector2(40,40))

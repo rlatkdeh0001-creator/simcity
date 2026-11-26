@@ -1,4 +1,5 @@
 extends SceneTree
+## Native GL only: this suite asserts real SubViewport pixels and wheel input.
 var checks:=0
 var failures:=0
 func check(ok:bool,label:String):
@@ -18,6 +19,10 @@ func expose(game,item):
   var wheel:=InputEventMouseButton.new();wheel.button_index=MOUSE_BUTTON_WHEEL_RIGHT if item.global_position.x>strip.global_position.x else MOUSE_BUTTON_WHEEL_LEFT
   wheel.pressed=true;wheel.position=strip.get_global_rect().get_center();root.push_input(wheel,true);wheel=wheel.duplicate();wheel.pressed=false;root.push_input(wheel,true);await process_frame
 func run():
+ if DisplayServer.get_name()=="headless":
+  printerr("FAIL test_transit_facilities_view requires native GL; use test_transit_facilities for headless model checks")
+  quit(1)
+  return
  root.size=Vector2i(1280,820)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false;game.city.happiness_enabled=false
  root.add_child(game);await process_frame
@@ -49,12 +54,14 @@ func run():
     check(node.texture!=null,"split GLB rendered")
     if node.texture!=null:check(node.texture.get_image().get_used_rect().has_area(),"original part has visible pixels")
    var record:Dictionary=game.city.public_facilities.lots[0]
-   var far=game.world_renderer.station_parts["%d:StationRear"%record.id]
-   var near=game.world_renderer.station_parts["%d:StationFront"%record.id]
-   check(far.texture.get_image().get_data()!=near.texture.get_image().get_data(),"original GLB groups render separately not duplicate whole station")
-   for point:Vector2 in record.internal_points:
-    var depth:float=game.world_renderer.iso(point).y
-    check(far.position.y<depth and near.position.y>depth,"future train slot between far and near station parts")
+   var far=game.world_renderer.station_parts.get("%d:StationRear"%record.id)
+   var near=game.world_renderer.station_parts.get("%d:StationFront"%record.id)
+   var parts_ready:bool=far!=null and near!=null and far.texture!=null and near.texture!=null
+   check(parts_ready and far.texture.get_image().get_data()!=near.texture.get_image().get_data(),"original GLB groups render separately not duplicate whole station")
+   if parts_ready:
+    for point:Vector2 in record.internal_points:
+     var depth:float=game.world_renderer.iso(point).y
+     check(far.position.y<depth and near.position.y>depth,"future train slot between far and near station parts")
   game.toggle_demolition()
   await click(game.screen(Vector2(30,33)))
   check(game.city.public_facilities.lots.is_empty(),"shared viewport bulldozer removes station")
@@ -97,7 +104,7 @@ func run():
      check(not node.is_visible_in_tree(),"silhouette hidden above ground")
      game.select_transport_tab(1);game.activate_tool("metro");await process_frame
      check(node.is_visible_in_tree(),"existing metro view reveals silhouette")
-   game.city.public_facilities.remove(record.id)
+   check(game.city.public_facilities.remove(record.id),"fixture removes "+id+" before the next placement")
  var fixture=load("res://tests/transit_facilities_fixture.gd")
  for result:Dictionary in fixture.populate(game):check(result.ok,"capture-ready fixture transaction")
  for i in range(180):
