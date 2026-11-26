@@ -342,7 +342,46 @@ static func base_allowed(point:Vector2,masks:Array)->bool:
   for i in range(mask.size()):edge_distance=minf(edge_distance,point.distance_to(Geometry2D.get_closest_point_to_segment(point,mask[i],mask[(i+1)%mask.size()])))
   if edge_distance>.00001:return false
  return true
-static func append_run(output:Array,points:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array=[],route_id:int=-1,crossovers:Array=[],city=null):
+## Only balance ordinary spans. The original clearance span, height/pitch
+## boundaries and shared supports are fixed; never borrow the crossing exception.
+static func balance_short_spans(positions:Array[float],points:PackedVector2Array,sections:Array,pins:Array[float],blocked:Array,masks:Array):
+ const EPS:=.0001
+ var i:=1
+ while i<positions.size():
+  var pitch:=0.0;var section_range:=Vector2.ZERO
+  for section:Vector3 in sections:
+   if positions[i-1]>=section.x-EPS and positions[i]<=section.y+EPS:
+    pitch=section.z;section_range=Vector2(section.x,section.y);break
+  if pitch<=0.0 or positions[i]-positions[i-1]>=pitch*.5-EPS:i+=1;continue
+  var first:=i-1;var last:=i
+  # A fixed support can bound the adjustment window, but not sit inside it.
+  while first>0 and positions[first-1]>=section_range.x-EPS and not pins.any(func(d):return absf(d-positions[first])<=EPS):first-=1
+  while last+1<positions.size() and positions[last+1]<=section_range.y+EPS and not pins.any(func(d):return absf(d-positions[last])<=EPS):last+=1
+  var changed:=false
+  for size in range(2,last-first+1):
+   for lo in range(maxi(first,i-size),mini(i-1,last-size)+1):
+    var hi:=lo+size;var a:=positions[lo];var b:=positions[hi]
+    if pins.any(func(d):return d>a+EPS and d<b-EPS):continue
+    if blocked.any(func(interval):return a<interval[1]-EPS and b>interval[0]+EPS):continue
+    # First remove a redundant support if both final spacing bounds permit it.
+    # Otherwise retain the count and distribute the old short/long gaps evenly.
+    for count in [size-1,size]:
+     var span:float=(b-a)/count
+     if span<pitch*.5-EPS or span>pitch+EPS:continue
+     var replacement:Array[float]=[]
+     for step in range(1,count):
+      var d:float=a+span*step
+      if not support_allowed(points,d,masks):break
+      replacement.append(d)
+     if replacement.size()!=count-1:continue
+     for remove in range(size-1):positions.remove_at(lo+1)
+     for step in range(replacement.size()):positions.insert(lo+1+step,replacement[step])
+     i=lo+count+1;changed=true;break
+    if changed:break
+   if changed:break
+  if not changed:i+=1
+
+static func append_run(output:Array,points:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array=[],route_id:int=-1,crossovers:Array=[],city=null,preliminary:bool=false):
  if finish<=start:return
  # Group equal local pitch sections, then divide each into equal legal spans.
  var sections:Array=[];var distance:=0.0
@@ -357,15 +396,17 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
  # Include extrapolated 1m station ends in the same straight span.
  if not sections.is_empty():sections[0].x=start;sections[-1].y=finish
  var positions:Array[float]=[]
+ var pinned:Array[float]=[start,finish]
  for section:Vector3 in sections:
+  pinned.append(section.x);pinned.append(section.y)
   var count:=maxi(1,ceili((section.y-section.x)/section.z))
   for i in range(count+1):positions.append(lerpf(section.x,section.y,float(i)/count))
  var blocked:=forbidden_intervals(points,masks)
  for interval:Array in blocked:
   var lo:float=interval[0];var hi:float=interval[1]
   positions=positions.filter(func(d):return d<=lo+.00001 or d>=hi-.00001)
-  if lo>=start and lo<=finish:positions.append(lo)
-  if hi>=start and hi<=finish:positions.append(hi)
+  if lo>=start and lo<=finish:positions.append(lo);pinned.append(lo)
+  if hi>=start and hi<=finish:positions.append(hi);pinned.append(hi)
  for x:Dictionary in crossovers:
   var supports:=crossover_supports(x,city)
   var origin:Vector2=x.start/4.0;var axis:Vector2=x.axis
@@ -377,7 +418,7 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
    return absf(relative.cross(axis))>.0005 or axial<-.0005 or axial>8.0005)
   for point:Vector2 in supports:
    var distance_on_run:=distance_on(points,point)
-   if distance_on_run>=start-.0001 and distance_on_run<=finish+.0001:positions.append(distance_on_run)
+   if distance_on_run>=start-.0001 and distance_on_run<=finish+.0001:positions.append(distance_on_run);pinned.append(distance_on_run)
  # Resolve the shared section after ordinary-pole exclusions. Valid outer
  # bases replace the inner pair; rejected sections omit support, never wire.
  var portal_positions:Dictionary={}
@@ -386,7 +427,7 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
   var projected:=distance_on(points,portal.centres[route_id])
   if projected<start-.00001 or projected>finish+.00001:continue
   portal_positions[projected]=portal.allowed
-  positions.append(projected)
+  positions.append(projected);pinned.append(projected)
  positions.sort()
  var unique:Array[float]=[]
  for d:float in positions:
@@ -397,13 +438,15 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
     if absf(d-projected)<.0001:allowed=false;break
   if not allowed:continue
   if unique.is_empty() or d-unique[-1]>.0001:unique.append(d)
+ if not preliminary:balance_short_spans(unique,points,sections,pinned,blocked,masks)
+ for d:float in unique:append_poles(output,points,d)
+ if preliminary:return # These unmodified poles are only used to discover shared portals.
  # Wires still reach a boundary/portal even when its support is prohibited.
  var wires:Array[float]=unique.duplicate()
  if wires.is_empty() or wires[0]>start+.0001:wires.push_front(start)
  if wires[-1]<finish-.0001:wires.append(finish)
- for d:float in unique:append_poles(output,points,d)
  for i in range(1,wires.size()):append_span(output,points,wires[i-1],wires[i],portals,route_id)
-static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bool,city,masks:Array,portals:Array=[],crossovers:Array=[]):
+static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bool,city,masks:Array,portals:Array=[],crossovers:Array=[],preliminary:bool=false):
  if route.kind!="rail" or route.get("covered",false) or route.get("underground",false) or not is_zero_approx(float(route.rail_top_z_m)):return
  var generated:Array=[];var points:PackedVector2Array=route.points
  var station:=false
@@ -421,7 +464,7 @@ static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bo
     run[-1]+=(run[-1]-run[-2]).normalized()*.25
     start=0;finish=length_of(run)
    var surface:Array=crossovers.filter(func(x):return ground_crossover(x,city))
-   append_level_runs(generated,route,run,start,finish,masks,portals,surface,city)
+   append_level_runs(generated,route,run,start,finish,masks,portals,surface,city,preliminary)
   run_start=i+1
  for item:Dictionary in generated:
   item.route_id=route.id
@@ -437,9 +480,9 @@ static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bo
 ## (roads, station lots) and ground crossovers apply only to the at-grade parts.
 ## E3b: in a trench the same layout follows the rail top down to the -7.0m portal and
 ## ends there; the covered tunnel has no catenary (RAIL_PARK 5절 11번).
-static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array,crossovers:Array,city):
+static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array,crossovers:Array,city,preliminary:bool=false):
  if not Height.raised(route) and not Height.sunken(route):
-  append_run(output,run,start,finish,masks,portals,int(route.id),crossovers,city);return
+  append_run(output,run,start,finish,masks,portals,int(route.id),crossovers,city,preliminary);return
  var heights:=PackedFloat64Array()
  for point:Vector2 in run:heights.append(Height.height_at(route,point))
  var carrier:={"points":run,"heights_m":heights}
@@ -452,7 +495,7 @@ static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Arr
    if not is_finite(offset):continue
    var first:=maxf(0.0,start-offset);var last:=minf(length_of(piece.points),finish-offset)
    if last<=first:continue
-   append_run(output,piece.points,first,last,[] if raised_part else masks,portals,int(route.id),[] if raised_part else crossovers,city)
+   append_run(output,piece.points,first,last,[] if raised_part else masks,portals,int(route.id),[] if raised_part else crossovers,city,preliminary)
 static func append_clipped(output:Array,generated:Array,city):
  for item:Dictionary in generated:
   # Liang-Barsky clipping keeps XY, height and actual line endpoints consistent.

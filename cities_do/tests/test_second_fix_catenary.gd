@@ -2,6 +2,7 @@ extends SceneTree
 ## Item 5: real main scene and production renderer, with no simulation advance.
 ## --fixture-check never reads the framebuffer; --catenary-capture=<new PNG> opts in.
 const City=preload("res://core/city_model.gd")
+const Catenary=preload("res://core/rail_catenary.gd")
 const SIZE:=Vector2i(1920,1080)
 const CENTER:=Vector2(48,42)
 const RADIUS:=8.5
@@ -65,6 +66,8 @@ func run():
  check(projection_ok and visible_contacts>0,"real retained poles and contact wires framed clear of the HUD")
  check(not game.drawer.visible and not game.transit_view.underground,"normal ground view with the drawer closed")
  check_spans(commands,city.road_pavement,radial.orthogonal())
+ check_support_spacing(commands,city.road_pavement,points,crossing)
+ check_merge_without_long_span()
  if not check_only and not path.is_empty() and failures==0:
   if check(not headless and path.get_extension().to_lower()=="png" and not FileAccess.file_exists(path),"capture needs a native display and a new PNG destination"):
    await RenderingServer.frame_post_draw
@@ -103,3 +106,38 @@ func check_spans(commands:Array,pavement:Array,tangent:Vector2):
  check(clearance and attached and total>2,"physical supports carry every span and clear the sidewalk by 1m")
  check(crossing==2 and longest_crossing<=48 and longest_crossing>8,"both road spans stay within 48m (%.3fm)"%longest_crossing)
  check(longest_clear>0 and longest_clear<=8.05,"ordinary curve spans keep 8m pitch (%.3fm)"%longest_clear)
+
+func check_support_spacing(commands:Array,pavement:Array,points:PackedVector2Array,crossing:Vector2):
+ var masks:Array=[]
+ for polygon:PackedVector2Array in pavement:masks.append_array(Geometry2D.offset_polygon(polygon,.25,Geometry2D.JOIN_MITER))
+ var crossing_distance:=Catenary.distance_on(points,crossing)
+ var intervals:=Catenary.forbidden_intervals(points,masks)
+ var crossing_bounds:Array=[]
+ for interval:Array in intervals:
+  if interval[0]<crossing_distance and crossing_distance<interval[1]:crossing_bounds=interval;break
+ var poles:=commands.filter(func(c):return c.kind=="pole")
+ var distances:Array[float]=[]
+ for pole:Dictionary in poles:
+  var d:=Catenary.distance_on(points,pole.centre)
+  if distances.is_empty() or absf(distances[-1]-d)>.0001:distances.append(d)
+ var shortest:=INF;var longest:=0.0;var gap:=0.0
+ for i in range(1,distances.size()):
+  var length:=(distances[i]-distances[i-1])*4
+  if distances[i-1]<crossing_distance and crossing_distance<distances[i]:gap=length
+  else:shortest=minf(shortest,length);longest=maxf(longest,length)
+ check(shortest>=3.9999 and longest<=8.05,"ordinary support centerline gaps are 4–8.05m (min %.3fm, max %.3fm)"%[shortest,longest])
+ var retained:=crossing_bounds.size()==2
+ for d:float in crossing_bounds:
+  var at:=Catenary.sample(points,d)
+  for side:float in [-1.0,1.0]:
+   var base:Vector2=at.point+at.normal*side
+   retained=retained and poles.any(func(p):return p.a.distance_to(base)<.0001)
+ check(retained and gap>8 and gap<=48,"both paired crossing-end poles stay on the clearance edges (%.3fm crossing)"%gap)
+
+func check_merge_without_long_span():
+ var points:=PackedVector2Array([Vector2.ZERO,Vector2(30,0)])
+ var mask:=PackedVector2Array([Vector2(7.9,-2),Vector2(15.2,-2),Vector2(15.2,2),Vector2(7.9,2)])
+ var commands:Array=[]
+ Catenary.append_run(commands,points,0,30,[mask])
+ var poles:=commands.filter(func(c):return c.kind=="pole")
+ check(poles.size()==10 and poles.any(func(p):return absf(p.centre.x-7.9)<.0001) and not poles.any(func(p):return absf(p.centre.x-7.5)<.0001),"a 1.6m gap merges into its pinned crossing edge when the resulting span stays under 32m")

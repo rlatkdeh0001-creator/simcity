@@ -224,15 +224,17 @@ static func build_geometry(city)->Dictionary:
    for point:Vector2 in path_m:path.append(point/4.0)
    append_track(result.rail,path,false,false,bounds,[])
    append_track(crossover_rails,path,false,false,bounds,[],"strip_rails")
- for route:Dictionary in city.transit_routes:
-  if route.kind!="rail":continue
+ var catenary=preload("res://core/rail_catenary.gd")
+ var rail_routes:Array=city.transit_routes.filter(func(r):return r.kind=="rail")
+ var plan_shared:=rail_routes.size()>1
+ for route:Dictionary in rail_routes:
   var masks:Array=roads.duplicate()
   for other:Dictionary in city.transit_routes:
    if other.kind=="rail" and other.id!=route.id:
     # A deck passing overhead is not a junction with this track.
     for part:PackedVector2Array in level_parts(other.points,other,false):
      var ground_other:Dictionary=other.duplicate();ground_other.points=part;masks.append_array(ribbons(ground_other))
-  preload("res://core/rail_catenary.gd").append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,[],crossovers)
+  catenary.append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,[],crossovers,plan_shared)
   for path:PackedVector2Array in result.tracks[route.id]:
    var caps:=[terminal(city,route,0),terminal(city,route,route.points.size()-1)]
    for part:PackedVector2Array in level_parts(path,route,false):
@@ -245,13 +247,12 @@ static func build_geometry(city)->Dictionary:
     var trench_strips:Array=[]
     append_track(trench_strips,part,caps[0] and part[0].distance_to(path[0])<.0005,caps[1] and part[-1].distance_to(path[-1])<.0005,bounds,[])
     for item:Dictionary in trench_strips:result.trench.append(deck_shape(item,route))
- var catenary=preload("res://core/rail_catenary.gd")
- var portals:Array=catenary.plan_portals(result.catenary,city.transit_routes,pole_masks)
- if not portals.is_empty():
+ if plan_shared:
+  var portals:Array=catenary.plan_portals(result.catenary,rail_routes,pole_masks)
   result.catenary.clear()
-  for route:Dictionary in city.transit_routes:
+  for route:Dictionary in rail_routes:
    catenary.append_route(result.catenary,route,terminal(city,route,0),terminal(city,route,route.points.size()-1),city,pole_masks,portals,crossovers)
-  result.catenary=catenary.apply_portals(result.catenary,portals)
+  if not portals.is_empty():result.catenary=catenary.apply_portals(result.catenary,portals)
  result.rail.append_array(crossover_rails)
  for x:Dictionary in crossovers:catenary.append_crossover(result.catenary,x,city,pole_masks)
  result.catenary=catenary.combine_inner_poles(result.catenary)
