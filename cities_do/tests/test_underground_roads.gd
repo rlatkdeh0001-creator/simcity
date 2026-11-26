@@ -25,6 +25,7 @@ func heights(values:Array)->PackedFloat64Array:
 func run() -> void:
  check(is_equal_approx(Height.PORTAL_M,-6.0) and is_equal_approx(4.5+1.0+0.5,-Height.PORTAL_M),"portal road surface is -6.0m = 4.5m clearance + 1.0m slab + 0.5m beam")
  test_grade_boundaries()
+ test_flat_trench_construction()
  test_portal_split()
  test_vertical_clearance()
  test_metro_exception()
@@ -61,6 +62,26 @@ func test_grade_boundaries():
  var layer:Dictionary=city.add_elevated_road(path([Vector2(20,40),Vector2(60,40)]),heights([-7,-7]),"local",false)
  check(not layer.ok and layer.reason=="높이는 5m 단위입니다","flat underground layers remain 5m multiples")
  check(city.roads.is_empty(),"previews never commit underground records")
+func test_flat_trench_construction():
+ for kind in ["local","highway"]:
+  var city=City.new(120,100)
+  for commit in [false,true]:
+   var id:int=city.next_road_id
+   var flat:Dictionary=city.add_elevated_road(path([Vector2(20,40),Vector2(50,40)]),heights([-5,-5]),kind,commit)
+   check(not flat.ok and flat.reason=="열린 트렌치에는 평탄한 도로를 만들 수 없습니다","flat -5m %s rejected (commit=%s): %s"%[kind,commit,flat.reason])
+   check(city.roads.is_empty() and city.next_road_id==id,"rejected flat -5m request does not add a road or allocate an ID")
+ var city=City.new(120,100)
+ var p:=path([Vector2(20,40),Vector2(36,40),Vector2(44,40),Vector2(60,40)])
+ var levels:=heights([0,-5,-5,-10])
+ for commit in [false,true]:
+  var plateau:Dictionary=city.add_elevated_road(p,levels,"local",commit)
+  check(not plateau.ok and plateau.reason=="열린 트렌치에는 평탄한 도로를 만들 수 없습니다" and city.roads.is_empty(),"a -5m plateau embedded in a ramp is rejected (commit=%s): %s"%[commit,plateau.reason])
+ var restored=City.new(120,100)
+ var legacy:={"parcel_id":0,"points":path([Vector2(20,40),Vector2(50,40)]),"heights_m":heights([-5,-5]),"kind":"local","lanes":2,"width":3.0,"major_side":1}
+ restored.roads.append(legacy.duplicate(true));restored.next_road_id=1
+ var tunnel:Dictionary=restored.add_elevated_road(path([Vector2(20,60),Vector2(50,60)]),heights([-10,-10]))
+ check(tunnel.ok and restored.roads.size()==2 and restored.roads[0]==legacy,"new construction preserves a retained legacy flat trench")
+ check(Height.open_pieces(restored.roads[0]).size()==1,"retained flat trench still has open geometry")
 func test_portal_split():
  var road:={"points":path([Vector2(20,40),Vector2(52,40),Vector2(80,40)]),"heights_m":heights([0,-10,-10]),"width":3.0}
  var covered:Array=Height.covered_pieces(road)
@@ -73,12 +94,12 @@ func test_portal_split():
  check(not Height.covered_at(-5.99) and Height.covered_at(-6.0) and Height.covered_at(-10),"portal boundary: -5.99m open, -6.0m and deeper covered")
  check(Height.sunken(road) and not Height.raised(road) and Height.off_ground(road) and Height.level(road)==-1,"underground level helpers")
 func test_vertical_clearance():
- for depth in [-10,-5]:
-  var city=City.new(100,100)
-  check(city.add_road(path([Vector2(50,10),Vector2(50,90)])).ok,"ground crossing fixture")
-  var result:Dictionary=city.add_elevated_road(path([Vector2(20,50),Vector2(80,50)]),heights([depth,depth]),"local",false)
-  if depth==-10:check(result.ok,"ground x -10m tunnel: exactly 10m clearance accepted: "+result.reason)
-  else:check(not result.ok and result.reason=="수직 간격 부족","ground x -5m trench: 5m clearance rejected: "+result.reason)
+ var ground=City.new(100,100)
+ check(ground.add_road(path([Vector2(50,10),Vector2(50,90)])).ok,"ground crossing fixture")
+ var tunnel:Dictionary=ground.add_elevated_road(path([Vector2(20,50),Vector2(80,50)]),heights([-10,-10]),"local",false)
+ check(tunnel.ok,"ground x -10m tunnel: exactly 10m clearance accepted: "+tunnel.reason)
+ var ramp:Dictionary=ground.add_elevated_road(path([Vector2(34,50),Vector2(66,50)]),heights([0,-10]),"local",false)
+ check(not ramp.ok and ramp.reason=="수직 간격 부족","ground x through-ramp at -5m: 5m clearance rejected: "+ramp.reason)
  for order in [0,1]:
   for pair in [[-10,-20,true],[-10,-15,false]]:
    var city=City.new(100,100)
@@ -201,9 +222,14 @@ func test_demolish_and_modify():
  check(rebuilt.ok and rebuilt.demolish_ids.is_empty(),"the same tunnel can be planned again under the surviving building")
 func test_trench_junction_and_mixed():
  var city=City.new(100,100)
- check(city.add_elevated_road(path([Vector2(20,40),Vector2(36,40),Vector2(70,40)]),heights([0,-5,-5])).ok,"open -5m sunken road")
- var cross:Dictionary=city.add_elevated_road(path([Vector2(50,20),Vector2(50,60)]),heights([-5,-5]),"local",false)
+ var cross:Dictionary=city.add_elevated_road(path([Vector2(10,50),Vector2(90,50),Vector2(90,10),Vector2(50,10),Vector2(50,90)]),heights([0,-10,-10,0,-10]),"local",false)
  check(not cross.ok and cross.reason=="트렌치 안에는 교차로를 만들 수 없습니다","same-level junction inside an open trench is red: "+cross.reason)
+ check(city.add_elevated_road(path([Vector2(20,40),Vector2(36,40)]),heights([0,-5])).ok,"first half of a ramp reaches -5m without a flat section")
+ var continuation:=path([Vector2(36,40),Vector2(52,40)])
+ var width_change:Dictionary=city.add_elevated_road(continuation,heights([-5,-10]),"local",true,4)
+ check(not width_change.ok and width_change.reason=="트렌치 안에는 교차로를 만들 수 없습니다" and city.roads.size()==1,"width change at a -5m ramp join is refused without adding a road: "+width_change.reason)
+ var through:Dictionary=city.add_elevated_road(continuation,heights([-5,-10]))
+ check(through.ok and city.roads.size()==2,"same-width through-ramp can continue at -5m: "+through.reason)
  var deep=City.new(100,100)
  check(deep.add_elevated_road(path([Vector2(20,40),Vector2(52,40),Vector2(80,40)]),heights([0,-10,-10])).ok,"covered road")
  var covered_cross:Dictionary=deep.add_elevated_road(path([Vector2(70,20),Vector2(70,60)]),heights([-10,-10]))

@@ -26,8 +26,8 @@ func confirm_pending():
  clear_warning()
  commit_path(approved,true)
 func set_height(value:float):
- # E2: below ground is allowed; PgDn/- step 5m into the underground layers.
  target_height_m=roundf(value/5)*5
+ if target_height_m<0:target_height_m=minf(target_height_m,Height.SHALLOWEST_ROAD_TUNNEL_M)
  _preview_signature=null
  var controls=view.find_child("RoadHeightControls",true,false)
  if controls!=null:controls.synchronize()
@@ -285,7 +285,10 @@ func commit_path(plan:Dictionary,confirmed:bool):
 func handle_input(event: InputEvent) -> bool:
  if view.mode!="road" or kind=="legacy":return false
  if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
-  set_height(target_height_m+(5 if event.keycode==KEY_PAGEUP else -5));return true
+  var step:=5 if event.keycode==KEY_PAGEUP else -5
+  var height:=target_height_m+step
+  if height<0 and height>Height.SHALLOWEST_ROAD_TUNNEL_M:height+=step
+  set_height(height);return true
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel();return true
  if not pending.is_empty():
   if event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:cancel()

@@ -1,6 +1,7 @@
 extends RefCounted
 ## E1/E2 height geometry. Units: horizontal city cells (4m), vertical metres.
 const EPS := .0001
+const SHALLOWEST_ROAD_TUNNEL_M := -10.0
 ## E2 portal: road surface = -(4.5m clearance + 1.0m cover slab + 0.5m portal beam).
 const PORTAL_CLEARANCE_M := 4.5
 const COVER_SLAB_M := 1.0
@@ -161,7 +162,14 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
 static func validate(road:Dictionary,bounds:Vector2)->String:
  if road.kind not in ["local","highway"] or road.lanes not in ([2,3,4,5,6,7,8] if road.kind=="local" else [2,4]) or road.major_side not in [-1,1]:return "도로 경로가 필요합니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
- return profile_error(road.points,road.heights_m,road.kind,bounds)
+ var heights:PackedFloat64Array=road.heights_m
+ var error:=profile_error(road.points,heights,road.kind,bounds)
+ if not error.is_empty():return error
+ # New roads may slope through the open trench, but cannot stay flat there.
+ for i in range(1,heights.size()):
+  if heights[i]<-EPS and not covered_at(heights[i]) and absf(heights[i]-heights[i-1])<=EPS:
+   return "열린 트렌치에는 평탄한 도로를 만들 수 없습니다"
+ return ""
 ## Whole-run grade check shared by roads and rail: a run is every consecutive
 ## piece rising (or falling) the same way, never only its last piece.
 static func profile_error(points:PackedVector2Array,heights:PackedFloat64Array,kind:String,bounds:Vector2=Vector2(INF,INF))->String:

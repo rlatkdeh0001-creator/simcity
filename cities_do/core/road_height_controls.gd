@@ -1,5 +1,6 @@
 extends VBoxContainer
-## Approved C: three mode buttons, then - / height / +. E2: underground steps by 5m below ground.
+## Approved C: three mode buttons, then - / height / +.
+const Height=preload("res://core/road_height.gd")
 var owner_view
 var value_label:Label
 var minus:Button
@@ -23,14 +24,16 @@ func setup(view):
  minus.pressed.connect(change.bind(-5));plus.pressed.connect(change.bind(5));synchronize()
 func select(value:int):
  target().set_height(value);synchronize()
+func shallowest_underground_height()->float:
+ return -5.0 if rail else Height.SHALLOWEST_ROAD_TUNNEL_M
 func change(delta:int):
  var height:float=target().target_height_m+delta
- # -/+ stay inside the selected layer: elevated >= +5m, underground <= -5m.
- target().set_height(minf(-5,height) if target().target_height_m<0 else maxf(5,height));synchronize()
+ # -/+ stay inside the selected layer, unlike Page Up/Down.
+ target().set_height(minf(shallowest_underground_height(),height) if target().target_height_m<0 else maxf(5,height));synchronize()
 func synchronize():
  var height:float=target().target_height_m
  value_label.text="0 m" if height==0 else ("+%d m"%height if height>0 else "−%d m"%absf(height))
- minus.disabled=height==0;plus.disabled=height==0
+ minus.disabled=height==0;plus.disabled=height==0 or (not rail and height==Height.SHALLOWEST_ROAD_TUNNEL_M)
  for key in mode_buttons:
   var active:bool=(key==0 and height==0) or (key==10 and height>0) or (key<0 and height<0)
   var button:Button=mode_buttons[key];button.set_pressed_no_signal(active)
