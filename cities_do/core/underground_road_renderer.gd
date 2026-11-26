@@ -18,7 +18,8 @@ const WALL_INSET:=.125 # retaining-wall-01 spec wall_thickness_m 0.5m: inner wid
 const BARRIER_WIDTH:=.1 # 0.4m barrier top band (cells).
 const FAR_RAISE_M:=4.0 # Clip outline far edge raise (ASSET_REQUEST 5절 6번).
 const RAIL_FAR_RAISE_M:=6.0 # E3b: rail trenches carry catenary (5.3m poles), so the far edge rises 6m.
-const RAIL_TRENCH_CAR_HIDE_BELOW_M:=-5.0
+const UNDERGROUND_RAIL_CAR_HIDE_BELOW_M:=-5.0
+const MIN_RAIL_BODY_EXPOSURE:=.5
 const MOUTH_TOP_M:=-1.5 # tunnel-portal-01 spec mouth_top_below_ground_m.
 const WALL_SHADE:=[.775339076072665,1.05279764424266] # retaining-wall-01 spec.json face_shade +X/-Y.
 const PORTAL_SHADE:=[.77429849084644,1.05327280147779] # tunnel-portal-01 spec.json face_shade +X/-Y.
@@ -26,6 +27,7 @@ const INTERIOR:=Color("15181a") # tunnel-portal-01 spec interior_color, same as 
 class Trench extends Node2D:
  var outlines:Array[PackedVector2Array]=[]
  var footprints:Array[PackedVector2Array]=[]
+ var near_edges:Array[PackedVector2Array]=[] # Inner barrier edges projected at ground level.
  var source_ids:Array=[]
  var world_bounds:Rect2
  func _draw():
@@ -37,6 +39,7 @@ var renderer:
 var trenches:Array=[]
 var barriers:Array=[]
 var portals:Array=[]
+var rail_silhouettes:Dictionary={}
 func _init(owner):owner_reference=weakref(owner)
 func project(point:Vector2,height_m:float)->Vector2:return renderer.elevated.project(point,height_m)
 func projected(polygon_value:PackedVector2Array,source:Dictionary)->PackedVector2Array:
@@ -181,6 +184,7 @@ func build_trench(city,visual:Dictionary,part:Dictionary):
    var far:=normal.x+normal.y<0
    # Only the far wall's trench face looks at the camera; it is cut at the road surface.
    if far:walls.append([a,b,ha,hb,distances[i-1],-normal])
+   if rail and normal.x+normal.y>Height.EPS:trench.near_edges.append(PackedVector2Array([project(a,0),project(b,0)]))
    build_barrier(road,a,b,normal,distances[i-1],far)
  if rail:body.commands.append_array(rail_commands(road))
  for wall:Array in walls:band(body,wall[0],wall[1],0,0,wall[2],wall[3],wall[4],WALL,WALL_STRIP_M,BARRIER_M,shade(WALL_SHADE,wall[5]))
@@ -253,19 +257,73 @@ func place_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2):
    parent=trench if trench!=null else renderer.view.transit_view.metro_layer
    sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
  if sprite.get_parent()!=parent:sprite.reparent(parent,false)
-## E3b trains: each car follows its own rail depth. Deep open-trench cars do not
-## draw in either view; covered cars still draw in the underground view only.
-func place_train(sprite:Sprite2D,structure:Dictionary,point:Vector2):
+## Cache each directional sprite's opaque column extents without reading the GPU on pose updates.
+func rail_silhouette(texture:Texture2D,pose:Dictionary)->PackedVector2Array:
+ if not rail_silhouettes.has(texture):
+  var path:String=renderer.view.traffic.sprite_path(pose.asset_id,pose.heading)
+  var image:Image=Image.load_from_file(path) if FileAccess.file_exists(path) else null
+  if image==null and DisplayServer.get_name()!="headless":image=texture.get_image()
+  if image!=null and image.is_compressed() and image.decompress()!=OK:image=null
+  var columns:=PackedVector2Array()
+  if image!=null and not image.is_empty():
+   var width:=image.get_width();var height:=image.get_height()
+   columns.resize(width)
+   for x in range(width):
+    var top:=height;var bottom:=0
+    for y in range(height):
+     if image.get_pixel(x,y).a>=.5:top=mini(top,y);bottom=y+1
+    columns[x]=Vector2(float(top)/height,float(bottom)/height)
+  rail_silhouettes[texture]=columns
+ return rail_silhouettes[texture]
+## Compare opaque height above the foremost occluding lip at each screen X. The
+## ground-projected car axis keeps a wall behind the car from counting as foreground.
+static func exposed_train_fraction(columns:PackedVector2Array,rect:Rect2,axis:Vector2,half_axis:Vector2,edges:Array[PackedVector2Array],lip_raise:float)->float:
+ var candidates:Array[PackedVector2Array]=[]
+ for edge in edges:
+  var lo:=minf(edge[0].x,edge[1].x);var hi:=maxf(edge[0].x,edge[1].x)
+  if hi-lo>Height.EPS and hi>rect.position.x and lo<rect.end.x:candidates.append(edge)
+ if candidates.is_empty():return 1.0
+ var full:=0.0;var exposed:=0.0
+ for i in range(columns.size()):
+  var column:=columns[i];var height:=column.y-column.x
+  if height<=0.0:continue
+  var x:=rect.position.x+(i+.5)*rect.size.x/columns.size()
+  var along:=clampf((x-axis.x)/half_axis.x,-1,1) if absf(half_axis.x)>Height.EPS else 0.0
+  var car_ground_y:=axis.y+along*half_axis.y
+  var clip_y:=INF
+  for edge in candidates:
+   var t:=(x-edge[0].x)/(edge[1].x-edge[0].x)
+   if t<0.0 or t>1.0:continue # Never extend a wall past its ends.
+   var wall_y:=lerpf(edge[0].y,edge[1].y,t)
+   if wall_y>car_ground_y+Height.EPS:clip_y=minf(clip_y,wall_y-lip_raise)
+  full+=height
+  exposed+=clampf((clip_y-rect.position.y)/rect.size.y-column.x,0.0,height)
+ return exposed/full if full>0.0 else 1.0
+func sync_train_visibility(sprite:Sprite2D):
+ if not sprite.has_meta("rail_trench_surface_fraction"):return
+ if renderer.view.transit_view.underground:
+  sprite.visible=float(sprite.get_meta("rail_height_m"))>=UNDERGROUND_RAIL_CAR_HIDE_BELOW_M
+ else:sprite.visible=float(sprite.get_meta("rail_trench_surface_fraction"))>=MIN_RAIL_BODY_EXPOSURE
+## Each rail car follows its own depth. Only open-trench surface visibility uses
+## the wall and silhouette; the underground cutoff and covered layer are unchanged.
+func place_train(sprite:Sprite2D,structure:Dictionary,point:Vector2,pose:Dictionary):
  var height:=Height.height_at(structure,point)
  var parent:Node2D=renderer.actors
+ var trench:Trench=null
  if height< -Height.EPS:
   if Height.covered_at(height,Height.RAIL_PORTAL_M):parent=renderer.view.transit_view.metro_layer
   else:
-   if height<RAIL_TRENCH_CAR_HIDE_BELOW_M:sprite.hide()
-   var trench:=trench_at(structure,point)
+   trench=trench_at(structure,point)
    if trench!=null:parent=trench
   sprite.offset.y-=height*renderer.view.tile.x/4*sqrt(1.5)/sprite.scale.y
  if sprite.get_parent()!=parent:sprite.reparent(parent,false)
+ if trench!=null:
+  var rect:=Rect2(sprite.position+sprite.offset*sprite.scale,sprite.texture.get_size()*sprite.scale)
+  var half_axis:Vector2=renderer.iso(pose.heading*float(pose.get("length_m",10))/8)
+  var lip_raise:=project(Vector2.ZERO,0).y-project(Vector2.ZERO,BARRIER_M).y
+  var fraction:=exposed_train_fraction(rail_silhouette(sprite.texture,pose),rect,renderer.iso(point),half_axis,trench.near_edges,lip_raise)
+  sprite.set_meta("rail_trench_surface_fraction",fraction)
+  sync_train_visibility(sprite)
 func sync_visibility():
  var view=renderer.view;var viewport:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
  for node in trenches+barriers:node.visible=viewport.intersects(Rect2(view.origin+node.world_bounds.position*view.map_zoom,node.world_bounds.size*view.map_zoom))

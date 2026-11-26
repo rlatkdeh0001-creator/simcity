@@ -45,11 +45,14 @@ var structure_signature:Variant=null
 func sync_transit_structures():
  if elevated==null or actors==null:return
  var key:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height,view.transit_view.generation])
- if key!=structure_signature:
+ var rebuilt:bool=key!=structure_signature
+ if rebuilt:
   structure_signature=key;elevated.rebuild();catenary_generation=-1
   # E2 road trenches and E3b rail trenches follow roads and transit geometry alike.
   if underground!=null:underground.rebuild()
+  transit_snapshot_signature=null
  sync_catenary()
+ if rebuilt:sync_transit_cars() # An unchanged pose still needs its new trench and wall.
 ## Deck catenary draws after its own deck surface and trains, before the near barrier face.
 func deck_catenary_depth(commands:Array,fronts:Array,depth:float)->float:
  var best:=-INF
@@ -210,7 +213,7 @@ var station_parts:Dictionary={}
 var metro_stations:Dictionary={}
 var cars:Dictionary={}
 var transit_cars:Dictionary={}
-var transit_snapshot_signature:int=0
+var transit_snapshot_signature:Variant=null
 func sync_transit_cars():
  if view.traffic==null:return
  var snapshot:Array=view.city.transit_state.get("visible",[])
@@ -227,6 +230,7 @@ func sync_transit_cars():
    parent.add_child(sprite);transit_cars[pose.id]=sprite
   var target_parent:Node2D=view.transit_view.metro_layer if pose.kind=="metro" else actors
   if sprite.get_parent()!=target_parent:sprite.reparent(target_parent,false)
+  if sprite.has_meta("rail_trench_surface_fraction"):sprite.remove_meta("rail_trench_surface_fraction")
   var ground_point:=iso(pose.position/4)
   var rect:Rect2=view.traffic.sprite_rect(pose.asset_id,Vector2.ZERO,ppm)
   sprite.position=ground_point
@@ -250,8 +254,8 @@ func sync_transit_cars():
     sprite.set_meta("rail_height_m",lift)
    elif lift< -preload("res://core/road_height.gd").EPS and underground!=null:
     # E3b: trench trains drop into the trench clip group; tunnel trains draw like metro trains.
-    underground.place_train(sprite,deck,point)
     sprite.set_meta("rail_height_m",lift)
+    underground.place_train(sprite,deck,point,pose)
  for id:Variant in transit_cars.keys():
   if not keep.has(id):transit_cars[id].queue_free();transit_cars.erase(id)
  sync_catenary_depth()
@@ -456,7 +460,9 @@ func sync_view_layers():
  zones.visible=shown and view.show_zoning_tiles();grid.visible=zones.visible and view.map_zoom>=.4
  for overlay in [view.get("power_overlay"),view.get("water_overlay")]:
   if overlay is CanvasItem:overlay.visible=shown
- if terrain_faded==shown:terrain_faded=not shown;ground.queue_redraw()
+ if terrain_faded==shown:
+  terrain_faded=not shown;ground.queue_redraw()
+  for sprite:Sprite2D in transit_cars.values():underground.sync_train_visibility(sprite)
 func fallback(canvas:CanvasItem,b:Dictionary,anchor:Vector2):
  if b.has("public_asset_id"):return
  var base:=project(view.city.footprint(b));var top:=base.duplicate();var lift:float=view.visual_lift(b)

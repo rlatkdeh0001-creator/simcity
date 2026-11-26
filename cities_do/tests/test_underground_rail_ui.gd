@@ -2,6 +2,7 @@ extends SceneTree
 ## E3b untimed actual-main UI checks. Captures are explicit (--e3b-capture= / --e3b-underground-capture=), never a side effect.
 const Height=preload("res://core/road_height.gd")
 const Routes=preload("res://core/transit_routes.gd")
+const Trench=preload("res://core/underground_road_renderer.gd")
 var checks:=0
 var failures:=0
 var game
@@ -36,6 +37,7 @@ func run():
  await test_height_controls()
  await test_confirmed_points()
  await test_warning_b()
+ test_wall_fraction()
  var trench_path:="";var underground_path:=""
  for arg:String in OS.get_cmdline_user_args():
   if arg.begins_with("--e3b-capture="):trench_path=arg.trim_prefix("--e3b-capture=")
@@ -109,16 +111,53 @@ func advance_until(city,matches:Callable)->Dictionary:
  city.simulation.resume();game.paused=true
  game.world_renderer.synchronize();game.refresh();await settle();await settle()
  return target
-func train_boundary(underground,structure:Dictionary,track_y:float):
- # The west descent starts at x=16; x=52 is exactly halfway to -10m.
- for x:float in [52.0,52.1]:
-  var point:=Vector2(x,track_y)
-  var depth:=Height.height_at(structure,point)
-  var sprite:=Sprite2D.new();game.world_renderer.actors.add_child(sprite)
-  underground.place_train(sprite,structure,point)
-  var at_limit:=x==52.0
-  check((depth==-5.0 if at_limit else depth< -5.0 and depth> -7.0) and sprite.visible==at_limit,"open-trench car visibility at %.4fm (exactly -5m stays visible)"%depth)
-  sprite.free()
+func test_wall_fraction():
+ # The middle column is transparent, and the others have unequal opaque heights.
+ var columns:=PackedVector2Array([Vector2(.25,.75),Vector2(1,0),Vector2(0,1)])
+ var rect:=Rect2(0,0,3,8)
+ var edges:Array[PackedVector2Array]=[PackedVector2Array([Vector2(3,6),Vector2(0,6)])]
+ check(Trench.exposed_train_fraction(columns,rect,Vector2.ZERO,Vector2.ZERO,edges,2.0)==.5,"the projected lip leaves exactly half of the opaque height")
+ var sprite:=Sprite2D.new()
+ sprite.set_meta("rail_trench_surface_fraction",.5);sprite.hide()
+ game.world_renderer.underground.sync_train_visibility(sprite)
+ check(sprite.visible,"exactly half remains visible on the surface")
+ sprite.set_meta("rail_trench_surface_fraction",.4999)
+ game.world_renderer.underground.sync_train_visibility(sprite)
+ check(not sprite.visible,"strictly less than half hides the car on the surface")
+ sprite.free()
+ edges[0]=PackedVector2Array([Vector2(2,6),Vector2(0,6)])
+ check(is_equal_approx(Trench.exposed_train_fraction(columns,rect,Vector2.ZERO,Vector2.ZERO,edges,2.0),5.0/6.0),"the near lip does not occlude columns beyond its finite end")
+ check(Trench.exposed_train_fraction(columns,rect,Vector2(0,8),Vector2.ZERO,edges,2.0)==1.0,"a projected wall behind the car does not occlude it")
+func train_depth_probes(target:Dictionary,structure:Dictionary):
+ if target.is_empty():return
+ var renderer=game.world_renderer
+ var previous:Array=game.city.transit_state.visible
+ var retained:Sprite2D=renderer.transit_cars.get(target.id)
+ # Move only the renderer's copy of the real locomotive pose along its own track.
+ # The west descent starts at x=16 and drops 10m over 72 cells.
+ for expected_depth:float in [0.0,-2.0,-4.0,-4.5,-5.0,-6.0]:
+  var pose:=target.duplicate();pose.position.x=(16.0-expected_depth*7.2)*4
+  game.city.transit_state.visible=previous.map(func(car):return pose if car.id==pose.id else car)
+  renderer.sync_transit_cars()
+  var sprite:Sprite2D=renderer.transit_cars.get(pose.id)
+  var depth:=Height.height_at(structure,pose.position/4)
+  var fraction:=float(sprite.get_meta("rail_trench_surface_fraction",1.0))
+  var surface:=sprite.is_visible_in_tree()
+  game.transit_view.underground=true;game.transit_view.sync_visibility()
+  var below:=sprite.is_visible_in_tree()
+  game.transit_view.underground=false;game.transit_view.sync_visibility()
+  print("P7B_PROBE depth_m=%.3f fraction=%.6f surface=%s underground=%s"%[depth,fraction,"visible" if surface else "hidden","visible" if below else "hidden"])
+  check(is_equal_approx(depth,expected_depth) and sprite==retained and sprite.texture!=null,"probe %.1fm uses the same textured car at the interpolated depth"%depth)
+  check(surface==(fraction>=.5) and sprite.is_visible_in_tree()==surface and surface==(expected_depth>= -2.0),"probe %.1fm follows the wall threshold, including a visible shallow car"%depth)
+  check(below==(expected_depth<0.0 and expected_depth>= -5.0),"probe %.1fm preserves underground visibility on the same car"%depth)
+  if expected_depth== -2.0:
+   var old_trench:=sprite.get_parent()
+   renderer.structure_signature=null
+   renderer.sync_transit_structures()
+   renderer.underground.sync_visibility()
+   check(renderer.transit_cars.get(pose.id)==sprite and sprite.get_parent()!=old_trench and sprite.get_parent() in renderer.underground.trenches and sprite.is_visible_in_tree() and sprite.get_meta("rail_trench_surface_fraction",-1.0)==fraction,"an unchanged pose rebinds to a rebuilt trench and uses its wall")
+ game.city.transit_state.visible=previous
+ renderer.sync_transit_cars()
 func native_capture(trench_path:String,underground_path:String):
  for path:String in [trench_path,underground_path]:
   if not path.is_empty() and (DisplayServer.get_name()=="headless" or FileAccess.file_exists(path)):
@@ -168,8 +207,9 @@ func native_capture(trench_path:String,underground_path:String):
  check(rail_trenches.size()==2,"two rail trench clip groups (down and back up): %d"%rail_trenches.size())
  check(underground.portals.filter(func(p):return p.trench in rail_trenches).size()==2,"each rail trench ends in a tunnel portal")
  var structure:=Routes.structure(city.transit_routes[-1])
- train_boundary(underground,structure,y+30)
- var shallow:=0;var deep:=0;var deep_sprites:Array[Sprite2D]=[];var depths:Array=[]
+ train_depth_probes(target,structure)
+ rail_trenches=underground.trenches.filter(func(t):return str(t.source_ids[0]).begins_with("rail:"))
+ var shallow_sprites:Array[Sprite2D]=[];var deep_sprites:Array[Sprite2D]=[];var depths:Array=[]
  var frame:=Rect2(Vector2.ZERO,root.get_visible_rect().size)
  var portal_screen:Vector2=game.origin+game.transit_view.project_point(Vector2(portal_x,y+30),-7.0)*game.map_zoom
  check(frame.size==Vector2(1920,1080) and frame.has_point(portal_screen) and (not game.drawer.visible or not game.drawer.get_global_rect().has_point(portal_screen)),"1920x1080 descent framing places the portal clear of the drawer")
@@ -181,17 +221,19 @@ func native_capture(trench_path:String,underground_path:String):
   check(sprite!=null and sprite.texture!=null and pose.get("route_id",-1)==structure.rail_route_id and is_equal_approx(float(sprite.get_meta("rail_height_m",0)),depth),"car %s uses its own rail route and interpolated depth"%pose.id)
   if sprite==null or sprite.texture==null:continue
   if depth< -5 and depth> -7:
-   deep+=1;deep_sprites.append(sprite)
+   deep_sprites.append(sprite)
    check(not sprite.visible and not sprite.is_visible_in_tree() and sprite.get_parent()!=game.transit_view.metro_layer,"deep open-trench car %s is hidden, not sent to the tunnel layer"%pose.id)
   elif depth>= -5 and depth<0:
-   shallow+=1
-   check(sprite.is_visible_in_tree() and sprite.get_parent() in rail_trenches,"shallow car %s is drawn in the trench clip group"%pose.id)
+   shallow_sprites.append(sprite)
+   check(not sprite.is_visible_in_tree() and sprite.get_parent() in rail_trenches and float(sprite.get_meta("rail_trench_surface_fraction",1.0))<.5,"car %s is in the trench but its surface roof sliver is hidden"%pose.id)
    var bounds:=Rect2(game.origin+(sprite.position+sprite.offset*sprite.scale)*game.map_zoom,sprite.texture.get_size()*sprite.scale*game.map_zoom)
    check(frame.encloses(bounds) and (not game.drawer.visible or not bounds.intersects(game.drawer.get_global_rect())),"shallow car %s fits in the viewport clear of the drawer"%pose.id)
- check(shallow==2 and deep==1,"one descending consist straddles -5m: %s"%str(depths))
+ check(shallow_sprites.size()==2 and deep_sprites.size()==1,"one descending consist straddles -5m: %s"%str(depths))
  game.transit_view.underground=true;game.transit_view.sync_visibility()
  check(game.transit_view.metro_layer.visible and not deep_sprites.is_empty() and deep_sprites.all(func(sprite):return not sprite.is_visible_in_tree()),"the deep open-trench car stays hidden in underground view")
+ check(not shallow_sprites.is_empty() and shallow_sprites.all(func(sprite):return sprite.is_visible_in_tree()),"both retained shallow coaches reappear in underground view")
  game.transit_view.underground=false;game.transit_view.sync_visibility()
+ check(not shallow_sprites.is_empty() and shallow_sprites.all(func(sprite):return not sprite.is_visible_in_tree()),"both retained coaches hide again on returning to surface view")
  var trench_poles:=0
  for node in game.world_renderer.catenary_nodes:
   if node.get_parent() in rail_trenches:trench_poles+=1
