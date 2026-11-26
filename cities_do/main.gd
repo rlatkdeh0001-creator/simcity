@@ -33,7 +33,18 @@ var transit_view
 const Operations = preload("res://core/transit_operations.gd")
 var route_warning
 var transit_line_tool
-var mode := "select"
+var _demolition_preference := ""
+var _rail_height_control: WeakRef
+var mode := "select":
+	set(value):
+		if value=="demolish" and mode!="demolish":
+			_demolition_preference=mode if mode in ["road","rail"] else ""
+			if mode=="select" and _rail_height_control!=null:
+				var control: Control=_rail_height_control.get_ref()
+				if control!=null and control.is_visible_in_tree():_demolition_preference="rail"
+		elif value!="demolish":_demolition_preference=""
+		_rail_height_control=null
+		mode=value
 var demolition_hover := {}
 const DEMOLITION_TINT := Color(1,.35,.20,.65)
 var metro_station_hover_layer: Node2D
@@ -130,6 +141,25 @@ func _ready():
 	metro_station_hover_layer.hide()
 	add_child(metro_station_hover_layer)
 	metro_station_hover_layer.draw.connect(draw_metro_station_hover)
+	_bind_demolition_toggle.call_deferred()
+
+func remember_rail_height_control(control: Control) -> void:
+	# The rail height buttons can be used from the train tray without arming track drawing.
+	if mode=="select" and control.is_visible_in_tree():_rail_height_control=weakref(control)
+
+func _bind_demolition_toggle() -> void:
+	# The bottom HUD is built after super._ready(). Keep its existing toggle and view behavior.
+	var button := get("bulldozer") as Button
+	var toggle := Callable(self,"toggle_demolition")
+	if button==null or not button.pressed.is_connected(toggle):return
+	button.pressed.disconnect(toggle)
+	button.pressed.connect(_toggle_demolition_from_hud.bind(toggle))
+
+func _toggle_demolition_from_hud(toggle: Callable) -> void:
+	# The HUD cancels placement (clearing the station tool) before assigning demolition mode.
+	var was_train_station: bool=mode=="public_placement" and public_controller.asset_id=="train-station-01"
+	toggle.call()
+	if was_train_station and mode=="demolish":_demolition_preference="rail"
 
 func _build_controls(layer: CanvasLayer):
 	var panel := PanelContainer.new()
@@ -707,7 +737,7 @@ func demolition_target(position: Vector2) -> Dictionary:
 	# Pick covered routes at their drawn depth, then station silhouettes, then trenches and portals.
 	# A station silhouette wins over an independent metro ribbon at the same click.
 	if transit_view!=null and transit_view.underground:
-		var buried:Dictionary=transit_view.pick_drawn(position,["covered"])
+		var buried:Dictionary=transit_view.pick_drawn(position,["covered"],_demolition_preference)
 		# A metro station's own platform track is part of the station, as a ground station's track is
 		# on the ground: it picks the station.
 		if buried.get("kind","")=="transit_route" and world_renderer!=null:
@@ -721,7 +751,7 @@ func demolition_target(position: Vector2) -> Dictionary:
 		if not buried.is_empty():return buried
 		var station:Dictionary=pick_metro_station(position)
 		if not station.is_empty():return station
-		return transit_view.pick_drawn(position,["open"])
+		return transit_view.pick_drawn(position,["open"],_demolition_preference)
 	var public_record: Dictionary=public_controller.target(position)
 	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
@@ -755,7 +785,7 @@ func demolition_target(position: Vector2) -> Dictionary:
 	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
 	# Review fix 1: roads and rails alike at the height they are drawn (decks raised, trenches at
 	# their opening); the top-most drawn hit wins.
-	if transit_view!=null:return transit_view.pick_drawn(position,["surface","open"])
+	if transit_view!=null:return transit_view.pick_drawn(position,["surface","open"],_demolition_preference)
 	return {}
 
 ## Footprint of a metro station silhouette record projected to the depth it is drawn at.

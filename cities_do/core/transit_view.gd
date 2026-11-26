@@ -375,10 +375,9 @@ static func ahead(a:Array,b:Array)->bool:
  for i in range(a.size()):
   if a[i]!=b[i]:return a[i]>b[i]
  return false
-## The top-most drawn hit among the given layers wins: higher first, then the later drawn layer
-## (rails over roads on the ground, road tunnels over rail tunnels underground), then the old
-## per-kind order (the later rail route, the first road).
-func pick_drawn(position:Vector2,layers:Array)->Dictionary:
+## Higher drawn height wins. At a road/rail tie, prefer the bulldozer's source tool when set;
+## otherwise keep the old layer order. Transit/transit and road/road ordering stays unchanged.
+func pick_drawn(position:Vector2,layers:Array,preferred_kind:String="")->Dictionary:
  var city=view.city;var q:Vector2=view.world(position)
  var lift:float=view.tile.x/4*sqrt(1.5)/(2*view.tile.y)
  var covered:bool=layers.has("covered")
@@ -390,12 +389,16 @@ func pick_drawn(position:Vector2,layers:Array)->Dictionary:
     var hit:=hit_piece(piece,q,lift)
     var key:Array=[hit.get("height",0.0),0 if covered else 1,i]
     if not hit.is_empty() and (best.is_empty() or ahead(key,best_key)):best={"route":route};best_key=key
+ # Apply the road/rail preference only after choosing the best transit hit, not between transit hits.
+ var rail_hit:bool=not best.is_empty() and best.route.get("kind","")=="rail"
+ if rail_hit and preferred_kind=="rail":best_key[1]=2
+ var road_priority:int=2 if rail_hit and preferred_kind=="road" else (1 if covered else 0)
  for i in range(city.roads.size()):
   var road:Dictionary=city.roads[i]
   for layer:String in layers:
    for piece:Dictionary in drawn_pieces(road,layer,false):
     var hit:=hit_piece(piece,q,lift)
-    var key:Array=[hit.get("height",0.0),1 if covered else 0,-i]
+    var key:Array=[hit.get("height",0.0),road_priority,-i]
     if not hit.is_empty() and (best.is_empty() or ahead(key,best_key)):best={"road":road,"index":i,"point":hit.point};best_key=key
  if best.has("road"):
   var id:int=best.road.get("parcel_id",best.index)
@@ -427,7 +430,9 @@ func set_height(value:float):
  target_height_m=roundf(value/5)*5
  preview_signature=null
  var controls=view.find_child("RailHeightControls",true,false)
- if controls!=null:controls.synchronize()
+ if controls!=null:
+  controls.synchronize()
+  if view.has_method("remember_rail_height_control"):view.remember_rail_height_control(controls)
  sync_underground_view()
  view.queue_redraw()
 func sync_underground_view():
