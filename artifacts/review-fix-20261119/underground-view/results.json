@@ -1,0 +1,174 @@
+{
+ "test_underground_road_ui": {
+  "exit": 0,
+  "seconds": 26,
+  "fail_lines": [],
+  "summary": [
+   "E2_UI checks=68 failed=0"
+  ]
+ },
+ "test_review_fix_underground_view": {
+  "exit": 0,
+  "seconds": 29,
+  "fail_lines": [],
+  "summary": [
+   "UNDERGROUND_VIEW checks=69 failed=0"
+  ]
+ },
+ "test_underground_rail_ui": {
+  "exit": 0,
+  "seconds": 38,
+  "fail_lines": [],
+  "summary": [
+   "E3B_UI checks=32 failed=0"
+  ]
+ },
+ "test_review_fix_ui": {
+  "exit": 0,
+  "seconds": 43,
+  "fail_lines": [],
+  "summary": [
+   "REVIEW_FIX_UI checks=53 failed=0"
+  ]
+ },
+ "test_elevated_road_ui": {
+  "exit": 0,
+  "seconds": 35,
+  "fail_lines": [],
+  "summary": [
+   "E1_UI checks=60 failed=0"
+  ]
+ },
+ "test_elevated_rail_ui": {
+  "exit": 0,
+  "seconds": 45,
+  "fail_lines": [],
+  "summary": [
+   "E3A_UI checks=25 failed=0"
+  ]
+ },
+ "test_demolition": {
+  "exit": 0,
+  "seconds": 31,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 48/48 demolition checks passed"
+  ]
+ },
+ "test_transit_view": {
+  "exit": 0,
+  "seconds": 39,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 35/35 transit view checks passed"
+  ]
+ },
+ "test_rail_catenary": {
+  "exit": 0,
+  "seconds": 8,
+  "fail_lines": [],
+  "summary": [
+   "CATENARY_GEOMETRY checks=87 failed=0"
+  ]
+ },
+ "test_rail_catenary_render": {
+  "exit": 0,
+  "seconds": 12,
+  "fail_lines": [],
+  "summary": [
+   "CATENARY_RENDER checks=48 failed=0"
+  ]
+ },
+ "test_transit_geometry": {
+  "exit": 0,
+  "seconds": 12,
+  "fail_lines": [],
+  "summary": [
+   "TRANSIT_GEOMETRY checks=227 failed=0"
+  ]
+ },
+ "test_review_fix_dialog": {
+  "exit": 0,
+  "seconds": 41,
+  "fail_lines": [],
+  "summary": [
+   "REVIEW_FIX_DIALOG checks=42 failed=0"
+  ]
+ },
+ "test_underground_rail": {
+  "exit": 0,
+  "seconds": 18,
+  "fail_lines": [],
+  "summary": [
+   "E3b underground rail: 100 passed, 0 failed"
+  ]
+ },
+ "test_transit_operations_view": {
+  "exit": 1,
+  "seconds": 32,
+  "fail_lines": [
+   "FAIL actual original station parts loaded around running train"
+  ],
+  "summary": [
+   "TRANSIT_OPERATIONS_VIEW checks=54 failed=1"
+  ]
+ },
+ "test_underground_roads": {
+  "exit": 0,
+  "seconds": 10,
+  "fail_lines": [],
+  "summary": [
+   "E2 underground roads: 90 passed, 0 failed"
+  ]
+ },
+ "test_facility_depth": {
+  "exit": 0,
+  "seconds": 12,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 16/16 facility depth checks passed"
+  ]
+ },
+ "test_cached_world_render": {
+  "exit": 0,
+  "seconds": 16,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 26/26 cached world render checks passed"
+  ]
+ },
+ "test_roadside_verges": {
+  "exit": 0,
+  "seconds": 14,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 14/14 roadside verge checks passed"
+  ]
+ },
+ "test_entrance_accessways": {
+  "exit": 0,
+  "seconds": 28,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 51/51 entrance accessway checks passed"
+  ]
+ },
+ "test_registered_30_assets": {
+  "exit": 0,
+  "seconds": 107,
+  "fail_lines": [],
+  "summary": [
+   "RESULT 632/632 registered30 checks passed"
+  ]
+ },
+ "test_transit_facilities_view": {
+  "exit": 1,
+  "seconds": 541,
+  "fail_lines": [
+   "FAIL split GLB rendered",
+   "FAIL split GLB rendered",
+   "SCRIPT ERROR: Attempt to call function 'get_image' in base 'null instance' on a null instance."
+  ],
+  "summary": []
+ }
+}

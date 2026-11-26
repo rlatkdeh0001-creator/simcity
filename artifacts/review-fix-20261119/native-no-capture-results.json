@@ -1,0 +1,20 @@
+[
+  {
+    "name": "test_terminal_turnback_native-native-no-capture",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_operations_view-native-no-capture",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_facilities_view-native-no-capture",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  }
+]

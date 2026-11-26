@@ -1,0 +1,32 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_elevated_rail_ui.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS rail tool shows the approved C height controls
+PASS rail underground button is enabled since E3b
+PASS 고가 selects +10 m for the rail tool
+PASS PgUp raises the rail target by 5m
+PASS - lowers by 5m but stays on the elevated layer
+PASS PgDn returns to ground
+PASS E3b: PgDn takes the rail tool below ground in 5m steps
+PASS PgUp returns the rail tool to ground
+PASS the rail height never changes the road tool height
+PASS preview ramps from the ground start to the +10m target: 
+PASS the committed rail keeps exactly the confirmed preview points and heights
+PASS the ramp vertex sits at the 288m minimum
+PASS warning B lists only the zoned building under the viaduct
+PASS nothing is built or demolished before confirmation
+PASS confirm demolishes exactly that building and builds the viaduct
+PASS capture station
+PASS capture station
+PASS capture station join
+PASS capture road under the viaduct
+PASS capture loop with a 288m ramp, a 96m deck over the road and a 288m ramp down: 
+PASS capture operating line over the viaduct: 
+PASS an operating train reaches the deck above the road: fault= ready=true state=[["seconds", 55.9999999999994], ["trains", 1], ["bus", 10], ["lines", 1], ["visible", 3], [&"accumulator", -0.00000000000008]] lines=[["", "", <null>]]
+PASS train cars on the deck are drawn lifted by the deck height: 2
+PASS deck catenary stands on the ramp/deck surface, never below it
+PASS concrete viaduct piers are built for the rail deck: nodes=358 rail=358 route_piers=14
+E3A_UI checks=25 failed=0
+
+STDERR

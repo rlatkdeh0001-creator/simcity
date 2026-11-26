@@ -1,0 +1,14 @@
+[
+  {
+    "name": "test_review_fix_ui-native",
+    "exit_code": 0,
+    "passed_lines": 22,
+    "errors": []
+  },
+  {
+    "name": "test_review_fix_dialog-native",
+    "exit_code": 0,
+    "passed_lines": 44,
+    "errors": []
+  }
+]

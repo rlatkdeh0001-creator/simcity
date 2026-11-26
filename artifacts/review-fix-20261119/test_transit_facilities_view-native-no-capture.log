@@ -1,0 +1,8 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--rendering-method", "gl_compatibility", "--rendering-driver", "opengl3", "--resolution", "1920x1080", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_transit_facilities_view.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+TRANSIT_FACILITIES_VIEW checks=49 failed=0
+
+STDERR

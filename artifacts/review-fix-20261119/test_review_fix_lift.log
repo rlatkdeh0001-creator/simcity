@@ -1,0 +1,39 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_review_fix_lift.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS tunnel 5 deg fixture:  
+PASS tunnel 5 deg: a ground train within 100m of the crossing stays on the ground: 0/102 lifted
+PASS tunnel 5 deg: the structure's own train is at the structure height: [-10.0, -10.0, -10.0]
+PASS tunnel 15 deg fixture:  
+PASS tunnel 15 deg: a ground train within 100m of the crossing stays on the ground: 0/102 lifted
+PASS tunnel 15 deg: the structure's own train is at the structure height: [-10.0, -10.0, -10.0]
+PASS tunnel 15 deg: ground route pose 0.74 cells beside the structure stays on the ground
+PASS tunnel 15 deg: own pose 0.74 cells off the centreline keeps the structure height
+PASS tunnel 15 deg: ground route pose 0.76 cells beside the structure stays on the ground
+PASS tunnel 15 deg: own pose 0.76 cells off the centreline keeps the structure height
+PASS tunnel 15 deg: a pose without a route id is drawn at 0m
+PASS viaduct 19 deg fixture:  
+PASS viaduct 19 deg: a ground train within 100m of the crossing stays on the ground: 0/102 lifted
+PASS viaduct 19 deg: the structure's own train is at the structure height: [10.0, 10.0, 10.0]
+PASS viaduct 20 deg fixture:  
+PASS viaduct 20 deg: a ground train within 100m of the crossing stays on the ground: 0/102 lifted
+PASS viaduct 20 deg: the structure's own train is at the structure height: [10.0, 10.0, 10.0]
+PASS viaduct 20 deg: ground route pose 0.74 cells beside the structure stays on the ground
+PASS viaduct 20 deg: own pose 0.74 cells off the centreline keeps the structure height
+PASS viaduct 20 deg: ground route pose 0.76 cells beside the structure stays on the ground
+PASS viaduct 20 deg: own pose 0.76 cells off the centreline keeps the structure height
+PASS viaduct 20 deg: a pose without a route id is drawn at 0m
+PASS viaduct 21 deg fixture:  
+PASS viaduct 21 deg: a ground train within 100m of the crossing stays on the ground: 0/102 lifted
+PASS viaduct 21 deg: the structure's own train is at the structure height: [10.0, 10.0, 10.0]
+PASS structure checks per call are constant (1) with 2 or 8 routes: [40, 40]
+PASS loop line fixture
+PASS loop line: every car carries the route it actually runs on (worst 0.500 cells)
+PASS loop line: one consist spans several routes and each car follows its own: [1, 4, 2, 3]
+PASS turnback line fixture
+PASS turnback line: every car carries the route it actually runs on (worst 0.500 cells)
+PASS turnback line: one consist spans several routes and each car follows its own: [1, 3, 2]
+REVIEW_FIX_LIFT checks=32 failed=0
+
+STDERR

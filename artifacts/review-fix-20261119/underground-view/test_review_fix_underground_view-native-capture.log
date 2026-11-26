@@ -1,0 +1,81 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS fixture: ground road, ground station, bus stop, metro station, ground rail, road tunnel, E1 deck, metro, power plant: ["", "", "", "", "", "", "", "", "", "", "발전소를 설치했습니다"]
+PASS road tool: the ground view shows the ground layers first: hidden=[]
+PASS road tool: PgDn steps below 0m: -5.0m
+PASS road tool: the underground view is on
+PASS road tool: ground layers are hidden: shown=[]
+PASS road tool: the underground layer, trench, barrier, silhouette and terrain show: hidden=[]
+PASS road tool: no catenary shows: 0
+PASS road tool: the terrain is desaturated, not darker, and keeps 3:1 contrast with the 15181a bands: 9a9e97 s=0.04/0.20 L=0.336/0.263 contrast=6.55
+PASS road tool: the ground view restores every layer and the terrain: changed=[] terrain=7e9275
+PASS rail tool: the ground view shows the ground layers first: hidden=[]
+PASS rail tool: PgDn steps below 0m: -5.0m
+PASS rail tool: the underground view is on
+PASS rail tool: ground layers are hidden: shown=[]
+PASS rail tool: the underground layer, trench, barrier, silhouette and terrain show: hidden=[]
+PASS rail tool: no catenary shows: 0
+PASS rail tool: the terrain is desaturated, not darker, and keeps 3:1 contrast with the 15181a bands: 9a9e97 s=0.04/0.20 L=0.336/0.263 contrast=6.55
+PASS rail tool: the ground view restores every layer and the terrain: changed=[] terrain=7e9275
+PASS metro tool: the ground view shows the ground layers first: hidden=[]
+PASS metro tool is active
+PASS metro tool: the underground view is on
+PASS metro tool: ground layers are hidden: shown=[]
+PASS metro tool: the underground layer, trench, barrier, silhouette and terrain show: hidden=[]
+PASS metro tool: no catenary shows: 0
+PASS metro tool: the terrain is desaturated, not darker, and keeps 3:1 contrast with the 15181a bands: 9a9e97 s=0.04/0.20 L=0.336/0.263 contrast=6.55
+PASS metro tool: the ground view restores every layer and the terrain: changed=[] terrain=7e9275
+PASS traffic builds the ground and tunnel lanes
+PASS a car on the ground road and one in the covered part: { "covered": 1, "ground": 2 }
+PASS bulldozer: the ground view shows the ground layers first: hidden=[]
+PASS ground view: the ground car shows, the car under cover does not
+PASS bulldozer: PgDn keeps the bulldozer
+PASS bulldozer: the underground view is on
+PASS bulldozer: ground layers are hidden: shown=[]
+PASS bulldozer: the underground layer, trench, barrier, silhouette and terrain show: hidden=[]
+PASS bulldozer: no catenary shows: 0
+PASS bulldozer: the terrain is desaturated, not darker, and keeps 3:1 contrast with the 15181a bands: 9a9e97 s=0.04/0.20 L=0.336/0.263 contrast=6.55
+PASS bulldozer: the car on the ground road is hidden
+PASS bulldozer: the car in the covered part shows in the underground layer at its depth
+PASS underground view capture is 1920x1080
+PASS underground view capture saved
+UNDERGROUND_CAPTURE D:/project/simcity/artifacts/review-fix-20261119/underground-after.png display=Windows
+UNDERGROUND_CONTRAST band=#15181a terrain=#9a9e97 ratio=6.55
+PASS capture: darkest underground band against the terrain is at least 3:1: 6.55
+PASS a building built in the underground view stays hidden
+PASS bulldozer: the ground view restores every layer and the terrain: changed=[] terrain=7e9275
+PASS the building built in the underground view shows in the ground view
+PASS ground view again: the ground car shows, the car under cover does not
+PASS ground view capture is 1920x1080
+PASS ground view capture saved
+UNDERGROUND_CAPTURE D:/project/simcity/artifacts/review-fix-20261119/underground-after-ground.png display=Windows
+PASS the bulldozer starts in the ground view
+PASS ground view: a building: building#901
+PASS ground view: the building over the covered road: building#902
+PASS ground view: the ground train station: public_facility#1
+PASS ground view: the bus stop: public_facility#2
+PASS ground view: the metro station entrance on the ground: public_facility#3
+PASS ground view: the power plant: power_plant#1
+PASS ground view: the trench picks the road tunnel: road#1
+PASS ground view: the covered road where the underground view draws it is not picked: none
+PASS PgDn in the bulldozer shows the underground view
+PASS underground view: a building is not picked: none
+PASS underground view: the building over the covered road is not picked: none
+PASS underground view: the ground train station is not picked: none
+PASS underground view: the bus stop is not picked: none
+PASS underground view: the power plant is not picked: none
+PASS underground view: the ground road is not picked: none
+PASS underground view: the ground rail is not picked: none
+PASS underground view: the E1 deck where it is drawn (+10m) is not picked: none
+PASS underground view: the covered road where it is drawn (-10m) picks the road tunnel: road#1
+PASS underground view: under the building, the covered road where it is drawn (-10m) picks the road tunnel: road#1
+PASS underground view: metro where it is drawn (-12.7m) picks the metro: transit_route#5
+PASS underground view: the metro station silhouette where it is drawn (-12.7m) picks the metro station: public_facility#3
+PASS underground view: a corner of the metro station silhouette picks the metro station: public_facility#3
+PASS underground view: the trench picks the road tunnel: road#1
+PASS underground view: clicking buildings, the ground station, the bus stop and the power plant removes nothing: 3/3 3/3 1/1 
+PASS underground view: clicking the metro station silhouette removes the metro station only: 시뮬레이션 반영 대기
+PASS PgUp returns the bulldozer to the ground view
+PASS ground after PgUp view: a building: building#901
+UNDERGROUND_VIEW checks=74 failed=0

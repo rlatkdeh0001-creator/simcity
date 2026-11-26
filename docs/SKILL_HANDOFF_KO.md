@@ -1411,6 +1411,23 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 - 미정 해금단계/중앙역랜드마크/마일스톤9·10은 가역설정으로 분리하여 확인대기에 남김. 화물기관차v3는 애셋커밋 도착 후 추가병합.
 - 사용자 게임 PID49292 실행 중: 성능측정 금지, 게임종료 금지. DLL 잠금 빌드 실패시 기다림.
 
+### 대중교통 후속 범위 추가 (2026-11-18 사용자 결정)
+- P3 철도 운행 이후 전차선·전주를 별도 커밋으로 코드 렌더링한다. 지상 선로에만 표시하고 지하 터널/지하 보기에는 숨긴다. ASSET_REQUEST_RAIL_PARK_KO.md §5 11번의 높이·간격·색 규격 추가 전에는 착수하지 않는다.
+- 건널목 경보기·차단기/보행자 신호등 애셋은 cities-asset 제작 중. ASSET_REQUEST_STREET_PROPS_KO.md §5를 따르며, 애셋 도착 후 위치·진입 폭 기준 코드 차단기 팔·경보/작동 시간을 연결한다.
+- P1 후속 데이터 보강: 건널목별 도로 진입 방향과 진입 폭을 보존하여 경보기 부착에 사용한다. P1 7a68f0a 완료 후 추가 요구로 기록하며, 해당 데이터 보강 완료를 아직 주장하지 않는다.
+
+## 2026-11-18 cities-claude 인수인계
+
+- 최종 상태: `D:/project/simcity`, `perf/render-sim-cadence`, HEAD `bb6ca4c`(E1), 인덱스 비어 있음. P5는 아래 독립 검토 차단 2건 때문에 미커밋 작업 트리 그대로 남김(되돌리지 않음). 캡처 없음. E2·E3 미착수. 종료 확인 시 검증용 Godot/dotnet 프로세스 없음; 사용자 게임에 종료 명령을 내리지 않았다.
+- P5 구현 파일: 종점 X 건넘선·회차·운행/렌더링/통근. `cities_do/core/{city_model,terminal_crossover,rail_catenary,transit_commuting,transit_line_planner,transit_operations,transit_view}.gd`, `cities_do/tests/{test_terminal_turnback,test_terminal_turnback_native,test_rail_catenary,test_transit_operations}.gd`, `artifacts/p5-terminal-turnback/`.
+- 독립 검토 BLOCK 1(기존 suite에서 미검출): 회차 노선 생성→편성 운행→물리 고리 추가→정차 시간만 수정하면 `city_model.gd:84–96`이 고리 노선을 성공 처리하면서 건넘선을 제거하고 `transit_operations.gd:34–37`이 기존 편성을 영구 동결할 수 있다. 기존 FIFO 검사는 열차 생성 전 수정만 검사한다. 운행 중 동일 경로 수정과 경로 변경의 처리 계약이 필요하며, 실제 운행 편성을 둔 회귀를 추가한다.
+- 독립 검토 BLOCK 2(기존 suite에서 미검출): 지상 역 포트가 정확히 32m 간격으로 마주 보면 `terminal_crossover.gd:76–93,115–116`은 건넘선을 허용하지만 반대편 끝 전주가 역 1m 이격 규칙에 걸려 `rail_catenary.gd:49–51,65–69`에서 X 전선이 누락될 수 있다. 32m 최소 허용과 역 전주 이격을 함께 만족시키는 지지 방식 또는 배치 기준은 기획 결정이 필요하다. 두 건 해소 후 관련 검증 및 실제 열차가 X를 건너는 캡처 1장, 통과 시 P5 별도 커밋.
+- E1 `bb6ca4c` 재검토 3건은 모두 수정·독립 재검토 통과: 실제 마지막 교각 기준 48m 허용/49m 원자적 거절(철거 잔존부 포함), 그리드 OFF 확정 양끝 유지(165m 거절·164m 미리보기 그대로 시공), 신규·변경 교차로만 정확 충돌/철거 판정에 포함(무관한 기존 교차로 제외). 최종 헤드리스 319개·native 61개, `artifacts/e1-elevated-20261118/manifest.json`.
+- E1 이어받기: `core/road_height.gd`의 `height_at`, `minimum_ramp_m`, `supports`, `usable_under_deck`; `core/road_drawing.gd`의 `height_profile`, `layer_roads_at`(도구의 높이별 연결과 경사 프로필); `core/city_model.gd`의 `add_elevated_road`, `_polygon_error`, `road_demolition_selection`, `demolish_road_selection`(높이별 최종 지오메트리, 확인 대상 및 철거 잔존부); `core/elevated_road_renderer.gd`의 `rebuild`, `build_road`, `build_junction`, `project`, `side`, `build_pier`, `lift_vehicle`(상판/옆면과 차량 높이). 도로 레코드의 `points`와 같은 인덱스에 `heights_m`를 저장하며 `road_height.gd`의 `height_at`이 선분상 높이를 보간한다. 원본 애셋과 보호 문서는 덮어쓰지 않는다.
+- P5 검증 인수: `artifacts/p5-terminal-turnback/manifest.json`의 소스 11개와 실제 로그 해시 일치 확인. 10개 suite **576개 통과, 실패 0**: `test_terminal_turnback` 65, `test_terminal_turnback_native` 11, `test_rail_catenary` 87, `test_rail_catenary_render` 48, `test_transit_commuting` 36, `test_transit_geometry` 227, `test_transit_operation_safety` 15, `test_transit_operations` 39, `test_transit_operations_fifo` 20, `test_transit_render` 28. 경로가 바뀌는 노선 수정 시 운행 중 편성은 기존 동결 정책을 유지한다(실시간 재경로/순간이동 없음).
+- 정확한 재현 명령(작업 폴더에서): native 이외 각 suite는 `python tools/run_dotnet.py --timeout 45 godot --headless --path cities_do --script res://tests/<로그 파일명에서 .log를 뺀 이름>.gd`. Native는 `python tools/run_dotnet.py --timeout 35 godot --path cities_do --rendering-method gl_compatibility --rendering-driver opengl3 --max-fps 30 --resolution 1280x820 --script res://tests/test_terminal_turnback_native.gd`. 캡처는 같은 명령에 `-- --p5-capture=D:/project/simcity/artifacts/p5-terminal-turnback/turnback-1280.png`를 붙일 때만 저장한다. 독립 검토는 위 두 건으로 차단됐으며, 캡처와 커밋은 하지 않았다.
+
+
 
 
 

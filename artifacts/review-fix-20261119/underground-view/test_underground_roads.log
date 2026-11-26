@@ -1,0 +1,93 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS portal road surface is -6.0m = 4.5m clearance + 1.0m slab + 0.5m beam
+PASS descending ramp minimum is 128m local / 200m highway
+PASS 128m local descent to -10m accepted: 
+PASS 127.99m local descent rejected by the 8m rounded length: 경사로 길이가 부족합니다
+PASS 124m local descent exceeds 8%: 경사가 너무 급합니다
+PASS 200m highway descent accepted: 
+PASS 199.99m highway descent rejected
+PASS two 64m pieces of one 128m descent accepted: 
+PASS last-piece-only ramp measurement cannot pass a 127.99m total descent: 경사로 길이가 부족합니다
+PASS flat underground layers remain 5m multiples
+PASS previews never commit underground records
+PASS one trench piece and one covered piece
+PASS portal lies where the 128m ramp reaches -6.0m: (39.2, 40.0)
+PASS covered piece runs from the portal to the end
+PASS portal boundary: -5.99m open, -6.0m and deeper covered
+PASS underground level helpers
+PASS ground crossing fixture
+PASS ground x -10m tunnel: exactly 10m clearance accepted: 
+PASS ground crossing fixture
+PASS ground x -5m trench: 5m clearance rejected: 수직 간격 부족
+PASS underground clearance fixture
+PASS underground x underground -10/-20 order 0: 
+PASS underground clearance fixture
+PASS underground x underground -10/-15 order 0: 수직 간격 부족
+PASS underground clearance fixture
+PASS underground x underground -10/-20 order 1: 
+PASS underground clearance fixture
+PASS underground x underground -10/-15 order 1: 수직 간격 부족
+PASS ramp clearance fixture
+PASS ground road whose full width starts where the ramp reaches -10m is accepted: 
+PASS 0.1 cell into the ramp is below 10m clearance: 수직 간격 부족
+PASS ground road over the covered ramp at -7.8m rejected
+PASS fixture width
+PASS metro first
+PASS road over/under metro accepted, order 0: 
+PASS road over/under metro accepted, order 0: 
+PASS ground road across metro accepted, order 0: 
+PASS road over/under metro accepted, order 1: 
+PASS road over/under metro accepted, order 1: 
+PASS ground road across metro accepted, order 1: 
+PASS metro after trench, tunnel and ground roads accepted: 
+PASS metro exception gives the same records in either build order
+PASS rail first fixture
+PASS rail over ramp at -9.4m, order 0: 수직 간격 부족
+PASS rail first fixture
+PASS rail over covered -10m, order 0: 
+PASS road first fixture
+PASS rail over ramp at -9.4m, order 1: 수직 간격 부족
+PASS road first fixture
+PASS rail over covered -10m, order 1: 
+PASS covered section passes under building, clinic and park without demolition: 
+PASS commit keeps every surface record above the tunnel
+PASS new lots may be placed above the covered section
+PASS the open trench blocks lots like a ground road
+PASS only the zoned building over the trench needs B confirmation: [71]
+PASS unconfirmed trench commit is refused
+PASS confirmed trench demolishes exactly the overlapped building
+PASS medical-clinic over the trench is red: 공공시설과 겹침
+PASS park-plaza-4x4 over the trench is red: 공공시설과 겹침
+PASS ground approach
+PASS underground road
+PASS tunnel record found
+PASS partial tunnel demolition succeeds: 철거 완료
+PASS remaining tunnel pieces keep their interpolated heights
+PASS demolishing the tunnel leaves the building above it
+PASS whole tunnel piece demolition
+PASS whole tunnel piece demolition
+PASS only the ground approach remains
+PASS the same tunnel can be planned again under the surviving building
+PASS open -5m sunken road
+PASS same-level junction inside an open trench is red: 트렌치 안에는 교차로를 만들 수 없습니다
+PASS covered road
+PASS covered same-level junction is allowed: 
+PASS one record cannot span elevated and underground: 고가와 지하는 지상에서 나눠 그립니다
+PASS zoning fixture tunnel
+PASS no roadside cells beside the trench or tunnel
+PASS parallel ground road
+PASS neighbour cells stop at the trench but survive above the covered section
+PASS an underground road never provides building frontage
+PASS traffic ground approach
+PASS traffic tunnel
+PASS ground road above the tunnel
+PASS traffic network builds across levels
+PASS cars route from the ground road through the trench into the tunnel
+PASS the crossing ground road has no lane connection to the tunnel 10m below
+PASS depth cost is a disabled, pending reversible placeholder
+PASS placeholder factor grows non-linearly with depth: [1.0, 2.0, 5.0]
+PASS deeper steps cost more than shallower steps
+PASS off-grid underground commit
+PASS grid OFF keeps every confirmed underground point exactly
+E2 underground roads: 90 passed, 0 failed
