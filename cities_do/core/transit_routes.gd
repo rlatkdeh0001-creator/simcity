@@ -202,12 +202,7 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
    return failure("public","공공시설과 겹침")
   for facility:Dictionary in city.power.plants+city.water.facilities:
    if city._road_ribbon_overlap(city.power_plant_footprint(facility),body):return failure("public","공공시설과 겹침")
-  for road:Dictionary in city.roads:
-   for pier:Dictionary in road.get("piers",[]):
-    for position:Vector2 in pier.positions:
-     if Height.height_at(route,position)>=float(pier.height_m)-Height.EPS:continue
-     for i in range(1,points.size()):
-      if Geometry2D.get_closest_point_to_segment(position,points[i-1],points[i]).distance_to(position)<STRUCTURE_WIDTH/2+.5:return failure("pier","교각과 겹침")
+
  # E3b trench/portal: the same yellow (warning B) / red rule as an E2 trench road;
  # covered parts pass below buildings, lots and parks without demolition.
  if is_sunken:
@@ -219,12 +214,10 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
   for facility:Dictionary in city.power.plants+city.water.facilities:
    if city._road_ribbon_overlap(city.power_plant_footprint(facility),trench):return failure("public","공공시설과 겹침")
  if kind=="rail":
+  var body:=structure(route)
   for road:Dictionary in city.roads:
+   if Height.intersects_support(body,road):return failure("pier","교각과 겹침")
    if is_raised or is_sunken or Height.off_ground(road):
-    var clearance:=road_rail_error(route,road)
-    if not clearance.is_empty():return failure("vertical_clearance",clearance)
-    continue
-   if preload("res://core/road_height.gd").sunken(road):
     var clearance:=road_rail_error(route,road)
     if not clearance.is_empty():return failure("vertical_clearance",clearance)
     continue
@@ -236,6 +229,7 @@ static func plan(city,points:PackedVector2Array,kind:String,ignore_id:int=-1,hei
   error=joint_error(points,existing.points,float(route.min_center_radius_m))
   if not error.is_empty():return failure("curve",error)
   if kind=="rail" and (is_raised or is_sunken or off_ground(existing)):
+   if Height.intersects_support(structure(route),existing):return failure("pier","교각과 겹침")
    error=Height.overlap_error(structure(route),structure(existing))
    if not error.is_empty():return failure("vertical_clearance",error)
    error=level_joint_error(route,existing)
@@ -339,6 +333,43 @@ static func road_rail_error(route:Dictionary,road:Dictionary)->String:
   for part:Dictionary in ground_parts(route):
    if not crossing_allowed(part,at_grade):return "철도와는 건널목으로만 교차할 수 있습니다"
  return ""
+## Resampling keeps the old profile along normalized arc distance, including
+## grade changes which fall between requested vertices. The usual planner
+## still rejects grades, collisions or demolition introduced by the new shape.
+static func reedit_profile(route:Dictionary,points:PackedVector2Array)->Dictionary:
+ var levels:PackedFloat64Array=route.get("heights_m",PackedFloat64Array())
+ if levels.is_empty() or levels.size()==points.size() or points.size()<2:
+  return {"points":points,"heights_m":levels if levels.size()==points.size() else PackedFloat64Array()}
+ var old:PackedVector2Array=route.points
+ var arcs:=PackedFloat64Array([0.0])
+ for i in range(1,old.size()):arcs.append(arcs[-1]+old[i-1].distance_to(old[i]))
+ var length:=Height.length_cells(points)
+ if not is_finite(length) or length<=EPS or arcs[-1]<=EPS:return {"points":points,"heights_m":PackedFloat64Array()}
+ var scale:=length/arcs[-1]
+ var fitted:=PackedVector2Array([points[0]])
+ var heights:=PackedFloat64Array([levels[0]])
+ var knot:=1;var distance:=0.0
+ for i in range(1,points.size()):
+  var span:=points[i-1].distance_to(points[i])
+  var end:=distance+span
+  var end_height:=levels[-1]
+  while knot<arcs.size()-1 and arcs[knot]*scale<end-EPS:
+   var left_grade:float=(levels[knot]-levels[knot-1])/(arcs[knot]-arcs[knot-1])
+   var right_grade:float=(levels[knot+1]-levels[knot])/(arcs[knot+1]-arcs[knot])
+   if not is_equal_approx(left_grade,right_grade):
+    fitted.append(points[i-1].lerp(points[i],(arcs[knot]*scale-distance)/span))
+    heights.append(levels[knot])
+   knot+=1
+  if i<points.size()-1:
+   if absf(arcs[knot]*scale-end)<=EPS:
+    end_height=levels[knot]
+    if knot<arcs.size()-1:knot+=1
+   else:
+    end_height=lerpf(levels[knot-1],levels[knot],clampf((end/scale-arcs[knot-1])/(arcs[knot]-arcs[knot-1]),0,1))
+  fitted.append(points[i]);heights.append(end_height)
+  distance=end
+ return {"points":fitted,"heights_m":heights}
+
 ## Drawing profile: ramp from the start height at the 3.5% minimum length, then hold the target.
 static func height_profile(points:PackedVector2Array,start_m:float,target_m:float)->Dictionary:
  var result:=points.duplicate();var heights:=PackedFloat64Array()

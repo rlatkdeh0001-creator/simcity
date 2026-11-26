@@ -83,7 +83,8 @@ func geometry_cases(city):
  city.road_pavement=[PackedVector2Array([Vector2(15,0),Vector2(25,0),Vector2(25,40),Vector2(15,40)])]
  lines=View.build_geometry(city).catenary
  var poles:Array=lines.filter(func(p):return p.kind=="pole")
- check(poles.all(func(p):return p.a.x<=14.75001 or p.a.x>=25.24999),"no poles on full sidewalk-inclusive road plus 1m")
+ var intrusive:=poles.filter(func(p):return p.a.x>14.75001 and p.a.x<25.24999)
+ check(intrusive.is_empty(),"no poles on full sidewalk-inclusive road plus 1m (intrusions: %s)"%str(intrusive.map(func(p):return "%.8f"%p.a.x)))
  check(lines.any(func(p):return p.kind=="contact" and p.a.x<=20 and p.b.x>=20),"contact continues above 40m crossing at 3.8m")
  city.road_pavement.clear()
  var internal:=route(PackedVector2Array([Vector2(20,20),Vector2(28,20)]));internal.owner_lot_id=9
@@ -169,6 +170,9 @@ func geometry_cases(city):
   check(not transformed.is_empty() and transformed.all(func(p):return absf((p.b-p.a).dot((main_points[-1]-main_points[0]).normalized()))<.0001),"portal perpendicular for rotated/mirrored/boundary fixture %d"%variant)
   check(lines.all(func(p):return p.a.x>=0 and p.a.y>=0 and p.b.x>=0 and p.b.y>=0),"portal geometry clipped at map boundary fixture %d"%variant)
  portal_exclusion_cases(city)
+ long_portal_exclusion(city)
+ crossing_span_cases(city)
+ straight_exclusion_cases(city)
  var closed:=PackedVector2Array()
  for i in range(97):closed.append(Vector2(50,50)+Vector2.from_angle(TAU*i/96)*12)
  closed[-1]=closed[0];city.transit_routes=[route(closed)]
@@ -190,16 +194,13 @@ func portal_exclusion_cases(city):
    else:city.public_facilities.lots=[{"id":9,"public_asset_id":"train-station-01","polygon":polygon}]
    var lines:Array=View.build_geometry(city).catenary
    var label:="%s opposite portal base mirror=%s"%[obstacle,mirror]
-   var masks:Array=Array(Geometry2D.offset_polygon(polygon,.25,Geometry2D.JOIN_MITER))
+   # The fixture mask is an axis-aligned rectangle, even after reflection.
+   # Test its exact edges rather than the polygon API's quantized inside test.
+   var mask:=Rect2(polygon[0],Vector2.ZERO).expand(polygon[2]).grow(.25-.00001)
    var clearance:=true;var anchored:=true;var supported:=true
    var longest:=0.0;var span:=0.0
    for item:Dictionary in lines:
-    if item.kind=="pole":
-     for mask:PackedVector2Array in masks:
-      if not Geometry2D.is_point_in_polygon(item.a,mask):continue
-      var distance:=INF
-      for i in range(mask.size()):distance=minf(distance,item.a.distance_to(Geometry2D.get_closest_point_to_segment(item.a,mask[i],mask[(i+1)%mask.size()])))
-      if distance>.00001:clearance=false
+    if item.kind=="pole" and mask.has_point(item.a):clearance=false
     if item.kind=="portal_tube":
      anchored=anchored and lines.any(func(p):return p.kind=="messenger" and p.route_id==item.route_id and ((p.a.is_equal_approx(item.a) and is_equal_approx(p.a_height,4.8)) or (p.b.is_equal_approx(item.a) and is_equal_approx(p.b_height,4.8))))
     if item.kind=="messenger":
@@ -224,3 +225,82 @@ func portal_exclusion_cases(city):
     complete=complete and absf(covered-expected)<.0001
    check(complete,label+" both full branch/main wire tracks retained")
    city.road_pavement.clear();city.public_facilities.lots.clear()
+
+func long_portal_exclusion(city):
+ var main:=PackedVector2Array([Vector2(5,30),Vector2(95,30)])
+ var branch:=PackedVector2Array([Vector2(20,28),Vector2(70,30)])
+ var polygon:=PackedVector2Array([Vector2(27,26),Vector2(37,26),Vector2(37,28.2),Vector2(27,28.2)])
+ city.transit_routes=[route(main),route(branch,2)]
+ city.road_pavement=[polygon]
+ var lines:Array=View.build_geometry(city).catenary
+ var longest:=0.0;var first:=0.0;var attached:=true;var crossing:=0
+ for wire:Dictionary in lines:
+  if wire.kind!="messenger":continue
+  if is_equal_approx(wire.a_height,4.8):first=wire.a.x
+  if not is_equal_approx(wire.b_height,4.8):continue
+  if first>=27 or wire.b.x<=37:continue
+  crossing+=1
+  longest=maxf(longest,(wire.b.x-first)*4)
+  attached=attached and lines.any(func(c):return c.kind=="pull" and c.route_id==wire.route_id and c.a.is_equal_approx(wire.b))
+ check(crossing==4 and attached and longest<=48.0,"all four portal-supported tracks cross the opposite-base exclusion in a supported <=48m span (%.3fm)"%longest)
+ city.road_pavement.clear()
+
+func crossing_span_cases(city):
+ # A curved pole trajectory is not the same as the offset segment of the centreline.
+ var center:=Vector2(45,45)
+ var r:=8.5
+ var arc:=PackedVector2Array()
+ for i in range(-2,16):arc.append(center+Vector2.from_angle(PI*.5*i/12)*r)
+ var radial:=Vector2.from_angle(PI/4)
+ var tangent:=radial.orthogonal()
+ city.transit_routes=[route(arc)]
+ for half_width:float in [2.0,3.5,4.0,4.25,4.5]:
+  var polygon:=PackedVector2Array()
+  for corner:Vector2 in [Vector2(1,-1),Vector2(18,-1),Vector2(18,1),Vector2(1,1)]:
+   polygon.append(center+radial*corner.x+tangent*corner.y*half_width)
+  city.road_pavement=[polygon]
+  var lines:Array=View.build_geometry(city).catenary
+  var longest_crossing:=0.0;var longest_clear:=0.0
+  var supported:=true;var start:=Vector2.ZERO
+  for wire:Dictionary in lines:
+   if wire.kind!="messenger":continue
+   if is_equal_approx(wire.a_height,4.8):start=wire.a
+   if not is_equal_approx(wire.b_height,4.8):continue
+   var end:Vector2=wire.b
+   for point:Vector2 in [start,end]:
+    supported=supported and lines.any(func(c):return c.kind=="pull" and c.a.is_equal_approx(point))
+   var length:=absf((start-center).angle_to(end-center))*r*4
+   if (start-center).dot(tangent)*(end-center).dot(tangent)<0:
+    longest_crossing=maxf(longest_crossing,length)
+   else:longest_clear=maxf(longest_clear,length)
+  check(supported,"curve with %.0fm road has physical supports at all messenger span ends"%(half_width*8))
+  check(longest_clear>0 and longest_clear<=8.05,"ordinary curve spans retain 8m pitch next to %.0fm road (longest %.3fm)"%[half_width*8,longest_clear])
+  check(longest_crossing>0 and longest_crossing<=48.0,"curve over %.0fm road uses <=48m exception (longest %.3fm)"%[half_width*8,longest_crossing])
+ city.road_pavement.clear()
+
+func straight_exclusion_cases(city):
+ city.transit_routes=[route(PackedVector2Array([Vector2(0,35),Vector2(70,35)]))]
+ var first_mask:=PackedVector2Array([Vector2(25,32),Vector2(30,32),Vector2(30,35),Vector2(25,35)])
+ var second_mask:=PackedVector2Array([Vector2(29,35),Vector2(35,35),Vector2(35,38),Vector2(29,38)])
+ var road_axis:=Vector2.from_angle(deg_to_rad(22.0))
+ var normal:=road_axis.orthogonal()
+ var wide:=PackedVector2Array()
+ for corner:Vector2 in [Vector2(-40,-1),Vector2(40,-1),Vector2(40,1),Vector2(-40,1)]:
+  wide.append(Vector2(30,35)+road_axis*corner.x+normal*2.75*corner.y)
+ var unavoidable:float=4*(2*(2.75+.25)+2*absf(road_axis.x))/absf(road_axis.y)
+ for case:Array in [[[first_mask,second_mask],42.0,"overlapping setbacks"],[[wide],unavoidable,"shallow road"]]:
+  city.road_pavement=case[0]
+  var lines:Array=View.build_geometry(city).catenary
+  var support_x:Array[float]=[]
+  for c:Dictionary in lines:
+   if c.kind=="pole" and c.a.y<35:support_x.append(c.a.x)
+  support_x.sort()
+  var crossing:=0.0;var longest_clear:=0.0
+  for i in range(1,support_x.size()):
+   var span:float=(support_x[i]-support_x[i-1])*4
+   if support_x[i-1]<30 and support_x[i]>30:crossing=span
+   else:longest_clear=maxf(longest_clear,span)
+  check(absf(crossing-float(case[1]))<.005,"%s: only the unavoidable exclusion span is longer than 32m (%.3fm)"%[case[2],crossing])
+  check(longest_clear>0 and longest_clear<=32.001,"%s: all other support spans obey 32m (%.3fm)"%[case[2],longest_clear])
+  check(lines.any(func(c):return c.kind=="contact" and c.a.x<=30 and c.b.x>=30),"%s: contact wires continue across the road"%case[2])
+ city.road_pavement.clear()

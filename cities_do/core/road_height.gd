@@ -218,6 +218,24 @@ static func support_positions(road:Dictionary,distance:float)->Array[Vector2]:
  var half_offset:float=float(road.width)/4
  if float(road.width)*4>=14:return [point+direction.orthogonal()*half_offset,point-direction.orthogonal()*half_offset]
  return [point]
+## A shaft stops at the ground and at its own deck. Its half-width clearance
+## is the same 2m used when placing a new shaft beside pavement.
+static func intersects_support(path:Dictionary,deck:Dictionary)->bool:
+ var points:PackedVector2Array=path.points
+ var levels:PackedFloat64Array=path.get("heights_m",PackedFloat64Array())
+ var clearance:float=float(path.width)/2+.5
+ var portal:=portal_for(path)
+ for pier:Dictionary in deck.get("piers",[]):
+  for position:Vector2 in pier.positions:
+   for i in range(1,points.size()):
+    var near:=Geometry2D.get_closest_point_to_segment(position,points[i-1],points[i])
+    if position.distance_to(near)>=clearance:continue
+    var h:=0.0
+    if levels.size()==points.size():
+     var t:=points[i-1].distance_to(near)/maxf(EPS,points[i-1].distance_to(points[i]))
+     h=lerpf(levels[i-1],levels[i],t)
+    if not covered_at(h,portal) and h<float(pier.height_m)-EPS:return true
+ return false
 static func support_clear(city,road:Dictionary,distance:float)->bool:
  var height:=height_at(road,point_at(road.points,distance))
  for point in support_positions(road,distance):

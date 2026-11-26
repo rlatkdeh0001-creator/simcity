@@ -191,7 +191,8 @@ func preview() -> Dictionary:
  var obstacles:Array=[]
  for building in view.city.buildings:obstacles.append(view.city.footprint(building))
  for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
- var signature:=hash([target_height_m,start_height_m,kind,anchors,view.pointer,view.road_lanes,view.road_major_side,grid_on(),grid_frame,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ var transit_generation:int=view.transit_view.generation if view.transit_view!=null else 0
+ var signature:=hash([target_height_m,start_height_m,kind,anchors,view.pointer,view.road_lanes,view.road_major_side,grid_on(),grid_frame,view.city.get_instance_id(),view.city.roads,transit_generation,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
  if signature!=_preview_signature:
   _preview_signature=signature;preview_computations+=1;_preview_cache=_compute_preview()
  return _preview_cache.duplicate(true)
@@ -199,7 +200,8 @@ func legacy_preview(points:PackedVector2Array)->bool:
  var obstacles:Array=[]
  for building in view.city.buildings:obstacles.append(view.city.footprint(building))
  for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
- var signature:=hash([points,view.road_lanes,view.city.get_instance_id(),view.city.roads,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ var transit_generation:int=view.transit_view.generation if view.transit_view!=null else 0
+ var signature:=hash([points,view.road_lanes,view.city.get_instance_id(),view.city.roads,transit_generation,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
  if signature!=_legacy_signature:
   _legacy_signature=signature;preview_computations+=1
   _legacy_valid=view.city.add_road(points,"local",false,view.road_lanes).ok

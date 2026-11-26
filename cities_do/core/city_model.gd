@@ -183,10 +183,10 @@ func update_transit_route(id:int,points:PackedVector2Array,commit:bool=true)->Di
 	var index:=TransitRoutes.index_of(transit_routes,id)
 	if index<0:return TransitRoutes.failure("unknown_route","철거되었거나 없는 경로입니다")
 	if transit_routes[index].has("station_id"):return TransitRoutes.failure("station_owned","역과 함께 변경하거나 철거하세요")
-	var heights:PackedFloat64Array=transit_routes[index].get("heights_m",PackedFloat64Array())
-	if heights.size()!=points.size():heights=PackedFloat64Array() # Reshaped raised track is redrawn at ground level.
-	var was_raised:=TransitRoutes.off_ground(transit_routes[index])
-	var result:=TransitRoutes.plan(self,points,transit_routes[index].kind,id,heights)
+	var original:Dictionary=transit_routes[index]
+	var profile:=TransitRoutes.reedit_profile(original,points)
+	var was_raised:=TransitRoutes.off_ground(original)
+	var result:=TransitRoutes.plan(self,profile.points,original.kind,id,profile.heights_m)
 	if not result.ok:return result
 	if not result.get("demolish_ids",[]).is_empty():return TransitRoutes.failure("demolition","이미 지어진 건물이 파괴됩니다")
 	result.route.id=id
@@ -673,6 +673,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	if not plan.ok:return plan
 	var new_roads: Array=plan.new_roads
 	for candidate: Dictionary in new_roads:
+		if _hits_existing_support(candidate):return {"ok":false,"reason":"교각과 겹침"}
 		for route:Dictionary in transit_routes:
 			if route.kind!="rail":continue
 			if TransitRoutes.off_ground(route):
@@ -709,6 +710,14 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 		for building in buildings:orient_building(building)
 	return plan
 
+func _hits_existing_support(candidate: Dictionary) -> bool:
+	var height_rule=preload("res://core/road_height.gd")
+	for structure: Dictionary in roads:
+		if height_rule.intersects_support(candidate,structure):return true
+	for structure: Dictionary in transit_routes:
+		if height_rule.intersects_support(candidate,structure):return true
+	return false
+
 func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String = "local", commit: bool = true, lanes: int = 2, confirmed: bool = false, major_side: int = 1, grid_frame: Dictionary = {},approved_demolition:Variant=null) -> Dictionary:
 	if commit and _defer_simulation_edit(add_elevated_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null)):return _queued_simulation_edit()
 	if points.size()<2 or heights_m.size()!=points.size():return {"ok":false,"reason":"도로 높이 경로가 필요합니다"}
@@ -727,28 +736,18 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 		error=preload("res://core/road_height.gd").overlap_error(road,existing)
 		if error!="":return {"ok":false,"reason":error}
 		if preload("res://core/road_height.gd").same_level_contact(road,existing):coplanar.append(existing)
-		for pier:Dictionary in existing.get("piers",[]):
-			for position:Vector2 in pier.positions:
-				if preload("res://core/road_height.gd").height_at(road,position)>=float(pier.height_m)-.0001:continue
-				if RoadUnits.projection(points,position).distance<float(road.width)/2+.5:return {"ok":false,"reason":"교각과 겹침"}
 	var construction:Dictionary=preload("res://core/road_construction.gd").plan(coplanar,road)
 	var sunken:bool=preload("res://core/road_height.gd").sunken(road)
+	var raised:bool=preload("res://core/road_height.gd").raised(road)
 	for route:Dictionary in transit_routes:
 		if route.kind!="rail":continue
-		if sunken or TransitRoutes.off_ground(route):
+		if sunken or raised or TransitRoutes.off_ground(route):
 			# E2/E3a/E3b: same clearance/level-crossing function as TransitRoutes.plan, so build order cannot matter.
 			error=TransitRoutes.road_rail_error(route,road)
 			if error!="":return {"ok":false,"reason":error}
 			continue
-		var structure:Dictionary=route.duplicate(true);structure.width=2.5
-		error=preload("res://core/road_height.gd").overlap_error(road,structure)
-		if error!="":return {"ok":false,"reason":error}
-		if not preload("res://core/road_height.gd").raised(road) and not TransitRoutes.crossing_allowed(route,road):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
-	for route:Dictionary in transit_routes:
-		for pier:Dictionary in route.get("piers",[]):
-			for position:Vector2 in pier.positions:
-				if preload("res://core/road_height.gd").height_at(road,position)>=float(pier.height_m)-.0001:continue
-				if RoadUnits.projection(points,position).distance<float(road.width)/2+.5:return {"ok":false,"reason":"교각과 겹침"}
+		if not TransitRoutes.crossing_allowed(route,road):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
+	if _hits_existing_support(road):return {"ok":false,"reason":"교각과 겹침"}
 	if not construction.ok:return construction
 	var additions:Array=construction.new_roads
 	for addition:Dictionary in additions:

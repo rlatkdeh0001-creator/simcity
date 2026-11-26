@@ -20,9 +20,11 @@ static func sample(points:PackedVector2Array,distance:float)->Dictionary:
   var length:=points[i-1].distance_to(points[i])
   if remaining<=length or i==points.size()-1:
    var tangent:=(points[i]-points[i-1]).normalized()
-   return {"point":points[i-1]+tangent*remaining,"normal":normal_at(points,i-1).lerp(normal_at(points,i),clampf(remaining/length,0,1)).normalized()}
+   return {"point":points[i-1]+tangent*remaining,"normal":interpolated_normal(normal_at(points,i-1),normal_at(points,i),remaining/length)}
   remaining-=length
  return {}
+static func interpolated_normal(first:Vector2,last:Vector2,t:float)->Vector2:
+ return first.lerp(last,clampf(t,0,1)).normalized()
 static func length_of(points:PackedVector2Array)->float:
  var result:=0.0
  for i in range(1,points.size()):result+=points[i-1].distance_to(points[i])
@@ -141,34 +143,64 @@ static func plan_portals(commands:Array,routes:Array,masks:Array=[])->Array:
    if not intrudes:continue
    var main:Dictionary=own if eligible.find(own)<eligible.find(other) else other
    var branch:Dictionary=other if main.id==own.id else own
-   var at:=sample(main.points,maxf(0,distance_on(main.points,command.centre)))
-   # Find the main tangent nearest this support (branch supports are off-main).
-   var nearest:=INF
-   for i in range(1,main.points.size()):
-    var p:=Geometry2D.get_closest_point_to_segment(command.centre,main.points[i-1],main.points[i])
-    if p.distance_to(command.centre)<nearest:
-     nearest=p.distance_to(command.centre);var tangent:Vector2=(main.points[i]-main.points[i-1]).normalized();at.normal=Vector2(-tangent.y,tangent.x)
-   var normal:Vector2=at.normal
-   var m:=cross_section(main,command.centre,normal);var b:=cross_section(branch,command.centre,normal)
-   if m.is_empty() or b.is_empty():continue
-   var separation:float=(b.point-m.point).dot(normal)
-   if absf(separation)<.0001 or absf(separation)>=1.95:continue
-   if portals.any(func(p):return p.main_id==main.id and p.branch_id==branch.id and p.centres[main.id].distance_to(m.point)<.0001):continue
-   var centres:Dictionary={main.id:m.point,branch.id:b.point};var tracks:Dictionary={}
-   var valid:=true
-   for r:Dictionary in [main,branch]:
-    tracks[r.id]=[]
-    for side:float in [-.5,.5]:
-     var track:=cross_section(r,command.centre,normal,side)
-     if track.is_empty():valid=false;break
-     tracks[r.id].append(track.point)
-   if not valid:continue
-   var low:Vector2=m.point+normal*(minf(0,separation)-1)
-   var high:Vector2=m.point+normal*(maxf(0,separation)+1)
-   # Keep rejected sections in the plan too: neither route may retain a wire
-   # anchor or an ordinary inner pole where the complete portal is prohibited.
-   portals.append({"main_id":main.id,"branch_id":branch.id,"centres":centres,"tracks":tracks,"a":low,"b":high,"allowed":base_allowed(low,masks) and base_allowed(high,masks)})
+   var portal:=portal_at(main,branch,command.centre,masks)
+   if portal.is_empty() or not add_portal(portals,portal):continue
+   if not portal.allowed:
+    for direction:float in [-1.0,1.0]:
+     var edge:=nearest_clear_portal(main,branch,portal,direction,masks)
+     if not edge.is_empty():add_portal(portals,edge)
  return portals
+static func add_portal(portals:Array,portal:Dictionary)->bool:
+ for existing:Dictionary in portals:
+  if existing.main_id!=portal.main_id or existing.branch_id!=portal.branch_id:continue
+  if existing.allowed==portal.allowed and existing.centres[portal.main_id].distance_to(portal.centres[portal.main_id])<.0001:return false
+ portals.append(portal)
+ return true
+static func portal_at(main:Dictionary,branch:Dictionary,origin:Vector2,masks:Array)->Dictionary:
+ # Perpendicular to the main segment nearest the candidate support.
+ var normal:=Vector2.ZERO;var nearest:=INF
+ for i in range(1,main.points.size()):
+  var a:Vector2=main.points[i-1];var b:Vector2=main.points[i]
+  var distance:=origin.distance_squared_to(Geometry2D.get_closest_point_to_segment(origin,a,b))
+  if distance<nearest:
+   nearest=distance;normal=Vector2(-(b-a).y,(b-a).x).normalized()
+ var m:=cross_section(main,origin,normal);var b:=cross_section(branch,origin,normal)
+ if m.is_empty() or b.is_empty():return {}
+ var separation:float=(b.point-m.point).dot(normal)
+ if absf(separation)<.0001 or absf(separation)>=1.95:return {}
+ var tracks:Dictionary={}
+ for r:Dictionary in [main,branch]:
+  tracks[r.id]=[]
+  for side:float in [-.5,.5]:
+   var track:=cross_section(r,origin,normal,side)
+   if track.is_empty():return {}
+   tracks[r.id].append(track.point)
+ var low:Vector2=m.point+normal*(minf(0,separation)-1)
+ var high:Vector2=m.point+normal*(maxf(0,separation)+1)
+ return {"main_id":main.id,"branch_id":branch.id,"centres":{main.id:m.point,branch.id:b.point},"tracks":tracks,"a":low,"b":high,"allowed":base_allowed(low,masks) and base_allowed(high,masks)}
+static func nearest_clear_portal(main:Dictionary,branch:Dictionary,portal:Dictionary,direction:float,masks:Array)->Dictionary:
+ var points:PackedVector2Array=main.points
+ var start:=distance_on(points,portal.centres[main.id]);var end:=length_of(points)
+ if not is_finite(start):return {}
+ # A candidate on a mask edge can move into it when the rail's local
+ # normal is replaced by the portal's common normal. Keep that original
+ # section rejected, but restore an anchor on the clear side of the mask.
+ var blocked:=start
+ for step in range(1,33):
+  var clear:=clampf(start+direction*step*.25,0,end)
+  if clear==blocked:return {}
+  var candidate:=portal_at(main,branch,sample(points,clear).point,masks)
+  if candidate.is_empty():return {}
+  if not candidate.allowed:
+   blocked=clear;continue
+  for i in range(17):
+   var mid:=(clear+blocked)/2
+   var tested:=portal_at(main,branch,sample(points,mid).point,masks)
+   if not tested.is_empty() and tested.allowed:
+    clear=mid;candidate=tested
+   else:blocked=mid
+  return candidate
+ return {}
 static func apply_portals(commands:Array,portals:Array)->Array:
  var result:Array=[]
  for command:Dictionary in commands:
@@ -229,29 +261,75 @@ static func hidden_segment(route:Dictionary,index:int)->bool:
  # There is no tunnel/grade editor in this stage; never rewrite the route schema.
  return index in route.get("covered_segments",[]) or index in route.get("underground_segments",[])
 static func forbidden_intervals(points:PackedVector2Array,masks:Array)->Array:
+ if masks.is_empty():return []
  var intervals:Array=[];var travelled:=0.0
+ var first_normal:=normal_at(points,0)
  for i in range(1,points.size()):
   var a:=points[i-1];var b:=points[i];var length:=a.distance_to(b)
-  var normal:=(b-a).normalized().orthogonal()
+  var last_normal:=normal_at(points,i)
+  var axis:=(b-a).normalized()
   for side:float in [-1.0,1.0]:
-   var p:=a+normal*side;var q:=b+normal*side
+   # Follow the same interpolated normal as the emitted pole. Chords only
+   # locate crossings; refine each cut against the actual pole trajectory.
+   var base_at:=func(t:float)->Vector2:return a+axis*(length*t)+interpolated_normal(first_normal,last_normal,t)*side
+   var steps:=1 if first_normal.is_equal_approx(last_normal) else 4
+   var sweep:=PackedVector2Array()
+   for step in range(steps+1):sweep.append(base_at.call(float(step)/steps))
    for mask:PackedVector2Array in masks:
-    var cuts:Array[float]=[0.0,1.0]
-    for j in range(mask.size()):
-     var hit:Variant=Geometry2D.segment_intersects_segment(p,q,mask[j],mask[(j+1)%mask.size()])
-     if hit!=null:cuts.append(clampf(p.distance_to(hit)/length,0,1))
-    cuts.sort()
-    for j in range(1,cuts.size()):
-     if cuts[j]-cuts[j-1]<.000001:continue
-     if Geometry2D.is_point_in_polygon(p.lerp(q,(cuts[j-1]+cuts[j])/2),mask):
-      intervals.append(Vector2(travelled+cuts[j-1]*length,travelled+cuts[j]*length))
+    for interval:Vector2 in mask_cuts(sweep,base_at,mask,length):
+     intervals.append([travelled+interval.x,travelled+interval.y])
   travelled+=length
- intervals.sort_custom(func(a,b):return a.x<b.x)
+  first_normal=last_normal
+ intervals.sort_custom(func(a,b):return a[0]<b[0])
  var merged:Array=[]
- for interval:Vector2 in intervals:
-  if not merged.is_empty() and interval.x<=merged[-1].y+.00001:merged[-1].y=maxf(merged[-1].y,interval.y)
+ for interval:Array in intervals:
+  if not merged.is_empty() and interval[0]<=merged[-1][1]+.00001:merged[-1][1]=maxf(merged[-1][1],interval[1])
   else:merged.append(interval)
  return merged
+static func mask_cuts(sweep:PackedVector2Array,base_at:Callable,mask:PackedVector2Array,length:float)->Array:
+ var steps:=sweep.size()-1
+ var cuts:Array[float]=[0.0]
+ for i in range(steps):
+  var p:=sweep[i];var q:=sweep[i+1]
+  for j in range(mask.size()):
+   var hit:Variant=Geometry2D.segment_intersects_segment(p,q,mask[j],mask[(j+1)%mask.size()])
+   if hit!=null:cuts.append((i+clampf(p.distance_to(hit)/p.distance_to(q),0,1))/steps)
+  cuts.append(float(i+1)/steps)
+ cuts.sort()
+ var probes:Array[float]=[0.0]
+ for i in range(1,cuts.size()):
+  if cuts[i]-cuts[i-1]>.0000001:probes.append((cuts[i-1]+cuts[i])/2)
+ probes.append(1.0)
+ var blocked:=inside_support_mask(sweep[0],mask)
+ var start:=0.0
+ var result:Array=[]
+ for i in range(1,probes.size()):
+  var next_blocked:=inside_support_mask(base_at.call(probes[i]),mask)
+  if next_blocked==blocked:continue
+  var clear:=probes[i] if blocked else probes[i-1]
+  var inside:=probes[i-1] if blocked else probes[i]
+  for k in range(24):
+   var mid:=(clear+inside)/2
+   if inside_support_mask(base_at.call(mid),mask):inside=mid
+   else:clear=mid
+  # Retain the clear side even after resampling the segment at chainage.
+  var boundary:=clampf(clear*length+(.00005 if blocked else -.00005),0,length)
+  if blocked:result.append(Vector2(start,boundary))
+  else:start=boundary
+  blocked=next_blocked
+ if blocked:result.append(Vector2(start,length))
+ return result
+static func inside_support_mask(point:Vector2,mask:PackedVector2Array)->bool:
+ # Use the actual edge coordinates, not Geometry2D's quantized polygon test:
+ # the latter can classify a base just inside a metre of setback as outside.
+ var inside:=false
+ var a:=mask[-1]
+ for b:Vector2 in mask:
+  if (a.y>point.y)!=(b.y>point.y):
+   var x:float=a.x+(b.x-a.x)*(point.y-a.y)/(b.y-a.y)
+   if point.x<x:inside=not inside
+  a=b
+ return inside
 static func support_allowed(points:PackedVector2Array,distance:float,masks:Array)->bool:
  var at:=sample(points,distance)
  for side:float in [-1.0,1.0]:
@@ -259,7 +337,7 @@ static func support_allowed(points:PackedVector2Array,distance:float,masks:Array
  return true
 static func base_allowed(point:Vector2,masks:Array)->bool:
  for mask:PackedVector2Array in masks:
-  if not Geometry2D.is_point_in_polygon(point,mask):continue
+  if not inside_support_mask(point,mask):continue
   var edge_distance:=INF
   for i in range(mask.size()):edge_distance=minf(edge_distance,point.distance_to(Geometry2D.get_closest_point_to_segment(point,mask[i],mask[(i+1)%mask.size()])))
   if edge_distance>.00001:return false
@@ -283,10 +361,11 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
   var count:=maxi(1,ceili((section.y-section.x)/section.z))
   for i in range(count+1):positions.append(lerpf(section.x,section.y,float(i)/count))
  var blocked:=forbidden_intervals(points,masks)
- for interval:Vector2 in blocked:
-  positions=positions.filter(func(d):return d<=interval.x+.00001 or d>=interval.y-.00001)
-  if interval.x>=start and interval.x<=finish:positions.append(interval.x)
-  if interval.y>=start and interval.y<=finish:positions.append(interval.y)
+ for interval:Array in blocked:
+  var lo:float=interval[0];var hi:float=interval[1]
+  positions=positions.filter(func(d):return d<=lo+.00001 or d>=hi-.00001)
+  if lo>=start and lo<=finish:positions.append(lo)
+  if hi>=start and hi<=finish:positions.append(hi)
  for x:Dictionary in crossovers:
   var supports:=crossover_supports(x,city)
   var origin:Vector2=x.start/4.0;var axis:Vector2=x.axis
@@ -312,8 +391,10 @@ static func append_run(output:Array,points:PackedVector2Array,start:float,finish
  var unique:Array[float]=[]
  for d:float in positions:
   var allowed:=support_allowed(points,d,masks)
-  for projected:float in portal_positions:
-   if absf(d-projected)<.0001:allowed=portal_positions[projected];break
+  if portal_positions.has(d):allowed=portal_positions[d]
+  else:
+   for projected:float in portal_positions:
+    if absf(d-projected)<.0001:allowed=false;break
   if not allowed:continue
   if unique.is_empty() or d-unique[-1]>.0001:unique.append(d)
  # Wires still reach a boundary/portal even when its support is prohibited.

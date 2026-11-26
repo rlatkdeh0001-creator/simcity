@@ -151,8 +151,11 @@ func test_support_boundaries():
 func test_solid_ramp_parks():
  var fragment_city=City.new(100,100)
  check(fragment_city.add_elevated_road(PackedVector2Array([Vector2(10,40),Vector2(90,40)]),PackedFloat64Array([10,10])).ok,"fragment support host")
- # Authored legacy ground records can predate the height-aware admission gate.
- check(fragment_city.add_road(PackedVector2Array([Vector2(10,40),Vector2(50,40)])).ok,"legacy fragment obstacle")
+ # Load a legacy ground record directly: new construction now refuses a shaft intersection.
+ var legacy:Dictionary=fragment_city.add_road(PackedVector2Array([Vector2(10,40),Vector2(50,40)]),"local",false)
+ check(not legacy.ok and legacy.reason=="교각과 겹침","new construction rejects the legacy fragment obstacle")
+ fragment_city.roads.append({"points":PackedVector2Array([Vector2(10,40),Vector2(50,40)]),"kind":"local","width":3.0,"lanes":2,"major_side":1,"parcel_id":fragment_city.next_road_id})
+ fragment_city.next_road_id+=1
  var selection:Dictionary=fragment_city.road_demolition_selection(0,Vector2(70,40),Vector2(78,40))
  var before:=var_to_bytes([fragment_city.roads,fragment_city.next_road_id])
  var removed:Dictionary=fragment_city.demolish_road_selection(selection)
