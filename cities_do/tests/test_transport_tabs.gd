@@ -24,6 +24,23 @@ func click(button:Control):
   event.position=p
   root.push_input(event,true)
 
+func approved_transport_icons() -> Dictionary:
+ var path:=ProjectSettings.globalize_path("res://").path_join("../docs/concepts/transit-icons-20261119/icons-B.txt").simplify_path()
+ var images:Dictionary={}
+ for line in FileAccess.get_file_as_string(path).split("\n"):
+  if not line.strip_edges().begins_with('"'):continue
+  var image:=Image.new()
+  var svg:='<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><g fill="#e4eef1">%s</g></svg>'%line.get_slice("'",1)
+  if image.load_svg_from_string(svg)==OK:images[line.get_slice('"',1)]=image.get_data()
+ check(images.size()==5,"all five approved B reference glyphs rasterize")
+ return images
+
+func check_transport_icon(row:HBoxContainer,tool:String,approved:Dictionary):
+ var card:=row.get_node_or_null("Tool_"+tool)
+ var pictures:=card.find_children("*","TextureRect",true,false) if card!=null else []
+ var glyph:TextureRect=pictures[0] if pictures.size()==1 else null
+ check(glyph!=null and glyph.custom_minimum_size==Vector2(38,38) and glyph.texture!=null and glyph.texture.get_image().get_data()==approved.get(tool),"transport card shows its approved B glyph: "+tool)
+
 func run():
  root.size=Vector2i(1280,720)
  var game=load("res://main.tscn").instantiate()
@@ -37,6 +54,14 @@ func run():
   if not matches.is_empty():tabs=matches[0]
  check(tabs!=null,"transport has a dedicated tab row")
  if tabs!=null:
+  var approved:=approved_transport_icons()
+  # Freight creation and route removal moved to the overlay. Exercise the shared
+  # tray-card builder for their approved glyphs without adding controls to the UI.
+  var icon_probe:=HBoxContainer.new()
+  for tool in ["freight_line","remove_line"]:
+   game.add_drawer_tool(icon_probe,"transport",[tool,tool])
+   check_transport_icon(icon_probe,tool,approved)
+  icon_probe.free()
   var expected:=[
    ["Facility_bus-stop-01","Facility_bus-station-01","Tool_transit_line"],
    ["Tool_metro","Facility_subway-entrance-01","Tool_transit_line"],
@@ -58,6 +83,9 @@ func run():
     var names:Array=[]
     for child in game.drawer_box.get_children().slice(1,-1):names.append(str(child.name))
     check(names==expected[i],"exact card order: %s %d: %s"%[resolution,i,names])
+    if resolution==Vector2i(1920,1080):
+     check_transport_icon(game.drawer_box,"transit_line",approved)
+     if i>0:check_transport_icon(game.drawer_box,["metro","rail"][i-1],approved)
     var route:Control=game.drawer_box.get_node("Tool_transit_line")
     check(route.get_global_rect().end.x<=game.drawer.get_global_rect().end.x-12,"last card is fully inside the tray: %s %d"%[resolution,i])
     check(game.drawer.size.x==width and tabs.global_position==tab_pos,"tray and tabs stay fixed: %s %d"%[resolution,i])

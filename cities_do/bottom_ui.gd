@@ -133,6 +133,11 @@ func icon(kind: String) -> Texture2D:
   "environment": body='<path d="m8 3 4-2 5 7-4 2-2-4-2 4-5-2zm13 9 2 5-8 5-2-4 5-2-4-1 1-5zM9 22H3L1 13l5-1 1 5 2-4 4 3z"/>'
   "park": body='<path d="M10 23v-5H5a4 4 0 0 1-2-7 5 5 0 0 1 3-7 6 6 0 0 1 12 0 5 5 0 0 1 3 7 4 4 0 0 1-2 7h-5v5z"/>'
   "transport": body='<rect x="4" y="1" width="16" height="20" rx="4"/><path d="M7 20v3m10-3v3" stroke="white" stroke-width="2"/><path d="M7 5h10v8H7z" fill="#152d3b"/><circle cx="8" cy="17" r="1.3" fill="#152d3b"/><circle cx="16" cy="17" r="1.3" fill="#152d3b"/>'
+  "rail": body='<path d="M7.1 2 22 16.9M2 7.1 16.9 22M10.8 2.6 2.6 10.8M14.3 6.1 6.1 14.3M17.9 9.7 9.7 17.9M21.4 13.2 13.2 21.4" fill="none" stroke="#e4eef1" stroke-width="2.2"/>'
+  "metro": body='<path d="M2 2h20v21h-3.5v-9.5a6.5 6.5 0 0 0-13 0V23H2z"/><path d="M7 23 8.9 12h1.4L9.2 23zM14.8 23 13.7 12h1.4L17 23zM7.1 19.8h9.8v1.8H7.1zM7.7 16.2h8.6v1.4H7.7zM8.3 13.3h7.4v1.1H8.3z"/>'
+  "transit_line": body='<circle cx="12" cy="4.3" r="2.8"/><path d="M5.5 14v-1.4a6.5 4.2 0 0 1 13 0V14zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
+  "freight_line": body='<path d="M12 1.5l4.77 2.75L12 7.01 7.23 4.25zM6.63 5.29l4.77 2.76v5.5L6.63 10.8zM17.37 5.29v5.51l-4.77 2.75v-5.5zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
+  "remove_line": body='<path d="M6.4 2.1h2L12 5.7l3.6-3.6h2v2L14 7.7l3.6 3.6v2h-2L12 9.7l-3.6 3.6h-2v-2L10 7.7 6.4 4.1zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
   "health": body='<path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6z"/>'
   "education": body='<path d="m1 7 11-5 11 5-11 5zM5 11v7q7 7 14 0v-7l-7 4z"/>'
   "fire": body='<path d="M13 1q3 7-2 10 1-5-3-7 1 5-3 9-5 11 7 11 12-1 7-12-1 5-4 5 3-7-2-16z"/>'
@@ -733,7 +738,8 @@ func add_drawer_tool(box:HBoxContainer,key:String,choice:Array):
   content.offset_top=8
   content.mouse_filter=Control.MOUSE_FILTER_IGNORE
   var image := TextureRect.new()
-  var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select"}
+  var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select",
+   "rail":"rail","metro":"metro","transit_line":"transit_line","freight_line":"freight_line","remove_line":"remove_line"}
   image.texture=icon(tool_icons.get(choice[1],key))
   image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
   image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
