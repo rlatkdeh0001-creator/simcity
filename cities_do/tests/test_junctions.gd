@@ -106,14 +106,40 @@ func test_footprints() -> bool:
   for junction in city.junctions:
    corner_clear=corner_clear and not city.Parcels.overlap(parcel.polygon,Topology.patch(junction))
  verify(corner_clear,"placement tiles exclude actual pavement without diagonal corner loss")
+ return test_corner_boundary()
+func edge_distance(point: Vector2, polygon: PackedVector2Array) -> float:
+ var distance := INF
+ for i in range(polygon.size()):
+  var closest := Geometry2D.get_closest_point_to_segment(point,polygon[i],polygon[(i+1)%polygon.size()])
+  distance=minf(distance,point.distance_to(closest))
+ return distance
+func test_corner_boundary() -> bool:
  var occupied := City.new(100,100)
- occupied.add_road(roads()[0].points)
- var house: Dictionary=occupied.add_building_at(Vector2(52.5,48))
+ var through := PackedVector2Array([Vector2(10.25,50),Vector2(90.25,50)])
+ var crossing := PackedVector2Array([Vector2(10,10),Vector2(90,90)])
+ var built: Dictionary=occupied.add_road(through)
+ var host_ready: bool=built.ok and is_equal_approx(float(occupied.roads[0].width),3.0)
+ verify(host_ready,"corner-contact fixture uses the current three-cell through-road width")
+ if not host_ready:return true
+ # The oblique arm runs away from the lot; at a straight right-angle X the
+ # rounded curb cuts away the nominal corner where the road edges meet.
+ var contact := Vector2(51.25,48.5)
+ var house: Dictionary=occupied.add_building_at(contact+Vector2(.5,-.5))
  verify(house.ok,"corner lot exists before a crossing road is added")
- var before: int=occupied.roads.size()
- var preview: Dictionary=occupied.add_road(roads()[1].points,"local",false)
- verify(preview.ok and occupied.roads.size()==before and occupied.junctions.is_empty(),"square crossing preview preserves the adjacent house and does not mutate city")
- verify(occupied.add_road(roads()[1].points).ok and occupied.buildings.size()==1,"crossing can be built beside the corner house without clipping or demolition")
+ if not house.ok:return true
+ var house_id: int=house.building.id
+ var footprint: PackedVector2Array=occupied.footprint(house.building)
+ var topology: Dictionary=Topology.analyze(occupied.roads+[{"points":crossing,"width":3.0,"lanes":2,"kind":"local"}])
+ verify(topology.junctions.size()==1,"corner-contact fixture derives one crossing junction")
+ if topology.junctions.size()!=1:return true
+ var patch: PackedVector2Array=Topology.patch(topology.junctions[0])
+ verify(edge_distance(contact,footprint)<.00001 and edge_distance(contact,patch)<.00001,"house and three-cell junction boundaries share the curb point (51.25, 48.5)")
+ verify(Geometry2D.intersect_polygons(footprint,patch).is_empty(),"touching house and junction have zero positive-area overlap")
+ var before: Array=occupied.roads.duplicate(true)
+ var preview: Dictionary=occupied.add_road(crossing,"local",false)
+ verify(preview.ok and occupied.roads==before and occupied.junctions.is_empty() and occupied.buildings.size()==1 and occupied.buildings[0].id==house_id and occupied.footprint(occupied.buildings[0])==footprint,"crossing preview accepts boundary contact and preserves road state, house ID and footprint")
+ var committed: Dictionary=occupied.add_road(crossing)
+ verify(committed.ok and occupied.roads.size()==before.size()+1 and occupied.junctions.size()==1 and Topology.patch(occupied.junctions[0])==patch and occupied.buildings.size()==1 and occupied.buildings[0].id==house_id and occupied.footprint(occupied.buildings[0])==footprint,"crossing commit builds the predicted junction and preserves touching house ID and footprint")
  return true
 func test_routes() -> bool:
  var network=cross_network()

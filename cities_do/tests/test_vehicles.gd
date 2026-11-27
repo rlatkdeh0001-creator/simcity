@@ -1,6 +1,5 @@
 extends SceneTree
 
-const FixtureAssets = preload("res://tests/test_facilities.gd")
 const ROAD_CATEGORIES := {"bus":1,"taxi":1,"civilian":20,"industrial":16,"service":3}
 const OTHER_CATEGORIES := {"rail_locomotive":2,"rail_passenger":1,"rail_freight":1,"rail_metro":1,"cargo":1}
 
@@ -22,15 +21,18 @@ func run():
 	verify(doc is Dictionary and doc.vehicles.size() == 47, "catalog contains 41 road vehicles and six rail/cargo assets")
 	var road_categories := {}
 	var other_categories := {}
-	var models := {}
+	var imports := {}
 	for entry in doc.vehicles:
-		verify(not models.has(entry.id), entry.id + " unique ID")
+		verify(not imports.has(entry.id), entry.id + " unique ID")
 		var road_vehicle: bool = ROAD_CATEGORIES.has(entry.category)
 		var categories := road_categories if road_vehicle else other_categories
 		categories[entry.category] = categories.get(entry.category, 0) + 1
-		var resource := FixtureAssets.fixture_model(entry.model, true)
-		models[entry.id] = resource
-		verify(resource != null, entry.id + " real GLB loads as PackedScene")
+		var path: String = entry.model
+		var resource: PackedScene
+		if FileAccess.file_exists(path) and ResourceLoader.exists(path, "PackedScene"):
+			resource = ResourceLoader.load(path, "PackedScene") as PackedScene
+		imports[entry.id] = resource != null
+		verify(resource != null, entry.id + " GLB imports as PackedScene: " + path)
 		if resource == null: continue
 		var model: Node3D = resource.instantiate()
 		root.add_child(model)
@@ -80,7 +82,7 @@ func run():
 		model.free()
 	verify(road_categories == ROAD_CATEGORIES, "required road category counts; bus and taxi originals excluded")
 	verify(other_categories == OTHER_CATEGORIES, "required rail and cargo category counts")
-	if models.values().has(null):
+	if imports.values().has(false):
 		quit(1) # Do not enter a gallery whose asset dependency already failed.
 		return
 	var main: Node2D = load("res://main.tscn").instantiate()
@@ -98,7 +100,13 @@ func run():
 	await process_frame
 	var showcase = current_scene
 	verify(showcase != null and showcase.scene_file_path == "res://vehicle_showcase.tscn", "standalone vehicle showcase fixture remains usable")
-	verify(showcase.rigs.size() == models.size() and showcase.cameras.size() == models.size(), "showcase creates a real model viewport for every road, rail and cargo asset")
+	verify(showcase.rigs.size() == doc.vehicles.size() and showcase.cameras.size() == doc.vehicles.size(), "showcase creates a real model viewport for every road, rail and cargo asset")
+	var displayed_models := []
+	for rig in showcase.rigs:
+		for child in rig.get_children():
+			if child is Node3D and not child.scene_file_path.is_empty():
+				displayed_models.append(child.scene_file_path)
+	verify(displayed_models == doc.vehicles.map(func(entry):return entry.model), "showcase instantiates every catalog GLB from its imported path")
 	showcase.same_scale = true
 	showcase.update_scale()
 	verify(is_equal_approx(showcase.cameras[0].size, showcase.cameras[19].size), "same-scale mode uses identical camera scale")

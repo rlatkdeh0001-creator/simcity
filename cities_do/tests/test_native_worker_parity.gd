@@ -2,6 +2,8 @@ extends SceneTree
 const Model=preload("res://core/city_model.gd")
 const Adapter=preload("res://core/city_simulation_worker.gd")
 const Coordinator=preload("res://core/city_native_mailbox.gd")
+# These worker-only export fields are required, but do not have an independent parity oracle.
+const WORKER_ONLY_EXPORT_KEYS=["checkpoint","external_infrastructure","loans","next_transit_line_id","next_transit_route_id","transit_lines","transit_routes","transit_state"]
 var checks:=0
 func check(value:bool,message:String):
  checks+=1
@@ -19,6 +21,33 @@ func canonical(source)->Dictionary:
  return {"buildings":source.buildings.duplicate(true),"population":source.population.core.ExportCityCheckpoint(),"happiness":source.happiness.core.ExportCityCheckpoint(),
  "rng_state":source.rng.state,"appearance_state":source.appearance_rng.state,"clock_seconds":source.clock.game_seconds,
  "funds":source.funds,"next_id":source.next_id,"development_elapsed":source.development_elapsed,"development_cursor":source.development_cursor,"society_elapsed":source.society_elapsed}
+func validation_difference(expected:Dictionary,exported:Dictionary)->String:
+ var actual:=exported.duplicate()
+ var missing:=PackedStringArray()
+ for key:String in WORKER_ONLY_EXPORT_KEYS:
+  if not actual.erase(key):missing.append(key)
+ if missing.is_empty() and actual==expected:return ""
+ var unexpected:=PackedStringArray()
+ var unequal:=PackedStringArray()
+ for key:Variant in expected:
+  if not actual.has(key):missing.append(str(key))
+  elif actual[key]!=expected[key]:unequal.append(str(key))
+ for key:Variant in actual:
+  if not expected.has(key):unexpected.append(str(key))
+ return "missing fields: [%s]; unexpected fields: [%s]; unequal fields: [%s]"%[", ".join(missing),", ".join(unexpected),", ".join(unequal)]
+func check_comparison(expected:Dictionary,exported:Dictionary):
+ var changed:=exported.duplicate()
+ changed.unknown_validation_field=true
+ check(validation_difference(expected,changed).contains("unexpected fields: [unknown_validation_field]"),"parity rejects unknown export fields")
+ changed=exported.duplicate()
+ changed.erase("clock_seconds")
+ check(validation_difference(expected,changed).contains("missing fields: [clock_seconds]"),"parity rejects missing canonical fields")
+ changed=exported.duplicate()
+ changed.erase("checkpoint")
+ check(validation_difference(expected,changed).contains("missing fields: [checkpoint]"),"parity rejects missing worker-only fields")
+ changed=exported.duplicate()
+ changed.rng_state=int(expected.rng_state)^1
+ check(validation_difference(expected,changed).contains("unequal fields: [rng_state]"),"parity rejects unequal canonical values")
 func _initialize():run.call_deferred()
 func run():
  var source=town()
@@ -46,17 +75,12 @@ func run():
   source.advance_society(2)
   var expected:Dictionary=canonical(source)
   var exported:Dictionary=worker.ExportValidationState()
-  # The export also carries save/transport data outside this parity fixture.
-  var actual:Dictionary={}
-  for key:Variant in expected:
-   if exported.has(key):actual[key]=exported[key]
+  var difference:=validation_difference(expected,exported)
   checks+=1
-  if actual!=expected:
-   var mismatches:=PackedStringArray()
-   for key:Variant in expected:
-    if not actual.has(key) or actual[key]!=expected[key]:mismatches.append(str(key))
-   push_error("STAGE2 FAILED: exact state at logical tick %d (missing/unequal fields: %s)"%[i+1,", ".join(mismatches)])
+  if not difference.is_empty():
+   push_error("STAGE2 FAILED: exact state at logical tick %d: %s"%[i+1,difference])
    worker.Shutdown();quit(1);return
+  if i==0:check_comparison(expected,exported)
   check(result.population_view.Stats()==source.population.stats(),"population stats read view")
   check(result.scalars.stats==source.population.stats(),"scalar stats")
   check(result.scalars.demand==source.population.demand(source.buildings),"scalar demand")

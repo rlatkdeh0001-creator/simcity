@@ -2,8 +2,9 @@
 
 Use --list to verify discovery, and --out with a fresh results directory for
 execution (prefer scratch for raw logs). --only accepts test names for reruns.
-Nothing is imported or built here; the checkout must have its .NET assembly and
-resources ready. All Godot launches use the repository wrapper.
+Suites requiring normal engine imports use a new project copy in the output
+directory. The prepared .NET assembly is copied; nothing is built. All Godot
+launches use the repository wrapper.
 """
 import argparse
 import csv
@@ -11,11 +12,13 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECT = ROOT / 'cities_do'
+IMPORT_REQUIRED = {'test_facilities', 'test_vehicles', 'test_thumbnail_hud'}
 HELPERS = {'test_neighbor_commuting_contract': 'test_neighbor_commuting'}
 NATIVE_ONLY = {'test_terminal_turnback_native', 'test_transit_commuting_view',
                'test_transit_facilities_view'}
@@ -82,7 +85,7 @@ def discover():
     entries = {p.stem: p for p in files if entry_point(p)}
     if {p.stem for p in files} - entries.keys() != HELPERS.keys():
         raise ValueError('entry point inventory changed: check helper wrappers')
-    if not (NATIVE | LONG | set(EVIDENCE_PATHS) | set(HELPERS.values())) <= entries.keys():
+    if not (NATIVE | LONG | IMPORT_REQUIRED | set(EVIDENCE_PATHS) | set(HELPERS.values())) <= entries.keys():
         raise ValueError('configured suite missing from inventory')
     return entries
 
@@ -114,13 +117,50 @@ def require_native_desktop_free():
         raise SystemExit(f'Native verification deferred; other Godot processes: {godot_processes}')
 
 
-def build_arguments(name, source, mode, out):
+def import_project_copy(out):
+    """Import real resources without rewriting checkout metadata or config."""
+    sandbox = out / 'normal-import'
+    project = sandbox / PROJECT.name
+    tracked = git('ls-files', '-z', '--', PROJECT.name).decode('utf-8').split('\0')
+    for relative in (p for p in tracked if p):
+        target = sandbox / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / relative, target)
+    bin_dir = Path('.godot/mono/temp/bin')
+    assemblies = PROJECT / bin_dir
+    if not (assemblies / 'Debug/CitiesDo.dll').is_file():
+        raise RuntimeError('Prepared .NET Debug assembly is required; no build performed')
+    copied_bin = project / bin_dir
+    shutil.copytree(assemblies, copied_bin)
+    copied_dll = copied_bin / 'Debug/CitiesDo.dll'
+    dll_hash = sha(copied_dll.read_bytes())
+    log = out / 'normal-import.log'
+    command = [sys.executable, 'tools/run_dotnet.py', '--timeout', '600', 'godot',
+               '--headless', '--editor', '--import', '--path', str(project), '--audio-driver', 'Dummy']
+    with log.open('xb') as stream:
+        code = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT).returncode
+    data = log.read_bytes()
+    errors = [line for line in data.decode('utf-8', errors='replace').splitlines() if ERROR.match(line)]
+    imported = project / '.godot/imported'
+    resources = sum(path.is_file() for path in imported.iterdir()) if imported.is_dir() else 0
+    if sha(copied_dll.read_bytes()) != dll_hash:
+        errors.append('import changed the copied runtime assembly')
+    result = dict(command=command, exit_code=code, errors=errors, resources=resources,
+                  log=log.name, log_sha256=sha(data), dll_sha256=dll_hash)
+    (out / 'normal-import.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
+    if code or errors or not resources:
+        raise SystemExit(f'Normal Godot import failed (exit={code}, errors={len(errors)}): {log}')
+    print(f'normal-import PASS {resources} cache files: {log}', flush=True)
+    return project
+
+
+def build_arguments(name, source, mode, out, project=PROJECT):
     path = 'res://tests/' + source.name
     args = []
     redirects = {}
     if name in EVIDENCE_PATHS:
         text = read_source(source)
-        folder = out / 'redirected-evidence' / name
+        folder = out / 'redirected-evidence' / mode / name
         folder.mkdir(parents=True)
         for old in EVIDENCE_PATHS[name]:
             quoted = json.dumps(old)
@@ -147,17 +187,21 @@ def build_arguments(name, source, mode, out):
             graphics[-2:] = ['1280x820', '--windowed', '--borderless']
     timeout = '900' if name in LONG else '120'
     command = [sys.executable, 'tools/run_dotnet.py', '--timeout', timeout, 'godot',
-               '--path', str(PROJECT), '--audio-driver', 'Dummy', *graphics, '--script', path]
+               '--path', str(project), '--audio-driver', 'Dummy', *graphics, '--script', path]
     if args:
         command += ['--', *args]
     return command, redirects
 
 
-def run_one(name, source, mode, out):
+def run_one(name, source, mode, out, project=PROJECT, require_counted=False):
     source_hash = sha(source.read_bytes())
     if mode == 'native':
         require_native_desktop_free()
-    command, redirects = build_arguments(name, source, mode, out)
+    if project != PROJECT:
+        copied = project / 'tests' / source.name
+        if sha(copied.read_bytes()) != source_hash:
+            raise RuntimeError(f'{name}: test no longer matches the imported project copy')
+    command, redirects = build_arguments(name, source, mode, out, project)
     logfile = out / (mode + '-' + name + '.log')
     with logfile.open('xb') as stream:
         code = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT).returncode
@@ -167,6 +211,8 @@ def run_one(name, source, mode, out):
     errors = [line for line in text.splitlines() if ERROR.match(line)]
     if not data.strip():
         errors.append('empty Godot log')
+    if require_counted and counts is None:
+        errors.append('missing completion assertion count')
     if sha(source.read_bytes()) != source_hash:
         errors.append('test source changed during the run')
     ok = code == 0 and not errors and (counts is None or counts[0] == counts[1])
@@ -183,14 +229,20 @@ def main():
     parser.add_argument('--mode', choices=('headless', 'native', 'both'), default='both')
     parser.add_argument('--out', type=Path)
     parser.add_argument('--only', nargs='+')
+    parser.add_argument('--native-for-selected', action='store_true',
+                        help='also exercise all explicit --only tests with a real display')
+    parser.add_argument('--require-counted', action='store_true',
+                        help='reject a clean exit without a reported assertion total')
     parser.add_argument('--require-head')
     opts = parser.parse_args()
     inventory = discover()
     if opts.only and not set(opts.only) <= inventory.keys():
         parser.error('--only contains an unknown or non-runnable script')
+    if opts.native_for_selected and not opts.only:
+        parser.error('--native-for-selected requires an explicit --only selection')
     jobs = [(m, name) for m in ('headless', 'native') if opts.mode in (m, 'both')
             for name in inventory if (not opts.only or name in opts.only)
-            and (name not in NATIVE_ONLY if m == 'headless' else name in NATIVE)]
+            and (name not in NATIVE_ONLY if m == 'headless' else name in NATIVE or opts.native_for_selected)]
     if not jobs:
         parser.error('no runnable tests for that selection')
     if opts.list:
@@ -207,14 +259,20 @@ def main():
     out.mkdir(parents=True, exist_ok=False)
     config = PROJECT / 'project.godot'
     config_hash = sha(config.read_bytes())
-    metadata = dict(head=current, jobs=jobs, helpers=HELPERS, project_sha256=config_hash)
+    requires_import = any(name in IMPORT_REQUIRED for _, name in jobs)
+    metadata = dict(head=current, jobs=jobs, helpers=HELPERS, project_sha256=config_hash,
+                    normal_import=requires_import, require_counted=opts.require_counted)
     (out / 'run.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
+    # Only strict asset suites need the copied import cache; run the rest on
+    # the actual checkout (and keep its existing no-import/no-build workflow).
+    imported_project = import_project_copy(out) if requires_import else PROJECT
     results = []
     with (out / 'results.jsonl').open('x', encoding='utf-8') as file:
         for mode, name in jobs:
             if sha(config.read_bytes()) != config_hash or git('rev-parse', 'HEAD').decode().strip() != current:
                 raise SystemExit('project settings or HEAD changed after launch')
-            record = run_one(name, inventory[name], mode, out)
+            project = imported_project if name in IMPORT_REQUIRED else PROJECT
+            record = run_one(name, inventory[name], mode, out, project, opts.require_counted)
             results.append(record)
             file.write(json.dumps(record, ensure_ascii=False) + '\n')
             file.flush()

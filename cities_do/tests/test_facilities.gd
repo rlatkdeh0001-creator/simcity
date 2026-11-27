@@ -14,23 +14,6 @@ func verify(value: bool, message: String):
   failed += 1
   push_error("FAIL "+message)
 
-static func fixture_model(path: String, cache_for_showcase: bool = false) -> PackedScene:
- if not FileAccess.file_exists(path):return null
- if ResourceLoader.exists(path):return load(path) as PackedScene
- # Same raw GLB path as BuildingViews, but the standalone galleries call load().
- # Pack in memory and retain the returned resource through the scene transition.
- var document:=GLTFDocument.new()
- var state:=GLTFState.new()
- if document.append_from_file(path,state)!=OK:return null
- var model:=document.generate_scene(state)
- if model==null:return null
- var resource:=PackedScene.new()
- var result:=resource.pack(model)
- model.free()
- if result!=OK:return null
- if cache_for_showcase:resource.take_over_path(path)
- return resource
-
 func run():
  var p := Parking.new()
  var a := p.add("surface_parking",Vector2i.ZERO,Vector2i(2,4))
@@ -78,15 +61,18 @@ func run():
  verify(entries.size()==19,"catalog contains the original eight facilities and eleven additions")
  var counts := {}
  var legacy_counts := {}
- var models: Dictionary = {}
+ var imports: Dictionary = {}
  for entry in entries:
   counts[entry.kind]=counts.get(entry.kind,0)+1
   var legacy: bool = LEGACY_KINDS.has(entry.kind) and entry.id!="park-large-8x8"
   if legacy:legacy_counts[entry.kind]=legacy_counts.get(entry.kind,0)+1
-  verify(not models.has(entry.id),entry.id+" unique ID")
-  var resource := fixture_model(entry.model,true)
-  models[entry.id]=resource
-  verify(resource!=null,entry.id+" real GLB loads as PackedScene")
+  verify(not imports.has(entry.id),entry.id+" unique ID")
+  var path: String = entry.model
+  var resource: PackedScene
+  if FileAccess.file_exists(path) and ResourceLoader.exists(path,"PackedScene"):
+   resource=ResourceLoader.load(path,"PackedScene") as PackedScene
+  imports[entry.id]=resource!=null
+  verify(resource!=null,entry.id+" GLB imports as PackedScene: "+path)
   if resource!=null:
    var model: Node3D = resource.instantiate()
    root.add_child(model)
@@ -105,7 +91,7 @@ func run():
   verify(image!=null and image.get_size()==Vector2i(800,680) and image.get_format()==Image.FORMAT_RGBA8,entry.id+" preview has expected RGBA resolution")
  verify(legacy_counts==LEGACY_KINDS,"original park and parking category counts")
  verify(counts==CATALOG_KINDS,"expanded facility category counts")
- if models.values().has(null):
+ if imports.values().has(false):
   quit(1) # Do not enter a gallery whose asset dependency already failed.
   return
  var scene = load("res://main.tscn").instantiate()
@@ -121,7 +107,12 @@ func run():
  await process_frame
  var showcase=current_scene
  verify(showcase.scene_file_path=="res://facilities_showcase.tscn","standalone facilities fixture remains usable without a player HUD button")
- verify(showcase.gallery.get_child_count()==models.size(),"standalone gallery presents the complete expanded catalog")
+ verify(showcase.gallery.get_child_count()==entries.size(),"standalone gallery presents the complete expanded catalog")
+ var displayed_models := []
+ for viewport in showcase.gallery.find_children("*","SubViewport",true,false):
+  for child in viewport.get_children():
+   if child is Node3D and not child.scene_file_path.is_empty():displayed_models.append(child.scene_file_path)
+ verify(displayed_models==entries.map(func(entry):return entry.model),"standalone gallery instantiates every catalog GLB from its imported path")
  verify(showcase.parking.groups().size()==1,"runtime starts with merged L shape")
  showcase.act("merge")
  verify(showcase.merge_view.visible,"merge mode shows runtime geometry")

@@ -1,5 +1,6 @@
 extends SceneTree
-const FixtureAssets = preload("res://tests/test_facilities.gd")
+const RAIL_SAMPLE_ID := "rail-track-01"
+const RAIL_SAMPLE_MODEL := "res://assets/rail/rail-track-01/rail-track-01.glb"
 var checks:=0
 var failed:=0
 func _initialize():run.call_deferred()
@@ -34,6 +35,7 @@ func check_cards(game):
   await process_frame
   var cards: Array=game.drawer_box.get_children().filter(func(n):return n is Button and n.has_meta("thumbnail_asset_id"))
   verify(cards.size()==expected[key],key+" has every PNG-backed building/park/parking card")
+  if key=="park":verify(cards.filter(func(card):return card.get_meta("thumbnail_asset_id")==RAIL_SAMPLE_ID).size()==1,"park tray includes exactly one rail sample card")
   for card in cards:
    total+=1
    var image=card.get_node_or_null("AssetThumbnail")
@@ -45,22 +47,61 @@ func check_cards(game):
    if band is Panel:verify(band.get_theme_stylebox("panel").bg_color.a>.5 and band.get_theme_stylebox("panel").bg_color.a<1,str(card.name)+" dark translucent name band")
    var id: String=card.get_meta("thumbnail_asset_id")
    game.public_controller.cancel()
+   if id==RAIL_SAMPLE_ID:
+    await check_rail_sample(game,card)
+    continue
+   var entry: Dictionary=game.city.public_facilities.entries.get(id,{})
+   var path: String=entry.get("model","")
+   verify(imported_model(path)!=null,id+" GLB imports as PackedScene: "+path)
    card.pressed.emit()
    await process_frame
    var windows: Array=game.find_children("ServiceAssetPreview","Window",true,false)
-   if id=="rail-track-01":
-    # The park tray currently shows the inspection sample, not a placeable facility.
-    var sample:=FixtureAssets.fixture_model("res://assets/rail/rail-track-01/rail-track-01.glb")
-    verify(sample!=null and not game.city.public_facilities.entries.has(id) and game.mode!="public_placement" and game.public_controller.asset_id.is_empty(),str(card.name)+" is a real rail sample, not a placeable facility")
-   elif game.city.public_facilities.price(id)>game.city.utility_balance():
-    verify(windows.is_empty() and game.mode!="public_placement" and game.public_controller.asset_id.is_empty() and game.money_toast.visible,str(card.name)+" insufficient funds blocks ghost and shows approved card bubble")
+   if game.city.public_facilities.price(id)>game.city.utility_balance():
+    verify(windows.is_empty() and game.mode!="public_placement" and game.public_controller.asset_id.is_empty() and game.money_toast!=null and game.money_toast.visible,str(card.name)+" insufficient funds blocks ghost and shows approved card bubble")
    else:
-    var entry: Dictionary=game.city.public_facilities.entries.get(id,{})
-    verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==id and not entry.is_empty() and FixtureAssets.fixture_model(entry.model)!=null,str(card.name)+" selects its actual affordable GLB ghost without changing the C card")
+    verify(windows.is_empty() and game.mode=="public_placement" and game.public_controller.asset_id==id and not entry.is_empty(),str(card.name)+" selects its actual affordable GLB ghost without changing the C card")
    for window in windows:window.close_requested.emit()
    await process_frame
  verify(total==25,"all 25 PNG-backed cards in these categories use C cards")
  verify(before==JSON.stringify(game.city.buildings)+str(game.city.funds) and game.city.public_facilities.lots==lots_before,"thumbnail activation alone never builds or charges")
+
+func imported_model(path: String) -> PackedScene:
+ if path.is_empty() or not FileAccess.file_exists(path) or not ResourceLoader.exists(path,"PackedScene"):return null
+ return ResourceLoader.load(path,"PackedScene") as PackedScene
+
+func check_rail_sample(game,card: Button):
+ # The spec registers a sample for inspection, not a map tool. It does not specify this card's click UI.
+ verify(imported_model(RAIL_SAMPLE_MODEL)!=null,"rail sample GLB imports as PackedScene: "+RAIL_SAMPLE_MODEL)
+ verify(not game.city.public_facilities.entries.has(RAIL_SAMPLE_ID),"rail sample is not registered for facility placement")
+ game.drawer.show()
+ game.clear_money_toast()
+ await process_frame
+ game.drawer_scroll.ensure_control_visible(card)
+ await process_frame
+ var point:=card.get_global_rect().get_center()
+ var reachable: bool=card.is_visible_in_tree() and root.get_visible_rect().has_point(point) and game.drawer_scroll.get_global_rect().has_point(point)
+ verify(reachable,"rail sample card is reachable after scrolling")
+ if not reachable:return
+ var tool_before: Array=[game.chosen,game.mode,game.selected,game.public_controller.asset_id]
+ var city_before:=JSON.stringify([game.city.buildings,game.city.public_facilities.lots,game.city.transit_routes,game.city.funds])
+ var message_before: String=game.message
+ var placement_before: Dictionary=game.public_controller.last_result.duplicate(true)
+ var presses: Array[bool]=[]
+ card.pressed.connect(func():presses.append(true))
+ for down in [true,false]:
+  var click:=InputEventMouseButton.new()
+  click.position=point
+  click.global_position=point
+  click.button_index=MOUSE_BUTTON_LEFT
+  click.pressed=down
+  root.push_input(click,true)
+ await process_frame
+ verify(presses.size()==1,"viewport mouse press/release activates the rail sample card once")
+ verify([game.chosen,game.mode,game.selected,game.public_controller.asset_id]==tool_before and game.mode!="public_placement" and not game.public_controller.preview().has("record"),"rail sample click leaves the active tool and selection unchanged and creates no placement ghost")
+ verify(JSON.stringify([game.city.buildings,game.city.public_facilities.lots,game.city.transit_routes,game.city.funds])==city_before,"rail sample click builds nothing and charges nothing")
+ verify(game.message==message_before and game.public_controller.last_result==placement_before and (game.money_toast==null or not game.money_toast.visible),"rail sample click produces no placement error or funds warning")
+ for window in game.find_children("ServiceAssetPreview","Window",true,false):window.close_requested.emit()
+ await process_frame
 
 func check_focus_and_pause(game):
  game.categories[0].grab_focus()
