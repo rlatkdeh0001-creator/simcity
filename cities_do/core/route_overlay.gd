@@ -9,6 +9,7 @@ const COLORS:=[Color("ff6b5b"),Color("ffc23d"),Color("4dd9a6"),Color("b48cff")]
 const NAMES:={"bus":"버스","metro":"지하철","rail":"철도","freight":"화물"}
 const STATION:={"bus":"bus-stop-01","metro":"subway-entrance-01","rail":"train-station-01"}
 const INK:=Color("edf4f5")
+const LIST_PAPER:=Color("142b37")
 const ACCENT:=Color("36b7ff")
 const DIRECTION_OFFSET:=6.0
 const CORRIDOR_SPACING:=24.0
@@ -63,7 +64,7 @@ func setup(view):
  panel.name="RouteList"
  panel.position=Vector2(24,24)
  panel.custom_minimum_size.x=300
- var box:StyleBoxFlat=game.style(Color("142b37"),Color("38515e"))
+ var box:StyleBoxFlat=game.style(LIST_PAPER,Color("38515e"))
  for side in [SIDE_LEFT,SIDE_RIGHT,SIDE_TOP,SIDE_BOTTOM]:box.set_content_margin(side,8)
  panel.add_theme_stylebox_override("panel",box)
  add_child(panel)
@@ -762,6 +763,7 @@ func commit_stops(id:int,stops:Array):
 
 func build_list():
  clear_children(rows);clear_children(actions);create_buttons.clear();hovered_id=-1
+ var button_face:StyleBoxFlat=game.style(LIST_PAPER)
  for line:Dictionary in lines:
   var id:int=line.id
   var row:=HBoxContainer.new();row.custom_minimum_size.y=44;rows.add_child(row)
@@ -770,8 +772,10 @@ func build_list():
   swatch.add_theme_stylebox_override("panel",disc)
   swatch.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(swatch)
   var title:=game.label("%s %d"%[NAMES[line.kind],id],20) as Label
+  title.add_theme_color_override("font_color",INK)
   title.mouse_filter=Control.MOUSE_FILTER_IGNORE;title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(title)
   var x:=Button.new();x.name="DeleteRoute";x.icon=delete_icon;x.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
+  style_list_button(x,button_face)
   x.expand_icon=true;x.add_theme_constant_override("icon_max_width",12)
   x.custom_minimum_size=Vector2(44,36);x.tooltip_text="노선 삭제";row.add_child(x)
   x.pressed.connect(request_delete.bind(id))
@@ -779,11 +783,17 @@ func build_list():
   x.mouse_entered.connect(set_hover.bind(id));x.mouse_exited.connect(clear_hover.bind(id))
  for kind:String in ([mode,"freight"] if mode=="rail" else [mode]):
   var button:=Button.new();button.text="새 화물 노선 추가" if kind=="freight" else "새 노선 추가"
+  style_list_button(button,button_face)
   button.custom_minimum_size.y=40;button.toggle_mode=true;actions.add_child(button)
   button.pressed.connect(start_creation.bind(kind))
   create_buttons[kind]=button
  layout_list()
  sync_creation()
+
+func style_list_button(button:Button,face:StyleBoxFlat):
+ button.add_theme_stylebox_override("normal",face)
+ for color_key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
+  button.add_theme_color_override(color_key,INK)
 
 func layout_list():
  if not visible:return

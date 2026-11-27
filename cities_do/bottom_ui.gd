@@ -9,6 +9,7 @@ var drawer_box: HBoxContainer
 var transport_tabs: HBoxContainer
 var transport_tab := 0
 var route_overlay
+var has_selected_building := false
 const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
 var transport_content_minimum:=Vector2.ZERO
 var categories: Array[Button] = []
@@ -216,12 +217,15 @@ func build_bottom_hud():
  hud.mouse_filter=Control.MOUSE_FILTER_IGNORE
  info.reparent(root)
  info.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
- info.offset_left=-450
- info.offset_right=-16
- info.offset_top=-310
- info.offset_bottom=-195
+ info.grow_vertical=Control.GROW_DIRECTION_BEGIN
  info.mouse_filter=Control.MOUSE_FILTER_IGNORE
  info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+ info.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+ info.add_theme_font_size_override("font_size",18)
+ info.add_theme_color_override("font_color",Color("edf4f5"))
+ var info_plate:=style(Color("142b37"))
+ info_plate.set_content_margin_all(10)
+ info.add_theme_stylebox_override("normal",info_plate)
  info.hide()
  dock=PanelContainer.new()
  dock.name="BottomDock"
@@ -813,8 +817,9 @@ func finish_drawer(key:String,heading:VBoxContainer):
     face.corner_radius_bottom_left=0;face.corner_radius_bottom_right=0;face.border_width_bottom=0
     face.content_margin_top=2;face.content_margin_bottom=2
     tab.add_theme_stylebox_override(state,face)
-    tab.add_theme_color_override("font_"+state+"_color",Color("142b37") if active else Color("edf4f5"))
-   tab.add_theme_color_override("font_color",Color("142b37") if active else Color("edf4f5"))
+   var ink:=Color("142b37") if active else Color("edf4f5")
+   for color_key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
+    tab.add_theme_color_override(color_key,ink)
  for slot in service_slots():
   if slot.category!=key:continue
   var entry:=slot_asset(slot)
@@ -925,11 +930,20 @@ func _process(delta: float):
  var simulated_delta := 0.0 if paused else delta*simulation_speed
  super._process(simulated_delta)
  hud.visible=not message.is_empty()
- info.visible=selected>=0 and not drawer.visible
+ info.visible=building_info_fits()
  elapsed+=delta
  if capture_path!="" and elapsed>3 and not capture_pending:
   capture_pending=true
   capture.call_deferred()
+
+func building_info_fits()->bool:
+ if selected<0 or not has_selected_building or drawer.visible or route_warning_open() or budget_window.visible or utility_popup.visible:
+  return false
+ var bounds:=info.get_global_rect()
+ if not get_viewport_rect().encloses(bounds):return false
+ for panel:Control in [dock,transport_tabs,route_overlay.panel,road_modes,labor_panel,hud,asset_info,money_toast]:
+  if panel!=null and panel.is_visible_in_tree() and panel.get_global_rect().intersects(bounds):return false
+ return true
 
 func capture():
  await RenderingServer.frame_post_draw
@@ -1137,6 +1151,10 @@ func open_service_slot(id: String) -> bool:
 
 func layout_bottom_hud():
  if dock==null: return
+ info.offset_left=-minf(450,get_viewport_rect().size.x-16)
+ info.offset_right=-16
+ info.offset_bottom=dock.offset_top-12
+ info.offset_top=info.offset_bottom-115
  var narrow:=get_viewport_rect().size.x<1280
  money.add_theme_font_size_override("font_size",26 if narrow else 34)
  date_label.add_theme_font_size_override("font_size",18 if narrow else 24)
@@ -1225,6 +1243,7 @@ func activate_tool(tool: String):
 
 func refresh():
  super.refresh()
+ has_selected_building=selected>=0 and not city.find_building(selected).is_empty()
  if route_overlay!=null and route_overlay.visible:route_overlay.synchronize()
  if money==null: return
  bind_status_events()
