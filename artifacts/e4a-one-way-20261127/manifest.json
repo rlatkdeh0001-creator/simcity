@@ -1,0 +1,3727 @@
+{
+  "branch": "feature/e4-one-way-roads",
+  "head": "00c7f5ef41e5adfb1ea093b67f54ef000c57cc1e",
+  "phase": "final",
+  "scope": "E4a one-way road regressions and native UI captures",
+  "baseline": {
+    "headless": {
+      "results_json": {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\results.json",
+        "sha256": "a633d54e6468126d27a1f4c4c212ebd5153906961fb017dd81ca119a03153039",
+        "bytes": 32564
+      },
+      "inputs_sha256": {
+        "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+        "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687"
+      },
+      "suites": [
+        {
+          "name": "test_road_width_grades",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 44,
+          "assertions": [
+            44,
+            44
+          ],
+          "errors": [],
+          "source_sha256": "64edffb4764c7a6049bbc9b46571f007f93f693daf10dd1c67798938cc7dccc5",
+          "script_sha256": "64edffb4764c7a6049bbc9b46571f007f93f693daf10dd1c67798938cc7dccc5",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_width_grades.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_width_grades.log",
+            "sha256": "c7423c6cf8ec852c73ab238118a2e1c5ae74fd8299ad497a5dbb830091a0edb6",
+            "bytes": 2248
+          },
+          "log_sha256": "c7423c6cf8ec852c73ab238118a2e1c5ae74fd8299ad497a5dbb830091a0edb6",
+          "clean": true
+        },
+        {
+          "name": "test_road_lane_cards",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 54,
+          "assertions": [
+            54,
+            54
+          ],
+          "errors": [],
+          "source_sha256": "12196a952978b4d060e2f35e47cfcdfd1b97a245b428eefc2cbe9bd1dfbcddd6",
+          "script_sha256": "12196a952978b4d060e2f35e47cfcdfd1b97a245b428eefc2cbe9bd1dfbcddd6",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_lane_cards.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_lane_cards.log",
+            "sha256": "afb64ba26d8d0202a6e1431c7772721b6d0d22effd73ac5629ed2bbc25d96e76",
+            "bytes": 3210
+          },
+          "log_sha256": "afb64ba26d8d0202a6e1431c7772721b6d0d22effd73ac5629ed2bbc25d96e76",
+          "clean": true
+        },
+        {
+          "name": "test_road_profile_connections",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 50,
+          "assertions": [
+            50,
+            50
+          ],
+          "errors": [],
+          "source_sha256": "21a27add0fcd1c626f55a2f4b477863dd2b1bbfe7edb47761be458f9ca5d8251",
+          "script_sha256": "21a27add0fcd1c626f55a2f4b477863dd2b1bbfe7edb47761be458f9ca5d8251",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_profile_connections.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_profile_connections.log",
+            "sha256": "a9bb1258c1d08eb93f31450993b2e0f345cc00f069927b2662f9aa132f4c6079",
+            "bytes": 4009
+          },
+          "log_sha256": "a9bb1258c1d08eb93f31450993b2e0f345cc00f069927b2662f9aa132f4c6079",
+          "clean": true
+        },
+        {
+          "name": "test_road_seams",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 30,
+          "assertions": [
+            30,
+            30
+          ],
+          "errors": [],
+          "source_sha256": "de00bbb414703ac9c42dc58dd879c6592fe1f48ea085672b37c31583617bef8e",
+          "script_sha256": "de00bbb414703ac9c42dc58dd879c6592fe1f48ea085672b37c31583617bef8e",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_seams.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_seams.log",
+            "sha256": "6609b94bc98546aa3cff0a7c31bdef424a640920c3188dc4168b61cfca942a23",
+            "bytes": 1944
+          },
+          "log_sha256": "6609b94bc98546aa3cff0a7c31bdef424a640920c3188dc4168b61cfca942a23",
+          "clean": true
+        },
+        {
+          "name": "test_road_transition_marks",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 54,
+          "assertions": [
+            54,
+            54
+          ],
+          "errors": [],
+          "source_sha256": "51b31719271d72bdf71a05bf3fdcb10137c801c1c76a972b938d01f4a24194ee",
+          "script_sha256": "51b31719271d72bdf71a05bf3fdcb10137c801c1c76a972b938d01f4a24194ee",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_transition_marks.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_transition_marks.log",
+            "sha256": "29d3574fe74f05c0cdf7da8d031ee2c958e72330a2f437bdfe54833fba6cd8a8",
+            "bytes": 4119
+          },
+          "log_sha256": "29d3574fe74f05c0cdf7da8d031ee2c958e72330a2f437bdfe54833fba6cd8a8",
+          "clean": true
+        },
+        {
+          "name": "test_road_overlap_policy",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 67,
+          "assertions": [
+            67,
+            67
+          ],
+          "errors": [],
+          "source_sha256": "2f58c69251ce8a699ccc7885ab81244514a7636fab5251b4cb869d86012fe5c7",
+          "script_sha256": "2f58c69251ce8a699ccc7885ab81244514a7636fab5251b4cb869d86012fe5c7",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_overlap_policy.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_overlap_policy.log",
+            "sha256": "5de2dded49685dd1988c38cb51180d474d777dcacd630a4d0e9cd02f8945ce3b",
+            "bytes": 4778
+          },
+          "log_sha256": "5de2dded49685dd1988c38cb51180d474d777dcacd630a4d0e9cd02f8945ce3b",
+          "clean": true
+        },
+        {
+          "name": "test_road_continue",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 20,
+          "assertions": [
+            20,
+            20
+          ],
+          "errors": [],
+          "source_sha256": "7d0d1da2eb256b6e77a10a57d73e78a30712bfa4d54ac12342b75f4de0330598",
+          "script_sha256": "7d0d1da2eb256b6e77a10a57d73e78a30712bfa4d54ac12342b75f4de0330598",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_continue.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_continue.log",
+            "sha256": "2be6d58c1acc92e1e240266e6bcfcc2aff099a0bd6a7ff38bd39a349884cef8a",
+            "bytes": 1528
+          },
+          "log_sha256": "2be6d58c1acc92e1e240266e6bcfcc2aff099a0bd6a7ff38bd39a349884cef8a",
+          "clean": true
+        },
+        {
+          "name": "test_road_junction_boxes",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 67,
+          "assertions": [
+            67,
+            67
+          ],
+          "errors": [],
+          "source_sha256": "eac0fcebe3bcfd529bbb4da22d9929e30bd21d839e14482bdcfc8dbee9068666",
+          "script_sha256": "eac0fcebe3bcfd529bbb4da22d9929e30bd21d839e14482bdcfc8dbee9068666",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_junction_boxes.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_junction_boxes.log",
+            "sha256": "41c0689c2f8e5bd7b903b32ea0dfd0f4a5b2902f423d87efbe7a3b2f34f0dd85",
+            "bytes": 5498
+          },
+          "log_sha256": "41c0689c2f8e5bd7b903b32ea0dfd0f4a5b2902f423d87efbe7a3b2f34f0dd85",
+          "clean": true
+        },
+        {
+          "name": "test_road_junction_spacing",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 36,
+          "assertions": [
+            36,
+            36
+          ],
+          "errors": [],
+          "source_sha256": "071a76d8fe750b9181aeabe5483b0dd8c064c75cf4597a8e0907fa7cbfc59fd5",
+          "script_sha256": "071a76d8fe750b9181aeabe5483b0dd8c064c75cf4597a8e0907fa7cbfc59fd5",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_junction_spacing.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_junction_spacing.log",
+            "sha256": "a6a5948bbb85c4e9d27db1f2202404386a68295bd3134e869ff1209a4db8478f",
+            "bytes": 2808
+          },
+          "log_sha256": "a6a5948bbb85c4e9d27db1f2202404386a68295bd3134e869ff1209a4db8478f",
+          "clean": true
+        },
+        {
+          "name": "test_junctions",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 56,
+          "assertions": [
+            56,
+            56
+          ],
+          "errors": [],
+          "source_sha256": "91ae778084bc800bb42b1e0d1eac19c1fea3a43de09de8b8698d447f5d542e2c",
+          "script_sha256": "91ae778084bc800bb42b1e0d1eac19c1fea3a43de09de8b8698d447f5d542e2c",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_junctions.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_junctions.log",
+            "sha256": "bf16c9585e726bfe1a7062a824e41b31fc1d4cedd95d970155214509a0ed802c",
+            "bytes": 3827
+          },
+          "log_sha256": "bf16c9585e726bfe1a7062a824e41b31fc1d4cedd95d970155214509a0ed802c",
+          "clean": true
+        },
+        {
+          "name": "test_road_approach_markings",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 65,
+          "assertions": [
+            65,
+            65
+          ],
+          "errors": [],
+          "source_sha256": "e54019c9253bec2d35a3c46955f24db219dbc83fd4cb81a0a7fb11442adcf4a1",
+          "script_sha256": "e54019c9253bec2d35a3c46955f24db219dbc83fd4cb81a0a7fb11442adcf4a1",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_approach_markings.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_approach_markings.log",
+            "sha256": "3dacb57d4ec81772044ab54b9d02b332a353fdaf25dcaa49ea93fbdb51918171",
+            "bytes": 5270
+          },
+          "log_sha256": "3dacb57d4ec81772044ab54b9d02b332a353fdaf25dcaa49ea93fbdb51918171",
+          "clean": true
+        },
+        {
+          "name": "test_road_side_contacts",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 46,
+          "assertions": [
+            46,
+            46
+          ],
+          "errors": [],
+          "source_sha256": "8312a40cf36bc09e6930ca53bfbe41dfd78a44bcc86256b40fdc26d0c346ddef",
+          "script_sha256": "8312a40cf36bc09e6930ca53bfbe41dfd78a44bcc86256b40fdc26d0c346ddef",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_side_contacts.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_side_contacts.log",
+            "sha256": "0e8dc03aac59143d0385cdada5ca0b5b439c6cf802e53985269259d501c15eb0",
+            "bytes": 4083
+          },
+          "log_sha256": "0e8dc03aac59143d0385cdada5ca0b5b439c6cf802e53985269259d501c15eb0",
+          "clean": true
+        },
+        {
+          "name": "test_traffic",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 44,
+          "assertions": [
+            44,
+            44
+          ],
+          "errors": [],
+          "source_sha256": "e2843934a0a56194f125cbdf6d63cade92aefcaa00369bc8def16d41790563a4",
+          "script_sha256": "e2843934a0a56194f125cbdf6d63cade92aefcaa00369bc8def16d41790563a4",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_traffic.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_traffic.log",
+            "sha256": "e0a99e63869ccc26082658c95bbe44d11322322f5bb956a3a78c0017c0cbb8c6",
+            "bytes": 2341
+          },
+          "log_sha256": "e0a99e63869ccc26082658c95bbe44d11322322f5bb956a3a78c0017c0cbb8c6",
+          "clean": true
+        },
+        {
+          "name": "test_vehicles",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 328,
+          "assertions": [
+            328,
+            328
+          ],
+          "errors": [
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource."
+          ],
+          "source_sha256": "57517a6e0fc4faa07ded2967b83f39a24b682e1d21b6b14412cb29b7297a3e6b",
+          "script_sha256": "57517a6e0fc4faa07ded2967b83f39a24b682e1d21b6b14412cb29b7297a3e6b",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-regression-20261127\\baseline\\vehicle-import\\normal-import\\cities_do",
+            "--script",
+            "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-regression-20261127/baseline/vehicle-import/normal-import/cities_do/tests/test_vehicles.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_vehicles.log",
+            "sha256": "b847620bcde909e0ceeff3728d039c16886440686117556b0f24897117ceb74c",
+            "bytes": 22962
+          },
+          "log_sha256": "b847620bcde909e0ceeff3728d039c16886440686117556b0f24897117ceb74c",
+          "clean": false
+        },
+        {
+          "name": "test_transit_traffic_regression",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 28,
+          "assertions": [
+            28,
+            28
+          ],
+          "errors": [],
+          "source_sha256": "cc3ebac7f5a5ea21c032e38f0ac5ae89958f7c929b042189ca9b65e76f8112d2",
+          "script_sha256": "cc3ebac7f5a5ea21c032e38f0ac5ae89958f7c929b042189ca9b65e76f8112d2",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_transit_traffic_regression.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_transit_traffic_regression.log",
+            "sha256": "3dd03a4f4fef1369a839bb255f0d7e5b84ee92a0c5071b6736cc1222fbccb4a6",
+            "bytes": 1481
+          },
+          "log_sha256": "3dd03a4f4fef1369a839bb255f0d7e5b84ee92a0c5071b6736cc1222fbccb4a6",
+          "clean": true
+        },
+        {
+          "name": "test_scheduled_buses",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            121,
+            121
+          ],
+          "errors": [],
+          "source_sha256": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+          "script_sha256": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_scheduled_buses.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_scheduled_buses.log",
+            "sha256": "1256d953ef70feaa63a6c46f7230c134cb0da5307f75fc61adbbcdcb2cb8051c",
+            "bytes": 117
+          },
+          "log_sha256": "1256d953ef70feaa63a6c46f7230c134cb0da5307f75fc61adbbcdcb2cb8051c",
+          "clean": true
+        },
+        {
+          "name": "test_bus_stop_host",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            39,
+            39
+          ],
+          "errors": [],
+          "source_sha256": "1bfa3e88de017466c8be0785fa14dbb581b69601b21b1f1444c3eb43ff7ab113",
+          "script_sha256": "1bfa3e88de017466c8be0785fa14dbb581b69601b21b1f1444c3eb43ff7ab113",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_bus_stop_host.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_bus_stop_host.log",
+            "sha256": "cd59776a8e5d806dd41406ee5357c623ed5584770c50191b3d69e438c5e37992",
+            "bytes": 114
+          },
+          "log_sha256": "cd59776a8e5d806dd41406ee5357c623ed5584770c50191b3d69e438c5e37992",
+          "clean": true
+        },
+        {
+          "name": "test_road_parcels",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 23,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "f0006165a0d73845c74129200693a9fe2424eccd15c2e4ada7aba3329863f3e4",
+          "script_sha256": "f0006165a0d73845c74129200693a9fe2424eccd15c2e4ada7aba3329863f3e4",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_parcels.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_parcels.log",
+            "sha256": "483e029e86b102f27501e20850b5355635a1af483dcf363e1132e91f28f435e6",
+            "bytes": 1480
+          },
+          "log_sha256": "483e029e86b102f27501e20850b5355635a1af483dcf363e1132e91f28f435e6",
+          "clean": true
+        },
+        {
+          "name": "test_roads_zoning",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 18,
+          "assertions": [
+            18,
+            18
+          ],
+          "errors": [],
+          "source_sha256": "bcd60cf150b962858499cd46ccf0c6db6f56b66259721bdf58ae0f0861570c00",
+          "script_sha256": "b54e077b001516b150081ebf1bb363306e97377b47bdce2bfef9e32efdf93c3f",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-regression-20261127/baseline/headless/test_roads_zoning.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_roads_zoning.log",
+            "sha256": "b3cc684f2f71bec98e164e9b551ac4f0c87c6d1484ee32f4149c8dbe9d9f9c16",
+            "bytes": 949
+          },
+          "log_sha256": "b3cc684f2f71bec98e164e9b551ac4f0c87c6d1484ee32f4149c8dbe9d9f9c16",
+          "clean": true
+        },
+        {
+          "name": "test_building_frontage",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 204,
+          "assertions": [
+            204,
+            204
+          ],
+          "errors": [],
+          "source_sha256": "f74ffbd03f9d62f5eda97d155e91c67bf4c52d3c60129ba28f0d5b07137be894",
+          "script_sha256": "f74ffbd03f9d62f5eda97d155e91c67bf4c52d3c60129ba28f0d5b07137be894",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_building_frontage.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_building_frontage.log",
+            "sha256": "c2bc812e6933973067f0e73bf5d23e47de3734f72d5acb26ff9f45baafa33202",
+            "bytes": 9885
+          },
+          "log_sha256": "c2bc812e6933973067f0e73bf5d23e47de3734f72d5acb26ff9f45baafa33202",
+          "clean": true
+        },
+        {
+          "name": "test_zoning_development",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 38,
+          "assertions": [
+            38,
+            38
+          ],
+          "errors": [],
+          "source_sha256": "26bb3a4987ba98aac657eac0b3713df9cc98201ee75f0fa4c1646a41b1a8eb0f",
+          "script_sha256": "26bb3a4987ba98aac657eac0b3713df9cc98201ee75f0fa4c1646a41b1a8eb0f",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_zoning_development.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_zoning_development.log",
+            "sha256": "6ab4faf601b7baafa145abc900a49539165c4ca862ee2a545b6af0cf63956d52",
+            "bytes": 2307
+          },
+          "log_sha256": "6ab4faf601b7baafa145abc900a49539165c4ca862ee2a545b6af0cf63956d52",
+          "clean": true
+        },
+        {
+          "name": "test_road_demolition_model",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 23,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "f5e496d3768f2ea04dba934a7341c539ef64b47b8c29927dd6f5b6adcf17a323",
+          "script_sha256": "f5e496d3768f2ea04dba934a7341c539ef64b47b8c29927dd6f5b6adcf17a323",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_demolition_model.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_demolition_model.log",
+            "sha256": "c545964f6a8d5158912b82b1fca4bf9f4cc0882c2887a6104d09fabb1e336b21",
+            "bytes": 1622
+          },
+          "log_sha256": "c545964f6a8d5158912b82b1fca4bf9f4cc0882c2887a6104d09fabb1e336b21",
+          "clean": true
+        },
+        {
+          "name": "test_demolition",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 48,
+          "assertions": [
+            48,
+            48
+          ],
+          "errors": [],
+          "source_sha256": "ed2f77e33750eec13ab409a345b7190655a12910c7e74c17f1868dd79d29c636",
+          "script_sha256": "ed2f77e33750eec13ab409a345b7190655a12910c7e74c17f1868dd79d29c636",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_demolition.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_demolition.log",
+            "sha256": "242ac51309310980295f1e847ae669c05c511205bb174cdc4198cf91a3fe5e07",
+            "bytes": 2725
+          },
+          "log_sha256": "242ac51309310980295f1e847ae669c05c511205bb174cdc4198cf91a3fe5e07",
+          "clean": true
+        },
+        {
+          "name": "test_demolition_precedence",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "e3bfd1c9efd750be46efaafb703814ab5d1f6c772a32baedd12466b2d84e6111",
+          "script_sha256": "e3bfd1c9efd750be46efaafb703814ab5d1f6c772a32baedd12466b2d84e6111",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_demolition_precedence.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_demolition_precedence.log",
+            "sha256": "2c67145df0399d08fec6894f9cc6d84cbe2ea180cae6184a3a2f6544359e30bf",
+            "bytes": 122
+          },
+          "log_sha256": "2c67145df0399d08fec6894f9cc6d84cbe2ea180cae6184a3a2f6544359e30bf",
+          "clean": true
+        },
+        {
+          "name": "test_elevated_roads",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 128,
+          "assertions": [
+            128,
+            128
+          ],
+          "errors": [],
+          "source_sha256": "36c51390f111355f903d2c0965abc0968a323c447ae78005a53b9915ad123736",
+          "script_sha256": "36c51390f111355f903d2c0965abc0968a323c447ae78005a53b9915ad123736",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_elevated_roads.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_elevated_roads.log",
+            "sha256": "d55a3c37a38b82946c53f3121756b459688db9dfc838204368d59662046e025b",
+            "bytes": 7459
+          },
+          "log_sha256": "d55a3c37a38b82946c53f3121756b459688db9dfc838204368d59662046e025b",
+          "clean": true
+        },
+        {
+          "name": "test_underground_roads",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 103,
+          "assertions": [
+            103,
+            103
+          ],
+          "errors": [],
+          "source_sha256": "4e425f02c0639cbf14ea9eea5d25c3d98ef8e24f968d9ee9df8bae92cdd6a821",
+          "script_sha256": "4e425f02c0639cbf14ea9eea5d25c3d98ef8e24f968d9ee9df8bae92cdd6a821",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_underground_roads.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_underground_roads.log",
+            "sha256": "b15be5c5801cc922c0829f0ba1243293b93ecc3cc18dd2d48f0670e08af0d155",
+            "bytes": 6073
+          },
+          "log_sha256": "b15be5c5801cc922c0829f0ba1243293b93ecc3cc18dd2d48f0670e08af0d155",
+          "clean": true
+        },
+        {
+          "name": "test_main_bottom_ui",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 149,
+          "assertions": [
+            149,
+            149
+          ],
+          "errors": [],
+          "source_sha256": "9a362d4275fb3a788053c8e0abea7acf6ea19d8fac48c1b42ee35a29890ec7cb",
+          "script_sha256": "9a362d4275fb3a788053c8e0abea7acf6ea19d8fac48c1b42ee35a29890ec7cb",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_main_bottom_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_main_bottom_ui.log",
+            "sha256": "c98d43923e16bcea6eaca9f57a26f47b1eae001d971baba80ea9a5f929daa2f8",
+            "bytes": 7851
+          },
+          "log_sha256": "c98d43923e16bcea6eaca9f57a26f47b1eae001d971baba80ea9a5f929daa2f8",
+          "clean": true
+        },
+        {
+          "name": "test_road_mode_ui",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 14,
+          "assertions": [
+            14,
+            14
+          ],
+          "errors": [],
+          "source_sha256": "1a92771eae96dae92a70f49b7e665f22db16ea3a80cd2f7967899eb6b6920c24",
+          "script_sha256": "1a92771eae96dae92a70f49b7e665f22db16ea3a80cd2f7967899eb6b6920c24",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_mode_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\headless\\test_road_mode_ui.log",
+            "sha256": "b1efb999149d328b59c9092a1ce238bdfdd21b183e5cbee422e6320077f1f2c2",
+            "bytes": 921
+          },
+          "log_sha256": "b1efb999149d328b59c9092a1ce238bdfdd21b183e5cbee422e6320077f1f2c2",
+          "clean": true
+        }
+      ],
+      "feature_sha256": {},
+      "suite_count": 28,
+      "clean_suite_count": 27,
+      "passing_assertions": 1920,
+      "total_assertions": 1920,
+      "uncounted_suites": [],
+      "normal_import": [
+        {
+          "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\baseline\\vehicle-import\\normal-import.log",
+          "sha256": "557a278da62fa54b131f0ee4115168c881a9399e566e00851cc18865d8aca6d1",
+          "bytes": 234738,
+          "resources": 1520,
+          "diagnostics": []
+        }
+      ]
+    }
+  },
+  "d27_start": {
+    "summary": {
+      "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-start-20261127\\summary.json",
+      "sha256": "5170928c1110309141c79b9b66633bdae41033a9568e9ce1969564c1d73a0663",
+      "bytes": 5120
+    },
+    "median_average_ms": 3.9371279527559055,
+    "median_p95_ms": 5.02,
+    "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+    "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+    "inputs_sha256": {
+      "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+      "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687",
+      "tools/capture_perf_cadence.gd": "394666532859f8115fdad3632e4c0a30963f42f79aab80941e5ebc549d4d7c38",
+      "tools/measure_e4_frames.gd": "8491f69f2906dafcb36a55fa30f88625aa29bcb6509e9b0de541587ba067c92b",
+      "tools/measure_e4_frames.py": "cd7d291b8502ae0098254aba99cfcbef2354828443b8b84793bc50296e37d819"
+    },
+    "feature_sha256": {},
+    "runs": [
+      {
+        "run": 1,
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "tools/run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "cities_do",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--resolution",
+          "1920x1080",
+          "--fullscreen",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-d27-start-20261127/a-1-frames.json"
+        ],
+        "exit_code": 0,
+        "diagnostics": [],
+        "frames_json": "a-1-frames.json",
+        "frames_sha256": "caf1dd9ac8f44e0522d8f772686ab6cbfc4705cead954c08e3d34acd8929eab0",
+        "log": "a-1-godot.log",
+        "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 1016,
+        "elapsed_usec": 4000122,
+        "average_ms": 3.9371279527559055,
+        "p95_ms": 5.669,
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+      },
+      {
+        "run": 2,
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "tools/run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "cities_do",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--resolution",
+          "1920x1080",
+          "--fullscreen",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-d27-start-20261127/a-2-frames.json"
+        ],
+        "exit_code": 0,
+        "diagnostics": [],
+        "frames_json": "a-2-frames.json",
+        "frames_sha256": "d19ba0d724f6e191627b4ddd3f2d81d4707dcd4b6ac64d8a5c4053f2d2790224",
+        "log": "a-2-godot.log",
+        "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 1006,
+        "elapsed_usec": 4003746,
+        "average_ms": 3.979866799204771,
+        "p95_ms": 5.02,
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+      },
+      {
+        "run": 3,
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "tools/run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "cities_do",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--resolution",
+          "1920x1080",
+          "--fullscreen",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-d27-start-20261127/a-3-frames.json"
+        ],
+        "exit_code": 0,
+        "diagnostics": [],
+        "frames_json": "a-3-frames.json",
+        "frames_sha256": "4e30352db107f8b332e88e2444790fb222af119f71ca9ad0c123cb6363a3c64b",
+        "log": "a-3-godot.log",
+        "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 1070,
+        "elapsed_usec": 4002946,
+        "average_ms": 3.7410710280373833,
+        "p95_ms": 4.266,
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+      }
+    ]
+  },
+  "captures": [
+    {
+      "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-capture\\e4a-one-way-kinds-1920.png",
+      "sha256": "d8ec485b7c89c5358b3df240ee68541c41eb4e030900bcbea54e21b421d5b093",
+      "bytes": 109767,
+      "view": "kinds",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-capture\\e4a-one-way-draw-1920.png",
+      "sha256": "f4314644b9f60432d3e7486994d735cccd87751561fb0c88a9371f899709e9cc",
+      "bytes": 126226,
+      "view": "draw",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "original_assets": [
+    {
+      "path": "D:\\project\\simcity\\assets\\structures\\retaining-wall-01\\build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148
+    },
+    {
+      "path": "D:\\project\\simcity\\assets\\structures\\retaining-wall-01\\member.blend",
+      "sha256": "0db12d0775bb684e04ed556712fb98de4b68fa2e87c674e572478f7e3c997f5f",
+      "bytes": 96205
+    },
+    {
+      "path": "D:\\project\\simcity\\assets\\structures\\retaining-wall-01\\preview.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999
+    },
+    {
+      "path": "D:\\project\\simcity\\assets\\structures\\retaining-wall-01\\spec.json",
+      "sha256": "252cec1a6b8b46c5111b0261f31bdbefd3e354ee7cf5fa3a2c30c8bac238d781",
+      "bytes": 1223
+    },
+    {
+      "path": "D:\\project\\simcity\\cities_do\\assets\\structures\\retaining-wall-01\\wall.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999
+    }
+  ],
+  "owned_sources": [
+    {
+      "path": "D:\\project\\simcity\\tools\\verify_e4a_one_way_roads.py",
+      "sha256": "c08538a68e81c5ce929a6d644d9ee80440fb9f21f424fe27464a3f6ee78910b1",
+      "bytes": 12219
+    },
+    {
+      "path": "D:\\project\\simcity\\tools\\manifest_e4a_one_way_roads.py",
+      "sha256": "846c6cbf6ff14535e9996e61c929eecd384bc332afb3f159ef36c5ee9b574df9",
+      "bytes": 19975
+    },
+    {
+      "path": "D:\\project\\simcity\\tools\\measure_e4_frames.py",
+      "sha256": "9b7125a002b8e57f922ae2b6cd0d79b25634636f8eb8eaee6b193c26a529436c",
+      "bytes": 6915
+    },
+    {
+      "path": "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+      "sha256": "d59cea537f3571f817856bdc5fada2d128308fffb9581aac40a64e08c9dfcab5",
+      "bytes": 6998
+    },
+    {
+      "path": "D:\\project\\simcity\\tools\\run_full_regression_20261127.py",
+      "sha256": "c85adf78a51d058fb27e26e39ae10e7da8516ee98274f5120ce0362c2866954a",
+      "bytes": 14667
+    },
+    {
+      "path": "D:\\project\\simcity\\tools\\render_road_lane_thumbnails.gd",
+      "sha256": "6f547f861d2f18d35b2a8c6a262063688f1a32fcf760b6cd534317b2bf61fdfc",
+      "bytes": 7672
+    }
+  ],
+  "benchmarks_run": true,
+  "timing_collection": true,
+  "known_baseline_failures": [
+    {
+      "mode": "headless",
+      "name": "test_vehicles",
+      "exit_code": 0,
+      "diagnostics": [
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource."
+      ]
+    }
+  ],
+  "final": {
+    "headless": {
+      "results_json": {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\results.json",
+        "sha256": "70a125d9d4486d2c0fee775ea2d99db9dd341d5587d535cdc01fe45b8cca9577",
+        "bytes": 54695
+      },
+      "inputs_sha256": {
+        "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+        "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687"
+      },
+      "suites": [
+        {
+          "name": "test_one_way_roads",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 136,
+          "assertions": [
+            136,
+            136
+          ],
+          "errors": [],
+          "source_sha256": "b5a8fd32cd63493559b3d556b5f41c5a6429df515b1487816be67133f2b8b1b0",
+          "script_sha256": "b5a8fd32cd63493559b3d556b5f41c5a6429df515b1487816be67133f2b8b1b0",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_roads.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_roads.log",
+            "sha256": "ade285ac748b141627e29ba694f88e6b33cec9ecfbcaf2b43cf68139cad708c5",
+            "bytes": 7258
+          },
+          "log_sha256": "ade285ac748b141627e29ba694f88e6b33cec9ecfbcaf2b43cf68139cad708c5",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_road_ui",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 420,
+          "assertions": [
+            420,
+            420
+          ],
+          "errors": [],
+          "source_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "script_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_road_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_road_ui.log",
+            "sha256": "736117fb1abbfad848823cfee2e59fec86d52a2e709c90e42e17278d24a60f1b",
+            "bytes": 23936
+          },
+          "log_sha256": "736117fb1abbfad848823cfee2e59fec86d52a2e709c90e42e17278d24a60f1b",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_render",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 74,
+          "assertions": [
+            74,
+            74
+          ],
+          "errors": [],
+          "source_sha256": "b0a8de933713bcafaa242c3e7550d4f4d0c57a750693f9994490e4980068b4c0",
+          "script_sha256": "b0a8de933713bcafaa242c3e7550d4f4d0c57a750693f9994490e4980068b4c0",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_render.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_render.log",
+            "sha256": "eaa00eeefff341be2b81040414f042c5093d156f7102b6664f47791d92d6c296",
+            "bytes": 4317
+          },
+          "log_sha256": "eaa00eeefff341be2b81040414f042c5093d156f7102b6664f47791d92d6c296",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_buses",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            263,
+            263
+          ],
+          "errors": [],
+          "source_sha256": "c098a18c0299038dc767a66303c45288a33ec93ea0f049003c1893e20634174e",
+          "script_sha256": "c098a18c0299038dc767a66303c45288a33ec93ea0f049003c1893e20634174e",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_buses.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_buses.log",
+            "sha256": "d842146951698db43443ca736ad6c8a9afa5d012df3af6375e7181ff3502b728",
+            "bytes": 115
+          },
+          "log_sha256": "d842146951698db43443ca736ad6c8a9afa5d012df3af6375e7181ff3502b728",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_frontage",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 71,
+          "assertions": [
+            71,
+            71
+          ],
+          "errors": [],
+          "source_sha256": "6daf555350d4e6e0a4e69580d50655b35909e8af768dee3d81598e64857113b6",
+          "script_sha256": "6daf555350d4e6e0a4e69580d50655b35909e8af768dee3d81598e64857113b6",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_frontage.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_frontage.log",
+            "sha256": "6264b32727b8c043e3baca74276876fb9082a0facf7e325eb779ad6489a24d26",
+            "bytes": 5285
+          },
+          "log_sha256": "6264b32727b8c043e3baca74276876fb9082a0facf7e325eb779ad6489a24d26",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_connector_containment",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 794,
+          "assertions": [
+            794,
+            794
+          ],
+          "errors": [],
+          "source_sha256": "1c651ea19b3ae70762e47f649b9d1333cedca773a8a938c5af357db47b998475",
+          "script_sha256": "1c651ea19b3ae70762e47f649b9d1333cedca773a8a938c5af357db47b998475",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_connector_containment.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_connector_containment.log",
+            "sha256": "4e79f152470ac40df8f03103968cec1bf8e85bc3645c79a35a16cff79877c578",
+            "bytes": 90924
+          },
+          "log_sha256": "4e79f152470ac40df8f03103968cec1bf8e85bc3645c79a35a16cff79877c578",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_ground_edits",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 131,
+          "assertions": [
+            131,
+            131
+          ],
+          "errors": [],
+          "source_sha256": "e715cb431716ec8def62a0ee04394ab2060652a32326ded7ee7ffc6a3c1d8370",
+          "script_sha256": "e715cb431716ec8def62a0ee04394ab2060652a32326ded7ee7ffc6a3c1d8370",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_ground_edits.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_ground_edits.log",
+            "sha256": "99b5f760e617d67daa755f9ca5c56d6bf315a38d2cda5f567f3eeda35dd60f6d",
+            "bytes": 10092
+          },
+          "log_sha256": "99b5f760e617d67daa755f9ca5c56d6bf315a38d2cda5f567f3eeda35dd60f6d",
+          "clean": true
+        },
+        {
+          "name": "test_one_way_arrow_marks",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 35,
+          "assertions": [
+            35,
+            35
+          ],
+          "errors": [],
+          "source_sha256": "d914af82e3cd9443fdd7500e44b278ced768e55f35b8f91e7ac01266fbc5879b",
+          "script_sha256": "d914af82e3cd9443fdd7500e44b278ced768e55f35b8f91e7ac01266fbc5879b",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_arrow_marks.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_one_way_arrow_marks.log",
+            "sha256": "77ba8c490d62c496bac367625ba1b25673e5744be16e0f3720789408c792db60",
+            "bytes": 2478
+          },
+          "log_sha256": "77ba8c490d62c496bac367625ba1b25673e5744be16e0f3720789408c792db60",
+          "clean": true
+        },
+        {
+          "name": "test_road_width_grades",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 44,
+          "assertions": [
+            44,
+            44
+          ],
+          "errors": [],
+          "source_sha256": "64edffb4764c7a6049bbc9b46571f007f93f693daf10dd1c67798938cc7dccc5",
+          "script_sha256": "64edffb4764c7a6049bbc9b46571f007f93f693daf10dd1c67798938cc7dccc5",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_width_grades.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_width_grades.log",
+            "sha256": "c7423c6cf8ec852c73ab238118a2e1c5ae74fd8299ad497a5dbb830091a0edb6",
+            "bytes": 2248
+          },
+          "log_sha256": "c7423c6cf8ec852c73ab238118a2e1c5ae74fd8299ad497a5dbb830091a0edb6",
+          "clean": true
+        },
+        {
+          "name": "test_road_lane_cards",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 54,
+          "assertions": [
+            54,
+            54
+          ],
+          "errors": [],
+          "source_sha256": "c0e38c63ef00e657572330da913863f36ef06db5c1066aebec862a83d86baf4d",
+          "script_sha256": "c0e38c63ef00e657572330da913863f36ef06db5c1066aebec862a83d86baf4d",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_lane_cards.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_lane_cards.log",
+            "sha256": "5a2e1bb3ab481c53b7fe21b03dbc198f5a0a3e7c5e71da8531952840fe7c423f",
+            "bytes": 3230
+          },
+          "log_sha256": "5a2e1bb3ab481c53b7fe21b03dbc198f5a0a3e7c5e71da8531952840fe7c423f",
+          "clean": true
+        },
+        {
+          "name": "test_road_profile_connections",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 50,
+          "assertions": [
+            50,
+            50
+          ],
+          "errors": [],
+          "source_sha256": "21a27add0fcd1c626f55a2f4b477863dd2b1bbfe7edb47761be458f9ca5d8251",
+          "script_sha256": "21a27add0fcd1c626f55a2f4b477863dd2b1bbfe7edb47761be458f9ca5d8251",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_profile_connections.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_profile_connections.log",
+            "sha256": "a9bb1258c1d08eb93f31450993b2e0f345cc00f069927b2662f9aa132f4c6079",
+            "bytes": 4009
+          },
+          "log_sha256": "a9bb1258c1d08eb93f31450993b2e0f345cc00f069927b2662f9aa132f4c6079",
+          "clean": true
+        },
+        {
+          "name": "test_road_seams",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 30,
+          "assertions": [
+            30,
+            30
+          ],
+          "errors": [],
+          "source_sha256": "de00bbb414703ac9c42dc58dd879c6592fe1f48ea085672b37c31583617bef8e",
+          "script_sha256": "de00bbb414703ac9c42dc58dd879c6592fe1f48ea085672b37c31583617bef8e",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_seams.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_seams.log",
+            "sha256": "6609b94bc98546aa3cff0a7c31bdef424a640920c3188dc4168b61cfca942a23",
+            "bytes": 1944
+          },
+          "log_sha256": "6609b94bc98546aa3cff0a7c31bdef424a640920c3188dc4168b61cfca942a23",
+          "clean": true
+        },
+        {
+          "name": "test_road_transition_marks",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 54,
+          "assertions": [
+            54,
+            54
+          ],
+          "errors": [],
+          "source_sha256": "51b31719271d72bdf71a05bf3fdcb10137c801c1c76a972b938d01f4a24194ee",
+          "script_sha256": "51b31719271d72bdf71a05bf3fdcb10137c801c1c76a972b938d01f4a24194ee",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_transition_marks.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_transition_marks.log",
+            "sha256": "29d3574fe74f05c0cdf7da8d031ee2c958e72330a2f437bdfe54833fba6cd8a8",
+            "bytes": 4119
+          },
+          "log_sha256": "29d3574fe74f05c0cdf7da8d031ee2c958e72330a2f437bdfe54833fba6cd8a8",
+          "clean": true
+        },
+        {
+          "name": "test_road_overlap_policy",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 67,
+          "assertions": [
+            67,
+            67
+          ],
+          "errors": [],
+          "source_sha256": "2f58c69251ce8a699ccc7885ab81244514a7636fab5251b4cb869d86012fe5c7",
+          "script_sha256": "2f58c69251ce8a699ccc7885ab81244514a7636fab5251b4cb869d86012fe5c7",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_overlap_policy.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_overlap_policy.log",
+            "sha256": "5de2dded49685dd1988c38cb51180d474d777dcacd630a4d0e9cd02f8945ce3b",
+            "bytes": 4778
+          },
+          "log_sha256": "5de2dded49685dd1988c38cb51180d474d777dcacd630a4d0e9cd02f8945ce3b",
+          "clean": true
+        },
+        {
+          "name": "test_road_continue",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 20,
+          "assertions": [
+            20,
+            20
+          ],
+          "errors": [],
+          "source_sha256": "7d0d1da2eb256b6e77a10a57d73e78a30712bfa4d54ac12342b75f4de0330598",
+          "script_sha256": "7d0d1da2eb256b6e77a10a57d73e78a30712bfa4d54ac12342b75f4de0330598",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_continue.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_continue.log",
+            "sha256": "2be6d58c1acc92e1e240266e6bcfcc2aff099a0bd6a7ff38bd39a349884cef8a",
+            "bytes": 1528
+          },
+          "log_sha256": "2be6d58c1acc92e1e240266e6bcfcc2aff099a0bd6a7ff38bd39a349884cef8a",
+          "clean": true
+        },
+        {
+          "name": "test_road_junction_boxes",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 67,
+          "assertions": [
+            67,
+            67
+          ],
+          "errors": [],
+          "source_sha256": "eac0fcebe3bcfd529bbb4da22d9929e30bd21d839e14482bdcfc8dbee9068666",
+          "script_sha256": "eac0fcebe3bcfd529bbb4da22d9929e30bd21d839e14482bdcfc8dbee9068666",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_junction_boxes.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_junction_boxes.log",
+            "sha256": "41c0689c2f8e5bd7b903b32ea0dfd0f4a5b2902f423d87efbe7a3b2f34f0dd85",
+            "bytes": 5498
+          },
+          "log_sha256": "41c0689c2f8e5bd7b903b32ea0dfd0f4a5b2902f423d87efbe7a3b2f34f0dd85",
+          "clean": true
+        },
+        {
+          "name": "test_road_junction_spacing",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 36,
+          "assertions": [
+            36,
+            36
+          ],
+          "errors": [],
+          "source_sha256": "071a76d8fe750b9181aeabe5483b0dd8c064c75cf4597a8e0907fa7cbfc59fd5",
+          "script_sha256": "071a76d8fe750b9181aeabe5483b0dd8c064c75cf4597a8e0907fa7cbfc59fd5",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_junction_spacing.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_junction_spacing.log",
+            "sha256": "a6a5948bbb85c4e9d27db1f2202404386a68295bd3134e869ff1209a4db8478f",
+            "bytes": 2808
+          },
+          "log_sha256": "a6a5948bbb85c4e9d27db1f2202404386a68295bd3134e869ff1209a4db8478f",
+          "clean": true
+        },
+        {
+          "name": "test_junctions",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 56,
+          "assertions": [
+            56,
+            56
+          ],
+          "errors": [],
+          "source_sha256": "91ae778084bc800bb42b1e0d1eac19c1fea3a43de09de8b8698d447f5d542e2c",
+          "script_sha256": "91ae778084bc800bb42b1e0d1eac19c1fea3a43de09de8b8698d447f5d542e2c",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_junctions.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_junctions.log",
+            "sha256": "bf16c9585e726bfe1a7062a824e41b31fc1d4cedd95d970155214509a0ed802c",
+            "bytes": 3827
+          },
+          "log_sha256": "bf16c9585e726bfe1a7062a824e41b31fc1d4cedd95d970155214509a0ed802c",
+          "clean": true
+        },
+        {
+          "name": "test_road_approach_markings",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 65,
+          "assertions": [
+            65,
+            65
+          ],
+          "errors": [],
+          "source_sha256": "e54019c9253bec2d35a3c46955f24db219dbc83fd4cb81a0a7fb11442adcf4a1",
+          "script_sha256": "e54019c9253bec2d35a3c46955f24db219dbc83fd4cb81a0a7fb11442adcf4a1",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_approach_markings.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_approach_markings.log",
+            "sha256": "3dacb57d4ec81772044ab54b9d02b332a353fdaf25dcaa49ea93fbdb51918171",
+            "bytes": 5270
+          },
+          "log_sha256": "3dacb57d4ec81772044ab54b9d02b332a353fdaf25dcaa49ea93fbdb51918171",
+          "clean": true
+        },
+        {
+          "name": "test_road_side_contacts",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 46,
+          "assertions": [
+            46,
+            46
+          ],
+          "errors": [],
+          "source_sha256": "8312a40cf36bc09e6930ca53bfbe41dfd78a44bcc86256b40fdc26d0c346ddef",
+          "script_sha256": "8312a40cf36bc09e6930ca53bfbe41dfd78a44bcc86256b40fdc26d0c346ddef",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_side_contacts.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_side_contacts.log",
+            "sha256": "0e8dc03aac59143d0385cdada5ca0b5b439c6cf802e53985269259d501c15eb0",
+            "bytes": 4083
+          },
+          "log_sha256": "0e8dc03aac59143d0385cdada5ca0b5b439c6cf802e53985269259d501c15eb0",
+          "clean": true
+        },
+        {
+          "name": "test_traffic",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 44,
+          "assertions": [
+            44,
+            44
+          ],
+          "errors": [],
+          "source_sha256": "e2843934a0a56194f125cbdf6d63cade92aefcaa00369bc8def16d41790563a4",
+          "script_sha256": "e2843934a0a56194f125cbdf6d63cade92aefcaa00369bc8def16d41790563a4",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_traffic.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_traffic.log",
+            "sha256": "e0a99e63869ccc26082658c95bbe44d11322322f5bb956a3a78c0017c0cbb8c6",
+            "bytes": 2341
+          },
+          "log_sha256": "e0a99e63869ccc26082658c95bbe44d11322322f5bb956a3a78c0017c0cbb8c6",
+          "clean": true
+        },
+        {
+          "name": "test_vehicles",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 328,
+          "assertions": [
+            328,
+            328
+          ],
+          "errors": [
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+            "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource."
+          ],
+          "source_sha256": "57517a6e0fc4faa07ded2967b83f39a24b682e1d21b6b14412cb29b7297a3e6b",
+          "script_sha256": "57517a6e0fc4faa07ded2967b83f39a24b682e1d21b6b14412cb29b7297a3e6b",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v4\\final\\vehicle-import\\normal-import\\cities_do",
+            "--script",
+            "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/final/vehicle-import/normal-import/cities_do/tests/test_vehicles.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_vehicles.log",
+            "sha256": "c3f20cc20fd92f621cb7b341edd95f591e17dfbadb48310f2092d7a969e64350",
+            "bytes": 22962
+          },
+          "log_sha256": "c3f20cc20fd92f621cb7b341edd95f591e17dfbadb48310f2092d7a969e64350",
+          "clean": false
+        },
+        {
+          "name": "test_transit_traffic_regression",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 28,
+          "assertions": [
+            28,
+            28
+          ],
+          "errors": [],
+          "source_sha256": "cc3ebac7f5a5ea21c032e38f0ac5ae89958f7c929b042189ca9b65e76f8112d2",
+          "script_sha256": "cc3ebac7f5a5ea21c032e38f0ac5ae89958f7c929b042189ca9b65e76f8112d2",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_transit_traffic_regression.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_transit_traffic_regression.log",
+            "sha256": "3dd03a4f4fef1369a839bb255f0d7e5b84ee92a0c5071b6736cc1222fbccb4a6",
+            "bytes": 1481
+          },
+          "log_sha256": "3dd03a4f4fef1369a839bb255f0d7e5b84ee92a0c5071b6736cc1222fbccb4a6",
+          "clean": true
+        },
+        {
+          "name": "test_scheduled_buses",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            121,
+            121
+          ],
+          "errors": [],
+          "source_sha256": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+          "script_sha256": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_scheduled_buses.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_scheduled_buses.log",
+            "sha256": "1256d953ef70feaa63a6c46f7230c134cb0da5307f75fc61adbbcdcb2cb8051c",
+            "bytes": 117
+          },
+          "log_sha256": "1256d953ef70feaa63a6c46f7230c134cb0da5307f75fc61adbbcdcb2cb8051c",
+          "clean": true
+        },
+        {
+          "name": "test_bus_stop_host",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            39,
+            39
+          ],
+          "errors": [],
+          "source_sha256": "1bfa3e88de017466c8be0785fa14dbb581b69601b21b1f1444c3eb43ff7ab113",
+          "script_sha256": "1bfa3e88de017466c8be0785fa14dbb581b69601b21b1f1444c3eb43ff7ab113",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_bus_stop_host.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_bus_stop_host.log",
+            "sha256": "cd59776a8e5d806dd41406ee5357c623ed5584770c50191b3d69e438c5e37992",
+            "bytes": 114
+          },
+          "log_sha256": "cd59776a8e5d806dd41406ee5357c623ed5584770c50191b3d69e438c5e37992",
+          "clean": true
+        },
+        {
+          "name": "test_road_parcels",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 23,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "f0006165a0d73845c74129200693a9fe2424eccd15c2e4ada7aba3329863f3e4",
+          "script_sha256": "f0006165a0d73845c74129200693a9fe2424eccd15c2e4ada7aba3329863f3e4",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_parcels.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_parcels.log",
+            "sha256": "483e029e86b102f27501e20850b5355635a1af483dcf363e1132e91f28f435e6",
+            "bytes": 1480
+          },
+          "log_sha256": "483e029e86b102f27501e20850b5355635a1af483dcf363e1132e91f28f435e6",
+          "clean": true
+        },
+        {
+          "name": "test_roads_zoning",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 18,
+          "assertions": [
+            18,
+            18
+          ],
+          "errors": [],
+          "source_sha256": "bcd60cf150b962858499cd46ccf0c6db6f56b66259721bdf58ae0f0861570c00",
+          "script_sha256": "b54e077b001516b150081ebf1bb363306e97377b47bdce2bfef9e32efdf93c3f",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/final/headless/test_roads_zoning.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_roads_zoning.log",
+            "sha256": "b3cc684f2f71bec98e164e9b551ac4f0c87c6d1484ee32f4149c8dbe9d9f9c16",
+            "bytes": 949
+          },
+          "log_sha256": "b3cc684f2f71bec98e164e9b551ac4f0c87c6d1484ee32f4149c8dbe9d9f9c16",
+          "clean": true
+        },
+        {
+          "name": "test_building_frontage",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 204,
+          "assertions": [
+            204,
+            204
+          ],
+          "errors": [],
+          "source_sha256": "f74ffbd03f9d62f5eda97d155e91c67bf4c52d3c60129ba28f0d5b07137be894",
+          "script_sha256": "f74ffbd03f9d62f5eda97d155e91c67bf4c52d3c60129ba28f0d5b07137be894",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_building_frontage.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_building_frontage.log",
+            "sha256": "c2bc812e6933973067f0e73bf5d23e47de3734f72d5acb26ff9f45baafa33202",
+            "bytes": 9885
+          },
+          "log_sha256": "c2bc812e6933973067f0e73bf5d23e47de3734f72d5acb26ff9f45baafa33202",
+          "clean": true
+        },
+        {
+          "name": "test_zoning_development",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 38,
+          "assertions": [
+            38,
+            38
+          ],
+          "errors": [],
+          "source_sha256": "26bb3a4987ba98aac657eac0b3713df9cc98201ee75f0fa4c1646a41b1a8eb0f",
+          "script_sha256": "26bb3a4987ba98aac657eac0b3713df9cc98201ee75f0fa4c1646a41b1a8eb0f",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_zoning_development.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_zoning_development.log",
+            "sha256": "6ab4faf601b7baafa145abc900a49539165c4ca862ee2a545b6af0cf63956d52",
+            "bytes": 2307
+          },
+          "log_sha256": "6ab4faf601b7baafa145abc900a49539165c4ca862ee2a545b6af0cf63956d52",
+          "clean": true
+        },
+        {
+          "name": "test_road_demolition_model",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 23,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "f5e496d3768f2ea04dba934a7341c539ef64b47b8c29927dd6f5b6adcf17a323",
+          "script_sha256": "f5e496d3768f2ea04dba934a7341c539ef64b47b8c29927dd6f5b6adcf17a323",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_demolition_model.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_demolition_model.log",
+            "sha256": "c545964f6a8d5158912b82b1fca4bf9f4cc0882c2887a6104d09fabb1e336b21",
+            "bytes": 1622
+          },
+          "log_sha256": "c545964f6a8d5158912b82b1fca4bf9f4cc0882c2887a6104d09fabb1e336b21",
+          "clean": true
+        },
+        {
+          "name": "test_demolition",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 48,
+          "assertions": [
+            48,
+            48
+          ],
+          "errors": [],
+          "source_sha256": "ed2f77e33750eec13ab409a345b7190655a12910c7e74c17f1868dd79d29c636",
+          "script_sha256": "ed2f77e33750eec13ab409a345b7190655a12910c7e74c17f1868dd79d29c636",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_demolition.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_demolition.log",
+            "sha256": "242ac51309310980295f1e847ae669c05c511205bb174cdc4198cf91a3fe5e07",
+            "bytes": 2725
+          },
+          "log_sha256": "242ac51309310980295f1e847ae669c05c511205bb174cdc4198cf91a3fe5e07",
+          "clean": true
+        },
+        {
+          "name": "test_demolition_precedence",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "e3bfd1c9efd750be46efaafb703814ab5d1f6c772a32baedd12466b2d84e6111",
+          "script_sha256": "e3bfd1c9efd750be46efaafb703814ab5d1f6c772a32baedd12466b2d84e6111",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_demolition_precedence.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_demolition_precedence.log",
+            "sha256": "2c67145df0399d08fec6894f9cc6d84cbe2ea180cae6184a3a2f6544359e30bf",
+            "bytes": 122
+          },
+          "log_sha256": "2c67145df0399d08fec6894f9cc6d84cbe2ea180cae6184a3a2f6544359e30bf",
+          "clean": true
+        },
+        {
+          "name": "test_elevated_roads",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 128,
+          "assertions": [
+            128,
+            128
+          ],
+          "errors": [],
+          "source_sha256": "36c51390f111355f903d2c0965abc0968a323c447ae78005a53b9915ad123736",
+          "script_sha256": "36c51390f111355f903d2c0965abc0968a323c447ae78005a53b9915ad123736",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_elevated_roads.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_elevated_roads.log",
+            "sha256": "d55a3c37a38b82946c53f3121756b459688db9dfc838204368d59662046e025b",
+            "bytes": 7459
+          },
+          "log_sha256": "d55a3c37a38b82946c53f3121756b459688db9dfc838204368d59662046e025b",
+          "clean": true
+        },
+        {
+          "name": "test_underground_roads",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 103,
+          "assertions": [
+            103,
+            103
+          ],
+          "errors": [],
+          "source_sha256": "4e425f02c0639cbf14ea9eea5d25c3d98ef8e24f968d9ee9df8bae92cdd6a821",
+          "script_sha256": "4e425f02c0639cbf14ea9eea5d25c3d98ef8e24f968d9ee9df8bae92cdd6a821",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_underground_roads.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_underground_roads.log",
+            "sha256": "b15be5c5801cc922c0829f0ba1243293b93ecc3cc18dd2d48f0670e08af0d155",
+            "bytes": 6073
+          },
+          "log_sha256": "b15be5c5801cc922c0829f0ba1243293b93ecc3cc18dd2d48f0670e08af0d155",
+          "clean": true
+        },
+        {
+          "name": "test_main_bottom_ui",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 149,
+          "assertions": [
+            149,
+            149
+          ],
+          "errors": [],
+          "source_sha256": "5caaaafac37ff471fbf44a4504c11f0b7f0fc4bd0200b22f01f5fdb45f0ffdf5",
+          "script_sha256": "5caaaafac37ff471fbf44a4504c11f0b7f0fc4bd0200b22f01f5fdb45f0ffdf5",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_main_bottom_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_main_bottom_ui.log",
+            "sha256": "bf9eb869830c5c4ff1f76934b2ffd756098a9754d05f4eb2b61d634b0aabfc2d",
+            "bytes": 7841
+          },
+          "log_sha256": "bf9eb869830c5c4ff1f76934b2ffd756098a9754d05f4eb2b61d634b0aabfc2d",
+          "clean": true
+        },
+        {
+          "name": "test_road_mode_ui",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 14,
+          "assertions": [
+            14,
+            14
+          ],
+          "errors": [],
+          "source_sha256": "1a92771eae96dae92a70f49b7e665f22db16ea3a80cd2f7967899eb6b6920c24",
+          "script_sha256": "1a92771eae96dae92a70f49b7e665f22db16ea3a80cd2f7967899eb6b6920c24",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_mode_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_mode_ui.log",
+            "sha256": "b1efb999149d328b59c9092a1ce238bdfdd21b183e5cbee422e6320077f1f2c2",
+            "bytes": 921
+          },
+          "log_sha256": "b1efb999149d328b59c9092a1ce238bdfdd21b183e5cbee422e6320077f1f2c2",
+          "clean": true
+        },
+        {
+          "name": "test_horizontal_card_strip",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 23,
+          "assertions": [
+            23,
+            23
+          ],
+          "errors": [],
+          "source_sha256": "77186099abfafac642184b998de668aada83ae2110e6c3a0d7edef083f7b1aef",
+          "script_sha256": "77186099abfafac642184b998de668aada83ae2110e6c3a0d7edef083f7b1aef",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_horizontal_card_strip.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_horizontal_card_strip.log",
+            "sha256": "8c76060e064f068b55b2dbec3b253556151ee30cd8f567214d4199a99b363f23",
+            "bytes": 1338
+          },
+          "log_sha256": "8c76060e064f068b55b2dbec3b253556151ee30cd8f567214d4199a99b363f23",
+          "clean": true
+        },
+        {
+          "name": "test_play_tools",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 26,
+          "assertions": [
+            26,
+            26
+          ],
+          "errors": [],
+          "source_sha256": "f0d56461bebe6e4f21a6c22c5598117e684509e7176e47f6f206568ef65ae2c4",
+          "script_sha256": "f0d56461bebe6e4f21a6c22c5598117e684509e7176e47f6f206568ef65ae2c4",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_play_tools.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_play_tools.log",
+            "sha256": "7e1b494734ebffc141d26b204a1df5a59859d294adb6391606acd05d52a74a54",
+            "bytes": 3389
+          },
+          "log_sha256": "7e1b494734ebffc141d26b204a1df5a59859d294adb6391606acd05d52a74a54",
+          "clean": true
+        },
+        {
+          "name": "test_road_toolbar_cleanup",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 44,
+          "assertions": [
+            44,
+            44
+          ],
+          "errors": [],
+          "source_sha256": "6100e4df31837eac0cc360f13af4ca1e3414802f6d89b1173de18b2b525506dc",
+          "script_sha256": "6100e4df31837eac0cc360f13af4ca1e3414802f6d89b1173de18b2b525506dc",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_toolbar_cleanup.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_toolbar_cleanup.log",
+            "sha256": "8b1faf0868ed5c01936948fdad839e3988ba9e9cccc8f38933ae22d7d1783899",
+            "bytes": 3157
+          },
+          "log_sha256": "8b1faf0868ed5c01936948fdad839e3988ba9e9cccc8f38933ae22d7d1783899",
+          "clean": true
+        },
+        {
+          "name": "test_road_draw_modes",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 30,
+          "assertions": [
+            30,
+            30
+          ],
+          "errors": [],
+          "source_sha256": "d8f02cef6063837d882a7e37373b42f7f6dc3037de3c5969457dabdb1c59afff",
+          "script_sha256": "d8f02cef6063837d882a7e37373b42f7f6dc3037de3c5969457dabdb1c59afff",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_road_draw_modes.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_road_draw_modes.log",
+            "sha256": "f4d12810afec55bfd43ff4996a179474bfd317b9e38fe68b07a2071e55e6e891",
+            "bytes": 2292
+          },
+          "log_sha256": "f4d12810afec55bfd43ff4996a179474bfd317b9e38fe68b07a2071e55e6e891",
+          "clean": true
+        },
+        {
+          "name": "test_transport_hud_presentation",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            67,
+            67
+          ],
+          "errors": [],
+          "source_sha256": "a3fe0c27debc2e654169f7f4cbb98ad0899e60346606e2030cc767886ab8ab40",
+          "script_sha256": "a3fe0c27debc2e654169f7f4cbb98ad0899e60346606e2030cc767886ab8ab40",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_transport_hud_presentation.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_transport_hud_presentation.log",
+            "sha256": "e31a62bc0aaecfe6e417f0a201c311ee0a0382cf345f0254d0e7a59d2fda93e6",
+            "bytes": 113
+          },
+          "log_sha256": "e31a62bc0aaecfe6e417f0a201c311ee0a0382cf345f0254d0e7a59d2fda93e6",
+          "clean": true
+        },
+        {
+          "name": "test_transit_commuting_bus_replacement",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            54,
+            54
+          ],
+          "errors": [],
+          "source_sha256": "ad3886b1fccce4aebaf89823884c5d342b1cd205ae5136f307a2190788852ede",
+          "script_sha256": "ad3886b1fccce4aebaf89823884c5d342b1cd205ae5136f307a2190788852ede",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_transit_commuting_bus_replacement.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_transit_commuting_bus_replacement.log",
+            "sha256": "57d7ecf51ba849f16459e71a4e2047614e67da4d138bffbd53b32de1066f5090",
+            "bytes": 134
+          },
+          "log_sha256": "57d7ecf51ba849f16459e71a4e2047614e67da4d138bffbd53b32de1066f5090",
+          "clean": true
+        },
+        {
+          "name": "test_elevated_roads_fifo",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 12,
+          "assertions": [
+            12,
+            12
+          ],
+          "errors": [],
+          "source_sha256": "44c942e68359aef739890d44c2f0cb418f62e2931d4bb599544fcbc4d9f8199e",
+          "script_sha256": "44c942e68359aef739890d44c2f0cb418f62e2931d4bb599544fcbc4d9f8199e",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_elevated_roads_fifo.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_elevated_roads_fifo.log",
+            "sha256": "a8498652a2f04680eebbb9095a144e2883eaa52a3145137d2a0431d83b73051a",
+            "bytes": 719
+          },
+          "log_sha256": "a8498652a2f04680eebbb9095a144e2883eaa52a3145137d2a0431d83b73051a",
+          "clean": true
+        },
+        {
+          "name": "test_transit_operations_fifo",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            20,
+            20
+          ],
+          "errors": [],
+          "source_sha256": "27d42bdc046dfbcf5531d0c080b365de394499ffcc820538ea27b9c44ab05ee9",
+          "script_sha256": "27d42bdc046dfbcf5531d0c080b365de394499ffcc820538ea27b9c44ab05ee9",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_transit_operations_fifo.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_transit_operations_fifo.log",
+            "sha256": "fdf6353860528e65f36987cba2c62a5df781890159f4fce2e2ac1cdcf39bb7ef",
+            "bytes": 124
+          },
+          "log_sha256": "fdf6353860528e65f36987cba2c62a5df781890159f4fce2e2ac1cdcf39bb7ef",
+          "clean": true
+        },
+        {
+          "name": "test_city_worker_parity",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            54010,
+            54010
+          ],
+          "errors": [],
+          "source_sha256": "1f496ac89972c5685ad93abdf77662324d29b1987a1f24fc11e179f93685b924",
+          "script_sha256": "1f496ac89972c5685ad93abdf77662324d29b1987a1f24fc11e179f93685b924",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "1150",
+            "godot",
+            "--headless",
+            "--verbose",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/managed-parity-teardown/prepatch/cities_do",
+            "--script",
+            "res://tests/test_city_worker_parity.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_city_worker_parity.log",
+            "sha256": "c0fa2b412a08187da73936d9ed1725ea677093096068e2f15a39c97f20d47ffe",
+            "bytes": 2853
+          },
+          "log_sha256": "c0fa2b412a08187da73936d9ed1725ea677093096068e2f15a39c97f20d47ffe",
+          "provenance": {
+            "scope": "isolated copied project, source and runtime verified",
+            "snapshot": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\managed-parity-teardown\\prepatch\\snapshot.json",
+            "snapshot_sha256": "0e5fb49fc3182d3fc97d1ee89686d6f1cbe45ed0234cab288a4769d2f3ef4bd0",
+            "original_result": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\managed-parity-teardown\\prepatch\\managed-parity-clean.json",
+            "original_result_sha256": "9fb1fecf277a46fe1676726868d0c61077a57808e41b932e8a464a48b524c58e"
+          },
+          "clean": true
+        },
+        {
+          "name": "test_native_worker_parity",
+          "mode": "headless",
+          "exit_code": 0,
+          "passed_lines": 0,
+          "assertions": [
+            86410,
+            86410
+          ],
+          "errors": [],
+          "source_sha256": "203fae221248187738a236e1d4b73de65bc1ccec0d4343c765badd58a095c44d",
+          "script_sha256": "203fae221248187738a236e1d4b73de65bc1ccec0d4343c765badd58a095c44d",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "900",
+            "godot",
+            "--headless",
+            "--audio-driver",
+            "Dummy",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_native_worker_parity.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\headless\\test_native_worker_parity.log",
+            "sha256": "86c37b6b0416e705f33896a500605e3ebcf25d018f26d0d140289c01acd110b9",
+            "bytes": 139
+          },
+          "log_sha256": "86c37b6b0416e705f33896a500605e3ebcf25d018f26d0d140289c01acd110b9",
+          "clean": true
+        }
+      ],
+      "feature_sha256": {
+        "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+        "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+        "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+        "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+        "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+        "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+        "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+        "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+        "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+        "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+        "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+        "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+        "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+        "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+        "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+        "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+        "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+        "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+        "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+        "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+        "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+        "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+        "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+        "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+      },
+      "suite_count": 46,
+      "clean_suite_count": 45,
+      "passing_assertions": 144540,
+      "total_assertions": 144540,
+      "uncounted_suites": [],
+      "normal_import": [
+        {
+          "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\vehicle-import\\normal-import.log",
+          "sha256": "0b14cdb835b663c083d94ea735b1b8156de5638c6fb7ffd9f7dd6f2b873a09cc",
+          "bytes": 235662,
+          "resources": 1528,
+          "diagnostics": []
+        }
+      ]
+    },
+    "native-capture": {
+      "results_json": {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-capture\\results.json",
+        "sha256": "007bf419336452b14c6f8dee62db49d44a12b323fcec2f60a6c910533cc0401e",
+        "bytes": 4784
+      },
+      "inputs_sha256": {
+        "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+        "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687"
+      },
+      "suites": [
+        {
+          "name": "test_one_way_road_ui",
+          "mode": "native-capture",
+          "exit_code": 0,
+          "passed_lines": 430,
+          "assertions": [
+            430,
+            430
+          ],
+          "errors": [],
+          "source_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "script_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--rendering-method",
+            "gl_compatibility",
+            "--rendering-driver",
+            "opengl3",
+            "--resolution",
+            "1920x1080",
+            "--fullscreen",
+            "--quit-after",
+            "5500",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_road_ui.gd",
+            "--",
+            "--e4a-kinds-capture=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/final/native-capture/e4a-one-way-kinds-1920.png",
+            "--e4a-draw-capture=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/final/native-capture/e4a-one-way-draw-1920.png"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-capture\\test_one_way_road_ui.log",
+            "sha256": "06fd51df1f4dd49e7bf0bab18df075b8e2b859b4d5bc75a64aec14c6baa4961a",
+            "bytes": 24893
+          },
+          "log_sha256": "06fd51df1f4dd49e7bf0bab18df075b8e2b859b4d5bc75a64aec14c6baa4961a",
+          "clean": true
+        }
+      ],
+      "feature_sha256": {
+        "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+        "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+        "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+        "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+        "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+        "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+        "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+        "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+        "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+        "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+        "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+        "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+        "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+        "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+        "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+        "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+        "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+        "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+        "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+        "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+        "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+        "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+        "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+        "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+      },
+      "suite_count": 1,
+      "clean_suite_count": 1,
+      "passing_assertions": 430,
+      "total_assertions": 430,
+      "uncounted_suites": [],
+      "normal_import": []
+    },
+    "native-no-capture": {
+      "results_json": {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-no-capture\\results.json",
+        "sha256": "f2706e9cd7c971fd74b64442d561356cb2260cc91993286a6d2c4082953db9e3",
+        "bytes": 4433
+      },
+      "inputs_sha256": {
+        "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+        "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687"
+      },
+      "suites": [
+        {
+          "name": "test_one_way_road_ui",
+          "mode": "native-no-capture",
+          "exit_code": 0,
+          "passed_lines": 420,
+          "assertions": [
+            420,
+            420
+          ],
+          "errors": [],
+          "source_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "script_sha256": "74a13d2abc5e925a1c7b471c250ff33421a2eb90e035b0b4471a1a744f7202ca",
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "240",
+            "godot",
+            "--rendering-method",
+            "gl_compatibility",
+            "--rendering-driver",
+            "opengl3",
+            "--resolution",
+            "1920x1080",
+            "--fullscreen",
+            "--quit-after",
+            "5500",
+            "--audio-driver",
+            "Dummy",
+            "--max-fps",
+            "30",
+            "--path",
+            "D:\\project\\simcity\\cities_do",
+            "--script",
+            "D:/project/simcity/cities_do/tests/test_one_way_road_ui.gd"
+          ],
+          "log": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v5\\final\\native-no-capture\\test_one_way_road_ui.log",
+            "sha256": "dd59aa79b61cbd7dbe922f95430ff65eae9eda44b3975ea1862da5abe8136b21",
+            "bytes": 24039
+          },
+          "log_sha256": "dd59aa79b61cbd7dbe922f95430ff65eae9eda44b3975ea1862da5abe8136b21",
+          "clean": true
+        }
+      ],
+      "feature_sha256": {
+        "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+        "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+        "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+        "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+        "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+        "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+        "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+        "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+        "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+        "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+        "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+        "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+        "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+        "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+        "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+        "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+        "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+        "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+        "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+        "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+        "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+        "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+        "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+        "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+      },
+      "suite_count": 1,
+      "clean_suite_count": 1,
+      "passing_assertions": 420,
+      "total_assertions": 420,
+      "uncounted_suites": [],
+      "normal_import": []
+    }
+  },
+  "review_notes": {
+    "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-review-20261127-c2\\REVIEW_NOTES.md",
+    "sha256": "b8e4ecf50480605d9be602210a485ac5776ee702bcf40c3d8a5ca9356cb58508",
+    "bytes": 8318
+  },
+  "d27_end": {
+    "method": "paired",
+    "approval": "cities-claude 2026-11-27",
+    "pairs": 3,
+    "medians": {
+      "baseline": {
+        "average_ms": 4.311386853448276,
+        "p95_ms": 5.088
+      },
+      "candidate": {
+        "average_ms": 4.290157556270096,
+        "p95_ms": 5.066
+      }
+    },
+    "comparison": {
+      "average_ratio": 0.9950759934332498,
+      "p95_ratio": 0.9956761006289307,
+      "passed": true
+    },
+    "evidence": [
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\pair-inputs.json",
+        "sha256": "13be5b883121660e5da6ed2fd6b489f1f38612d76ebb5490b2c3fe76b5ef48f5",
+        "bytes": 6342
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\summary.json",
+        "sha256": "ff70c31cc6b988d45598a4bbe447cdbcbf9164a1cf4a50d3b6aae2ff9cbd418f",
+        "bytes": 8530
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\1-baseline-frames.json",
+        "sha256": "cea5b867ca23a73d1c4389680b2c4978ffca526cf015608405d23d847b528f81",
+        "bytes": 9874
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\1-baseline-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\1-candidate-frames.json",
+        "sha256": "f2a799ff9dd06c330434a89a0477e5f6b8a94c124ff1b1576ab9fc0930ab79eb",
+        "bytes": 9923
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\1-candidate-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\2-candidate-frames.json",
+        "sha256": "5b8cc356b7a0be2d7fc2fccd95b0c08da53b527462c871a22222943ff83e656c",
+        "bytes": 9964
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\2-candidate-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\2-baseline-frames.json",
+        "sha256": "594bcc0acf7f4c275aa027540f312a46d3a9ffbea5c2af1be8c9f3bf0e0ad3f1",
+        "bytes": 9984
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\2-baseline-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\3-baseline-frames.json",
+        "sha256": "3761dea72b5fb9366c7c793ea6a9591b0adb1f22de597eab8d3b32edafad8713",
+        "bytes": 9804
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\3-baseline-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\3-candidate-frames.json",
+        "sha256": "eef1cc9d5cfbe1e9e960bc8d56c13d1e4ffd85ad9abeafe9d3e9ce5aa4601685",
+        "bytes": 9733
+      },
+      {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-d27-paired-20261127\\paired\\3-candidate-godot.log",
+        "sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+        "bytes": 232
+      }
+    ],
+    "historical": [
+      {
+        "scene_a": {
+          "summary": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v4\\d27-a\\summary.json",
+            "sha256": "424e312dfd45286e31077e3b5cb3285a9c42847b9ebb8bbd518aa62ec71d3134",
+            "bytes": 7881
+          },
+          "median_average_ms": 4.457661469933185,
+          "median_p95_ms": 5.341,
+          "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+          "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+          "inputs_sha256": {
+            "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+            "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687",
+            "tools/capture_perf_cadence.gd": "394666532859f8115fdad3632e4c0a30963f42f79aab80941e5ebc549d4d7c38",
+            "tools/measure_e4_frames.gd": "d59cea537f3571f817856bdc5fada2d128308fffb9581aac40a64e08c9dfcab5",
+            "tools/measure_e4_frames.py": "9b7125a002b8e57f922ae2b6cd0d79b25634636f8eb8eaee6b193c26a529436c"
+          },
+          "feature_sha256": {
+            "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+            "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+            "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+            "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+            "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+            "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+            "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+            "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+            "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+            "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+            "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+            "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+            "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+            "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+            "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+            "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+            "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+            "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+            "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+            "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+            "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+            "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+            "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+            "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+          },
+          "runs": [
+            {
+              "run": 1,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a/a-1-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-1-frames.json",
+              "frames_sha256": "fc1bcaff569de3bef27ddfbca2db9fd8a3fe69ac239bacb2c83e8a99bf92b7d1",
+              "log": "a-1-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 898,
+              "elapsed_usec": 4002980,
+              "average_ms": 4.457661469933185,
+              "p95_ms": 5.316,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            },
+            {
+              "run": 2,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a/a-2-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-2-frames.json",
+              "frames_sha256": "394e3f6d32a93d18ce6bcc7406dbe41469835c7747cea48e1943a910db90aec6",
+              "log": "a-2-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 900,
+              "elapsed_usec": 4000181,
+              "average_ms": 4.444645555555556,
+              "p95_ms": 5.341,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            },
+            {
+              "run": 3,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a/a-3-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-3-frames.json",
+              "frames_sha256": "d00f0e91a55fda6ff21d99bac4d1febfbd1ae11053e53d6c5c46b860bee1c909",
+              "log": "a-3-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 842,
+              "elapsed_usec": 4004786,
+              "average_ms": 4.756277909738717,
+              "p95_ms": 6.134,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            }
+          ]
+        },
+        "comparison": {
+          "average_ratio": 1.1322114809128612,
+          "p95_ratio": 1.0639442231075698,
+          "passed": false
+        }
+      },
+      {
+        "scene_a": {
+          "summary": {
+            "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v4\\d27-a-repeat\\summary.json",
+            "sha256": "62d5d2c5d7c38a172489692519247d6c22d6822c50a5faa601b26f86cfbcded5",
+            "bytes": 7903
+          },
+          "median_average_ms": 4.580267734553776,
+          "median_p95_ms": 5.666,
+          "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+          "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+          "inputs_sha256": {
+            "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+            "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687",
+            "tools/capture_perf_cadence.gd": "394666532859f8115fdad3632e4c0a30963f42f79aab80941e5ebc549d4d7c38",
+            "tools/measure_e4_frames.gd": "d59cea537f3571f817856bdc5fada2d128308fffb9581aac40a64e08c9dfcab5",
+            "tools/measure_e4_frames.py": "9b7125a002b8e57f922ae2b6cd0d79b25634636f8eb8eaee6b193c26a529436c"
+          },
+          "feature_sha256": {
+            "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+            "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+            "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+            "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+            "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+            "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+            "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+            "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+            "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+            "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+            "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+            "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+            "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+            "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+            "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+            "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+            "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+            "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+            "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+            "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+            "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+            "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+            "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+            "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+          },
+          "runs": [
+            {
+              "run": 1,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a-repeat/a-1-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-1-frames.json",
+              "frames_sha256": "f3cce6adf8e4ed3876db86e9737fe1a0e5b26d935fcdc62f9e7586638fb24a67",
+              "log": "a-1-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 864,
+              "elapsed_usec": 4000389,
+              "average_ms": 4.630079861111112,
+              "p95_ms": 5.666,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            },
+            {
+              "run": 2,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a-repeat/a-2-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-2-frames.json",
+              "frames_sha256": "3cec7abfd643e4db990fe8935fc6cf4cbb7cd14d8b9e6d7aa2035306bb229b64",
+              "log": "a-2-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 920,
+              "elapsed_usec": 4000690,
+              "average_ms": 4.3485760869565215,
+              "p95_ms": 5.165,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            },
+            {
+              "run": 3,
+              "command": [
+                "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+                "tools/run_dotnet.py",
+                "--timeout",
+                "95",
+                "godot",
+                "--path",
+                "cities_do",
+                "--rendering-method",
+                "gl_compatibility",
+                "--rendering-driver",
+                "opengl3",
+                "--resolution",
+                "1920x1080",
+                "--fullscreen",
+                "--audio-driver",
+                "Dummy",
+                "--script",
+                "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+                "--",
+                "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-a-repeat/a-3-frames.json",
+                "--scene=A"
+              ],
+              "exit_code": 0,
+              "diagnostics": [],
+              "frames_json": "a-3-frames.json",
+              "frames_sha256": "928ab16bde0301c0943b90f01888694537e6df115acfb587fe80c1d16d3e167c",
+              "log": "a-3-godot.log",
+              "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+              "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+              "frames": 874,
+              "elapsed_usec": 4003154,
+              "average_ms": 4.580267734553776,
+              "p95_ms": 5.747,
+              "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+            }
+          ]
+        },
+        "comparison": {
+          "average_ratio": 1.1633525223247283,
+          "p95_ratio": 1.1286852589641436,
+          "passed": false
+        }
+      }
+    ],
+    "scene_b": {
+      "summary": {
+        "path": "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4a-final-20261127-v4\\d27-b\\summary.json",
+        "sha256": "0fdce7d0f3b6aa9c84ef586875d0772a9749345223971b57be0fc72d5f2f20ce",
+        "bytes": 7881
+      },
+      "median_average_ms": 5.769913544668587,
+      "median_p95_ms": 6.701,
+      "layout_sha256": "7610bd610af691783ac3e19ee126b660826e36e963e259e4da809c22940b4904",
+      "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "inputs_sha256": {
+        "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+        "cities_do/.godot/mono/temp/bin/Debug/CitiesDo.dll": "95313f8debfacf952b146eb43189c78cc98a694d41ec96c131c37a0a75ae8687",
+        "tools/capture_perf_cadence.gd": "394666532859f8115fdad3632e4c0a30963f42f79aab80941e5ebc549d4d7c38",
+        "tools/measure_e4_frames.gd": "d59cea537f3571f817856bdc5fada2d128308fffb9581aac40a64e08c9dfcab5",
+        "tools/measure_e4_frames.py": "9b7125a002b8e57f922ae2b6cd0d79b25634636f8eb8eaee6b193c26a529436c"
+      },
+      "feature_sha256": {
+        "cities_do/main.gd": "8ffa054fde05f7dacad63c6a5c264f8aa17db701e2be5ffdf4657839bdf0fe8b",
+        "cities_do/bottom_ui.gd": "6fb4412277c63619d1ca864e7773598d267f941252b90aa38e9ff60002b79c50",
+        "cities_do/assets/ui/roads/one-way-1.png": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+        "cities_do/assets/ui/roads/one-way-2.png": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+        "cities_do/assets/ui/roads/one-way-3.png": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+        "cities_do/assets/ui/roads/one-way-4.png": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+        "cities_do/core/building_frontage.gd": "543409f185507b6eff3122bdd42396979cca54b0e5d4a20f6f4d4e151aa5fb2c",
+        "cities_do/core/cached_world_renderer.gd": "064913244949466c5aaada3833b6fa23f71eabf8579c9995bc43618139131a57",
+        "cities_do/core/city_model.gd": "78003ca57d471510b8330b9213202b70aed20571b22768f181790e26472f48d7",
+        "cities_do/core/city_simulation_worker.gd": "69e5d46a793fe4d42db905a18d65511ed0b95f200e7b0ceb4aedab9dab3598ba",
+        "cities_do/core/public_facilities.gd": "e8828863a0a2309814e04e0e44560d8df4cc2111898ae92d830172286d670817",
+        "cities_do/core/road_construction.gd": "4508dde252489ebb097d583a3f402116c39d1523af549998be110c430547060d",
+        "cities_do/core/road_drawing.gd": "e925f053126022d9f57eab93cf9535ea0a75b96c01563fd7a680a47ee5efc1d0",
+        "cities_do/core/road_geometry.gd": "b982a4d05cc0c47dabfe2a4589940ee738f53d26779ae55587e1e23e1a45c500",
+        "cities_do/core/road_height.gd": "1bb5d4e8226c4862a00d53e7b2678f70d5250d859ddf05d4d3a986713a163a76",
+        "cities_do/core/road_height_controls.gd": "844cc1ae627165734beea0d687eff02569b30acca066284df41d63765d7be0c8",
+        "cities_do/core/road_junctions.gd": "b3666ff8b17eedc9c03a1760a8e261ca244eed4bda3e72922d4011d722e0ab1f",
+        "cities_do/core/road_length_units.gd": "8117247ed07f51ab48db68c30cbb0b605416ab03172a6f1425f48eb299b328f4",
+        "cities_do/core/road_profile.gd": "ca7a7c456609d85edd37304052e416c3948886451689ab4b0d94200e7e9ac40c",
+        "cities_do/core/road_transitions.gd": "8ca6e26eed04ebe19b22a818a45a7e656d3959fa4adb701074e0e017e8c98cb5",
+        "cities_do/core/scheduled_bus_network.gd": "9c708b8cf4706e89f47f786ce946d417f6d847dd92cfbb9e3843a427d206714d",
+        "cities_do/core/traffic_controller.gd": "bc7ac553bc4c4c905b8278a42dca4ceaf4c077b5b5f29a27f82d2f662d4dd876",
+        "cities_do/core/traffic_network.gd": "f42c6ab68aff40d2fa24322ebe56bd021ddaa662a3db8c1f86fdaa33a989f18c",
+        "cities_do/core/transit_operations.gd": "849e5ead17ea73b9a8bc8eebf3450edc5b5a59a10bae7697b7be4aba7d4c2dd7"
+      },
+      "runs": [
+        {
+          "run": 1,
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "95",
+            "godot",
+            "--path",
+            "cities_do",
+            "--rendering-method",
+            "gl_compatibility",
+            "--rendering-driver",
+            "opengl3",
+            "--resolution",
+            "1920x1080",
+            "--fullscreen",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+            "--",
+            "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-b/b-1-frames.json",
+            "--scene=B"
+          ],
+          "exit_code": 0,
+          "diagnostics": [],
+          "frames_json": "b-1-frames.json",
+          "frames_sha256": "94e1e6dc62809126eee5803f4dd8a67a597ac098bc914c049e634b30f2653488",
+          "log": "b-1-godot.log",
+          "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+          "layout_sha256": "7610bd610af691783ac3e19ee126b660826e36e963e259e4da809c22940b4904",
+          "frames": 694,
+          "elapsed_usec": 4004320,
+          "average_ms": 5.769913544668587,
+          "p95_ms": 6.701,
+          "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+        },
+        {
+          "run": 2,
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "95",
+            "godot",
+            "--path",
+            "cities_do",
+            "--rendering-method",
+            "gl_compatibility",
+            "--rendering-driver",
+            "opengl3",
+            "--resolution",
+            "1920x1080",
+            "--fullscreen",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+            "--",
+            "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-b/b-2-frames.json",
+            "--scene=B"
+          ],
+          "exit_code": 0,
+          "diagnostics": [],
+          "frames_json": "b-2-frames.json",
+          "frames_sha256": "0b4c4b188c6328bdb27dede1eed77d3e33f41a6e86764654a583a1cdab390164",
+          "log": "b-2-godot.log",
+          "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+          "layout_sha256": "7610bd610af691783ac3e19ee126b660826e36e963e259e4da809c22940b4904",
+          "frames": 675,
+          "elapsed_usec": 4005870,
+          "average_ms": 5.934622222222222,
+          "p95_ms": 7.322,
+          "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+        },
+        {
+          "run": 3,
+          "command": [
+            "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+            "tools/run_dotnet.py",
+            "--timeout",
+            "95",
+            "godot",
+            "--path",
+            "cities_do",
+            "--rendering-method",
+            "gl_compatibility",
+            "--rendering-driver",
+            "opengl3",
+            "--resolution",
+            "1920x1080",
+            "--fullscreen",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "D:\\project\\simcity\\tools\\measure_e4_frames.gd",
+            "--",
+            "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4a-final-20261127-v4/d27-b/b-3-frames.json",
+            "--scene=B"
+          ],
+          "exit_code": 0,
+          "diagnostics": [],
+          "frames_json": "b-3-frames.json",
+          "frames_sha256": "8e411ffe34baa4cc6268499473120c87d0fba48559b59b298028276e751666b3",
+          "log": "b-3-godot.log",
+          "log_sha256": "f4597afc25923ca52905bd10b9befecaea36db1d4ef2c37e552845460d43c266",
+          "layout_sha256": "7610bd610af691783ac3e19ee126b660826e36e963e259e4da809c22940b4904",
+          "frames": 696,
+          "elapsed_usec": 4000953,
+          "average_ms": 5.748495689655172,
+          "p95_ms": 6.608,
+          "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER"
+        }
+      ]
+    }
+  },
+  "thumbnails": [
+    {
+      "path": "D:\\project\\simcity\\cities_do\\assets\\ui\\roads\\one-way-1.png",
+      "sha256": "c8a988ec716491de3b3dfc51488da4fb43a92c8bbf1b6868b907074946e5c8b5",
+      "bytes": 4112,
+      "dimensions": [
+        256,
+        224
+      ]
+    },
+    {
+      "path": "D:\\project\\simcity\\cities_do\\assets\\ui\\roads\\one-way-2.png",
+      "sha256": "8758c1be472e76acc5b4773f7645234b889735fe8e34eeb3f6e0d99a8ab4eb99",
+      "bytes": 6591,
+      "dimensions": [
+        256,
+        224
+      ]
+    },
+    {
+      "path": "D:\\project\\simcity\\cities_do\\assets\\ui\\roads\\one-way-3.png",
+      "sha256": "54728440e1f66926bb962185645d3f86904f711c7f3b0ca1f4e1ccb8d47c269b",
+      "bytes": 7405,
+      "dimensions": [
+        256,
+        224
+      ]
+    },
+    {
+      "path": "D:\\project\\simcity\\cities_do\\assets\\ui\\roads\\one-way-4.png",
+      "sha256": "02e16ac8a01a84791d3e29e7e93a5399309498659fa486ce1c62a39a03458cfa",
+      "bytes": 9909,
+      "dimensions": [
+        256,
+        224
+      ]
+    }
+  ]
+}

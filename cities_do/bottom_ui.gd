@@ -55,6 +55,7 @@ const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수�
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
 const ThumbnailButton=preload("res://core/asset_thumbnail_button.gd")
+const RoadProfile=preload("res://core/road_profile.gd")
 var thumbnail_manifest: Dictionary={}
 const SERVICE_TOOLS := {"clinic":"medical-clinic","hospital":"medical-hospital","large_hospital":"medical-large-hospital","elementary":"elementary-school","high_school":"high-school","college":"technical-college","university":"university","crematorium":"crematorium-4x4"}
 
@@ -711,7 +712,7 @@ func select_category(key: String):
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[] # The seven lane cards are the drawing actions.
+  "road": choices=[] # The lane cards are the drawing actions.
 
 
   _:
@@ -763,21 +764,51 @@ func add_drawer_tool(box:HBoxContainer,key:String,choice:Array):
   box.add_child(button)
 
 func add_road_drawer_controls():
-  var group:=ButtonGroup.new()
-  var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
-  for count in preload("res://core/road_profile.gd").LOCAL_LANES:
-   var path: String="res://assets/ui/roads/local-%d.png"%count
-   var card:=ThumbnailButton.new();card.name="RoadLane_%d"%count
-   card.set_asset({"id":"road-local-%d"%count,"name":"%d차선"%count,"preview":path},path)
-   card.custom_minimum_size=Vector2(96,84);card.set_meta("lanes",count);card.tooltip_text="%d차선"%count
-   card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
-   palette.content.add_child(card);road_lane_cards.append(card)
-  road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
-  var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
-  road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
-  road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
-  road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
-  update_road_lane_cards();update_road_grid_button()
+ var group:=ButtonGroup.new()
+ var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
+ for count in RoadProfile.LOCAL_LANES:add_road_card(palette.content,group,count,0)
+ for count in range(1,RoadProfile.ONE_WAY_WIDTHS.size()+1):add_road_card(palette.content,group,count,1)
+ road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
+ var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
+ road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
+ road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
+ road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
+ update_road_lane_cards();update_road_grid_button()
+
+func add_road_card(row:HBoxContainer,group:ButtonGroup,count:int,travel_dir:int):
+ var one_way:=travel_dir==1
+ var title:=("편도 %d차로" if one_way else "%d차선")%count
+ var id:=("one-way-%d" if one_way else "local-%d")%count
+ var path:="res://assets/ui/roads/%s.png"%id
+ var card:Button=ThumbnailButton.new()
+ row.add_child(card)
+ if not one_way or FileAccess.file_exists(path) or ResourceLoader.exists(path):
+  card.set_asset({"id":"road-"+id,"name":title,"preview":path},path)
+ else:
+  # Until the studio PNG is rendered, keep the tool usable without borrowed or generated art.
+  card.text=title
+  card.set_meta("source_preview",path)
+ if one_way:
+  for state in ["normal","hover","pressed","disabled"]:
+   card.add_theme_stylebox_override(state,style(Color("142b37"),Color("38515e")))
+  for key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
+   card.add_theme_color_override(key,Color("edf4f5"))
+  card.add_theme_font_size_override("font_size",18)
+  var band:=card.get_node_or_null("NameBand") as Panel
+  if band!=null:
+   var shade:StyleBoxFlat=band.get_theme_stylebox("panel").duplicate()
+   shade.bg_color=Color("142b37")
+   band.add_theme_stylebox_override("panel",shade)
+   card.caption.add_theme_color_override("font_color",Color("edf4f5"))
+ var caption_width:=96.0
+ if one_way:
+  caption_width=maxf(caption_width,ceilf(card.get_theme_font("font").get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x)+14)
+ card.custom_minimum_size=Vector2(caption_width,84)
+ card.name=("RoadOneWay_%d" if one_way else "RoadLane_%d")%count
+ card.set_meta("thumbnail_asset_id","road-"+id)
+ card.set_meta("lanes",count);card.set_meta("travel_dir",travel_dir);card.tooltip_text=title
+ card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count,travel_dir))
+ road_lane_cards.append(card)
 
 func finish_drawer(key:String,heading:VBoxContainer):
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
@@ -1189,12 +1220,21 @@ func layout_bottom_hud():
  position_money_toast.call_deferred()
  queue_redraw()
 
-func select_road_lanes(count: int):
- if count not in preload("res://core/road_profile.gd").LOCAL_LANES:return
- road_lanes=count;activate_tool("road");update_road_lane_cards();queue_redraw()
+func select_road_lanes(count: int,travel_dir:int=0):
+ if not RoadProfile.valid_selection("local",count,road_major_side,travel_dir):return
+ road_lanes=count;road_drawer.travel_dir=travel_dir
+ activate_tool("road")
+ if travel_dir!=0:
+  if road_drawer.kind=="legacy":road_drawer.set_kind("straight")
+  road_drawer.start_height_m=0.0
+  road_drawer.set_height(0.0)
+ else:
+  var heights:=find_child("RoadHeightControls",true,false)
+  if heights!=null:heights.synchronize()
+ update_road_lane_cards();queue_redraw()
 func update_road_lane_cards():
  for card in road_lane_cards:
-  var active: bool=int(card.get_meta("lanes"))==road_lanes
+  var active: bool=int(card.get_meta("lanes"))==road_lanes and int(card.get_meta("travel_dir"))==road_drawer.travel_dir
   card.set_pressed_no_signal(active)
   for state in ["normal","hover","pressed"]:
    var outline: StyleBoxFlat=card.get_theme_stylebox(state).duplicate()

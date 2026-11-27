@@ -123,7 +123,12 @@ static func analyze(roads: Array) -> Dictionary:
      if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:
       duplicate=true
       if available>arm.length:arm.length=available;arm.points=outgoing
-    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"kind":str(roads[road_id].get("kind","local")),"lanes":int(roads[road_id].lanes),"major_side":int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1),"length":available,"points":outgoing})
+    if not duplicate:
+     var arm:={"direction":pair[2],"width":float(roads[road_id].width),"kind":str(roads[road_id].get("kind","local")),"lanes":int(roads[road_id].lanes),"length":available,"points":outgoing}
+     var travel:=Profile.travel_direction(roads[road_id])
+     if travel!=0:arm.travel_dir=-travel if pair[3] else travel
+     else:arm.major_side=int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1)
+     node.arms.append(arm)
  var junctions := []
  var joins := []
  for node in nodes.values():
@@ -132,7 +137,9 @@ static func analyze(roads: Array) -> Dictionary:
   var transition: bool=node.arms.size()==2
   # A single closed stroke already has continuous offset lanes at its seam.
   if transition and node.road_ids.size()==1:continue
-  if transition and node.arms[0].direction.dot(node.arms[1].direction)<-.99999 and node.arms[0].lanes==node.arms[1].lanes and is_equal_approx(node.arms[0].width,node.arms[1].width):continue
+  # Arm point orders face away from the join; opposite signs agree along the route.
+  var flow_change:=transition and Profile.travel_direction(node.arms[0])!=-Profile.travel_direction(node.arms[1])
+  if transition and not flow_change and node.arms[0].direction.dot(node.arms[1].direction)<-.99999 and node.arms[0].lanes==node.arms[1].lanes and is_equal_approx(node.arms[0].width,node.arms[1].width):continue
   if transition:node.join=joins.size()
   else:node.junction=junctions.size()
   var radius := 0.0
@@ -140,7 +147,7 @@ static func analyze(roads: Array) -> Dictionary:
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
   junction.height_m=node.height_m
   junction.transition=transition
-  if (not transition or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
+  if (not transition or flow_change or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
    var widest: Dictionary=node.arms[0]
    for arm in node.arms:
     if arm.width>widest.width:widest=arm
@@ -185,22 +192,26 @@ static func boundary_distance(junction: Dictionary,points: PackedVector2Array) -
 static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
  # Paint follows the actual crossed road, independently of the render exclusion box.
  var direction: Vector2=arm.direction
- var half: float=Profile.asphalt_width(arm)/2
+ var edges:=Profile.asphalt_edges(arm)
  var edge := 0.0
  for other in junction.arms:
   var crossing: float=absf(direction.cross(other.direction))
   if crossing<.001:continue
   # Project the whole zebra width beyond the intersecting strip at oblique angles.
-  var skew: float=absf(direction.dot(other.direction))
-  edge=maxf(edge,(other.width/2+half*skew)/crossing)
+  var skew: float=signf(direction.cross(other.direction))*direction.dot(other.direction)
+  edge=maxf(edge,(other.width/2+maxf(edges.x*skew,edges.y*skew))/crossing)
  return edge+CROSSWALK_HALF_LENGTH+CROSSWALK_EDGE_GAP
+
+static func arm_asphalt(arm: Dictionary) -> Array[PackedVector2Array]:
+ var edges:=Profile.asphalt_edges(arm)
+ return Geometry2D.offset_polyline(Profile.offset_path(arm.points,(edges.x+edges.y)/2),(edges.y-edges.x)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT)
 
 static func marker_slot_clear(junction: Dictionary,arm: Dictionary,polygon: PackedVector2Array) -> bool:
  # A supported stripe can still be on the wrong arm at a shallow-angle approach.
  # Omit the ambiguous boundary slot rather than leaving clipped fragments mid-road.
  for other in junction.arms:
   if other==arm:continue
-  for strip in Geometry2D.offset_polyline(other.points,Profile.asphalt_width(other)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT):
+  for strip in arm_asphalt(other):
    if not Geometry2D.intersect_polygons(polygon,strip).is_empty():return false
  return true
 
@@ -213,13 +224,13 @@ static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector
   var centre:=sample(arm.points,distance)
   var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
   var normal:=Vector2(-direction.y,direction.x)
-  var half:=Profile.asphalt_width(arm)/2;var offset:=-half+.12
+  var edges:=Profile.asphalt_edges(arm);var offset:=edges.x+.12
   var last:=offset
-  while last+.28<half-.12:last+=.28
+  while last+.28<edges.y-.12:last+=.28
   var a:=centre+normal*offset;var b:=centre+normal*(last+.14)
   var band:=PackedVector2Array([a-direction*CROSSWALK_HALF_LENGTH,b-direction*CROSSWALK_HALF_LENGTH,b+direction*CROSSWALK_HALF_LENGTH,a+direction*CROSSWALK_HALF_LENGTH])
   if not marker_slot_clear(junction,arm,band):continue
-  while offset<half-.12:
+  while offset<edges.y-.12:
    var p:=centre+normal*offset
    var corners:=PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14])
    for surface in surfaces:
@@ -245,13 +256,15 @@ static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false) or not junction.has("box"):return result
  for arm in junction.arms:
+  if Profile.direction_count(arm,-1)==0:continue
   var distance:=stop_line_distance(junction,arm)
   if distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:continue
   var centre:=sample(arm.points,distance)
   var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
   var normal:=Vector2(-direction.y,direction.x)
-  var a:=centre-normal*(Profile.asphalt_width(arm)/2-.08)
-  var b:=centre+normal*(Profile.median_offset(arm)-.04)
+  var edges:=Profile.asphalt_edges(arm)
+  var a:=centre+normal*(edges.x+.08)
+  var b:=centre+normal*(edges.y-.08 if not Profile.has_median(arm) else Profile.median_offset(arm)-.04)
   var corners:=PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
   if not marker_slot_clear(junction,arm,corners):continue
   for surface in surfaces:
@@ -267,7 +280,7 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
   if not asphalt:return junction.box
   var result:=rounded_box(junction,junction.box_width/2-junction.box_border,.10)
   for arm in junction.arms:
-   for strip in Geometry2D.offset_polyline(arm.points,Profile.asphalt_width(arm)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT):
+   for strip in arm_asphalt(arm):
     for gate in Geometry2D.intersect_polygons(strip,junction.box):
      var merged:=Geometry2D.merge_polygons(result,gate)
      if not merged.is_empty():result=merged[0]
@@ -290,12 +303,12 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
  for arm in junction.arms:
   var direction: Vector2=arm.direction
   var normal := Vector2(-direction.y,direction.x)
-  var factor: float=Profile.asphalt_width(arm)/arm.width if asphalt else 1.0
+  var half:=float(arm.width)/2
+  var edges:=Profile.asphalt_edges(arm) if asphalt else Vector2(-half,half)
   var distance: float=minf(junction.radius+(.02 if asphalt else 0),arm.get("length",INF))
-  var side: Vector2=normal*arm.width/2*factor
   var start: Vector2=junction.position-direction*EPS*2
   var finish: Vector2=junction.position+direction*distance
-  var strip := PackedVector2Array([start-side,finish-side,finish+side,start+side])
+  var strip := PackedVector2Array([start+normal*edges.x,finish+normal*edges.x,finish+normal*edges.y,start+normal*edges.y])
   if result.is_empty():result=strip
   else:
    var merged := Geometry2D.merge_polygons(result,strip)

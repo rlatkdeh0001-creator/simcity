@@ -1,0 +1,98 @@
+[
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "arrow_geometry": "RoadGeometry.direction_arrows",
+    "asphalt_edges_cells": [
+      -0.75,
+      0.5625
+    ],
+    "camera_size": 13.7990293502808,
+    "camera_vertical_offset": -2.48382520675659,
+    "composition": "approved A: bottom-left to top-right; grass on both sides; no trees or parcel grid",
+    "file": "one-way-1.png",
+    "flat_cut_ends_outside_frame": true,
+    "ground": "main.gd::_draw terrain polygon, unshaded #7e9275",
+    "has_median": false,
+    "lanes": 1,
+    "native_card_road_width_px": 22.0,
+    "segment_metres": 128.0,
+    "separators": 0,
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.0681818181818182,
+    "travel_dir": 1,
+    "width_m": 6.0
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "arrow_geometry": "RoadGeometry.direction_arrows",
+    "asphalt_edges_cells": [
+      -1.3125,
+      1.3125
+    ],
+    "camera_size": 20.433177947998,
+    "camera_vertical_offset": -3.67797207832336,
+    "composition": "approved A: bottom-left to top-right; grass on both sides; no trees or parcel grid",
+    "file": "one-way-2.png",
+    "flat_cut_ends_outside_frame": true,
+    "ground": "main.gd::_draw terrain polygon, unshaded #7e9275",
+    "has_median": false,
+    "lanes": 2,
+    "native_card_road_width_px": 29.7142857142857,
+    "segment_metres": 128.0,
+    "separators": 1,
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.100961538461538,
+    "travel_dir": 1,
+    "width_m": 12.0
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "arrow_geometry": "RoadGeometry.direction_arrows",
+    "asphalt_edges_cells": [
+      -1.3125,
+      1.3125
+    ],
+    "camera_size": 20.433177947998,
+    "camera_vertical_offset": -3.67797207832336,
+    "composition": "approved A: bottom-left to top-right; grass on both sides; no trees or parcel grid",
+    "file": "one-way-3.png",
+    "flat_cut_ends_outside_frame": true,
+    "ground": "main.gd::_draw terrain polygon, unshaded #7e9275",
+    "has_median": false,
+    "lanes": 3,
+    "native_card_road_width_px": 29.7142857142857,
+    "segment_metres": 128.0,
+    "separators": 2,
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.100961538461538,
+    "travel_dir": 1,
+    "width_m": 12.0
+  },
+  {
+    "actual_generator": "City.add_road + RoadGeometry.ribbons/lane_marks + RoadProfile",
+    "arrow_geometry": "RoadGeometry.direction_arrows",
+    "asphalt_edges_cells": [
+      -2.1875,
+      2.1875
+    ],
+    "camera_size": 25.2982215881348,
+    "camera_vertical_offset": -4.55367994308472,
+    "composition": "approved A: bottom-left to top-right; grass on both sides; no trees or parcel grid",
+    "file": "one-way-4.png",
+    "flat_cut_ends_outside_frame": true,
+    "ground": "main.gd::_draw terrain polygon, unshaded #7e9275",
+    "has_median": false,
+    "lanes": 4,
+    "native_card_road_width_px": 40.0,
+    "segment_metres": 128.0,
+    "separators": 3,
+    "size": "(256, 224)",
+    "studio": "building_views.gd camera angle/light/environment",
+    "thumbnail_only_marking_width_cells": 0.125,
+    "travel_dir": 1,
+    "width_m": 20.0
+  }
+]

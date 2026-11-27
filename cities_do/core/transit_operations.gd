@@ -2,6 +2,9 @@ extends RefCounted
 ## Worker-only fixed-step operations. Persisted state contains primitives, not Curve/scene objects.
 const Planner=preload("res://core/transit_line_planner.gd")
 const Crossover=preload("res://core/terminal_crossover.gd")
+const RoadProfile=preload("res://core/road_profile.gd")
+const RoadHeight=preload("res://core/road_height.gd")
+const Junctions=preload("res://core/road_junctions.gd")
 const STEP:=1.0/30.0
 var config:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/transit_operation_config.json"))
 var signature:int=0
@@ -143,19 +146,108 @@ static func line_edit_draft(city,id:int,stops:Array)->Variant:
 var bus_network
 var bus_simulation
 var bus_key:int=0
+var bus_sections:Array=[]
+var checked_replacement:Array=[]
 static func bus_topology_key(city)->int:
+ return bus_topology_key_for(city.roads,city.public_facilities.lots)
+
+static func bus_topology_key_for(roads_input:Array,lots:Array)->int:
  # Match TrafficNetwork/Junctions/Profile inputs and stable stop host lookup.
  # Preserve array order: lane IDs and curb branches are allocated in that order.
  var roads:Array=[]
- for road:Dictionary in city.roads:
-  roads.append([road.parcel_id,road.points,road.kind,road.lanes,road.width,road.get("major_side",1)])
+ for road:Dictionary in roads_input:
+  var inputs:Array=[road.parcel_id,road.points,road.kind,road.lanes,road.width,road.get("major_side",1)]
+  var direction:=RoadProfile.travel_direction(road)
+  # A two-way checkpoint predating E4a must still have the same key.
+  if direction!=0:inputs.append(direction)
+  roads.append(inputs)
  var stops:Array=[]
- for lot:Dictionary in city.public_facilities.lots:
+ for lot:Dictionary in lots:
   if lot.get("public_asset_id","")!="bus-stop-01":continue
   # All bus stops matter, not only scheduled ones: each can split the lane graph.
   # Include invalid bindings too so loss/restoration of a host remains detectable.
   stops.append([lot.id,lot.get("front_road_id",-1),lot.get("road_direction",0),lot.position,lot.front_direction])
  return hash([roads,stops])
+
+func ensure_bus_network(city,key:int):
+ if bus_network!=null and key==bus_key:return
+ bus_network=preload("res://core/scheduled_bus_network.gd").new();bus_network.build_city(city);bus_key=key
+ bus_simulation=preload("res://core/scheduled_bus_simulation.gd").new(bus_network)
+ bus_sections=[]
+
+func prepare_bus_provenance(city,world:Dictionary):
+ # Call before replacing either array. Legacy lane IDs can only be decoded on
+ # the graph that produced them, not on the edited world or from the last pose.
+ if not world.has("roads") and not world.has("public_lots"):return
+ var saved:Dictionary=city.transit_state.bus
+ if not saved.has("topology_key"):return
+ var paths:Dictionary=saved.get("route_paths",{})
+ var missing:Array=saved.get("vehicles",[]).filter(func(vehicle):return not paths.has(vehicle.id))
+ if missing.is_empty():return
+ var key:int=bus_topology_key(city)
+ if saved.topology_key!=key or bus_topology_key_for(world.get("roads",city.roads),world.get("public_lots",city.public_facilities.lots))==key:return
+ ensure_bus_network(city,key)
+ if not bus_network.errors.is_empty():return
+ for vehicle:Dictionary in missing:
+  var route:Array=vehicle.route
+  if route.is_empty() or not route.all(func(id):return id is int and id>=0 and id<bus_network.lanes.size()):continue
+  paths[vehicle.id]=bus_route_paths(city.roads,route)
+ # Persist through a demolition-only freeze and a subsequent save/reload.
+ if not paths.is_empty():saved.route_paths=paths
+
+func bus_route_paths(roads:Array,route:Array)->Array:
+ # Save directed at-grade centreline sections, not unstable lane IDs or offset curves.
+ # This evidence also survives a checkpoint with the road already demolished.
+ if bus_sections.is_empty():bus_sections=Junctions.analyze(roads).sections
+ var paths:Array=[];var seen:Dictionary={}
+ for id:int in route:
+  var lane:Dictionary=bus_network.lanes[id]
+  if lane.road<0 or seen.has(Vector2i(lane.section,lane.direction)):continue
+  seen[Vector2i(lane.section,lane.direction)]=true
+  var road:Dictionary=roads[lane.road];var points:PackedVector2Array=bus_sections[lane.section].points
+  if lane.direction<0:points=points.duplicate();points.reverse()
+  if not RoadHeight.off_ground(road):paths.append(points);continue
+  for i in range(1,points.size()):
+   if absf(RoadHeight.height_at(road,points[i-1]))<=RoadHeight.EPS and absf(RoadHeight.height_at(road,points[i]))<=RoadHeight.EPS:
+    paths.append(PackedVector2Array([points[i-1],points[i]]))
+ return paths
+
+static func opposes_path(paths:Array,a:Vector2,b:Vector2)->bool:
+ var flow:=b-a;var length:=flow.length()
+ if length<=Junctions.EPS:return false
+ var axis:=flow/length
+ for points:PackedVector2Array in paths:
+  for i in range(1,points.size()):
+   var first:=points[i-1]-a;var last:=points[i]-a
+   if absf(axis.cross(first))>Junctions.EPS or absf(axis.cross(last))>Junctions.EPS:continue
+   # Positive overlap, not a crossing or a shared endpoint. Chainage is reversed.
+   if minf(length,axis.dot(first))-maxf(0.0,axis.dot(last))>Junctions.EPS:return true
+ return false
+
+static func retire_wrong_way_buses(city,saved:Dictionary):
+ var paths:Dictionary=saved.get("route_paths",{})
+ if paths.is_empty():return # Already frozen legacy checkpoints may have lost their original graph.
+ var retired:Dictionary={}
+ for road:Dictionary in city.roads:
+  var direction:=RoadProfile.travel_direction(road)
+  if direction==0 or RoadHeight.off_ground(road):continue
+  for i in range(1,road.points.size()):
+   var a:Vector2=road.points[i-1 if direction>0 else i];var b:Vector2=road.points[i if direction>0 else i-1]
+   for vehicle:Dictionary in saved.vehicles:
+    if not retired.has(vehicle.id) and opposes_path(paths.get(vehicle.id,[]),a,b):retired[vehicle.id]=true
+ if retired.is_empty():return
+ var removed_lines:Dictionary={}
+ for vehicle:Dictionary in saved.vehicles:
+  if retired.has(vehicle.id):removed_lines[vehicle.line_id]=true;paths.erase(vehicle.id)
+ saved.vehicles=saved.vehicles.filter(func(vehicle):return not retired.has(vehicle.id))
+ saved.visible=saved.get("visible",[]).filter(func(pose):return not removed_lines.has(pose.line_id))
+ for junction:Variant in saved.get("reservations",{}).keys():
+  if retired.has(saved.reservations[junction]):saved.reservations.erase(junction)
+ for request:String in saved.get("waiting",{}).keys():
+  if retired.has(int(request.get_slice(":",0))):saved.waiting.erase(request)
+ # Commuting plans are evaluated before operations; recheck on the next accepted tick.
+ city._commuting_generation+=1
+
 func advance_buses(city,seconds:float):
  var state:Dictionary=city.transit_state
  var lines:Array=city.transit_lines.filter(func(line):return line.kind=="bus")
@@ -164,13 +256,19 @@ func advance_buses(city,seconds:float):
  if saved.has("vehicles"):
   saved.vehicles=saved.vehicles.filter(func(vehicle):return vehicle.line_id in ids)
  var key:int=bus_topology_key(city)
- if not saved.get("vehicles",[]).is_empty() and saved.get("topology_key",key)!=key:
-  for line:Dictionary in lines:state.lines[line.id]={"status":"blocked"}
-  var retained:Array=saved.get("visible",[]).filter(func(pose):return pose.line_id in ids)
-  state.visible.append_array(retained.duplicate(true));return
- if bus_network==null or key!=bus_key:
-  bus_network=preload("res://core/scheduled_bus_network.gd").new();bus_network.build_city(city);bus_key=key
-  bus_simulation=preload("res://core/scheduled_bus_simulation.gd").new(bus_network)
+ var saved_key:int=saved.get("topology_key",key)
+ if saved_key!=key:
+  if not saved.get("vehicles",[]).is_empty() and checked_replacement!=[saved_key,key]:
+   retire_wrong_way_buses(city,saved)
+   checked_replacement=[saved_key,key]
+  if not saved.get("vehicles",[]).is_empty():
+   for line:Dictionary in lines:state.lines[line.id]={"status":"blocked"}
+   var retained:Array=saved.get("visible",[]).filter(func(pose):return pose.line_id in ids)
+   state.visible.append_array(retained.duplicate(true));return
+  # IDs are only valid on the previous graph. Keep the schedule clock and next vehicle ID.
+  saved=saved.duplicate();saved.reservations={};saved.waiting={};saved.signals={}
+ checked_replacement=[]
+ ensure_bus_network(city,key)
  bus_simulation.restore(saved)
  # Purge deleted line reservations as well as body occupancy.
  var vehicle_ids:Array=bus_simulation.vehicles.map(func(vehicle):return vehicle.id)
@@ -190,12 +288,15 @@ func advance_buses(city,seconds:float):
    found=not bus_simulation.spawn_line(asset,plan,line).is_empty()
   state.lines[line.id]={"status":"running" if found else "waiting"}
  bus_simulation.update(seconds)
- var visible:Array=[]
+ var visible:Array=[];var paths:Dictionary={};var previous_paths:Dictionary=saved.get("route_paths",{})
  for vehicle:Dictionary in bus_simulation.vehicles:
+  # Fill missing provenance on the first unchanged tick of a legacy checkpoint.
+  paths[vehicle.id]=previous_paths[vehicle.id] if previous_paths.has(vehicle.id) else bus_route_paths(city.roads,vehicle.route)
   var pose:Dictionary={"id":"bus:%d"%vehicle.id,"line_id":vehicle.line_id,"asset_id":vehicle.asset_id,"position":bus_simulation.position(vehicle),"heading":bus_simulation.heading(vehicle),"height_m":0.0,"kind":"bus","length_m":vehicle.length,"width_m":2.5}
   visible.append(pose)
   state.lines[vehicle.line_id]={"status":"dwelling" if vehicle.at_stop else "running","departures":vehicle.departures,"stops_served":vehicle.stops_served}
  state.bus=bus_simulation.checkpoint();state.bus.topology_key=key;state.bus.visible=visible
+ if not paths.is_empty():state.bus.route_paths=paths
  state.visible.append_array(visible.duplicate(true))
 static func consist(kind:String)->Array:
  if kind=="metro":return [["subway-car-01",16.0],["subway-car-01",16.0],["subway-car-01",16.0],["subway-car-01",16.0]]

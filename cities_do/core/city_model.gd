@@ -30,6 +30,7 @@ var road_pavement: Array[PackedVector2Array]=[]
 var road_asphalt: Array[PackedVector2Array]=[]
 var road_medians: Array[PackedVector2Array]=[]
 var road_lane_marks: Array[PackedVector2Array]=[]
+var road_direction_arrows: Array[PackedVector2Array]=[]
 var junction_pavement: Array[PackedVector2Array]=[]
 var junction_asphalt: Array[PackedVector2Array]=[]
 const Catalog = preload("res://core/building_catalog.gd")
@@ -41,6 +42,8 @@ var width: int
 var height: int
 var buildings: Array[Dictionary] = []
 var roads: Array[Dictionary] = []
+# Main-scene traffic only needs the committed road graph, not other city edits.
+var road_topology_revision := 0
 const TransitRoutes=preload("res://core/transit_routes.gd")
 const TerminalCrossover=preload("res://core/terminal_crossover.gd")
 var transit_routes:Array[Dictionary]=[]
@@ -650,12 +653,17 @@ func add_building(x: int, y: int, zone: String = "residential", score: float = 0
 	buildings.append(b)
 	return {"ok": true, "building": b}
 
-func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1, grid_frame: Dictionary = {}) -> Dictionary:
-	if commit and _defer_simulation_edit(add_road.bind(points.duplicate(),kind,true,lanes,connect_ends,enforce_units,major_side,grid_frame.duplicate(true))):return _queued_simulation_edit()
-	if kind not in ["local", "highway"] or points.size() < 2 or lanes not in (preload("res://core/road_profile.gd").LOCAL_LANES if kind=="local" else [2,4]) or major_side not in [-1,1]:
+func add_road(points: PackedVector2Array, kind: String = "local", commit: bool = true, lanes: int = 2, connect_ends: bool = false, enforce_units: bool = false, major_side: int = 1, grid_frame: Dictionary = {}, travel_dir: int = 0) -> Dictionary:
+	if commit and _defer_simulation_edit(add_road.bind(points.duplicate(),kind,true,lanes,connect_ends,enforce_units,major_side,grid_frame.duplicate(true),travel_dir)):return _queued_simulation_edit()
+	if points.size()<2 or not RoadProfile.valid_selection(kind,lanes,major_side,travel_dir):
 		return {"ok": false, "reason": "도로 경로가 필요합니다"}
 	# Player strokes opt in; authored scenarios retain exact supplied geometry.
-	if connect_ends:points=RoadJunctions.snap_path(points,roads)
+	var height_rule=preload("res://core/road_height.gd")
+	var ground_contacts:Array=height_rule.ground_contact_paths(roads) if connect_ends or enforce_units else []
+	if connect_ends:
+		points=points.duplicate()
+		points[0]=height_rule.snap_ground_point(points[0],roads,ground_contacts)
+		points[-1]=height_rule.snap_ground_point(points[-1],roads,ground_contacts)
 	var total := 0.0
 	for i in range(points.size()):
 		var p := points[i]
@@ -665,11 +673,16 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			total += points[i - 1].distance_to(p)
 	if total < 0.1:
 		return {"ok": false, "reason": "도로가 너무 짧습니다"}
-	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": RoadProfile.width_for(kind,lanes,config.road_width),"major_side":major_side}
+	var road := {"points": points.duplicate(), "kind": kind, "lanes": lanes, "width": RoadProfile.width_for(kind,lanes,config.road_width,travel_dir)}
+	if travel_dir!=0:road.travel_dir=travel_dir
+	else:road["major_side"]=major_side
 	if not grid_frame.is_empty():road.grid_frame=grid_frame.duplicate(true)
 	var plan: Dictionary={"ok":true,"new_roads":[road],"new_length_m":total*4,"retained_length_m":0.0,"construction_cost":0,"reason":""}
 	# Authored/restored scenarios retain their supplied geometry; all player modes share this transaction.
-	if enforce_units:plan=preload("res://core/road_construction.gd").plan(roads,road)
+	if enforce_units or travel_dir!=0:
+		var layers:=_road_layer_context(road)
+		if not layers.ok:return layers
+		plan=preload("res://core/road_construction.gd").plan(layers.roads,road)
 	if not plan.ok:return plan
 	var new_roads: Array=plan.new_roads
 	for candidate: Dictionary in new_roads:
@@ -681,7 +694,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 				if rail_error!="":return {"ok":false,"reason":rail_error}
 			elif not TransitRoutes.crossing_allowed(route,candidate):return {"ok":false,"reason":"철도와는 건널목으로만 교차할 수 있습니다"}
 		if enforce_units:
-			var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(candidate.points,roads) if not grid_frame.is_empty() else RoadUnits.is_build_length(RoadJunctions.length_of(candidate.points),RoadUnits.build_step(candidate.points,roads))
+			var valid_units: bool=preload("res://core/road_grid_snap.gd").valid_length(candidate.points,ground_contacts) if not grid_frame.is_empty() else RoadUnits.is_build_length(RoadJunctions.length_of(candidate.points),RoadUnits.build_step(candidate.points,ground_contacts))
 			if not valid_units:return {"ok":false,"reason":"기본 8m, 기존 도로 연결은 4m 단위로 건설해야 합니다"}
 		for b in buildings:
 			if _polygon_road_distance(footprint(b),candidate)<-0.0005:return {"ok":false,"reason":"건물과 충돌합니다"}
@@ -696,8 +709,7 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 	for record: Dictionary in public_facilities.lots:occupied.append(record.polygon)
 	for facility in power.plants+water.facilities: occupied.append(power_plant_footprint(facility))
 	if not occupied.is_empty():
-		var topology: Dictionary=RoadJunctions.analyze(roads+new_roads)
-		for junction in topology.junctions+topology.joins:
+		for junction in _changed_surface_road_patches(new_roads):
 			var polygon_value: PackedVector2Array=RoadJunctions.patch(junction)
 			for existing in occupied:
 				if Parcels.overlap(existing,polygon_value):return {"ok":false,"reason":"교차로가 기존 건물과 충돌합니다"}
@@ -706,9 +718,23 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			candidate.parcel_id=next_road_id
 			next_road_id+=1
 			roads.append(candidate)
+		road_topology_revision+=1
 		_update_zoning_for_road(road)
 		for building in buildings:orient_building(building)
 	return plan
+
+func _road_layer_context(road: Dictionary) -> Dictionary:
+	# Check full-width vertical clearance before sending coplanar roads to the 2D planner.
+	var height_rule=preload("res://core/road_height.gd")
+	var coplanar: Array[Dictionary]=[]
+	for existing: Dictionary in roads:
+		if not road.has("heights_m") and not height_rule.off_ground(existing):
+			coplanar.append(existing)
+			continue
+		var error: String=height_rule.overlap_error(road,existing)
+		if error!="":return {"ok":false,"reason":error}
+		if height_rule.same_level_contact(road,existing):coplanar.append(existing)
+	return {"ok":true,"roads":coplanar}
 
 func _hits_existing_support(candidate: Dictionary) -> bool:
 	var height_rule=preload("res://core/road_height.gd")
@@ -718,12 +744,14 @@ func _hits_existing_support(candidate: Dictionary) -> bool:
 		if height_rule.intersects_support(candidate,structure):return true
 	return false
 
-func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String = "local", commit: bool = true, lanes: int = 2, confirmed: bool = false, major_side: int = 1, grid_frame: Dictionary = {},approved_demolition:Variant=null) -> Dictionary:
-	if commit and _defer_simulation_edit(add_elevated_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null)):return _queued_simulation_edit()
+func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String = "local", commit: bool = true, lanes: int = 2, confirmed: bool = false, major_side: int = 1, grid_frame: Dictionary = {},approved_demolition:Variant=null,travel_dir:int=0) -> Dictionary:
+	if commit and _defer_simulation_edit(add_elevated_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null,travel_dir)):return _queued_simulation_edit()
 	if points.size()<2 or heights_m.size()!=points.size():return {"ok":false,"reason":"도로 높이 경로가 필요합니다"}
 	for value in heights_m:
 		if not is_finite(value):return {"ok":false,"reason":"지원하지 않는 도로 높이입니다"}
-	var road:Dictionary={"points":points.duplicate(),"heights_m":heights_m.duplicate(),"kind":kind,"lanes":lanes,"width":RoadProfile.width_for(kind,lanes,config.road_width),"major_side":major_side}
+	var road:Dictionary={"points":points.duplicate(),"heights_m":heights_m.duplicate(),"kind":kind,"lanes":lanes,"width":RoadProfile.width_for(kind,lanes,config.road_width,travel_dir)}
+	if travel_dir!=0:road.travel_dir=travel_dir
+	else:road["major_side"]=major_side
 	var origin_value:Variant=grid_frame.get("origin")
 	var along:Variant=grid_frame.get("along")
 	var outward:Variant=grid_frame.get("outward")
@@ -731,12 +759,9 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 		road.grid_frame=grid_frame.duplicate(true)
 	var error:String=preload("res://core/road_height.gd").validate(road,Vector2(width,height))
 	if error!="":return {"ok":false,"reason":error}
-	var coplanar:Array=[]
-	for existing:Dictionary in roads:
-		error=preload("res://core/road_height.gd").overlap_error(road,existing)
-		if error!="":return {"ok":false,"reason":error}
-		if preload("res://core/road_height.gd").same_level_contact(road,existing):coplanar.append(existing)
-	var construction:Dictionary=preload("res://core/road_construction.gd").plan(coplanar,road)
+	var layers:=_road_layer_context(road)
+	if not layers.ok:return layers
+	var construction:Dictionary=preload("res://core/road_construction.gd").plan(layers.roads,road)
 	var sunken:bool=preload("res://core/road_height.gd").sunken(road)
 	var raised:bool=preload("res://core/road_height.gd").raised(road)
 	for route:Dictionary in transit_routes:
@@ -761,9 +786,7 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 			if level< -.0001 and level>=preload("res://core/road_height.gd").PORTAL_M-.0001 and (patch in layered.junctions or patch.has("box")):return {"ok":false,"reason":"트렌치 안에는 교차로를 만들 수 없습니다"}
 	var final_patches:Array=[]
 	if not buildings.is_empty() or not public_facilities.lots.is_empty() or not power.plants.is_empty() or not water.facilities.is_empty():
-		final_patches=_changed_road_patches(additions)
-	# Covered underground patches pass below every surface record (E2).
-	final_patches=final_patches.filter(func(j):return not preload("res://core/road_height.gd").covered_at(float(j.get("height_m",0))))
+		final_patches=_changed_surface_road_patches(additions)
 	var final_ribbons:Array[PackedVector2Array]=[]
 	for addition:Dictionary in additions:final_ribbons.append_array(preload("res://core/road_height.gd").surface_ribbons(addition))
 	var demolition:Array[int]=[]
@@ -797,10 +820,13 @@ func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array
 
 			next_road_id+=1
 			roads.append(addition)
+		road_topology_revision+=1
 		_update_zoning_for_road(road)
+		if not raised and not sunken:
+			for building in buildings:orient_building(building)
 	return result
 
-func _changed_road_patches(additions: Array) -> Array:
+func _changed_surface_road_patches(additions: Array) -> Array:
 	var before:=RoadJunctions.analyze(roads)
 	var previous: Dictionary={}
 	for patch: Dictionary in before.junctions+before.joins:
@@ -808,6 +834,8 @@ func _changed_road_patches(additions: Array) -> Array:
 	var after:=RoadJunctions.analyze(roads+additions)
 	var changed: Array=[]
 	for patch: Dictionary in after.junctions+after.joins:
+		# Covered underground patches pass below every surface record (E2).
+		if preload("res://core/road_height.gd").covered_at(float(patch.get("height_m",0))):continue
 		# Node keys include height; compare pavement, not mutable arm metadata or indices.
 		if previous.has(patch.key):
 			var old: PackedVector2Array=previous[patch.key]
@@ -871,6 +899,7 @@ func demolish_road_selection(selection: Dictionary) -> Dictionary:
 			replacement.append(pieces[i])
 	next_road_id=fragment_id
 	roads=replacement
+	road_topology_revision+=1
 	_update_zoning_for_road({})
 	for building in buildings:orient_building(building)
 	population.sync(buildings);utilities.mark_dirty()
@@ -894,6 +923,7 @@ func demolish_road_unit(id: int,point: Vector2) -> Dictionary:
 			if j==0:pieces[j].parcel_id=id
 			else:pieces[j].parcel_id=next_road_id;next_road_id+=1
 			roads.insert(i+j,pieces[j])
+		road_topology_revision+=1
 		_update_zoning_for_road({})
 		for building in buildings:orient_building(building)
 		population.sync(buildings);utilities.mark_dirty()
@@ -919,6 +949,7 @@ func demolish(kind: String, id: int) -> Dictionary:
 			for i in range(roads.size()):
 				if int(roads[i].get("parcel_id",i))==id:
 					roads.remove_at(i)
+					road_topology_revision+=1
 					_update_zoning_for_road({})
 					for building in buildings:orient_building(building)
 					removed=true
@@ -1184,7 +1215,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	# Upgrade saved footprints only; never remove/move authored roads or buildings.
 	for road in roads:
 		if road.kind!="local":continue
-		var target:=RoadProfile.width_for(road.kind,road.lanes,config.road_width)
+		var target:=RoadProfile.width_for_record(road,config.road_width)
 		if not is_equal_approx(road.width,target):road.width=target;road.erase("grid_frame")
 	public_facilities.refresh_road_bindings()
 	var topology: Dictionary=RoadJunctions.analyze(roads)
@@ -1221,8 +1252,9 @@ func _update_zoning_for_road(_road: Dictionary):
 				flat_visuals.append(flat)
 		for visual:Dictionary in flat_visuals:
 			road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,visual.width,bounds,visual.flat_start,visual.flat_end),intersection_regions))
-			road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,RoadProfile.asphalt_width(visual),bounds,visual.flat_start,visual.flat_end),intersection_regions))
-			road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
+			road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_asphalt(visual,bounds),intersection_regions))
+			if RoadProfile.has_median(visual):
+				road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
 			for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
 			for line in RoadGeometry.shoulder_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(line,bounds,line_regions))
 	for paint in transition_paint:
@@ -1231,6 +1263,8 @@ func _update_zoning_for_road(_road: Dictionary):
 	# Crossings can lie inside the render box: clip against all actually visible asphalt.
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)
+	road_direction_arrows=RoadGeometry.retained_direction_arrows(road_visuals,topology,paint_surfaces,controlled_regions)
+	road_lane_marks=RoadGeometry.trim_direction_arrow_marks(road_lane_marks,road_direction_arrows)
 	for junction in junctions:
 		if absf(float(junction.get("height_m",0)))>.0001:continue # Raised and underground patches draw elsewhere.
 		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,paint_surfaces))

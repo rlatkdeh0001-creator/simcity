@@ -37,8 +37,9 @@ func sidewalk_anchor(entry:Dictionary,point:Vector2,fixed_front:Vector2=Vector2.
  var best:Dictionary={};var distance:=0.0001 if retained else 2.0
  for road:Dictionary in city.roads:
   if road.kind!="local":continue
-  var asphalt:float=city.RoadProfile.asphalt_width(road)
-  if (float(road.width)-asphalt)*2+0.0001<float(entry.required_sidewalk_width_m):continue
+  var profile=city.RoadProfile
+  var edges:Vector2=profile.asphalt_edges(road)
+  var travel:int=profile.travel_direction(road) if entry.get("id","")=="bus-stop-01" else 0
   for i in range(1,road.points.size()):
    var a:Vector2=road.points[i-1];var b:Vector2=road.points[i]
    var axis:Vector2=(b-a).normalized();var length:float=a.distance_to(b)
@@ -46,10 +47,14 @@ func sidewalk_anchor(entry:Dictionary,point:Vector2,fixed_front:Vector2=Vector2.
    if length<float(entry.width):continue
    var projected:float=(point-a).dot(axis)
    var along:float=clampf(projected if retained else roundf(projected),half,length-half)
-   for sign_value:int in [-1,1]:
-    var outward:=Vector2(-axis.y,axis.x)*sign_value
+   var right:=Vector2(-axis.y,axis.x)
+   for sign_value:int in ([-1,1] if travel==0 else [travel]):
+    if profile.sidewalk_width(road,sign_value)*4+0.0001<float(entry.required_sidewalk_width_m):continue
+    var outward:=right*sign_value
+    # The cursor may snap along the curb, never from across a one-way road.
+    if travel!=0 and (point-a).dot(outward)<=0:continue
     if retained and (-outward).dot(fixed_front)<.999:continue
-    var curb:Vector2=a+axis*along+outward*asphalt/2
+    var curb:Vector2=a+axis*along+right*(edges.y if sign_value==1 else edges.x)
     var gap:=point.distance_to(curb)
     if gap<distance:
      distance=gap;best={"position":curb,"front":-outward,"road_id":road.parcel_id,"direction":sign_value}

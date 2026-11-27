@@ -96,8 +96,8 @@ func run():
    verify(before==after,"asset browsing preserves city, funds and clock")
    verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
-  var lane_counts:Array=game.road_lane_cards.map(func(card):return card.get_meta("lanes"))
-  verify(lane_counts==[2,3,4,5,6,7,8] and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools expose the approved 2–8 lane cards and grid toggle instead of the old selector")
+  var cards:Array=game.road_lane_cards.map(func(card):return [card.get_meta("lanes"),card.get_meta("travel_dir",0)])
+  verify(cards==[[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[1,1],[2,1],[3,1],[4,1]] and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools preserve the original 2–8 lane cards, then append four one-way cards")
   var zoom_before: float=game.map_zoom
   var origin_before: Vector2=game.origin
   game.select_category("fire")

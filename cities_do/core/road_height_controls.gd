@@ -32,11 +32,12 @@ func change(delta:int):
  target().set_height(minf(shallowest_underground_height(),height) if target().target_height_m<0 else maxf(5,height));synchronize()
 func synchronize():
  var height:float=target().target_height_m
+ var ground_only:bool=not rail and target().travel_dir!=0
  value_label.text="0 m" if height==0 else ("+%d m"%height if height>0 else "−%d m"%absf(height))
  minus.disabled=height==0;plus.disabled=height==0 or (not rail and height==Height.SHALLOWEST_ROAD_TUNNEL_M)
  for key in mode_buttons:
   var active:bool=(key==0 and height==0) or (key==10 and height>0) or (key<0 and height<0)
-  var button:Button=mode_buttons[key];button.set_pressed_no_signal(active)
+  var button:Button=mode_buttons[key];button.disabled=ground_only and key!=0;button.set_pressed_no_signal(active)
   var box:=StyleBoxFlat.new();box.bg_color=Color("36b7ff") if active else Color("142b37");box.set_corner_radius_all(4)
   box.border_width_bottom=3 if active else 0;box.border_color=Color("edf4f5")
   button.add_theme_stylebox_override("normal",box);button.add_theme_stylebox_override("pressed",box)

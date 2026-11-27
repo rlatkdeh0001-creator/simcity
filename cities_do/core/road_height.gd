@@ -1,4 +1,5 @@
 extends RefCounted
+const Profile=preload("res://core/road_profile.gd")
 ## E1/E2 height geometry. Units: horizontal city cells (4m), vertical metres.
 const EPS := .0001
 const SHALLOWEST_ROAD_TUNNEL_M := -10.0
@@ -31,6 +32,46 @@ static func sunken(road:Dictionary)->bool:
   if value< -EPS:return true
  return false
 static func off_ground(road:Dictionary)->bool:return raised(road) or sunken(road)
+## Geometry view for 2D ground rules, never passed to topology or stored as roads.
+static func ground_spans(road:Dictionary)->Array[Dictionary]:
+ if not off_ground(road):return [road]
+ var result:Array[Dictionary]=[]
+ for piece:Dictionary in pieces_between(road,0,0):
+  var span:=road.duplicate()
+  span.points=piece.points
+  span.heights_m=piece.heights_m
+  result.append(span)
+ return result
+
+static func ground_contact_paths(roads:Array)->Array[Dictionary]:
+ var result:Array[Dictionary]=[]
+ for road:Dictionary in roads:
+  result.append_array(ground_spans(road))
+  if not off_ground(road):continue
+  # A bare 0m ramp endpoint can connect, but it contributes no overpaint length.
+  var heights:PackedFloat64Array=road.heights_m
+  for i in range(heights.size()):
+   if absf(heights[i])>EPS:continue
+   if (i>0 and absf(heights[i-1])<=EPS) or (i+1<heights.size() and absf(heights[i+1])<=EPS):continue
+   result.append({"points":PackedVector2Array([road.points[i],road.points[i]])})
+ return result
+
+static func snap_ground_point(point:Vector2,roads:Array,contacts:Array)->Vector2:
+ if not point.is_finite():return point
+ var best:=point;var nearest:=1.0+.000001;var found:=false
+ # Preserve authored endpoint priority; a clipped span's end is only a projection.
+ for road:Dictionary in roads:
+  for endpoint:Vector2 in [road.points[0],road.points[-1]]:
+   var gap:=point.distance_to(endpoint)
+   if gap<nearest and absf(height_at(road,endpoint))<=EPS:nearest=gap;best=endpoint;found=true
+ if found:return best
+ for span:Dictionary in contacts:
+  for i in range(1,span.points.size()):
+   var q:=Geometry2D.get_closest_point_to_segment(point,span.points[i-1],span.points[i])
+   var gap:=point.distance_to(q)
+   if gap<nearest:nearest=gap;best=q
+ return best
+
 static func level(road:Dictionary)->int:return 1 if raised(road) else (-1 if sunken(road) else 0)
 ## The portal line and everything deeper is covered; the open trench is above it.
 static func covered_at(height:float,portal:float=PORTAL_M)->bool:return height<=portal+EPS
@@ -160,7 +201,8 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
     if absf(height_at(a,point)-height_at(b,point))<EPS:return true
  return false
 static func validate(road:Dictionary,bounds:Vector2)->String:
- if road.kind not in ["local","highway"] or road.lanes not in ([2,3,4,5,6,7,8] if road.kind=="local" else [2,4]) or road.major_side not in [-1,1]:return "도로 경로가 필요합니다"
+ if not Profile.valid_selection(road.kind,road.lanes,int(road.get("major_side",1)),int(road.get("travel_dir",0))):return "도로 경로가 필요합니다"
+ if Profile.travel_direction(road)!=0 and off_ground(road):return "일방통행 도로는 지상에만 건설할 수 있습니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
  var heights:PackedFloat64Array=road.heights_m
  var error:=profile_error(road.points,heights,road.kind,bounds)

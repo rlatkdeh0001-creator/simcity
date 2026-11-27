@@ -42,11 +42,13 @@ static func catenary_draw_pieces(source:Dictionary)->Array:
  return pieces
 ## E3a: rail decks are rebuilt with roads or transit geometry, then catenary depths follow them.
 var structure_signature:Variant=null
+var structure_generation:=0
 func sync_transit_structures():
  if elevated==null or actors==null:return
  var key:=hash([view.city.get_instance_id(),view.city.roads,view.city.width,view.city.height,view.transit_view.generation])
  var rebuilt:bool=key!=structure_signature
  if rebuilt:
+  structure_generation+=1
   structure_signature=key;elevated.rebuild();catenary_generation=-1
   # E2 road trenches and E3b rail trenches follow roads and transit geometry alike.
   if underground!=null:underground.rebuild()
@@ -277,11 +279,13 @@ var access_generation:=0
 var stripes:Array=[]
 
 var arrows:Array=[]
+var direction_arrows:Array[PackedVector2Array]=[]
 var line_mesh:ArrayMesh
 var line_material:ShaderMaterial
 var line_zoom:float=-1.0
 var car_frames:Dictionary={}
 var car_widths:Dictionary={}
+var vehicle_road_lookups:=0
 const DISPLAY_STRIDE:=100
 func setup(owner_view):
  view=owner_view;z_index=-10
@@ -324,6 +328,8 @@ func synchronize():
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))
+  direction_arrows.clear()
+  for polygon in view.city.road_direction_arrows:direction_arrows.append(project(polygon))
   var boundary:=PackedVector2Array([Vector2.ZERO,Vector2(view.city.width,0),Vector2(view.city.width,view.city.height),Vector2(0,view.city.height)])
   for link in Boundary.road_links(view.city):
    for shape in Boundary.arrow_shapes(link):
@@ -441,6 +447,7 @@ func paint(canvas:CanvasItem,kind:String):
   "roads":
    for shape in road_shapes:canvas.draw_colored_polygon(shape[0],shape[1])
    for polygon in stripes:canvas.draw_colored_polygon(polygon,Color("e8e7dc"))
+   for polygon in direction_arrows:canvas.draw_colored_polygon(polygon,Color("e8e7dc"))
    for polygon in arrows:canvas.draw_colored_polygon(polygon,Boundary.PAINT)
   "marks":
    if line_mesh!=null and line_mesh.get_surface_count()>0:canvas.draw_mesh(line_mesh,null)
@@ -484,7 +491,14 @@ func fallback(canvas:CanvasItem,b:Dictionary,anchor:Vector2):
 static func display_eligible(vehicle:Dictionary)->bool:
  # Existing synthetic fleet entries are already display samples. Never sample them twice.
  return not vehicle.has("trip_ordinal") or int(vehicle.trip_ordinal)%DISPLAY_STRIDE==0
+func vehicle_road(lanes:Array,lane_id:int)->Dictionary:
+ var lane:Dictionary=lanes[lane_id]
+ var owner:=int(lane.get("road",-1))
+ if owner<0:owner=int(lanes[lane.from].road)
+ vehicle_road_lookups+=1
+ return view.city.roads[owner]
 func _process(_delta:float):
+ vehicle_road_lookups=0
  if view==null:return
  if city_reference!=view.city:synchronize()
  view.transit_view.sync_visibility()
@@ -501,13 +515,12 @@ func _process(_delta:float):
  var active:Dictionary={}
  if view.traffic!=null and view.traffic.running and view.traffic.simulation!=null:
   var ppm:float=view.tile.x/4*sqrt(2.0)
+  var lanes:Array=view.traffic.simulation.network.lanes
   for vehicle in view.traffic.simulation.vehicles:
    if not display_eligible(vehicle):continue
    var point:Vector2=view.traffic.simulation.position(vehicle)/4
    var p:=iso(point)
-   var lane:Dictionary=view.traffic.simulation.network.lanes[vehicle.lane]
-   if int(lane.get("road",-1))<0:lane=view.traffic.simulation.network.lanes[lane.from]
-   var road:Dictionary=view.city.roads[lane.road]
+   var road:=vehicle_road(lanes,vehicle.lane)
    var height:float=preload("res://core/road_height.gd").height_at(road,point)
    if not car_frames.has(vehicle.asset_id):
     car_frames[vehicle.asset_id]=view.traffic.sprite_rect(vehicle.asset_id,Vector2.ZERO,ppm)

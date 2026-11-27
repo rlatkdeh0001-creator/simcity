@@ -70,6 +70,8 @@ var info: Label
 var treasury_label: Label
 var origin := Vector2(650, 130)
 var tile := Vector2(14, 7)
+var traffic_road_city_id := 0
+var traffic_road_revision := -1
 
 func screen(p: Vector2) -> Vector2:
 	return origin + Vector2((p.x - p.y) * tile.x, (p.x + p.y) * tile.y) * map_zoom
@@ -89,7 +91,7 @@ func _ready():
 	city.enable_simulation_worker()
 	city.simulation.edit_completed.connect(_simulation_edit_completed)
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
-	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for(r.kind,r.lanes,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
+	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for_record(r,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for asset in city.catalog.entries:
 		var texture: Texture2D = load(asset.texture)
@@ -306,7 +308,7 @@ func _build_controls(layer: CanvasLayer):
 	layer.add_child(hud)
 
 func toggle_traffic():
-	if traffic.running:
+	if traffic.running or traffic.resume_on_road_edit:
 		stop_traffic()
 		message = ""
 	else:
@@ -386,6 +388,10 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if traffic!=null and (traffic_road_city_id!=city.get_instance_id() or traffic_road_revision!=city.road_topology_revision):
+		traffic_road_city_id=city.get_instance_id()
+		traffic_road_revision=city.road_topology_revision
+		traffic.refresh_roads(city.roads)
 	if transit_view!=null and mode not in ["rail","metro"]:transit_view.cancel()
 	if mode!="demolish":cancel_demolition_drag()
 	if road_drawer!=null and mode!="road":road_drawer.cancel()
@@ -478,7 +484,6 @@ func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
 		return
 	var result: Dictionary=city.demolish_road_selection(demolition_hover.selection)
 	message="" if result.ok else result.reason
-	if result.ok:stop_traffic()
 	cancel_demolition_drag()
 	refresh()
 

@@ -2,6 +2,7 @@ extends RefCounted
 ## City cells: one cell is four metres. Authored existing roads are never rewritten.
 const Paths=preload("res://core/road_junctions.gd")
 const Angles=preload("res://core/road_angle_snap.gd")
+const Profile=preload("res://core/road_profile.gd")
 const BUILD:=2.0
 const CONNECT:=1.0
 const REMOVE:=1.0
@@ -98,6 +99,8 @@ static func fragment(road: Dictionary,first: float,last: float) -> Dictionary:
  result.flat_end=bool(road.get("flat_end",false)) or last<length-EPS
  return result
 static func supports_column(road: Dictionary,frame: Dictionary,u: int) -> bool:
+ # Both regular and seam columns pass here, after the paired frames have been aligned.
+ if Profile.travel_direction(road)!=0 and Profile.sidewalk_width(road,frame.side)<=0:return false
  if not road.has("zoning_source_points"):return true
  var a: Vector2=frame.origin-frame.outward*road.width/2+frame.along*u
  var b: Vector2=a+frame.along

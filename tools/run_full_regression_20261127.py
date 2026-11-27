@@ -117,12 +117,16 @@ def require_native_desktop_free():
         raise SystemExit(f'Native verification deferred; other Godot processes: {godot_processes}')
 
 
-def import_project_copy(out):
+def import_project_copy(out, *, extra_project_paths=()):
     """Import real resources without rewriting checkout metadata or config."""
     sandbox = out / 'normal-import'
     project = sandbox / PROJECT.name
     tracked = git('ls-files', '-z', '--', PROJECT.name).decode('utf-8').split('\0')
-    for relative in (p for p in tracked if p):
+    for relative in extra_project_paths:
+        path = Path(relative)
+        if path.parts[:1] != (PROJECT.name,) or '..' in path.parts or not (ROOT / path).resolve().is_relative_to(PROJECT):
+            raise ValueError(f'Additional import path is outside the project: {relative}')
+    for relative in sorted({p for p in tracked if p} | set(extra_project_paths)):
         target = sandbox / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / relative, target)
