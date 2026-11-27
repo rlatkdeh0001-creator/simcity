@@ -4,6 +4,18 @@ const LOCAL_LANES:=[2,3,4,5,6,7,8]
 const ONE_WAY_WIDTHS:=[1.5,3.0,3.0,5.0] # City cells, independent of the legacy width scale.
 const ONE_WAY_SIDEWALK_RIGHT:=[.75,.75,.75,1.25] # Metres
 const ONE_WAY_SHOULDER_RIGHT:=[1.75,1.75,0.0,1.75]
+enum BranchVariant { SIX_METRE, EIGHT_METRE }
+# Width and transition grade are in cells; sidewalk and shoulder in metres.
+const BRANCH_IDS:=["branch-one-way-6m","branch-one-way-8m"]
+const BRANCH_PROFILES:={
+ "branch-one-way-6m":{"lanes":1,"width":1.5,"grade":1.5,"walk":.75,"shoulder":1.75},
+ "branch-one-way-8m":{"lanes":2,"width":2.0,"grade":3.0,"walk":1.0,"shoulder":0.0},
+}
+static func branch_profile(road: Dictionary) -> Dictionary:
+ var key:Variant=road.get("road_variant")
+ if not key is String or road.get("kind")!="local" or travel_direction(road)==0:return {}
+ var section:Dictionary=BRANCH_PROFILES.get(key,{})
+ return section if not section.is_empty() and road.get("lanes")==section.lanes else {}
 static func travel_direction(road: Dictionary) -> int:
  var value:Variant=road.get("travel_dir",0)
  return int(value) if value is int and value in [-1,1] else 0
@@ -12,8 +24,12 @@ static func width_for(kind: String,lanes: int,base_width: float=2.0,travel_dir: 
  if kind=="local" and travel_dir!=0 and lanes>=1 and lanes<=ONE_WAY_WIDTHS.size():return ONE_WAY_WIDTHS[lanes-1]
  return base_width*(width_grade(lanes) if kind=="local" else lanes)/2.0
 static func width_for_record(road: Dictionary,base_width: float=2.0) -> float:
+ var branch:=branch_profile(road)
+ if not branch.is_empty():return branch.width
  return width_for(road.kind,road.lanes,base_width,travel_direction(road))
 static func grade_for_record(road: Dictionary) -> float:
+ var branch:=branch_profile(road)
+ if not branch.is_empty():return branch.grade
  return width_for_record(road) if travel_direction(road)!=0 else float(width_grade(road.lanes))
 static func valid_selection(kind: String,lanes: int,major_side: int,travel_dir: int) -> bool:
  if travel_dir!=0:return travel_dir==1 and kind=="local" and lanes>=1 and lanes<=ONE_WAY_WIDTHS.size()
@@ -26,12 +42,19 @@ static func direction_count(road: Dictionary,direction: int) -> int:
 static func sidewalk_width(road: Dictionary,side: int) -> float:
  var travel:=travel_direction(road)
  if travel==0:return (float(road.width)-asphalt_width(road))/2
+ var branch:=branch_profile(road)
+ if not branch.is_empty():return branch.walk/4.0 if side==travel else 0.0
  return ONE_WAY_SIDEWALK_RIGHT[road.lanes-1]/4.0 if side==travel or road.lanes>1 else 0.0
 static func shoulder_width(road: Dictionary,side: int) -> float:
  var travel:=travel_direction(road)
  if travel==0:
   return (asphalt_width(road)-travel_width(road))/2 if road.get("kind","local")=="local" and road.lanes in [2,4,6] else 0.0
+ var branch:=branch_profile(road)
+ if not branch.is_empty():return branch.shoulder/4.0 if side==travel else 0.0
  return ONE_WAY_SHOULDER_RIGHT[road.lanes-1]/4.0 if side==travel or road.lanes>1 else 0.0
+## Policy only; bus berth admission uses the physical shoulder independently.
+static func allows_roadside_parking(road: Dictionary,side: int) -> bool:
+ return branch_profile(road).is_empty() and shoulder_width(road,side)>0
 ## Signed edges along the right normal of authored point order, in cells.
 static func asphalt_edges(road: Dictionary) -> Vector2:
  var half:=float(road.width)/2

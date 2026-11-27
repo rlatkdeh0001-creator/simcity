@@ -19,7 +19,7 @@ static func same_line(a: Dictionary,b: Dictionary) -> bool:
  return absf(a.direction.cross(b.direction))<.000001 and absf((b.a-Vector2(a.a)).cross(a.direction))<EPS and absf((b.b-Vector2(a.a)).cross(a.direction))<EPS
 static func same_profile(a: Dictionary,b: Dictionary) -> bool:
  var travel:=Profile.travel_direction(a)
- return a.kind==b.kind and a.lanes==b.lanes and is_equal_approx(a.width,b.width) and travel==Profile.travel_direction(b) and (travel!=0 or int(a.get("major_side",1))==int(b.get("major_side",1)))
+ return a.kind==b.kind and a.lanes==b.lanes and a.get("road_variant")==b.get("road_variant") and is_equal_approx(a.width,b.width) and travel==Profile.travel_direction(b) and (travel!=0 or int(a.get("major_side",1))==int(b.get("major_side",1)))
 static func collinear_contact(a: Dictionary,b: Dictionary,ground:bool=false) -> bool:
  for first in segments(a.points):
   for second in segments(b.points):

@@ -6,6 +6,8 @@ const Parcels=preload("res://core/road_parcels.gd")
 const ARROW_INTERVAL:=16.0 # 64 metres
 const ARROW_END_INSET:=2.0
 const ARROW_MIN_SPACING:=1.75
+const BRANCH_STRIPE_GAP:=.02 # Cells; leave 8 cm of asphalt at the curb.
+const BRANCH_STRIPE_WIDTH:=.04
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
@@ -22,8 +24,45 @@ static func clip_to_map(shapes: Array[PackedVector2Array],bounds: Vector2) -> Ar
 	return result
 static func clipped_asphalt(road: Dictionary,bounds: Vector2) -> Array[PackedVector2Array]:
 	return clip_to_map(asphalt_ribbons(road),bounds)
+static func _closed_branch(road:Dictionary)->bool:
+	var points: PackedVector2Array=road.points
+	return points.size()>3 and points[0]==points[-1] and (road.has("branch_edge_spans") or road.has("road_variant"))
+static func _closed_branch_surface(points:PackedVector2Array,edges:Vector2)->Array[PackedVector2Array]:
+	# Offset contours of a closed stroke can return its hole as another polygon.
+	# Build positive surface pieces around the cyclic path instead, with no caps.
+	var result:Array[PackedVector2Array]=[]
+	var count:=points.size()-1
+	for side:int in [-1,1]:
+		var radius:=edges.y if side>0 else -edges.x
+		var incoming:=PackedVector2Array();incoming.resize(count)
+		var outgoing:=PackedVector2Array();outgoing.resize(count)
+		for i in range(count):
+			var vertex:=points[i]
+			var before:=(vertex-points[posmod(i-1,count)]).normalized()
+			var after:=(points[i+1]-vertex).normalized()
+			var u:=Vector2(-before.y,before.x)*side
+			var v:=Vector2(-after.y,after.x)*side
+			if before.cross(after)*side>=-.0001:
+				var normal:=(u+v).normalized()
+				var edge:=vertex+normal*radius/maxf(.5,normal.dot(v))
+				incoming[i]=edge;outgoing[i]=edge
+				continue
+			incoming[i]=vertex+u*radius;outgoing[i]=vertex+v*radius
+			var sweep:=u.angle_to(v)
+			var steps:=ceili(absf(sweep)/.25)
+			var fan:=PackedVector2Array([vertex,incoming[i]])
+			for step in range(1,steps):fan.append(vertex+u.rotated(sweep*float(step)/steps)*radius)
+			fan.append(outgoing[i]);result.append(fan)
+		for i in range(count):
+			result.append(PackedVector2Array([points[i],points[i+1],incoming[(i+1)%count],outgoing[i]]))
+	return result
+static func pavement_ribbons(road:Dictionary)->Array[PackedVector2Array]:
+	if not _closed_branch(road):return ribbons(road.points,road.width,road.flat_start,road.flat_end)
+	var half:=float(road.width)/2
+	return _closed_branch_surface(road.points,Vector2(-half,half))
 static func asphalt_ribbons(road: Dictionary) -> Array[PackedVector2Array]:
 	var edges:=Profile.asphalt_edges(road)
+	if _closed_branch(road):return _closed_branch_surface(road.points,edges)
 	var flat_start:bool=road.get("flat_start",true);var flat_end:bool=road.get("flat_end",true)
 	var points:PackedVector2Array=road.points
 	if is_zero_approx(edges.x+edges.y):return ribbons(points,Profile.asphalt_width(road),flat_start,flat_end)
@@ -90,7 +129,11 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		var source_ids:Array=[int(roads[i].get("parcel_id",-1))]
 		var supports:Array=roads[i].get("piers",[]).duplicate(true)
 		var seams: Array[Vector2]=[]
+		var branch_seed:bool=roads[i].has("road_variant") and not Profile.branch_profile(roads[i]).is_empty()
+		var first_is_branch:=branch_seed
+		var branch_boundaries:Dictionary={}
 		for side in [0,1]:
+			var tail_is_branch:=branch_seed
 			if side==1:chain.reverse();heights.reverse()
 			while true:
 				var key: String=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes,heights[-1])
@@ -107,6 +150,10 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				var travel:=Profile.travel_direction(roads[i])
 				if Profile.travel_direction(road)*next_order!=travel*chain_order:break
 				if travel==0 and int(road.lanes)%2 and int(road.get("major_side",1))*next_order!=int(roads[i].get("major_side",1))*chain_order:break
+				var extension_is_branch:=road.has("road_variant") and not Profile.branch_profile(road).is_empty()
+				if extension_is_branch!=tail_is_branch:branch_boundaries[chain[-1]]=true
+				tail_is_branch=extension_is_branch
+				if side==1:first_is_branch=extension_is_branch
 				var extension: PackedVector2Array=road.points.duplicate()
 				if next.end==1:extension.reverse()
 				seams.append(chain[-1]);used[next.road]=true
@@ -115,19 +162,31 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		chain.reverse();heights.reverse()
 		var height_source:Dictionary={"points":chain,"heights_m":heights}
 		var smooth := PackedVector2Array()
+		var edge_spans:Array[Vector2i]=[]
+		var span_start:=0
+		var in_branch:=first_is_branch
 		for j in range(chain.size()):
 			if j==0 or j==chain.size()-1 or not seams.has(chain[j]):smooth.append(chain[j]);continue
 			var before: Vector2=(chain[j]-chain[j-1]).normalized()
 			var after: Vector2=(chain[j+1]-chain[j]).normalized()
-			if before.dot(after)>.99999:smooth.append(chain[j]);continue
-			var inset: float=minf(float(roads[i].width)*.6,minf(chain[j].distance_to(chain[j-1]),chain[j].distance_to(chain[j+1]))*.24)
-			var a: Vector2=chain[j]-before*inset
-			var b: Vector2=chain[j]+after*inset
-			for step in range(13):
-				var t:=step/12.0
-				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
+			var split:=smooth.size()
+			if before.dot(after)>.99999:smooth.append(chain[j])
+			else:
+				var inset: float=minf(float(roads[i].width)*.6,minf(chain[j].distance_to(chain[j-1]),chain[j].distance_to(chain[j+1]))*.24)
+				var a: Vector2=chain[j]-before*inset
+				var b: Vector2=chain[j]+after*inset
+				for step in range(13):
+					var t:=step/12.0
+					smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
+				split+=6 # Both profiles share the same cross-section at the middle of the fillet.
+			if branch_boundaries.has(chain[j]):
+				if in_branch:edge_spans.append(Vector2i(span_start,split))
+				in_branch=not in_branch
+				span_start=split
+		if in_branch:edge_spans.append(Vector2i(span_start,smooth.size()-1))
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
+		if not edge_spans.is_empty():visual.branch_edge_spans=edge_spans
 		if Height.off_ground(roads[i]):
 			visual.heights_m=PackedFloat64Array()
 			for point in smooth:visual.heights_m.append(Height.height_at(height_source,point))
@@ -137,6 +196,111 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		visual.flat_start=first_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
 		visual.flat_end=last_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
 		result.append(visual)
+	return result
+
+## Adjoining pieces share cross-sections. At an outside corner the curb is
+## rounded, so clipping a miter would cut away the stripe instead of turning it.
+static func branch_edge_marks(visual:Dictionary,rim:Array[PackedVector2Array],asphalt:Array[PackedVector2Array])->Array[PackedVector2Array]:
+	var result:Array[PackedVector2Array]=[]
+	var side:=Profile.travel_direction(visual)
+	var edges:=Profile.asphalt_edges(visual)
+	var edge:=edges.y if side>0 else edges.x
+	var points:PackedVector2Array=visual.points
+	var outer:=Profile.offset_path(points,edge-side*BRANCH_STRIPE_GAP)
+	var inner:=Profile.offset_path(points,edge-side*(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH))
+	var owned:=PackedByteArray()
+	owned.resize(points.size()-1)
+	for span:Vector2i in visual.branch_edge_spans:
+		for i in range(span.x,span.y):owned[i]=1
+	var outer_in:=outer.duplicate();var inner_in:=inner.duplicate()
+	var last:=points.size()-1
+	var closed:=last>2 and points[0]==points[last]
+	# A closed path repeats its first vertex. Process that corner once, but
+	# write the incoming cross-section at the repeated vertex, not the first.
+	for i in range(0 if closed else 1,last):
+		var incoming:=last if i==0 else i
+		if not owned[incoming-1] and not owned[i]:continue
+		var before:=(points[i]-points[incoming-1]).normalized()
+		var after:=(points[i+1]-points[i]).normalized()
+		if before.cross(after)*side>=-.0001:
+			if i==0 and owned[incoming-1] and owned[i]:
+				var seam:=PackedVector2Array([points[incoming-1],points[i],points[i+1]])
+				outer[i]=Profile.offset_path(seam,edge-side*BRANCH_STRIPE_GAP)[1];outer_in[incoming]=outer[i]
+				inner[i]=Profile.offset_path(seam,edge-side*(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH))[1];inner_in[incoming]=inner[i]
+			continue
+		var radius:=absf(edge)
+		var start:=Vector2(-before.y,before.x)*side;var finish:=Vector2(-after.y,after.x)*side
+		var cuts:=_branch_corner_rim(points[i],start,finish,radius,float(visual.width)/2,rim)
+		var outside_scale:=1.0-BRANCH_STRIPE_GAP/radius
+		var inside_scale:=1.0-(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH)/radius
+		outer_in[incoming]=points[i]+cuts[0]*outside_scale;inner_in[incoming]=points[i]+cuts[0]*inside_scale
+		outer[i]=points[i]+cuts[-1]*outside_scale;inner[i]=points[i]+cuts[-1]*inside_scale
+		result.append_array(_branch_corner_marks(points[i],cuts,outside_scale,inside_scale,asphalt,owned[incoming-1]!=0,owned[i]!=0))
+	for i in range(owned.size()):
+		if not owned[i]:continue
+		var quad:=PackedVector2Array([outer[i],outer_in[i+1],inner_in[i+1],inner[i]])
+		result.append_array(Junctions.clip_paint(quad,asphalt))
+	return result
+
+static func _branch_corner_rim(center:Vector2,start:Vector2,finish:Vector2,radius:float,half:float,rim:Array[PackedVector2Array])->Array[Vector2]:
+	var sweep:=start.angle_to(finish)
+	var cuts:Array[Vector2]=[]
+	var first:=start*radius;var last:=finish*radius
+	# Use the same arc chords as the actual asphalt, not a smoother circle
+	# running outside its tessellated edge. All vectors here are corner-local.
+	for polygon in rim:
+		for vertex in polygon:
+			var offset:=vertex-center
+			var distance:=offset.length()
+			if distance<radius-.001 or distance>half+.001:continue
+			var fraction:=start.angle_to(offset)/sweep
+			if absf(fraction)<=.001:
+				if distance>first.length():first=start*distance
+			elif absf(fraction-1)<=.001:
+				if distance>last.length():last=finish*distance
+			elif fraction>0 and fraction<1:cuts.append(offset)
+	cuts.sort_custom(func(a,b):return start.angle_to(a)/sweep<start.angle_to(b)/sweep)
+	cuts.push_front(first);cuts.append(last)
+	return cuts
+
+static func _branch_corner_marks(center:Vector2,cuts:Array[Vector2],outside_scale:float,inside_scale:float,asphalt:Array[PackedVector2Array],before:bool,after:bool)->Array[PackedVector2Array]:
+	var result:Array[PackedVector2Array]=[]
+	var start:=cuts[0].normalized()
+	var sweep:=start.angle_to(cuts[-1])
+	var seam:=start.rotated(sweep*.5)
+	for i in range(1,cuts.size()):
+		var a:=cuts[i-1];var b:=cuts[i]
+		if before!=after:
+			# A mixed fillet owns only its half of the corner at the shared plane.
+			var first:=start.angle_to(a)/sweep;var last:=start.angle_to(b)/sweep
+			if (before and first>=.5) or (after and last<=.5):continue
+			if first<.5 and last>.5:
+				var split:Vector2=Geometry2D.line_intersects_line(Vector2.ZERO,seam,a,b-a)
+				if before:b=split
+				else:a=split
+		var outer_a:=center+a*outside_scale;var outer_b:=center+b*outside_scale
+		var inner_a:=center+a*inside_scale;var inner_b:=center+b*inside_scale
+		result.append_array(Junctions.clip_paint(PackedVector2Array([outer_a,outer_b,inner_b,inner_a]),asphalt))
+	return result
+
+static func branch_taper_marks(join:Dictionary)->Array[PackedVector2Array]:
+	var result:Array[PackedVector2Array]=[]
+	if not join.get("taper",false):return result
+	var edge:PackedVector2Array=join.taper_asphalt
+	var axis:Vector2=join.box_axis
+	var normal:=Vector2(-axis.y,axis.x)
+	var seam:float=join.taper_extents[0]/(join.taper_extents[0]+join.taper_extents[1])
+	for i in range(2):
+		var arm:Dictionary=join.arms[i]
+		if not arm.has("road_variant"):continue
+		var side:=Profile.travel_direction(arm)*(-1 if i==0 else 1)
+		var start:=edge[0 if side>0 else 3]
+		var finish:=edge[1 if side>0 else 2]
+		var middle:=start.lerp(finish,seam)
+		var a:Vector2=(start if i==0 else middle)-normal*side*BRANCH_STRIPE_GAP
+		var b:Vector2=(middle if i==0 else finish)-normal*side*BRANCH_STRIPE_GAP
+		var inset:=normal*side*BRANCH_STRIPE_WIDTH
+		result.append(PackedVector2Array([a,b,b-inset,a-inset]))
 	return result
 
 ## Preview and retained rendering share the world-space glyphs. The retained

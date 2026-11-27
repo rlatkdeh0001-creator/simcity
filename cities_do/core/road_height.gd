@@ -202,6 +202,7 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
  return false
 static func validate(road:Dictionary,bounds:Vector2)->String:
  if not Profile.valid_selection(road.kind,road.lanes,int(road.get("major_side",1)),int(road.get("travel_dir",0))):return "도로 경로가 필요합니다"
+ if road.has("road_variant") and Profile.branch_profile(road).is_empty():return "지원하지 않는 분기 도로입니다"
  if Profile.travel_direction(road)!=0 and off_ground(road):return "일방통행 도로는 지상에만 건설할 수 있습니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
  var heights:PackedFloat64Array=road.heights_m

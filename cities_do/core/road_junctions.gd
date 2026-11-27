@@ -128,6 +128,7 @@ static func analyze(roads: Array) -> Dictionary:
      var travel:=Profile.travel_direction(roads[road_id])
      if travel!=0:arm.travel_dir=-travel if pair[3] else travel
      else:arm.major_side=int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1)
+     if roads[road_id].has("road_variant"):arm["road_variant"]=roads[road_id]["road_variant"]
      node.arms.append(arm)
  var junctions := []
  var joins := []

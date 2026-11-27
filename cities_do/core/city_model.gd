@@ -30,6 +30,7 @@ var road_pavement: Array[PackedVector2Array]=[]
 var road_asphalt: Array[PackedVector2Array]=[]
 var road_medians: Array[PackedVector2Array]=[]
 var road_lane_marks: Array[PackedVector2Array]=[]
+var road_branch_edge_marks: Array[PackedVector2Array]=[]
 var road_direction_arrows: Array[PackedVector2Array]=[]
 var junction_pavement: Array[PackedVector2Array]=[]
 var junction_asphalt: Array[PackedVector2Array]=[]
@@ -745,13 +746,26 @@ func _hits_existing_support(candidate: Dictionary) -> bool:
 	return false
 
 func add_elevated_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String = "local", commit: bool = true, lanes: int = 2, confirmed: bool = false, major_side: int = 1, grid_frame: Dictionary = {},approved_demolition:Variant=null,travel_dir:int=0) -> Dictionary:
-	if commit and _defer_simulation_edit(add_elevated_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null,travel_dir)):return _queued_simulation_edit()
+	return _add_height_road(points,heights_m,kind,commit,lanes,confirmed,major_side,grid_frame,approved_demolition,travel_dir,"")
+
+func add_branch_one_way(points: PackedVector2Array, variant: RoadProfile.BranchVariant, commit: bool = true, confirmed: bool = false, approved_demolition: Variant = null) -> Dictionary:
+	if variant<0 or variant>=RoadProfile.BRANCH_IDS.size():return {"ok":false,"reason":"지원하지 않는 분기 도로입니다"}
+	var key:String=RoadProfile.BRANCH_IDS[variant]
+	var heights:=PackedFloat64Array()
+	heights.resize(points.size())
+	return _add_height_road(points,heights,"local",commit,RoadProfile.BRANCH_PROFILES[key].lanes,confirmed,1,{},approved_demolition,1,key)
+
+func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String, commit: bool, lanes: int, confirmed: bool, major_side: int, grid_frame: Dictionary, approved_demolition: Variant, travel_dir: int, road_variant: String) -> Dictionary:
+	if commit and _defer_simulation_edit(_add_height_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null,travel_dir,road_variant)):return _queued_simulation_edit()
 	if points.size()<2 or heights_m.size()!=points.size():return {"ok":false,"reason":"도로 높이 경로가 필요합니다"}
 	for value in heights_m:
 		if not is_finite(value):return {"ok":false,"reason":"지원하지 않는 도로 높이입니다"}
 	var road:Dictionary={"points":points.duplicate(),"heights_m":heights_m.duplicate(),"kind":kind,"lanes":lanes,"width":RoadProfile.width_for(kind,lanes,config.road_width,travel_dir)}
 	if travel_dir!=0:road.travel_dir=travel_dir
 	else:road["major_side"]=major_side
+	if not road_variant.is_empty():
+		road["road_variant"]=road_variant
+		road["width"]=RoadProfile.width_for_record(road,config.road_width)
 	var origin_value:Variant=grid_frame.get("origin")
 	var along:Variant=grid_frame.get("along")
 	var outward:Variant=grid_frame.get("outward")
@@ -1224,10 +1238,12 @@ func _update_zoning_for_road(_road: Dictionary):
 	road_visuals=RoadGeometry.continuous_roads(roads,topology)
 	# Pavement owns its render box; approach lines use the actual stop-line boundaries.
 	for cache in [road_crosswalks,road_stop_lines,intersection_regions,road_pavement,road_asphalt,road_medians,road_lane_marks,junction_pavement,junction_asphalt]:cache.clear()
+	road_branch_edge_marks.clear()
 	var bounds:=Vector2(width,height)
 	var border:=PackedVector2Array([Vector2.ZERO,Vector2(width,0),bounds,Vector2(0,height)])
 	var line_regions: Array[PackedVector2Array]=[]
 	var controlled_regions: Array[PackedVector2Array]=[]
+	var passive_asphalt: Dictionary={}
 	var transition_paint:Array[Dictionary]=[]
 	const JunctionPaint=preload("res://core/road_junction_paint.gd")
 	var close_approaches:=JunctionPaint.close_approaches(topology,roads)
@@ -1245,9 +1261,11 @@ func _update_zoning_for_road(_road: Dictionary):
 		if not junction.has("box"):continue
 		intersection_regions.append(junction.box)
 		junction_pavement.append_array(Geometry2D.intersect_polygons(junction.footprint,border))
-		junction_asphalt.append_array(Geometry2D.intersect_polygons(junction.asphalt,border))
+		var patch_asphalt:=Geometry2D.intersect_polygons(junction.asphalt,border)
+		junction_asphalt.append_array(patch_asphalt)
 		line_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 		if not junction.get("transition",false):controlled_regions.append_array(RoadJunctions.lane_mark_regions(junction))
+		elif not junction.get("taper",false):passive_asphalt[junction.key]=patch_asphalt
 	for road_visual in road_visuals:
 		if preload("res://core/road_height.gd").raised(road_visual):continue
 		var flat_visuals:Array=[road_visual]
@@ -1260,8 +1278,22 @@ func _update_zoning_for_road(_road: Dictionary):
 				flat.flat_end=road_visual.flat_end if part.points[-1].distance_to(road_visual.points[-1])<.001 else true
 				flat_visuals.append(flat)
 		for visual:Dictionary in flat_visuals:
-			road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_ribbons(visual.points,visual.width,bounds,visual.flat_start,visual.flat_end),intersection_regions))
-			road_asphalt.append_array(RoadGeometry.outside_regions(RoadGeometry.clipped_asphalt(visual,bounds),intersection_regions))
+			road_pavement.append_array(RoadGeometry.outside_regions(RoadGeometry.clip_to_map(RoadGeometry.pavement_ribbons(visual),bounds),intersection_regions))
+			var rim:=RoadGeometry.asphalt_ribbons(visual)
+			var asphalt:=RoadGeometry.outside_regions(RoadGeometry.clip_to_map(rim,bounds),intersection_regions)
+			road_asphalt.append_array(asphalt)
+			if visual.has("branch_edge_spans"):
+				# A passive bend's box owns the rendered pavement, not the stripe.
+				# Restore support only where that patch covers this road's own rim.
+				var stripe_surfaces:=asphalt.duplicate()
+				var seen_joins: Dictionary={}
+				for end:Vector2 in [visual.points[0],visual.points[-1]]:
+					var key:=RoadJunctions.merged_key(end,topology.nodes)
+					if not passive_asphalt.has(key) or seen_joins.has(key):continue
+					seen_joins[key]=true
+					for surface:PackedVector2Array in passive_asphalt[key]:
+						stripe_surfaces.append_array(RoadJunctions.clip_paint(surface,rim))
+				road_branch_edge_marks.append_array(RoadGeometry.outside_regions(RoadGeometry.branch_edge_marks(visual,rim,stripe_surfaces),controlled_regions))
 			if RoadProfile.has_median(visual):
 				road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
 			for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
@@ -1269,6 +1301,10 @@ func _update_zoning_for_road(_road: Dictionary):
 	for paint in transition_paint:
 		road_medians.append_array(RoadGeometry.visible_lines(paint.median,bounds,controlled_regions))
 		for line in paint.white:road_lane_marks.append_array(RoadGeometry.visible_lines(line,bounds,controlled_regions))
+	for join in road_joins:
+		if absf(float(join.get("height_m",0)))>.0001:continue
+		var stripes:=RoadGeometry.branch_taper_marks(join)
+		if not stripes.is_empty():road_branch_edge_marks.append_array(RoadGeometry.outside_regions(RoadGeometry.clip_to_map(stripes,bounds),controlled_regions))
 	# Crossings can lie inside the render box: clip against all actually visible asphalt.
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)

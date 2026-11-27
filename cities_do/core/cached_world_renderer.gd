@@ -327,6 +327,7 @@ func synchronize():
   sync_transit_structures()
   for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
+  for polygon in view.city.road_branch_edge_marks:road_shapes.append([project(polygon),Color("e4bd5f")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))
   direction_arrows.clear()
   for polygon in view.city.road_direction_arrows:direction_arrows.append(project(polygon))
