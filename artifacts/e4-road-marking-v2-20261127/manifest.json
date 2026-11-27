@@ -1,0 +1,463 @@
+{
+  "stage": "marking-v2",
+  "base": "0e205e349003158753dc2a5c3bf8c9b155e85540",
+  "pin_sha256": "7dca2bdcb9f736dd0d19615d9b19c4825b53a5a7e73068cf44471f29ad8ec76e",
+  "source": {
+    "core/city_model.gd": "798982c0d41680245c8c42fe9613ad10afd4cfd30f4b5966b9dd146f59e27dcb",
+    "core/road_geometry.gd": "aec77759deed437ddbbc709f4240c14b455e54e39ecadaee4f08104ed9516281",
+    "core/road_transitions.gd": "a196f0f90e8cf186ff71585e3c3f9557650180cbf5692382f3052b0c2f7d7601",
+    "tests/test_one_way_arrow_marks.gd": "dd5572e16ab5794b7f3cb68a3d174fc46437df99eb5f2b9ccb35bd8d8938fd0e",
+    "tests/test_one_way_render.gd": "f4bf61deb9e4d8b37b32d030ba7ef289c1fee91926a3247cf06050c68b9e7f3f"
+  },
+  "headless": {
+    "suites": [
+      "test_one_way_arrow_marks",
+      "test_one_way_render",
+      "test_branch_one_way",
+      "test_road_transition_marks",
+      "test_road_seams",
+      "test_road_approach_markings",
+      "test_road_close_crosswalks",
+      "test_one_way_roads",
+      "test_branch_one_way_retained"
+    ],
+    "assertions": 1227,
+    "eol_only": [
+      "core/cached_world_renderer.gd",
+      "core/road_height.gd",
+      "tests/test_branch_one_way.gd",
+      "tests/test_branch_one_way_retained.gd",
+      "tests/test_branch_one_way_ui.gd"
+    ],
+    "result_sha256": "9a2d18a555e68583676afda2e378f2431d33e15cdbd2708bc4a483f33b47a002"
+  },
+  "native": {
+    "pin_sha256": "7dca2bdcb9f736dd0d19615d9b19c4825b53a5a7e73068cf44471f29ad8ec76e",
+    "rehearsal": false,
+    "captures": {
+      "e4a-one-way-kinds-1920-v2.png": {
+        "sha256": "088e5255e5a9054944d83f6e693ed86aabaca61c69e4e1838d4df0cfac42c199",
+        "size": [
+          1920,
+          1080
+        ]
+      },
+      "e4a-one-way-kinds-1920-crop-v2.png": {
+        "sha256": "36426dd2308abaa48c69deab0f8ad97465c4091c0c9b0da13f500149d090f96e",
+        "size": [
+          1040,
+          550
+        ],
+        "source": "e4a-one-way-kinds-1920-v2.png",
+        "rect": [
+          330,
+          180,
+          1040,
+          550
+        ],
+        "scaling": "none"
+      },
+      "e4b-branch-kinds-1920-v2.png": {
+        "sha256": "179ee0f3b16380d672b809b1819187a15665e437d23262d18403ec0a8edd184f",
+        "size": [
+          1920,
+          1080
+        ]
+      },
+      "e4b-branch-kinds-1920-crop-v2.png": {
+        "sha256": "3d24922db1e6c721e2cfeb14d3d0417c330da810f9cad4e021d56f327a440ec2",
+        "size": [
+          890,
+          515
+        ],
+        "source": "e4b-branch-kinds-1920-v2.png",
+        "rect": [
+          435,
+          125,
+          890,
+          515
+        ],
+        "scaling": "none"
+      },
+      "e4b-branch-continue-1920-v2.png": {
+        "sha256": "a107b51f27afdd2ed70f49382cd1a36df02b371e7a88dca1ce5c01d5395a769e",
+        "size": [
+          1920,
+          1080
+        ]
+      },
+      "e4b-branch-continue-1920-crop-v2.png": {
+        "sha256": "f90f02d021598e706a3f42c554a588d4ab81f34092d111ec41306914ce316e89",
+        "size": [
+          675,
+          335
+        ],
+        "source": "e4b-branch-continue-1920-v2.png",
+        "rect": [
+          610,
+          130,
+          675,
+          335
+        ],
+        "scaling": "none"
+      },
+      "e4b-branch-continue-zoom030-crop-v2.png": {
+        "sha256": "a72550ca67bd73cd18b5b7980c47018e2494ed4fa1d3064cbe4feb3e17c8e488",
+        "size": [
+          320,
+          220
+        ],
+        "zoom": 0.3,
+        "rect": [
+          800,
+          345,
+          320,
+          220
+        ],
+        "scaling": "none",
+        "status": "confirmation-pending"
+      }
+    },
+    "suites": [
+      {
+        "test": "test_one_way_road_ui",
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "240",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/candidate/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--max-fps",
+          "30",
+          "--quit-after",
+          "5500",
+          "--script",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-captures/test_one_way_road_ui-capture-fixture.gd",
+          "--",
+          "--e4a-kinds-capture=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-captures/e4a-one-way-kinds-1920-v2.png"
+        ],
+        "counts": [
+          437,
+          437
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "log_sha256": "90cbf1cc27b1e19aa995e8783006a114957945c5ededa2152efea31ee26cbf15",
+        "test_sha256": "5061bec9c3ecd0cf26c66ab0539dc59cd55cbcdb5ad3208aedff796382147e8b",
+        "executed_sha256": "cf0cfa783b72104e67445a01f8fe75089b1560c7cd21ed17e24afe5c5833665c"
+      },
+      {
+        "test": "test_branch_one_way_ui",
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "240",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/candidate/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--max-fps",
+          "30",
+          "--quit-after",
+          "5500",
+          "--script",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-captures/test_branch_one_way_ui-capture-fixture.gd",
+          "--",
+          "--e4b-kinds-capture=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-captures/e4b-branch-kinds-1920-v2.png",
+          "--e4b-continue-capture=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-captures/e4b-branch-continue-1920-v2.png"
+        ],
+        "counts": [
+          259,
+          259
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "log_sha256": "a7bbed01420364538f8609407e9ef8b4e622775a8010645b7223d0062315d948",
+        "test_sha256": "e2ada68426e9db173ff439a4fe2e015e11550f398ca1add71317d0325e4d42df",
+        "executed_sha256": "a60c34271c6f57b1d1931e82022b8b0edc95dc3abc52af232c37aeadced23e50"
+      }
+    ]
+  },
+  "d27": {
+    "stage": "road-marking-v2",
+    "scene": "A",
+    "pairs": 3,
+    "pin_sha256": "7dca2bdcb9f736dd0d19615d9b19c4825b53a5a7e73068cf44471f29ad8ec76e",
+    "medians": {
+      "baseline": {
+        "mean_ms": 7.9935728542914175,
+        "p95_ms": 10.528
+      },
+      "candidate": {
+        "mean_ms": 8.244119341563787,
+        "p95_ms": 11.121
+      }
+    },
+    "ratios": {
+      "mean_ms": 1.031343492057855,
+      "p95_ms": 1.0563259878419453
+    },
+    "limits": {
+      "mean_ms": 1.1,
+      "p95_ms": 1.15
+    },
+    "passed": true,
+    "runs": [
+      {
+        "scene": "A",
+        "index": 1,
+        "variant": "baseline",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/baseline/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a1-baseline-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 501,
+        "elapsed_usec": 4004780,
+        "mean_ms": 7.9935728542914175,
+        "p95_ms": 10.528,
+        "frames_sha256": "bd59fef11d28f367f69909b4c51dd6ad2c5200e802745edea7eab5893fd5bbfd",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      },
+      {
+        "scene": "A",
+        "index": 1,
+        "variant": "candidate",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/candidate/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a1-candidate-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 545,
+        "elapsed_usec": 4003931,
+        "mean_ms": 7.3466623853211015,
+        "p95_ms": 9.812,
+        "frames_sha256": "4e7c9066d28371687ad3bf241dfa8fc7fb0958bfd69f2c20bb83196b9ca5c2b4",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      },
+      {
+        "scene": "A",
+        "index": 2,
+        "variant": "candidate",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/candidate/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a2-candidate-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 486,
+        "elapsed_usec": 4006642,
+        "mean_ms": 8.244119341563787,
+        "p95_ms": 11.121,
+        "frames_sha256": "c2cd59c040166f4981e723b24ead37a882a73f5184396029bd73a858d6b1a7be",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      },
+      {
+        "scene": "A",
+        "index": 2,
+        "variant": "baseline",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/baseline/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a2-baseline-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 573,
+        "elapsed_usec": 4001678,
+        "mean_ms": 6.983731239092496,
+        "p95_ms": 9.265,
+        "frames_sha256": "87fb7ecd5346e9ae7465eee4ea95475d8c14daf6144316b79a18ac40110d495d",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      },
+      {
+        "scene": "A",
+        "index": 3,
+        "variant": "baseline",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/baseline/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a3-baseline-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 336,
+        "elapsed_usec": 4010288,
+        "mean_ms": 11.935380952380953,
+        "p95_ms": 17.383,
+        "frames_sha256": "7a115a6c7e12ab51b91f6c381ac9275fc16d9b2d0571fc5975ff24d10ce6ac10",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      },
+      {
+        "scene": "A",
+        "index": 3,
+        "variant": "candidate",
+        "exit_code": 0,
+        "diagnostics": [],
+        "command": [
+          "D:\\hermes\\installs\\93668e91f3e36509\\environments\\e579ef070d1c4dbd8ccb9380c7bfe060\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\e4b-runner\\m4\\tools\\run_dotnet.py",
+          "--timeout",
+          "95",
+          "godot",
+          "--path",
+          "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/m4/candidate/cities_do",
+          "--audio-driver",
+          "Dummy",
+          "--rendering-method",
+          "gl_compatibility",
+          "--rendering-driver",
+          "opengl3",
+          "--fullscreen",
+          "--resolution",
+          "1920x1080",
+          "--script",
+          "res://tests/_e4b_d27_a.gd",
+          "--",
+          "--frames-json=C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/cache/scratch/e4b-runner/marking-m4-d27/a3-candidate-frames.json"
+        ],
+        "device": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+        "engine": "Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org",
+        "layout_sha256": "15cc0ec9a47c7d9af2e559adf9f0950f8d5d23a59dcead092e733fd63eb1d14c",
+        "frames": 313,
+        "elapsed_usec": 4004090,
+        "mean_ms": 12.792619808306709,
+        "p95_ms": 18.835,
+        "frames_sha256": "159a4b5adc0cacf5b4f5627096cbccc2c4e23d015cd89799997b283df60c726c",
+        "log_sha256": "8dd14e5929398305d48889b30988a80ec57dac6a68b4080aa245ef219cb140de"
+      }
+    ]
+  },
+  "review_notes_sha256": "011fc54d65657f68fd99ca9404d66a741808e73dfe3dfbecca71e4cb4344f2e6"
+}

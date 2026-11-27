@@ -3,11 +3,14 @@ const Profile=preload("res://core/road_profile.gd")
 const Height=preload("res://core/road_height.gd")
 const Junctions=preload("res://core/road_junctions.gd")
 const Parcels=preload("res://core/road_parcels.gd")
+const Transitions=preload("res://core/road_transitions.gd")
 const ARROW_INTERVAL:=16.0 # 64 metres
 const ARROW_END_INSET:=2.0
 const ARROW_MIN_SPACING:=1.75
 const BRANCH_STRIPE_GAP:=.02 # Cells; leave 8 cm of asphalt at the curb.
-const BRANCH_STRIPE_WIDTH:=.04
+const REFERENCE_ZOOM:=.65
+const PAINT_TILE:=Vector2(14,7)
+const WHITE_HALF_STROKE:=REFERENCE_ZOOM*.5+1.0 # Opaque body plus the shader's 1px fringe.
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
@@ -207,7 +210,8 @@ static func branch_edge_marks(visual:Dictionary,rim:Array[PackedVector2Array],as
 	var edge:=edges.y if side>0 else edges.x
 	var points:PackedVector2Array=visual.points
 	var outer:=Profile.offset_path(points,edge-side*BRANCH_STRIPE_GAP)
-	var inner:=Profile.offset_path(points,edge-side*(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH))
+	var inner:=outer.duplicate()
+	for i in range(points.size()):inner[i]=_stripe_inner(outer[i],outer[i]-points[i],_projected_normal(outer,i))
 	var owned:=PackedByteArray()
 	owned.resize(points.size()-1)
 	for span:Vector2i in visual.branch_edge_spans:
@@ -225,17 +229,25 @@ static func branch_edge_marks(visual:Dictionary,rim:Array[PackedVector2Array],as
 		if before.cross(after)*side>=-.0001:
 			if i==0 and owned[incoming-1] and owned[i]:
 				var seam:=PackedVector2Array([points[incoming-1],points[i],points[i+1]])
-				outer[i]=Profile.offset_path(seam,edge-side*BRANCH_STRIPE_GAP)[1];outer_in[incoming]=outer[i]
-				inner[i]=Profile.offset_path(seam,edge-side*(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH))[1];inner_in[incoming]=inner[i]
+				var rim_seam:=Profile.offset_path(seam,edge-side*BRANCH_STRIPE_GAP)
+				outer[i]=rim_seam[1];outer_in[incoming]=outer[i]
+				inner[i]=_stripe_inner(outer[i],outer[i]-points[i],_projected_normal(rim_seam,1));inner_in[incoming]=inner[i]
 			continue
 		var radius:=absf(edge)
 		var start:=Vector2(-before.y,before.x)*side;var finish:=Vector2(-after.y,after.x)*side
 		var cuts:=_branch_corner_rim(points[i],start,finish,radius,float(visual.width)/2,rim)
 		var outside_scale:=1.0-BRANCH_STRIPE_GAP/radius
-		var inside_scale:=1.0-(BRANCH_STRIPE_GAP+BRANCH_STRIPE_WIDTH)/radius
-		outer_in[incoming]=points[i]+cuts[0]*outside_scale;inner_in[incoming]=points[i]+cuts[0]*inside_scale
-		outer[i]=points[i]+cuts[-1]*outside_scale;inner[i]=points[i]+cuts[-1]*inside_scale
-		result.append_array(_branch_corner_marks(points[i],cuts,outside_scale,inside_scale,asphalt,owned[incoming-1]!=0,owned[i]!=0))
+		var arc:=PackedVector2Array()
+		var arc_inner:=PackedVector2Array()
+		for cut in cuts:arc.append(points[i]+cut*outside_scale)
+		for j in range(arc.size()):
+			var normal:=_projected_normal(arc,j)
+			if j==0:normal=_paint_projection(before).orthogonal().normalized()
+			if j==arc.size()-1:normal=_paint_projection(after).orthogonal().normalized()
+			arc_inner.append(_stripe_inner(arc[j],cuts[j],normal))
+		outer_in[incoming]=arc[0];inner_in[incoming]=arc_inner[0]
+		outer[i]=arc[-1];inner[i]=arc_inner[-1]
+		result.append_array(_branch_corner_marks(points[i],arc,arc_inner,asphalt,owned[incoming-1]!=0,owned[i]!=0))
 	for i in range(owned.size()):
 		if not owned[i]:continue
 		var quad:=PackedVector2Array([outer[i],outer_in[i+1],inner_in[i+1],inner[i]])
@@ -263,24 +275,35 @@ static func _branch_corner_rim(center:Vector2,start:Vector2,finish:Vector2,radiu
 	cuts.push_front(first);cuts.append(last)
 	return cuts
 
-static func _branch_corner_marks(center:Vector2,cuts:Array[Vector2],outside_scale:float,inside_scale:float,asphalt:Array[PackedVector2Array],before:bool,after:bool)->Array[PackedVector2Array]:
+static func _projected_normal(path:PackedVector2Array,index:int)->Vector2:
+	var before:=_paint_projection(path[index]-path[maxi(0,index-1)]).normalized()
+	var after:=_paint_projection(path[mini(path.size()-1,index+1)]-path[index]).normalized()
+	return (before+after).normalized().orthogonal()
+
+static func _stripe_inner(outer:Vector2,outward:Vector2,screen_normal:Vector2)->Vector2:
+	# The white shader's opaque body is one projected pixel before camera zoom.
+	# Move along the shared world cross-section so authored ownership never leaks.
+	var scale:=absf(_paint_projection(outward).dot(screen_normal))
+	return outer-outward*minf(.5,REFERENCE_ZOOM/maxf(scale,.0001))
+
+static func _branch_corner_marks(center:Vector2,outer:PackedVector2Array,inner:PackedVector2Array,asphalt:Array[PackedVector2Array],before:bool,after:bool)->Array[PackedVector2Array]:
 	var result:Array[PackedVector2Array]=[]
-	var start:=cuts[0].normalized()
-	var sweep:=start.angle_to(cuts[-1])
+	var start:=(outer[0]-center).normalized()
+	var sweep:=start.angle_to(outer[-1]-center)
 	var seam:=start.rotated(sweep*.5)
-	for i in range(1,cuts.size()):
-		var a:=cuts[i-1];var b:=cuts[i]
+	for i in range(1,outer.size()):
+		var a:=outer[i-1];var b:=outer[i]
+		var inner_a:=inner[i-1];var inner_b:=inner[i]
 		if before!=after:
 			# A mixed fillet owns only its half of the corner at the shared plane.
-			var first:=start.angle_to(a)/sweep;var last:=start.angle_to(b)/sweep
+			var first:=start.angle_to(a-center)/sweep;var last:=start.angle_to(b-center)/sweep
 			if (before and first>=.5) or (after and last<=.5):continue
 			if first<.5 and last>.5:
-				var split:Vector2=Geometry2D.line_intersects_line(Vector2.ZERO,seam,a,b-a)
-				if before:b=split
-				else:a=split
-		var outer_a:=center+a*outside_scale;var outer_b:=center+b*outside_scale
-		var inner_a:=center+a*inside_scale;var inner_b:=center+b*inside_scale
-		result.append_array(Junctions.clip_paint(PackedVector2Array([outer_a,outer_b,inner_b,inner_a]),asphalt))
+				var split:Vector2=Geometry2D.line_intersects_line(center,seam,a,b-a)
+				var split_inner:Vector2=Geometry2D.line_intersects_line(center,seam,inner_a,inner_b-inner_a)
+				if before:b=split;inner_b=split_inner
+				else:a=split;inner_a=split_inner
+		result.append_array(Junctions.clip_paint(PackedVector2Array([a,b,inner_b,inner_a]),asphalt))
 	return result
 
 static func branch_taper_marks(join:Dictionary)->Array[PackedVector2Array]:
@@ -299,19 +322,18 @@ static func branch_taper_marks(join:Dictionary)->Array[PackedVector2Array]:
 		var middle:=start.lerp(finish,seam)
 		var a:Vector2=(start if i==0 else middle)-normal*side*BRANCH_STRIPE_GAP
 		var b:Vector2=(middle if i==0 else finish)-normal*side*BRANCH_STRIPE_GAP
-		var inset:=normal*side*BRANCH_STRIPE_WIDTH
-		result.append(PackedVector2Array([a,b,b-inset,a-inset]))
+		var screen_normal:=_paint_projection(b-a).normalized().orthogonal()
+		result.append(PackedVector2Array([a,b,_stripe_inner(b,normal*side,screen_normal),_stripe_inner(a,normal*side,screen_normal)]))
 	return result
 
 ## Preview and retained rendering share the world-space glyphs. The retained
 ## layer additionally connects profiles across tapers and masks other paint.
 static func direction_arrows(road: Dictionary) -> Array[PackedVector2Array]:
-	var result: Array[PackedVector2Array]=[]
-	if Profile.travel_direction(road)==0:return result
-	var surfaces:=asphalt_ribbons(road)
-	for shape in arrow_run([road],[],false):
-		if arrow_supported(shape,surfaces):result.append(shape)
-	return result
+	if Profile.travel_direction(road)==0:return []
+	var white:=lane_marks(road)
+	for path in shoulder_marks(road):
+		for i in range(1,path.size()):white.append(PackedVector2Array([path[i-1],path[i]]))
+	return arrow_run([road],[],false,asphalt_ribbons(road),[],_white_paint_index(white))
 
 static func arrow_supported(shape: PackedVector2Array,surfaces: Array[PackedVector2Array]) -> bool:
 	var area:=Parcels.area(shape)
@@ -321,18 +343,21 @@ static func arrow_supported(shape: PackedVector2Array,surfaces: Array[PackedVect
 		if painted>=area-.0001:return true
 	return false
 
-static func retained_direction_arrows(visuals: Array,topology: Dictionary,surfaces: Array[PackedVector2Array],blocked: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
-	var result: Array[PackedVector2Array]=[]
+static func directed_marking_layout(visuals: Array,topology: Dictionary) -> Dictionary:
 	var parts: Array[Dictionary]=[]
 	var starts: Dictionary={}
 	var ends: Dictionary={}
-	for road: Dictionary in visuals:
+	var marking_joins: Dictionary={}
+	for join: Dictionary in topology.joins:
+		if absf(float(join.height_m))<=Junctions.EPS:marking_joins[join.key]=join
+	for index in range(visuals.size()):
+		var road: Dictionary=visuals[index]
 		var travel:=Profile.travel_direction(road)
 		if travel==0 or Height.off_ground(road):continue
 		var start:=Junctions.merged_key(road.points[0 if travel>0 else -1],topology.nodes)
 		var finish:=Junctions.merged_key(road.points[-1 if travel>0 else 0],topology.nodes)
 		starts[start]=parts.size();ends[finish]=parts.size()
-		parts.append({"road":road,"start":start})
+		parts.append({"road":road,"start":start,"finish":finish,"index":index})
 	# An authored stroke passing through a junction retains its phase; it gets
 	# separate approach candidates in arrow_run.
 	var successors: Dictionary={}
@@ -345,86 +370,98 @@ static func retained_direction_arrows(visuals: Array,topology: Dictionary,surfac
 		if predecessors.has(a)!=predecessors.has(b):return not predecessors.has(a)
 		return parts[a].start<parts[b].start)
 	var used: Dictionary={}
+	var layout: Dictionary={"runs":[],"visual_phase":{},"seams":{}}
 	for start: int in order:
 		if used.has(start):continue
 		var run: Array=[]
+		var seams: Array[Dictionary]=[]
+		var phase:=0.0
 		var cursor:=start
 		while cursor>=0 and not used.has(cursor):
-			used[cursor]=true;run.append(parts[cursor].road)
+			var part:=parts[cursor]
+			used[cursor]=true;run.append(part.road)
+			layout.visual_phase[part.index]=phase
+			var points: PackedVector2Array=part.road.points
+			for i in range(1,points.size()):phase+=points[i-1].distance_to(points[i])
 			cursor=successors.get(cursor,-1)
-		for shape in arrow_run(run,topology.junctions,cursor==start):
-			if blocked.any(func(mask):return not Geometry2D.intersect_polygons(shape,mask).is_empty()):continue
-			# Keep a whole glyph rather than a fragment at a curb or map edge.
-			if arrow_supported(shape,surfaces):result.append(shape)
+			if cursor>=0 and marking_joins.has(part.finish):
+				var join:Dictionary=marking_joins[part.finish]
+				var extents:=Transitions.marking_extents(join)
+				if extents!=Vector2.ZERO:
+					layout.seams[part.finish]=phase
+					seams.append(_arrow_taper_section(join,phase,extents))
+		layout.runs.append({"roads":run,"closed":cursor==start,"seams":seams})
+	return layout
+
+static func retained_direction_arrows(layout: Dictionary,junctions: Array,surfaces: Array[PackedVector2Array],blocked: Array[PackedVector2Array],white: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	if layout.runs.is_empty():return result
+	var paint:=_white_paint_index(white)
+	for run in layout.runs:
+		result.append_array(arrow_run(run.roads,junctions,run.closed,surfaces,blocked,paint,run.seams))
 	return result
 
-## Split final white strokes (ordinary dashes and transition pieces), without
-## restarting their phase. Arrows, medians and junction exclusion masks stay put.
-static func trim_direction_arrow_marks(lines: Array[PackedVector2Array],arrows: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
-	if arrows.is_empty():return lines
-	# Retained paint uses a butt-ended strip at the default play camera: .325px
-	# opaque half-width plus a 1px AA fringe. Use that footprint, not a line/point test.
-	const HALF_STROKE:=1.325
-	const PAD:=.002 # Absorb Clipper quantization at a newly cut end.
-	const BUCKET_SIZE:=128.0
+const PAINT_BUCKET:=128.0
+static func _white_paint_index(lines: Array[PackedVector2Array]) -> Dictionary:
 	var buckets: Dictionary={}
-	for arrow in arrows:
-		var shape:=PackedVector2Array()
-		for p in arrow:shape.append(_paint_projection(p))
-		var bounds:=Parcels.bounds(shape)
-		var key:=Vector2i((bounds.get_center()/BUCKET_SIZE).floor())
-		if not buckets.has(key):buckets[key]=[]
-		buckets[key].append({"shape":shape,"bounds":bounds})
-	var result: Array[PackedVector2Array]=[]
 	for line in lines:
 		var a:=_paint_projection(line[0]);var b:=_paint_projection(line[-1])
-		var length:=a.distance_to(b)
-		if length<=PAD:result.append(line);continue
-		var axis:=(b-a)/length
-		var normal:=axis.orthogonal()*HALF_STROKE
-		var strip:=PackedVector2Array([a-normal,b-normal,b+normal,a+normal])
-		var bounds:=Parcels.bounds(strip)
-		# A whole glyph is smaller than a bucket; look across its adjacent cells.
-		var first:=Vector2i((bounds.position/BUCKET_SIZE).floor())-Vector2i.ONE
-		var last:=Vector2i((bounds.end/BUCKET_SIZE).floor())+Vector2i.ONE
-		var cuts: Array[Vector2]=[]
+		var normal:=(b-a).orthogonal().normalized()*(WHITE_HALF_STROKE+.002)
+		var shape:=PackedVector2Array([a-normal,b-normal,b+normal,a+normal])
+		var bounds:=Parcels.bounds(shape)
+		var first:=Vector2i((bounds.position/PAINT_BUCKET).floor())
+		var last:=Vector2i((bounds.end/PAINT_BUCKET).floor())
 		for y in range(first.y,last.y+1):
 			for x in range(first.x,last.x+1):
-				for mask: Dictionary in buckets.get(Vector2i(x,y),[]):
-					if not bounds.intersects(mask.bounds):continue
-					for piece in Geometry2D.intersect_polygons(strip,mask.shape):
-						var limits:=Vector2(length,0)
-						for point in piece:
-							var distance:=(point-a).dot(axis)
-							limits=Vector2(minf(distance,limits.x),maxf(distance,limits.y))
-						cuts.append(Vector2(maxf(0,limits.x-PAD),minf(length,limits.y+PAD)))
-		if cuts.is_empty():result.append(line);continue
-		cuts.sort_custom(func(left,right):return left.x<right.x)
-		var cursor:=0.0
-		for cut in cuts:
-			if cut.x>cursor+PAD:result.append(PackedVector2Array([line[0].lerp(line[-1],cursor/length),line[0].lerp(line[-1],cut.x/length)]))
-			cursor=maxf(cursor,cut.y)
-		if length>cursor+PAD:result.append(PackedVector2Array([line[0].lerp(line[-1],cursor/length),line[-1]]))
-	return result
+				var key:=Vector2i(x,y)
+				if not buckets.has(key):buckets[key]=[]
+				buckets[key].append({"shape":shape,"bounds":bounds})
+	return buckets
+
+static func _clear_of_white(glyph:PackedVector2Array,paint:Dictionary,opaque_only:bool=false)->bool:
+	var shape:=PackedVector2Array()
+	for point in glyph:shape.append(_paint_projection(point))
+	var bounds:=Parcels.bounds(shape)
+	var first:=Vector2i((bounds.position/PAINT_BUCKET).floor())
+	var last:=Vector2i((bounds.end/PAINT_BUCKET).floor())
+	for y in range(first.y,last.y+1):
+		for x in range(first.x,last.x+1):
+			for mark:Dictionary in paint.get(Vector2i(x,y),[]):
+				if not bounds.intersects(mark.bounds):continue
+				var stroke:PackedVector2Array=mark.shape
+				if opaque_only:
+					var a:=(stroke[0]+stroke[3])*.5;var b:=(stroke[1]+stroke[2])*.5
+					var n:=(b-a).orthogonal().normalized()*(REFERENCE_ZOOM*.5+.002)
+					stroke=PackedVector2Array([a-n,b-n,b+n,a+n])
+				if not Geometry2D.intersect_polygons(shape,stroke).is_empty():return false
+	return true
+
+static func _centre_hits_white_fringe(centre:Vector2,paint:Dictionary)->bool:
+	var point:=_paint_projection(centre)
+	for mark:Dictionary in paint.get(Vector2i((point/PAINT_BUCKET).floor()),[]):
+		var stroke:PackedVector2Array=mark.shape
+		if not Geometry2D.is_point_in_polygon(point,stroke):continue
+		var a:=(stroke[0]+stroke[3])*.5;var b:=(stroke[1]+stroke[2])*.5
+		var across:=absf((point-a).cross((b-a).normalized()))
+		if across>REFERENCE_ZOOM*.5 and across<WHITE_HALF_STROKE:return true
+	return false
 
 static func _paint_projection(point: Vector2) -> Vector2:
-	return Vector2((point.x-point.y)*14,(point.x+point.y)*7)*.65
+	return Vector2(point.x-point.y,point.x+point.y)*PAINT_TILE*REFERENCE_ZOOM
 
-static func arrow_run(roads: Array,junctions: Array,closed: bool) -> Array[PackedVector2Array]:
+static func arrow_run(roads: Array,junctions: Array,closed: bool,surfaces: Array[PackedVector2Array],blocked: Array[PackedVector2Array],paint: Dictionary,seams: Array[Dictionary]=[]) -> Array[PackedVector2Array]:
 	var segments: Array[Dictionary]=[]
 	var length:=0.0
 	for road: Dictionary in roads:
 		var travel:=Profile.travel_direction(road)
 		var points:PackedVector2Array=road.points
-		var first:=Profile.lane_center_metres(road,travel,0)
-		var last:=Profile.lane_center_metres(road,travel,int(road.lanes)-1)
-		var offset:=(first+last)/8 # Average and convert metres to cells.
+		var offsets:=_lane_centres(road)
 		for i in range(1,points.size()):
 			var a:Vector2=points[i-1 if travel>0 else -i]
 			var b:Vector2=points[i if travel>0 else -i-1]
 			var span:=a.distance_to(b)
 			if span<=.0001:continue
-			segments.append({"a":a,"b":b,"start":length,"length":span,"offset":offset})
+			segments.append({"a":a,"b":b,"start":length,"length":span,"offsets":offsets})
 			length+=span
 	var result: Array[PackedVector2Array]=[]
 	if length<1.1:return result
@@ -458,15 +495,85 @@ static func arrow_run(roads: Array,junctions: Array,closed: bool) -> Array[Packe
 		selected.append(candidate)
 	selected.sort()
 	var index:=0
+	var seam_index:=0
 	for chainage in selected:
 		while index+1<segments.size() and chainage>segments[index].start+segments[index].length:index+=1
 		var segment:=segments[index]
 		var a:Vector2=segment.a;var b:Vector2=segment.b
 		var forward:=(b-a)/float(segment.length)
-		var right:=Vector2(-forward.y,forward.x)
-		var center:=a+forward*(chainage-float(segment.start))+right*float(segment.offset)
-		result.append(PackedVector2Array([center+forward*.50,center+right*.24,center+right*.075,center-forward*.50+right*.075,center-forward*.50-right*.075,center-right*.075,center-right*.24]))
+		var right:=-forward.orthogonal()
+		var point:=a+forward*(chainage-float(segment.start))
+		var offsets:PackedFloat64Array=segment.offsets
+		var taper:Dictionary={}
+		while seam_index<seams.size() and chainage>seams[seam_index].end:seam_index+=1
+		if seam_index<seams.size() and chainage>=seams[seam_index].start:
+			taper=seams[seam_index]
+			offsets=_taper_lane_centres(taper,chainage)
+		elif closed and not seams.is_empty() and chainage+length<=seams[-1].end and chainage+length>=seams[-1].start:
+			taper=seams[-1]
+			offsets=_taper_lane_centres(taper,chainage+length)
+		for lane in range(offsets.size()):
+			var center:=point+right*offsets[lane]
+			var trial:bool=taper.get("fringe_trial",false) and offsets.size()==4 and lane==3
+			var glyph:=_fit_arrow(center,forward,right,surfaces,blocked,paint,trial)
+			if not glyph.is_empty():result.append(glyph)
 	return result
+
+static func _lane_centres(road:Dictionary)->PackedFloat64Array:
+	var offsets:=PackedFloat64Array()
+	var travel:=Profile.travel_direction(road)
+	for lane in range(int(road.lanes)):offsets.append(Profile.lane_center_metres(road,travel,lane)/4)
+	return offsets
+
+static func _arrow_taper_section(join:Dictionary,phase:float,extents:Vector2)->Dictionary:
+	var incoming:=0 if Profile.travel_direction(join.arms[0])<0 else 1
+	var a:Dictionary=join.arms[incoming];var b:Dictionary=join.arms[1-incoming]
+	var first:float=extents[incoming];var last:float=extents[1-incoming]
+	# Use local coordinates (longitudinal chainage, lateral distance) and
+	# exactly the same separator paths as the dashed transition paint.
+	var p:=Vector2(-first,0);var q:=Vector2(last,0)
+	var a_edges:=_travel_edges(a,-1);var b_edges:=_travel_edges(b,1)
+	var fringe_trial:bool=a.get("road_variant")==Profile.BRANCH_IDS[Profile.BranchVariant.EIGHT_METRE] and b.kind=="local" and b.lanes==4 and Profile.width_for_record(b)==5.
+	return {"start":phase-first,"end":phase+last,"phase":phase,"a_edges":a_edges,"b_edges":b_edges,
+		"separators":Transitions.separator_paths(a,b,p,q,Vector2.DOWN,Transitions.taper_centre_edges(a,b)),"fringe_trial":fringe_trial}
+
+static func _travel_edges(arm:Dictionary,travel:int)->Vector2:
+	var half:=Profile.lane_width_metres(arm)/8
+	return Vector2(Profile.lane_center_metres(arm,travel,0)/4-half,Profile.lane_center_metres(arm,travel,int(arm.lanes)-1)/4+half)
+
+static func _taper_lane_centres(seam:Dictionary,chainage:float)->PackedFloat64Array:
+	var ratio:float=(chainage-seam.start)/(seam.end-seam.start)
+	var a:Vector2=seam.a_edges;var b:Vector2=seam.b_edges
+	var edges:=a.lerp(b,ratio)
+	var left:=edges.x
+	var x:float=chainage-seam.phase
+	var offsets:=PackedFloat64Array()
+	for path:PackedVector2Array in seam.separators:
+		if x<path[0].x or x>path[-1].x:continue
+		var right:=lerpf(path[0].y,path[-1].y,(x-path[0].x)/(path[-1].x-path[0].x))
+		if right<=left or right>=edges.y:continue
+		offsets.append((left+right)*.5)
+		left=right
+	offsets.append((left+edges.y)*.5)
+	return offsets
+
+static func _fit_arrow(center:Vector2,forward:Vector2,right:Vector2,surfaces:Array[PackedVector2Array],blocked:Array[PackedVector2Array],paint:Dictionary,fringe_trial:bool=false)->PackedVector2Array:
+	var glyph:=PackedVector2Array([center+forward*.50,center+right*.24,center+right*.075,center-forward*.50+right*.075,center-forward*.50-right*.075,center-right*.075,center-right*.24])
+	if blocked.any(func(mask):return not Geometry2D.intersect_polygons(glyph,mask).is_empty()):return PackedVector2Array()
+	# Protect the existing paint, not the outline size. Bend and taper clearances
+	# can be tighter than a straight lane; keep the glyph centered and whole.
+	var outline:=glyph.duplicate()
+	for scale:float in [1.,.9,.8,.65,.5,.35,.2]:
+		if scale<1.:
+			for i in range(glyph.size()):glyph[i]=center.lerp(outline[i],scale)
+		if _clear_of_white(glyph,paint) and arrow_supported(glyph,surfaces):return glyph
+	# Scratch feasibility only: if the lane centre itself is in the fringe,
+	# keep the smallest existing scale, same tangent, and original mask gate.
+	if fringe_trial and _centre_hits_white_fringe(center,paint) and _clear_of_white(glyph,paint,true) and arrow_supported(glyph,surfaces):
+		for vertex in glyph:
+			if not surfaces.any(func(poly):return Geometry2D.is_point_in_polygon(vertex,poly)):return PackedVector2Array()
+		return glyph
+	return PackedVector2Array()
 
 static func clean_polygon(source:PackedVector2Array)->PackedVector2Array:
 	var polygon:=source.duplicate();var changed:=true
@@ -510,14 +617,16 @@ static func visible_lines(points: PackedVector2Array,bounds: Vector2,regions: Ar
 			if not hidden:result.append(PackedVector2Array([line[0]+delta*cuts[j-1],line[0]+delta*cuts[j]]))
 	return result
 
-static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
+static func lane_marks(road: Dictionary,phase:float=0.0) -> Array[PackedVector2Array]:
 	var lines: Array[PackedVector2Array] = []
 	var offsets:=Profile.separators(road)
 	if offsets.is_empty(): return lines
-	var phase := 0.0
-	for i in range(road.points.size()-1):
-		var a: Vector2 = road.points[i]
-		var b: Vector2 = road.points[i+1]
+	var points:PackedVector2Array=road.points
+	var order:=-1 if Profile.travel_direction(road)<0 else 1
+	if order<0:points=points.duplicate();points.reverse()
+	for i in range(points.size()-1):
+		var a: Vector2 = points[i]
+		var b: Vector2 = points[i+1]
 		var length := a.distance_to(b)
 		if length < 0.00001: continue
 		var direction := (b-a)/length
@@ -528,7 +637,7 @@ static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 			var end := minf(length,start+(0.75-cycle if cycle<0.75 else 1.25-cycle))
 			if cycle < 0.75:
 				for offset in offsets:
-					var shift: Vector2 = normal*offset
+					var shift: Vector2 = normal*offset*order
 					lines.append(PackedVector2Array([a+direction*start+shift,a+direction*end+shift]))
 			start = end+0.00001
 		phase += length

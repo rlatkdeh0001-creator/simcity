@@ -68,7 +68,7 @@ func render_geometry() -> void:
 		verify(city.road_joins.size()==1 and city.road_crosswalks.is_empty() and city.road_medians.is_empty(),"directed taper has no median or zebra")
 		verify(section(city.road_asphalt,30,40,asphalt[0]) and covers(city.junction_asphalt,Vector2(39.05,39.251)) and not covers(city.junction_asphalt,Vector2(39.05,40.58)),"signed asphalt meets the narrow taper mouth")
 		if city.get("road_direction_arrows")!=null:
-			verify(city.road_direction_arrows.size()==6 and covers(city.road_direction_arrows,Vector2(42,40)),"one 64m phase crosses the taper without extra seam-end arrows")
+			verify(city.road_direction_arrows.size()==10 and covers(city.road_direction_arrows,Vector2(42,39.578125)) and covers(city.road_direction_arrows,Vector2(42,40.34375)),"one 64m phase crosses the taper in both active lanes without extra seam-end arrows")
 		var mixed := City.new(110,100)
 		var mixed_parts := [[Vector2(10,40),Vector2(39,40),0],[Vector2(39,40),Vector2(90,40),1]]
 		if not left_first: mixed_parts.reverse()

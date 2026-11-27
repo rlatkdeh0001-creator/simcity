@@ -38,10 +38,10 @@ static func curve(a:Vector2,b:Vector2,forward:Vector2)->PackedVector2Array:
  for i in range(25):
   var t:=i/24.0;var u:=1-t;result.append(a*u*u*u+c*3*u*u*t+d*3*u*t*t+b*t*t*t)
  return result
-static func dashes(points:PackedVector2Array)->Array[PackedVector2Array]:
- var result:Array[PackedVector2Array]=[];var phase:=0.0
+static func dashes(points:PackedVector2Array,phase:float=0.0,axis:Vector2=Vector2.ZERO)->Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=[]
  for i in range(1,points.size()):
-  var delta:=points[i]-points[i-1];var length:=delta.length()
+  var delta:=points[i]-points[i-1];var length:=delta.length() if axis==Vector2.ZERO else delta.dot(axis)
   if length<.00001:continue
   var cursor:=0.0
   while cursor<length:
@@ -50,21 +50,29 @@ static func dashes(points:PackedVector2Array)->Array[PackedVector2Array]:
    cursor=last+.00001
   phase+=length
  return result
-static func paint(junction:Dictionary)->Dictionary:
- if not straight(junction) or junction.arms[0].get("kind","local")!="local" or junction.arms[1].get("kind","local")!="local":return {}
+# A marking transition can exist without a pavement taper (e.g. 12m 2→3 lanes).
+# Extents are returned in junction arm order, independent of travel direction.
+static func marking_extents(junction:Dictionary)->Vector2:
+ if not straight(junction):return Vector2.ZERO
+ var a:Dictionary=junction.arms[0];var b:Dictionary=junction.arms[1]
+ if a.kind!="local" or b.kind!="local" or not allowed(a,b):return Vector2.ZERO
+ if a.lanes==b.lanes and is_equal_approx(a.width,b.width) and is_equal_approx(-Profile.median_offset(a),Profile.median_offset(b)) and Profile.has_median(a)==Profile.has_median(b):return Vector2.ZERO
+ var first:=extent(a);var last:=extent(b)
+ return Vector2(first,last) if minf(first,last)>=.0001 else Vector2.ZERO
+
+static func paint(junction:Dictionary,seam_phase:float=-1.0)->Dictionary:
+ var extents:=marking_extents(junction)
+ if extents==Vector2.ZERO:return {}
  var a:Dictionary=junction.arms[0];var b:Dictionary=junction.arms[1]
  # Arm headings face out of the seam. Pair separators left-to-right and start
  # the dash phase in physical travel order, not road insertion order.
  if Profile.travel_direction(a)==1 and Profile.travel_direction(b)==-1:
-  a=junction.arms[1];b=junction.arms[0]
+  a=junction.arms[1];b=junction.arms[0];extents=Vector2(extents.y,extents.x)
  var normal:=Vector2(-b.direction.y,b.direction.x)
- if not allowed(a,b):return {}
  var ma:float=-Profile.median_offset(a);var mb:=Profile.median_offset(b)
- if a.lanes==b.lanes and is_equal_approx(a.width,b.width) and is_equal_approx(ma,mb) and Profile.has_median(a)==Profile.has_median(b):return {}
- var first:=extent(a);var last:=extent(b)
- if minf(first,last)<.0001:return {}
+ var first:=extents.x;var last:=extents.y
  var p:Vector2=junction.position+a.direction*first;var q:Vector2=junction.position+b.direction*last
- if not Profile.has_median(a) or not Profile.has_median(b):return directional_paint(a,b,p,q,normal,junction.position)
+ if not Profile.has_median(a) or not Profile.has_median(b):return directional_paint(a,b,p,q,normal,junction.position,seam_phase)
  var result:={"region":quad(p,q,normal,maxf(a.width,b.width)/2,maxf(a.width,b.width)/2),"median":curve(p+normal*ma,q+normal*mb,b.direction),"white":[]}
  var left:Array[float]=[];var right:Array[float]=[]
  for offset in Profile.separators(a):left.append(-offset)
@@ -81,22 +89,35 @@ static func paint(junction:Dictionary)->Dictionary:
    result.white.append(curve(p+normal*begin,q+normal*finish,b.direction))
  return result
 
-static func directional_paint(a:Dictionary,b:Dictionary,p:Vector2,q:Vector2,normal:Vector2,seam:Vector2)->Dictionary:
+static func directional_paint(a:Dictionary,b:Dictionary,p:Vector2,q:Vector2,normal:Vector2,seam:Vector2,seam_phase:float)->Dictionary:
  var result:={"region":quad(p,q,normal,maxf(a.width,b.width)/2,maxf(a.width,b.width)/2),"median":PackedVector2Array(),"white":[]}
  if Profile.has_median(a):result.median=PackedVector2Array([p-normal*Profile.median_offset(a),seam-normal*Profile.median_offset(a)])
  if Profile.has_median(b):result.median=PackedVector2Array([seam+normal*Profile.median_offset(b),q+normal*Profile.median_offset(b)])
- var a_edges:=Profile.asphalt_edges(a);var b_edges:=Profile.asphalt_edges(b)
- var centre_edges:=(Vector2(-a_edges.y,-a_edges.x)+b_edges)/2
- var start:=Profile.separators(a);start.reverse()
- var end:=Profile.separators(b)
- for i in range(maxi(start.size(),end.size())):
-  result.white.append_array(dashes(taper_mark(p,q,normal,centre_edges,-start[i] if i<start.size() else null,end[i] if i<end.size() else null)))
+ var centre_edges:=taper_centre_edges(a,b)
+ for line in separator_paths(a,b,p,q,normal,centre_edges):
+  # Use run chainage, including for separators that start partway into a taper.
+  # Measuring the slanted marking itself would make it drift at the far mouth.
+  var axis:Vector2=b.direction if seam_phase>=0 else Vector2.ZERO
+  var phase:=seam_phase+(line[0]-seam).dot(axis) if seam_phase>=0 else 0.0
+  result.white.append_array(dashes(line,phase,axis))
  var shoulders_a:=Profile.shoulder_offsets(a);var shoulders_b:=Profile.shoulder_offsets(b)
  for side in [-1,1]:
   var before:=shoulders_a.filter(func(offset):return -offset*side>0)
   var after:=shoulders_b.filter(func(offset):return offset*side>0)
   if not before.is_empty() or not after.is_empty():
    result.white.append(taper_mark(p,q,normal,centre_edges,-before[0] if not before.is_empty() else null,after[0] if not after.is_empty() else null))
+ return result
+
+static func taper_centre_edges(a:Dictionary,b:Dictionary)->Vector2:
+ var edges:=Profile.asphalt_edges(a)
+ return (Vector2(-edges.y,-edges.x)+Profile.asphalt_edges(b))/2
+
+static func separator_paths(a:Dictionary,b:Dictionary,p:Vector2,q:Vector2,normal:Vector2,centre_edges:Vector2)->Array[PackedVector2Array]:
+ var start:=Profile.separators(a);start.reverse()
+ var end:=Profile.separators(b)
+ var result:Array[PackedVector2Array]=[]
+ for i in range(maxi(start.size(),end.size())):
+  result.append(taper_mark(p,q,normal,centre_edges,-start[i] if i<start.size() else null,end[i] if i<end.size() else null))
  return result
 
 static func taper_mark(p:Vector2,q:Vector2,normal:Vector2,centre_edges:Vector2,first:Variant,last:Variant)->PackedVector2Array:

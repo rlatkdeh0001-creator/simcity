@@ -1236,6 +1236,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	junctions=topology.junctions
 	road_joins=topology.joins
 	road_visuals=RoadGeometry.continuous_roads(roads,topology)
+	var directed_marks:=RoadGeometry.directed_marking_layout(road_visuals,topology)
 	# Pavement owns its render box; approach lines use the actual stop-line boundaries.
 	for cache in [road_crosswalks,road_stop_lines,intersection_regions,road_pavement,road_asphalt,road_medians,road_lane_marks,junction_pavement,junction_asphalt]:cache.clear()
 	road_branch_edge_marks.clear()
@@ -1256,7 +1257,8 @@ func _update_zoning_for_road(_road: Dictionary):
 			absorbed_arms[pair[side]].append(pair["arm_"+side])
 	for junction in junctions+road_joins:
 		if absf(float(junction.get("height_m",0)))>.0001:continue # Raised and underground patches draw elsewhere.
-		var paint:=preload("res://core/road_transitions.gd").paint(junction)
+		var seam_phase:float=directed_marks.seams.get(junction.key,-1.0)
+		var paint:=preload("res://core/road_transitions.gd").paint(junction,seam_phase)
 		if not paint.is_empty():transition_paint.append(paint);line_regions.append(paint.region)
 		if not junction.has("box"):continue
 		intersection_regions.append(junction.box)
@@ -1266,7 +1268,8 @@ func _update_zoning_for_road(_road: Dictionary):
 		line_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 		if not junction.get("transition",false):controlled_regions.append_array(RoadJunctions.lane_mark_regions(junction))
 		elif not junction.get("taper",false):passive_asphalt[junction.key]=patch_asphalt
-	for road_visual in road_visuals:
+	for visual_index in range(road_visuals.size()):
+		var road_visual:Dictionary=road_visuals[visual_index]
 		if preload("res://core/road_height.gd").raised(road_visual):continue
 		var flat_visuals:Array=[road_visual]
 		if preload("res://core/road_height.gd").sunken(road_visual):
@@ -1296,7 +1299,8 @@ func _update_zoning_for_road(_road: Dictionary):
 				road_branch_edge_marks.append_array(RoadGeometry.outside_regions(RoadGeometry.branch_edge_marks(visual,rim,stripe_surfaces),controlled_regions))
 			if RoadProfile.has_median(visual):
 				road_medians.append_array(RoadGeometry.visible_lines(RoadProfile.offset_path(visual.points,RoadProfile.median_offset(visual)),bounds,line_regions))
-			for dash in RoadGeometry.lane_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
+			for dash in RoadGeometry.lane_marks(visual,directed_marks.visual_phase.get(visual_index,0.0)):
+				road_lane_marks.append_array(RoadGeometry.visible_lines(dash,bounds,line_regions))
 			for line in RoadGeometry.shoulder_marks(visual):road_lane_marks.append_array(RoadGeometry.visible_lines(line,bounds,line_regions))
 	for paint in transition_paint:
 		road_medians.append_array(RoadGeometry.visible_lines(paint.median,bounds,controlled_regions))
@@ -1308,8 +1312,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	# Crossings can lie inside the render box: clip against all actually visible asphalt.
 	var paint_surfaces: Array[PackedVector2Array]=road_asphalt.duplicate()
 	paint_surfaces.append_array(junction_asphalt)
-	road_direction_arrows=RoadGeometry.retained_direction_arrows(road_visuals,topology,paint_surfaces,controlled_regions)
-	road_lane_marks=RoadGeometry.trim_direction_arrow_marks(road_lane_marks,road_direction_arrows)
+	road_direction_arrows=RoadGeometry.retained_direction_arrows(directed_marks,junctions,paint_surfaces,controlled_regions,road_lane_marks)
 	for junction in junctions:
 		if absf(float(junction.get("height_m",0)))>.0001:continue # Raised and underground patches draw elsewhere.
 		var omitted:Array=absorbed_arms.get(junction.key,[])
