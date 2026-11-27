@@ -1,0 +1,137 @@
+{
+  "total": 8,
+  "passed": 8,
+  "tests": [
+    {
+      "name": "test_bottom_ui",
+      "passed": true,
+      "exit_code": 0,
+      "errors": [],
+      "summaries": [
+        "RESULT 43/43 bottom UI checks passed"
+      ],
+      "log": "final-test_bottom_ui.log"
+    },
+    {
+      "name": "test_junctions",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_junctions.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 junction checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.99,
+      "log": "test_junctions.log"
+    },
+    {
+      "name": "test_main_bottom_ui",
+      "passed": true,
+      "exit_code": 0,
+      "errors": [],
+      "summaries": [
+        "RESULT 140/140 main bottom UI checks passed"
+      ],
+      "log": "final-test_main_bottom_ui.log"
+    },
+    {
+      "name": "test_road_draw_modes",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_draw_modes.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 29/29 road draw mode checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 7.58,
+      "log": "test_road_draw_modes.log"
+    },
+    {
+      "name": "test_road_lane_cards",
+      "passed": true,
+      "exit_code": 0,
+      "errors": [],
+      "summaries": [
+        "RESULT 41/41 road lane card checks passed"
+      ],
+      "log": "final-test_road_lane_cards.log"
+    },
+    {
+      "name": "test_road_mode_ui",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_mode_ui.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 14/14 road mode UI checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.03,
+      "log": "test_road_mode_ui.log"
+    },
+    {
+      "name": "test_road_seams",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_seams.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 30/30 seam checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.7,
+      "log": "test_road_seams.log"
+    },
+    {
+      "name": "test_traffic",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_traffic.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 44/44 traffic checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 10.17,
+      "log": "test_traffic.log"
+    }
+  ],
+  "note": "Latest three UI suites rerun after layout changes; unchanged road/core evidence reused"
+}

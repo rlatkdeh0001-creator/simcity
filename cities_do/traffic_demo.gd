@@ -14,6 +14,9 @@ func _ready():
 	controls_panel.hide()
 	hud.hide()
 	mode = "select"
+	# The demo runs its own authored city; stop the construction scene's
+	# bootstrap worker before dropping its model reference.
+	if city.simulation!=null:city.simulation.shutdown()
 	city = Model.new(100,100,42)
 	var ring := PackedVector2Array()
 	for i in range(97):

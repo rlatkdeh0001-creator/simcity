@@ -1,0 +1,128 @@
+{
+  "head": "d5bdad56e646e94b6c3d0a74d6401eca0f76eba6",
+  "review_mode": "independent review passed after blocker fix",
+  "suites": [
+    {
+      "suite": "test_transit_operations",
+      "checks": 36,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operations.log",
+      "sha256": "2fa6fad30b8e33471f28450a6fef1abeca3dcb8dc60ac7da5eb56b96fede70e0"
+    },
+    {
+      "suite": "test_scheduled_buses",
+      "checks": 121,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_scheduled_buses.log",
+      "sha256": "3db2e7d60e499899b041e40b57cc0e329f71823ccda7346c3e1555a68a7d0a05"
+    },
+    {
+      "suite": "test_transit_operation_safety",
+      "checks": 15,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operation_safety.log",
+      "sha256": "eaf38236572bddf5c7067dc638f510a3575d523ac46b5f3f2d7199a09380fdff"
+    },
+    {
+      "suite": "test_transit_operations_fifo",
+      "checks": 20,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_operations_fifo.log",
+      "sha256": "5d6f7fd31fd20568f339b6132b83f59578767ed1144cb94de23165f26585fe1c"
+    },
+    {
+      "suite": "test_transit_operations_view",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 54,
+      "failed": 0,
+      "log": "D:\\project\\simcity\\docs\\transit-operations-validation\\test_transit_operations_view.log"
+    },
+    {
+      "suite": "test_transit_traffic_regression",
+      "checks": 28,
+      "failed": 0,
+      "log": "docs/transit-operations-validation/review-blocker/test_transit_traffic_regression.log",
+      "sha256": "b553f0f9a31181d8e7baa2a1ae75596cc709d2ca8a506f446b05b68c2fc2a4de"
+    },
+    {
+      "suite": "test_transit_transport",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 11,
+      "failed": 0,
+      "log": "D:\\project\\simcity\\docs\\transit-operations-validation\\test_transit_transport.log"
+    },
+    {
+      "suite": "test_transit_fifo",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 10,
+      "failed": 0,
+      "log": "D:\\project\\simcity\\docs\\transit-operations-validation\\test_transit_fifo.log"
+    },
+    {
+      "suite": "test_transit_facilities",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 98,
+      "failed": 0,
+      "log": "D:\\project\\simcity\\docs\\transit-operations-validation\\test_transit_facilities.log"
+    },
+    {
+      "suite": "test_transit_facilities_fifo",
+      "exit_code": 0,
+      "passed": true,
+      "checks": 7,
+      "failed": 0,
+      "log": "D:\\project\\simcity\\docs\\transit-operations-validation\\test_transit_facilities_fifo.log"
+    }
+  ],
+  "source_sha256": {
+    "cities_do/core/city_model.gd": "cb919d79e32e84f4f1a86d8b2796a940af38a58eb2ae1951fc1052bfe26d75b2",
+    "cities_do/core/city_simulation.gd": "cad405f05934e61e0a04b4d7819c36c6e95042b75089982d2f1cefd99f909ebb",
+    "cities_do/core/city_simulation_worker.gd": "5996fc7553b3ad10c2c95592ef934f4c84eac0f5f7d95c967b99240d580b860c",
+    "cities_do/core/transit_line_planner.gd": "a24913d23221a82a4b0e27f2a6e406401095aa81583956193881ccd69cc0a5eb",
+    "cities_do/core/transit_operations.gd": "03d604aca7784d92f50bed89a7f24e1f2101ad6130eef8d93af1f8fc600f6f53",
+    "cities_do/core/scheduled_bus_network.gd": "30e5341a4b708618d513a5e5a61f89f8efbf75a8b010d3122ce15b7c74f49d7f",
+    "cities_do/core/scheduled_bus_simulation.gd": "3d6ff36ec7a2ebdfb58d1db90b749f1df0cf4044d9611a79804ee3d1f397e442",
+    "cities_do/core/transit_operation_config.json": "d84ea5e92f4b3045c776e22f4ecf0f2e8c389bd47fbb43074ec84d9fb6830a37",
+    "cities_do/core/transit_line_tool.gd": "147094a8649a124eb95735e3f582f91308f79d0c145f6de067508933b63c6a33",
+    "cities_do/core/traffic_controller.gd": "9e2f536f87a373627f141ba3cb2783403a630bf86bf482bd25a026e363e112ef",
+    "cities_do/core/cached_world_renderer.gd": "466248c07d85e53fb75abf3525d3176a0032c797b270abb09f65f74281feb264",
+    "cities_do/main.gd": "b24a4253160af604a8c3da505852075ea548d5ee7906eb0e408f885386acf2f4",
+    "cities_do/bottom_ui.gd": "363a1fc0675fa5c82e3ab7cf7a0c5b7727ffe61f88293cc3258e617127f6a57c",
+    "cities_do/tests/transit_operations_fixture.gd": "9b004dd6aaed8f443e63ffcc278666df515945fd9c58ca35466f840d05989437",
+    "cities_do/tests/test_transit_operations.gd": "f2a7408bdc692a63d22cb0506fb5edf7e73bd044556d15e4fd3bc0923a7df9fc",
+    "cities_do/tests/test_scheduled_buses.gd": "f1916d8ba3ec8acd80541da53dc7dfd55c08befcae48316eb4f413fae600aac7",
+    "cities_do/tests/test_transit_operation_safety.gd": "da3f9eac9d75d616f0664b801309377b1c730c2cfa6d924a017aa20cdb8bd4dc",
+    "cities_do/tests/test_transit_operations_fifo.gd": "27d42bdc046dfbcf5531d0c080b365de394499ffcc820538ea27b9c44ab05ee9",
+    "cities_do/tests/test_transit_operations_view.gd": "5767103fd5a235edcd4b5f3c17b5a0806ec01e58d2e428b5dedee72a02838d2a",
+    "cities_do/tests/test_transit_traffic_regression.gd": "cc3ebac7f5a5ea21c032e38f0ac5ae89958f7c929b042189ca9b65e76f8112d2",
+    "tools/run_p3_validation.py": "913bcd9f3ffe34d43f2eb1d7639f06540c7fef5de1a856fa9bb3dd21440061f7"
+  },
+  "counted_checks": 400,
+  "uncounted_suites": [],
+  "captures": [
+    "D:/tools/validation/transit-p3-rail.png",
+    "D:/tools/validation/transit-p3-metro.png"
+  ],
+  "fixture": "res://tests/transit_operations_fixture.gd",
+  "config": "cities_do/core/transit_operation_config.json",
+  "policy_choices": [
+    "One reusable consist per line; first-stop departures wait for the next configured headway slot after completing the physical circuit.",
+    "Player workflow: transport > line (or freight line), click placed stops in order, click first stop again; remove line tool then click one of its stops.",
+    "Return travel needs a continuous directed physical loop. No fabricated crossovers, reverse-track teleport or automatic track construction.",
+    "Scheduled buses serve bus-stop-01; bus-station-01 remains a placed P2 facility, not a depot or dispatch source.",
+    "Changed occupied route/road topology freezes retained vehicles. Restore the same topology or remove/recreate the line; no relocation.",
+    "2/4/6-lane roads use curb branches. 3/5/7 and shoulderless 8-lane roads stop in the outer running lane.",
+    "Operation uses worker-only 30 Hz substeps within accepted society intervals. Rendering consumes publications without extrapolation.",
+    "No fares, upkeep, commuter assignment, walking transfers or catenary added."
+  ],
+  "validation_issue": "Initial legacy test_traffic invocation inadvertently ran its embedded timed fleet and emitted exit resource/thread cleanup errors. Measurement discarded; that runner is excluded. Final traffic regression invokes only its untimed functional methods.",
+  "pending": [
+    "P2 costs/upkeep/service effects/unlocks provisional",
+    "P3 one consist per line, dwell 5s/headway 60s provisional; continuous physical return loop required; occupied topology changes freeze until restore or line recreation",
+    "P4 passengers/transfers and catenary out of scope"
+  ]
+}

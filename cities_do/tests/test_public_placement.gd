@@ -10,7 +10,7 @@ func run():
  var city=preload("res://core/city_model.gd").new(100,100,42)
  verify(city.get("public_facilities")!=null,"public placements have a separate real city model, not inspection scenes")
  if city.get("public_facilities")!=null:
-  verify(city.public_facilities.entries.size()==34,"all thirty-four approved service/infrastructure/park cards are placeable, excluding hydro")
+  verify(city.public_facilities.entries.size()==39,"thirty-four existing facilities plus five P2 registrations, excluding hydro")
   verify(city.public_facilities.has_method("place"),"public placement commits real geometry and charges construction cost")
   if city.public_facilities.has_method("place"):
    city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
@@ -33,6 +33,7 @@ func check_lifecycle():
  var ids: Array=town().public_facilities.entries.keys()
  for id: String in ids:
   var city=town();var public=city.public_facilities;var e: Dictionary=public.entries[id]
+  if e.has("construction_default"):continue # P2's explicitly provisional/free entries have their own lifecycle suite.
   var position:=Vector2(12,38-float(e.depth)/2)
   verify(not public.preview(id,Vector2(12,10)).ok,id+" rejects disconnected frontage")
   verify(not public.preview(id,position,2).ok,id+" rejects model front away from road")
@@ -67,7 +68,7 @@ func check_utilities():
   verify(city.power.plants.size()==1 and record.utility_id>=0,id+" joins real power engine")
   if record.utility_id<0:continue
   verify(city.power.plants[0].output_kw==record.capacity.average_output_kw,id+" actual average generation comes from CSV, rated output remains separate")
-  city.add_building(40,36,"residential")
+  verify(city.add_building_at(Vector2(41,36.5),"residential").ok,"utility consumer snaps to the actual four-lane road edge")
   verify(not city.power_state().consumers[city.buildings[0].id].powered,"generation without connected wire cannot supply houses")
   city.power.add_wire(PackedVector2Array([record.position*4,Vector2(164,148)]))
   verify(city.power_state().consumers[city.buildings[0].id].powered,id+" actual wire supplies a real private building")
@@ -80,7 +81,7 @@ func check_utilities():
   verify(city.water.facilities.size()==2 and supply.utility_id>=0 and sink.utility_id>=0,id+" actual intake and sewage sink are registered")
   if supply.utility_id<0 or sink.utility_id<0:continue
   verify(city.water.facilities[0].capacity_m3_day==1000 and city.water.facilities[1].capacity_m3_day==sink.capacity.sewage_m3_day,"water/sewage real capacities read approved CSV")
-  city.add_building(40,36,"residential")
+  verify(city.add_building_at(Vector2(41,36.5),"residential").ok,"utility consumer snaps to the actual four-lane road edge")
   city.water.add_pipe(PackedVector2Array([supply.position*4,sink.position*4,Vector2(164,148)]))
   var state: Dictionary=city.water_state().consumers[city.buildings[0].id]
   verify(state.has_water and state.has_sewage,id+" paired real pipes deliver water and handle sewage")

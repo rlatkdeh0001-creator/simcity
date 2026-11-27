@@ -1,0 +1,98 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+ERROR: FAIL both unconnected ends request flat pavement caps [(1.0, 0.0), 2]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(1.0, 0.0), 3]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(1.0, 0.0), 8]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.0, 1.0), 2]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.0, 1.0), 3]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.0, 1.0), 8]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.8, 0.6), 2]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.8, 0.6), 3]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL both unconnected ends request flat pavement caps [(0.8, 0.6), 8]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:22)
+ERROR: FAIL pavement terminates exactly on planes perpendicular to the road, without pointed or rounded protrusion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:23)
+ERROR: FAIL render-only joined chain keeps its smooth connection and flat free ends
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_road_flat_caps.gd:10)
+       [1] run (res://tests/test_road_flat_caps.gd:25)
+RESULT 0/19 flat road cap checks passed

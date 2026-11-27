@@ -17,14 +17,15 @@ static func connection(point: Vector2,roads: Array) -> Dictionary:
    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,a,b))<=EPS:
     return {"a":a,"b":b,"tangent":(b-a).normalized(),"outward":Vector2.ZERO,"point":point,"endpoint":false}
  return {}
-static func axis(delta: Vector2,host: Dictionary) -> Vector2:
+static func axis(delta: Vector2,host: Dictionary,allow_overlay: bool=false) -> Vector2:
  if host.is_empty() or delta.length()<EPS:return Vector2.ZERO
  var tangent: Vector2=host.tangent
  var normal:=Vector2(-tangent.y,tangent.x)
  var candidates: Array[Vector2]=[normal,-normal]
- # Parallel assist is an extension: never add an overlapping first segment
- # along the already occupied interior of an existing road.
- if host.endpoint:candidates.append(host.outward)
+ # Straight-mode overdraw may snap onto an occupied axis; the construction
+ # transaction retains that surface and adds only exact same-profile tails.
+ if allow_overlay:candidates.append_array([tangent,-tangent])
+ elif host.endpoint:candidates.append(host.outward)
  var best:=Vector2.ZERO;var alignment: float=cos(deg_to_rad(ANGLE_DEGREES))-.000001
  for candidate in candidates:
   var dot: float=delta.normalized().dot(candidate)
@@ -41,7 +42,7 @@ static func intersect_host(origin: Vector2,direction: Vector2,host: Dictionary):
  var u: float=(a-origin).cross(direction)/denominator
  if u < -EPS or u > 1+EPS:return null
  return a+segment*clampf(u,0,1)
-static func apply(points: PackedVector2Array,roads: Array) -> PackedVector2Array:
+static func apply(points: PackedVector2Array,roads: Array,allow_overlay: bool=false) -> PackedVector2Array:
  var result:=points.duplicate()
  if result.size()<2:return result
  if result.size()>2:
@@ -54,18 +55,18 @@ static func apply(points: PackedVector2Array,roads: Array) -> PackedVector2Array
   # Authored endpoints outrank angle assistance. A middle contact may slide,
   # but two incompatible fixed endpoints cannot both move and remain pinned.
   if start_host.endpoint:return result
-  var pinned_axis:=axis(first-last,end_host)
+  var pinned_axis:=axis(first-last,end_host,allow_overlay)
   if pinned_axis!=Vector2.ZERO:
    var pinned_hit=intersect_host(last,pinned_axis,start_host)
    if pinned_hit!=null and (Vector2(pinned_hit)-last).dot(pinned_axis)>EPS:result[0]=pinned_hit
   return result
- var start_axis:=axis(last-first,start_host)
+ var start_axis:=axis(last-first,start_host,allow_overlay)
  if start_axis!=Vector2.ZERO:
   if end_host.is_empty():result[-1]=first+start_axis*(last-first).dot(start_axis);return result
   var intersection=intersect_host(first,start_axis,end_host)
   if intersection!=null and (Vector2(intersection)-first).dot(start_axis)>EPS:result[-1]=intersection;return result
  if not start_host.is_empty() and start_host.endpoint:return result
- var end_axis:=axis(first-last,end_host)
+ var end_axis:=axis(first-last,end_host,allow_overlay)
  if end_axis!=Vector2.ZERO:
   if start_host.is_empty():result[0]=last+end_axis*(first-last).dot(end_axis);return result
   var intersection=intersect_host(last,end_axis,start_host)

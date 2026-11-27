@@ -1,0 +1,35 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_transit_render.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS transit renderer builds clipped textured ribbons
+PASS rail track centers are plus/minus 2 metres
+PASS ballast full width is 7.6 metres
+PASS both blocked terminals use end strips
+PASS two 3.6m textured strips leave plain 0.4m center gap
+PASS strip U repeats every 4 metres of its own track length
+PASS connected endpoints have no buffers
+PASS road crossing draws rails-only strip
+PASS crossing removes sleepers and ballast, not road geometry
+PASS all rail and tunnel polygons clipped to city boundary
+PASS metro paths centered at plus/minus 4.15 metres
+PASS metro uses black ribbon at rail-top depth minus 12.7m
+PASS metro ribbon full width is 12 metres
+PASS smooth closed route fixture respects minimum radius
+PASS closed loop has no blocked end buffers
+PASS closed track offsets meet at correct radial normal within polyline miter tolerance
+PASS closed running strips share exact seam coordinates
+PASS closed rail loop never fills its interior with ballast
+PASS exact clipped contact sliver is retained, not discarded
+PASS contact sliver retains valid world-space triangle indices
+PASS contact sliver keeps interpolated UVs paired with original vertices
+PASS regression fixture reproduces projection-only triangulation failure
+PASS approved actual strip texture loads at 320x288
+PASS strip runtime texture has mipmaps
+PASS approved actual strip_end texture loads at 320x288
+PASS strip_end runtime texture has mipmaps
+PASS approved actual strip_rails texture loads at 320x288
+PASS strip_rails runtime texture has mipmaps
+RESULT 28/28 transit render checks passed
+
+STDERR

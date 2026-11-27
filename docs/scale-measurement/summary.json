@@ -1,0 +1,1190 @@
+{
+  "latest_phase": "background",
+  "latest_source_commit": "6be51b9b056d83b02d7bff09579aa0b67aa315ba",
+  "latest_frame_acceptance_16ms_met": false,
+  "latest_report": "background/summary.json",
+  "baseline": {
+    "source_commit": "a3a945c582cfafcbb79a18cca1ca4f156367dbb8",
+    "measured_after_kst_deadline": true,
+    "verified_at_kst": "2026-11-16T11:12:59.448815+09:00",
+    "method": {
+      "fixture": "synthetic authoritative managed population, 4 residents/home in two households; 1 level-one industrial workplace per 8 residents; native Godot RNG; 3750/18750/112500 building records; one road segment and one health/police/fire/education/park cluster; residents age30; 90 percent employed",
+      "measurement": "isolated Godot .NET project copies exact production C# sources; Stopwatch brackets only in copied Tick; seven samples after first priming plus one warm-up; new process for every size",
+      "population_tick": "production AdvancePacked(48) + MatchJobs, within BeginTick/EndTick; excludes GD facade packing, city construction, render and utility solves",
+      "employment": "additional production MatchJobs replay; included matching in population tick is not added twice",
+      "happiness": "whole production Tick, includes grouping, growth bucket target calculation and cached city average",
+      "growth_bucket": "exact foreach _buckets[_bucket] span, includes happiness target/source scans and threshold checks; no eligible automatic spatial upgrade occurred in this short window",
+      "daily_warning": "separate one-shot day-crossing probe after only one initialized bucket (1/75); daily_ms is NOT fully initialized-city daily cost and is an underestimate; no median/max asserted for this single sample",
+      "bounds": "6GiB owned process tree RSS and 120/150/180 seconds for normal runs; bounded daily probes; only owned process trees terminated",
+      "limitations": "synthetic core workload, not road-valid complete gameplay city, not full society/frame timing; one local service cluster underestimates complex city routing/service distribution; no production optimization or demand policy changes"
+    },
+    "rows": [
+      {
+        "steady": {
+          "population": 10000,
+          "scenario": "steady",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 168345600,
+          "wall_seconds": 2.1089069999998173,
+          "measurement": {
+            "buildings": 3750,
+            "city_average": {
+              "max_ms": 0.253399999812245,
+              "median_ms": 0.199500000104308,
+              "samples_ms": [
+                0.190200001001358,
+                0.199799999594688,
+                0.242099998518825,
+                0.195199999958277,
+                0.199500000104308,
+                0.177200000733137,
+                0.253399999812245
+              ]
+            },
+            "employment_replay": {
+              "max_ms": 0.834,
+              "median_ms": 0.695,
+              "samples_ms": [
+                0.647,
+                0.691,
+                0.755,
+                0.695,
+                0.712,
+                0.834,
+                0.594
+              ]
+            },
+            "generation_ms": 737.663,
+            "growth_bucket_including_target": {
+              "max_ms": 24.9343999996781,
+              "median_ms": 17.9632000010461,
+              "samples_ms": [
+                16.9670000001788,
+                17.6863000001758,
+                18.6304000001401,
+                17.9632000010461,
+                18.1762000005692,
+                16.3790000006557,
+                24.9343999996781
+              ]
+            },
+            "happiness_tick_including_bucket": {
+              "max_ms": 28.175,
+              "median_ms": 21.381,
+              "samples_ms": [
+                20.317,
+                21.025,
+                27.66,
+                21.381,
+                27.183,
+                19.392,
+                28.175
+              ]
+            },
+            "homes": 2500,
+            "initial_happiness_sections": {
+              "assignment_ms": 71.5084999985993,
+              "average_ms": 0.605399999767542,
+              "bucket_ms": 27.0659999996424,
+              "daily_ms": 0.000100001692771912,
+              "groups_ms": 3.83289999887347
+            },
+            "population": 10000,
+            "population_grouping": {
+              "max_ms": 8.35480000078678,
+              "median_ms": 2.83770000003278,
+              "samples_ms": [
+                2.79310000129044,
+                2.83770000003278,
+                8.35480000078678,
+                2.8980000000447,
+                8.34239999949932,
+                2.50349999964237,
+                2.60309999994934
+              ]
+            },
+            "population_tick_including_matching": {
+              "max_ms": 23.626,
+              "median_ms": 4.03,
+              "samples_ms": [
+                23.626,
+                3.881,
+                6.788,
+                4.03,
+                3.727,
+                9.451,
+                3.612
+              ]
+            },
+            "stats": {
+              "employed": 9000,
+              "households": 5000,
+              "population": 10000,
+              "unemployed": 1000
+            },
+            "workplaces": 1250
+          }
+        },
+        "daily_partial_initialization": {
+          "population": 10000,
+          "scenario": "daily",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 164884480,
+          "wall_seconds": 1.0432247999997344,
+          "measurement": {
+            "daily": {
+              "assignment_ms": 13.5634000003338,
+              "average_ms": 0.142000000923872,
+              "bucket_ms": 26.933999998495,
+              "daily_ms": 32.2701999992132,
+              "groups_ms": 1.6680999994278,
+              "total_tick_ms": 61.212
+            },
+            "population": 10000
+          }
+        }
+      },
+      {
+        "steady": {
+          "population": 50000,
+          "scenario": "steady",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 282202112,
+          "wall_seconds": 5.253382799999599,
+          "measurement": {
+            "buildings": 18750,
+            "city_average": {
+              "max_ms": 1.61309999972582,
+              "median_ms": 1.31489999964833,
+              "samples_ms": [
+                1.56359999999404,
+                1.23560000024736,
+                1.05159999988973,
+                1.05429999902844,
+                1.31489999964833,
+                1.61309999972582,
+                1.53690000064671
+              ]
+            },
+            "employment_replay": {
+              "max_ms": 5.165,
+              "median_ms": 4.022,
+              "samples_ms": [
+                4.863,
+                5.165,
+                4.022,
+                2.952,
+                3.108,
+                3.976,
+                4.817
+              ]
+            },
+            "generation_ms": 1966.124,
+            "growth_bucket_including_target": {
+              "max_ms": 255.705499999225,
+              "median_ms": 225.888699999079,
+              "samples_ms": [
+                212.1930999998,
+                220.64140000008,
+                230.053400000557,
+                219.7444000002,
+                225.888699999079,
+                240.206699999049,
+                255.705499999225
+              ]
+            },
+            "happiness_tick_including_bucket": {
+              "max_ms": 279.218,
+              "median_ms": 243.067,
+              "samples_ms": [
+                233.265,
+                235.144,
+                243.067,
+                231.926,
+                245.6,
+                256.806,
+                279.218
+              ]
+            },
+            "homes": 12500,
+            "initial_happiness_sections": {
+              "assignment_ms": 169.819599999115,
+              "average_ms": 1.58810000121593,
+              "bucket_ms": 293.07870000042,
+              "daily_ms": 0.000299999490380287,
+              "groups_ms": 11.9016999993473
+            },
+            "population": 50000,
+            "population_grouping": {
+              "max_ms": 18.7444000001997,
+              "median_ms": 13.163500001654,
+              "samples_ms": [
+                17.4422000013292,
+                11.4844000004232,
+                10.1872000005096,
+                9.44510000012815,
+                16.1245999988168,
+                13.163500001654,
+                18.7444000001997
+              ]
+            },
+            "population_tick_including_matching": {
+              "max_ms": 25.452,
+              "median_ms": 15.272,
+              "samples_ms": [
+                25.452,
+                15.272,
+                14.307,
+                15.693,
+                16.939,
+                13.541,
+                15.198
+              ]
+            },
+            "stats": {
+              "employed": 45000,
+              "households": 25000,
+              "population": 50000,
+              "unemployed": 5000
+            },
+            "workplaces": 6250
+          }
+        },
+        "daily_partial_initialization": {
+          "population": 50000,
+          "scenario": "daily",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 273489920,
+          "wall_seconds": 3.1328766999995423,
+          "measurement": {
+            "daily": {
+              "assignment_ms": 41.1822999995202,
+              "average_ms": 0.870100000873208,
+              "bucket_ms": 191.172100000083,
+              "daily_ms": 360.368599999696,
+              "groups_ms": 8.64849999919534,
+              "total_tick_ms": 562.796
+            },
+            "population": 50000
+          }
+        }
+      },
+      {
+        "steady": {
+          "population": 300000,
+          "scenario": "steady",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 938950656,
+          "wall_seconds": 111.46275950000017,
+          "measurement": {
+            "buildings": 112500,
+            "city_average": {
+              "max_ms": 11.7120999991894,
+              "median_ms": 7.16479999944568,
+              "samples_ms": [
+                6.4222999997437,
+                6.65249999985099,
+                9.7839999999851,
+                7.16479999944568,
+                11.7120999991894,
+                7.83480000123382,
+                6.90369999967515
+              ]
+            },
+            "employment_replay": {
+              "max_ms": 56.151,
+              "median_ms": 28.217,
+              "samples_ms": [
+                25.765,
+                25.036,
+                32.272,
+                49.713,
+                26.983,
+                56.151,
+                28.217
+              ]
+            },
+            "generation_ms": 9630.244,
+            "growth_bucket_including_target": {
+              "max_ms": 13066.8093000017,
+              "median_ms": 10944.2882000003,
+              "samples_ms": [
+                9715.04400000162,
+                10944.2882000003,
+                11812.1082000006,
+                10063.6900999993,
+                13066.8093000017,
+                12574.6276999991,
+                10114.0518999994
+              ]
+            },
+            "happiness_tick_including_bucket": {
+              "max_ms": 13153.816,
+              "median_ms": 11021.268,
+              "samples_ms": [
+                9790.646,
+                11021.268,
+                11900.836,
+                10205.988,
+                13153.816,
+                12724.009,
+                10199.071
+              ]
+            },
+            "homes": 75000,
+            "initial_happiness_sections": {
+              "assignment_ms": 406.604399999604,
+              "average_ms": 7.4125999994576,
+              "bucket_ms": 9784.77789999917,
+              "daily_ms": 0.000700000673532486,
+              "groups_ms": 54.8028000015765
+            },
+            "population": 300000,
+            "population_grouping": {
+              "max_ms": 128.713700000197,
+              "median_ms": 68.2491999994963,
+              "samples_ms": [
+                60.756700001657,
+                61.8331000003964,
+                69.7716000005603,
+                116.8180999998,
+                66.2872999999672,
+                128.713700000197,
+                68.2491999994963
+              ]
+            },
+            "population_tick_including_matching": {
+              "max_ms": 154.714,
+              "median_ms": 97.631,
+              "samples_ms": [
+                89.068,
+                88.841,
+                86.495,
+                153.432,
+                97.631,
+                154.714,
+                108.413
+              ]
+            },
+            "stats": {
+              "employed": 270000,
+              "households": 150000,
+              "population": 300000,
+              "unemployed": 30000
+            },
+            "workplaces": 37500
+          }
+        },
+        "daily_partial_initialization": {
+          "population": 300000,
+          "scenario": "daily",
+          "status": "passed",
+          "reason": null,
+          "peak_tree_rss_bytes": 918335488,
+          "wall_seconds": 44.91707379999934,
+          "measurement": {
+            "daily": {
+              "assignment_ms": 228.507300000638,
+              "average_ms": 6.24670000001788,
+              "bucket_ms": 9649.61950000003,
+              "daily_ms": 15565.3254000004,
+              "groups_ms": 41.9961000010371,
+              "total_tick_ms": 25270.297
+            },
+            "population": 300000
+          }
+        }
+      }
+    ]
+  },
+  "serial_incremental": [
+    {
+      "population": 10000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 154206208,
+      "wall_seconds": 1.556180100000347,
+      "measurement": {
+        "buildings": 3750,
+        "city_average": {
+          "max_ms": 0.271300001069903,
+          "median_ms": 0.200999999418855,
+          "samples_ms": [
+            0.271300001069903,
+            0.200999999418855,
+            0.214200001209974,
+            0.218699999153614,
+            0.135700000450015,
+            0.137099999934435,
+            0.132599998265505
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 0.433,
+          "median_ms": 0.427,
+          "samples_ms": [
+            0.429,
+            0.426,
+            0.433,
+            0.43,
+            0.42,
+            0.422,
+            0.427
+          ]
+        },
+        "generation_ms": 432.718,
+        "growth_bucket_including_target": {
+          "max_ms": 3.41480000130832,
+          "median_ms": 2.79279999993742,
+          "samples_ms": [
+            3.41480000130832,
+            2.71730000153184,
+            2.67809999920428,
+            2.82539999857545,
+            2.79279999993742,
+            2.81110000051558,
+            2.62129999883473
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 3.82,
+          "median_ms": 3.16,
+          "samples_ms": [
+            3.82,
+            3.16,
+            3.056,
+            3.191,
+            3.091,
+            3.163,
+            2.89
+          ]
+        },
+        "homes": 2500,
+        "initial_happiness_sections": {
+          "assignment_ms": 23.5709999985993,
+          "average_ms": 0.459699999541044,
+          "bucket_ms": 9.39409999921918,
+          "daily_ms": 0.000100001692771912,
+          "groups_ms": 0.00940000079572201
+        },
+        "population": 10000,
+        "population_grouping": {
+          "max_ms": 0.000599998980760574,
+          "median_ms": 0.000300001353025436,
+          "samples_ms": [
+            0.000299999490380287,
+            0.00039999932050705,
+            0.000299999490380287,
+            0.000200001522898674,
+            0.000300001353025436,
+            0.000599998980760574,
+            0.000500001013278961
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 23.203,
+          "median_ms": 2.077,
+          "samples_ms": [
+            2.069,
+            2.14,
+            2.543,
+            2.077,
+            2.057,
+            23.203,
+            2.065
+          ]
+        },
+        "stats": {
+          "employed": 9000,
+          "households": 5000,
+          "population": 10000,
+          "unemployed": 1000
+        },
+        "workplaces": 1250
+      }
+    },
+    {
+      "population": 50000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 269565952,
+      "wall_seconds": 3.1129320000000007,
+      "measurement": {
+        "buildings": 18750,
+        "city_average": {
+          "max_ms": 1.27170000039041,
+          "median_ms": 1.02910000085831,
+          "samples_ms": [
+            1.27170000039041,
+            1.21360000036657,
+            1.20470000058413,
+            1.02910000085831,
+            0.911799998953938,
+            0.908999999985099,
+            0.92119999974966
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 2.26,
+          "median_ms": 1.868,
+          "samples_ms": [
+            1.985,
+            1.952,
+            1.848,
+            2.26,
+            1.841,
+            1.839,
+            1.868
+          ]
+        },
+        "generation_ms": 2226.535,
+        "growth_bucket_including_target": {
+          "max_ms": 22.8677999991924,
+          "median_ms": 11.6617000009865,
+          "samples_ms": [
+            10.8133000005037,
+            11.745699999854,
+            11.6617000009865,
+            22.8677999991924,
+            11.3145000003278,
+            11.4965000003576,
+            12.8506000004709
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 25.358,
+          "median_ms": 14.278,
+          "samples_ms": [
+            13.81,
+            14.625,
+            14.278,
+            25.358,
+            13.726,
+            13.746,
+            15.286
+          ]
+        },
+        "homes": 12500,
+        "initial_happiness_sections": {
+          "assignment_ms": 78.2345000002533,
+          "average_ms": 1.2730000000447,
+          "bucket_ms": 16.8260000012815,
+          "daily_ms": 9.99998301267624e-05,
+          "groups_ms": 0.00989999994635582
+        },
+        "population": 50000,
+        "population_grouping": {
+          "max_ms": 0.000599998980760574,
+          "median_ms": 0.00039999932050705,
+          "samples_ms": [
+            0.000599998980760574,
+            0.000499999150633812,
+            0.000500001013278961,
+            0.00039999932050705,
+            0.00039999932050705,
+            0.00039999932050705,
+            0.000299999490380287
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 24.315,
+          "median_ms": 11.324,
+          "samples_ms": [
+            24.315,
+            10.656,
+            11.324,
+            11.438,
+            12.892,
+            8.149,
+            8.056
+          ]
+        },
+        "stats": {
+          "employed": 45000,
+          "households": 25000,
+          "population": 50000,
+          "unemployed": 5000
+        },
+        "workplaces": 6250
+      }
+    },
+    {
+      "population": 300000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 957186048,
+      "wall_seconds": 17.41160039999886,
+      "measurement": {
+        "buildings": 112500,
+        "city_average": {
+          "max_ms": 6.43710000067949,
+          "median_ms": 5.98979999870062,
+          "samples_ms": [
+            5.93999999947846,
+            6.43710000067949,
+            5.98979999870062,
+            6.26510000042617,
+            6.16950000077486,
+            5.93599999882281,
+            5.90919999964535
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 48.414,
+          "median_ms": 25.188,
+          "samples_ms": [
+            48.414,
+            22.965,
+            25.987,
+            25.583,
+            23.449,
+            25.188,
+            23.597
+          ]
+        },
+        "generation_ms": 13835.541,
+        "growth_bucket_including_target": {
+          "max_ms": 166.050100000575,
+          "median_ms": 138.899199999869,
+          "samples_ms": [
+            117.981200000271,
+            152.559100000188,
+            138.899199999869,
+            147.382399998605,
+            134.019600000232,
+            166.050100000575,
+            131.572100000456
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 182.153,
+          "median_ms": 152.594,
+          "samples_ms": [
+            133.014,
+            169.143,
+            152.594,
+            164.108,
+            150.276,
+            182.153,
+            145.234
+          ]
+        },
+        "homes": 75000,
+        "initial_happiness_sections": {
+          "assignment_ms": 348.088999999687,
+          "average_ms": 8.05599999986589,
+          "bucket_ms": 118.621500000358,
+          "daily_ms": 0.000499999150633812,
+          "groups_ms": 0.0103999990969896
+        },
+        "population": 300000,
+        "population_grouping": {
+          "max_ms": 0.000800000503659248,
+          "median_ms": 0.000600000843405724,
+          "samples_ms": [
+            0.000799998641014099,
+            0.000499999150633812,
+            0.000600000843405724,
+            0.000600000843405724,
+            0.000500001013278961,
+            0.00039999932050705,
+            0.000800000503659248
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 69.423,
+          "median_ms": 65.666,
+          "samples_ms": [
+            69.423,
+            63.295,
+            68.25,
+            65.666,
+            64.186,
+            63.726,
+            66.705
+          ]
+        },
+        "stats": {
+          "employed": 270000,
+          "households": 150000,
+          "population": 300000,
+          "unemployed": 30000
+        },
+        "workplaces": 37500
+      }
+    }
+  ],
+  "parallel_final": [
+    {
+      "population": 10000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 164253696,
+      "wall_seconds": 1.5662650000012945,
+      "measurement": {
+        "buildings": 3750,
+        "city_average": {
+          "max_ms": 0.389499999582767,
+          "median_ms": 0.289500001817942,
+          "samples_ms": [
+            0.36260000243783,
+            0.389499999582767,
+            0.334300000220537,
+            0.289500001817942,
+            0.204899996519089,
+            0.249800000339746,
+            0.1418999992311
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 0.759,
+          "median_ms": 0.472,
+          "samples_ms": [
+            0.426,
+            0.737,
+            0.759,
+            0.451,
+            0.451,
+            0.532,
+            0.472
+          ]
+        },
+        "generation_ms": 488.815,
+        "growth_bucket_including_target": {
+          "max_ms": 6.21970000118017,
+          "median_ms": 3.3205000013113,
+          "samples_ms": [
+            3.3205000013113,
+            4.03480000048876,
+            4.35589999705553,
+            3.23669999837875,
+            3.29459999874234,
+            6.21970000118017,
+            3.10490000247955
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 7.153,
+          "median_ms": 3.955,
+          "samples_ms": [
+            3.955,
+            4.71,
+            5.068,
+            3.707,
+            3.735,
+            7.153,
+            3.418
+          ]
+        },
+        "homes": 2500,
+        "initial_happiness_sections": {
+          "assignment_ms": 24.8947999998927,
+          "average_ms": 0.624600000679493,
+          "bucket_ms": 11.5069000013173,
+          "daily_ms": 0.000100001692771912,
+          "groups_ms": 0.00900000333786011
+        },
+        "population": 10000,
+        "population_grouping": {
+          "max_ms": 0.0210999995470047,
+          "median_ms": 0.000500001013278961,
+          "samples_ms": [
+            0.000900000333786011,
+            0.000500001013278961,
+            0.00100000202655792,
+            0.00039999932050705,
+            0.000500001013278961,
+            0.0210999995470047,
+            0.00039999932050705
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 24.831,
+          "median_ms": 3.261,
+          "samples_ms": [
+            2.15,
+            3.483,
+            4.165,
+            2.753,
+            2.223,
+            24.831,
+            3.261
+          ]
+        },
+        "stats": {
+          "employed": 9000,
+          "households": 5000,
+          "population": 10000,
+          "unemployed": 1000
+        },
+        "warmup_happiness_buckets": 1,
+        "workplaces": 1250
+      }
+    },
+    {
+      "population": 50000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 282066944,
+      "wall_seconds": 3.404185299998062,
+      "measurement": {
+        "buildings": 18750,
+        "city_average": {
+          "max_ms": 1.79789999872446,
+          "median_ms": 1.29679999873042,
+          "samples_ms": [
+            1.29679999873042,
+            1.47429999709129,
+            1.79789999872446,
+            1.30570000037551,
+            1.25349999964237,
+            1.03770000115037,
+            1.05099999904633
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 4.839,
+          "median_ms": 2.932,
+          "samples_ms": [
+            4.839,
+            2.171,
+            2.932,
+            4.15,
+            2.155,
+            2.793,
+            4.19
+          ]
+        },
+        "generation_ms": 2320.196,
+        "growth_bucket_including_target": {
+          "max_ms": 24.1730000004172,
+          "median_ms": 10.7725999988616,
+          "samples_ms": [
+            12.416899997741,
+            10.7725999988616,
+            8.86349999904633,
+            24.1730000004172,
+            10.2120999991894,
+            9.78849999979138,
+            11.1985999979079
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 26.983,
+          "median_ms": 13.72,
+          "samples_ms": [
+            15.675,
+            13.73,
+            12.153,
+            26.983,
+            12.917,
+            12.55,
+            13.72
+          ]
+        },
+        "homes": 12500,
+        "initial_happiness_sections": {
+          "assignment_ms": 81.3737999983132,
+          "average_ms": 1.48319999873638,
+          "bucket_ms": 24.8439000025392,
+          "daily_ms": 0.000599998980760574,
+          "groups_ms": 0.00879999995231628
+        },
+        "population": 50000,
+        "population_grouping": {
+          "max_ms": 0.000900000333786011,
+          "median_ms": 0.000600002706050873,
+          "samples_ms": [
+            0.000700000673532486,
+            0.000599998980760574,
+            0.000799998641014099,
+            0.000599998980760574,
+            0.000900000333786011,
+            0.00039999932050705,
+            0.000600002706050873
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 14.698,
+          "median_ms": 12.683,
+          "samples_ms": [
+            14.698,
+            11.527,
+            12.14,
+            12.776,
+            12.683,
+            12.051,
+            14.532
+          ]
+        },
+        "stats": {
+          "employed": 45000,
+          "households": 25000,
+          "population": 50000,
+          "unemployed": 5000
+        },
+        "warmup_happiness_buckets": 1,
+        "workplaces": 6250
+      }
+    },
+    {
+      "population": 300000,
+      "scenario": "steady",
+      "status": "passed",
+      "reason": null,
+      "peak_tree_rss_bytes": 927612928,
+      "wall_seconds": 19.108143999997992,
+      "measurement": {
+        "buildings": 112500,
+        "city_average": {
+          "max_ms": 6.25579999759793,
+          "median_ms": 6.09030000120401,
+          "samples_ms": [
+            6.09030000120401,
+            6.1727000027895,
+            6.05099999904633,
+            6.25579999759793,
+            6.0054999999702,
+            6.00270000100136,
+            6.18549999967217
+          ]
+        },
+        "employment_replay": {
+          "max_ms": 32.672,
+          "median_ms": 26.346,
+          "samples_ms": [
+            32.672,
+            26.326,
+            26.477,
+            27.319,
+            23.699,
+            26.346,
+            22.866
+          ]
+        },
+        "generation_ms": 15935.211,
+        "growth_bucket_including_target": {
+          "max_ms": 126.159700002521,
+          "median_ms": 85.8592000007629,
+          "samples_ms": [
+            80.1955000013113,
+            126.159700002521,
+            93.3598999977112,
+            85.8592000007629,
+            119.305500000715,
+            81.0678000003099,
+            84.6250999979675
+          ]
+        },
+        "happiness_tick_including_bucket": {
+          "max_ms": 141.637,
+          "median_ms": 102.783,
+          "samples_ms": [
+            95.62,
+            141.637,
+            108.713,
+            102.783,
+            135.168,
+            95.08,
+            100.852
+          ]
+        },
+        "homes": 75000,
+        "initial_happiness_sections": {
+          "assignment_ms": 361.252900000662,
+          "average_ms": 8.00829999893904,
+          "bucket_ms": 80.8037999980152,
+          "daily_ms": 0.000799998641014099,
+          "groups_ms": 0.0115000009536743
+        },
+        "population": 300000,
+        "population_grouping": {
+          "max_ms": 0.000599998980760574,
+          "median_ms": 0.000500001013278961,
+          "samples_ms": [
+            0.000599998980760574,
+            0.000500001013278961,
+            0.000599998980760574,
+            0.000599998980760574,
+            0.000500001013278961,
+            0.00039999932050705,
+            0.00039999932050705
+          ]
+        },
+        "population_tick_including_matching": {
+          "max_ms": 123.262,
+          "median_ms": 67.163,
+          "samples_ms": [
+            123.262,
+            67.724,
+            66.518,
+            65.647,
+            66.756,
+            67.163,
+            68.994
+          ]
+        },
+        "stats": {
+          "employed": 270000,
+          "households": 150000,
+          "population": 300000,
+          "unemployed": 30000
+        },
+        "warmup_happiness_buckets": 1,
+        "workplaces": 37500
+      }
+    }
+  ],
+  "fully_warm_300k_final": {
+    "population": 300000,
+    "scenario": "warm",
+    "status": "passed",
+    "reason": null,
+    "peak_tree_rss_bytes": 1543544832,
+    "wall_seconds": 30.11812160000045,
+    "measurement": {
+      "buildings": 112500,
+      "city_average": {
+        "max_ms": 109.056900002062,
+        "median_ms": 10.9126999974251,
+        "samples_ms": [
+          17.5773000009358,
+          10.9126999974251,
+          9.30130000039935,
+          9.39389999955893,
+          109.056900002062,
+          8.00079999864101,
+          14.3107999972999
+        ]
+      },
+      "employment_replay": {
+        "max_ms": 75.135,
+        "median_ms": 53.541,
+        "samples_ms": [
+          75.135,
+          53.541,
+          59.779,
+          32.349,
+          45.747,
+          33.786,
+          56.067
+        ]
+      },
+      "generation_ms": 14080.485,
+      "growth_bucket_including_target": {
+        "max_ms": 95.4368999972939,
+        "median_ms": 60.3845999985933,
+        "samples_ms": [
+          62.9671999998391,
+          46.9045000001788,
+          95.4368999972939,
+          50.4815999977291,
+          41.6515999995172,
+          64.2010000012815,
+          60.3845999985933
+        ]
+      },
+      "happiness_tick_including_bucket": {
+        "max_ms": 163.954,
+        "median_ms": 93.566,
+        "samples_ms": [
+          99.067,
+          76.682,
+          116.769,
+          81.882,
+          163.954,
+          85.591,
+          93.566
+        ]
+      },
+      "homes": 75000,
+      "initial_happiness_sections": {
+        "assignment_ms": 352.899700000882,
+        "average_ms": 7.99710000306368,
+        "bucket_ms": 86.0740999989212,
+        "daily_ms": 0.000799998641014099,
+        "groups_ms": 0.00959999859333038
+      },
+      "population": 300000,
+      "population_grouping": {
+        "max_ms": 0.000800002366304398,
+        "median_ms": 0.000499997287988663,
+        "samples_ms": [
+          0.000800002366304398,
+          0.00039999932050705,
+          0.000300001353025436,
+          0.000600002706050873,
+          0.000500001013278961,
+          0.00039999932050705,
+          0.000499997287988663
+        ]
+      },
+      "population_tick_including_matching": {
+        "max_ms": 203.117,
+        "median_ms": 117.522,
+        "samples_ms": [
+          203.117,
+          198.134,
+          138.894,
+          95.179,
+          100.907,
+          114.344,
+          117.522
+        ]
+      },
+      "stats": {
+        "employed": 270000,
+        "households": 150000,
+        "population": 300000,
+        "unemployed": 30000
+      },
+      "warmup_happiness_buckets": 75,
+      "workplaces": 37500
+    }
+  },
+  "verified_source_commit": "db45002ec81fdf307b8a2c62af7ace9c0faa476d",
+  "verified_kst": "2026-11-16T12:59:44.525140+09:00",
+  "validation": {
+    "checks": 11637,
+    "population_three_day_seeds": [
+      42,
+      20261114
+    ],
+    "happiness_three_day_seeds": [
+      42,
+      20261114
+    ],
+    "scenario_targets": [
+      40,
+      70,
+      80
+    ],
+    "scenario_levels": [
+      1,
+      4,
+      5
+    ],
+    "parallel_forced_in_oracle_and_scenario": true,
+    "native_process_exit_checks": "all final selected suites and scenario exited0; mixed native probe/oracle harness was split after shutdown fault"
+  },
+  "limits": [
+    "Synthetic managed-core benchmark, not full Godot society/frame cost",
+    "Matched before/after uses initial nine buckets, not a fully warmed city despite legacy scenario name steady",
+    "Warm-only probe establishes employment before priming all75 buckets; no baseline warm comparison",
+    "Happiness includes bucket; employment is an independent replay and cannot be added as disjoint cost",
+    "Worker preparation, join and serial result publication are included in final bucket spans",
+    "Fully initialized-city daily cost not measured by baseline partial daily probe",
+    "16ms bound NOT met, including warmed 300k maximum",
+    "No optimization to demand formula; no push/main/import/uid changes committed"
+  ]
+}

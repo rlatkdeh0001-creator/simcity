@@ -1,0 +1,25 @@
+{
+  "complete": false,
+  "scope": "stage 1 only; real headless advance_society callback; 3x speed; 8 seconds; no renderer, HUD or utilities; initial loading and first job excluded",
+  "main_callback_max_ms": {
+    "10000": 59.941,
+    "50000": 97.149,
+    "300000": 320.321
+  },
+  "component_max_ms_300k_separate_diagnostic_run": {
+    "development": 0.029,
+    "end_tick": 33.03,
+    "happiness": 0.388,
+    "population": 264.933,
+    "publication": 0.067
+  },
+  "functional_checks": {
+    "geometry": 455,
+    "background_society": 22,
+    "population_cache": 78
+  },
+  "expected_warning": "geometry test deliberately omits one add notification; 4 -> 5 recovery warning is asserted. No other warnings or errors.",
+  "review_mode": "self-review",
+  "note": "Geometry packing removed, not a performance completion. Measured maxima exceed the previous session, so no no-regression or <=16ms claim. Remaining main population advance/end_tick is addressed by stage 2.",
+  "checks_total": 555
+}

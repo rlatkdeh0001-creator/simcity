@@ -1,0 +1,81 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+h2{font-size:20px;margin:18px 0 4px}h2 span{font-weight:400;font-size:16px;color:var(--muted-foreground)}
+.scene{position:relative;width:900px;height:430px;border-radius:10px;overflow:hidden;background:#7f9774}
+.p{background:#142b37;color:#edf4f5;font-size:18px;border:1px solid #38515e;border-radius:8px}
+.seg{display:flex;gap:4px}.seg b{flex:1;text-align:center;padding:6px 0;border-radius:6px;background:#38515e;font-weight:600}
+.seg b.on{background:#36b7ff;color:#142b37}
+.tabs{display:flex;border-bottom:1px solid #38515e}.tabs b{padding:8px 14px;font-weight:600;color:#9fb3bb}.tabs b.on{color:#edf4f5;border-bottom:3px solid #36b7ff}
+.row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+.tg{width:44px;height:24px;border-radius:12px;background:#38515e;position:relative}.tg.on{background:#36b7ff}
+.tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#edf4f5}.tg.on::after{left:23px}
+.ph{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;background:#1c3846;margin:4px 0}
+.ph.cur{outline:2px solid #36b7ff}
+.lamp{display:inline-flex;gap:3px}.lamp i{width:14px;height:14px;border-radius:50%;background:#2a3a42;display:inline-block}
+.r{background:#e5484d!important}.y{background:#f2c14e!important}.g{background:#3fbf6a!important}
+.ar{font-size:18px;color:#3fbf6a;font-weight:700}
+.num{margin-left:auto;font-variant-numeric:tabular-nums}
+.ln{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:6px;background:#38515e;font-weight:700}
+.ln.on{background:#36b7ff;color:#142b37}
+.x{position:absolute;top:8px;right:10px;font-size:20px;color:#9fb3bb}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="jn"><rect width="900" height="430" fill="#7f9774"/>
+<polygon points="0,250 450,25 560,80 110,305" fill="#4d5357"/><polygon points="340,430 900,150 900,260 560,430" fill="#4d5357"/>
+<polygon points="110,305 560,80 900,250 450,475" fill="#4d5357" opacity=".0"/>
+<polygon points="200,80 330,15 900,300 770,365" fill="#4d5357"/>
+<polygon points="390,190 500,135 610,190 500,245" fill="#59606a"/>
+</g></defs></svg>
+
+<h2>A <span>오른쪽 패널 · 탭 2개 · 단계 목록</span></h2>
+<div class="scene"><svg width="900" height="430"><use href="#jn"/><polygon points="390,190 500,135 610,190 500,245" fill="none" stroke="#36b7ff" stroke-width="4"/></svg>
+ <div class="p" style="position:absolute;right:12px;top:12px;width:330px;padding:10px 14px">
+  <div style="font-weight:700;font-size:20px">교차로 · 4갈래</div><span class="x">✕</span>
+  <div class="tabs" style="margin:8px 0"><b class="on">신호</b><b>통행</b></div>
+  <div class="seg"><b>자동</b><b class="on">일부 수동</b><b>완전 수동</b></div>
+  <div style="margin-top:8px">
+   <div class="ph cur">1 <span class="lamp"><i class="g"></i></span><span class="ar">←</span> 남북<span class="num">자동</span></div>
+   <div class="ph">2 <span class="lamp"><i class="g"></i></span><span class="ar">↑</span> 남북<span class="num">자동</span></div>
+   <div class="ph">3 <span class="lamp"><i class="g"></i></span><span class="ar">←</span> 동서<span class="num">자동</span></div>
+   <div class="ph">4 <span class="lamp"><i class="g"></i></span><span class="ar">↑</span> 동서<span class="num">자동</span></div>
+   <div class="ph" style="justify-content:center;background:#38515e">＋</div>
+  </div>
+ </div></div>
+
+<h2>B <span>교차로 위에서 직접 · 진입로별 버튼 + 아래 단계 막대</span></h2>
+<div class="scene"><svg width="900" height="430"><use href="#jn"/>
+ <polygon points="390,190 500,135 610,190 500,245" fill="none" stroke="#36b7ff" stroke-width="4"/></svg>
+ <div class="p" style="position:absolute;left:250px;top:150px;padding:6px;display:flex;gap:4px"><span class="ln on">←</span><span class="ln">↑</span><span class="ln on">↑→</span></div>
+ <div class="p" style="position:absolute;left:600px;top:70px;padding:6px;display:flex;gap:4px"><span class="ln on">←</span><span class="ln on">↑</span><span class="ln">→</span></div>
+ <div class="p" style="position:absolute;left:640px;top:250px;padding:6px;display:flex;gap:4px"><span class="ln" style="background:#e5484d">⊘←</span><span class="ln on">↑→</span></div>
+ <div class="p" style="position:absolute;left:12px;right:12px;bottom:12px;padding:8px 12px">
+  <div class="row" style="padding:0 0 6px"><div class="seg" style="width:360px"><b>자동</b><b>일부 수동</b><b class="on">완전 수동</b></div><span style="color:#9fb3bb">주기 <span class="num">96초</span></span></div>
+  <div style="display:flex;height:40px;border-radius:6px;overflow:hidden;font-weight:700">
+   <div style="flex:15;background:#2f8f55;display:flex;align-items:center;justify-content:center">← 남북 15</div><div style="flex:4;background:#f2c14e;color:#142b37;display:flex;align-items:center;justify-content:center">4</div>
+   <div style="flex:30;background:#3fbf6a;display:flex;align-items:center;justify-content:center">↑ 남북 30</div><div style="flex:4;background:#f2c14e"></div>
+   <div style="flex:12;background:#2f8f55;display:flex;align-items:center;justify-content:center">← 동서 12</div><div style="flex:4;background:#f2c14e"></div>
+   <div style="flex:23;background:#3fbf6a;display:flex;align-items:center;justify-content:center">↑ 동서 23</div><div style="flex:4;background:#f2c14e"></div>
+  </div></div></div>
+
+<h2>C <span>큰 창 · 왼쪽 교차로 도식 / 오른쪽 설정</span></h2>
+<div class="scene"><svg width="900" height="430"><use href="#jn"/></svg><div style="position:absolute;inset:0;background:rgba(10,20,26,.45)"></div>
+ <div class="p" style="position:absolute;left:90px;top:30px;width:720px;height:370px;display:flex">
+  <div style="width:300px;border-right:1px solid #38515e;position:relative">
+   <svg width="300" height="370"><rect x="120" y="0" width="60" height="370" fill="#4d5357"/><rect x="0" y="155" width="300" height="60" fill="#4d5357"/>
+    <rect x="120" y="155" width="60" height="60" fill="#59606a"/>
+    <g font-size="22" font-weight="700" fill="#edf4f5" text-anchor="middle"><text x="137" y="250">←</text><text x="163" y="250">↑</text>
+     <text x="163" y="135" fill="#36b7ff">←</text><text x="137" y="135">↑</text><text x="70" y="200">↑</text><text x="230" y="178" fill="#e5484d">⊘</text></g>
+    <rect x="125" y="230" width="50" height="30" fill="none" stroke="#36b7ff" stroke-width="3" rx="4"/></svg>
+  </div>
+  <div style="flex:1;padding:12px 16px"><span class="x" style="position:static;float:right">✕</span>
+   <div style="font-weight:700;font-size:20px">교차로 · 4갈래</div>
+   <div class="seg" style="margin:10px 0"><b>자동</b><b class="on">일부 수동</b><b>완전 수동</b></div>
+   <div style="color:#9fb3bb;margin-top:6px">남쪽 진입</div>
+   <div style="display:flex;gap:6px;margin:6px 0"><span class="ln on">←</span><span class="ln">↑</span><span class="ln">→</span><span class="ln on">↑←</span><span class="ln">↑→</span></div>
+   <div class="row">좌회전 금지<div class="tg"></div></div>
+   <div class="row">유턴 금지<div class="tg on"></div></div>
+   <div class="row">꼬리물기 금지<div class="tg on"></div></div>
+   <div style="display:flex;gap:6px;margin-top:8px"><span class="ph cur" style="margin:0">1 ←</span><span class="ph" style="margin:0">2 ↑</span><span class="ph" style="margin:0">3 ←</span><span class="ph" style="margin:0">4 ↑</span><span class="ph" style="margin:0;background:#38515e">＋</span></div>
+  </div></div></div>
+</body></html>

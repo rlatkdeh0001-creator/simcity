@@ -1,0 +1,42 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road drawing owns an immutable local grid reference
+PASS branch position snaps to one-cell longitudinal marks on the host road
+PASS grid off preserves the exact old free-position contact
+PASS odd-width branch centre offsets by half a cell so both road edges land on cell boundaries
+PASS parallel centreline accounts for both road widths [2, 2]
+PASS grid commit preserves the authored host road [2, 2]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [2, 2]
+PASS parallel centreline accounts for both road widths [4, 2]
+PASS grid commit preserves the authored host road [4, 2]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [4, 2]
+PASS parallel centreline accounts for both road widths [3, 4]
+PASS grid commit preserves the authored host road [3, 4]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [3, 4]
+PASS parallel centreline accounts for both road widths [4, 3]
+PASS grid commit preserves the authored host road [4, 3]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [4, 3]
+PASS parallel centreline accounts for both road widths [5, 8]
+PASS grid commit preserves the authored host road [5, 8]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [5, 8]
+PASS parallel centreline accounts for both road widths [8, 5]
+PASS grid commit preserves the authored host road [8, 5]
+PASS exactly eight integer rows form a valid opposed 4+4 eight-by-eight lot [8, 5]
+PASS grid-aligned mixed-width straight connection allows the approved forty-six-metre exception
+PASS exception commit is byte-identical to its green preview
+PASS rotated roads snap in local axes, not global screen or world axes
+PASS curve control remains free rather than quantized to the endpoint grid
+PASS curve snaps only its destination while retaining a curved path
+PASS curve retains four-metre arc-length validation with fixed grid endpoints
+PASS free snaps only its destination while retaining a curved path
+PASS free retains four-metre arc-length validation with fixed grid endpoints
+PASS grid ON retains the free curve's exact ninety-degree departure assistance
+PASS straight grid ON still offers a player-confirmed four-metre extension
+PASS straight four-metre grid extension is actually committed
+PASS curve grid ON still offers a player-confirmed four-metre extension
+PASS curve four-metre grid extension is actually committed
+PASS free grid ON still offers a player-confirmed four-metre extension
+PASS free four-metre grid extension is actually committed
+PASS half-phase authored junctions retain complete aligned columns across internal eight-cell block seams
+PASS alignment never invents full frontage beyond the first or last real road endpoint
+RESULT 39/39 road grid snap checks passed

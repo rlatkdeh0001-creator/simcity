@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS straight near-perpendicular first segment snaps exactly 90 degrees with green preview
+PASS straight commit uses identical angle-snapped preview geometry
+PASS curve near-perpendicular first segment snaps exactly 90 degrees with green preview
+PASS curve commit uses identical angle-snapped preview geometry
+PASS free near-perpendicular first segment snaps exactly 90 degrees with green preview
+PASS free commit uses identical angle-snapped preview geometry
+PASS near-parallel extension at authored endpoint snaps exactly 0 degrees
+PASS ending at existing middle preserves contact and snaps arriving direction 90 degrees
+PASS temporary threshold includes10 and preserves11 degrees: 10.0
+PASS temporary threshold includes10 and preserves11 degrees: 11.0
+PASS both connected endpoints remain on host centerlines while orthogonal alignment is solved
+PASS unconnected path retains its oblique heading while snapping length to eight-metre units
+PASS curve ending at existing road also constrains the actual final segment
+PASS free ending at existing road also constrains the actual final segment
+PASS snap uses local diagonal/curve-polyline segment tangent rather than global axes
+PASS snap uses local diagonal/curve-polyline segment tangent rather than global axes
+PASS authored endpoint stays pinned while the other middle contact slides along its host
+PASS incompatible fixed authored endpoints preserve topology rather than disconnecting a host
+RESULT 18/18 road angle snap checks passed

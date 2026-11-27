@@ -1,0 +1,65 @@
+{
+  "id": "viaduct-side-01",
+  "status": "inspection_only",
+  "files": [
+    "deck_side.png",
+    "barrier_inner.png"
+  ],
+  "period_m": 4,
+  "pixels_per_metre": 80,
+  "resolution": {
+    "deck_side.png": [
+      320,
+      248
+    ],
+    "barrier_inner.png": [
+      320,
+      88
+    ]
+  },
+  "projection": "vertical face orthographic emission, no shadows; horizontal pixel axis follows length, top = barrier top",
+  "bands_px": {
+    "deck_side.png": [
+      0,
+      88,
+      112,
+      248
+    ],
+    "barrier_inner.png": [
+      0,
+      88
+    ]
+  },
+  "colors": {
+    "barrier": "b9bbb3",
+    "barrier_top": "ced0c7",
+    "joint": "7d827d",
+    "cap": "c1c3ba",
+    "drip": "6f756f",
+    "girder": "8f948f",
+    "wall": "a3a89f",
+    "beam": "8c8a80"
+  },
+  "barrier_height_m": 1.1,
+  "barrier_thickness_m": 0.4,
+  "triangles": 132,
+  "bounds_blender_m": {
+    "min": [
+      -2.0,
+      -0.25,
+      -2.0
+    ],
+    "max": [
+      2.0,
+      0.25,
+      1.100000023841858
+    ]
+  },
+  "source": "assets/structures/viaduct-side-01/member.blend",
+  "face_shade": {
+    "+X": 0.775084854390681,
+    "-Y": 1.053687485609
+  },
+  "face_shade_method": "Measured in requested Godot capture, directional rotation(-55,-35,0), energy1.1, ambient d9e4f0 energy0.75; mean display RGB luminance / emission image luminance.",
+  "structure_depth_m": 2.0
+}

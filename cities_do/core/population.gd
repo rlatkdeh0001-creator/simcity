@@ -1,121 +1,202 @@
 extends RefCounted
+## Managed production state. Mutable array/dictionary views are explicit compatibility mode.
 const Clock=preload("res://core/city_clock.gd")
 const EDUCATION := ["미취학","초등교육","고등교육","전문대학","대학"]
-var config: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/population_config.json"))
-var people: Array[Dictionary]=[]
-var households: Array[Dictionary]=[]
-var workplaces := {}
-var rng := RandomNumberGenerator.new()
-var next_person := 1
-var next_household := 1
-var elapsed_days := 0.0
-var birth_day := 0
-func _init(seed_value: int=42):rng.seed=seed_value^0x71294
-func housing_units(b: Dictionary) -> int:
- return int(b.size*b.size/4)*maxi(1,int(b.level))*int(config.households_per_2x2)
-func random_education() -> int:
- var total := 0.0
- for weight in config.immigrant_education_weights:total+=float(weight)
- var roll := rng.randf()*total
- for stage in range(5):
-  roll-=float(config.immigrant_education_weights[stage])
-  if roll<0:return stage
- return 4
-func add_person(household: Dictionary,education: int,age: float,origin: String) -> Dictionary:
- var person := {"id":next_person,"household_id":household.id,"education":education,"age_years":age,"origin":origin,"workplace_id":-1,"job_stage":-1}
- next_person+=1
- people.append(person)
- return person
-func birth(household_id: int) -> Dictionary:
- for household in households:
-  if household.id!=household_id:continue
-  var members=people.filter(func(p):return p.household_id==household_id)
-  if members.size()>=int(config.household_max_members) or not members.any(func(p):return p.age_years>=18):return {}
-  return add_person(household,0,0,"local")
- return {}
-func complete_education(person_id: int,stage: int) -> bool:
- # Future school engine records successful completion here; age alone never graduates.
- if stage<1 or stage>4:return false
- for person in people:
-  if person.id==person_id and person.education==stage-1 and person.age_years>=float(config.education_min_ages[stage]):
-   person.education=stage
-   return true
- return false
-func sync(buildings: Array) -> void:
- var homes := {}
- var jobs := {}
- for b in buildings:
-  if b.zone=="residential":homes[b.id]=b
-  else:
-   var base: Array=config.commercial_jobs if b.zone=="commercial" else config.industrial_jobs
-   var multiplier := int(b.size*b.size/4)*maxi(1,int(b.level))
-   var slots := []
-   for value in base:slots.append(int(value)*multiplier)
-   jobs[b.id]={"id":b.id,"slots":slots,"filled":[0,0,0,0,0],"zone":b.zone}
- # Demolished homes release their households; people are not silently deleted.
- for household in households:
-  if not homes.has(household.home_id):household.home_id=-1
- for household in households:
-  if household.home_id!=-1:continue
-  for id in homes:
-   if households.filter(func(h):return h.home_id==id).size()<housing_units(homes[id]):
-    household.home_id=id
-    break
- workplaces=jobs
- match_jobs()
-func match_jobs() -> void:
- # Preserve valid incumbents first; never count one citizen twice.
- for work in workplaces.values():work.filled=[0,0,0,0,0]
- for person in people:
-  var work: Dictionary=workplaces.get(person.workplace_id,{})
-  var stage: int=person.job_stage
-  if person.age_years>=float(config.working_age_years) and stage>=0 and stage<5 and absi(person.education-stage)<=1 and not work.is_empty() and work.filled[stage]<work.slots[stage]:
-   work.filled[stage]+=1
-  else:person.workplace_id=-1;person.job_stage=-1
- for distance in [0,1]:
-  for person in people:
-   if person.workplace_id!=-1 or person.age_years<float(config.working_age_years):continue
-   for id in workplaces:
-    var work: Dictionary=workplaces[id]
-    for stage in range(5):
-     if absi(person.education-stage)==distance and work.filled[stage]<work.slots[stage]:
-      person.workplace_id=id;person.job_stage=stage;work.filled[stage]+=1
-      break
-    if person.workplace_id!=-1:break
-func advance(game_seconds: float,buildings: Array) -> void:
+var core=preload("res://simulation/PopulationCore.cs").new()
+var config:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://core/population_config.json"))
+var rng:RandomNumberGenerator
+var _people:Array[Dictionary]=[]
+var _households:Array[Dictionary]=[]
+var _workplaces:Dictionary={}
+var _views:=false
+var _legacy_hash:=0
+var _config_hash:=-1
+var _depth:=0
+signal geometry_transport_recovered(expected_count:int,actual_count:int)
+var _geometry_transport:=false
+var _labor_owner:WeakRef
+var _labor_enabled:=false
+func bind_labor_city(city,options:Dictionary):
+ _labor_owner=weakref(city);configure_labor_policy(options)
+func configure_labor_policy(options:Dictionary):
+ assert(_read_view==null)
+ core.ConfigureLaborPolicy(options);_labor_enabled=bool(options.get("enabled",false))
+ if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+func _prepare_labor_world():
+ if not _labor_enabled or _labor_owner==null:return
+ var city=_labor_owner.get_ref()
+ if city!=null and city._labor_world_dirty:
+  core.PrepareLaborWorld(city.buildings,city.roads);city._labor_world_dirty=false
+func labor_commuting_context()->Dictionary:
+ _enter();var result:Dictionary=core.GetLaborCommutingContext();_leave(false);return result
+func apply_labor_commuting_plan(inbound:Array,outbound:Array)->Dictionary:
+ _enter();var result:Dictionary=core.ApplyLaborCommutingPlan(inbound,outbound);_leave();return result
+var _read_view # Immutable full-city publication; null preserves mutable legacy fixtures.
+func attach_read_view(view):
+ assert(view!=null)
+ _read_view=view
+ rng.seed=view.GetRngSeed();rng.state=view.GetRngState()
+func detach_read_view():_read_view=null
+func has_read_view()->bool:return _read_view!=null
+func published_read_view():return _read_view
+func rng_seed()->int:return _read_view.GetRngSeed() if _read_view!=null else rng.seed
+func rng_state()->int:return _read_view.GetRngState() if _read_view!=null else rng.state
+var people:Array[Dictionary]:
+ get:_expose();return _people
+ set(value):_expose();_people.assign(value)
+var households:Array[Dictionary]:
+ get:_expose();return _households
+ set(value):_expose();_households.assign(value)
+var workplaces:Dictionary:
+ get:_expose();return _workplaces
+ set(value):_expose();_workplaces=value
+var next_person:int:
+ get:return _read_view.GetNextPerson() if _read_view!=null else core.GetNextPerson()
+ set(value):core.SetNextPerson(value)
+var next_household:int:
+ get:return _read_view.GetNextHousehold() if _read_view!=null else core.GetNextHousehold()
+ set(value):core.SetNextHousehold(value)
+var elapsed_days:float:
+ get:return _read_view.GetElapsedDays() if _read_view!=null else core.GetElapsedDays()
+ set(value):core.SetElapsedDays(value)
+var birth_day:int:
+ get:return _read_view.GetBirthDay() if _read_view!=null else core.GetBirthDay()
+ set(value):core.SetBirthDay(value)
+var tick_active:bool:
+ get:return false if _read_view!=null else core.IsTickActive()
+var demand_full_scans:int:
+ get:return core.GetDemandScans()
+func _init(seed_value:int=42):
+ core.Initialize(seed_value);rng=core.GetRng();_configure()
+func backend_name()->String:return "CSharp"
+func _configure():
+ var fingerprint:int=hash(config)
+ if fingerprint!=_config_hash:core.Configure(config);_config_hash=fingerprint
+func _expose():
+ assert(_read_view==null,"Mutable population arrays require a detached fixture")
+ if not _views:_views=true;_refresh_views()
+func _merge_records(target:Array[Dictionary],incoming:Array):
+ var old:Dictionary={}
+ for record in target:old[record.id]=record
+ var ordered:Array[Dictionary]=[]
+ for record:Dictionary in incoming:
+  var item:Dictionary=old.get(record.id,{})
+  item.clear();item.merge(record,true);ordered.append(item)
+ target.assign(ordered)
+func _refresh_views():
+ var snapshot:Dictionary=core.ExportState()
+ _merge_records(_people,snapshot.people);_merge_records(_households,snapshot.households)
+ var next:Dictionary={}
+ for id in snapshot.workplaces:
+  var work:Dictionary=_workplaces.get(id,{})
+  work.clear();work.merge(snapshot.workplaces[id],true);next[id]=work
+ _workplaces.clear();_workplaces.merge(next,true)
+ _legacy_hash=hash([_people,_households,_workplaces])
+func _enter():
+ assert(_read_view==null,"Main population mutations are forbidden while the worker owns simulation state")
+ if _depth==0:
+  _configure()
+  if _views and hash([_people,_households,_workplaces])!=_legacy_hash:
+   core.ImportState(_people,_households,_workplaces)
+   if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+  _prepare_labor_world()
+ _depth+=1
+func _leave(changed:bool=true):
+ _depth-=1
+ if _depth==0 and _views and changed:_refresh_views()
+func release_compatibility_views():
+ # Fixtures may seed mutable views, then explicitly stop snapshot transport before benchmarking/play.
+ _enter();_leave(false);_views=false;_people=[];_households=[];_workplaces={}
+func import_fixture_state(snapshot:Dictionary):
+ assert(_read_view==null,"Detach before importing an explicit compatibility fixture")
+ _configure();core.ImportState(snapshot.people,snapshot.households,snapshot.get("workplaces",{}))
+ if snapshot.has("labor_policy"):
+  core.ImportLaborPolicyState(snapshot.labor_policy);_labor_enabled=bool(snapshot.labor_policy.get("enabled",false))
+ if _labor_owner!=null:_labor_owner.get_ref()._labor_world_dirty=true
+ if snapshot.has("tax_policy"):
+  core.ImportTaxCheckpoint(snapshot.tax_policy)
+  if _labor_owner!=null:
+   var city=_labor_owner.get_ref()
+   city._tax_production=city._tax_production or bool(snapshot.tax_policy.policy.enabled)
+ else:
+  core.ConfigureTaxPolicy({"enabled":false})
+  if _labor_owner!=null:
+   var city=_labor_owner.get_ref()
+   core.AssessTaxesThroughDay(city.clock.day(),_pack_buildings(city.buildings))
+ if snapshot.has("next_person"):next_person=snapshot.next_person
+ if snapshot.has("next_household"):next_household=snapshot.next_household
+ if snapshot.has("rng_state"):rng.state=snapshot.rng_state
+ if snapshot.has("elapsed_days"):elapsed_days=snapshot.elapsed_days
+ if snapshot.has("birth_day"):birth_day=snapshot.birth_day
+ _views=false;_people=[];_households=[];_workplaces={}
+func begin_tick()->void:_enter();core.BeginTick();_leave(false)
+func end_tick()->void:_enter();core.EndTick();_leave(false)
+func housing_units(b:Dictionary)->int:_configure();return core.HousingUnits(b)
+func _slots(b:Dictionary)->Array:_configure();return core.BuildingSlots(b)
+func random_education()->int:_configure();return core.RandomEducation()
+func add_person(household:Dictionary,education:int,age:float,origin:String)->Dictionary:
+ _expose();_enter();var result:Dictionary=core.AddPerson(household.id,education,age,origin);_leave()
+ for person in _people:
+  if person.id==result.id:return person
+ return result
+func birth(household_id:int)->Dictionary:
+ _expose();_enter();var result:Dictionary=core.Birth(household_id);_leave()
+ if result.is_empty():return result
+ for person in _people:
+  if person.id==result.id:return person
+ return result
+func complete_education(person_id:int,stage:int)->bool:
+ _enter();var result:bool=core.CompleteEducation(person_id,stage);_leave();return result
+func _pack_buildings(buildings:Array)->PackedInt64Array:
+ var values:=PackedInt64Array();values.resize(buildings.size()*4);var cursor:=0
+ for b:Dictionary in buildings:
+  values[cursor]=b.id;values[cursor+1]=0 if b.zone=="residential" else (1 if b.zone=="commercial" else 2)
+  values[cursor+2]=b.size;values[cursor+3]=b.level;cursor+=4
+ return values
+func enable_geometry_transport(buildings:Array)->void:
+ # Opt in only when the model owns all geometry edits and forwards notifications.
+ # Mutable fixture arrays remain on the legacy full-pack path by default.
+ _enter();core.EnableGeometryTransport(_pack_buildings(buildings));_geometry_transport=true;_leave(false)
+func record_building(b:Dictionary)->void:
+ if _read_view!=null or not _geometry_transport:return
+ core.RecordBuilding(b.id,0 if b.zone=="residential" else (1 if b.zone=="commercial" else 2),b.size,b.level)
+func remove_building(id:int)->void:
+ if _read_view==null and _geometry_transport:core.RemoveBuilding(id)
+func _check_geometry(buildings:Array)->void:
+ var expected:int=core.GetGeometryCount()
+ if expected==buildings.size():return
+ # Missed add/remove notification: a full seed is recovery, never normal cadence.
+ # Equal-count unnotified edits cannot be detected without defeating delta transport.
+ core.EnableGeometryTransport(_pack_buildings(buildings))
+ push_warning("Population geometry count mismatch: reseeded %d -> %d; check model notifications"%[expected,buildings.size()])
+ geometry_transport_recovered.emit(expected,buildings.size())
+func sync(buildings:Array)->void:
+ # Legacy editor transactions may request reconciliation. The next owned worker delta
+ # does it there; published reads MUST remain frozen until that boundary is visible.
+ if _read_view!=null:return
+ _enter()
+ if _geometry_transport:
+  _check_geometry(buildings)
+  if core.SyncManaged():match_jobs()
+ elif core.SyncPacked(_pack_buildings(buildings)):match_jobs()
+ _leave()
+func match_jobs()->void:_enter();core.MatchJobs();_leave()
+func advance(game_seconds:float,buildings:Array)->void:
  if game_seconds<=0 or not is_finite(game_seconds):return
- elapsed_days+=game_seconds/Clock.GAME_SECONDS_PER_DAY
- for person in people:person.age_years+=game_seconds/(Clock.GAME_SECONDS_PER_DAY*Clock.DAYS_PER_YEAR)
- sync(buildings)
- # One immigrant household per population tick, provided a real dwelling is available.
- if not households.any(func(h):return h.home_id==-1):
-  for b in buildings:
-   if b.zone!="residential":continue
-   if households.filter(func(h):return h.home_id==b.id).size()>=housing_units(b):continue
-   var household := {"id":next_household,"home_id":b.id}
-   next_household+=1;households.append(household)
-   for i in range(int(config.immigrant_adults_per_household)):add_person(household,random_education(),rng.randf_range(20,50),"immigrant")
-   break
- while birth_day<floori(elapsed_days):
-  birth_day+=1
-  for household in households:
-   if household.home_id!=-1 and rng.randf()<float(config.birth_probability_per_household_day):birth(household.id)
- match_jobs()
-func demand(buildings: Array) -> Dictionary:
- var counts := {"residential":0,"commercial":0,"industrial":0}
- var vacancies := 0
- for b in buildings:
-  counts[b.zone]+=1
-  if b.zone=="residential":vacancies+=maxi(0,housing_units(b)-households.filter(func(h):return h.home_id==b.id).size())
- var job_count := 0
- for work in workplaces.values():
-  for value in work.slots:job_count+=int(value)
- var target: int=maxi(int(config.initial_housing_target),ceili(job_count/4.0))
- return {"residential":maxi(0,target-households.size()-vacancies),"commercial":maxi(0,ceili(people.size()/float(config.residents_per_commercial))-counts.commercial),"industrial":maxi(0,ceili(people.size()/float(config.residents_per_industrial))-counts.industrial)}
-func stats() -> Dictionary:
- var eligible := 0
- var employed := 0
- for p in people:
-  if p.age_years>=float(config.working_age_years):eligible+=1
-  if p.workplace_id!=-1:employed+=1
- return {"population":people.size(),"households":households.size(),"employed":employed,"unemployed":eligible-employed}
+ _enter()
+ if _geometry_transport:_check_geometry(buildings);core.AdvanceManaged(game_seconds)
+ else:core.AdvancePacked(game_seconds,_pack_buildings(buildings))
+ match_jobs();_leave()
+func demand(buildings:Array)->Dictionary:
+ if _read_view!=null:return _read_view.Demand()
+ _enter()
+ var result:Dictionary
+ if _geometry_transport:_check_geometry(buildings);result=core.DemandManaged()
+ else:result=core.Demand(_pack_buildings(buildings) if core.NeedsDemandBuildings() else PackedInt64Array())
+ _leave(false);return result
+func workplace_info(id:int)->Dictionary:
+ if _read_view!=null:return _read_view.WorkplaceInfo(id)
+ _enter();var result:Dictionary=core.WorkplaceInfo(id);_leave(false);return result
+func stats()->Dictionary:
+ if _read_view!=null:return _read_view.Stats()
+ _enter();var result:Dictionary=core.StatsManaged() if _geometry_transport else core.Stats();_leave(false);return result

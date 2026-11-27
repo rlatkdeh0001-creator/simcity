@@ -1,0 +1,29 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS fixed world renderer exists
+PASS buildings and vehicles share engine y-sort
+PASS each building is a retained Sprite2D
+PASS camera movement/zoom does not rebuild geometry or sort buildings
+PASS camera applies only the world-layer transform
+PASS zoning mode reveals existing cached fill and line groups
+PASS far zoom hides grid outlines without rebuilding cached fills
+PASS zone paint invalidates only the zoning layer
+PASS road edits rebuild fixed road geometry once
+PASS stationary cursor does not repeat add_road validation
+PASS camera transform does not invalidate world-space preview
+PASS non-geometric service flags do not repeat road admission
+PASS cursor movement recomputes validation once
+PASS retained internal drag mode also has a preview cache
+PASS legacy stationary stroke skips repeated admission
+PASS same-count building changes update sprites through the existing society event
+PASS demand display sampling stays one per hundred trips
+PASS already sampled authored fleets are not thinned a second time
+PASS closed water tab does not redraw even with an above-ground facility
+PASS closed water facilities follow the camera by transform without redraw
+PASS opening the water tab resumes its network drawing
+PASS traffic fixture has real routes
+PASS offscreen vehicles retain real fixed-step movement and congestion simulation
+PASS offscreen vehicles skip sprite direction/texture display work
+PASS returning to the viewport restores full car sprites
+PASS zoom-out retains cars and never changes simulation population
+RESULT 26/26 cached world render checks passed

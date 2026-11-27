@@ -1,0 +1,9 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_terminal_turnback_catenary.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+P5 facing-32m X 1:1 span=30.000m max_wire_to_S=0.438m
+P5 facing-32m X 2:0 span=30.000m max_wire_to_S=0.438m
+TERMINAL_TURNBACK_CATENARY checks=23 failed=0
+
+STDERR

@@ -1,0 +1,47 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS approved lane count 2
+PASS lane count 2 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulder edge stays within asphalt
+PASS shoulder edge stays within asphalt
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 3
+PASS lane count 3 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 4
+PASS lane count 4 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulder edge stays within asphalt
+PASS shoulder edge stays within asphalt
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 5
+PASS lane count 5 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 6
+PASS lane count 6 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulder edge stays within asphalt
+PASS shoulder edge stays within asphalt
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 7
+PASS lane count 7 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS approved lane count 8
+PASS lane count 8 uses approved pavement width grade
+PASS only even non-eight roads have two continuous shoulder edges
+PASS shoulders add no simulated traffic lanes
+PASS frontage uses new whole pavement footprint
+PASS legacy load recomputes width without deleting or moving road IDs/points
+PASS highway footprint remains unchanged
+PASS highway footprint remains unchanged
+RESULT 44/44 road width grade checks passed

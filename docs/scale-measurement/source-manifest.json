@@ -1,0 +1,15 @@
+{
+  "sha256": {
+    "PopulationCore.cs": "13a883ff80e46e985cb64ee4820ee96c3ae24bdb3ab8cb24ac2cecfa2557f19b",
+    "PopulationState.cs": "cb78188e4abbc2964734b3af5fc96d751afe8dd151990f312348cd8954a88350",
+    "PopulationState.Happiness.cs": "af9be0ef453b9c3e808232058656b22ac453ac98ba08c4669b113222d55f5520",
+    "HappinessCore.cs": "371bc921410e2252c92ac666788d79faa260c8b4889238f327f28fa78a679d23",
+    "HappinessCore.World.cs": "7f63408a9d11de7b707ce1234b0e5899615bf06d2c54b364a8a5679d648bd300"
+  },
+  "instrumentation": "Stopwatch section brackets added only to isolated copied HappinessCore.Tick; production algorithms unchanged",
+  "sandbox": "D:\\tools\\validation\\ScaleMeasurement",
+  "production_files_modified": false,
+  "verified_source_commit": "a3a945c582cfafcbb79a18cca1ca4f156367dbb8",
+  "measurement_base_commit": "a3a945c582cfafcbb79a18cca1ca4f156367dbb8",
+  "review_mode": "self-review"
+}

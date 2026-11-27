@@ -1,0 +1,50 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_review_fix_dialog.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS fixture: three real stations A-B-C joined in a row
+PASS rail line A-B-C: 
+development step 2.00s zoom 0.93 A=(478.2291, 150.0521) C=(1519.896, 670.8854)
+PASS no consist runs before the first development step
+PASS the 노선 수정 card selects the stop edit tool
+PASS a stop edit of a line without a consist shows no warning
+PASS it applies at once: stops [1, 3]
+PASS the consist of the A-C line runs: stops=[1, 3] distance=7.9 departures=1 drawn=3
+PASS a dwell-only edit shows no warning
+PASS it applies and the consist keeps running: stops=[1, 3] distance=17.9 departures=1 drawn=3 was stops=[1, 3] distance=7.9 departures=1 drawn=3
+PASS adding stop B with 노선 수정 shows the warning: 수정사항이 있는 모든 열차가 초기화됩니다!
+PASS the warning shows only the line and two buttons: ["수정사항이 있는 모든 열차가 초기화됩니다!", "확인", "취소"]
+PASS palette: panel #142b37, border #38515e, text #edf4f5, 확인 #36b7ff
+PASS font sizes are 18px or more: [22, 20, 20]
+PASS a modal panel centred on screen: (960.0, 539.5)
+PASS while it is open nothing has changed
+PASS other input (wheel, camera keys, map clicks) is blocked while it is open
+PASS Esc (취소) closes it; tracks, stops and consists are byte-identical
+PASS after 취소 the consist keeps running its route: stops=[1, 3] distance=31.9 departures=1 drawn=3
+PASS the same edit warns again
+PASS a click on 확인 closes it
+PASS 확인 applies stops A-B-C and the same consist is moved to the first stop: stops=[1, 2, 3, 2] distance=0.0 departures=1 drawn=3
+PASS it runs the A-B-C route again: stops=[1, 2, 3, 2] distance=8.2 departures=2 drawn=3
+PASS removing stop B warns
+PASS Enter (확인) closes it
+PASS Enter applies the edit and moves the consist to the first stop: stops=[1, 3] distance=0.0 departures=2 drawn=3
+PASS it runs past B again: stops=[1, 3] distance=216.6 departures=3 drawn=3
+PASS the bulldozer button selects the bulldozer
+PASS bulldozing station B under the running line warns first: 
+PASS Esc keeps station B
+PASS bulldozing the B-C track the line runs on warns first
+PASS Enter removes it and the consist stops where it is: blocked stops=[1, 3] distance=240.6 departures=3 drawn=3
+PASS the rail card selects the rail tool
+PASS no warning while the track is drawn (preview)
+PASS rebuilding the B-C track warns at the confirming click
+PASS 확인 rebuilds it and the consist restarts from the first stop: stops=[1, 3] distance=0.0 departures=3 drawn=3
+PASS it runs again from the start: stops=[1, 3] distance=72.2 departures=4 drawn=3
+PASS laying a branch on the line's track shows no warning
+PASS the branch is built and the consist keeps running where it was: stops=[1, 3] distance=96.2 departures=4 drawn=3 was stops=[1, 3] distance=72.2 departures=4 drawn=3
+PASS bus line operates: 
+PASS a bus runs before the edit
+PASS a bus line stop edit shows no warning
+PASS it applies at once
+REVIEW_FIX_DIALOG checks=42 failed=0
+
+STDERR

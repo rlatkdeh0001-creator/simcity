@@ -1,0 +1,21 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road tool exposes its pre-click ground cursor state
+PASS empty ground has a valid green disc at the pending first point
+PASS ground disc diameter equals the selected road world width
+PASS four-lane selection doubles the cursor footprint
+PASS hover cursor never creates a road
+PASS blue ring follows the exact existing endpoint snap
+PASS existing road interior contact also has a blue snap ring
+PASS outside-map start is red
+PASS collision fixture uses a genuinely placed building
+PASS occupied ground is red
+PASS first click replaces start disc with the existing road preview
+PASS ESC removes the cursor along with pending construction
+PASS selecting the road card re-arms the start cursor
+PASS right-click cancellation removes the cursor
+PASS straight uses the same approved pre-click cursor
+PASS curve uses the same approved pre-click cursor
+PASS free uses the same approved pre-click cursor
+PASS other tools never retain the road cursor
+RESULT 18/18 road cursor checks passed

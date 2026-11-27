@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS display-only roadside verge geometry exists
+PASS shared-board four-lane L and junction have retained grass strips
+PASS verge builder never mutates roads, grid coordinates or zoning
+PASS both curb sides fill their sub-cell phase gap: (30.0, 37.25)
+PASS grass strip remains outside all buildable parcels
+PASS both curb sides fill their sub-cell phase gap: (30.0, 42.75)
+PASS grass strip remains outside all buildable parcels
+PASS both curb sides fill their sub-cell phase gap: (57.25, 50.0)
+PASS grass strip remains outside all buildable parcels
+PASS both curb sides fill their sub-cell phase gap: (62.75, 50.0)
+PASS grass strip remains outside all buildable parcels
+PASS verges are map-clipped and never paint over roads or actual grid cells
+PASS grass belongs to the retained fixed world layer
+PASS camera changes do not regenerate grass geometry
+RESULT 14/14 roadside verge checks passed

@@ -1,5 +1,103 @@
 # CITIES_DO 스킬 인계장
 
+## 화물 기관차 v3 색상만 변경 (2026-11-18, cities-asset)
+
+`tools/build_rail_freight_v3.py`: 기존 열차 Dark `30383b`를 바퀴8·대차 틀6개 슬롯에만 적용. v2 형상/다른 재질 그대로,4536tri/10×3×3.8m. 신규 v3 blend/build/spec/preview/GLB/8방향 PNG 및 catalog 참조, render_manifest 교정값 동일. v1/v2 보존.
+로컬 `software-development/godot-windows-validation`(upstream/pin 없음), 기존 MIT helper/NOTICE(아래 출처) 재사용. 실제 Blender4.3.2 렌더 성공, `run_rail_freight_v3.py` 독립 Godot4.6.3 GL 로드/크기/정면/레일/바퀴6검사 통과. v2/v3 GLB geometry BIN·nodes·accessors 동일, 허용14슬롯만 변경. 단일1600×1000 실화면 `docs/rail-park-validation/freight-loco-v3-1600.png` 육안 확인; 간단 결과 `FREIGHT_LOCO_V3_RESULTS.txt`. 최신 요청서 바이트 그대로 복사. 설치·게임 코드·운행·push·main 없음.
+
+
+## 화물 기관차 v2 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight_v2.py`: 새 v2 원본/GLB/8방향 PNG, 큰 연속 루버·양끝 운전실 창·밝은 대차와 바퀴·하부 기기함·분할 보호판/발판/손잡이·어두운 낮은 팬터그래프. 차체9m/전체10×3×3.8m,4536tri, 팬터그래프 전체 정점 최고3.799999952m. v1 및 다른 애셋 보존. catalog v2 교체; render_manifest는 재생성 결과 기존24.815891762990255px/m·8각도와 동일하여 diff 없음.
+기존 bogies/couplers/renderer(MIT 고정 출처·NOTICE 아래 기록)와 로컬 `software-development/godot-windows-validation`(upstream/pin 없음)을 사용, 설치 없음. `run_rail_freight_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드·치수·정면·접촉2곳·26m·바퀴/레일·팬터그래프14검사 통과. 단일1600×1000 원시 framebuffer `docs/rail-park-validation/freight-loco-v2-1600.png`: 같은 축척/조명의v1/v2 낮은 측면, 적재편성 및 옆 선두차v3 육안 확인. `FREIGHT_LOCO_V2_RESULTS.txt` 실제 결과. 갱신 요청서192행을 원문 바이트 그대로 복사. 사용자 검수 대기; 게임 코드·운행·가격·main·push 없음.
+
+## 기차역 v2 지하도 (2026-11-17, cities-asset)
+
+`tools/build_rail_station_v2.py`: v1의 읽기 전용 helper 재사용, 앞 구간 y−6m·기존 원본 보존. 새 v2 `.blend/build.py/spec/preview`와 GLB/PNG, 해당 카탈로그 항목만 교체. 실측32×36m, 지상최고10.56m/최저−3.85m,17461tri. 두 승강장32×4.2m·면1.1m, 계단통 각각 네 벽·유한 바닥−3.6m·중간참·내폭1.8m/옆 보행2.1m. StationFront/StationRear 두 노드와 위아래 빈7.6m 선로 자리; 지하 통로 없음.
+기존 common/studio MIT 출처·NOTICE(아래 기록), 로컬 `godot-windows-validation`(upstream/pin 없음) 사용, 설치 없음. `run_rail_station_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 독립 GL 로드/치수/분리/계단통/편성접촉/간격/정면11검사 통과. 요청 단일 최종 `docs/rail-park-validation/station-v2-1600.png`에 앞/뒤·동일축척v1·택시/사람·캐노피만 숨긴 명시적 검사 컷어웨이 포함; source visibility 유지. 최초 구도 잘림·계단 과노출은 fixture 카메라/조명만 보정해 최종 확인. `STATION_V2_RESULTS.txt`에 실제 명령/결과. 지형 절개·배치·터널 연결·운행은 코드측 후속, 사용자 검수 대기. 게임 코드·가격·main·push 없음.
+
+## 대형 공원 v2 나무 축척 (2026-11-17, cities-asset)
+
+`tools/build_rail_park_large_v2.py`와 `measure_park_trees.py`: 기존 plaza/play .blend world 정점 읽기 전용 실측 후 동일 subdivision-1 수관·전체 높이4.5/4.8m로24그루 교체. 32×32×4.8m,4356tri(요청 하한6000 미달은 참조 지오메트리 우선, 불필요한 면 추가 없음). 부지·연못·길·정자·벤치·나무 위치 유지, 원본v1 보존. 신규 v2 소스/build.py/spec/GLB/800×680 studio PNG, 해당 catalog 항목만 갱신.
+프로필 `software-development/godot-windows-validation`(로컬, upstream/pin 없음) 및 기존 common/studio MIT 고정 출처·NOTICE(아래 참조) 재사용, 설치 없음. `run_rail_park_large_v2.py --godot <기존4.6.3> --cache <profile scratch/rail-park>` 실제 GLB 로드·32m·정면·높이·24줄기/72수관 검사 통과, `park-large-v2-1600.png` 기존4×4 공원 옆 단일 실제 캡처 육안 확인. 결과 `PARK_LARGE_V2_RESULTS.txt`. 보호 원본·게임 코드·station v2·main·push 변경 없음.
+
+
+## 박스형 전기 화물 기관차 (2026-11-17, cities-asset)
+
+`tools/build_rail_freight.py`: train-loco-freight-01 차체9m/전체10×3×3.8m,4536tri. 저채도 황토 상자 차체·양끝 창2개·앞 전조등/뒤 미등·측면 루버/점검문·오목부 팬터그래프1기(최고3.8m), 디젤/노즈 없음. 기존 bogies/couplers/8방향 renderer(MIT 고정 출처/NOTICE 아래 참조), 프로필 godot-windows-validation 사용. `.blend`·build.py·spec·GLB·8×430×245 PNG와 catalog/manifest 등록. `run_rail_freight.py` 실제 Godot4.6.3 독립GL 검사14항목 통과, `freight-loco-1600.png`에서26m 적재 편성/옆 선두차v3/제작 복선 확인. 결과 FREIGHT_LOCO_RESULTS.txt. 스킬에 Sprite2D px/m·동심원 UV·디더링 경계 허용오차 교훈 추가. 기존 park/subway/역/차량 원본 보존; station v2 미승인으로 미착수. 설치·가격·게임 코드·운행·main·push 없음.
+
+## 복선 선로 견본 (2026-11-17, cities-asset)
+
+`tools/build_rail_track.py`: 신규 rail-track-01, 복선12×7.6m/1140tri, 단선320×288 emission 띠3장. 기존 vehicle/common·subway studio(MIT 고정 출처/NOTICE 아래 참조), 프로필 `software-development/godot-windows-validation` 재사용(로컬 스킬, upstream/pin 별도 없음), 설치 없음. `run_rail_track.py`는 scratch 독립 Godot4.6.3 GL에서 13검사 및 실제1600×1000 여섯 뷰 캡처. fixture 2D 표시는 Sprite2D로 정확한 px/m 축척, 곡선은 동심원32/36m UV 리본. 결과 `docs/rail-park-validation/RAIL_TRACK_RESULTS.txt`. 띠 경계 RGB 차이는 Blender 디더링1/255 이내, 육안 반복 이음 없음. 기존 원본·게임 코드·가격·station v2 변경 없음. 지도 그리기/운행 미구현, main/push 없음.
+
+## 보도 전용 택시 정류장·버스 정류장 v2 (2026-11-16, cities-asset)
+
+현재 `core/road_profile.gd`의 일반2/3차로는 전체12m·아스팔트10.5m, 한쪽 보도0.75m다. 기존 버스 정류장3m는 초과하므로 v1을 보존하고 길이8m/높이3.28m/색·구성을 유지한 깊이0.72m v2(2942tri)로 재배치했다. 새 taxi-stop-01은 보도체6×0.72×3.08m/1716tri, 차양/벤치1개/TAXI 표지/별도 차도 데칼1대분. `tools/build_sidewalk_transit_stops.py`, 새 원본/GLB/PNG/spec 및 카탈로그만 변경. 기존 common/vehicle/roadside/studio(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`capture_sidewalk_transit_stops.gd`는 실제 RoadProfile/RoadGeometry/RoadParcels를 사용했다. 일반도로변 버스/택시 및 실제 구획40셀과 파란 경계를 사선/수직뷰로 표시한 `sidewalk-stops-1600.png` 1장, 보도내0.72m·격자비침범·분리데칼24검사항목 통과. 데칼은 차도 쪽 별도 메시여서 보도 점유 치수에서 제외한다. 원점은 **아스팔트-보도 경계(연석)**이며 전체 도로 바깥 경계가 아니다. 이후 배치 구현은 asphalt_width/2 기준과 보도폭 검사를 써야 한다. 메타데이터 zoning_occupancy_cells=0이며 실제 배치/교통/보행 로직은 아직 없다. 기차역57aea50 원본/캡처 유지, 수치·명령은 `SIDEWALK_STOPS_RESULTS.txt`; main/push 없음.
+
+## 기차역 32×24m (2026-11-16, cities-asset)
+
+`tools/build_transit_train_station.py`: 8×6칸/32×24×10.56m,14493tri. 2층 날개·높은 유리 아트리움/시계/역 표식·앞 승하차 광장/드롭오프3칸·뒤32m 승강장/캐노피를 직접 제작해 원본·생성기·spec·GLB·투명 PNG 및 시설 검사 카탈로그에 추가했다. 승강장면1.1m, 역 원본에 선로·차량·연장 모듈은 없다. 기존 road-edge/subway studio/vehicle/common(MIT 고정 출처·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치/기존 원본 수정 없음.
+
+실제 Godot `train-station-1600.png` 1장에 전면 광장(기존 택시/세단/사람 크기 기준)과 후면 승강장의 선두차v3+객차v3 2량32m 편성을 표시했다. 실제GLB·부지/정면·승강장1.1m·편성연결/32m·승강장간격0.3m16/16 통과. 선로/자갈은 검사 fixture에서만 그렸고 역 소스에 추가하지 않았다. `TRAIN_STATION_RESULTS.txt`에 수치·명령. 실제 배치·회차궤적·운행·승하차·가격/정원·main·push 없음, 1차 검수 대기.
+
+## 지하철 입구·지하 실루엣 (2026-11-16, cities-asset)
+
+`tools/build_transit_subway.py`에서 입구8×8m/3432tri(지상3.71m, 최저-2.88m, 유한한 계단 바닥-2.52m)와 지하 실루엣64×12m/96tri(승강장-12m, 단색 재질1개·단순8박스)를 직접 제작했다. 입구는 실제 개구부·계단/에스컬레이터 형상·유리캐노피·가상M·환기구. 실루엣은 섬식 승강장·양쪽 홈·접근 통로만. 새 원본/생성기/spec/GLB/PNG와 검사 카탈로그만 추가, 기존 원본 보존. 기존 road-edge/vehicle/common(MIT 고정 출처·NOTICE 아래 기록) 및 프로필 godot-windows-validation 재사용, 설치 없음.
+
+Godot GL 실제 `subway-1600.png` 1장: 일반 입구/택시·사람 크기 비교, 지붕 패널만 숨긴 것으로 명시한 별도 검사 컷어웨이, 좌표를 들어 올리지 않은 지하 단색 모델. 부지/원점·유한 바닥/깊이·실루엣-12m/1재질8/8 통과. `SUBWAY_RESULTS.txt`에 수치/명령. 지형 구멍 마스킹·지하보기 연동·승하차·에스컬레이터 작동은 미구현/미검증이며 spec 요구로만 기록했다. 프로필 검증 스킬에 음수 깊이 bounds 카메라·명시적 컷어웨이 인스턴스만 숨김 절차를 추가했다. 게임 코드·경제·main·push 없음.
+
+## 선두차·객차 v3 통일 (2026-11-16, cities-asset)
+
+사용자 v2 인상 피드백·기관차/객차 맞춤 지시에 따라 `tools/build_transit_train_v3.py`에서 두 원본을 신규 제작했다. 선두차4452tri(차체9m/전체10×3×3.8m), 객차4264tri(차체10m/전체11×3×3.8m). 선두차의 앞4.5m가 직선으로 낮아지는 쐐기, 끝폭1.2m/높이1.02m, 길게 누운 앞유리, 대차를 스커트 안으로 재배치, 낮은 팬터그래프는 지붕 recess에 수용. 객차는 한 줄 띠창·둥근 끝/지붕·스커트, 두 차종의 지붕/연결단면/띠선·색을 통일했다. v1/v2 소스·GLB·PNG는 그대로 두고 v3 폴더/새 GLB/스프라이트16장만 등록. 기존 common/vehicle 제작 helper(MIT·아래 기존 고정 출처/NOTICE)와 프로필 godot-windows-validation 재사용, 설치 없음.
+
+실제 Godot `train-v3-consist-1600.png` 한 장에 동일32m 편성의 측면/3·4 시점, 두 차종 로드·연결·폭/높이·정면16/16 통과. 수치·재현 명령 `TRAIN_V3_RESULTS.txt`. 사용자 재검수 대기; 시뮬레이션·main·push 없음. 앞선 버스 스테이션v2 48×20m/5대 캡처는 b8de232에 별도 보존했다.
+
+## 버스 스테이션 v2 확대 (2026-11-16, cities-asset)
+
+기획 1차 반려 후 사용자 최신 확대값48×20m·30°5베이로 `tools/build_bus_station_v2.py`에서 재제작. 앞3.5m 일방향 주행로·입출구 화살표, 뒤4.2m 대합 승강장 전체 캐노피, 작은 대합실 포함. 3831tri. 원본v1 보존, v2 폴더/GLB/PNG로 카탈로그 교체. 앞선32×16m 미승인 결과는 작업 트리 밖 scratch에 보존하고 제출하지 않는다. 기존 road-edge/vehicle/common(MIT 고정판·NOTICE 아래 참조)와 godot-windows-validation 재사용, 설치 없음.
+
+`bus-station-v2-1600.png` 한 장에 기존 버스5대 정차, 실제GLB 로드·부지/원점·주행로 침범/인접 차체 겹침12/12 통과. 수치·명령 `BUS_STATION_V2_RESULTS.txt`. 화살표는 설계 표시이며 실제 회차 궤적·부착·운행·승하차 검증이 아니다. 게임 코드·가격·main·push 없음. 요청서의 다음 기차역32×24m 변경도 원문 그대로 함께 보존한다.
+
+## 고속열차 선두차 v2 (2026-11-16, cities-asset)
+
+사용자 "트럭 같다" 반려와 갱신 요청서를 적용해 `tools/build_transit_loco_v2.py`에서 연속 loft 곡면·노즈 띠창·하부 스커트·팬터그래프 1개로 재제작했다. v1 원본/GLB/스프라이트는 그대로 두고 `assets/vehicle-fleet/train-loco-01/v2`, `train-loco-01-v2.glb`, 새 스프라이트 폴더로 카탈로그만 교체했다. 차체9m/전체10×3×3.8m,3940tri, 8방향 PNG. 기존 common/vehicle 제작 helper(MIT, 기존 고정판/NOTICE 아래 기록)와 godot-windows-validation 재사용, 설치 없음. 별도 생성기는 `--output-root <새 빈 폴더>` 지원.
+
+실제 Godot `loco-v2-consist-1600.png` 1장에 동일 객차v2 2량 편성을 측면/3·4 시점으로 표시했고 연결·32m·치수·정면 12/12 통과. 객차 원본은 수정하지 않았다. 선두차 지붕3.66m/전체3.8m와 기존 객차 지붕4.0m 사이 높이차는 요청 치수대로 유지하고 spec rear_interface에 명시했다. 상세 `LOCO_V2_RESULTS.txt`; 사용자 재검수 대기. 본게임 운행·push·main 없음. 도로 부착형 3종은 앞선 로컬 커밋6f41a95에 이미 보존되어 재제작하지 않았다.
+
+## 도로 부착형 대중교통 3종 (2026-11-16, cities-asset)
+
+`tools/build_transit_roadside.py`: 정류장 8×3m/1660tri, 버스 스테이션 32×12m/2918tri, 택시 스테이션 24×8m/2368tri. 직접 제작 원본·스크립트·spec·투명 PNG·GLB 및 시설 검사 카탈로그 추가. `placement=road_edge`, 도로 접촉 변 중앙 원점, Blender -Y / glTF +Z 정면, 보도 점유 폭 기록. 노란 정차 표시는 독립 메시, 벤치 등받이 지지대 포함. 기존 build_vehicle_fleet/common(MIT, 아래 기존 고정 출처·LICENSE/NOTICE)와 프로필 godot-windows-validation 재사용, 신규 설치 없음. 원본 보존을 위해 기존 폴더에는 생성기가 덮어쓰기를 거부하며 재현은 `--output-root <새 빈 폴더>` 사용.
+
+실제 Godot GLB 캡처 `transit-validation/roadside-1600.png` 1장에 버스 4대·택시 4대와 사람 크기 기준을 배치했다. 로드·원점/경계·분리 데칼·버스3칸/택시4칸 크기 맞음 20/20. `ROADSIDE_RESULTS.txt`에 수치·명령 기록. 검사는 정적 형상/주차 칸만 확인하며 실제 회차 궤적·보도 부착 로직·승하차/운행·시뮬레이션·가격은 미구현/미검증. 원본 차량/기존 시설은 수정하지 않았고 push·main 없음.
+
+## 대중교통 차량 첫 묶음 (2026-11-16, cities-asset)
+
+`assets/transit-20261116`, 별도 `D:/project/simcity-transit`에서 요청서 최신판 적용. 기관차/객차/평판차/20ft 컨테이너의 직접 제작 지오메트리·원본·GLB·8방향 PNG와 검사 카탈로그만 추가했다. Blender4.3.2 기존 실행파일 재사용, 설치 없음. `tools/build_transit_vehicles.py`는 기존 `tools/build_vehicle_fleet.py`의 팔레트·primitive·Cycles24/430×245/30° 렌더러를 호출한다. 상류 `.agents/skills/vehicle/blender/common.py` 및 MIT LICENSE/NOTICE는 수정하지 않았다(기존 인계 고정판 zstack `74f7786e9931b9ced858a0e2df880f23e4c2430e`, 출처 `https://github.com/duolahypercho/zstack/tree/74f7786e9931b9ced858a0e2df880f23e4c2430e/skills/vehicle`). 재현은 생성기에 `--output-root <새 빈 폴더>` 지정; 저장된 소스가 있으면 덮어쓰지 않고 거부, 수정은 `--revision` 새 경로로 생성한다.
+
+적용: 사용자 제공 asset-production SKILL/CONTRACTS/RECIPES/VERIFICATION을 원격 브랜치 `skills/asset-production-20261116`에서 읽었으며 설치하지 않았다. 프로필 `godot-windows-validation` 적용. 창/문의 공면은 첫 실제 GLB 캡처에서 발견해 객차 `v2`의 외피/씰/유리 깊이를 분리하고 새 GLB/스프라이트 경로로 등록했다. 첫 미승인 산출물은 작업 트리 밖 scratch로 격리해 덮어쓰지 않았다. 현재 최종 Godot GL 캡처 `transit-validation/vehicles-v2-1600.png`: 4종 로드, 연결기 접촉·32m 편성·적재 기준 5/5, 버스/택시/1.75m 기준 비교. 수치는 `transit-validation/RESULTS.txt`. 지도 배치·운행·가격/용량·main·push 없음. 표준 Godot 편집기 import는 C# 기반 main의 PopulationCore/HappinessCore 로더 오류를 출력했으므로 전체 게임 검증으로 주장하지 않는다; 독립 검사 fixture 실행은 오류 없이 통과했다.
+
+## A: 7차로 카드·폭 등급·갓길·가로 스크롤 (2026-11-13)
+
+승인 문서 `1fbcde2` 원문 기준으로 2/3=3폭, 4/5=5폭, 6/7=7폭, 8=8폭 적용. 짝수 2·4·6 갓길은 실선 표시만 추가(주차·속도 시뮬 미변경), 복원 도로 폭·구획은 재계산하되 ID/점/기존 건물은 삭제·이동하지 않는다. 2·4·6·7 실제 대각선 썸네일 재렌더, 기존 3·5·8 PNG와 원본 렌더러 보존.
+카드 전용 재사용 ScrollContainer: 넘칠 때만 #38515e/#36b7ff 가로 바, 실제 손잡이 드래그·카드 위 휠·맵 줌 분리·키보드 포커스 확인. 폭 44/44, 스냅 39/39, 구획 18/18, 카드 54/54, 스크롤 19/19, 도구 26/26. 최종 로그/단일 960×640 중간 스크롤 캡처 `road-grade-a-validation/`.
+
+## 교차로 아닌 도로 측면 접촉 거부 (2026-11-13)
+
+`road_construction.gd`에서 면적 0인 경계 접촉과 기존 boxed 교차/폭 전환 노면까지 확인하고 실제 중심선 연결 없는 접촉을 거부한다. 플레이 시공 검사만 변경했으며 저장된 기존 도로의 복원/재구성은 자동 삭제하지 않는다.
+기설치 디버깅/TDD/Godot 절차 적용. 추가 사용자 3차선 사례까지 포함한 2·3·5차선 측면 접촉·기존 기록 보존·3차선 정상 T 연결 실제 GL 입력 46/46. 시공 코드는 변경 없이 앞 T 접속 26/26·headless 겹침 정책 22/22 결과 재사용. 최종 로그 `road-side-contacts-validation/`; 캡처·전체 회귀·전수 대조·RED/중간 파일·main 푸시 없음.
+
+## 직선 연장의 도로 종류 제한 (2026-11-13)
+
+기설치 Godot/TDD 절차로 `road_construction.gd`에 동종 직선 접속 검사를 추가했다. 2→8/8→2 직선 연장·다른 차로 덧씌우기는 거부하고, 동종 연장 및 혼합 폭 T·십자·직각 끝점 접속은 허용한다. 기존 저장 도로/내부 authored 생성은 변경하지 않았다.
+정상 GL 게임 창의 실제 카드·마우스 입력 `test_road_profile_connections.gd` 50/50, 기존 겹침 정책 22/22. 최종 로그 `road-profile-connections-validation/`; 캡처·전체 회귀·전수 대조·RED/중간 파일·main 푸시 없음.
+
+## 도로 중간 T 접속 오판 수정 (2026-11-13)
+
+기설치 `systematic-debugging`·`test-driven-development`·`godot-windows-validation` 및 `.agents/skills/cities-do-construction/SKILL.md`를 적용했다(재설치/출처·라이선스 변경 없음). `road_construction.gd`의 국소 교차 공제에만 기존 topology 정밀도를 적용하고, 실제 카드·마우스 회귀 `test_road_midpoint_connections.gd`를 추가했다.
+현재 실행: Godot 4.6.3의 정상 GL 게임 창에서 중간 양쪽/끝점 접속 26/26, headless 겹침 정책 22/22. 최종 로그 `road-midpoint-connections-validation/`; 새 검수 수준에 따라 캡처·전수 대조·전체 회귀·RED/중간 결과 파일 없이 마쳤다. main 병합/푸시 없음.
+
 최종 기록: 2026-11-12 KST. 사용자의 요청으로 이후 작업에서도 계속 갱신한다.
 **새 담당자는 이 문서 → AGENTS.md → [mistake.md](../mistake.md) → 관련 SKILL.md → 실제 코드와 검증 기록 순으로 확인한다.**
 “배웠다”는 말은 모델에 영구 설치했다는 뜻이 아니다. Git에 보존한 지침·코드·출처와
@@ -1131,3 +1229,208 @@ ZIP은 특정 커밋의 스냅샷이며 이후 인계장 변경이 자동 반영
 
 원본 지침을 임의로 수정해 검증 범위를 넓혀 적지 않는다. 목록을 갱신하고도
 스킬 파일·보조 스크립트·라이선스를 Git에서 누락하지 않도록 실제 파일을 대조한다.
+
+## 2026-11-14 고정 월드 렌더 캐시
+- 기존 로컬 스킬 `godot-windows-validation`, `requesting-code-review` 적용(MIT 설치 사본; 외부 의존성 도입·업스트림 재설치 없음). 검토는 자체 검토이며 독립 승인으로 표시하지 않는다.
+- `cities_do/core/cached_world_renderer.gd`·`main.gd`: 고정 월드 층, 묶은 격자·도색, 건물/차량 공통 y-sort. 도로 미리보기 캐시·닫힌 수도 탭의 보존 캔버스 변환을 적용했다. 시계·시뮬레이션 주기는 변경하지 않았다.
+- `tools/capture_perf_cadence.gd`: 같은 정지 도시(도로6/건물24/차량24), 실제 1920×1080 GL, VSync off, 1초 준비+4초 측정. 전후 상태·PNG 6장·최종 로그는 `docs/perf-render-sim-cadence/`에 있다.
+- 새 실행: 관련 9개 검사 349/349(실제 그래픽 입력79 포함). 기존 도로 폭과 어긋난 전력/차량·수도 UI fixture만 현재 규칙에 맞췄으며 모델 규칙을 바꾸지 않았다. 전체 회귀·패키지 내보내기는 미실행.
+- FPS 기본71.659→202.748 / 구획8.865→46.424 / 줌 아웃8.976→88.550. 건물 가림·위치 유지; 줌 아웃 격자선 생략과 묶음 AA 미세차이는 의도된 차이다. 로컬 `perf/render-sim-cadence` 전용, main 병합·push 없음.
+
+### 2026-11-14 실화면 피드백: 덧씌우기·자투리 잔디띠
+- 기존 `systematic-debugging`·TDD·`godot-windows-validation` 적용. 기존 교차로 안에서 잘린 새 꼬리의 면 겹침을 재현·수정하고, 순수 표시용 `roadside_verges.gd`를 고정 층에 연결했다. 외부 도입·원본 애셋 변경 없음.
+- 새 관련 검사177/177(실제 입력34 포함), 요청한 실제 PNG2장과 최종 로그: `docs/road-overlay-verge-validation/`. 도로·구획 데이터 불변, 1°/다른 차로 거부·새 교차로 간격 유지. 검토는 자체 검토. 갱신 주기③은 이 작업에서 변경하지 않았고 main 병합·push 없음.
+- 추가 피드백③: 공유 원점이 아니라 시공 레코드 말단별 부분 칸 절삭이 원인이었다. `road_grid_snap.gd`·`city_model.gd`에서 실제 동일 폭 중심선 지지를 합산하고 기존 소유권 뒤에 온전한 누락 열만 보충했다. 기존 건물·지정 구역 보존, 철거 틈 미복구.
+- 새 최종 관련11개338/338. 실제 입력의 연장 전후 보존·한 번/분할 시공1008칸 동등과 `extended-grid-1920.png` 추가 확인. 앞 두 PNG도 현재 코드에서 재검증했고 바이트가 동일했다. 구형 길이 검사 UI 기대만 승인된 구간 철거로 수정; 시뮬레이션 주기·경제·원본 애셋·main/push는 변경하지 않았다.
+
+### 구획 메시화·인구 틱 측정 — 우선순위 변경 후 현재 결과
+- 기설치 TDD·`godot-windows-validation`·`requesting-code-review` 적용(자체 검토, 외부 설치/출처·라이선스 변경 없음). 로컬 Godot 검증 스킬에 색표/정적 LOD 리소스와 중첩 시간 측정 절차를 보완했다. 승인 문서·기존 mistake 변경은 첫 문서 커밋 `ce84aac`에 보존했다.
+- `core/zoning_mesh_renderer.gd`는 원래 parcel/frame을 읽어 블록별 MeshInstance2D와 두 정적 ArrayMesh를 만든다. 셀 번호 UV+RGBAF 색표, 줄인 셀과 틈 면, 기존 0.4 LOD·색/알파·잔디띠 유지. 칠하기는 같은 ImageTexture만 갱신하며, 동일 부모 transform의 반복 대입도 생략한다.
+- 새 관련 검사116/116(격자 캐시만 바뀌고 도로가 그대로인 무효화 회귀 포함). `tools/capture_zoning_mesh_perf.gd`: 도로6/건물24/정지 차량24·1376칸·1920×1080 GL/VSync off·1초 준비+4초. 체크아웃 변경 없이 원본 `2ea4105` 렌더를 Git에서 읽어 연속 재생했다. 다만 다른 게임의 CPU/GPU 경합과 부하 변동이 확인되어 무부하 FPS 확정은 보류한다. 마지막 잠정 FPS 기본141.77→93.20 / 구획38.86→93.41 / 줌 아웃67.96→106.47; 실제 100칸 드래그 최대85.770→28.672ms, 메시 재생성 없음. 기본/줌 아웃 PNG는 픽셀 동일, 구획·칠하기는 기존 선 대신 틈 표현 차이. 사용자 게임은 종료하지 않았다. 최종 상태·로그·PNG는 `docs/zoning-mesh-validation/`.
+- `tools/measure_population_tick.gd`는 생산 코드를 수정하지 않는 측정용 subclass다. 실제 지정32칸·직업 매칭 준비 후 advance_society(2) 1틱: 0/240/1000명 1.174/189.267/3391.226ms. 240/1000명은 demand 64회가 개발 시간 대부분이며 sync는 중첩 매칭을 제외해 기록했다(`population-tick.json`). 성장/인구/utility/주기③ 수정·4~6 작업·전체 회귀·main 병합/push는 하지 않았고 미커밋 depth 테스트는 보존했다.
+
+### 7번 인구 계산 최적화 — 28ebcc7 후속
+- 기존 TDD/Godot 검증/자체 코드검토 절차를 적용했다(추가 설치·출처/라이선스 변경 없음). `population.gd`·`city_model.gd`: 틱 범위 수요 캐시, 동기화 중 준비한 집계 재사용, 건물별 이전 정원 스냅샷과 증분 갱신, 집별 가구/학력별 빈 직장 색인. 전체 매칭은 틱당1회이며 기존 실업자를 이주민보다 먼저 처리하는 원래 배정 순서를 보존했다. 캐시 내 건물 변경은 전체 수요를 다시 계산하지 않는다. 시계·성장/utility 주기③·정책 수치는 변경하지 않았다.
+- 새 핵심 검사136/136(캐시78·기존 인구52·동일성6). 원본28ebcc7 코드를 UTF-8 텍스트로 고정한 비교에서 두 시드 각각3게임일/5400틱의 모든 건물·주민·가구·일자리·인구 RNG 상태가 일치했다. 8단계 신축을 한 번에 진행해도 수요 소진 후 과잉 건설하지 않음을 확인했다. 기존 인구 UI 검사만 오래된 preview 대신 main+유효 부지 fixture로 바꿨다. 별도 lot_rules는81/84·8×8 fixture 스크립트 오류이며 원본 모델 재생에서도 동일하므로 이번 범위에서 수정하지 않았다.
+- `tools/measure_population_optimized.gd`: 0/240/1000/5000명 동일 fixture 1틱(ms) 0.543→0.536 /190.179→1.421 /3108.893→5.773 /79232.133→30.022. 5000명16ms 목표는 미달: 동기화13.334ms·전체 매칭13.114ms가 남아 있다. demand64회는 최초 집계1회로, 매칭은2회(0명 신축은3회)에서1회로 줄었다.
+- `tools/validate_population_live.gd`: 실제1920×1080 GL/VSync off, 합법적 주택60채·240명·1x로30.001초 WASD 이동. 최대63.317ms(19.342초의 단발1회), p99 6.251ms, 사회 갱신 최대2.711ms; 나머지 순간 정지의 세부 원인은 미확정이다. 정지된 같은24건물 기본 화면의 원본2ea4105→메시28ebcc7은238.64→233.58FPS로 이전141→93급락은 재현되지 않았다. 요청되지 않은 PNG는 만들지 않았다. 최종 로그/상태는 `docs/population-optimization-validation/`; 미커밋 depth 테스트·타인 변경 보존, main/push 없음.
+
+### 승인 순서 1: C# 이전 전 부지 테스트 기준선 정리
+- 기설치 TDD/Godot 검증 절차 적용, 외부 도입·라이선스 변경 없음. `test_lot_rules.gd`·`test_zoning_depth_four.gd`의 도로 중심 간격이 옛 폭을 가정해 실제 빈 땅이 8칸이 아니었고 정수 authored 부지와 반 칸 phase도 달랐다. 실제 보도 포함 폭으로 도로 중심 좌표를 계산해 기존 4+4 구획·8×8 성공 fixture만 바로잡았다. 부지/성장/인구 생산 코드와 기대 정책은 변경하지 않았다.
+- 새 실행 부지86/86·깊이52/52, 합138/138; 과거 fixture 스크립트 오류와 3실패 제거. 음성·원본·캡처·전체 회귀·main/push 없음. 최종 로그 `docs/pre-csharp-test-baseline/`. 기존 인구136/136·3일 동일성 근거는 생산 코드가 같아 재실행하지 않았다.
+- 승인된 성능 메모의 다음1~7 순서·30만/C# 결정 및 MAP_SIZE/VEHICLE_SPAWN_DESPAWN 수정 원문을 이 단계 첫 커밋에 함께 보존한다. 미커밋 depth 테스트는 다음2단계용으로 남겼으며 GDScript 5000명 미세 최적화와 C# 설치는 하지 않았다.
+
+### 승인 순서 2: 유지형 건물·공공 주차장 가림 순서
+- 기설치 TDD/Godot 검증 적용, 자체 검토·외부 설치 없음. painter_order는 옳았으나 0.0001 Y 차이가 엔진에서 근사 동률일 때 늦게 만든 뒤 건물이 위로 그려졌다. `cached_world_renderer.gd`에서 캐시 정렬 시 sibling 순서만 painter 순서로 맞췄다. 공통 y_sort·차량 좌표·건물 그림 위치·원본/배치 데이터는 유지한다.
+- 보존된 `test_retained_depth_order.gd`를 2×2/4×4/8×8·4방향 및 평면 주차장/창고4방향으로 확장했다. 새 실행 retained32·시설16·캐시/차량26=74/74. 원래의 '근사 Y가 반드시 달라야 한다' 구현 가정 대신 실제 엔진의 sibling 동률 처리 결과를 검사한다.
+- `tools/validate_retained_depth_native.gd`: 실제 1920×1080 GL 자산 렌더의 겹침 불투명19픽셀 앞 건물 일치0→19, 뒤 건물 일치19→0. 전후4PNG·상태·최종 로그는 `docs/retained-depth-validation/`. 크기/표시 배율을 바꾸거나 주차장을 강제로 지면 층에 보내지 않았다. 전체 회귀·main/push 없음.
+
+### 승인 순서 3: 경계 도로 화살표·주차장 앞 진입 포장
+- 기존 TDD/Godot 검증·자체 검토 적용, 외부 설치 없음. 격자 끝점이 경계 안쪽 반 칸에서 멈추던 경우를 재현했다. 기존 접속점·공유 격자는 유지하고 새 말단만 도로 방향으로 최대 1셀 안의 실제 경계에 붙인다. 표시 조건을 완화해 가짜 연결을 만들지 않는다.
+- `entrance_accessways.gd`: 원본 Blender를 읽기만 해 확인한 주차장4종의 앞 연석 틈/입구 캐노피 폭만 포장한다. 실제 부지·가격·구획 소유권은 불변이고 다른 띠는 잔디 유지. 차량 통행 폭/새 진입 규칙이 아닌 표시용이며 입구 정보 없는 건물은 임의 포장하지 않는다. 도로/부지 변경 때만 고정 월드 층을 갱신한다.
+- 이전 턴 최종 관련6검사193/193과 실제 입력·1920×1080 GL 근거를 코드 변경 없이 재사용했다. 경계 x=100 정확 접속·화살표 방향 표본2개·보이는 포장2곳·부지 위치 불변, `docs/boundary-accessway-validation/`. 이번 재개에서는 diff/최종 로그를 확인하고 미커밋분을 정리한다. C#·성장75묶음·전체 회귀·main/push 없음.
+
+### 승인 순서 4: 전기·수도 48게임초 계산, 24게임초 위상 차
+- 기설치 TDD/Godot 검증·자체 검토 적용. `utility_cadence.gd`는 소비자/망/공급 계산만 48게임초마다 수행하고 수도 첫 계산은 24게임초다. 시설·출력/용량·선·관·건물 변경은 dirty로 두며 기존 deadline을 앞당기지 않는다. main은 이미 배속·정지를 적용한 delta를 전달한다. 명시적 진단 API power_state/water_state와 직접 계량 API는 유지하되 플레이 중 조회/철거/탭 refresh에서는 강제 계산하지 않는다.
+- 고정 주기 사이에도 캐시된 계통의 거래율을 매 프레임 적분한다. 원래 전기→수도 가용 잔액 우선순위, 각 단가·소수 이월·잔액 제한을 보존한다. 변경된 연결/수요는 승인된 다음 계산 시점부터 공급과 계량에 함께 반영한다. 입출력 변화의 지연 자체를 예전 즉시 반영과 같다고 주장하지 않는다. 오버레이 수치도 계산 snapshot/generation을 따른다.
+- 최종 관련 cadence26·전기41·수도80·표시53=200/200. 수입/수출 각각1게임일의 매 프레임 계산과 총액·kWh/m³ 동등, 30/60 FPS 잔액 고갈 우선순위·2배속·정지·숫자 latch 확인. `test_water.gd`/수도 실습장의 옛 도로 폭 fixture 실패는 5e3b7a0에서도 재현했고 부지/시설 좌표를 유지한 채 도로 중심만 44→44.5, 38→38.5로 맞췄다.
+- 실제 뷰포트 마우스 드래그로 전력선 설치 후 즉시 계산하지 않고 48.39804게임초에 동시 공급됨을 확인했다(프레임 경계 오차 포함). 최종 로그 `docs/utility-cadence-validation/`. 도시 교체 시 같은 generation 번호로 예전 숫자가 남는 경우를 추가 RED로 재현하고 도시 ID도 캐시 키에 넣었다(추가 cadence26·표시53 새 실행, 나머지 기존 통과 근거 재사용). 캡처0, C#·성장75묶음·전체 회귀·main/push 없음.
+
+### 승인 순서 5: 240명 단발 63ms — 진단 자료, 원인 미확정
+- 기설치 systematic-debugging/Godot 검증·자체 검토 적용, 로컬 검증 스킬에 프레임 정렬·미재현 보고/계량 캐시 절차를 보완했다. `tools/trace_population_frame_spike.gd`만 테스트용 subclass로 사회/인구/일자리/수요/utility/월드 동기화/그리기/키보드 구간을 계측한다. process_frame 시작부터 다음 시작까지의 wall과 그 안의 구간을 같은 프레임에 묶었으며 중첩 구간을 합산하지 않는다. 생산 코드에 추측성 지연 수정은 넣지 않았다.
+- 측정 생산본 fa04104, 실제1920×1080 GL/VSync off·동일 시드/60주택/240명·45초 WASD: 캐시 방식15,483프레임 최대17.473ms/p99 4.442ms, 비교용 기존 utility 매 프레임 호출만 재생10,214프레임 최대16.842ms/p99 6.588ms. 전체 과거 리비전 재생이 아니다. 현재 방식 최대 프레임의 계측 스크립트 구간 합0.227ms(사회0.010ms 포함), 남은17.246ms는 미귀속이며 GPU/OS/다른 엔진 구간 중 하나라고 확정하지 않는다. 인구 advance 구간 최대2.045ms. 차량 시뮬레이션은 실행되지 않았고 차량0이다.
+- 두 실행 모두 원래63.317ms 미재현으로 원래 지연을 인구/화면 어느 쪽으로도 확정할 수 없다. 5번은 미해결로 남기며 재발 프레임의 추적이 필요하다. 최종 원시 프레임·로그·집계는 `docs/frame-spike-validation/`; 기본 trace는 renderer setup 보조 항목을 추가하기 전 결과를 그대로 보존했고 비교 trace에만 그 보조 값이 있다. 이후 도시 교체 숫자 캐시 보완4f0e4e3은 단일 도시 측정과 별도다. 추가 캡처0, C# 착수/설치·성장75묶음·main/push 없음.
+
+### 승인된 C# 이전 1: D: 도구 설치·실행 환경
+- 사용자 승인 후 Godot4.6.3 mono·SDK10.0.404의 공식 ZIP을 D:/tools/downloads에 받고 공식 SHA256/SHA512를 검증했다. 압축 해제 실제 바이트 Godot259057362·SDK812144112. 실행파일은 `D:/tools/godot-dotnet/Godot_v4.6.3-stable_mono_win64/Godot_v4.6.3-stable_mono_win64_console.exe`, `D:/tools/dotnet/dotnet.exe`.
+- `tools/dotnet_env.py`·`run_dotnet.py`: DOTNET_ROOT/CLI_HOME, NuGet·HTTP·plugin 캐시, APPDATA/LOCALAPPDATA·TEMP/TMP를 자식 프로세스에서만 D:로 지정한다. 전역 PATH/프로그램 설정 변경 없음. 새 Godot 옆 `_sc_`와 D: editor_data 실제 생성 확인; C: 추가 설치 없이 기존 VC++ 사용. `install_approved_dotnet.py`는 승인한 두 ZIP만 설치하고 기존 비어 있지 않은 경로는 덮어쓰지 않는다.
+- 실제 SDK10.0.404/MSBuild18.9.15·런타임10.0.15·Godot4.6.3.mono 버전 조회, D:의 net10.0 콘솔 빌드/실행, 별도 빈 검증 프로젝트의 에디터 초기화 통과. 최종 로그 `docs/dotnet-installation-validation/`. 기존 C: NuGet 사용자 설정은 생성되지 않았고 주 프로젝트 소스/임포트는 이 단계에서 변경하지 않았다. 기존 로컬 Godot 검증 스킬 적용, 도구 자체 작성; 외부 스킬 추가 없음.
+- 사용자 승인 HAPPINESS_KO 확정 원문·mistake M-009 재발3 원문을 첫 설치 커밋에 함께 보존한다. 최신 순서는 현행 규칙 그대로 C# 이전·정확 동일성 검증 후 별도 행복도14요소+성장75 연결이며, 이전 계획의 행복도 입력 미정 판단은 이 확정 지시로 대체됐다. 전체 회귀·캡처·main/push 없음.
+
+### 승인된 C# 이전 2: .NET 프로젝트·언어 간 브리지
+- `CitiesDo.csproj/.sln`, SDK10.0.404 `global.json`, Godot4.6.3 로컬 NuGet feed·D: 패키지 폴더를 고정했다. net10.0 빌드 경고0/오류0, 산출물은 주 프로젝트 `.godot/mono/temp/` 아래다. 프로젝트의 C# feature/assembly만 의미상 추가하고 이전 에디터 자동 서식 미커밋분은 별도로 보존한다.
+- `PopulationCore.cs` RefCounted를 실제 GDScript에서 생성·호출하고 native Godot RNG20회 값/상태까지 일치하는22/22를 확인했다. 아직 인구 계산을 이 브리지로 전환하지 않았고 현행 성장/화면/데이터는 그대로다. 최종 로그 `docs/csharp-bridge-validation/`. C: NuGet 설정 생성 없음, Godot managed 패키지4종 모두 D:에서 복원, 추가 설치/캡처/main/push 없음.
+
+### 승인된 C# 이전 3: 현행 인구 코어 이전·동일성·실행 검증
+- PopulationState/PopulationCore가 인구·가구·일자리·수요를 소유하며 population.gd는 어댑터다. native Godot RNG와 원래 고용 순서·현행 성장 규칙을 보존한다. 건물은 PackedInt64Array로 일괄 전달하고 캐시 수요 조회에는 재포장하지 않는다. 기존 가변 dictionary fixture는 명시적 호환 뷰로 지원하되 HUD는 단일 직장 조회로 전체 인구 복제를 켜지 않는다. 기존 Godot/TDD·자체 검토 적용, 새 설치 없음.
+- 새 실행: 브리지22·어댑터5·캐시78·인구52·3일동일성6·부지86·깊이52 통과, 빌드 경고/오류0. e3a7c84 인구/모델 UTF-8 동결 참조와 시드42/20261114 각각5400틱의 건물·주민·가구·직업·인구 RNG가 정확히 같았다. pre-csharp-test-baseline은 불변이며 승인 행복도/mistake 원문은 이미8a0893a에 포함됐다.
+- 동일 fixture 새 5회 중앙값 GD→C#(ms), 0명0.659→0.681 /240명1.846→0.988 /1000명7.155→1.413 /5000명36.880→4.273. 20쌍의 최종 상태도 정확 일치. setup/JIT 제외, 실제 advance_society(2) 전체·개발 포함, 지역 컴퓨터 측정이며 모든 부하 조건의 보장은 아니다.
+- 실제1920×1080 GL: 240명·주택60+상점1, 마우스 직장 선택/고용 패널·30초 WASD 확인. 5166프레임, 이동4760, 720.225게임초, 사회 최대2.569ms(프레임 최대44.377/p99 11.346ms는 별도). 최종 근거 docs/csharp-population-validation/. 캡처0·현행 성장 유지·main/push 없음. 다음은 별도 행복도/성장 연결이며 미확정 거리·초기값·정원 배정은 임의 결정하지 않는다.
+
+### 승인된 행복도·자동 성장 연결
+- `HappinessCore`/`happiness.gd`가 실제 managed 주민·종사자 집계, 14요소(기본 별도), 도로 최단 거리·일별 정원 배정·공원 선분 완충·일별 ±5와 ID%75의 75목록 판정을 연결한다. 신규 첫 목표값으로 시작하며 무급수/무전력은0, 50/60/70/80을 연속 하루 유지한 건물만 기존 단일 공간 검증 `_upgrade`를 호출한다. 실패 시 부지/이웃을 강제 변경하지 않는다. 주거/직장 구성원을 기준으로 집계하며 학교는 6~12/12~18/18~20/20~22세 구간(기존 교육 완료 연령 설정)을 사용한다.
+- 임시 생필품+10·출퇴근/쓰레기/세금0과 소방 사건→건물100 계수는 happiness_config.json. 의료는 등록된 일일 외래 정원, 경찰은 population_capacity, 소방은 simultaneous_incidents×설정값, 학교는 students를 사용하며 등록 CSV/가격/원본은 불변이다. HAPPINESS_KO 마지막 사용자 확정 절을 그대로 포함한다. 내부 수동 연쇄 API와 새로운 자동 성장을 구분하도록 construction 스킬/성장 문서를 갱신했다.
+- 새 관련 검증은 최종 logs의 개별 RESULT 기준이다. 요소·거리 경계·정원·연속 시간·전체 단계·무공급65, 실제 managed 연령/고용과 생산 연결12, 기존 인구52·캐시78·부지86·깊이52·utility26 통과. 기존 인구 시간 fixture의 누락 x/y만 보충했다. 포트 동등성 oracle은 새 정책을 명시적으로 끈 모드로 분리했으며 두 시드 3일6도 다시 통과(새 행복도 정책 동등성 주장 아님).
+- 실제 GL 시나리오는 같은 고용/공급 조건의 세 구역에 합법적 시설을 배치하고 기존 전력·급수·하수 엔진을 통과시켜 4게임일 자동 진행했다. 노동 학력 부족을 비교 변수에서 제외하도록 시나리오에만 동일한 이주 학력 프로필을 지정했으며 운영 규칙은 변경하지 않았다. 무시설/시설/시설+공원 완충의 목표40/70/80·레벨1/4/5·오염−10/−10/−5를 실제 확인했다. 요청한 캡처1장 `docs/happiness-validation/facilities-park-buffer-1920.png`(1920×1080), 최종 로그/상태 같은 폴더. 자체 검토, 전체 회귀·30만 명 성능 검증·main/push 없음.
+
+### 지도 시설 이름 제거·하단 도시 행복도 연결
+- 겹친 작은 이름은 검증용 영어 설명이 아니라 실제 power_overlay/water_overlay의 탭 닫힘 검사 전 draw_string 호출이었다. 발전소·취수장·하수처리장의 해당 이름만 제거하고 기존 시설 도형·탭/공급/선·관은 유지한다.
+- HappinessCore는 주거 건물의 실제 행복도에 주민 수를 곱한 도시 평균을 같은 시뮬레이션 tick에서 캐시한다. 사업장 중복 인원은 제외하고 주민0/미계산은 null이다. GD 어댑터가 정수로 반올림해 발행하고, bottom_ui의 기존 웃는 얼굴/HappinessValue가 이벤트 snapshot 변경 때만 숫자 또는 —로 갱신한다. 매 프레임 집계·UI 레이아웃 변경 없음.
+- 새 관련 HUD/지도이름13·행복도65·생산연결12·HUD v2 72·utility표시53 통과. 실제1920×1080에서 주민12·행복도63과 이름 없는 시설 묶음을 확인했다. 캡처1장 `docs/happiness-hud-validation/resident-happiness-1920.png`, 최종 로그/상태 같은 폴더. FPS·프레임 시간·헤드리스 틱 비용 측정은 하지 않았다(사용자 측정 금지 준수).
+- 기존 Godot/TDD·자체 검토와 HUD 스킬의 생산자 캐시 원칙 적용. transit worktree/브랜치·ASSET_REQUEST_TRANSIT_KO.md·타인 변경·원본/경제 데이터는 건드리지 않으며 전체 회귀·main/push 없음.
+
+### 규모 최적화 1 — 공간 후보 색인
+- 600m 격자에 공장·주거·대형 오염원·공원 polygon bounds와 도로 anchor 투영점을 색인한다. 공원/서비스는 중심점이 아닌 실제 기존 도로 투영점으로 broad phase를 구성해, 멀리 떨어진 lot centres라도 같은 도로 위치로 투영되는 기존 fixture 결과를 보존한다. 최종 거리/선분/정원 정렬은 기존과 같다. 비음수 오염 합계는 기존 상한15에 도달하면만 조기 종료한다.
+- a3a945c 행복도 원본을 이름만 바꾼 테스트 oracle로 동결하고, 음수 셀/경계·원거리 road anchor·다중 셀 공원·도로 변경·시설/건물 제거/단계/주민/공급 변경의 Tick 전체 반환 및 Preview를 비교했다. 격리된 D:/tools/validation/SpatialCorrectness에서 빌드0경고0오류, 관련362/362 정확 일치. 생산 인구 증분 작업과 분리해 oracle population도 a3a945c를 사용했다. 최종 3일/성장 시나리오·전후 규모 측정은 후속 단계에서 수행한다.
+
+### 규모 최적화 2 — 목표 캐시·인구 증분
+- 목표값은 실제 점수 입력 record가 바뀔 때만 재평가하며 정적 오염/공원은 기하 변화의 주변만 무효화한다. 도로 topology는 공원 접근성에 비국소 영향이 있어 해당 park cache를 보수적으로 무효화한다. 서비스 정원 재배정의 거리/ID 순서와 일별 시점, 매일 ±5/이웃1, 성장 연속 시간은 보존한다.
+- 인구 정원/직장 record와 가구 색인은 틱 사이에 유지하며 변경된 slots만 조정한다. 주민 역할 집계는 출생/이주/이사/고용/연령 경계에서 증감하고 import/config 변경 때 재구축한다. 매칭 우선순위/RNG·수요식은 불변이다. 전체 MatchJobs 검증 경계는 정확성을 위해 유지한다.
+- 새 집계16·동적 GD 원본 대조206, 인구 캐시78·두 시드 각3일6·행복도65·생산통합12·HUD13·공간/캐시 원본 대조11165 모두 정상 종료. 두 시드 행복도 원본 Tick도 각5400회/3일 정확 일치. 실제 공급/합법적 시설 시나리오를 헤드리스 4일 진행해 목표40/70/80→레벨1/4/5·오염−10/−10/−5 유지. 요청 없는 캡처는 하지 않았다.
+- 직접 생성한 C# fixture와 동적 GDScript oracle을 한 프로세스에서 혼합한 새 테스트는 종료 중 native finalizer 오류가 발생했다. 두 독립 검증을 별도 테스트 프로세스로 분리한 최종 집계/대조는 각각 정상 exit0이다. 이 혼합 harness 종료 문제를 생산 알고리즘 오류로 단정하지 않으며 실패 로그는 보존하지 않는다. 전후 성능 최종본은 다음 측정 단계에서 확정한다.
+
+### 규모 최적화 3 — 읽기 전용 묶음 병렬화
+- 증분 단계의 30만 명 최초 순회 묶음138.90ms가16ms를 넘어, 128건 이상 묶음은 최대8 worker로 분산한다. lazy 도로 route는 fan-out 전 확정하며 worker는 월드/상태/캐시를 읽기만 하고 각각 독립 결과를 만든다. join 후 원래 bucket 순서로 cache/actual/연속시간/업그레이드 목록을 단일 스레드 반영한다. RNG 사용·정원 배정·하루 갱신은 직렬 유지한다.
+- 병렬 경로 강제 원본 대조11241와 행복도65/생산12/HUD13 정상 종료. 공개 Inspect factors를 바꿔도 private cache/다음 Preview가 오염되지 않게 factor dictionary를 복사하며, 해당 회귀 RED→GREEN76개를 포함한다. 실제 공급 시나리오도 병렬 경로를 강제해4일 목표40/70/80·레벨1/4/5 유지했다. 최종 최초 순회 30만 묶음85.86/126.16ms(중앙값/최대), 고용 확정 후75묶음 캐시 정상상태60.38/95.44ms이다. 16ms 미달성으로 남는다. 전체 전후 표와 raw는 docs/scale-measurement 최종본에 보존하며 전체 게임 프레임 비용과 구별한다. 자체 검토이며 외부 승인 아님. 로컬 작성 MIT 스킬 godot-scale-regression(현 프로필 skills/godot-scale-regression/SKILL.md, 외부 upstream 없음)에 투영점 broad phase·mutable factor 격리·worker join 포함 계측·warm 고용 확정·종료 오류 확인 절차를 저장했다.
+
+### 백그라운드 행복도 발행 — 기능 검증, 프레임 기준 미달
+- C# 단일 pending Task가 읽기 전용 월드/공급/주민 집계 스냅샷으로 행복도·성장 묶음을 계산한다. main은 완료한 결과를 주기 경계에서만 발행하고, 새 논리 인구 틱 전에 직전 성장 결과를 적용해 순서를 보존한다. 2/1/약0.67초 배속 경계, busy 입력 폐기·논리 시계 동결·디버그 society_frozen_cycles, scene exit 작업 join을 연결했다. Task fault는 숨기지 않는다.
+- UI는 C# 발행 평균을 단건 조회하고 백그라운드 경로는 공급 변경분만 보낸다. 전체 GD 공급 포장과 building 행복도 materialize는 동기 비교/명시적 fixture 경로에만 남긴다. 수도/전력 논리 시간은 수락한 게임 시계 credit까지만 계량해 busy 시간에 앞서가거나 청구하지 않는다.
+- 실제 background snapshot21617(두 시드 각5400틱)·society22(시드별 건물/주민/가구/직장/RNG 3일, 배속별 강제 busy, utility 동결) 통과. 실제 공급 4일40/70/80→1/4/5 유지. 관련 행복도65/통합12/HUD13/집계16/캐시78/공간11241/HUD v2 72 정상 exit0. HUD burst catch-up fixture는 완료한 두 논리 경계로 변경했다. 외부 검토 아닌 자체 검토다.
+- 사용자의 측정 보류 중 비용 계측은 하지 않았고, 해제 후 1/5/30만·1/2/3배 각각8초의 실제 headless SceneTree에서 advance_society main callback과 frame 진입 간격을 기록했다. 30만 main callback 최대195.107ms, headless 간격 최대195.161ms로 16ms 미달성이다. 렌더/HUD/utility를 제외한 하한 검사조차 실패했으므로 전체 게임 프레임 통과를 주장하지 않는다. 현재 인구 advance/고용/개발과 인구용 GD 전체 건물 포장은 main에 남아 후속 이전이 필요하다. 측정/준비 첫 job과 초기 로딩을 구분했고 최종 근거는 docs/scale-measurement/background/. 수요식·통근은 미착수/문서 미커밋 보존, main/push 없음.
+
+### 후속 작업 순서 예약 — 사용자 확정
+- 순서: 현재 백그라운드 스레드/30만 프레임 기준 검증 → 수요식·통근 → T1 → T2 → T3 → T4. 세금 코드는 선행 단계 완료 전 착수하지 않는다. 수요식·통근에는 LABOR_BALANCE_KO.md의 학력 ±1 후보 중 집에서 도로 거리 최단 직장 배정도 포함한다.
+- T1: 주거/상업/공업 × 단계1·2/3·4/5의 세율9칸(0~20%, 기본9%), 게임 하루 경계 정산, 저단계 수요 배율/고단계 성장 기준 가산, 하단 실제 수지. TAX_BUDGET_KO.md의 임시 수치는 설정 파일로 분리한다.
+- T2: 확정 mockup-a2.html·DECISION_KO.md 그대로, 예산 탭만 활성, 내부 수요/성장 수치 비표시, 대출 게이지는 T4 전 비활성. 1920 캡처1장은 T2에만.
+- T3: 가구 현금·1인8 D/일 생필품·체납, 생필품/세금 행복도 연결, 출퇴근 요소 삭제로13요소, HAPPINESS_KO.md 끝 이사/빈 건물 규칙. 지각 일급 감소는 별도 지시 전 제외.
+- T4: LOAN_RULES_KO.md의 대출·이자·파산. 단계마다 별도 커밋/5줄 이내 SHA·통과 수·해당 캡처 보고, push/main/.import/.uid 금지.
+- 현재 미커밋 docs/design/TAX_BUDGET_KO.md, HAPPINESS_KO.md, LABOR_BALANCE_KO.md, ROAD_DRAWING_KO.md 및 docs/concepts/tax-budget-20261116/는 소유자 변경을 보존하며 해당 구현 단계에서 포함한다. 이 예약 기록 자체로 구현/승인 문서 커밋 완료를 주장하지 않는다.
+
+
+### 인구 건물 변경분 전송 단계(재개 검증)
+- godot-scale-regression/requesting-code-review 적용, self-review. `PopulationState.Geometry.cs` 및 facade/model 변경통지: 전체 포장은 활성화 1회와 누락 복구만, HUD 통계/수요는 관리 캐시. 관련 455+22+78=555 통과; 의도한 4→5 복구 경고 1건.
+- 3배속 8초 headless callback 최대 1만/5만/30만 = 59.941/97.149/320.321ms. 이전 세션보다 높아 무회귀·16ms 완료 주장 없음. 별도 30만 구간 계측은 `docs/scale-measurement/transport/summary.json`(첫 준비 tick 제외): 인구/종료 집계가 여전히 main에 있음.
+- 다음: scratch/full-city-stage2의 실제 worker-owned CityModel backend 통합. 3일·성장 동일성과 main callback 다시 검증한 뒤 수요식·통근, T1~T4. 보호 원본·타인 변경·push/main 미접촉.
+- 단계 커밋 `0a6d591` 확정. 이후 미커밋 2단계: runtime 7파일을 root로 옮겼고 `CitySimulationWorker.Resume`는 private model/미발행 결과를 보존한다. 실제 root C# 빌드 경고0/오류0, lifecycle/queued-checkpoint 10/10 정상 종료. 모델/main/public시설 경계·입력 FIFO·중복 청구 방지 hook 연결. 아직 통합 플레이/5400틱/40·70·80/규모별 callback 검증 전.
+- 위임 `deleg_79b72435` 통합 완료. 현재 root 실제 검증: backend 54,006 + main Model 두 시드 각5400틱 140,407 + facade41 + lifecycle10 + HUD13/72 + 실제 OpenGL 게임창 입력7 = 194556 통과. 실제 공급 7350틱/26경계에서40·70·80→1·4·5, 편집/재개/월청구 중복 방지 정상. 캡처0.
+- 인구·고용·개발·행복도는 detached CityModel/Godot Thread 전용, main은 변경 건물과 immutable 조회만 발행. 별도 Legacy 종료/재개와 미발행 결과 보존. CLR 상태를 매 프레임 조회하던 부분을 제거했지만 30만2배속의 드문 callback35.776ms 1건은 남음(원인 GC 추정일 뿐 확정 아님). 1만/5만 최대0.135/0.156ms, 30만 전체속도 최대35.776ms, 나머지30만0.166/0.106ms. `docs/scale-measurement/full-worker/summary.json`, headless callback만 측정·전체 frame16ms 미달.
+- 후속 활성 위임 `deleg_b10ada6d`(`sa-0-956b100f`): scratch 출력만 소유, main 경계의 managed 진입을 없애는 native Mutex/Semaphore mailbox 실제 prototype. 부모 root는 건드리지 않음. 완료 통지 후 통합/실측; 아직 수요식·통근/T1~T4 미착수. Godot/dotnet은 반드시 run_dotnet.py, 직접 실행 금지(hostfxr 팝업 방지).
+
+### Native mailbox 통합(2026-11-17 새벽)
+- `5736a31` 뒤 prototype는 절전으로 결과 전달이 오류 종료됐지만 D:/tools/validation/native-mailbox-20261116 실제 소스/로그를 복구해 root 통합·검증함. Native Mutex/Semaphore 단일 슬롯 + scalar native 조회 + worker측 버퍼 회수, 기존 C# API 보존.
+- root 빌드0경고/0오류, 관련 226877 검사 통과, 두 시드3일 exact·7350틱40/70/80→1/4/5 유지. 실제 OpenGL 입력7/7, 캡처0.
+- 1/2/3배속 9회, scalar HUD reader 포함 callback 최대 30만/5만/1만 = 0.177/0.249/0.944ms. callback16ms 통과; frame-start gap은16ms 초과라 전체 프레임 완료 아님. 근거 docs/scale-measurement/native-mailbox/summary.json.
+- 다음 작업은 승인 순서대로 수요식·이웃 통근·집에서 도로 최단 일자리 배정, 이어 T1~T4. 지각은 출발 후 게임4시간 기준이며 일급 감소는 T3 뒤 별도.
+
+## 사용자 확인 대기 (2026-11-17 아침)
+- [x] 사용자 확정: callback 현재 수준으로 충분하며 전체 프레임16ms 추가 최적화는 보류, 기능 작업 진행.
+- 밤사이 승인 필요 행동(push/main/rm/reset --hard/AGENTS.md 수정/설치)은 하지 않으며, 미정 수치는 임시 설정으로 분리해 이 목록에 기록한다.
+- [x] 사용자 확정: 수요식·통근 → 세금T1~T4 → 대중교통(역/정류장 배치·운행·환승, transit 애셋, ROAD_DRAWING 차선 정차 규칙) → 지각 일급 순서. 대중교통 전에는 도로 fallback.
+- [x] 사용자 확정: 기존 취업자 유지, 이사 또는 실직 시에만 학력±1/도로 최단 재구직, 동거리 안정 순서. 이사 시 재배정 검사를 추가해 통합 중.
+- [x] 사용자 확정: 일급30/40/55/75/100 D, 종전 LABOR 제안 폐기. T1에서 정식 설정값으로 반영.
+- [x] 재부팅 후 기획 승인: initial_housing_target8은 가구 정원으로 보존→기본 신축4채, 이웃 숨은 성장/학력 숫자는 현행 임시 설정 그대로 진행.
+- 재개 지시: 8fd6aae/1107dda 확인. 통근 차량 도착시각 일치·주차탐색·주행중 도로변경은 지각 단계로 이관,1107dda 비활성 유지. 세금T1→T2→T3→T4 단계별 커밋, T2에만1920캡처1장. 임금30/40/55/75/100 확정. 결정 필요사항은 가역적 임시값으로 진행하고 목록/보고에 기록.
+- T1 scratch `deleg_7724185f` 완료: D:/tools/validation/tax-t1-core/delivery/ 소스, 계약 문서는 상위 INTEGRATION.md. 격리164/164는 자식 보고이며 root 통합 검증과 구분. HEAD1107dda 확인 후 `deleg_15690c0d`에 root 런타임·일경계 적립·FIFO 세율 변경·복원·행복도 hold·실제 수지 및 관련 검증을 배정, 커밋/stage 금지. 부모는 설계/경제 CSV·검토·커밋 담당.
+- [x] 사용자 확정(2026-11-18): 임시값 그대로 유지, 플레이하며 조정. T1 임시 판단: 유입 직원 학력이 없으므로 실제 예약 일자리 단계 일급 사용; 수요 건물 수×배율은 내림(1채×0.34→0채); 명시적 누락 일수 정산은 현재 소득/세율 기준. 정상 실행은 각 논리 일 경계 정산, 구 저장자료 이전 기간과 비활성 기간은 소급 청구하지 않음. TAX_BUDGET_KO에 기록.
+- 세율9칸·일급30/40/55/75/100·수요/성장 임시 계수를 경제 CSV에 등록, tools/sync_public_economy.py로 runtime mirror 동기화. CSV 9열/ID유일/byte동일 검증. 설계문서의 구 임금·3세율·사업장 수요만 적용 문구를 최신 지시와 정합화.
+- T1 root 통합 검증 수신: D:/tools/validation/tax-t1-root/root-delivery-manifest.json의30파일 해시와 현재root 일치,18개 최종 로그 직접 확인. 빌드0경고/0오류, 계수582검사+별도worker-edits suite 통과. tax60/성장연속8/실제model28/경제수지22 포함. 캡처0, 통근실험 비활성 유지. 독립 코드 검토 deleg_ffe4cd96 통과(passed=true, 논리/보안 지적 없음). 부모 정적 검사·diff check 통과, T1 로컬 커밋 대상 확정; push/main 없음.
+- T2 연결 API: city.configure_tax_policy(options), city.tax_status(), city.economic_status(). 수지는 완료된 게임일(=월) 실제 거래/세금/유지비 합계이며 과거 거래 자료 없으면 unavailable. 기존 /월 표시 유지, 대출이자는T4까지0.
+
+### 후속 진행 상태
+- Native mailbox 단계 `c4eb3f6` 커밋 확인. 다음 수요식·도로 최단 배정/이웃 통근 구현은 `deleg_78a94444`의 두 작업자가 scratch 출력만 소유해 진행 중. 부모는 root model/worker protocol/renderer 통합·빌드·커밋 소유.
+- 외부 rail/metro 등 연결 추가/삭제를 worker world journal에 전달하도록 부모 root 3파일을 연결함(미커밋, 해당 수요/통근 단계 포함 예정). 신규 commuting transport6/6 및 관련 regional46/46 정상 종료. 지역 통근 core/실제 표시·수요식 전체 완료를 주장하지 않는다.
+- 노동 C# 배송본은 격리71검사 통과. root 통합은 `deleg_d21052cb`가 C# partial/View/checkpoint/이사 재배정 테스트만 소유, 부모는 GD facade/모델/adapter를 연결함. C# coherent 완료 전 root 빌드 보류. root labor model opt-in 신규 검사는 기능부재 RED 확인, 아직 GREEN 실행 전.
+- 이웃 planner의 이전 결과는 파일 덮어쓰기 guard로 미완성(기존 on-disk expanded12검사2실패)임을 확인. `deleg_7e2629a1`이 scratch에서 교육별 실제 예약·개별 외부 배정·여행/저장 API를 재구현 중. 완료 통지 후 합쳐 검증하며, 미완성 상태를 통근 완료로 보고하지 않는다.
+
+### 사용자 직접 완료 알림
+- 사용자는 재부팅을 고려했으나 현재 작업은 중단하지 말고 계속하라고 했음. 현재 진행 중인 통근 차량 runtime/표시 연결까지 검증 가능한 체크포인트로 마친 뒤, cities-claude가 아니라 사용자 Bot Chat에 직접 완료를 알릴 것. 다음 큰 단계 착수 전에 현재 결과·미커밋/커밋·재부팅 준비 상태를 짧게 보고.
+- 현재 root 실제 노동 model4/4·도로경계5/5·이웃 component130/130·실제 양방향 고용/연결삭제6/6·native계약47/47 및 두 시드3일129607 검사 통과, 공급시나리오40/70/80→1/4/5 유지. C# 노동/체크포인트/View 통합 빌드0경고0오류, 관련104검사 통과. 도로 통근차량 runtime만 `deleg_ebaaec25` scratch 출력에서 진행 중. 정책 변경으로 90tick seed fixture는 공업2→1채(총8→7), 주거4/상업2·주민16은 유지됨.
+
+### 재부팅 전 검증 체크포인트 (사용자 직접 알림)
+- 실제 root 빌드0경고/0오류. 노동·수요·통근 고용 코어 129913 검사 통과(두 시드 각3일129607 포함), native input7/7. 실제 공급7350tick/26경계에서40/70/80→1/4/5 유지. 데이터 기반 inbound 슬롯/외부 고용·단절취소·이사 재배정·native View/체크포인트·외부 직원UI 연결.
+- 수요 규칙 변경으로90tick fixture는 주거4/상업2/공업2(8채)→주거4/상업2/공업1(7채), 주민16·전원취업 유지. CSV의旧 주민비율은 호환 전용 표시,1.05/60% 신규기준과runtime mirror 동기화.
+- 차량 runtime5파일/관련테스트3개를 보존하고 root 실제 headless46/46 통과. 아직 production Model에서 생성/활성화하지 않음. canonical 거시도착과ACC물리도착 일치·주차 탐색/유한노상정원·주행중 도로수정 재탐색 미해결이므로 차량표시 전체완료 주장 금지. 자료 D:/tools/validation/commuting-traffic-20261117/API_NOTES.md.
+- 현재 실행된 검증은 모두 정상종료, 모든 위임결과 수신. 사용자 재부팅 대기 문맥에 따라 다음 큰 T1 작업을 시작하기 전에 여기까지 직접 보고할 것. T1~T4/대중교통/지각일급은 아직 미착수.
+
+### T2 예산 창 검증
+- T1 3c5f101 이후 A2 예산 창·경제 진입 버튼·세율9칸·실제 발행 세수/수지·비활성 대출을 연결. 창 작을 때 스크롤, 표시 수치는 변경될 때만 갱신. 전기·수도 실제 비용 행을 추가해 수지 합계를 일치시킴(임시 표시 판단).
+- 빠른 세율 되돌림의 구 발행값 덮어쓰기 문제를 재현 후 수정: 값 일치와 해당 논리 tick 발행을 함께 확인. 닫기/재열기에도 최신 의도 유지. 독립 재검토 deleg_eb043feb passed=true.
+- 관련232검사 통과(예산 native126/HUD72/화폐12/경제22). 기존 main HUD138/140의2실패는3c5f101에서도 동일 재현되어 신규 회귀와 분리; push 없음.
+- 실제 Godot 캡처1장 D:/tools/validation/tax-t2-ui/budget-1920.png,1920x1080 확인/육안검토. 최종 로그 budget-ack-native-final.log 및 INTEGRATION.md는 같은 폴더. 원본 캡처 이후 수정은 발행 확인 로직/테스트만이며 레이아웃 변경 없음.
+- 사용자 지시: 오늘 완료 보고는 cities-claude가 아닌 사용자 Bot Chat에 직접. T3 가구현금·생필품·체납·행복도/이사는 다음 단계.
+
+### T3 검증 완료
+- 가구 소득→납세→생필품8D/인/일→저축, 실제 납세만 시정부 적립, 행복도13요소+기본, 이사/빈집과 checkpoint 연결. 17파일 해시 확인,14suite1588검사와 빌드0경고0오류 최종로그 확인. 독립검토 deleg_84a0ee64 통과. 캡처0.
+- [x] 사용자 확정(2026-11-18): 임시값 그대로 유지, 플레이하며 조정. 임시값: 초기 가구현금0; 변두리 접근1000m, 인프라 가중치 일자리/상업/전기/수도/도로/교육/의료/경찰/소방/공원=20/10/10/10/10/8/8/8/8/8; 사업장3일 연속 미달시20% 올림 이동. 체납은 마지막 미납평가이며 누적채무/이자는T4범위 아님.
+- 근거 D:/tools/validation/tax-t3-root/delivery-manifest.json 및 INTEGRATION.md. 사용자 오늘 직접보고 조건 유지.
+
+### T4 완료 검증
+- 대출/상환·인구한도·구간이자·초과원금10%·3일 경고/6일 파산 정지 연결. 기존 피드백 사용, 전용 게임오버 화면은 별도 기획.
+- FIFO 금융→건설 순서 오류 RED 재현 후 발행 경계로 수정. zero-time 명령 반영은 논리시간을 추가하지 않음. 독립 재검토 deleg_af3ef0ee passed=true.
+- 중복제외1419검사+worker-edits 통과, 빌드0경고0오류. root/fifo MANIFEST의19파일 해시·로그를 부모 확인. 실제 GL 대출UI28/예산126 포함, 캡처0.
+- 근거 D:/tools/validation/tax-t4-root/MANIFEST.json 및 D:/tools/validation/tax-t4-fifo/MANIFEST.json. 초기 GL 입력누락 원인은 미확정이며 최종실행 통과.
+- 대중교통/지각일급 미착수, push/main 없음. 완료는 사용자 채팅에 직접 보고.
+
+### 대중교통 단계 분할 (2026-11-18 승인 재개)
+- P1: 승인 애셋 병합과 철도/metro 독립 경로 데이터·그리기/철거·복선/곡률·건널목·지하 보기·이웃 채널. 원본 불변, 기존 도로그리기 UI 재사용.
+- P2: 버스정류장/역 배치·기차역v2 내장선로/접속·StationFront/Rear 가림 순서·대형공원 등록, 기존 시설배치 UI 재사용.
+- P3: 우측통행 열차/지하철·버스 실제 운행/정차 및 짝수갓길·홀수바깥차선 적용.
+- P4: 도보접근/환승·철도지하철 우선 통근·자동차fallback·worker 저장/복원과 관련통합검증. 각단계별 커밋.
+- 신규 화면 필요목록: 노선 생성/정류장 순서 편집/운행정보를 모은 노선관리 창. cities-claude 시안 전 새화면 제작하지 않으며 기존UI 최소조작만 사용.
+- 미정 해금단계/중앙역랜드마크/마일스톤9·10은 가역설정으로 분리하여 확인대기에 남김. 화물기관차v3는 애셋커밋 도착 후 추가병합.
+- 사용자 게임 PID49292 실행 중: 성능측정 금지, 게임종료 금지. DLL 잠금 빌드 실패시 기다림.
+
+### 대중교통 후속 범위 추가 (2026-11-18 사용자 결정)
+- P3 철도 운행 이후 전차선·전주를 별도 커밋으로 코드 렌더링한다. 지상 선로에만 표시하고 지하 터널/지하 보기에는 숨긴다. ASSET_REQUEST_RAIL_PARK_KO.md §5 11번의 높이·간격·색 규격 추가 전에는 착수하지 않는다.
+- 건널목 경보기·차단기/보행자 신호등 애셋은 cities-asset 제작 중. ASSET_REQUEST_STREET_PROPS_KO.md §5를 따르며, 애셋 도착 후 위치·진입 폭 기준 코드 차단기 팔·경보/작동 시간을 연결한다.
+- P1 후속 데이터 보강: 건널목별 도로 진입 방향과 진입 폭을 보존하여 경보기 부착에 사용한다. P1 7a68f0a 완료 후 추가 요구로 기록하며, 해당 데이터 보강 완료를 아직 주장하지 않는다.
+
+## 2026-11-18 cities-claude 인수인계
+
+- 최종 상태: `D:/project/simcity`, `perf/render-sim-cadence`, HEAD `bb6ca4c`(E1), 인덱스 비어 있음. P5는 아래 독립 검토 차단 2건 때문에 미커밋 작업 트리 그대로 남김(되돌리지 않음). 캡처 없음. E2·E3 미착수. 종료 확인 시 검증용 Godot/dotnet 프로세스 없음; 사용자 게임에 종료 명령을 내리지 않았다.
+- P5 구현 파일: 종점 X 건넘선·회차·운행/렌더링/통근. `cities_do/core/{city_model,terminal_crossover,rail_catenary,transit_commuting,transit_line_planner,transit_operations,transit_view}.gd`, `cities_do/tests/{test_terminal_turnback,test_terminal_turnback_native,test_rail_catenary,test_transit_operations}.gd`, `artifacts/p5-terminal-turnback/`.
+- 독립 검토 BLOCK 1(기존 suite에서 미검출): 회차 노선 생성→편성 운행→물리 고리 추가→정차 시간만 수정하면 `city_model.gd:84–96`이 고리 노선을 성공 처리하면서 건넘선을 제거하고 `transit_operations.gd:34–37`이 기존 편성을 영구 동결할 수 있다. 기존 FIFO 검사는 열차 생성 전 수정만 검사한다. 운행 중 동일 경로 수정과 경로 변경의 처리 계약이 필요하며, 실제 운행 편성을 둔 회귀를 추가한다.
+- 독립 검토 BLOCK 2(기존 suite에서 미검출): 지상 역 포트가 정확히 32m 간격으로 마주 보면 `terminal_crossover.gd:76–93,115–116`은 건넘선을 허용하지만 반대편 끝 전주가 역 1m 이격 규칙에 걸려 `rail_catenary.gd:49–51,65–69`에서 X 전선이 누락될 수 있다. 32m 최소 허용과 역 전주 이격을 함께 만족시키는 지지 방식 또는 배치 기준은 기획 결정이 필요하다. 두 건 해소 후 관련 검증 및 실제 열차가 X를 건너는 캡처 1장, 통과 시 P5 별도 커밋.
+- E1 `bb6ca4c` 재검토 3건은 모두 수정·독립 재검토 통과: 실제 마지막 교각 기준 48m 허용/49m 원자적 거절(철거 잔존부 포함), 그리드 OFF 확정 양끝 유지(165m 거절·164m 미리보기 그대로 시공), 신규·변경 교차로만 정확 충돌/철거 판정에 포함(무관한 기존 교차로 제외). 최종 헤드리스 319개·native 61개, `artifacts/e1-elevated-20261118/manifest.json`.
+- E1 이어받기: `core/road_height.gd`의 `height_at`, `minimum_ramp_m`, `supports`, `usable_under_deck`; `core/road_drawing.gd`의 `height_profile`, `layer_roads_at`(도구의 높이별 연결과 경사 프로필); `core/city_model.gd`의 `add_elevated_road`, `_polygon_error`, `road_demolition_selection`, `demolish_road_selection`(높이별 최종 지오메트리, 확인 대상 및 철거 잔존부); `core/elevated_road_renderer.gd`의 `rebuild`, `build_road`, `build_junction`, `project`, `side`, `build_pier`, `lift_vehicle`(상판/옆면과 차량 높이). 도로 레코드의 `points`와 같은 인덱스에 `heights_m`를 저장하며 `road_height.gd`의 `height_at`이 선분상 높이를 보간한다. 원본 애셋과 보호 문서는 덮어쓰지 않는다.
+- P5 검증 인수: `artifacts/p5-terminal-turnback/manifest.json`의 소스 11개와 실제 로그 해시 일치 확인. 10개 suite **576개 통과, 실패 0**: `test_terminal_turnback` 65, `test_terminal_turnback_native` 11, `test_rail_catenary` 87, `test_rail_catenary_render` 48, `test_transit_commuting` 36, `test_transit_geometry` 227, `test_transit_operation_safety` 15, `test_transit_operations` 39, `test_transit_operations_fifo` 20, `test_transit_render` 28. 경로가 바뀌는 노선 수정 시 운행 중 편성은 기존 동결 정책을 유지한다(실시간 재경로/순간이동 없음).
+- 정확한 재현 명령(작업 폴더에서): native 이외 각 suite는 `python tools/run_dotnet.py --timeout 45 godot --headless --path cities_do --script res://tests/<로그 파일명에서 .log를 뺀 이름>.gd`. Native는 `python tools/run_dotnet.py --timeout 35 godot --path cities_do --rendering-method gl_compatibility --rendering-driver opengl3 --max-fps 30 --resolution 1280x820 --script res://tests/test_terminal_turnback_native.gd`. 캡처는 같은 명령에 `-- --p5-capture=D:/project/simcity/artifacts/p5-terminal-turnback/turnback-1280.png`를 붙일 때만 저장한다. 독립 검토는 위 두 건으로 차단됐으며, 캡처와 커밋은 하지 않았다.
+
+
+
+
+
+
+
+

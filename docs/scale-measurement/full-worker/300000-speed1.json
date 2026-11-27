@@ -1,0 +1,22 @@
+{
+  "frame_start_gap": {
+    "max_ms": 39.768,
+    "median_ms": 6.9,
+    "samples": 1132
+  },
+  "frozen_cycles": 0,
+  "main_callback": {
+    "max_ms": 0.166,
+    "median_ms": 0.022,
+    "samples": 1133
+  },
+  "mode": "full-worker",
+  "population": 300000,
+  "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+  "speed": 1,
+  "status": {
+    "fault": "",
+    "published": 5,
+    "worker_thread": 5
+  }
+}

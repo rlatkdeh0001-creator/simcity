@@ -1,0 +1,19 @@
+{
+  "population": 50000,
+  "scenario": "daily",
+  "status": "passed",
+  "reason": null,
+  "peak_tree_rss_bytes": 273489920,
+  "wall_seconds": 3.1328766999995423,
+  "measurement": {
+    "daily": {
+      "assignment_ms": 41.1822999995202,
+      "average_ms": 0.870100000873208,
+      "bucket_ms": 191.172100000083,
+      "daily_ms": 360.368599999696,
+      "groups_ms": 8.64849999919534,
+      "total_tick_ms": 562.796
+    },
+    "population": 50000
+  }
+}

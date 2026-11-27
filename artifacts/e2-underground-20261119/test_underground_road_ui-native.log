@@ -1,0 +1,77 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--rendering-method", "gl_compatibility", "--rendering-driver", "opengl3", "--resolution", "1920x1080", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_underground_road_ui.gd", "--", "--e2-capture-ground=D:/project/simcity/artifacts/e2-underground-20261119/e2-ground-1920.png", "--e2-capture-underground=D:/project/simcity/artifacts/e2-underground-20261119/e2-underground-1920.png"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS approved C height controls exist
+PASS underground mode button is enabled
+PASS underground button selects the default -10m
+PASS label and active toggle show −10 m
+PASS a below-ground target shows the underground view
+PASS PgDn goes 5m deeper
+PASS PgUp comes back 5m
+PASS + raises an underground target to -5m
+PASS + never leaves the underground layer
+PASS - lowers an underground target by 5m
+PASS ground target returns to the ground view
+PASS PgDn from ground enters the underground at -5m
+PASS PgUp from -5m returns to ground
+PASS drawn ground-to-underground stroke commits one underground road
+PASS grid OFF keeps both confirmed points: [(20.37, 50.11), (52.37, 50.11), (70.37001, 50.11001)]
+PASS stroke descends from 0 to -10m without a grid frame
+PASS the drawn ramp is the 128m minimum
+PASS drawn road renders one trench and one portal
+PASS trench fixture builds (portal faces camera=true)
+PASS one trench and one portal (faces=true)
+PASS trench is a clip_children group drawn after road marks and before WorldActors
+PASS outline far edge is raised 4m above ground (top=888.83 expected<=799.23)
+PASS every interior trench sample is covered by floor, far wall or portal: no hole (faces=true)
+PASS closed floor and far retaining-wall face on every 4m piece: floors=20 walls=20 pieces=20
+PASS portal at -6.0m faces the camera only when placed that way
+PASS facing portal draws portal.png and a 15181a mouth down to the -6.0m road; a back-facing portal draws neither inside the trench
+PASS barriers above ground sort in WorldActors
+PASS every barrier stands exactly on the ground, 1.1m tall: no floating barrier
+PASS no flat ground pavement is drawn over the trench or tunnel: 0.0010
+PASS trench fixture builds (portal faces camera=false)
+PASS one trench and one portal (faces=false)
+PASS trench is a clip_children group drawn after road marks and before WorldActors
+PASS outline far edge is raised 4m above ground (top=533.23 expected<=533.23)
+PASS every interior trench sample is covered by floor, far wall or portal: no hole (faces=false)
+PASS closed floor and far retaining-wall face on every 4m piece: floors=20 walls=20 pieces=20
+PASS portal at -6.0m faces the camera only when placed that way
+PASS facing portal draws portal.png and a 15181a mouth down to the -6.0m road; a back-facing portal draws neither inside the trench
+PASS barriers above ground sort in WorldActors
+PASS every barrier stands exactly on the ground, 1.1m tall: no floating barrier
+PASS no flat ground pavement is drawn over the trench or tunnel: 0.0010
+PASS car fixture
+PASS traffic builds trench and tunnel lanes
+PASS tunnel lane exists
+PASS sedan spawns in the trench
+PASS trench car is visible at -3.13m
+PASS trench car is drawn inside the trench clip group
+PASS camera-side car draws after the portal strip
+PASS trench car artwork sits on the lowered road surface, not floating
+PASS car inside the covered section is hidden in the ground view
+PASS unrelated road edit rebuilds trench pieces
+PASS rebuild hands the car back instead of freeing it
+PASS view fixture
+PASS covered section adds solid underground bands
+PASS tunnel bands use the metro tunnel colour
+PASS bands start at the -6.0m portal and stay covered
+PASS ground view hides covered bands but keeps the trench
+PASS ground view cannot pick the hidden covered road
+PASS trench stays pickable in the ground view
+PASS underground view shows bands and still shows the trench
+PASS underground view picks the covered road
+PASS capture fixture: ground approach, trench, portal, tunnel under a ground road and a -20m crossing
+PASS capture traffic
+PASS capture shows cars at the portal inside the trench: 2
+PASS native ground view is 1920x1080
+PASS ground view capture saved
+E2_CAPTURE D:/project/simcity/artifacts/e2-underground-20261119/e2-ground-1920.png display=Windows renderer=gl_compatibility
+PASS capture switches to the underground view
+PASS underground view capture saved
+E2_CAPTURE D:/project/simcity/artifacts/e2-underground-20261119/e2-underground-1920.png
+E2_UI checks=67 failed=0
+
+STDERR

@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "jobs_per_worker": 1.05,
+  "commercial_share": 0.60,
+  "max_cached_home_routes": 128
+}

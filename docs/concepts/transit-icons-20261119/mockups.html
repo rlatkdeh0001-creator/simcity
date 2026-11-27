@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>교통 트레이 도구 아이콘 시안 (2026-11-19)</title>
+<!--
+  시안이다. 실제 게임 화면이 아니다.
+  쿼리
+    ?s=1&v=A|B|C  게임 캡처(교통 트레이 열림)에 도구 아이콘 5개만 바꿔 넣은 화면 + 2배 확대 (기본 s=1, v=A)
+    ?s=2          비교 보드: 72/48/38/24px 로 기존 아이콘과 나란히 + 트레이 4줄(현재/A/B/C)
+  세트
+    A 보수적        익숙한 그림 하나 + 오른쪽 위 작은 표시(상자, ×)
+    B 가장 잘 맞는   선로는 화면처럼 비스듬히 · 노선 셋은 위에 대상(사람, 상자, ×), 아래에 노선 띠
+    C 새로운        장면으로 풀어 그림 · 복선, 도시 아래 선로, 화살표 길에 표시(고리, 상자, ×)
+  배경: mock/tray-src.png = artifacts/e3a-elevated-rail-20261119/e3a-viaduct-1920.png (실제 게임 캡처)
+  아이콘 규격: bottom_ui.gd icon() 과 같다. viewBox 0 0 24 24, 바깥 <g fill="#e4eef1">.
+    게임처럼 48px 로 그린 뒤 표시 크기로 줄인다(캔버스로 재현). 72px 칸만 벡터 확대다.
+  아이콘 body 문자열은 icons-A.txt / icons-B.txt / icons-C.txt 와 같다.
+-->
+<style>
+:root{--bg:#142b37;--panel:#38515e;--ink:#edf4f5;--accent:#36b7ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+body{font-family:"Malgun Gothic","맑은 고딕","Noto Sans KR",sans-serif;color:var(--ink);font-size:18px}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+svg,canvas{display:block}
+.tag{position:absolute;left:16px;top:14px;padding:6px 12px;border:1px dashed rgba(237,244,245,.6);border-radius:6px;background:rgba(20,43,55,.88);font-size:18px;line-height:24px;white-space:nowrap}
+.tag b{color:var(--accent);margin-right:8px}
+.zoom{position:absolute;overflow:hidden;border:1px dashed rgba(237,244,245,.6);border-radius:8px;background:var(--bg)}
+.h1{position:absolute;font-size:26px;font-weight:700;line-height:34px;white-space:nowrap}
+.h1 span{font-size:18px;font-weight:400;opacity:.8;margin-left:14px}
+.bh{position:absolute;font-size:18px;line-height:24px;white-space:nowrap;opacity:.85}
+.bh.hot{color:var(--accent);font-weight:700;opacity:1}
+.tile{position:absolute;background:#152d3b;border:1px solid var(--panel);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.cap{position:absolute;font-size:18px;line-height:24px;text-align:center;white-space:nowrap}
+.rl{position:absolute;left:40px;width:200px}
+.rl b{display:block;font-size:26px;line-height:32px}
+.rl span{display:block;font-size:18px;line-height:24px;opacity:.85}
+.rule{position:absolute;height:1px;background:var(--panel)}
+.strip{position:absolute;overflow:hidden;border:1px solid var(--panel);border-radius:7px;background:url(mock/tray-src.png) no-repeat}
+.note{position:absolute;font-size:18px;line-height:26px;white-space:nowrap;opacity:.9}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const SETS = {
+ "A": {
+  "rail": "<path d=\"M6.5 1H9v22H6.5zM15 1h2.5v22H15zM3 2.5h18V5H3zM3 8h18v2.5H3zM3 13.5h18V16H3zM3 19h18v2.5H3z\"/>",
+  "metro": "<path d=\"M2 23V12a10 10 0 0 1 20 0v11h-3V12a7 7 0 0 0-14 0v11zM8.5 9h2v14h-2zM13.5 9h2v14h-2zM7 11h10v2H7zM7 15h10v2H7zM7 19h10v2H7z\"/>",
+  "transit_line": "<path d=\"M5 8.6V12h4.2M14.8 12H19v3.4\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.5\"/><circle cx=\"5\" cy=\"5\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><circle cx=\"12\" cy=\"12\" r=\"2.3\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"19\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/>",
+  "freight_line": "<path d=\"M5 8.6V12h4.2M14.8 12H19v3.4\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.5\"/><circle cx=\"5\" cy=\"5\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><circle cx=\"12\" cy=\"12\" r=\"2.3\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"19\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><path d=\"M19 0.75l3.18 1.84L19 4.42l-3.18-1.83zM15.32 3.45l3.18 1.84v3.67l-3.18-1.83zM22.68 3.45v3.68L19.5 8.96V5.29z\"/>",
+  "remove_line": "<path d=\"M5 8.6V12h4.2M14.8 12H19v3.4\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.5\"/><circle cx=\"5\" cy=\"5\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><circle cx=\"12\" cy=\"12\" r=\"2.3\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"19\" r=\"2.9\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><path d=\"M15.1 1.1h1.7L19 3.3l2.2-2.2h1.7v1.7L20.7 5l2.2 2.2v1.7h-1.7L19 6.7l-2.2 2.2h-1.7V7.2L17.3 5l-2.2-2.2z\"/>"
+ },
+ "B": {
+  "rail": "<path d=\"M7.1 2 22 16.9M2 7.1 16.9 22M10.8 2.6 2.6 10.8M14.3 6.1 6.1 14.3M17.9 9.7 9.7 17.9M21.4 13.2 13.2 21.4\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/>",
+  "metro": "<path d=\"M2 2h20v21h-3.5v-9.5a6.5 6.5 0 0 0-13 0V23H2z\"/><path d=\"M7 23 8.9 12h1.4L9.2 23zM14.8 23 13.7 12h1.4L17 23zM7.1 19.8h9.8v1.8H7.1zM7.7 16.2h8.6v1.4H7.7zM8.3 13.3h7.4v1.1H8.3z\"/>",
+  "transit_line": "<circle cx=\"12\" cy=\"4.3\" r=\"2.8\"/><path d=\"M5.5 14v-1.4a6.5 4.2 0 0 1 13 0V14zM3 18.1h18v2H3z\"/><circle cx=\"4\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"12\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"20\" cy=\"19.1\" r=\"2.7\"/>",
+  "freight_line": "<path d=\"M12 1.5l4.77 2.75L12 7.01 7.23 4.25zM6.63 5.29l4.77 2.76v5.5L6.63 10.8zM17.37 5.29v5.51l-4.77 2.75v-5.5zM3 18.1h18v2H3z\"/><circle cx=\"4\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"12\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"20\" cy=\"19.1\" r=\"2.7\"/>",
+  "remove_line": "<path d=\"M6.4 2.1h2L12 5.7l3.6-3.6h2v2L14 7.7l3.6 3.6v2h-2L12 9.7l-3.6 3.6h-2v-2L10 7.7 6.4 4.1zM3 18.1h18v2H3z\"/><circle cx=\"4\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"12\" cy=\"19.1\" r=\"2.7\"/><circle cx=\"20\" cy=\"19.1\" r=\"2.7\"/>"
+ },
+ "C": {
+  "rail": "<path d=\"M3 1h1.8v22H3zM7.4 1h1.8v22H7.4zM14.8 1h1.8v22h-1.8zM19.2 1H21v22h-1.8zM1.2 3H11v2H1.2zM13 3h9.8v2H13zM1.2 8.3H11v2H1.2zM13 8.3h9.8v2H13zM1.2 13.7H11v2H1.2zM13 13.7h9.8v2H13zM1.2 19H11v2H1.2zM13 19h9.8v2H13z\"/>",
+  "metro": "<path d=\"M1 8.6h1.5V5.4L5.25 2.2 8 5.4v3.2h1.9V3.4h1.3V1h3.1v7.6h1.9v-4h5.3v4H23v2H1zM1 14h22v2.2H1zM1 19.6h22v2.2H1zM3.9 12.6h2.2v10.6H3.9zM10.9 12.6h2.2v10.6h-2.2zM17.9 12.6h2.2v10.6h-2.2z\"/>",
+  "transit_line": "<path d=\"M8.2 4.8h4.3v4M12.5 15.2V19h5.6\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.8\"/><circle cx=\"4.8\" cy=\"4.8\" r=\"2.7\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><circle cx=\"12.5\" cy=\"12\" r=\"2.3\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2\"/><path d=\"M17.6 14.6 23.3 19l-5.7 4.4z\"/>",
+  "freight_line": "<path d=\"M5.2 0.9l3.64 2.1L5.2 5.1 1.56 3zM1.09 3.83l3.63 2.1v4.2l-3.63-2.1zM9.31 3.83v4.2l-3.63 2.1v-4.2zM9.7 9.8h5.6v5.6H9.7zM17.6 14.6 23.3 19l-5.7 4.4z\"/><path d=\"M10.9 4.8h1.6V19h5.6\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.8\"/>",
+  "remove_line": "<path d=\"M8.2 4.8h4.3v3M12.5 16.6V19h5.6\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.8\"/><circle cx=\"4.8\" cy=\"4.8\" r=\"2.7\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2.2\"/><path d=\"M8.6 8.3h1.5l2.4 2.4 2.4-2.4h1.5v1.5L14 12.2l2.4 2.4v1.5h-1.5l-2.4-2.4-2.4 2.4H8.6v-1.5l2.4-2.4-2.4-2.4zM17.6 14.6 23.3 19l-5.7 4.4z\"/>"
+ }
+};
+const OLD_ICONS = {
+ "road": "<path d=\"m7 2-5 20h8v-4h4v4h8L17 2h-4v4h-2V2zm4 7h2v5h-2z\" fill-rule=\"evenodd\"/>",
+ "erase": "<path d=\"m4 10 9-8 9 9-8 10H8l-6-6zm5 9h5l-5-5-3 3zM2 22h20v2H2z\"/>",
+ "bulldozer": "<path d=\"M5 4h8l3 10H4zm3 3v5h5l-2-5z\" fill-rule=\"evenodd\"/><rect x=\"1\" y=\"15\" width=\"16\" height=\"7\" rx=\"3\"/><path d=\"m18 10 5-3v16l-5-2zm-4 5 5-2 1 3-6 2z\"/><circle cx=\"5\" cy=\"18.5\" r=\"1.5\" fill=\"#152d3b\"/><circle cx=\"12\" cy=\"18.5\" r=\"1.5\" fill=\"#152d3b\"/>",
+ "transport": "<rect x=\"4\" y=\"1\" width=\"16\" height=\"20\" rx=\"4\"/><path d=\"M7 20v3m10-3v3\" stroke=\"white\" stroke-width=\"2\"/><path d=\"M7 5h10v8H7z\" fill=\"#152d3b\"/><circle cx=\"8\" cy=\"17\" r=\"1.3\" fill=\"#152d3b\"/><circle cx=\"16\" cy=\"17\" r=\"1.3\" fill=\"#152d3b\"/>",
+ "wire": "<path d=\"m5 17 14-10\" fill=\"none\" stroke=\"#e4eef1\" stroke-width=\"2\"/><circle cx=\"5\" cy=\"17\" r=\"4\"/><circle cx=\"19\" cy=\"7\" r=\"4\"/>",
+ "people": "<circle cx=\"9\" cy=\"6\" r=\"4\"/><circle cx=\"18\" cy=\"8\" r=\"3\"/><path d=\"M1 22v-7a8 8 0 0 1 16 0v7zm17 0v-7a9 9 0 0 0-1-3 6 6 0 0 1 6 6v4z\"/>",
+ "pipes": "<path d=\"M2 6h20v4H2zm0 9h20v4H2z\"/><path d=\"M6 4h3v8H6zm9 9h3v8h-3z\"/>",
+ "grid": "<g transform=\"scale(0.66667)\"><path d=\"M6 6h24v24H6zM14 6v24M22 6v24M6 14h24M6 22h24\" fill=\"none\" stroke=\"#edf4f5\" stroke-width=\"2.5\"/></g>"
+};
+const TOOLS = [['rail','철도'],['metro','지하철 터널'],['transit_line','노선'],['freight_line','화물 노선'],['remove_line','노선 삭제']];
+const OLD_LIST = [['road','도로'],['erase','지우기'],['bulldozer','불도저'],['transport','교통'],['wire','전력선']];
+const EXTRA_LIST = [['grid','격자'],['people','인구'],['pipes','상하수관']];
+const SET_INFO = {A:'보수적', B:'가장 잘 맞는', C:'새로운'};
+const IDEA = {
+  NOW:'도구 5개가 모두 분류 그림(버스)으로 나온다',
+  A:'익숙한 그림 하나에 오른쪽 위 작은 표시(상자, ×)',
+  B:'선로는 화면처럼 비스듬히 · 노선 셋은 위에 대상, 아래에 노선 띠',
+  C:'장면으로 풀어 그림 · 복선, 도시 아래 선로, 화살표 길'
+};
+const qs = new URLSearchParams(location.search);
+const scn = qs.get('s') === '2' ? 2 : 1;
+const setKey = ['A','B','C'].includes((qs.get('v') || 'A').toUpperCase()) ? (qs.get('v') || 'A').toUpperCase() : 'A';
+const stageEl = document.getElementById('stage');
+
+function svgText(body, px){
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + px + '" height="' + px + '" viewBox="0 0 24 24"><g fill="#e4eef1">' + body + '</g></svg>';
+}
+function mk(tag, cls, css, html){
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (css) e.style.cssText = css;
+  if (html != null) e.innerHTML = html;
+  return e;
+}
+/* 게임과 같은 순서: 48px 로 그린 그림을 표시 크기로 줄인다 */
+function gameIcon(body, px){
+  const c = document.createElement('canvas');
+  c.width = 48; c.height = 48;
+  c.style.width = px + 'px'; c.style.height = px + 'px';
+  const img = new Image();
+  img.onload = function(){ c.getContext('2d').drawImage(img, 0, 0, 48, 48); c.setAttribute('data-ok', '1'); };
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText(body, 48));
+  return c;
+}
+/* 캡처 속 버스 아이콘 5개를 버튼 바탕색으로 덮고 새 아이콘을 같은 자리(38×38)에 놓는다.
+   캡처에서 잰 값: 아이콘 칸 왼쪽 324 + 128·i, 위 768, 버튼 바탕 #152d3b */
+function trayIcons(host, key, ox, oy){
+  TOOLS.forEach(function(tool, i){
+    const x = 324 + 128 * i - ox, y = 768 - oy;
+    host.appendChild(mk('div', '', 'position:absolute;left:' + (x - 2) + 'px;top:' + (y - 2) + 'px;width:42px;height:42px;background:#152d3b'));
+    const ic = gameIcon(SETS[key][tool[0]], 38);
+    ic.style.position = 'absolute'; ic.style.left = x + 'px'; ic.style.top = y + 'px';
+    host.appendChild(ic);
+  });
+}
+function drawTray(){
+  const bg = mk('img', '', 'position:absolute;left:0;top:0;width:1920px;height:1080px');
+  bg.src = 'mock/tray-src.png'; bg.alt = '';
+  stageEl.appendChild(bg);
+  trayIcons(stageEl, setKey, 0, 0);
+  /* 2배 확대: 트레이 버튼 5개 구역(286,758)~(912,858) */
+  const zoomBox = mk('div', 'zoom', 'left:286px;top:520px;width:1252px;height:200px');
+  const zoomIn = mk('div', '', 'position:absolute;left:0;top:0;width:626px;height:100px;transform:scale(2);transform-origin:0 0;background:url(mock/tray-src.png) no-repeat -286px -758px');
+  trayIcons(zoomIn, setKey, 286, 758);
+  zoomBox.appendChild(zoomIn);
+  stageEl.appendChild(zoomBox);
+  stageEl.appendChild(mk('div', 'tag', 'left:286px;top:476px', '아래 트레이를 2배로 확대'));
+  stageEl.appendChild(mk('div', 'tag', '', '<b>시안 1-' + setKey + '</b>' + SET_INFO[setKey] + ' 안 · 실제 게임 화면이 아님(게임 캡처에 도구 아이콘 5개만 합성)'));
+}
+function drawBoard(){
+  document.body.style.background = '#142b37';
+  const add = function(cls, css, html){ return stageEl.appendChild(mk('div', cls, css, html)); };
+  add('h1', 'left:40px;top:18px', '교통 트레이 도구 아이콘 시안 — 크기 비교<span>기존 아이콘과 같은 크기로 나란히</span>');
+  const blocks = [[72,250,112,84,'72px · 확대'],[48,850,72,60,'48px'],[38,1250,62,50,'38px · 트레이 실제 크기'],[24,1600,48,36,'24px']];
+  blocks.forEach(function(b){ add('bh' + (b[0] === 38 ? ' hot' : ''), 'left:' + b[1] + 'px;top:64px', b[4]); });
+  const rows = [['OLD','기존','지금 쓰는 그림'],['A','A','보수적'],['B','B','가장 잘 맞는'],['C','C','새로운']];
+  rows.forEach(function(r, ri){
+    const y = 100 + ri * 118;
+    add('rl', 'top:' + (y + 14) + 'px', '<b>' + r[1] + '</b><span>' + r[2] + '</span>');
+    const list = r[0] === 'OLD' ? OLD_LIST.map(function(o){ return [OLD_ICONS[o[0]], o[1]]; })
+                                : TOOLS.map(function(t){ return [SETS[r[0]][t[0]], t[1]]; });
+    blocks.forEach(function(b){
+      const px = b[0], x0 = b[1], pitch = b[2], tile = b[3];
+      list.forEach(function(item, ci){
+        const t = add('tile', 'left:' + (x0 + ci * pitch) + 'px;top:' + (y + (84 - tile) / 2) + 'px;width:' + tile + 'px;height:' + tile + 'px');
+        if (px === 72){
+          t.innerHTML = svgText(item[0], 72);
+          add('cap', 'left:' + (x0 + ci * pitch + tile / 2 - pitch / 2) + 'px;top:' + (y + 87) + 'px;width:' + pitch + 'px', item[1]);
+        } else t.appendChild(gameIcon(item[0], px));
+      });
+    });
+  });
+  add('rule', 'left:40px;top:214px;width:1800px');
+  add('h1', 'left:40px;top:578px', '실제 트레이에 넣은 모습<span>게임 캡처에 아이콘만 합성 · 원래 크기</span>');
+  add('note', 'left:1090px;top:586px', '닮을 수 있는 다른 기존 그림');
+  EXTRA_LIST.forEach(function(o, k){
+    const x = 1340 + k * 150;
+    add('tile', 'left:' + x + 'px;top:574px;width:50px;height:50px').appendChild(gameIcon(OLD_ICONS[o[0]], 38));
+    add('cap', 'left:' + (x + 58) + 'px;top:587px;text-align:left', o[1]);
+  });
+  const strips = [['','현재','모두 버스 그림'],['A','A','보수적'],['B','B','가장 잘 맞는'],['C','C','새로운']];
+  strips.forEach(function(s, i){
+    const y = 632 + i * 110;
+    add('rl', 'top:' + (y + 24) + 'px', '<b>' + s[1] + '</b><span>' + s[2] + '</span>');
+    const el = add('strip', 'left:250px;top:' + y + 'px;width:807px;height:106px;background-position:-114px -756px');
+    if (s[0]) trayIcons(el, s[0], 114, 756);
+    add('note', 'left:1090px;top:' + (y + 40) + 'px', IDEA[s[0] || 'NOW']);
+  });
+}
+if (scn === 2) drawBoard(); else drawTray();
+document.title = scn === 2 ? '아이콘 비교 보드' : '시안 1-' + setKey;
+</script>
+</body>
+</html>

@@ -9,8 +9,13 @@ func verify(value: bool,label: String):
 func make_city(seed_value: int=42):
  var city=Model.new(100,100,seed_value)
  city.population_enabled=false
- city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
+ # Keep the inner curb on y=38 with the current sidewalk-inclusive lane width.
+ var y:float=38.0+Model.RoadProfile.width_for("local",4,city.config.road_width)/2.0
+ city.add_road(PackedVector2Array([Vector2(2,y),Vector2(90,y)]),"local",true,4)
  return city
+func add_opposed_road(city):
+ var y:float=30.0-float(city.roads[0].width)/2.0
+ return city.add_road(PackedVector2Array([Vector2(2,y),Vector2(90,y)]),"local",true,4)
 func paint(city,x: int,width: int,depth: int,zone: String="residential"):
  return city.paint_zones(PackedVector2Array([Vector2(x,38-depth),Vector2(x+width,38-depth),Vector2(x+width,38),Vector2(x,38)]),zone)
 func _initialize():run.call_deferred()
@@ -28,7 +33,7 @@ func run():
 func check_growth():
  for zone in ["residential","commercial","industrial"]:
   var city=make_city()
-  city.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
+  add_opposed_road(city)
   paint(city,2,8,8,zone)
   var building: Dictionary=city.advance_development(2)[0]
   for stage in range(2,6):
@@ -47,7 +52,7 @@ func check_growth():
   b.score=100;hold.upgrade_chain(b.id)
   verify(b.size==4 and b.level==stage,"insufficient same-use expansion space preserves existing 4x4 without shrinking")
  var blocked=make_city()
- blocked.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
+ add_opposed_road(blocked)
  paint(blocked,2,8,8)
  var first: Dictionary=blocked.advance_development(2)[0]
  var neighbor: Dictionary=blocked.add_building_at(Vector2(8.5,37.5)).building
@@ -56,7 +61,7 @@ func check_growth():
  verify(blocked.upgrade_chain(first.id).ok and first.level==5 and first.size==4,"stage5 8x8 collision falls back to existing 4x4")
  verify(blocked.buildings.size()==2 and neighbor==snapshot,"no automatic merging or demolition of another building")
  var legacy=make_city()
- legacy.add_road(PackedVector2Array([Vector2(2,28),Vector2(90,28)]),"local",true,4)
+ add_opposed_road(legacy)
  var old: Dictionary=legacy.place_catalog_building("large-8x8-a",2,30).building
  verify(old.level==5,"new authored 8x8 also starts at final stage; only existing legacy data may be earlier")
  old.level=2;old.score=100

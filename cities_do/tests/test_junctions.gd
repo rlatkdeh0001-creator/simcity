@@ -16,6 +16,8 @@ func verify(value: bool, label: String):
   failed+=1
   push_error("FAIL "+label)
 func road(points: Array, count: int = 2) -> Dictionary:
+ # Synthetic topology/traffic inputs retain their explicit widths. Model-built
+ # roads in test_footprints use the current local-road width grades instead.
  return {"points":PackedVector2Array(points),"lanes":count,"width":float(count),"kind":"local"}
 func roads() -> Array:
  return [road([Vector2(10,50),Vector2(90,50)]),road([Vector2(50,10),Vector2(50,90)])]
@@ -75,30 +77,27 @@ func test_crosswalks() -> bool:
   else:narrow=narrow and is_equal_approx(distance,2.25)
   var boundary: float=1 if arm.lanes==4 else 2
   edge_clear=edge_clear and is_equal_approx(distance-Topology.CROSSWALK_HALF_LENGTH-boundary,Topology.CROSSWALK_EDGE_GAP)
- verify(wide,"four-lane zebra sits just beyond the two-lane road edge instead of shared radius")
- verify(narrow,"two-lane zebra follows the actual wider crossed-road edge")
+ verify(wide,"wide-road zebra sits immediately outside the actual two-lane crossed road")
+ verify(narrow,"narrow-road zebra follows the actual wider crossed-road edge")
  verify(edge_clear,"both zebra near edges use the same small pavement-edge gap")
  var tee: Dictionary=Topology.analyze([mixed[0],road([Vector2(50,10),Vector2(50,50)])]).junctions[0]
- verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),1.25 if arm.lanes==4 else 2.25)),"T junction zebra placement uses each crossing width too")
+ verify(tee.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(tee,arm),1.25 if arm.lanes==4 else 2.25)),"T junction zebra placement uses actual crossed-road widths, independently of the render box")
  var reordered: Dictionary=Topology.analyze([mixed[1],mixed[0]]).junctions[0]
  verify(reordered.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(reordered,arm),1.25 if arm.lanes==4 else 2.25)),"zebra placement does not depend on road construction order")
  var diagonal: Dictionary=Topology.analyze([road([Vector2(10,10),Vector2(90,90)],4),road([Vector2(90,10),Vector2(10,90)])]).junctions[0]
- verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),1.25 if arm.lanes==4 else 2.25)),"rotated right-angle crossing keeps the same compact zebra layout")
+ verify(diagonal.arms.all(func(arm):return is_equal_approx(Topology.crosswalk_distance(diagonal,arm),1.25 if arm.lanes==4 else 2.25)),"rotated crossing preserves actual crossed-road edge placement")
  return true
 func test_footprints() -> bool:
  var city := City.new(100,100)
  city.add_road(roads()[0].points)
  city.add_road(roads()[1].points)
  var outline: PackedVector2Array=Topology.patch(city.junctions[0])
- var square := true
- for i in range(outline.size()):
-  var edge: Vector2=outline[(i+1)%outline.size()]-outline[i]
-  square=square and (absf(edge.x)<.001 or absf(edge.y)<.001)
- verify(square,"right-angle junction keeps straight square corners instead of diagonal flares")
- verify(is_equal_approx(city.Parcels.area(outline),12.0),"two-lane crossing uses only the 12 square cells inside road-width strips")
+ verify(outline.size()>16 and city.Parcels.bounds(outline).size.distance_to(Vector2(3,3))<.001,"right-angle junction uses rounded curbs inside its shared road-width box, not diagonal flares")
+ verify(city.Parcels.area(outline)>8.9 and city.Parcels.area(outline)<9.0,"two-lane crossing uses one compact three-by-three box with rounded corners")
  var restored := true
- for point in [Vector2(47.5,48.5),Vector2(51.5,48.5),Vector2(47.5,51.5),Vector2(51.5,51.5)]:
-  restored=restored and city.add_building_at(point).ok
+ # Click the front row of the through road, beyond the crossed road's 1.5-cell half-width.
+ for point in [Vector2(46.5,48),Vector2(52.5,48),Vector2(46.5,52),Vector2(52.5,52)]:
+  restored=city.add_building_at(point).ok and restored
  verify(restored,"all four formerly clipped road-local 2x2 corner lots remain buildable")
  verify(not city.add_building(50,47).ok,"building still cannot occupy the actual road")
  verify(not city.add_power_plant(Vector2(50,47)).ok,"utility footprint still respects the rectangular pavement")
@@ -107,14 +106,40 @@ func test_footprints() -> bool:
   for junction in city.junctions:
    corner_clear=corner_clear and not city.Parcels.overlap(parcel.polygon,Topology.patch(junction))
  verify(corner_clear,"placement tiles exclude actual pavement without diagonal corner loss")
+ return test_corner_boundary()
+func edge_distance(point: Vector2, polygon: PackedVector2Array) -> float:
+ var distance := INF
+ for i in range(polygon.size()):
+  var closest := Geometry2D.get_closest_point_to_segment(point,polygon[i],polygon[(i+1)%polygon.size()])
+  distance=minf(distance,point.distance_to(closest))
+ return distance
+func test_corner_boundary() -> bool:
  var occupied := City.new(100,100)
- occupied.add_road(roads()[0].points)
- var house: Dictionary=occupied.add_building(51,47)
+ var through := PackedVector2Array([Vector2(10.25,50),Vector2(90.25,50)])
+ var crossing := PackedVector2Array([Vector2(10,10),Vector2(90,90)])
+ var built: Dictionary=occupied.add_road(through)
+ var host_ready: bool=built.ok and is_equal_approx(float(occupied.roads[0].width),3.0)
+ verify(host_ready,"corner-contact fixture uses the current three-cell through-road width")
+ if not host_ready:return true
+ # The oblique arm runs away from the lot; at a straight right-angle X the
+ # rounded curb cuts away the nominal corner where the road edges meet.
+ var contact := Vector2(51.25,48.5)
+ var house: Dictionary=occupied.add_building_at(contact+Vector2(.5,-.5))
  verify(house.ok,"corner lot exists before a crossing road is added")
- var before: int=occupied.roads.size()
- var preview: Dictionary=occupied.add_road(roads()[1].points,"local",false)
- verify(preview.ok and occupied.roads.size()==before and occupied.junctions.is_empty(),"square crossing preview preserves the adjacent house and does not mutate city")
- verify(occupied.add_road(roads()[1].points).ok and occupied.buildings.size()==1,"crossing can be built beside the corner house without clipping or demolition")
+ if not house.ok:return true
+ var house_id: int=house.building.id
+ var footprint: PackedVector2Array=occupied.footprint(house.building)
+ var topology: Dictionary=Topology.analyze(occupied.roads+[{"points":crossing,"width":3.0,"lanes":2,"kind":"local"}])
+ verify(topology.junctions.size()==1,"corner-contact fixture derives one crossing junction")
+ if topology.junctions.size()!=1:return true
+ var patch: PackedVector2Array=Topology.patch(topology.junctions[0])
+ verify(edge_distance(contact,footprint)<.00001 and edge_distance(contact,patch)<.00001,"house and three-cell junction boundaries share the curb point (51.25, 48.5)")
+ verify(Geometry2D.intersect_polygons(footprint,patch).is_empty(),"touching house and junction have zero positive-area overlap")
+ var before: Array=occupied.roads.duplicate(true)
+ var preview: Dictionary=occupied.add_road(crossing,"local",false)
+ verify(preview.ok and occupied.roads==before and occupied.junctions.is_empty() and occupied.buildings.size()==1 and occupied.buildings[0].id==house_id and occupied.footprint(occupied.buildings[0])==footprint,"crossing preview accepts boundary contact and preserves road state, house ID and footprint")
+ var committed: Dictionary=occupied.add_road(crossing)
+ verify(committed.ok and occupied.roads.size()==before.size()+1 and occupied.junctions.size()==1 and Topology.patch(occupied.junctions[0])==patch and occupied.buildings.size()==1 and occupied.buildings[0].id==house_id and occupied.footprint(occupied.buildings[0])==footprint,"crossing commit builds the predicted junction and preserves touching house ID and footprint")
  return true
 func test_routes() -> bool:
  var network=cross_network()
@@ -143,12 +168,13 @@ func test_routes() -> bool:
  for pair in [[network,roads()],[mixed,[road([Vector2(10,50),Vector2(90,50)],4),road([Vector2(50,10),Vector2(50,90)])]]]:
   var shapes := []
   for entry in pair[1]:shapes.append_array(RoadGeometry.ribbons(entry.points,entry.width*(.75 if entry.lanes==2 else .8125)))
+  for junction in pair[0].junctions:shapes.append(Topology.patch(junction,true))
   for lane in pair[0].lanes:
    if lane.junction<0:continue
    for step in range(61):
     var point: Vector2=pair[0].sample(lane.id,lane.length*step/60)/4.0
     inside=inside and shapes.any(func(shape):return Geometry2D.is_point_in_polygon(point,shape))
- verify(inside,"all mixed-width turn centre paths stay on actual asphalt after square-corner change")
+ verify(inside,"all mixed-width turn centre paths stay on actual asphalt including the rounded shared-box plane")
  var tee := Network.new()
  tee.build([roads()[0],road([Vector2(50,10),Vector2(50,50)])])
  verify(path(tee,Vector2(50,10),Vector2(90,50)).size()==3,"T junction routes from branch onto through road")

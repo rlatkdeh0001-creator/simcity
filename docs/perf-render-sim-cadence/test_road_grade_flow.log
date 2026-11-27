@@ -1,0 +1,83 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS native grade host [2, 3, true, false]
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS native grade green/red preview [2, 3, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [2, 3, true, false]
+PASS projected transition pavement has valid triangles [2, 3, true, false]
+PASS projected transition pavement has valid triangles [2, 3, true, false]
+PASS actual lane card selects 4 lanes and drawing mode before world input
+PASS native grade host [4, 5, true, false]
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS native grade green/red preview [4, 5, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [4, 5, true, false]
+PASS projected transition pavement has valid triangles [4, 5, true, false]
+PASS projected transition pavement has valid triangles [4, 5, true, false]
+PASS actual lane card selects 6 lanes and drawing mode before world input
+PASS native grade host [6, 7, true, false]
+PASS actual lane card selects 7 lanes and drawing mode before world input
+PASS native grade green/red preview [6, 7, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [6, 7, true, false]
+PASS projected transition pavement has valid triangles [6, 7, true, false]
+PASS projected transition pavement has valid triangles [6, 7, true, false]
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS native grade host [2, 4, true, false]
+PASS actual lane card selects 4 lanes and drawing mode before world input
+PASS native grade green/red preview [2, 4, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [2, 4, true, false]
+PASS projected transition pavement has valid triangles [2, 4, true, false]
+PASS projected transition pavement has valid triangles [2, 4, true, false]
+PASS projected transition pavement has valid triangles [2, 4, true, false]
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS native grade host [5, 7, true, false]
+PASS actual lane card selects 7 lanes and drawing mode before world input
+PASS native grade green/red preview [5, 7, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [5, 7, true, false]
+PASS projected transition pavement has valid triangles [5, 7, true, false]
+PASS projected transition pavement has valid triangles [5, 7, true, false]
+PASS projected transition pavement has valid triangles [5, 7, true, false]
+PASS actual lane card selects 7 lanes and drawing mode before world input
+PASS native grade host [7, 8, true, false]
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS native grade green/red preview [7, 8, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [7, 8, true, false]
+PASS projected transition pavement has valid triangles [7, 8, true, false]
+PASS projected transition pavement has valid triangles [7, 8, true, false]
+PASS projected transition pavement has valid triangles [7, 8, true, false]
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS native grade host [8, 7, true, false]
+PASS actual lane card selects 7 lanes and drawing mode before world input
+PASS native grade green/red preview [8, 7, true, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [8, 7, true, false]
+PASS projected transition pavement has valid triangles [8, 7, true, false]
+PASS projected transition pavement has valid triangles [8, 7, true, false]
+PASS projected transition pavement has valid triangles [8, 7, true, false]
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS native grade host [5, 3, true, true]
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS native grade green/red preview [5, 3, true, true]
+PASS native confirmation preserves junction-free transition or rejected original roads [5, 3, true, true]
+PASS projected transition pavement has valid triangles [5, 3, true, true]
+PASS projected transition pavement has valid triangles [5, 3, true, true]
+PASS projected transition pavement has valid triangles [5, 3, true, true]
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS native grade host [2, 6, false, false]
+PASS actual lane card selects 6 lanes and drawing mode before world input
+PASS native grade green/red preview [2, 6, false, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [2, 6, false, false]
+PASS projected transition pavement has valid triangles [2, 6, false, false]
+PASS actual lane card selects 4 lanes and drawing mode before world input
+PASS native grade host [4, 8, false, false]
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS native grade green/red preview [4, 8, false, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [4, 8, false, false]
+PASS projected transition pavement has valid triangles [4, 8, false, false]
+PASS actual lane card selects 8 lanes and drawing mode before world input
+PASS native grade host [8, 2, false, false]
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS native grade green/red preview [8, 2, false, false]
+PASS native confirmation preserves junction-free transition or rejected original roads [8, 2, false, false]
+PASS projected transition pavement has valid triangles [8, 2, false, false]
+RESULT 79/79 native road grade flow checks passed

@@ -1,0 +1,57 @@
+{
+  "id": "container-20ft-01",
+  "name": "20ft 컨테이너",
+  "category": "cargo",
+  "style": "transit_compressed_20261116",
+  "body_length_m": 6.06,
+  "overall_length_m": 6.059999942779541,
+  "length_m": 6.059999942779541,
+  "width_m": 2.44,
+  "height_m": 2.6,
+  "measured_dimensions_lwh_m": [
+    6.06,
+    2.44,
+    2.6
+  ],
+  "triangles": 3488,
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "model": "res://assets/vehicles/container-20ft-01.glb",
+  "source": "assets/vehicle-fleet/container-20ft-01/vehicle.blend",
+  "preview": "res://assets/vehicles/sprites/container-20ft-01/045.png",
+  "render": {
+    "resolution": [
+      430,
+      245
+    ],
+    "camera_elevation_deg": 30,
+    "angles_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ]
+  },
+  "status": "inspection_only",
+  "simulation_enabled": false,
+  "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_vehicles.py -- --only container-20ft-01",
+  "tint_material": "ContainerPaint",
+  "tint_swatches": {
+    "red": "a35f50",
+    "blue": "527b9b",
+    "green": "668274",
+    "grey": "929b9d"
+  }
+}

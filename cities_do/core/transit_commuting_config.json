@@ -1,0 +1,5 @@
+{
+  "walk_access_metres": 400.0,
+  "walk_transfer_metres": 200.0,
+  "status": "reversible P4 defaults; physical local-road distance, not a Euclidean radius"
+}

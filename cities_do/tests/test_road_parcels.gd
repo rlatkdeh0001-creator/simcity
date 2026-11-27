@@ -29,8 +29,9 @@ func run():
 			chosen=frame;break
 	check(not chosen.is_empty(),"diagonal straight blocks retain full eight-cell frontage")
 	if not chosen.is_empty():
-		var offset: Vector2=chosen.outward*10
-		city.add_road(PackedVector2Array([city.roads[0].points[0]+offset,city.roads[0].points[-1]+offset]))
+		# Equal-width roads leave exactly eight cells between their facing edges.
+		var offset: Vector2=chosen.outward*(8.0+city.roads[0].width)
+		check(city.add_road(PackedVector2Array([city.roads[0].points[0]+offset,city.roads[0].points[-1]+offset])).ok,"build an aligned opposing road for the diagonal 8x8 lot")
 		var point: Vector2=chosen.origin+chosen.along*.5+chosen.outward*.5
 		var result: Dictionary=city.add_building_at(point,"residential",100)
 		check(result.ok,"new building snaps to road-local 2x2 lot")
@@ -39,7 +40,8 @@ func run():
 			check(building.has("frame") and building.size==2 and city.building_at(point).id==building.id,"rotated building footprint is used for picking")
 			check(not city.add_building_at(point).ok,"rotated lot overlap rejected")
 			city.config.size_weights={8:1.0,4:0.0,2:0.0}
-			for stage in range(2,5):city.upgrade_chain(building.id)
+			for stage in range(2,5):
+				check(city.upgrade_chain(building.id).ok,"diagonal fixture reaches prerequisite stage %d"%stage)
 			var grown: Dictionary=city.upgrade_chain(building.id)
 			check(grown.ok and building.size==8,"8x8 upgrade stays square across opposing aligned four-cell road strips")
 			check(city._polygon_error(city.footprint(building),building.id)=="","rotated growth preserves road/neighbor/boundary clearance")
@@ -90,8 +92,8 @@ func run():
 		check(cascade.upgrade_chain(pair[0].id).events.size()==2 and pair[1].level==2,"neighbor score bypass also works in road-local coordinates")
 	var big=Model.new(1024,1024)
 	big.add_road(PackedVector2Array([Vector2(500.25,500.75),Vector2(560.25,540.75)]))
-	var normal:=Vector2(-40,60).normalized()*10
-	big.add_road(PackedVector2Array([Vector2(500.25,500.75)+normal,Vector2(560.25,540.75)+normal]))
+	var normal:=Vector2(-40,60).normalized()*11.0 # 8-cell lot + two 1.5-cell half-widths.
+	check(big.add_road(PackedVector2Array([Vector2(500.25,500.75)+normal,Vector2(560.25,540.75)+normal])).ok,"build the aligned opposing road at large-map coordinates")
 	var fit_big:=false
 	for frame in big.zoning_grid.frames.values():
 		if big.parcel_placement_error(frame,0,0,8)=="":fit_big=true;break

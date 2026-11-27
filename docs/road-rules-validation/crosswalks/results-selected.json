@@ -1,0 +1,148 @@
+{
+  "recorded_at": "2026-11-13T13:42:59.521744+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 16.58,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_crosswalk_support",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_crosswalk_support.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 8/8 crosswalk support checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.97,
+      "log": "test_crosswalk_support.log"
+    },
+    {
+      "name": "test_demolition",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_demolition.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 48/48 demolition checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 17.25,
+      "log": "test_demolition.log"
+    },
+    {
+      "name": "test_junctions",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_junctions.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 junction checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 5.77,
+      "log": "test_junctions.log"
+    },
+    {
+      "name": "test_road_length_units",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_length_units.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 42/42 road length unit checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 8.46,
+      "log": "test_road_length_units.log"
+    },
+    {
+      "name": "test_road_overlap_policy",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_overlap_policy.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 22/22 road overlap policy checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 13.87,
+      "log": "test_road_overlap_policy.log"
+    },
+    {
+      "name": "test_traffic",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_traffic.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 44/44 traffic checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 16.14,
+      "log": "test_traffic.log"
+    }
+  ],
+  "total": 6,
+  "passed": 6,
+  "failed": 0
+}

@@ -10,7 +10,8 @@ func _initialize():run.call_deferred()
 func run():
 	for gap in [0.0,1.49,1.5,1.51,4.0,8.0]:
 		var city=Model.new(50,50)
-		var y: float=20.0+gap/4
+		# The lot ends at y=19; a three-cell road has a 1.5-cell half-width.
+		var y: float=20.5+gap/4
 		city.add_road(PackedVector2Array([Vector2(2,y),Vector2(48,y)]))
 		var result: Dictionary=city.add_building(10,17)
 		check(result.ok==(gap<=1.5),"%.2fm boundary gap correctly accepted/rejected"%gap)
@@ -35,7 +36,7 @@ func run():
 				var smaller: Dictionary=city.upgrade_chain(result.building.id)
 				check(result.building.v==0 and (smaller.ok or city.footprint(result.building)==old_shape),"shrink either keeps frontage or leaves the original lot untouched")
 	var endpoint=Model.new(40,40)
-	endpoint.add_road(PackedVector2Array([Vector2(2,20),Vector2(10,20)]))
+	endpoint.add_road(PackedVector2Array([Vector2(2,20.5),Vector2(10,20.5)]))
 	check(not endpoint.add_building(10,17).ok,"a close corner at a road endpoint does not grant frontage")
 	print("RESULT ",checks-failures,"/",checks," setback checks passed")
 	quit(1 if failures else 0)

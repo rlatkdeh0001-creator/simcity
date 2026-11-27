@@ -1,0 +1,697 @@
+{
+  "scope": "E1 elevated roads only",
+  "branch": "perf/render-sim-cadence",
+  "head": "8ad4117f17a9cfa92b3783fbf26d3b5de4db2348",
+  "verdict": "PASS: six selected untimed headless suites and the native no-capture viewport suite passed; independent review closed the remaining E1 blockers",
+  "review_mode": "independent targeted review passed; parent verified source, asset, and evidence hashes",
+  "owned_source_count": 22,
+  "owned_sources": [
+    {
+      "path": "cities_do/bottom_ui.gd",
+      "sha256": "c1d976c9827f0e83a5c979f9f214f3d391943321c5e62a6b77093669e3f6549b",
+      "bytes": 58041
+    },
+    {
+      "path": "cities_do/core/building_frontage.gd",
+      "sha256": "b097bd87ec0773db63923f636c242fb82c1ca18014da9f1017b590fe1a22fe9e",
+      "bytes": 2451
+    },
+    {
+      "path": "cities_do/core/cached_world_renderer.gd",
+      "sha256": "238bd5bb257d70446d86fec30d4cb589d21c308dfffaa83ca4ccf7696050ffdd",
+      "bytes": 24228
+    },
+    {
+      "path": "cities_do/core/city_model.gd",
+      "sha256": "ee0f2757ecb55ae2032e5c238cf0c98c41b4ed07e52f1ff1ce2d88b78928f94c",
+      "bytes": 65184
+    },
+    {
+      "path": "cities_do/core/city_simulation.gd",
+      "sha256": "cedad02a309694d86d1d91940871989164140b4401fc61dabe454a6005d8c2f2",
+      "bytes": 17397
+    },
+    {
+      "path": "cities_do/core/city_simulation_worker.gd",
+      "sha256": "ffaab84d7615b04cf56d78f83496ce11a26de725c4c9e533332c53cea0bf1d9e",
+      "bytes": 14605
+    },
+    {
+      "path": "cities_do/core/elevated_road_config.json",
+      "sha256": "b66f77f2dfedd090636ff190076af2f1c428ff83cc7946ccd5641e107d5453b9",
+      "bytes": 480
+    },
+    {
+      "path": "cities_do/core/elevated_road_renderer.gd",
+      "sha256": "648ebe5edf2db4dbce8c22b8d53fd946ef52973bfbd0ecf3dccaf8a72ccc97e7",
+      "bytes": 13343
+    },
+    {
+      "path": "cities_do/core/public_facilities.gd",
+      "sha256": "fb1bd7b227d442f5c430b3c4a35ec4a24dbc05e55d0eb844c4cc5654efa0fc9f",
+      "bytes": 11671
+    },
+    {
+      "path": "cities_do/core/road_demolition.gd",
+      "sha256": "6f493c55492665befa4a5705d3e95aecd28b147d4bd7a8992d0aa89392f2bff2",
+      "bytes": 5065
+    },
+    {
+      "path": "cities_do/core/road_demolition_warning.gd",
+      "sha256": "a2f386e83ed09b747dd38a6387a5567d5ef4668c994be8955b527fdcaa9e8c78",
+      "bytes": 2465
+    },
+    {
+      "path": "cities_do/core/road_drawing.gd",
+      "sha256": "eb25416360570ffeabe0a2860223ae7a75de647741c273033c553f63af0a25a8",
+      "bytes": 23355
+    },
+    {
+      "path": "cities_do/core/road_geometry.gd",
+      "sha256": "390713199681598ff1451c84b5f7e364d0edafb2df3116180f5468282df98a19",
+      "bytes": 9017
+    },
+    {
+      "path": "cities_do/core/road_height.gd",
+      "sha256": "4dd9ea6599d27bc5d8fb0802e52ebc72d6a12f6f1944983b6fcafdec67aaf614",
+      "bytes": 10766
+    },
+    {
+      "path": "cities_do/core/road_height_controls.gd",
+      "sha256": "e773a24d434c3dac240dd5cb3a24b1224b2a74955c9c8d467a68471a1d1597e1",
+      "bytes": 2397
+    },
+    {
+      "path": "cities_do/core/road_junctions.gd",
+      "sha256": "53156824fb5257f6e10d067056d14c68e08cab3ec63b0c14bec7a487cf5e05e2",
+      "bytes": 16530
+    },
+    {
+      "path": "cities_do/core/road_length_units.gd",
+      "sha256": "671a51f6a2db833a4259b5bad4083f7e4ddb4fdabe9bb7e62031b08de45b8030",
+      "bytes": 5727
+    },
+    {
+      "path": "cities_do/tests/test_elevated_road_ui.gd",
+      "sha256": "6cb292e523d04b052ca32c6ed002412e4f55cf73d01e6ca60e96bcb3f32877cf",
+      "bytes": 20355
+    },
+    {
+      "path": "cities_do/tests/test_elevated_roads.gd",
+      "sha256": "15bb2576ee1a8478d6d123a9223c43caa5dcb61e85ae5cdbbe3cddf6b8386b36",
+      "bytes": 22065
+    },
+    {
+      "path": "cities_do/tests/test_elevated_roads_fifo.gd",
+      "sha256": "44c942e68359aef739890d44c2f0cb418f62e2931d4bb599544fcbc4d9f8199e",
+      "bytes": 2944
+    },
+    {
+      "path": "tools/manifest_e1_elevated.py",
+      "sha256": "820c652a63f29c992b8f527d29cb80d47335ef703156dc1f7547f8fa896935c9",
+      "bytes": 8374
+    },
+    {
+      "path": "tools/verify_e1_elevated.py",
+      "sha256": "55ead7afef0863c70b61715a96cf7bccc743c48e3541a4839122097806af7442",
+      "bytes": 3171
+    }
+  ],
+  "rereview_additional_source_count": 1,
+  "rereview_additional_sources": [
+    {"path": "cities_do/core/road_grid_snap.gd", "sha256": "f3ab13194fe47978cbbba802529cb392415f161b35f770d6f88b89c31121d252", "bytes": 10896}
+  ],
+  "acceptance_repair_source_count": 4,
+  "acceptance_repair_sources": [
+    {
+      "path": "cities_do/tests/test_road_profile_connections.gd",
+      "sha256": "f95e5df024db8fb8d4fe4d720149b26d95604ddd0dc77d4236912008ab629068",
+      "bytes": 2975
+    },
+    {
+      "path": "cities_do/tests/test_road_side_contacts.gd",
+      "sha256": "8312a40cf36bc09e6930ca53bfbe41dfd78a44bcc86256b40fdc26d0c346ddef",
+      "bytes": 3446
+    },
+    {
+      "path": "cities_do/tests/test_road_junction_boxes.gd",
+      "sha256": "eac0fcebe3bcfd529bbb4da22d9929e30bd21d839e14482bdcfc8dbee9068666",
+      "bytes": 4937
+    },
+    {
+      "path": "cities_do/tests/test_building_frontage.gd",
+      "sha256": "f74ffbd03f9d62f5eda97d155e91c67bf4c52d3c60129ba28f0d5b07137be894",
+      "bytes": 4217
+    }
+  ],
+  "original_asset_count": 40,
+  "original_assets": [
+    {
+      "path": "assets/structures/retaining-wall-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "2c4eab2d8d86a84216e598e7133910c2c4e1921a"
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/member.blend",
+      "sha256": "0db12d0775bb684e04ed556712fb98de4b68fa2e87c674e572478f7e3c997f5f",
+      "bytes": 96205,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "f6066ba9e77f6b17ff2223307b5f567417e71d37"
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/preview.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "4c2cece234d5cf7534fd42f63103148a9949dcbf"
+    },
+    {
+      "path": "assets/structures/retaining-wall-01/spec.json",
+      "sha256": "252cec1a6b8b46c5111b0261f31bdbefd3e354ee7cf5fa3a2c30c8bac238d781",
+      "bytes": 1223,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "d0b73f81c97b0f28d09cec78da3dbd54dc11eda2"
+    },
+    {
+      "path": "assets/structures/tunnel-portal-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "2c4eab2d8d86a84216e598e7133910c2c4e1921a"
+    },
+    {
+      "path": "assets/structures/tunnel-portal-01/member.blend",
+      "sha256": "099eeff7d8f45b13885c466486e12888e73bec80477f240a1671d5103a38ce87",
+      "bytes": 96631,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "b72569cbb5b6e7b73381ee15f1ac2dcd51b8eb55"
+    },
+    {
+      "path": "assets/structures/tunnel-portal-01/preview.png",
+      "sha256": "44318d5f489f78b24ab1b360367b25fd70549b993ac86d8b9749bdd9981a7055",
+      "bytes": 2288,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "b435a20fee1e37362a970f4b6fcce22d95e47fba"
+    },
+    {
+      "path": "assets/structures/tunnel-portal-01/spec.json",
+      "sha256": "db675a3697c2141ba5025556e000783b7872fa635ae9ec0a5dd5f33ad320cc19",
+      "bytes": 1308,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "1217e3df0be94c411f8ed28151c0c56a0e4f41cc"
+    },
+    {
+      "path": "assets/structures/tunnel-sample-01/build.py",
+      "sha256": "bc6a90fd646745aca2ed9ba342253b9da592ecf35c14615adea9a561db0b263c",
+      "bytes": 146,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "b5df41fe64e9ce485a44274fb63dd89d8ed36e03"
+    },
+    {
+      "path": "assets/structures/tunnel-sample-01/preview.png",
+      "sha256": "51f23b7547a666352f9738357ca8012b82cd1b861421dc2d7954ba6b12b1907b",
+      "bytes": 482339,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "277c215ac9931e2043066cf711c04a2a5b59d6f7"
+    },
+    {
+      "path": "assets/structures/tunnel-sample-01/sample.blend",
+      "sha256": "97c9aa8ca14d79b5a6b4161ae93f675ed30946b5f3e267734222f0d36a783489",
+      "bytes": 245703,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "8de9daf5cd8a0ad9fb3646eaa8359acc74f65a92"
+    },
+    {
+      "path": "assets/structures/tunnel-sample-01/spec.json",
+      "sha256": "4e25ca29203d26405f0b0e08b41a7b5a625c0508ff66a6f7a2d2c17a7b0b436c",
+      "bytes": 1514,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "0944abbfa5f56bafca97bd76c5ef34fedd51e8d3"
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/build.py",
+      "sha256": "c0df0aec23cf3c7bb26fdb1597b717f9a21549186c466e76ef30b331287fe3a5",
+      "bytes": 148,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "44fdd37965296644b0e273665a4868fdef917e4f"
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/preview.png",
+      "sha256": "b6d9b3b243a9d4cd9bdc44d6d8f27035f3bf15c79354e6acc201fe08d330918d",
+      "bytes": 379145,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "5e5b4edfc7a545ce950f70bf4e95b2dc87ed9e98"
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/spec.json",
+      "sha256": "a5d981f087633e6dddd2bb21bfcc5357d853dfdc61c8e2f57c267a5b39f73739",
+      "bytes": 3225,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "6cd511881c4400a43930221c7746468970d81c30"
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/structure.blend",
+      "sha256": "90e0a330beee6f4c6e80a82dadca4d82f97ac50adbd2affcc0cae6a8bb46cdc3",
+      "bytes": 94684,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "8d19c480e50aa2433433a360203113a2447f2c6a"
+    },
+    {
+      "path": "assets/structures/viaduct-sample-01/build.py",
+      "sha256": "c0df0aec23cf3c7bb26fdb1597b717f9a21549186c466e76ef30b331287fe3a5",
+      "bytes": 148,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "44fdd37965296644b0e273665a4868fdef917e4f"
+    },
+    {
+      "path": "assets/structures/viaduct-sample-01/preview.png",
+      "sha256": "8babf972b1c213cd4eee9b1ca3df3277bb9c3e514660178f255eacec2dd0093e",
+      "bytes": 434190,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "a9c462ba4b5faa65cca809f5adb0f07a44b29966"
+    },
+    {
+      "path": "assets/structures/viaduct-sample-01/spec.json",
+      "sha256": "959cf9fd5258619164828dc3579ff5fe7e89171c418c68731a024fbdd63873b8",
+      "bytes": 1043,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "274dc99caaa2bcdfdb8844694bd59acd76dc4cf5"
+    },
+    {
+      "path": "assets/structures/viaduct-sample-01/structure.blend",
+      "sha256": "f6e9536341c63e60662074d9c9df398e8756ea17d740155ec1f01c82db356daf",
+      "bytes": 249248,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "35acc1ffffebb1b6b3cd53ea17f7f4020d498996"
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/build.py",
+      "sha256": "38517aeea1ebd82062973fa3eee71ff367f9f4ad4c700cbd9183e7ed2fdd3688",
+      "bytes": 148,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "2c4eab2d8d86a84216e598e7133910c2c4e1921a"
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/member.blend",
+      "sha256": "0bff4a295c82296cf0e6497442d08ddbef058da223e05f85eda2dbb78f2e60d9",
+      "bytes": 95676,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "90771b30e2aea7633a711b9dc105badf6aa655db"
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/preview.png",
+      "sha256": "e6317e101b2754f1afb192f00c4277ba491fad7b6646ea3183d403e479693cb7",
+      "bytes": 2543,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "a0bdb4dfef0412392262507a848c26de70df54bb"
+    },
+    {
+      "path": "assets/structures/viaduct-side-01/spec.json",
+      "sha256": "d411701460202082aa544d22a51368b1cd1eb3bc8825af4cd071ba1fd140d457",
+      "bytes": 1350,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "2edf448a575bfb2e22c94de056fcf2a70556a348"
+    },
+    {
+      "path": "cities_do/assets/structures/retaining-wall-01/wall.png",
+      "sha256": "0ca4d459df030346b35743f74f64f4fc253aa83547c735f370e62827fa9a79f8",
+      "bytes": 5999,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "4c2cece234d5cf7534fd42f63103148a9949dcbf"
+    },
+    {
+      "path": "cities_do/assets/structures/tunnel-portal-01/portal.png",
+      "sha256": "44318d5f489f78b24ab1b360367b25fd70549b993ac86d8b9749bdd9981a7055",
+      "bytes": 2288,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "b435a20fee1e37362a970f4b6fcce22d95e47fba"
+    },
+    {
+      "path": "cities_do/assets/structures/tunnel-sample-01/tunnel-sample-01.glb",
+      "sha256": "8d7bab2fcff87e67a2205fa937083ac5cc93848d556e0cd9626ddffa99dc912d",
+      "bytes": 274936,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "fdc5ac231d10dddde6049b7d1428526b5bf8dd0f"
+    },
+    {
+      "path": "cities_do/assets/structures/tunnel-sample-01/tunnel-sample-01.png",
+      "sha256": "51f23b7547a666352f9738357ca8012b82cd1b861421dc2d7954ba6b12b1907b",
+      "bytes": 482339,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "277c215ac9931e2043066cf711c04a2a5b59d6f7"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_base.png",
+      "sha256": "8400a7429066745b492e113a08937918e8800abf3e735c762b780a3cbcc5f611",
+      "bytes": 1789,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "8cae0065dbf8c3b3b754dd7982f5ca4f048f1e1c"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_cap.png",
+      "sha256": "71ab669aceb76e5fb4b7f1be3ab2d7b2d60b39204b0227fd82ee4ab7766240ff",
+      "bytes": 3382,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "01df508adfcc22bd5cf818331701fd4c50e16edc"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/pier_shaft.png",
+      "sha256": "e3d039fbd58752b3083ab12a27b697ae7a55445810a657aea29807e890ce33df",
+      "bytes": 306,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "75580fe2f59ed2929e1255046735aaf0ce9ecdbe"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/render_manifest.json",
+      "sha256": "04897d6defae36b65639de7100d1d1739a749807621164610f46e69974d38ceb",
+      "bytes": 1464,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "535f9db84f8db6631fa7155a92523dcc876428d8"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/viaduct-pier-01.glb",
+      "sha256": "e5a2be6d3e51c1ae652b707e52f170f4beecb77aa458021d83688ec3b128287a",
+      "bytes": 23372,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "a477afe288ea1c71544ae9b17c55ff1ba4584c50"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-pier-01/viaduct-pier-01.png",
+      "sha256": "b6d9b3b243a9d4cd9bdc44d6d8f27035f3bf15c79354e6acc201fe08d330918d",
+      "bytes": 379145,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "5e5b4edfc7a545ce950f70bf4e95b2dc87ed9e98"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-sample-01/viaduct-sample-01.glb",
+      "sha256": "e3e240665e6f39dbac57464f43eccb8f580dbd68dc49467d50bdb6e0c388d20f",
+      "bytes": 319520,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "bd7f0026dfcf01ec0bb1c15c1d510f0662ff3d38"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-sample-01/viaduct-sample-01.png",
+      "sha256": "8babf972b1c213cd4eee9b1ca3df3277bb9c3e514660178f255eacec2dd0093e",
+      "bytes": 434190,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "a9c462ba4b5faa65cca809f5adb0f07a44b29966"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-side-01/barrier_inner.png",
+      "sha256": "806924a25baf2de72b672a9ce306f5731537e3f888d9530fb889909d92d8266b",
+      "bytes": 1457,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "cd87b92e7e13605e356f867984169992ccbc6f61"
+    },
+    {
+      "path": "cities_do/assets/structures/viaduct-side-01/deck_side.png",
+      "sha256": "e6317e101b2754f1afb192f00c4277ba491fad7b6646ea3183d403e479693cb7",
+      "bytes": 2543,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "a0bdb4dfef0412392262507a848c26de70df54bb"
+    },
+    {
+      "path": "cities_do/assets/facilities/catalog.json",
+      "sha256": "ea55685c7f351e7c1259eb82e20ef848e9ed52f90c44d443c2674c11d8ba893d",
+      "bytes": 28579,
+      "source_commit": "517bd0522c6f580e1df31d11d89d3d7ecaae6570",
+      "source_blob": "22d7b3ee5d5722854ef0e309687988a5e4fbff3e"
+    },
+    {
+      "path": "assets/structures/viaduct-pier-01/v2/spec.json",
+      "sha256": "19f3b9a7eb31cae23684960789d58e7a23b1d7168e02a0ba75de4c06448dafcb",
+      "bytes": 3418,
+      "source_commit": "39ae3b98463e0913261590107671c45eaa46368d",
+      "source_blob": "dd544009c4195d0efdb1e5e54448c0345d4fad04"
+    }
+  ],
+  "asset_verification": "Inherited approved 40-asset provenance preserved; no assets edited or full asset audit repeated in this repair",
+  "current_headless_results": [
+    {
+      "name": "test_elevated_roads",
+      "exit_code": 0,
+      "passed_lines": 128,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_road_ui",
+      "exit_code": 0,
+      "passed_lines": 60,
+      "errors": []
+    },
+    {
+      "name": "test_elevated_roads_fifo",
+      "exit_code": 0,
+      "passed_lines": 12,
+      "errors": []
+    },
+    {
+      "name": "test_road_profile_connections",
+      "exit_code": 0,
+      "passed_lines": 50,
+      "errors": []
+    },
+    {
+      "name": "test_road_side_contacts",
+      "exit_code": 0,
+      "passed_lines": 46,
+      "errors": []
+    },
+    {
+      "name": "test_road_demolition_model",
+      "exit_code": 0,
+      "passed_lines": 23,
+      "errors": []
+    }
+  ],
+  "prior_headless_results_not_rerun": [
+    {
+      "name": "test_road_seams",
+      "exit_code": 0,
+      "passed_lines": 30,
+      "errors": []
+    },
+    {
+      "name": "test_road_junction_boxes",
+      "exit_code": 0,
+      "passed_lines": 67,
+      "errors": []
+    },
+    {
+      "name": "test_building_frontage",
+      "exit_code": 0,
+      "passed_lines": 204,
+      "errors": []
+    }
+  ],
+  "current_headless_passing_assertions": 319,
+  "current_clean_passing_assertions": 319,
+  "suite_logs": [
+    {
+      "name": "test_building_frontage",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_building_frontage.log",
+        "sha256": "5d28a2f59c19e1772dd38c33575990adae7e738ae4de665435f5e6346d6d5e7e",
+        "bytes": 10215
+      },
+      "passing_assertion_lines": 204,
+      "diagnostics": [],
+      "current_headless_gate": false
+    },
+    {
+      "name": "test_elevated_road_ui-native-no-capture",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_elevated_road_ui-native-no-capture.log",
+        "sha256": "c7fe4b124886c7820ec375efdfd3be3591c1ffa6b70deef4654194b690ec8fd5",
+        "bytes": 4484
+      },
+      "passing_assertion_lines": 61,
+      "diagnostics": [],
+      "current_headless_gate": false
+    },
+    {
+      "name": "test_elevated_road_ui-native",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_elevated_road_ui-native.log",
+        "sha256": "90caa0124e633a6f07c46012ece4aea7cd2ac5444d56380fb1bcb18b549b9f4a",
+        "bytes": 1807
+      },
+      "passing_assertion_lines": 16,
+      "diagnostics": [
+        "FAIL single native capture includes live approved B confirmation and C height controls"
+      ],
+      "current_headless_gate": false
+    },
+    {
+      "name": "test_elevated_road_ui",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_elevated_road_ui.log",
+        "sha256": "8e854da567d81c1c2d036a6330ff5dcca069624e23f0bf1ce1452d9b0d9e99b8",
+        "bytes": 4231
+      },
+      "passing_assertion_lines": 60,
+      "diagnostics": [],
+      "current_headless_gate": true
+    },
+    {
+      "name": "test_elevated_roads",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_elevated_roads.log",
+        "sha256": "f0de8ebf9c7358cb7bacba6c5b8764a7f40f58985b7ef7172cabf402cdf8abb6",
+        "bytes": 7757
+      },
+      "passing_assertion_lines": 128,
+      "diagnostics": [],
+      "current_headless_gate": true
+    },
+    {
+      "name": "test_elevated_roads_fifo",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_elevated_roads_fifo.log",
+        "sha256": "6affd9237cc265f9be5b1f5935f9e4ef3ea6e870702e0b9f0a7281708a69bbda",
+        "bytes": 1051
+      },
+      "passing_assertion_lines": 12,
+      "diagnostics": [],
+      "current_headless_gate": true
+    },
+    {
+      "name": "test_road_demolition_model",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_road_demolition_model.log",
+        "sha256": "408318f66f39328bdced14903551209ed2bed7f30a50219f1aadc5787e20828b",
+        "bytes": 1956
+      },
+      "passing_assertion_lines": 23,
+      "diagnostics": [],
+      "current_headless_gate": true
+    },
+    {
+      "name": "test_road_junction_boxes",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_road_junction_boxes.log",
+        "sha256": "116033246b60e2766782c5a2ef5a04f000ff2f80da6db4c02fe0ca5956d81f34",
+        "bytes": 5830
+      },
+      "passing_assertion_lines": 67,
+      "diagnostics": [],
+      "current_headless_gate": false
+    },
+    {
+      "name": "test_road_profile_connections",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_road_profile_connections.log",
+        "sha256": "1be9a49a02e676c85007aeb50ab0fe50dc5f77ebbafa76a240ce1ff802e310af",
+        "bytes": 4346
+      },
+      "passing_assertion_lines": 50,
+      "diagnostics": [],
+      "current_headless_gate": true
+    },
+    {
+      "name": "test_road_seams",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_road_seams.log",
+        "sha256": "9ecca466692c7475c18d67906af86eb3d88241be535431217bf2dbffd5090c92",
+        "bytes": 2267
+      },
+      "passing_assertion_lines": 30,
+      "diagnostics": [],
+      "current_headless_gate": false
+    },
+    {
+      "name": "test_road_side_contacts",
+      "log": {
+        "path": "artifacts/e1-elevated-20261118/test_road_side_contacts.log",
+        "sha256": "9e6377147428172cb06e26bb40315aed0df694ca07239d2546577c7a9694a843",
+        "bytes": 4414
+      },
+      "passing_assertion_lines": 46,
+      "diagnostics": [],
+      "current_headless_gate": true
+    }
+  ],
+  "native_results": [
+    {
+      "name": "test_elevated_road_ui-native-no-capture",
+      "exit_code": 0,
+      "passed_lines": 61,
+      "errors": []
+    }
+  ],
+  "historical_capture_results": [
+    {
+      "name": "test_elevated_road_ui-native",
+      "exit_code": 1,
+      "passed_lines": 16,
+      "errors": [
+        "FAIL single native capture includes live approved B confirmation and C height controls"
+      ]
+    }
+  ],
+  "capture": {
+    "path": "artifacts/e1-elevated-20261118/e1-native-1920.png",
+    "sha256": "bc9484b5b114d0747284f3baf2b61c3376f0aef99101e5baf52e4c043f11214a",
+    "bytes": 215576,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "count": 1,
+    "inspected": true,
+    "limitation": "Unchanged historical capture lacks the B warning and predates this repair. Fresh native render/input assertions pass without framebuffer access or any new capture."
+  },
+  "evidence_reuse": {
+    "unchanged_passing_suites": [],
+    "fresh_headless_suites": ["test_elevated_roads", "test_elevated_road_ui", "test_elevated_roads_fifo", "test_road_profile_connections", "test_road_side_contacts", "test_road_demolition_model"],
+    "production_source_changed_by_repair": true
+  },
+  "baseline_proof": "All three latest blockers reproduced on incoming unstaged E1 production before changes. No raw RED logs saved. Earlier rounds remain historical below and in final_rereview_log.",
+  "latest_e1_proofs": [
+    {"id": 1, "test": "test_elevated_roads.test_short_support_candidate_cluster and test_separate_deck_runs", "red": "Actual single emitted pier left 56m unsupported for ground starts 14.25 and 14.0, in both admission and demolition survivors.", "green": "Actual emitted pier centres give max 48m in both legal cases; adjacent 49m rejects atomically; exact +5m boundaries on either side of solid ground are tested independently."},
+    {"id": 2, "test": "test_elevated_road_ui.test_grid_off_fixed_height_contacts", "red": "Actual native viewport preview and click accepted a ramp after moving the ground anchor from (20,40) to (20.25,40).", "green": "Both contacts remain exact: 165m rejected by the existing 4m policy; 164m commits the exact preview path and heights. Existing grid-on, stacking and ground warning flows also pass."},
+    {"id": 3, "test": "test_elevated_roads.test_unchanged_junction_legacy_lot and test_junction_obstacles", "red": "Unchanged legacy T patch added private ID 71 or rejected the unrelated stroke for a public lot.", "green": "Unrelated stroke commits exact geometry and leaves legacy records and patch untouched; actual final new T and widened cross patch-only collisions retain exact private IDs and atomic public/wrong-approval rejection."}
+  ],
+  "latest_validation_notes": "Direct stdout/stderr in suite_logs; Godot 4.6.3 mono via tools/run_dotnet.py only. The initial RED setup changed height while the pointer was still on the anchor and hit the existing dashed-line draw crash; moved the fixture pointer before height changes. A pre-fix native run also missed some unrelated GUI clicks; added a viewport-frame wait between hover and press (cause of misses not independently established). The final native and headless runs are clean. No build, import, install, capture, user-game closure or P5.",
+  "rereview_proofs": [
+    {"id": 1, "test": "test_elevated_road_ui.test_upper_crossing_car", "proof": "Actual +20m sedan between strict upper rear and front slots after the full production renderer update; overlapping +10m pieces remain below the upper deck."},
+    {"id": 2, "test": "test_elevated_roads.test_separate_deck_runs", "proof": "Actual admission and demolition-survivor planning both succeed on +10 -> 0 -> +10; piers reach the exact off-search-grid +5m boundaries without filling the solid gap."},
+    {"id": 3, "test": "test_elevated_road_ui.test_grid_height_transition", "proof": "Real viewport clicks and PgUp retain the accepted off-phase anchor and explicit lattice through preview/commit; straight continuation uses the endpoint height layer."},
+    {"id": 4, "test": "test_elevated_roads.test_flat_end_obstacles and test_junction_obstacles", "proof": "Flat final ribbons exclude cap-only lots from warnings and admission blocks; exact T/cross patch IDs and public rejection remain covered."},
+    {"id": 5, "test": "test_elevated_roads.test_park_over_shallow_dip", "proof": "Clipped solid overlap rejects +5 -> +4.9 -> +5 in both placement orders, with flat +5m allowed in both orders."}
+  ],
+  "supplemental_headless_results": [
+    {"name": "test_rail_catenary_render", "exit_code": 0, "passed_lines": 48, "errors": [], "source_sha256": "7a7bf5635c89d4c46c8e6e1daefc0f0ad6a1a3e7d43d545011fab30e1ed4a462"},
+    {"name": "test_road_grid_snap", "exit_code": 0, "passed_lines": 39, "errors": ["Unfinished Thread", "ObjectDB leak", "3 resources in use at exit"], "source_sha256": "2334f2bc0de9169208039542ae09892e28575c3c304e54e3c9076a3c2499e04c"}
+  ],
+  "final_rereview_log": {"path": "artifacts/e1-elevated-20261118/e1-rereview-final.log", "sha256": "8c3e6cbe011bfe1921c3a381e76f02e3a513418ab7ed32524157c660d7fd230d", "bytes": 2774},
+  "blocker_proofs": [
+    {"id": 1, "production": "cached_world_renderer._process -> elevated.lift_vehicle; raised bounds; ground catenary no longer resets raised car anchors", "test": "test_elevated_road_ui.test_production_ramp_car", "native": true},
+    {"id": 2, "production": "road_height.supports checks both boundary spans before admission and demolition-fragment mutation", "test": "test_elevated_roads.test_support_boundaries and actual demolish_road_selection rejection"},
+    {"id": 3, "production": "road_drawing layer-filtered snap/tangent/grid/overlay before height-aware commit", "test": "test_elevated_road_ui.test_stacked_flow; real mouse grid off/on", "native": true},
+    {"id": 4, "production": "cached_world_renderer footprint-overlapping park/deck dependency invalidated by road edits; compensated sprite offset", "test": "test_elevated_road_ui.test_park_depth", "native": true},
+    {"id": 5, "production": "city_model.add_elevated_road final T/cross patches included in public rejection and exact private confirmation IDs before mutation", "test": "test_elevated_roads.test_junction_obstacles false/true; patch-only overlap and atomic rejection"},
+    {"id": 6, "production": "city_model placement and road admission share usable_under_deck height threshold; solid retaining ramp is not park space", "test": "test_elevated_roads.test_solid_ramp_parks; both placement orders with usable-deck controls"}
+  ],
+  "review_notes": {
+    "scope": "Historical acceptance before this five-blocker re-review; current evidence is in final_rereview_log",
+    "path": "artifacts/e1-elevated-20261118/REVIEW_NOTES.md",
+    "sha256": "e2e244e3661d85a5212efb1855b06aca2eb9ba709ca95abf1099eb0ef433c2aa",
+    "bytes": 10070
+  },
+  "security_scan": {
+    "shell_true": false,
+    "unsafe_deserialization": false,
+    "dynamic_eval": false
+  },
+  "excluded": [
+    "all .import/.uid metadata",
+    "protected design/concept/mistake documents",
+    "all other unrelated checkout changes"
+  ],
+  "no_stage_commit_push_branch_switch": true,
+  "benchmarks_run": false,
+  "timing_collection": false
+}

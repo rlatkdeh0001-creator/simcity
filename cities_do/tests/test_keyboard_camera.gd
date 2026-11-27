@@ -25,7 +25,7 @@ func run():
   var movement: Vector2=game.origin-start
   verify(movement.dot(-entry[1])>0 and absf(movement.cross(entry[1]))<.001,"screen-space camera direction "+str(entry[0]))
   if cardinal==0:cardinal=movement.length()
-  verify(is_equal_approx(movement.length(),cardinal),"all movement aliases share speed")
+  verify(is_equal_approx(movement.length(),60.0),"all movement aliases use 600 screen pixels/sec at zoom 1")
  game.origin=start;await key(KEY_W,true);await key(KEY_D,true);camera.step(.1);await key(KEY_W,false);await key(KEY_D,false)
  verify(is_equal_approx((game.origin-start).length(),cardinal),"diagonal input is normalized")
  game.origin=start;await key(KEY_W,true);await key(KEY_UP,true);camera.step(.1);await key(KEY_W,false);await key(KEY_UP,false)

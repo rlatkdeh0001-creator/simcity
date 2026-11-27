@@ -1,0 +1,55 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS X crossing creates one four-arm junction
+PASS both crossing roads split into four derived sections
+PASS fractional freehand crossing shares a node despite floating point rounding
+PASS T endpoint joins interior of the through road
+PASS separate right-angle endpoints form an uncontrolled continuous seam
+PASS crossing at sampled vertices is deduplicated
+PASS diagonal crossing uses real world intersection
+PASS self crossing polyline forms a junction without splitting its construction object
+PASS collinear duplicate overlap stays rejected
+PASS city caches real junctions while retaining two selectable road objects
+PASS removing crossing road removes the junction
+PASS four-lane zebra sits just outside the shared four-lane box
+PASS two-lane zebra follows the same widest-road box boundary
+PASS both zebra near edges use the same small pavement-edge gap
+PASS T junction zebra placement uses the common box boundary
+PASS zebra placement does not depend on road construction order
+PASS rotated right-angle crossing keeps the same box-boundary layout
+PASS right-angle junction uses rounded curbs inside its shared road-width box, not diagonal flares
+PASS two-lane crossing uses one compact four-cell box with rounded corners
+PASS all four formerly clipped road-local 2x2 corner lots remain buildable
+PASS building still cannot occupy the actual road
+PASS utility footprint still respects the rectangular pavement
+PASS placement tiles exclude actual pavement without diagonal corner loss
+PASS corner lot exists before a crossing road is added
+PASS square crossing preview preserves the adjacent house and does not mutate city
+PASS crossing can be built beside the corner house without clipping or demolition
+PASS two-lane X has 12 directed straight left and right connectors
+PASS west approach routes through junction to (90.0, 50.0)
+PASS west approach routes through junction to (50.0, 10.0)
+PASS west approach routes through junction to (50.0, 90.0)
+PASS U-turn into incoming carriageway is not invented
+PASS turn curves meet source and receiving lanes without teleportation
+PASS connector graph never links an oncoming U-turn
+PASS all baked junction curve positions are finite
+PASS four-lane and two-lane intersection builds
+PASS mixed-width intersection routes into narrower receiving road
+PASS all mixed-width turn centre paths stay on actual asphalt including the rounded shared-box plane
+PASS T junction routes from branch onto through road
+PASS invalid route index rejected before lane access
+PASS vehicles cannot spawn already inside an unreserved junction
+PASS four opposing approaches spawn correctly
+PASS conflicting vehicles never share intersection or rear-clearance region
+PASS all four approaches eventually pass without starvation
+PASS all four cars reach their routed destination
+PASS 12m vehicles retain exclusive reservation until their rear clears
+PASS long vehicles complete two conflicting turns
+PASS blocked receiving lane prevents entry and box blocking
+PASS clearing receiving lane releases waiting approach
+PASS front vehicle is admitted before lower-ID follower behind it
+PASS manual red stop does not reserve and block the junction
+PASS 30/60 rendering rates produce identical junction movement
+PASS actual RoadLaneAgent follows selected junction turn curve
+RESULT 52/52 junction checks passed

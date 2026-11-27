@@ -1,0 +1,96 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>경제 창 시안 A2</title><style>
+body{margin:0;padding:16px;background:#0c1b23;color:#edf4f5;font:18px/1.35 "Malgun Gothic","Noto Sans KR",sans-serif}
+.scr{position:relative;width:1280px;height:720px;border:1px solid #38515e;border-radius:8px;overflow:hidden;
+ background:#35513f linear-gradient(#0000 31px,#0002 32px) 0 0/32px 32px}
+.bar{position:absolute;left:0;right:0;bottom:0;height:56px;background:#142b37;border-top:1px solid #38515e;display:flex;align-items:center;gap:22px;padding:0 18px}
+.bar .mid{margin:0 auto;display:flex;gap:22px;align-items:center}
+.rci{display:flex;gap:4px;align-items:flex-end;height:34px}.rci i{display:block;width:12px;border-radius:2px}
+.win{position:absolute;left:24px;right:24px;top:20px;bottom:72px;background:#142b37;border:1px solid #38515e;border-radius:12px;display:flex}
+.nav{width:150px;flex:none;border-right:1px solid #38515e;padding:14px 10px;display:flex;flex-direction:column;gap:6px}
+.nav b{padding:12px 14px;border-radius:8px;font-size:20px;font-weight:700;cursor:pointer}
+.nav b.on{background:#36b7ff;color:#142b37}.nav b.off{color:#5f7884;cursor:default}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.hd{display:flex;align-items:center;padding:14px 20px;border-bottom:1px solid #38515e}
+.hd .ttl{font-size:24px;font-weight:800}.hd .net{margin-left:auto;font-size:28px;font-weight:800}
+.x{width:38px;height:38px;border-radius:8px;background:#38515e;display:grid;place-items:center;font-weight:700;margin-left:20px}
+.body{flex:1;display:flex;min-height:0}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.d{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#f2c14e;color:#142b37;font-size:13px;font-weight:800;margin-left:5px;vertical-align:2px}
+.hd .d{width:26px;height:26px;font-size:16px;vertical-align:3px}
+.pos{color:#5fd68a}.neg{color:#ff7a7a}.dim{color:#9fb3bb}
+input[type=range]{accent-color:#36b7ff;margin:0}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:10px}
+.tax{flex:1;min-width:0;padding:10px 20px 16px}
+table{border-collapse:collapse;width:100%;table-layout:fixed}
+th{font-weight:600;color:#9fb3bb;padding:8px 12px;text-align:left;font-size:20px}
+td{padding:26px 14px;border-top:1px solid #38515e}
+td.z{font-weight:800;font-size:22px;white-space:nowrap}
+th:first-child{width:110px}
+.cell .r1{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.cell input{width:100%;height:30px;margin-top:8px}
+.cell .p{font-size:30px;font-weight:800}
+
+.side{width:360px;flex:none;border-left:1px solid #38515e;padding:14px 20px;display:flex;flex-direction:column}
+.side h3{margin:0 0 4px;font-size:20px;color:#9fb3bb;font-weight:600}
+.row{display:flex;justify-content:space-between;gap:12px;padding:5px 0}
+.row.sum{font-weight:800;border-top:1px solid #38515e;margin-top:4px;padding-top:8px}
+.gap{height:14px}
+.loan{margin-top:auto;border-top:1px solid #38515e;padding-top:12px}
+.loan input{width:100%}
+.stk{display:flex;height:14px;border-radius:4px;overflow:hidden;background:#1c3846;margin:4px 0 2px}.stk i{display:block;height:100%}
+</style></head><body>
+<div class="scr"><div class="win">
+ <div class="nav"><b class="on">예산</b><b class="off">교역</b><b class="off">물자</b><b class="off">정책</b></div>
+ <div class="main"><div class="hd"><span class="ttl">예산</span><span class="net num" data-o="net"></span><span class="x">×</span></div>
+ <div class="body"><div class="tax"><table id="ta"></table></div>
+ <div class="side">
+  <h3>수입</h3><div class="stk" data-o="stkin"></div>
+  <div class="row"><span><span class="sw" style="background:#3fbf6a"></span>주거세</span><span class="num" data-o="tx-r"></span></div>
+  <div class="row"><span><span class="sw" style="background:#36b7ff"></span>상업세</span><span class="num" data-o="tx-c"></span></div>
+  <div class="row"><span><span class="sw" style="background:#f2c14e"></span>공업세</span><span class="num" data-o="tx-i"></span></div>
+  <div class="row"><span><span class="sw" style="background:#9fb3bb"></span>전기·수도</span><span class="num" data-o="util"></span></div>
+  <div class="row sum"><span>합계</span><span class="num pos" data-o="inc"></span></div>
+  <div class="gap"></div>
+  <h3>지출</h3><div class="stk" data-o="stkout"></div>
+  <div class="row"><span><span class="sw" style="background:#ff7a7a"></span>시설 유지비</span><span class="num" data-o="upk"></span></div>
+  <div class="row"><span><span class="sw" style="background:#b85c5c"></span>대출 이자</span><span class="num" data-o="int"></span></div>
+  <div class="row sum"><span>합계</span><span class="num neg" data-o="out"></span></div>
+  <div class="loan"><div class="row"><b>대출</b><span class="num" data-o="loan"></span></div>
+   <input type="range" min="0" max="114000" step="1000" value="20000" data-loanin>
+   <div class="row dim"><span>0</span><span class="num" data-o="lim"></span></div></div>
+ </div></div></div></div>
+ <div class="bar"><span class="num">3월 08:20</span><span>☺ 63</span>
+ <span class="rci"><i data-o="dm-r" style="background:#3fbf6a"></i><i data-o="dm-c" style="background:#36b7ff"></i><i data-o="dm-i" style="background:#f2c14e"></i></span>
+ <span class="mid"><span class="num">3,200명</span><span class="num">50,000<span class="d">D</span></span><span class="num" data-o="netbar"></span></span></div></div>
+<script>
+const ZN=[['r','주거','#3fbf6a'],['c','상업','#36b7ff'],['i','공업','#f2c14e']];
+const TR=['1·2단계','3·4단계','5단계'];
+const BASE={r:[12000,6000,2000],c:[5000,3000,1000],i:[4000,2000,500]}; // 예시 과세 기준
+const RATE={r:[9,9,9],c:[9,9,9],i:[9,9,9]};
+const UTIL=1240,UPKEEP=2150,LIMIT=114000; let loanAmt=20000;
+const D='<span class="d">D</span>';
+const fm=n=>Math.round(n).toLocaleString('en-US'); const money=n=>fm(n)+D;
+document.getElementById('ta').innerHTML='<tr><th></th>'+TR.map(x=>`<th>${x}</th>`).join('')+'</tr>'+
+ ZN.map(([z,n,c])=>`<tr><td class="z"><span class="sw" style="background:${c}"></span>${n}</td>`+
+ [0,1,2].map(t=>`<td><div class="cell"><div class="r1"><span class="p num" data-o="p-${z}-${t}"></span><span class="num dim" data-o="v-${z}-${t}"></span></div><input type="range" min="0" max="20" step="1" value="9" data-z="${z}" data-t="${t}"></div></td>`).join('')+'</tr>').join('');
+function setO(k,html){document.querySelectorAll(`[data-o="${k}"]`).forEach(e=>e.innerHTML=html)}
+function refresh(){
+ const tx={}; let inc=UTIL;
+ ZN.forEach(([z])=>{tx[z]=0;[0,1,2].forEach(t=>{const rt=RATE[z][t],v=BASE[z][t]*rt/100; tx[z]+=v; setO(`p-${z}-${t}`,rt+'%'); setO(`v-${z}-${t}`,'+'+money(v));});
+  inc+=tx[z]; setO('tx-'+z,money(tx[z]));
+  const m=Math.min(1.5,Math.max(0,1-0.06*(RATE[z][0]-9)));
+  document.querySelectorAll(`[data-o="dm-${z}"]`).forEach(e=>e.style.height=Math.round(4+20*m)+'px');});
+ const intr=loanAmt*0.10/12,out=UPKEEP+intr,net=inc-out,tot=Math.max(inc,out);
+ const seg=(v,c)=>`<i style="width:${v/tot*100}%;background:${c}"></i>`;
+ setO('util',money(UTIL));setO('upk',money(UPKEEP));setO('int',money(intr));setO('loan',money(loanAmt));setO('lim',money(LIMIT));
+ setO('inc','+'+money(inc));setO('out','−'+money(out));
+ setO('stkin',seg(tx.r,'#3fbf6a')+seg(tx.c,'#36b7ff')+seg(tx.i,'#f2c14e')+seg(UTIL,'#9fb3bb'));
+ setO('stkout',seg(UPKEEP,'#ff7a7a')+seg(intr,'#b85c5c'));
+ const nh=`<span class="${net>=0?'pos':'neg'}">${net>=0?'+':'−'}${fm(Math.abs(net))}${D}</span><span class="dim"> /월</span>`;
+ setO('net',nh);setO('netbar',nh);
+}
+document.addEventListener('input',ev=>{const el=ev.target;
+ if(el.dataset.z)RATE[el.dataset.z][+el.dataset.t]=+el.value;
+ if('loanin' in el.dataset)loanAmt=+el.value;
+ refresh();});
+refresh();
+</script></body></html>

@@ -1,0 +1,13 @@
+{
+  "base_limit": 50000,
+  "limit_per_resident": 20,
+  "base_annual_rate": 0.10,
+  "preferred_fraction": 0.30,
+  "preferred_population": [1000, 10000, 100000],
+  "preferred_annual_rates": [0.08, 0.06, 0.04],
+  "months_per_year": 12,
+  "excess_repayment_fraction": 0.10,
+  "warning_days": 3,
+  "bankruptcy_days": 6,
+  "slider_step": 1000
+}

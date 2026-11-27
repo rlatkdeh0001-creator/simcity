@@ -1,0 +1,286 @@
+{
+  "main_callback_16ms_met": true,
+  "whole_frame_16ms_met": false,
+  "main_max_ms": {
+    "10000": 0.944,
+    "50000": 0.249,
+    "300000": 0.177
+  },
+  "checks": {
+    "contract": 47,
+    "native_lifecycle": 10,
+    "native_backend_5400_ticks": 86406,
+    "actual_model_two_seeds_5400_ticks_each": 140407,
+    "graphical_input": 7
+  },
+  "checks_total": 226877,
+  "scenario_checkpoints": 26,
+  "scenario_ticks": 7350,
+  "levels": [
+    1,
+    4,
+    5
+  ],
+  "targets": [
+    40,
+    70,
+    80
+  ],
+  "runs": [
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.145,
+        "median_ms": 0.117,
+        "samples": 4
+      },
+      "frame_start_gap": {
+        "max_ms": 29.148,
+        "median_ms": 6.899,
+        "samples": 1137
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 9,
+      "main_callback": {
+        "max_ms": 0.145,
+        "median_ms": 0.013,
+        "samples": 1138
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.176,
+        "median_ms": 0.127,
+        "samples": 8
+      },
+      "frame_start_gap": {
+        "max_ms": 27.479,
+        "median_ms": 6.901,
+        "samples": 1138
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 16,
+      "main_callback": {
+        "max_ms": 0.176,
+        "median_ms": 0.007,
+        "samples": 1139
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 9,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.229,
+        "median_ms": 0.155,
+        "samples": 12
+      },
+      "frame_start_gap": {
+        "max_ms": 35.784,
+        "median_ms": 6.899,
+        "samples": 1136
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 23,
+      "main_callback": {
+        "max_ms": 0.944,
+        "median_ms": 0.026,
+        "samples": 1137
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 13,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.159,
+        "median_ms": 0.135,
+        "samples": 4
+      },
+      "frame_start_gap": {
+        "max_ms": 31.413,
+        "median_ms": 6.903,
+        "samples": 1140
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 9,
+      "main_callback": {
+        "max_ms": 0.159,
+        "median_ms": 0.022,
+        "samples": 1141
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.249,
+        "median_ms": 0.159,
+        "samples": 8
+      },
+      "frame_start_gap": {
+        "max_ms": 20.411,
+        "median_ms": 6.899,
+        "samples": 1141
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 16,
+      "main_callback": {
+        "max_ms": 0.249,
+        "median_ms": 0.025,
+        "samples": 1142
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 9,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.144,
+        "median_ms": 0.119,
+        "samples": 12
+      },
+      "frame_start_gap": {
+        "max_ms": 16.218,
+        "median_ms": 6.9,
+        "samples": 1142
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 23,
+      "main_callback": {
+        "max_ms": 0.144,
+        "median_ms": 0.009,
+        "samples": 1143
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 13,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.177,
+        "median_ms": 0.139,
+        "samples": 4
+      },
+      "frame_start_gap": {
+        "max_ms": 31.156,
+        "median_ms": 6.9,
+        "samples": 1135
+      },
+      "frozen_cycles": 0,
+      "hud_scalar_reads": 9,
+      "main_callback": {
+        "max_ms": 0.177,
+        "median_ms": 0.009,
+        "samples": 1136
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.129,
+        "median_ms": 0.079,
+        "samples": 8
+      },
+      "frame_start_gap": {
+        "max_ms": 32.134,
+        "median_ms": 6.899,
+        "samples": 1134
+      },
+      "frozen_cycles": 4,
+      "hud_scalar_reads": 9,
+      "main_callback": {
+        "max_ms": 0.155,
+        "median_ms": 0.025,
+        "samples": 1135
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 40
+      }
+    },
+    {
+      "boundary_callbacks": {
+        "max_ms": 0.127,
+        "median_ms": 0.059,
+        "samples": 12
+      },
+      "frame_start_gap": {
+        "max_ms": 33.454,
+        "median_ms": 6.899,
+        "samples": 1130
+      },
+      "frozen_cycles": 6,
+      "hud_scalar_reads": 12,
+      "main_callback": {
+        "max_ms": 0.127,
+        "median_ms": 0.018,
+        "samples": 1131
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 7,
+        "worker_thread": 40
+      }
+    }
+  ],
+  "scope": "real headless SceneTree main-thread advance_society callback including clock/funds/society scalar HUD readers; no renderer or utilities; initial loading and first job excluded",
+  "review_mode": "self-review",
+  "note": "Scope includes scalar HUD signal readers, unlike preceding callback-only harness. 10k/50k stay below1ms; do not claim strict max reduction across unequal scopes. Frame-start gaps still exceed16ms, so this is a society-callback gate pass, not a whole-game/frame completion or a proven GC diagnosis."
+}

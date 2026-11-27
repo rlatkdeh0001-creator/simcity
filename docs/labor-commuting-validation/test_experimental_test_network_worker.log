@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS curved authored network plus actual at-grade crossing
+PASS directed curved turn route and reverse proved
+PASS all curved/junction lane seams continuous
+PASS real road-junction connector required, no straightline shortcut
+PASS length follows bend and intersection instead of Euclidean distance
+PASS near-boundary proxy endpoint rejected
+PASS wrong stable boundary road rejected
+PASS disconnected local frontage cannot teleport to boundary
+PASS pure adapter exposes real metre position and heading
+PASS adapter snapshots detached
+PASS same-boundary simultaneous starts keep protected body gaps
+PASS real turn reservations complete both entry and return exit
+PASS all 120 nondisplayed persons contribute to congestion and road load
+PASS actual native worker owns moving cars through full curved roundtrip
+RESULT 14/14 network-worker

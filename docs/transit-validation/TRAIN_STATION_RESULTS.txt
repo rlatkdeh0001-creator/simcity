@@ -1,0 +1,12 @@
+Train station final evidence
+ID train-station-01; lot 32 x 24m (8 x 6 cells), height10.56m, 14493 evaluated triangles.
+Two-storey cream/teal side wings, tall glass atrium with upper gallery/interior stair/ticket desks, generic STATION sign and geometry clock. Front pedestrian/drop-off plaza with 3 static5.6 x 2.3m bays and3.5m one-way lane. Rear32m x4m platform, surface z=1.10m, full-length canopy and supported furniture/access stairs.
+Station source deliberately contains no tracks, vehicles or extension module. Front Blender-Y / Godot+Z; origin at ground-centred lot centre. Source bounds(-16,-12,0) to(16,12,10.56)m.
+Delivered assets/facilities/train-station-01/facility.blend, build.py, spec.json, preview.png; runtime GLB/transparent800x680 PNG appended to existing facilities inspection catalog.
+Blender4.3.2 / CPU Cycles24 /30-degree orthographic preview, using existing original road-edge/subway studio/vehicle primitives and MIT common helper. Installed tools reused; no external art, installation or original overwrite.
+Godot4.6.3 GL Compatibility output: TRAIN_STATION_GRAPHICAL_PASS 16 checks; 32x24m, platform1.1m, 32m v3 consist, platform gap0.3m.
+Eight checks per view: footprint,2-storey/32m-platform/no-track metadata,platform height,v3 lead+coach selection,first coupler contact,second coupler contact,32m consist,0.3m train-to-platform edge gap.
+One unmodified1600x1000 framebuffer docs/transit-validation/train-station-1600.png has front/drop-off and rear/platform views. Same actual lead-v3+two coach-v3 instances in both views, existing taxi and sedan,1.75m scale mannequins. Rails/ballast/vehicles are explicitly inspection-only fixture context, not baked into station source.
+Generate: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_train_station.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_transit_train_station.gd
+Limits: static inspection registration only; no placement/rail connections/train routes/passenger boarding/drop-off traffic/price or capacity simulation. Actual turning envelopes and full-game C# runtime unverified. User first review pending; no main merge/push.

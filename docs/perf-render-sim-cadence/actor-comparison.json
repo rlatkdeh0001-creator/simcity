@@ -1,0 +1,23 @@
+[
+  {
+    "changed_over_8": 0,
+    "matching_fraction": 1.0,
+    "mean_max_channel_error": 0.00124935799117406,
+    "opaque_building_pixels": 27214,
+    "scenario": "normal"
+  },
+  {
+    "changed_over_8": 0,
+    "matching_fraction": 1.0,
+    "mean_max_channel_error": 0.00227824096059592,
+    "opaque_building_pixels": 27214,
+    "scenario": "zoning"
+  },
+  {
+    "changed_over_8": 4,
+    "matching_fraction": 0.999032414126754,
+    "mean_max_channel_error": 0.107643925659196,
+    "opaque_building_pixels": 4134,
+    "scenario": "zoom-out"
+  }
+]

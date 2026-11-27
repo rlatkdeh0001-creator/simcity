@@ -1,0 +1,12 @@
+{
+  "cards": 7,
+  "handle": "#36b7ff",
+  "input": "actual road category + six-lane card press/release + native scrollbar handle drag",
+  "maximum_scroll": 13.0,
+  "scroll": 6,
+  "scroll_fraction": 0.461538461538462,
+  "selected_lanes": 6,
+  "track": "#38515e",
+  "viewport": "(960, 640)",
+  "world_roads": 0
+}

@@ -12,7 +12,7 @@ func _initialize():
 	call_deferred("run")
 func make_city(seed_value: int = 42):
 	var city = Model.new(40, 40, seed_value)
-	city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
+	city.add_road(PackedVector2Array([Vector2(1,20.5),Vector2(39,20.5)]))
 	city.add_building(8,17,"residential",100)
 	city.config.size_weights = {8:0.0,4:1.0,2:0.0}
 	return city
@@ -30,7 +30,7 @@ func run():
 	city.upgrade_chain(1)
 	verify(b.asset_id == original_id, "same-density same-size growth preserves facade")
 	city.config.size_weights = {8:0.0,4:0.0,2:1.0}
-	city.add_road(PackedVector2Array([Vector2(1,10),Vector2(39,10)])) # Opposing four-cell strip for the stage5 8x8.
+	city.add_road(PackedVector2Array([Vector2(1,9.5),Vector2(39,9.5)])) # Opposing four-cell strip for the stage5 8x8.
 	city.upgrade_chain(1)
 	verify(b.size == 8 and b.level==5 and city.catalog.get_asset(b.asset_id).footprint==[8,8], "stage5 expands to the largest legal lot without shrinking")
 	city.config.size_weights = {8:1.0,4:0.0,2:0.0}
@@ -62,6 +62,7 @@ func run():
 	for asset in city.catalog.entries.filter(func(entry): return entry.id.begins_with("mansion-")):
 		verify(asset.category == "medium_residential" and asset.storeys == 4 and asset.footprint == [4,4], asset.id + " classified as 4-floor medium residential")
 		verify(scene.building_textures.has(asset.id), asset.id + " Godot texture imported")
+		if scene.city.simulation!=null:scene.city.simulation.shutdown()
 		scene.city = make_city()
 		scene.city.upgrade_chain(1)
 		var building: Dictionary = scene.city.buildings[0]

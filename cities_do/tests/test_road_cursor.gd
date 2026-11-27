@@ -10,15 +10,16 @@ func verify(ok: bool,label: String):
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);await process_frame
+ game.road_grid_enabled=false # Free-position cursor/ring contract; quantized contacts are tested separately.
  var drawing=game.road_drawer
  verify(drawing.has_method("cursor_preview"),"road tool exposes its pre-click ground cursor state")
  if drawing.has_method("cursor_preview"):
   game.activate_tool("road");game.pointer=Vector2(50,50)
   var before:=var_to_str(game.city.roads);var disc: Dictionary=drawing.cursor_preview()
   verify(not disc.is_empty() and disc.ok and not disc.snapped and disc.center==game.pointer,"empty ground has a valid green disc at the pending first point")
-  verify(is_equal_approx(disc.radius*2,game.city.config.road_width*game.road_lanes/2.0),"ground disc diameter equals the selected road world width")
+  verify(is_equal_approx(disc.radius*2,3.0),"two-lane ground disc spans the approved three-cell road width")
   game.road_lanes=4;var wider: Dictionary=drawing.cursor_preview()
-  verify(is_equal_approx(wider.radius,disc.radius*2),"four-lane selection doubles the cursor footprint")
+  verify(is_equal_approx(wider.radius*2,5.0),"four-lane ground disc spans the approved five-cell road width")
   game.road_lanes=2
   verify(var_to_str(game.city.roads)==before,"hover cursor never creates a road")
   game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(30,30)]));game.pointer=Vector2(30.4,30.1)
@@ -27,7 +28,7 @@ func run():
   game.pointer=Vector2(20.4,30.3);snap=drawing.cursor_preview()
   verify(snap.snapped and snap.center.distance_to(Vector2(20.4,30))<.001,"existing road interior contact also has a blue snap ring")
   game.pointer=Vector2(-3,20);verify(not drawing.cursor_preview().ok,"outside-map start is red")
-  game.city.add_road(PackedVector2Array([Vector2(40,60),Vector2(70,60)]));verify(game.city.add_building(50,57).ok,"collision fixture uses a genuinely placed building")
+  game.city.add_road(PackedVector2Array([Vector2(40,60),Vector2(70,60)]));verify(game.city.add_building_at(Vector2(50.5,58)).ok,"collision fixture uses a genuinely placed building")
   game.pointer=Vector2(51,58);verify(not drawing.cursor_preview().ok,"occupied ground is red")
   game.pointer=Vector2(50,50);drawing.click(game.pointer);verify(drawing.cursor_preview().is_empty(),"first click replaces start disc with the existing road preview")
   var escape:=InputEventKey.new();escape.keycode=KEY_ESCAPE;escape.pressed=true;drawing.handle_input(escape)

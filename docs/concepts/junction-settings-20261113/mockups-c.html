@@ -1,0 +1,71 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+h2{font-size:20px;margin:18px 0 6px}h2 span{font-weight:400;font-size:16px;color:var(--muted-foreground)}
+.win{background:#142b37;color:#edf4f5;font-size:18px;border:1px solid #38515e;border-radius:10px;width:880px;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #38515e}
+.seg{display:flex;gap:4px}.seg b{padding:6px 14px;border-radius:6px;background:#38515e;font-weight:600}.seg b.on{background:#36b7ff;color:#142b37}
+.body{display:flex}
+.dg{width:320px;height:320px;flex:none;border-right:1px solid #38515e}
+.side{flex:1;padding:10px 14px}
+.ctl{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #38515e}
+.btn{background:#36b7ff;color:#142b37;border:0;border-radius:6px;font-size:18px;font-weight:700;width:44px;height:36px;cursor:pointer}
+.sp{background:#38515e;color:#edf4f5;border:0;border-radius:6px;font-size:18px;padding:6px 10px;cursor:pointer}.sp.on{background:#edf4f5;color:#142b37}
+.t{font-variant-numeric:tabular-nums;min-width:96px}
+input[type=range]{flex:1;accent-color:#36b7ff}
+.card{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;background:#1c3846;margin-bottom:6px}
+.card.cur{outline:3px solid #36b7ff}
+.sec{margin-left:auto;background:#0e1f28;border:1px solid #38515e;border-radius:6px;padding:4px 10px;font-variant-numeric:tabular-nums}
+.ln{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:6px;background:#38515e;font-weight:700;font-size:20px}.ln.on{background:#36b7ff;color:#142b37}
+.row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+.tg{width:44px;height:24px;border-radius:12px;background:#38515e;position:relative}.tg.on{background:#36b7ff}
+.tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#edf4f5}.tg.on::after{left:23px}
+.strip{position:relative;display:flex;height:84px;margin:8px 14px 0;border-radius:6px;overflow:hidden}
+.strip div{display:flex;align-items:center;justify-content:center;border-right:2px solid #142b37}
+.ph{position:absolute;top:0;bottom:0;width:3px;background:#edf4f5}
+table{border-collapse:separate;border-spacing:4px}td,th{text-align:center;font-weight:700}
+td{background:#1c3846;border-radius:6px;width:56px;height:40px;font-size:20px}
+th{font-size:18px;color:#9fb3bb;font-weight:600}th.cur{color:#36b7ff}td.cur{outline:3px solid #36b7ff}
+.rd{color:#e5484d}
+</style></head><body>
+
+<h2>C1 <span>단계 카드 · 카드마다 작은 교차로 그림</span></h2><div id="c1"></div>
+<h2>C2 <span>단계 시간 막대 · 막대 길이 = 시간</span></h2><div id="c2"></div>
+<h2>C3 <span>진입로 × 단계 표 · 교차로 그림에 실제 신호등</span></h2><div id="c3"></div>
+
+<script>
+const P=[{d:15,m:{S:'L',N:'L'}},{d:30,m:{S:'T',N:'T'}},{d:12,m:{E:'L',W:'L'}},{d:23,m:{E:'T',W:'T'}}],Y=3,AR=1;
+const CYC=P.reduce((s,p)=>s+p.d+Y+AR,0);
+const AP={S:[180,262,0],N:[140,58,180],E:[262,140,-90],W:[58,180,90]};
+const C={g:'#3fbf6a',y:'#f2c14e',r:'#e5484d',off:'#2a3a42',w:'rgba(237,244,245,.55)'};
+function st(t){t=((t%CYC)+CYC)%CYC;for(let i=0;i<P.length;i++){const p=P[i];if(t<p.d)return{i,k:'g'};t-=p.d;if(t<Y)return{i,k:'y'};t-=Y;if(t<AR)return{i,k:'r'};t-=AR;}return{i:0,k:'g'}}
+function col(s,a,x){const m=P[s.i].m[a];if(m!==x)return C.r;return s.k==='g'?C.g:s.k==='y'?C.y:C.r}
+function diag(s,sz,heads){let g=`<svg viewBox="0 0 320 320" width="${sz}" height="${sz}"><rect width="320" height="320" fill="#7f9774"/><rect x="120" width="80" height="320" fill="#4d5357"/><rect y="120" width="320" height="80" fill="#4d5357"/><rect x="120" y="120" width="80" height="80" fill="#59606a"/>`;
+ for(const a in AP){const[x,y,r]=AP[a];g+=`<g transform="translate(${x},${y}) rotate(${r})" font-size="26" font-weight="700" text-anchor="middle"><text x="-12" y="9" fill="${col(s,a,'L')}">←</text><text x="8" y="9" fill="${col(s,a,'T')}">↑</text><text x="26" y="9" fill="${C.w}" font-size="18">→</text>`;
+  if(heads){const m=P[s.i].m[a],L=[m?(s.k==='y'?'o':'x'):'R',0,0,0];const on=[!m||s.k==='r',m&&s.k==='y',m==='L'&&s.k==='g',m==='T'&&s.k==='g'];const cl=[C.r,C.y,C.g,C.g];
+   g+=`<rect x="-26" y="22" width="60" height="18" rx="4" fill="#0b161c"/>`;for(let j=0;j<4;j++)g+=`<circle cx="${-18+j*15}" cy="31" r="6" fill="${on[j]?cl[j]:C.off}"/>`;}
+  g+=`</g>`}return g+'</svg>'}
+function phaseIcon(i,sz){return diag({i,k:'g'},sz,false)}
+function ctl(id){return `<div class="ctl"><button class="btn" id="${id}p">▶</button><span class="t" id="${id}t"></span><input type="range" min="0" max="${CYC-0.25}" step="0.25" value="0" id="${id}r"><button class="sp on" id="${id}x1">×1</button><button class="sp" id="${id}x4">×4</button></div>`}
+function hdr(){return `<div class="top"><b style="font-size:20px">교차로</b><div class="seg"><b>자동</b><b>일부 수동</b><b class="on">완전 수동</b></div><span style="margin-left:auto;color:#9fb3bb">✕</span></div>`}
+const V={
+ c1:{html(){let c='';P.forEach((p,i)=>c+=`<div class="card" id="c1k${i}"><b>${i+1}</b>${phaseIcon(i,56)}<span class="sec">${p.d}초</span></div>`);
+  return hdr()+`<div class="body"><div class="dg" id="c1d"></div><div class="side">${c}<div class="card" style="justify-content:center;background:#38515e">＋</div></div></div>`+ctl('c1')},
+  up(s){P.forEach((_,i)=>document.getElementById('c1k'+i).classList.toggle('cur',i===s.i))}},
+ c2:{html(){let seg='';P.forEach((p,i)=>{seg+=`<div style="flex:${p.d};background:#2c5a44">${phaseIcon(i,64)}</div><div style="flex:${Y};background:${C.y}"></div><div style="flex:${AR};background:${C.r}"></div>`});
+  return hdr()+`<div class="body"><div class="dg" id="c2d"></div><div class="side"><div style="display:flex;gap:6px;margin:4px 0 10px"><span class="ln on">←</span><span class="ln">↑</span><span class="ln">→</span><span class="ln on">←↑</span><span class="ln">↑→</span></div>
+  <div class="row">⊘ ←<div class="tg"></div></div><div class="row">⊘ ↶<div class="tg on"></div></div><div class="row">꼬리물기 금지<div class="tg on"></div></div></div></div><div class="strip" id="c2s">${seg}<span class="ph" id="c2h"></span></div>`+ctl('c2')},
+  up(s,t){document.getElementById('c2h').style.left=(t/CYC*100)+'%'}},
+ c3:{html(){const ap=[['S','↑'],['N','↓'],['E','←'],['W','→']];let h='<tr><th></th>'+P.map((_,i)=>`<th id="c3h${i}">${i+1}</th>`).join('')+'</tr>';
+  ap.forEach(([a,g])=>{h+=`<tr><th style="font-size:22px">${g}</th>`+P.map((p,i)=>`<td class="c3c${i}">${p.m[a]==='L'?'←':p.m[a]==='T'?'↑':'<span class=rd>●</span>'}</td>`).join('')+'</tr>'});
+  h+='<tr><th>초</th>'+P.map((p,i)=>`<td class="c3c${i}" style="font-size:18px">${p.d}</td>`).join('')+'</tr>';
+  return hdr()+`<div class="body"><div class="dg" id="c3d"></div><div class="side"><table>${h}</table></div></div>`+ctl('c3')},
+  up(s){P.forEach((_,i)=>{document.getElementById('c3h'+i).classList.toggle('cur',i===s.i);document.querySelectorAll('.c3c'+i).forEach(e=>e.classList.toggle('cur',i===s.i))})}}};
+for(const id in V){const el=document.getElementById(id);el.innerHTML=`<div class="win">${V[id].html()}</div>`;
+ let t=0,run=false,sp=1,last=0;const r=document.getElementById(id+'r'),b=document.getElementById(id+'p'),tt=document.getElementById(id+'t'),d=document.getElementById(id+'d');
+ const draw=()=>{const s=st(t);d.innerHTML=diag(s,320,id==='c3');tt.textContent=`${Math.floor(t)} / ${CYC}초`;r.value=t;V[id].up(s,t)};
+ b.onclick=()=>{run=!run;b.textContent=run?'❚❚':'▶';last=performance.now()};
+ r.oninput=()=>{t=+r.value;draw()};
+ const x1=document.getElementById(id+'x1'),x4=document.getElementById(id+'x4');
+ x1.onclick=()=>{sp=1;x1.classList.add('on');x4.classList.remove('on')};x4.onclick=()=>{sp=4;x4.classList.add('on');x1.classList.remove('on')};
+ const loop=n=>{if(run){t=(t+(n-last)/1000*sp)%CYC;draw()}last=n;requestAnimationFrame(loop)};draw();requestAnimationFrame(loop)}
+</script></body></html>

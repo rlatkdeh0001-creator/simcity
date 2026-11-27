@@ -12,9 +12,13 @@ func click(game,p: Vector2):
   await process_frame
 func move(game,p: Vector2):
  var event:=InputEventMouseMotion.new();event.position=game.screen(p);root.push_input(event,true);await process_frame
+func reset(game):
+ if game.city.simulation!=null:game.city.simulation.shutdown()
+ game.activate_tool("reset");game.activate_tool("road")
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;game.city.population_enabled=false
+ game.road_grid_enabled=false # Preserve original free-position/8m policy; grid ON has its own three-mode suite.
  root.add_child(game);await process_frame;game.map_zoom=.75;game.origin=Vector2(850,20);game.activate_tool("road")
  verify(game.get("road_drawer")!=null,"approved default click-based road drawing controller exists")
  if game.get("road_drawer")!=null:
@@ -48,7 +52,7 @@ func run():
   var cancel:=InputEventMouseButton.new();cancel.button_index=MOUSE_BUTTON_RIGHT;cancel.position=game.screen(Vector2(30,20));cancel.pressed=true;root.push_input(cancel,true);await process_frame
   verify(drawing.anchors.is_empty(),"real right click cancels click-based drawing")
   for kind: String in ["straight","curve","free"]:
-   game.activate_tool("reset");game.activate_tool("road");drawing.set_kind(kind)
+   reset(game);drawing.set_kind(kind)
    game.city.add_road(PackedVector2Array([Vector2(10,70),Vector2(90,70)]))
    await click(game,Vector2(40,69.4))
    if kind=="curve":await click(game,Vector2(60,65))
@@ -67,13 +71,20 @@ func run():
   drawing.cancel();drawing.set_kind("curve");drawing.click(Vector2(20,20));drawing.click(Vector2(20,50));game.pointer=Vector2(50,50)
   var count: int=game.city.roads.size();game.road_mode_buttons[0].pressed.emit()
   verify(drawing.kind=="straight" and drawing.anchors.is_empty() and game.city.roads.size()==count,"switching drawing mode cancels pending curve without building")
-  game.activate_tool("reset");game.activate_tool("road");game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(30,30)]))
+  reset(game);game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(30,30)]))
   drawing.set_kind("free");drawing.click(Vector2(30,30));game.pointer=Vector2(15,30)
   verify(not drawing.preview().ok,"reversing into existing road is rejected by original overlap/turn checks")
   drawing.cancel();drawing.set_kind("straight")
-  verify(game.city.add_building(20,27).ok,"collision fixture uses a real valid roadside building")
+  var house: Dictionary=game.city.add_building_at(Vector2(20.5,28))
+  verify(house.ok,"collision fixture uses a real valid roadside building")
+  var house_id: int=house.get("building",{}).get("id",-1)
+  var roads_before:=var_to_bytes(game.city.roads)
+  var buildings_before:=var_to_bytes(game.city.buildings)
   drawing.click(Vector2(21,20));game.pointer=Vector2(21,40)
-  verify(not drawing.preview().ok and game.city.buildings.size()==1,"new road preview cannot cut existing real building")
+  candidate=drawing.preview()
+  verify(candidate.ok and candidate.get("warning",false) and candidate.get("demolish_ids",[])==[house_id],"a ground road through a zoned house previews the approved demolition warning for exactly that house")
+  drawing.click(game.pointer)
+  verify(drawing.pending.get("demolish_ids",[])==[house_id] and var_to_bytes(game.city.roads)==roads_before and var_to_bytes(game.city.buildings)==buildings_before,"clicking the warning preview does not build or demolish before confirmation")
   drawing.cancel();drawing.click(Vector2(30,30));game.pointer=Vector2(15,32)
   verify(not drawing.preview().ok,"near-reversing acute endpoint join is red when original traffic rules forbid its U-turn")
  game.queue_free();await process_frame

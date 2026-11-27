@@ -1,0 +1,10 @@
+{
+  "status": "Reversible P2 defaults; not approved economic values. No charges or service effects until approved. Unlock gates deferred.",
+  "facilities": [
+    {"id":"bus-stop-01","catalog":"facilities","engine":"none","construction_default":0,"upkeep_default":0,"unlock_default":true,"effect_enabled":false},
+    {"id":"bus-station-01","catalog":"facilities","engine":"none","construction_default":0,"upkeep_default":0,"unlock_default":true,"effect_enabled":false},
+    {"id":"train-station-01","catalog":"facilities","engine":"none","construction_default":0,"upkeep_default":0,"unlock_default":true,"effect_enabled":false},
+    {"id":"subway-entrance-01","catalog":"facilities","engine":"none","construction_default":0,"upkeep_default":0,"unlock_default":true,"effect_enabled":false},
+    {"id":"park-large-8x8","catalog":"facilities","engine":"none","construction_default":0,"upkeep_default":0,"unlock_default":true,"effect_enabled":false}
+  ]
+}

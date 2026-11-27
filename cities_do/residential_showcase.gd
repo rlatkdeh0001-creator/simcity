@@ -10,6 +10,7 @@ func _ready():
 	super._ready()
 	controls_panel.hide()
 	hud.hide()
+	if city.simulation!=null:city.simulation.shutdown()
 	city = Showcase.create_city()
 	mode = "select"
 	selected = city.buildings[4].id

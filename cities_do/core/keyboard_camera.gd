@@ -1,6 +1,6 @@
 extends Node
 ## Independent real-time pan: simulation pause/speed never changes camera movement.
-const SPEED:=400.0 # screen pixels/sec at zoom 1
+const SPEED:=600.0 # screen pixels/sec at zoom 1
 const MOVE_KEYS:=[KEY_W,KEY_A,KEY_S,KEY_D,KEY_UP,KEY_LEFT,KEY_DOWN,KEY_RIGHT]
 var owner_reference: WeakRef
 var held:={}

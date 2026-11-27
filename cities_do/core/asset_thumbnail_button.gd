@@ -12,7 +12,7 @@ func set_asset(entry: Dictionary,thumbnail_path: String):
  tooltip_text=str(entry.name)+" · 애셋 보기"
  picture=TextureRect.new()
  picture.name="AssetThumbnail"
- picture.texture=load(thumbnail_path)
+ picture.texture=load(thumbnail_path) if ResourceLoader.exists(thumbnail_path) else ImageTexture.create_from_image(Image.load_from_file(thumbnail_path))
  picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
  picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
  picture.mouse_filter=Control.MOUSE_FILTER_IGNORE

@@ -1,0 +1,128 @@
+{
+  "recorded_at": "2026-11-13T13:02:43.223714+09:00",
+  "godot": "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+  "import": {
+    "name": "import",
+    "command": [
+      "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--path",
+      "D:\\project\\simcity\\cities_do",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "errors": [],
+    "summaries": [],
+    "passed": true,
+    "elapsed_s": 10.2,
+    "log": "import.log"
+  },
+  "tests": [
+    {
+      "name": "test_junctions",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_junctions.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 52/52 junction checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 4.32,
+      "log": "test_junctions.log"
+    },
+    {
+      "name": "test_road_flat_caps",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_flat_caps.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 19/19 flat road cap checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 1.61,
+      "log": "test_road_flat_caps.log"
+    },
+    {
+      "name": "test_road_length_units",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_length_units.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 42/42 road length unit checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 6.18,
+      "log": "test_road_length_units.log"
+    },
+    {
+      "name": "test_road_preview_round",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_preview_round.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 29/29 round road preview checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 3.82,
+      "log": "test_road_preview_round.log"
+    },
+    {
+      "name": "test_road_seams",
+      "command": [
+        "C:/Users/wlgml/AppData/Local/hermes/profiles/cities-gpt/tools/godot/Godot_v4.6.3-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_seams.gd"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "errors": [],
+      "summaries": [
+        "RESULT 30/30 seam checks passed"
+      ],
+      "passed": true,
+      "elapsed_s": 0.86,
+      "log": "test_road_seams.log"
+    }
+  ],
+  "total": 5,
+  "passed": 5,
+  "failed": 0
+}

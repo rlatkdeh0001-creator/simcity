@@ -1,6 +1,6 @@
 ---
 name: cities-do-construction
-description: Implement and extend CITIES_DO city-building mechanics in Godot, including road-local integer-grid 2x2 construction, weighted 2x2/4x4/8x8 redevelopment, freehand roads, footprint validation, and bounded neighbor upgrade cascades. Use for requests about CITIES_DO construction, zoning growth, free roads, or adjacent building upgrades.
+description: Implement and extend CITIES_DO city-building mechanics in Godot, including road-local integer-grid construction, happiness-gated 2x2/4x4/8x8 redevelopment, freehand roads, footprint validation, and preserved manual neighbor-upgrade APIs. Use for requests about CITIES_DO construction, zoning growth, free roads, or adjacent building upgrades.
 compatibility: Godot 4.6; GDScript; no Claude CLI or API required.
 ---
 
@@ -76,17 +76,13 @@ lane graphs, and 3D road proposals are future scope, not implemented features.
 3. Validate the entire road polyline and its width, not only endpoints. Use
    `add_road(points, kind, false)` for non-mutating preview and commit only on release.
    Keep rendering projection separate from world-space geometry.
-4. Use `upgrade_chain` for growth. Enforce the root score threshold, weighted
-   footprint choice and fallback. Never remove other buildings to force 8x8.
-   Keep density level and lot size independent. Snapshot edge adjacency before
-   growth, allow score bypass only for selected cascade neighbors, and enforce
-   visited IDs plus a maximum event count. Do not bypass spatial constraints.
+4. Automatic growth now follows `docs/design/HAPPINESS_KO.md` and `BUILDING_GROWTH_KO.md`: managed ID%75 evaluation, continuous full-day thresholds, and the existing single-building spatial upgrade. Keep level and lot size independent; never remove neighbors to force a larger lot. `upgrade_chain` is only the preserved manual prototype, not the automatic happiness path. Use the portable .NET launcher `python tools/run_dotnet.py godot` for the mixed project and the affected tests required by AGENTS.md.
 5. Tune all probabilities and limits through `growth_config.gd`. Pass a seed to
    the model for reproducible tests; do not use frame rate as a growth chance.
 6. Use `core/building_catalog.gd` and `assets/buildings/catalog.json` for residential visual assets. New concepts may be
    registered for display only (`growth_enabled: false`). Keep facade selection separate from growth RNG;
    rematch on lot size changes. Do not stretch 4x4 mansions over 2x2 or 8x8 lots.
-7. Run all six meaningful Godot tests below. Check log errors as well as exit status:
+7. Follow AGENTS.md: run only affected tests and the requested captures; the six commands below are historical examples, not a mandatory full pass. Check log errors as well as exit status:
    Godot can exit zero after a script parse failure. Do not present a headless
    startup check as visual inspection or claim a full city simulator exists.
 

@@ -1,0 +1,9 @@
+# 교통 트레이 도구 아이콘 — 세트 A (보수적) · 시안, 사용자 결정 대기
+# cities_do/bottom_ui.gd icon() 의 match 에 그대로 넣는 줄이다 (viewBox 0 0 24 24, 바깥 <g fill="#e4eef1"> 안).
+# 트레이 버튼의 tool_icons 에도 다섯 개를 더해야 쓰인다:
+#   "rail":"rail","metro":"metro","transit_line":"transit_line","freight_line":"freight_line","remove_line":"remove_line"
+  "rail": body='<path d="M6.5 1H9v22H6.5zM15 1h2.5v22H15zM3 2.5h18V5H3zM3 8h18v2.5H3zM3 13.5h18V16H3zM3 19h18v2.5H3z"/>'
+  "metro": body='<path d="M2 23V12a10 10 0 0 1 20 0v11h-3V12a7 7 0 0 0-14 0v11zM8.5 9h2v14h-2zM13.5 9h2v14h-2zM7 11h10v2H7zM7 15h10v2H7zM7 19h10v2H7z"/>'
+  "transit_line": body='<path d="M5 8.6V12h4.2M14.8 12H19v3.4" fill="none" stroke="#e4eef1" stroke-width="2.5"/><circle cx="5" cy="5" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/><circle cx="12" cy="12" r="2.3" fill="none" stroke="#e4eef1" stroke-width="2"/><circle cx="19" cy="19" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/>'
+  "freight_line": body='<path d="M5 8.6V12h4.2M14.8 12H19v3.4" fill="none" stroke="#e4eef1" stroke-width="2.5"/><circle cx="5" cy="5" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/><circle cx="12" cy="12" r="2.3" fill="none" stroke="#e4eef1" stroke-width="2"/><circle cx="19" cy="19" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/><path d="M19 0.75l3.18 1.84L19 4.42l-3.18-1.83zM15.32 3.45l3.18 1.84v3.67l-3.18-1.83zM22.68 3.45v3.68L19.5 8.96V5.29z"/>'
+  "remove_line": body='<path d="M5 8.6V12h4.2M14.8 12H19v3.4" fill="none" stroke="#e4eef1" stroke-width="2.5"/><circle cx="5" cy="5" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/><circle cx="12" cy="12" r="2.3" fill="none" stroke="#e4eef1" stroke-width="2"/><circle cx="19" cy="19" r="2.9" fill="none" stroke="#e4eef1" stroke-width="2.2"/><path d="M15.1 1.1h1.7L19 3.3l2.2-2.2h1.7v1.7L20.7 5l2.2 2.2v1.7h-1.7L19 6.7l-2.2 2.2h-1.7V7.2L17.3 5l-2.2-2.2z"/>'

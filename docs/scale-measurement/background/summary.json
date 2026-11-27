@@ -1,0 +1,465 @@
+{
+  "source_commit": "6be51b9b056d83b02d7bff09579aa0b67aa315ba",
+  "complete": false,
+  "frame_acceptance_16ms_met": false,
+  "main_callback_max_300k_ms": 195.107,
+  "headless_entry_gap_max_300k_ms": 195.161,
+  "background_happiness_growth_enabled": true,
+  "population_development_and_population_building_packing_still_main_thread": true,
+  "background": [
+    {
+      "frame_start_gap": {
+        "max_ms": 18.313,
+        "median_ms": 6.903,
+        "samples": 1141
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 7.705,
+        "median_ms": 0.009,
+        "samples": 1142
+      },
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "main_thread": 2,
+        "published": 5,
+        "skipped": 0,
+        "submitted": 5,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 240721920
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 21.6,
+        "median_ms": 6.899,
+        "samples": 1139
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 6.338,
+        "median_ms": 0.007,
+        "samples": 1140
+      },
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "main_thread": 2,
+        "published": 9,
+        "skipped": 0,
+        "submitted": 9,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 242741248
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 17.036,
+        "median_ms": 6.898,
+        "samples": 1142
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 6.624,
+        "median_ms": 0.009,
+        "samples": 1143
+      },
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "main_thread": 2,
+        "published": 13,
+        "skipped": 0,
+        "submitted": 13,
+        "worker_thread": 7
+      },
+      "peak_tree_rss_bytes": 244277248
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 27.892,
+        "median_ms": 6.899,
+        "samples": 1135
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 27.852,
+        "median_ms": 0.008,
+        "samples": 1136
+      },
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "main_thread": 2,
+        "published": 5,
+        "skipped": 0,
+        "submitted": 5,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 427405312
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 29.589,
+        "median_ms": 6.903,
+        "samples": 1129
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 29.544,
+        "median_ms": 0.005,
+        "samples": 1130
+      },
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "main_thread": 2,
+        "published": 9,
+        "skipped": 0,
+        "submitted": 9,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 441577472
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 32.491,
+        "median_ms": 6.9,
+        "samples": 1121
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 32.438,
+        "median_ms": 0.007,
+        "samples": 1122
+      },
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "main_thread": 2,
+        "published": 13,
+        "skipped": 0,
+        "submitted": 13,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 450363392
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 187.546,
+        "median_ms": 6.901,
+        "samples": 1079
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 187.5,
+        "median_ms": 0.009,
+        "samples": 1080
+      },
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "main_thread": 2,
+        "published": 5,
+        "skipped": 0,
+        "submitted": 5,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 1728376832
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 191.376,
+        "median_ms": 6.9,
+        "samples": 992
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 191.329,
+        "median_ms": 0.008,
+        "samples": 993
+      },
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "main_thread": 2,
+        "published": 9,
+        "skipped": 0,
+        "submitted": 9,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 1787068416
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 195.161,
+        "median_ms": 6.9,
+        "samples": 906
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 195.107,
+        "median_ms": 0.013,
+        "samples": 907
+      },
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "main_thread": 2,
+        "published": 13,
+        "skipped": 0,
+        "submitted": 13,
+        "worker_thread": 5
+      },
+      "peak_tree_rss_bytes": 1792172032
+    }
+  ],
+  "matched_sync_fallback": [
+    {
+      "frame_start_gap": {
+        "max_ms": 10.873,
+        "median_ms": 6.903,
+        "samples": 1144
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 10.851,
+        "median_ms": 0.009,
+        "samples": 1145
+      },
+      "mode": "sync",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 10.683,
+        "median_ms": 6.903,
+        "samples": 1143
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 10.659,
+        "median_ms": 0.008,
+        "samples": 1144
+      },
+      "mode": "sync",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 21.864,
+        "median_ms": 6.9,
+        "samples": 1140
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 21.812,
+        "median_ms": 0.008,
+        "samples": 1141
+      },
+      "mode": "sync",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 54.315,
+        "median_ms": 6.902,
+        "samples": 1123
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 78.393,
+        "median_ms": 0.012,
+        "samples": 1124
+      },
+      "mode": "sync",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 78.149,
+        "median_ms": 6.9,
+        "samples": 1094
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 78.109,
+        "median_ms": 0.01,
+        "samples": 1095
+      },
+      "mode": "sync",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 88.763,
+        "median_ms": 6.901,
+        "samples": 1067
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 88.718,
+        "median_ms": 0.01,
+        "samples": 1068
+      },
+      "mode": "sync",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "main_thread": 0,
+        "published": 0,
+        "skipped": 0,
+        "submitted": 0,
+        "worker_thread": 0
+      }
+    }
+  ],
+  "regression_callback_only": [
+    {
+      "population": 10000,
+      "speed": 1,
+      "background_callback_max_ms": 7.705,
+      "synchronous_callback_max_ms": 10.851,
+      "callback_not_slower_in_this_run": true
+    },
+    {
+      "population": 10000,
+      "speed": 2,
+      "background_callback_max_ms": 6.338,
+      "synchronous_callback_max_ms": 10.659,
+      "callback_not_slower_in_this_run": true
+    },
+    {
+      "population": 10000,
+      "speed": 3,
+      "background_callback_max_ms": 6.624,
+      "synchronous_callback_max_ms": 21.812,
+      "callback_not_slower_in_this_run": true
+    },
+    {
+      "population": 50000,
+      "speed": 1,
+      "background_callback_max_ms": 27.852,
+      "synchronous_callback_max_ms": 78.393,
+      "callback_not_slower_in_this_run": true
+    },
+    {
+      "population": 50000,
+      "speed": 2,
+      "background_callback_max_ms": 29.544,
+      "synchronous_callback_max_ms": 78.109,
+      "callback_not_slower_in_this_run": true
+    },
+    {
+      "population": 50000,
+      "speed": 3,
+      "background_callback_max_ms": 32.438,
+      "synchronous_callback_max_ms": 88.718,
+      "callback_not_slower_in_this_run": true
+    }
+  ],
+  "validation": {
+    "background_snapshot_checks": 21617,
+    "background_society_checks": 22,
+    "happiness": 65,
+    "integration": 12,
+    "hud_happiness": 13,
+    "population_aggregates": 16,
+    "population_cache": 78,
+    "spatial_oracle": 11241,
+    "hud_v2": 72,
+    "total_checks": 33136,
+    "all_final_process_exits": 0,
+    "seeds": [
+      42,
+      20261114
+    ],
+    "completed_logical_ticks_each_seed": 5400,
+    "scenario": {
+      "logical_ticks": 7350,
+      "game_seconds": 352800,
+      "targets": [
+        40,
+        70,
+        80
+      ],
+      "levels": [
+        1,
+        4,
+        5
+      ],
+      "pollution": [
+        -10,
+        -10,
+        -5
+      ]
+    },
+    "denominator": "completed logical ticks, not wall time; rejected cycles freeze game and utility logical clocks",
+    "snapshot_cli_evidence": "Successful actual parent execution printed RESULT 21617/21617 background snapshot checks passed and exit0; full assertion/cadence/fixture runner committed. Other final suite logs are in this folder."
+  },
+  "limits": [
+    "8 seconds sampled per population/speed, excluding loading and one preparation job",
+    "Synthetic households/workplaces in real CityModel, no road-valid city claim",
+    "Rendering, HUD and utility execution excluded: callback exceeding16ms is sufficient to fail full-frame gate; callback passing does not establish game-frame success",
+    "Frame-entry intervals include OS scheduling; final trailing interval is not captured; callback maximum remains an independent direct lower bound",
+    "Per-run aggregate console metrics retained, individual frame sample arrays not persisted",
+    "Background runs use owned-process6GiB/180s bounds; synchronous10k/50k runs use120s timeout",
+    "No demand/commuting implementation, push, main merge, UID/import commits"
+  ]
+}

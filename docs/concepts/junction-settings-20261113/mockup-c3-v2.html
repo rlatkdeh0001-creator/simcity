@@ -1,0 +1,52 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+body{margin:0;padding:6px 0}
+.win{background:#142b37;color:#edf4f5;font-size:18px;border:1px solid #38515e;border-radius:10px;width:880px;display:flex;flex-direction:column}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #38515e}
+.seg{display:flex;gap:4px}.seg b{padding:6px 14px;border-radius:6px;background:#38515e;font-weight:600}.seg b.on{background:#36b7ff;color:#142b37}
+.body{display:flex}.dg{width:340px;height:340px;flex:none;border-right:1px solid #38515e}.side{flex:1;padding:10px 14px}
+.ctl{display:flex;align-items:center;gap:10px;padding:8px 14px;border-top:1px solid #38515e}
+.btn{background:#36b7ff;color:#142b37;border:0;border-radius:6px;font-size:18px;font-weight:700;width:44px;height:36px;cursor:pointer}
+.sp{background:#38515e;color:#edf4f5;border:0;border-radius:6px;font-size:18px;padding:6px 10px;cursor:pointer}.sp.on{background:#edf4f5;color:#142b37}
+.t{font-variant-numeric:tabular-nums;min-width:96px}input[type=range]{flex:1;accent-color:#36b7ff}
+table{border-collapse:separate;border-spacing:5px}td,th{text-align:center;font-weight:700}
+td{background:#1c3846;border-radius:6px;width:64px;height:42px;font-size:22px}
+th{font-size:18px;color:#9fb3bb;font-weight:600}th.cur{color:#36b7ff}td.cur{outline:3px solid #36b7ff}
+tr.sel td{background:#26495a}
+.bd{display:inline-flex;width:30px;height:30px;border-radius:50%;background:#edf4f5;color:#142b37;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+.rd{color:#e5484d}.gr{color:#3fbf6a}
+</style></head><body>
+<div id="c3"></div>
+<script>
+const P=[{d:15,m:{1:'L',3:'L'}},{d:30,m:{1:'T',3:'T'}},{d:12,m:{2:'L',4:'L'}},{d:23,m:{2:'T',4:'T'}}],Y=3,AR=1,PN='ABCD';
+const CYC=P.reduce((s,p)=>s+p.d+Y+AR,0);
+// signal number -> [x,y,rotation, badge x, badge y]
+const AP={1:[190,280,0,250,311],2:[280,150,-90,311,90],3:[150,60,180,90,29],4:[60,190,90,29,250]};
+const C={g:'#3fbf6a',y:'#f2c14e',r:'#e5484d',off:'#2a3a42'};
+let SEL=0;
+function st(t){t=((t%CYC)+CYC)%CYC;for(let i=0;i<P.length;i++){const p=P[i];if(t<p.d)return{i,k:'g'};t-=p.d;if(t<Y)return{i,k:'y'};t-=Y;if(t<AR)return{i,k:'r'};t-=AR;}return{i:0,k:'g'}}
+function col(s,a,x){return P[s.i].m[a]!==x?C.r:s.k==='g'?C.g:s.k==='y'?C.y:C.r}
+function diag(s){let g=`<svg viewBox="0 0 340 340" width="340" height="340"><rect width="340" height="340" fill="#7f9774"/><rect x="130" width="80" height="340" fill="#4d5357"/><rect y="130" width="340" height="80" fill="#4d5357"/><rect x="130" y="130" width="80" height="80" fill="#59606a"/>`;
+ for(const a in AP){const[x,y,r,bx,by]=AP[a],m=P[s.i].m[a];
+  const on=[!m||s.k==='r',m&&s.k==='y',m==='L'&&s.k==='g',m==='T'&&s.k==='g'];
+  g+=`<g transform="translate(${x},${y}) rotate(${r})" font-weight="700" text-anchor="middle"><text x="-10" y="-4" font-size="26" fill="${col(s,a,'L')}">←</text><text x="12" y="-4" font-size="26" fill="${col(s,a,'T')}">↑</text>
+   <rect x="-30" y="12" width="64" height="20" rx="4" fill="#0b161c"/>
+   <circle cx="-21" cy="22" r="6.5" fill="${on[0]?C.r:C.off}"/><circle cx="-5" cy="22" r="6.5" fill="${on[1]?C.y:C.off}"/>
+   <text x="11" y="28" font-size="18" fill="${on[2]?C.g:C.off}">←</text><circle cx="26" cy="22" r="6.5" fill="${on[3]?C.g:C.off}"/></g>
+   <circle cx="${bx}" cy="${by}" r="15" fill="#edf4f5" stroke="${SEL==a?'#36b7ff':'#142b37'}" stroke-width="${SEL==a?5:2}"/><text x="${bx}" y="${by+6}" text-anchor="middle" font-size="18" font-weight="800" fill="#142b37">${a}</text>`}
+ return g+'</svg>'}
+function cell(m){return m==='L'?'<span class=gr>←</span>':m==='T'?'<span class=gr>↑</span>':'<span class=rd>●</span>'}
+let h='<tr><th></th>'+P.map((_,i)=>`<th id="h${i}">${PN[i]}</th>`).join('')+'</tr>';
+for(const a of [1,2,3,4])h+=`<tr data-a="${a}"><th><span class="bd">${a}</span></th>`+P.map((p,i)=>`<td class="c${i}">${cell(p.m[a])}</td>`).join('')+'</tr>';
+h+='<tr><th>초</th>'+P.map((p,i)=>`<td class="c${i}" style="font-size:18px">${p.d}</td>`).join('')+'</tr>';
+document.getElementById('c3').innerHTML=`<div class="win"><div class="hd"><b style="font-size:20px">교차로</b><div class="seg"><b>자동</b><b>수동(차량 감지)</b><b class="on">수동(시간 조정)</b></div><span style="margin-left:auto;color:#9fb3bb">✕</span></div>
+<div class="body"><div class="dg" id="d"></div><div class="side"><table>${h}</table></div></div>
+<div class="ctl"><button class="btn" id="p">▶</button><span class="t" id="tt"></span><input type="range" min="0" max="${CYC-0.25}" step="0.25" value="0" id="r"><button class="sp on" id="x1">×1</button><button class="sp" id="x4">×4</button></div></div>`;
+let t=0,run=false,sp=1,last=0;const $=i=>document.getElementById(i);
+const draw=()=>{const s=st(t);$('d').innerHTML=diag(s);$('tt').textContent=`${Math.floor(t)} / ${CYC}초`;$('r').value=t;
+ P.forEach((_,i)=>{$('h'+i).classList.toggle('cur',i===s.i);document.querySelectorAll('.c'+i).forEach(e=>e.classList.toggle('cur',i===s.i))})};
+document.querySelectorAll('tr[data-a]').forEach(tr=>{tr.onmouseenter=()=>{SEL=tr.dataset.a;tr.classList.add('sel');draw()};tr.onmouseleave=()=>{SEL=0;tr.classList.remove('sel');draw()}});
+$('p').onclick=()=>{run=!run;$('p').textContent=run?'❚❚':'▶';last=performance.now()};
+$('r').oninput=()=>{t=+$('r').value;draw()};
+$('x1').onclick=()=>{sp=1;$('x1').classList.add('on');$('x4').classList.remove('on')};$('x4').onclick=()=>{sp=4;$('x4').classList.add('on');$('x1').classList.remove('on')};
+const loop=n=>{if(run){t=(t+(n-last)/1000*sp)%CYC;draw()}last=n;requestAnimationFrame(loop)};draw();requestAnimationFrame(loop);
+</script></body></html>

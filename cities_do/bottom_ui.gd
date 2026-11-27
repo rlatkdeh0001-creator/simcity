@@ -1,9 +1,16 @@
 extends "res://main.gd"
 ## Shared main/preview bottom HUD. No city fixture or service placement logic.
+var budget_window
+var economy_button: Button
 var dock: PanelContainer
 var drawer: PanelContainer
 var drawer_scroll: ScrollContainer
 var drawer_box: HBoxContainer
+var transport_tabs: HBoxContainer
+var transport_tab := 0
+var route_overlay
+const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
+var transport_content_minimum:=Vector2.ZERO
 var categories: Array[Button] = []
 var bulldozer: Button
 var money: Label
@@ -35,6 +42,8 @@ var utility_content: Control
 var utility_owner: PanelContainer
 var road_modes: PanelContainer
 var road_mode_buttons: Array[Button]=[]
+var road_lane_cards: Array[Button]=[]
+var road_grid_button: Button
 const CurrencyLabel=preload("res://core/currency_label.gd")
 var money_toast: PanelContainer
 var money_toast_timer: Timer
@@ -116,6 +125,7 @@ func label(text: String, size_value: int = 18) -> Label:
 func icon(kind: String) -> Texture2D:
  var body := ""
  match kind:
+  "banknote": body='<g fill="none" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="1" stroke="#edf4f5"/><circle cx="12" cy="12" r="3" stroke="#36b7ff"/></g>'
   "build": body='<path d="M2 11 12 2 22 11h-3v11h-5v-7h-4v7H5V11z"/>'
   "road": body='<path d="m7 2-5 20h8v-4h4v4h8L17 2h-4v4h-2V2zm4 7h2v5h-2z" fill-rule="evenodd"/>'
   "power": body='<path d="M14 1 3 14h8l-2 9L22 9h-9z"/>'
@@ -123,6 +133,11 @@ func icon(kind: String) -> Texture2D:
   "environment": body='<path d="m8 3 4-2 5 7-4 2-2-4-2 4-5-2zm13 9 2 5-8 5-2-4 5-2-4-1 1-5zM9 22H3L1 13l5-1 1 5 2-4 4 3z"/>'
   "park": body='<path d="M10 23v-5H5a4 4 0 0 1-2-7 5 5 0 0 1 3-7 6 6 0 0 1 12 0 5 5 0 0 1 3 7 4 4 0 0 1-2 7h-5v5z"/>'
   "transport": body='<rect x="4" y="1" width="16" height="20" rx="4"/><path d="M7 20v3m10-3v3" stroke="white" stroke-width="2"/><path d="M7 5h10v8H7z" fill="#152d3b"/><circle cx="8" cy="17" r="1.3" fill="#152d3b"/><circle cx="16" cy="17" r="1.3" fill="#152d3b"/>'
+  "rail": body='<path d="M7.1 2 22 16.9M2 7.1 16.9 22M10.8 2.6 2.6 10.8M14.3 6.1 6.1 14.3M17.9 9.7 9.7 17.9M21.4 13.2 13.2 21.4" fill="none" stroke="#e4eef1" stroke-width="2.2"/>'
+  "metro": body='<path d="M2 2h20v21h-3.5v-9.5a6.5 6.5 0 0 0-13 0V23H2z"/><path d="M7 23 8.9 12h1.4L9.2 23zM14.8 23 13.7 12h1.4L17 23zM7.1 19.8h9.8v1.8H7.1zM7.7 16.2h8.6v1.4H7.7zM8.3 13.3h7.4v1.1H8.3z"/>'
+  "transit_line": body='<circle cx="12" cy="4.3" r="2.8"/><path d="M5.5 14v-1.4a6.5 4.2 0 0 1 13 0V14zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
+  "freight_line": body='<path d="M12 1.5l4.77 2.75L12 7.01 7.23 4.25zM6.63 5.29l4.77 2.76v5.5L6.63 10.8zM17.37 5.29v5.51l-4.77 2.75v-5.5zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
+  "remove_line": body='<path d="M6.4 2.1h2L12 5.7l3.6-3.6h2v2L14 7.7l3.6 3.6v2h-2L12 9.7l-3.6 3.6h-2v-2L10 7.7 6.4 4.1zM3 18.1h18v2H3z"/><circle cx="4" cy="19.1" r="2.7"/><circle cx="12" cy="19.1" r="2.7"/><circle cx="20" cy="19.1" r="2.7"/>'
   "health": body='<path d="M8 2h8v6h6v8h-6v6H8v-6H2V8h6z"/>'
   "education": body='<path d="m1 7 11-5 11 5-11 5zM5 11v7q7 7 14 0v-7l-7 4z"/>'
   "fire": body='<path d="M13 1q3 7-2 10 1-5-3-7 1 5-3 9-5 11 7 11 12-1 7-12-1 5-4 5 3-7-2-16z"/>'
@@ -183,6 +198,9 @@ func build_bottom_hud():
  theme_value.set_color("font_color","Button",INK)
  root.theme=theme_value
  layer.add_child(root)
+ route_overlay=preload("res://core/route_overlay.gd").new()
+ root.add_child(route_overlay);route_overlay.setup(self)
+ route_overlay.delete_requested.connect(confirm_route_deletion)
  utility_popup=PopupPanel.new()
  utility_popup.name="UtilitySettings"
  utility_popup.theme=theme_value
@@ -292,12 +310,60 @@ func build_bottom_hud():
  drawer_box=HBoxContainer.new()
  drawer_box.add_theme_constant_override("separation",16)
  drawer_scroll.add_child(drawer_box)
+ transport_tabs=HBoxContainer.new()
+ transport_tabs.name="TransportTabs"
+ transport_tabs.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ root.add_child(transport_tabs)
+ transport_tabs.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+ for title in ["버스","지하철","기차"]:
+  var tab:=Button.new()
+  tab.text=title
+  tab.custom_minimum_size=Vector2(65,30)
+  tab.add_theme_font_size_override("font_size",18)
+  tab.pressed.connect(select_transport_tab.bind(transport_tabs.get_child_count()))
+  transport_tabs.add_child(tab)
+ transport_tabs.hide()
  build_road_modes(root)
  drawer.visibility_changed.connect(sync_utility_visibility)
+ budget_window=preload("res://core/budget_window.gd").new()
+ root.add_child(budget_window)
+ budget_window.closed.connect(func():
+  if economy_button.is_inside_tree():economy_button.grab_focus())
+
+func open_budget():
+ activate_tool("select");cancel_demolition_drag();drawing=false;stroke.clear();panning=false
+ keyboard_camera.clear();drawer.hide();road_modes.hide();hide_asset_info();clear_money_toast()
+ if utility_popup.visible:utility_popup.hide()
+ budget_window.open(city)
+
+func _input(event):
+ # The route edit warning (main.gd guard_route_edit) is modal: its own _input takes Enter/Esc first.
+ if route_warning_open():
+  keyboard_camera.clear();return
+ if budget_window!=null and budget_window.visible:
+  keyboard_camera.clear()
+  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+   budget_window.close();get_viewport().set_input_as_handled()
+  return
+ if route_overlay!=null and route_overlay.visible and not route_overlay.dragged.is_empty():
+  if event is InputEventMouseMotion:
+   route_overlay.move_drag(event.position)
+  elif event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+   route_overlay.drop(event.position,get_viewport().gui_get_hovered_control()!=null)
+   get_viewport().set_input_as_handled();return
+ super._input(event)
 
 func sync_utility_visibility():
  # Keep above-ground facility models; only their tab-gated network drawing changes.
  var tray_open:=drawer.is_visible_in_tree()
+ transport_tabs.visible=tray_open and chosen=="transport"
+ if not transport_tabs.visible:close_route_overlay()
+ if transit_view!=null and not tray_open and mode!="demolish":
+  transit_view.underground=false;transit_view.cancel()
+  if mode in ["rail","metro","route_overlay"]:
+   mode="select";update_road_modes()
+   if transit_line_tool!=null:transit_line_tool.cancel()
+ if transit_view!=null:transit_view.sync_visibility()
  for pair in [["power",power_overlay],["water",water_overlay]]:
   var overlay=pair[1]
   var active: bool=tray_open and chosen==pair[0]
@@ -334,14 +400,18 @@ func build_road_modes(root: Control):
    var skin:=style(Color("36b7ff") if state=="pressed" else Color("38515e"))
    skin.content_margin_left=6;skin.content_margin_right=6;skin.content_margin_top=6;skin.content_margin_bottom=6
    button.add_theme_stylebox_override(state,skin)
-  button.pressed.connect(road_drawer.set_kind.bind(key));row.add_child(button);road_mode_buttons.append(button)
+  button.pressed.connect(set_route_drawing_kind.bind(key));row.add_child(button);road_mode_buttons.append(button)
  for i in range(road_mode_buttons.size()):
   road_mode_buttons[i].focus_neighbor_left=road_mode_buttons[posmod(i-1,3)].get_path()
   road_mode_buttons[i].focus_neighbor_right=road_mode_buttons[(i+1)%3].get_path()
  update_road_modes()
+func set_route_drawing_kind(key:String):
+ if mode in ["rail","metro"]:
+  transit_view.cancel();road_drawer.kind=key;update_road_modes();queue_redraw()
+ else:road_drawer.set_kind(key)
 func update_road_modes():
  if road_modes==null:return
- road_modes.visible=chosen=="road"
+ road_modes.visible=chosen=="road" or mode in ["rail","metro"]
  for button in road_mode_buttons:
   var active: bool=button.get_meta("road_kind")==road_drawer.kind
   button.set_pressed_no_signal(active);button.icon=road_mode_icon(button.get_meta("road_kind"),active)
@@ -490,6 +560,8 @@ func build_status_row(box: VBoxContainer) -> Control:
  actions.size_flags_vertical=Control.SIZE_SHRINK_CENTER
  actions.add_theme_constant_override("separation",6)
  right_margin.add_child(actions)
+ economy_button=small_button("banknote","예산",open_budget);economy_button.name="EconomyButton";economy_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
+ actions.add_child(economy_button)
  actions.add_child(small_button("map","도시 전체 보기",fit_preview))
  actions.add_child(small_button("menu","도구 모음 접기 / 펼치기",func():drawer.visible=not drawer.visible))
  return status_line
@@ -505,12 +577,13 @@ func toggle_speed():
 func bind_status_events():
  if observed_city==city:return
  if observed_city!=null:
-  for event in ["funds_changed","society_changed","city_name_changed"]:
+  for event in ["funds_changed","society_changed","city_name_changed","economic_changed"]:
    if observed_city.is_connected(event,refresh_status):observed_city.disconnect(event,refresh_status)
   if observed_city.clock.minute_changed.is_connected(refresh_status):observed_city.clock.minute_changed.disconnect(refresh_status)
   if observed_city.clock.day_changed.is_connected(on_game_day_changed):observed_city.clock.day_changed.disconnect(on_game_day_changed)
  observed_city=city
- for event in ["funds_changed","society_changed","city_name_changed"]:city.connect(event,refresh_status)
+ if budget_window!=null:budget_window.bind_model(city)
+ for event in ["funds_changed","society_changed","city_name_changed","economic_changed"]:city.connect(event,refresh_status)
  city.clock.minute_changed.connect(refresh_status)
  city.clock.day_changed.connect(on_game_day_changed)
  status_cache.clear()
@@ -518,14 +591,24 @@ func bind_status_events():
 
 func refresh_status():
  if money==null:return
+ # Reuse the existing feedback slot: no unapproved modal/layout is introduced.
+ if hud!=null:
+  if city.loans.bankrupt:message="파산 · 게임 오버"
+  elif city.loans.negative_days>=int(city.loans.config.warning_days):message="재정 경고 · 연속 적자 %d개월"%city.loans.negative_days
+  elif message.begins_with("재정 경고") or message=="파산 · 게임 오버":message=""
+  hud.text=message;hud.visible=not message.is_empty()
+ if city._tax_production:
+  var economic:Dictionary=city.economic_status()
+  monthly_balance=roundi(economic.daily_net) if economic.available else null
  var stats: Dictionary=city.population.stats()
  var demand: Dictionary=city.population.demand(city.buildings)
- var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance}
+ var snapshot: Dictionary={"name":city.city_name,"funds":city.funds,"available":city.utility_balance(),"date":city.clock.caption(),"stats":stats,"demand":demand,"balance":monthly_balance,"happiness":city.happiness.average_value()}
  if snapshot==status_cache:return
  hud_refresh_count+=1
  if snapshot.name!=status_cache.get("name"):city_name_button.text=snapshot.name
  if snapshot.funds!=status_cache.get("funds"):money.text=city.Economy.format_amount(city.funds)
  if snapshot.date!=status_cache.get("date"):date_label.text=snapshot.date
+ if snapshot.happiness!=status_cache.get("happiness") or status_cache.is_empty():happiness_label.text="—" if snapshot.happiness==null else str(int(snapshot.happiness))
  if snapshot.stats!=status_cache.get("stats") or snapshot.demand!=status_cache.get("demand"):
   population_label.text=city.Economy.format_number(stats.population)
   population_label.tooltip_text="취업 %d · 미취업 %d · 주 %d 상 %d 공 %d" % [stats.employed,stats.unemployed,demand.residential,demand.commercial,demand.industrial]
@@ -541,7 +624,7 @@ func refresh_status():
  update_asset_affordability()
 
 func set_monthly_balance(value: Variant):
- # Future economic producer publishes the closed game day's (= game month's) total.
+ # Legacy presentation fixtures only; production refresh reads the actual closed ledger.
  if value!=null and not value is int:return
  monthly_balance=value
  refresh_status()
@@ -577,8 +660,21 @@ static func developer_tools_allowed(debug_build: bool,arguments: PackedStringArr
 func developer_tools_enabled() -> bool:
  return developer_tools_allowed(OS.is_debug_build(),OS.get_cmdline_user_args())
 
+func select_transport_tab(index:int):
+ var tab:Button=transport_tabs.get_child(index)
+ var show_focus:=tab.has_focus(true)
+ transport_tab=index
+ select_category("transport")
+ tab.grab_focus(not show_focus)
+
 func select_category(key: String):
  if not NAMES.has(key): return
+ close_route_overlay()
+ if transit_line_tool!=null:transit_line_tool.cancel()
+ if transit_view!=null:transit_view.cancel();transit_view.underground=false
+ road_lane_cards.clear();road_grid_button=null
+ drawer_box.add_theme_constant_override("separation",8 if key=="road" else 16)
+ drawer_box.size_flags_horizontal=Control.SIZE_EXPAND_FILL if key=="road" else Control.SIZE_FILL
  hide_asset_info()
  clear_money_toast()
  if road_drawer!=null:road_drawer.cancel()
@@ -601,17 +697,18 @@ func select_category(key: String):
  power_overlay.stroke.clear()
  water_overlay.stroke.clear()
  var heading := VBoxContainer.new()
- heading.custom_minimum_size.x=140
+ heading.custom_minimum_size.x=60 if key=="road" else 140
  heading.add_child(label(NAMES[key],22))
  drawer_box.add_child(heading)
  var choices := []
  match key:
   "power": choices=[["지중 전력선","power_wire"]]
-  "water": choices=[["상하수관 함께","water_pipe"],["시설 선택","water_select"]]
-  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"],["건물 선택","select"]]
+  "water": choices=[["상하수관 함께","water_pipe"]]
+  "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[["도로 그리기","road"],["건물 선택","select"]]
+  "road": choices=[] # The seven lane cards are the drawing actions.
+
 
   _:
    pass
@@ -625,10 +722,15 @@ func select_category(key: String):
     service_button.name="Tool_"+str(choice[1])
     drawer_box.add_child(service_button)
     continue
+  add_drawer_tool(drawer_box,key,choice)
+ if key=="road":add_road_drawer_controls()
+ finish_drawer(key,heading)
+
+func add_drawer_tool(box:HBoxContainer,key:String,choice:Array):
   var button := Button.new()
-  button.name="Tool_"+choice[1]
+  button.name="Tool_"+str(choice[1])
   button.tooltip_text=choice[0]
-  button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+  button.size_flags_horizontal=Control.SIZE_SHRINK_BEGIN if key=="road" else Control.SIZE_EXPAND_FILL
   button.custom_minimum_size=Vector2(112,84)
   var content := VBoxContainer.new()
   button.add_child(content)
@@ -636,7 +738,8 @@ func select_category(key: String):
   content.offset_top=8
   content.mouse_filter=Control.MOUSE_FILTER_IGNORE
   var image := TextureRect.new()
-  var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select"}
+  var tool_icons := {"power_wire":"wire","power_plant":"factory","power_erase_wire":"erase","water_pipe":"pipes","water_supply":"water","water_treatment":"factory","water_erase_pipe":"erase","build":"build","build_commercial":"build","build_industrial":"factory","road":"road","select":"select",
+   "rail":"rail","metro":"metro","transit_line":"transit_line","freight_line":"freight_line","remove_line":"remove_line"}
   image.texture=icon(tool_icons.get(choice[1],key))
   image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
   image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -651,27 +754,67 @@ func select_category(key: String):
   var tool: String=choice[1]
   if key in ["health","education"]:
    button.tooltip_text=choice[0]+" · 애셋 보기"
-  button.pressed.connect(activate_tool.bind(tool))
-  drawer_box.add_child(button)
- if key=="road":
-  var lanes := OptionButton.new()
-  lanes.name="RoadLanes"
-  lanes.add_item("왕복 2차로")
-  lanes.add_item("왕복 4차로")
-  lanes.select(0 if road_lanes==2 else 1)
-  lanes.item_selected.connect(func(index):road_lanes=2 if index==0 else 4;queue_redraw())
-  drawer_box.add_child(lanes)
+  if tool=="transit_line":button.pressed.connect(toggle_route_overlay)
+  else:button.pressed.connect(activate_tool.bind(tool))
+  box.add_child(button)
+
+func add_road_drawer_controls():
+  var group:=ButtonGroup.new()
+  var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
+  for count in preload("res://core/road_profile.gd").LOCAL_LANES:
+   var path: String="res://assets/ui/roads/local-%d.png"%count
+   var card:=ThumbnailButton.new();card.name="RoadLane_%d"%count
+   card.set_asset({"id":"road-local-%d"%count,"name":"%d차선"%count,"preview":path},path)
+   card.custom_minimum_size=Vector2(96,84);card.set_meta("lanes",count);card.tooltip_text="%d차선"%count
+   card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
+   palette.content.add_child(card);road_lane_cards.append(card)
+  road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
+  var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
+  road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
+  road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
+  road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
+  update_road_lane_cards();update_road_grid_button()
+
+func finish_drawer(key:String,heading:VBoxContainer):
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
+  if key=="transport":break
   if entry.ui_category!=key:continue
   var registered_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
   registered_button.name="Registered_"+str(entry.id)
   registered_button.set_meta("registered_asset_id",str(entry.id))
   drawer_box.add_child(registered_button)
  if key=="park":
+
   for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+   if entry.kind=="structure_sample":continue # Inspection-only originals are not map tools.
+   var transit:bool=str(entry.kind).begins_with("transit") or str(entry.kind).begins_with("subway")
+   if transit:continue
    var facility_button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
    facility_button.name="Facility_"+str(entry.id)
    drawer_box.add_child(facility_button)
+ if key=="transport":
+  build_transport_row(drawer_box,transport_tab)
+  transport_content_minimum=drawer_box.get_combined_minimum_size()
+  # Measure the same controls with the same inherited theme, not estimated card counts.
+  for i in range(TRANSPORT_ASSETS.size()):
+   if i==transport_tab:continue
+   var probe:=HBoxContainer.new();probe.hide();drawer_scroll.add_child(probe)
+   probe.add_theme_constant_override("separation",drawer_box.get_theme_constant("separation"))
+   probe.add_child(heading.duplicate())
+   build_transport_row(probe,i)
+   transport_content_minimum=transport_content_minimum.max(probe.get_combined_minimum_size())
+   probe.free()
+  for tab:Button in transport_tabs.get_children():
+   var active:=tab.get_index()==transport_tab
+   var accent:=Color("36b7ff")
+   for state in ["normal","pressed","hover"]:
+    var face:=style(accent if active else Color("142b37"),accent if active or state=="hover" else Color("38515e"))
+    face.corner_radius_top_left=12;face.corner_radius_top_right=12
+    face.corner_radius_bottom_left=0;face.corner_radius_bottom_right=0;face.border_width_bottom=0
+    face.content_margin_top=2;face.content_margin_bottom=2
+    tab.add_theme_stylebox_override(state,face)
+    tab.add_theme_color_override("font_"+state+"_color",Color("142b37") if active else Color("edf4f5"))
+   tab.add_theme_color_override("font_color",Color("142b37") if active else Color("edf4f5"))
  for slot in service_slots():
   if slot.category!=key:continue
   var entry:=slot_asset(slot)
@@ -689,21 +832,38 @@ func select_category(key: String):
  update_road_modes()
  bulldozer.set_pressed_no_signal(false)
  demolition_hover.clear()
- var close := Button.new()
- close.text="⌄"
- close.custom_minimum_size.x=42
- close.pressed.connect(func():drawer.hide();layout_bottom_hud())
- drawer_box.add_child(close)
+ if key!="transport":add_drawer_close(drawer_box)
  drawer.show()
  sync_utility_visibility()
  layout_bottom_hud()
  queue_redraw()
+
+func build_transport_row(box:HBoxContainer,index:int):
+ if index==1:add_drawer_tool(box,"transport",["지하철 터널","metro"])
+ if index==2:
+  add_drawer_tool(box,"transport",["철도","rail"])
+  var rail_heights:=preload("res://core/road_height_controls.gd").new();rail_heights.rail=true
+  box.add_child(rail_heights);rail_heights.setup(self)
+ for entry:Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/facilities/catalog.json")).facilities:
+  if entry.id not in TRANSPORT_ASSETS[index] or not city.public_facilities.entries.has(entry.id):continue
+  var button:=make_asset_button(entry,select_public_asset.bind(str(entry.id)))
+  button.name="Facility_"+str(entry.id);box.add_child(button)
+ add_drawer_tool(box,"transport",["노선","transit_line"])
+ add_drawer_close(box)
+
+func add_drawer_close(box:HBoxContainer):
+ var close:=Button.new()
+ close.text="⌄"
+ close.custom_minimum_size.x=42
+ close.pressed.connect(func():drawer.hide();layout_bottom_hud())
+ box.add_child(close)
 
 func show_zoning_tiles() -> bool:
  return chosen in ["build","road"] and mode!="demolish"
 
 func toggle_demolition():
  hide_asset_info();clear_money_toast()
+ if transit_view!=null:transit_view.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
  mode="select" if mode=="demolish" else "demolish"
@@ -716,6 +876,8 @@ func toggle_demolition():
  demolition_hover.clear()
  drawer.hide()
  bulldozer.set_pressed_no_signal(mode=="demolish")
+ if mode!="demolish" and transit_view!=null:transit_view.underground=false;transit_view.sync_visibility()
+ update_road_modes()
  queue_redraw()
 
 func fit_preview():
@@ -777,12 +939,34 @@ func capture():
  var error := get_viewport().get_texture().get_image().save_png(capture_path)
  get_tree().quit(0 if error==OK else 1)
 
+func _unhandled_input(event):
+ if route_warning_open() or (budget_window!=null and budget_window.visible):
+  get_viewport().set_input_as_handled();return
+ if route_overlay.visible and event is InputEventMouseButton and event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT]:
+  if event.pressed:
+   if event.button_index==MOUSE_BUTTON_RIGHT:
+    if transit_line_tool.kind!="" or not route_overlay.dragged.is_empty() or not route_overlay.right_click(event.position):cancel_route_overlay_action()
+   elif transit_line_tool.kind!="":
+    transit_line_tool.choose_stop(route_overlay.station_at(event.position))
+    route_overlay.sync_creation()
+   else:route_overlay.begin_drag(event.position)
+  get_viewport().set_input_as_handled();return
+ if mode in ["road","rail","metro"] and event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_RIGHT:
+  activate_tool("select")
+  get_viewport().set_input_as_handled()
+  return
+ super._unhandled_input(event)
+
 func _unhandled_key_input(event):
  if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+  if route_overlay.visible:
+   if not event.echo:cancel_route_overlay_action()
+   get_viewport().set_input_as_handled();return
   hide_asset_info();clear_money_toast()
   if public_controller!=null:public_controller.cancel()
   cancel_zoning_drag()
   if mode=="demolish": toggle_demolition()
+  elif mode in ["road","rail","metro"]:activate_tool("select")
   drawer.hide()
 
 func asset_info_rows(id: String) -> Array[Dictionary]:return preload("res://core/asset_money_info.gd").rows(city,id)
@@ -814,7 +998,8 @@ func show_asset_info(card):
  for child in asset_info.get_children():asset_info.remove_child(child);child.queue_free()
  var body:=VBoxContainer.new();body.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_theme_constant_override("separation",6);asset_info.add_child(body)
  var title:=label(card.get_meta("asset_name",""),20);title.add_theme_color_override("font_color",Color("edf4f5"));title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;title.mouse_filter=Control.MOUSE_FILTER_IGNORE;body.add_child(title)
- var picture:=TextureRect.new();picture.texture=load(card.get_meta("source_preview",""));picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
+ var preview_path:String=card.get_meta("source_preview","")
+ var picture:=TextureRect.new();picture.texture=load(preview_path) if ResourceLoader.exists(preview_path) else ImageTexture.create_from_image(Image.load_from_file(preview_path));picture.mouse_filter=Control.MOUSE_FILTER_IGNORE
  picture.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;picture.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
  picture.custom_minimum_size=Vector2(270,90 if get_viewport_rect().size.y<760 else 150);body.add_child(picture)
  var rows:=asset_info_rows(card.get_meta("thumbnail_asset_id",""));asset_info.set_meta("rows",rows)
@@ -831,7 +1016,7 @@ func show_asset_info(card):
 
 func update_asset_affordability():
  if drawer_box==null:return
- for card in drawer_box.get_children():
+ for card in drawer_box.find_children("*","Button",true,false):
   var id: String=str(card.get_meta("thumbnail_asset_id",""))
   if card is ThumbnailButton and city.public_facilities.entries.has(id):card.set_unaffordable(city.public_facilities.price(id)>city.utility_balance())
 func clear_money_toast():
@@ -884,10 +1069,11 @@ func make_asset_button(entry: Dictionary,action: Callable) -> Button:
  return item
 
 func select_public_asset(id: String) -> bool:
+ close_route_overlay()
  if city.public_facilities.entries.has(id):
   if city.public_facilities.price(id)>city.utility_balance():
    public_controller.cancel();road_drawer.cancel();mode="select"
-   for card in drawer_box.get_children():
+   for card in drawer_box.find_children("*","Button",true,false):
     if card is Button and card.get_meta("thumbnail_asset_id","")==id:show_money_toast(card);break
    return false
   clear_money_toast()
@@ -959,9 +1145,22 @@ func layout_bottom_hud():
  status_left.add_theme_constant_override("separation",2 if narrow else 12)
  money.get_parent().add_theme_constant_override("separation",12 if narrow else 18)
  for bar in demand_bars:bar.custom_minimum_size=Vector2(16 if narrow else 22,48 if narrow else 64)
- var width_value := minf(maxf(410,240+145*(drawer_box.get_child_count()-2)),get_viewport_rect().size.x-32)
+ var item_count:=road_lane_cards.size()+5 if chosen=="road" else drawer_box.get_child_count()
+ var nominal_width:=maxf(410,240+145*(item_count-2))
+ var tray_height:=120.0
+ if chosen=="transport":
+  var chrome:=drawer.get_theme_stylebox("panel").get_minimum_size()+drawer_scroll.get_theme_stylebox("panel").get_minimum_size()
+  nominal_width=ceilf(transport_content_minimum.x+chrome.x)
+  tray_height=maxf(tray_height,ceilf(transport_content_minimum.y+chrome.y))
+ var width_value:=minf(nominal_width,get_viewport_rect().size.x-32)
+ drawer.offset_top=drawer.offset_bottom-tray_height
  drawer.offset_left=-width_value/2
  drawer.offset_right=width_value/2
+ transport_tabs.offset_left=drawer.offset_left
+ transport_tabs.offset_right=drawer.offset_left+transport_tabs.get_combined_minimum_size().x
+ transport_tabs.offset_bottom=drawer.offset_top
+ transport_tabs.offset_top=drawer.offset_top-transport_tabs.get_combined_minimum_size().y
+ if route_overlay.visible:route_overlay.layout_list()
  if road_modes!=null:
   var margin:=344 if drawer.visible and (get_viewport_rect().size.x-width_value)/2<188 else 206
   road_modes.offset_left=16;road_modes.offset_right=172
@@ -972,8 +1171,31 @@ func layout_bottom_hud():
  position_money_toast.call_deferred()
  queue_redraw()
 
+func select_road_lanes(count: int):
+ if count not in preload("res://core/road_profile.gd").LOCAL_LANES:return
+ road_lanes=count;activate_tool("road");update_road_lane_cards();queue_redraw()
+func update_road_lane_cards():
+ for card in road_lane_cards:
+  var active: bool=int(card.get_meta("lanes"))==road_lanes
+  card.set_pressed_no_signal(active)
+  for state in ["normal","hover","pressed"]:
+   var outline: StyleBoxFlat=card.get_theme_stylebox(state).duplicate()
+   outline.border_color=Color("36b7ff") if active else Color("38515e")
+   card.add_theme_stylebox_override(state,outline)
+func toggle_road_grid():
+ road_grid_enabled=not road_grid_enabled;update_road_grid_button();queue_redraw()
+func update_road_grid_button():
+ if road_grid_button==null:return
+ road_grid_button.set_pressed_no_signal(road_grid_enabled)
+ var image:=Image.new();var ink:="#142b37" if road_grid_enabled else "#edf4f5"
+ image.load_svg_from_string('<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"><path d="M6 6h24v24H6zM14 6v24M22 6v24M6 14h24M6 22h24" fill="none" stroke="'+ink+'" stroke-width="2.5"/></svg>')
+ road_grid_button.icon=ImageTexture.create_from_image(image)
+ for state in ["normal","hover","pressed"]:road_grid_button.add_theme_stylebox_override(state,style(Color("36b7ff") if road_grid_enabled else Color("38515e")))
 func activate_tool(tool: String):
+ close_route_overlay()
  hide_asset_info();clear_money_toast()
+ if transit_line_tool!=null:transit_line_tool.cancel()
+ if transit_view!=null:transit_view.cancel();transit_view.underground=tool=="metro"
  if road_drawer!=null:road_drawer.cancel()
  if public_controller!=null:public_controller.cancel()
  cancel_zoning_drag()
@@ -991,21 +1213,63 @@ func activate_tool(tool: String):
    message=""
   "upgrade":
    var result: Dictionary=city.upgrade_chain(selected)
-   message="성장 %d개" % result.events.size() if result.ok else result.reason
+   message="" if result.ok else result.reason
 
   "traffic": toggle_traffic()
   _:
    zone="" if tool=="build_erase" else ("commercial" if tool=="build_commercial" else ("industrial" if tool=="build_industrial" else "residential"))
    mode="build" if tool.begins_with("build") else tool
  if tool=="road" and road_drawer!=null:road_drawer.arm_cursor()
+ update_road_modes()
  refresh()
 
 func refresh():
  super.refresh()
+ if route_overlay!=null and route_overlay.visible:route_overlay.synchronize()
  if money==null: return
  bind_status_events()
  refresh_status()
  money.tooltip_text=message
+
+func toggle_route_overlay():
+ if route_overlay.visible:
+  close_route_overlay();refresh();return
+ activate_tool("route_overlay")
+ var kind:String=["bus","metro","rail"][transport_tab]
+ transit_view.underground=kind=="metro"
+ transit_view.sync_visibility()
+ route_overlay.open(kind)
+ update_route_card()
+
+func close_route_overlay():
+ if route_overlay==null or not route_overlay.visible:return
+ route_overlay.close()
+ transit_line_tool.cancel()
+ if mode=="route_overlay":mode="select"
+ transit_view.underground=false
+ transit_view.sync_visibility()
+ update_route_card()
+
+func update_route_card():
+ var button:=drawer_box.get_node_or_null("Tool_transit_line") as Button
+ if button!=null:
+  button.add_theme_stylebox_override("normal",style(Color("152d3b"),Color("36b7ff") if route_overlay.visible else Color.TRANSPARENT))
+
+func cancel_route_overlay_action():
+ if transit_line_tool.kind!="":
+  transit_line_tool.cancel();mode="route_overlay";route_overlay.sync_creation()
+ elif not route_overlay.dragged.is_empty():route_overlay.cancel_drag()
+ else:close_route_overlay()
+
+func confirm_route_deletion(id:int):
+ if not route_overlay.visible or route_warning_open() or route_overlay.line_at(id).is_empty():return
+ show_route_confirmation(apply_route_deletion.bind(weakref(city),id),Callable(),"이 노선이 삭제됩니다!")
+
+func apply_route_deletion(owner:WeakRef,id:int):
+ if owner.get_ref()!=city:return
+ var result:Dictionary=city.remove_transit_line(id)
+ message="" if result.get("ok",false) or result.get("queued",false) else result.get("reason","")
+ refresh()
 
 func open_utility_settings(kind: String):
  if utility_popup.visible: utility_popup.hide()

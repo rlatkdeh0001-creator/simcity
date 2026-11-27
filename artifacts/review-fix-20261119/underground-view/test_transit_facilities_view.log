@@ -1,0 +1,10 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+FAIL split GLB rendered
+FAIL split GLB rendered
+SCRIPT ERROR: Attempt to call function 'get_image' in base 'null instance' on a null instance.
+   at: run (res://tests/test_transit_facilities_view.gd:54)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/test_transit_facilities_view.gd:54)
+       [1] click (res://tests/test_transit_facilities_view.gd:12)
+Owned toolchain process exceeded its 540.0-second limit

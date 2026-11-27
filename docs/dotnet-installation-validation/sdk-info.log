@@ -1,0 +1,52 @@
+.NET SDK:
+ Version:           10.0.404
+ Commit:            2ab2854867
+ Workload version:  10.0.400-manifests.ad9f6d83
+ MSBuild version:   18.9.15+2ab285486
+
+런타임 환경:
+ OS Name:     Windows
+ OS Version:  10.0.19045
+ OS Platform: Windows
+ RID:         win-x64
+ Base Path:   D:\tools\dotnet\sdk\10.0.404\
+
+설치된 .NET 워크로드:
+표시할 설치된 워크로드가 없습니다.
+새 매니페스트를 설치할 때 use workload sets 사용하도록 구성됩니다.
+워크로드 집합이 설치되어 있지 않습니다. "dotnet workload restore"를 실행하여 워크로드 집합을 설치하세요.
+
+Host:
+  Version:      10.0.15
+  Architecture: x64
+  Commit:       8e0f8ed231
+
+.NET SDKs installed:
+  10.0.404 [D:\tools\dotnet\sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 10.0.15 [D:\tools\dotnet\shared\Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 10.0.15 [D:\tools\dotnet\shared\Microsoft.NETCore.App]
+  Microsoft.WindowsDesktop.App 10.0.15 [D:\tools\dotnet\shared\Microsoft.WindowsDesktop.App]
+
+Other architectures found:
+  None
+
+Environment variables:
+  DOTNET_ADD_GLOBAL_TOOLS_TO_PATH          [false]
+  DOTNET_CLI_HOME                          [D:\tools\dotnet-home]
+  DOTNET_CLI_TELEMETRY_OPTOUT              [1]
+  DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE [true]
+  DOTNET_GENERATE_ASPNET_CERTIFICATE       [false]
+  DOTNET_NOLOGO                            [1]
+  DOTNET_ROOT                              [D:\tools\dotnet]
+  DOTNET_ROOT_X64                          [D:\tools\dotnet]
+
+global.json file:
+  Not found
+
+Learn more:
+  https://aka.ms/dotnet/info
+
+Download .NET:
+  https://aka.ms/dotnet/download

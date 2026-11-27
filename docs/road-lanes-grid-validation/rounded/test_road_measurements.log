@@ -1,0 +1,16 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS road preview exposes approved length and connection-angle annotations
+PASS no numeric annotation before the first click
+PASS length label reflects the actual quantized forty-eight-metre road
+PASS length box anchors above the centreline arc midpoint
+PASS right-angle connection has a ninety-degree arc and numeric box
+PASS oblique connections always show their actual angle rather than hiding outside snap tolerance
+PASS arrival endpoint also displays the connected straight angle
+PASS isolated construction keeps only its length box
+PASS curve uses the entire sampled arc length and its true half-length point
+PASS curve preserves its connection annotation
+PASS free uses the entire sampled arc length and its true half-length point
+PASS free preserves its connection annotation
+PASS cancel removes all measurement annotations
+RESULT 13/13 road measurement checks passed

@@ -1,0 +1,10 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS actual lane card selects 3 lanes and drawing mode before world input
+PASS actual lane card selects 5 lanes and drawing mode before world input
+PASS actual lane card selects 7 lanes and drawing mode before world input
+PASS actual lane card selects 8 lanes and drawing mode before world input
+NATIVE_GRADE_TRANSITIONS_PASS six actual strokes; continuous medians; three tapers; no controlled junctions

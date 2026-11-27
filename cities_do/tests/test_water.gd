@@ -214,7 +214,7 @@ func test_flow() -> bool:
  return true
 func test_city() -> bool:
  var c := City.new(100,100)
- c.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
+ c.add_road(PackedVector2Array([Vector2(10,44.5),Vector2(90,44.5)]))
  var facility: Dictionary=c.add_water_facility(Vector2(20,41),"water",1000)
  verify(facility.ok,"water prototype facility placed beside normal road")
  verify(not c.add_water_facility(Vector2(20,41),"sewage",1000).ok,"facilities cannot overlap")
@@ -236,7 +236,7 @@ func test_ui() -> bool:
  var main=load("res://main.tscn").instantiate()
  root.add_child(main)
  current_scene=main
- main.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
+ main.city.add_road(PackedVector2Array([Vector2(10,44.5),Vector2(90,44.5)]))
  var facility: Dictionary=main.city.add_water_facility(Vector2(20,41),"water",300)
  main.find_children("Bottom_power","Button",true,false)[0].pressed.emit()
  main.find_children("Bottom_water","Button",true,false)[0].pressed.emit()
@@ -267,7 +267,9 @@ func test_ui() -> bool:
  return true
 func test_demo() -> bool:
  var demo=load("res://water_demo.tscn").instantiate()
+ var initial_city=demo.city # The legacy showcase replaces the model after super._ready.
  root.add_child(demo)
+ if initial_city.simulation!=null:initial_city.simulation.shutdown()
  current_scene=demo
  verify(demo.city.buildings.size()==6 and demo.city.water.facilities.size()==2,"live demo has six valid consumers and two validated facilities")
  var state: Dictionary=demo.city.water_state()

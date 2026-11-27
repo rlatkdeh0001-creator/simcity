@@ -1,4 +1,6 @@
 extends RefCounted
+const Profile=preload("res://core/road_profile.gd")
+const Height=preload("res://core/road_height.gd")
 ## World-space ribbons keep road width consistent across axis/diagonal/curved strokes.
 static func ribbons(points: PackedVector2Array, width: float,flat_start: bool=false,flat_end: bool=false) -> Array[PackedVector2Array]:
 	# Cut fragments use butt caps: two round caps would paint over a one-cell gap.
@@ -32,11 +34,12 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 	var links := {}
 	var flat_points: Array[Vector2]=[]
 	for i in range(roads.size()):
+
 		if roads[i].get("flat_start",false):flat_points.append(roads[i].points[0])
 		if roads[i].get("flat_end",false):flat_points.append(roads[i].points[-1])
 		for end in [0,1]:
 			var p: Vector2=roads[i].points[0 if end==0 else -1]
-			var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes)
+			var key: String=preload("res://core/road_junctions.gd").merged_key(p,topology.nodes,Height.height_at(roads[i],p))
 			if not links.has(key):links[key]=[]
 			links[key].append({"road":i,"end":end})
 	var used := {}
@@ -45,23 +48,31 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		if used.has(i):continue
 		used[i]=true
 		var chain: PackedVector2Array=roads[i].points.duplicate()
+		var heights:=PackedFloat64Array()
+		for point in chain:heights.append(Height.height_at(roads[i],point))
+		var source_ids:Array=[int(roads[i].get("parcel_id",-1))]
+		var supports:Array=roads[i].get("piers",[]).duplicate(true)
 		var seams: Array[Vector2]=[]
 		for side in [0,1]:
-			if side==1:chain.reverse()
+			if side==1:chain.reverse();heights.reverse()
 			while true:
-				var key: Vector2i=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes)
+				var key: String=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes,heights[-1])
 				if topology.nodes[key].arms.size()!=2 or links[key].size()!=2:break
 				var next: Dictionary={}
 				for entry in links[key]:
 					if not used.has(entry.road):next=entry
 				if next.is_empty():break
 				var road: Dictionary=roads[next.road]
+				if Height.level(road)!=Height.level(roads[i]):break
 				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
+				if int(road.lanes)%2 and int(road.get("major_side",1))*(1 if next.end==0 else -1)!=int(roads[i].get("major_side",1))*(1 if side==0 else -1):break
 				var extension: PackedVector2Array=road.points.duplicate()
 				if next.end==1:extension.reverse()
 				seams.append(chain[-1]);used[next.road]=true
-				for j in range(1,extension.size()):chain.append(extension[j])
-		chain.reverse()
+				source_ids.append(int(road.get("parcel_id",-1)));supports.append_array(road.get("piers",[]))
+				for j in range(1,extension.size()):chain.append(extension[j]);heights.append(Height.height_at(road,extension[j]))
+		chain.reverse();heights.reverse()
+		var height_source:Dictionary={"points":chain,"heights_m":heights}
 		var smooth := PackedVector2Array()
 		for j in range(chain.size()):
 			if j==0 or j==chain.size()-1 or not seams.has(chain[j]):smooth.append(chain[j]);continue
@@ -76,14 +87,63 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				smooth.append(a*(1-t)*(1-t)+chain[j]*2*(1-t)*t+b*t*t)
 		var visual: Dictionary=roads[i].duplicate()
 		visual.points=smooth
-		visual.flat_start=flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
-		visual.flat_end=flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
+		if Height.off_ground(roads[i]):
+			visual.heights_m=PackedFloat64Array()
+			for point in smooth:visual.heights_m.append(Height.height_at(height_source,point))
+			visual.source_ids=source_ids;visual.piers=supports
+		var first_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[0],topology.nodes,heights[0])]
+		var last_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[-1],topology.nodes,heights[-1])]
+		visual.flat_start=first_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
+		visual.flat_end=last_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
 		result.append(visual)
+	return result
+
+static func clean_polygon(source:PackedVector2Array)->PackedVector2Array:
+	var polygon:=source.duplicate();var changed:=true
+	while changed and polygon.size()>=3:
+		changed=false
+		for i in range(polygon.size()):
+			var before:Vector2=polygon[posmod(i-1,polygon.size())];var point:Vector2=polygon[i];var after:Vector2=polygon[(i+1)%polygon.size()];var axis:=after-before
+			if point.distance_to(before)<.00001 or (axis.length()>.00001 and absf((point-before).cross(axis))/axis.length()<.00001):
+				polygon.remove_at(i);changed=true;break
+	return polygon
+static func outside_regions(shapes: Array[PackedVector2Array],regions: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=shapes.duplicate()
+	for region in regions:
+		var next: Array[PackedVector2Array]=[]
+		for shape in result:
+			for piece in Geometry2D.clip_polygons(shape,region):
+				piece=clean_polygon(piece)
+				if piece.size()>=3 and preload("res://core/road_parcels.gd").area(piece)>.00001 and not Geometry2D.triangulate_polygon(piece).is_empty():next.append(piece)
+		result=next
+	return result
+
+static func visible_lines(points: PackedVector2Array,bounds: Vector2,regions: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	for i in range(1,points.size()):
+		var line:=clipped_segment(points[i-1],points[i],bounds)
+		if line.size()!=2:continue
+		var delta: Vector2=line[1]-line[0]
+		if delta.length_squared()<.00000001:continue
+		var cuts: Array[float]=[0,1]
+		for region in regions:
+			for edge in range(region.size()):
+				var point=Geometry2D.segment_intersects_segment(line[0],line[1],region[edge],region[(edge+1)%region.size()])
+				if point!=null:cuts.append(clampf((point-Vector2(line[0])).dot(delta)/delta.length_squared(),0,1))
+		cuts.sort()
+		for j in range(1,cuts.size()):
+			if cuts[j]-cuts[j-1]<.00001:continue
+			var middle: Vector2=line[0]+delta*(cuts[j]+cuts[j-1])/2
+			var hidden:=false
+			for region in regions:
+				if Geometry2D.is_point_in_polygon(middle,region):hidden=true;break
+			if not hidden:result.append(PackedVector2Array([line[0]+delta*cuts[j-1],line[0]+delta*cuts[j]]))
 	return result
 
 static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 	var lines: Array[PackedVector2Array] = []
-	if road.lanes != 4: return lines
+	var offsets:=Profile.separators(road)
+	if offsets.is_empty(): return lines
 	var phase := 0.0
 	for i in range(road.points.size()-1):
 		var a: Vector2 = road.points[i]
@@ -97,9 +157,13 @@ static func lane_marks(road: Dictionary) -> Array[PackedVector2Array]:
 			var cycle := fposmod(phase+start,1.25)
 			var end := minf(length,start+(0.75-cycle if cycle<0.75 else 1.25-cycle))
 			if cycle < 0.75:
-				for sign_value in [-1,1]:
-					var shift: Vector2 = normal*road.width*(3.25/16.0)*sign_value
+				for offset in offsets:
+					var shift: Vector2 = normal*offset
 					lines.append(PackedVector2Array([a+direction*start+shift,a+direction*end+shift]))
 			start = end+0.00001
 		phase += length
 	return lines
+static func shoulder_marks(road: Dictionary) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array]=[]
+	for offset in Profile.shoulder_offsets(road):result.append(Profile.offset_path(road.points,offset))
+	return result

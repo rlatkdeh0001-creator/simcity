@@ -1,0 +1,269 @@
+{
+  "source": {
+    "fixture_commit": "727a9e1ebe38faa01d0ac500028349c854a9e70d",
+    "fixture_git_blob_sha256": {
+      "tools/validate_population_live.gd": "b97a3be043334fa36b1ddf96908eefef054b4bc7c6f252e1715549f6c0817884",
+      "tools/validate_csharp_population_live.gd": "fd5ac7352883623d45e2fe5f92287dc0c6977c2ba67be7ace8b262109c41f217"
+    },
+    "tested_head": "4cda9db6931086ef0101172c39ff5272ecf4a70f",
+    "tracked_runtime_changes_sha256": {
+      "cities_do/project.godot": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29"
+    },
+    "project_sha256": "45bba4dc2b247c86c843135ddb30035916fe73e01b811f72034cca15d9735b29",
+    "harness_sha256": {
+      "compare_renderers_large_20261127.py": "f1498ff51eb9b72e292e7d04ca15fe7aec18d94afb844e1111a4b24f94837ead",
+      "compare_renderers_large_20261127.gd": "53982ab1122fe93b0d2cbd8f6a25a87dd9dd5b9bb443352686edd573cb561a72"
+    },
+    "wall_limit_s": 95,
+    "process_guard_s": 105,
+    "rss_tree_limit_bytes": 6442450944
+  },
+  "runs": [
+    {
+      "method": "gl_compatibility",
+      "driver": "opengl3",
+      "workload": "paused",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "frames": 1922,
+      "elapsed_usec": 8003157,
+      "average_ms": 4.1639734651404785,
+      "p95_ms": 4.742,
+      "graphics_device_log": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/gl_compatibility/paused"
+    },
+    {
+      "method": "gl_compatibility",
+      "driver": "opengl3",
+      "workload": "live_1x",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 144.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 3
+      },
+      "frames": 1899,
+      "elapsed_usec": 8000390,
+      "average_ms": 4.2129489204844655,
+      "p95_ms": 4.949,
+      "graphics_device_log": "OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/gl_compatibility/live_1x"
+    },
+    {
+      "method": "forward_plus",
+      "driver": "vulkan",
+      "workload": "paused",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "frames": 3160,
+      "elapsed_usec": 8002025,
+      "average_ms": 2.5322863924050636,
+      "p95_ms": 3.089,
+      "graphics_device_log": "Vulkan 1.4.329 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/forward_plus/paused"
+    },
+    {
+      "method": "forward_plus",
+      "driver": "vulkan",
+      "workload": "live_1x",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 96.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 2
+      },
+      "frames": 2583,
+      "elapsed_usec": 8000320,
+      "average_ms": 3.097297715834301,
+      "p95_ms": 3.945,
+      "graphics_device_log": "Vulkan 1.4.329 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/forward_plus/live_1x"
+    },
+    {
+      "method": "mobile",
+      "driver": "vulkan",
+      "workload": "paused",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "frames": 2730,
+      "elapsed_usec": 8002059,
+      "average_ms": 2.931157142857143,
+      "p95_ms": 4.409,
+      "graphics_device_log": "Vulkan 1.4.329 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/mobile/paused"
+    },
+    {
+      "method": "mobile",
+      "driver": "vulkan",
+      "workload": "live_1x",
+      "recipe_sha256": "05cbd8fee33da2bee17c6ee99a617f5a46b1800be8fbab7b4acefce279729d55",
+      "initial_sha256": "8687ed0370bd7ab2d8671be72db2a4f91cc82aa5113d434ce0785184373acd85",
+      "camera_cell": [
+        57.0,
+        47.5
+      ],
+      "camera_origin": [
+        840.2999877929688,
+        -248.3499755859375
+      ],
+      "workplace_id": 61,
+      "workplace_asset": "small-2x2-auto-02",
+      "initial": {
+        "buildings": 61,
+        "clock_seconds": 0.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 0
+      },
+      "final": {
+        "buildings": 61,
+        "clock_seconds": 96.0,
+        "frozen_cycles": 0,
+        "funds": 50000,
+        "households": 120,
+        "population": 240,
+        "published_tick": 2
+      },
+      "frames": 2637,
+      "elapsed_usec": 8002308,
+      "average_ms": 3.0346257110352672,
+      "p95_ms": 4.846,
+      "graphics_device_log": "Vulkan 1.4.329 - Forward Mobile - Using Device #0: NVIDIA - NVIDIA GeForce RTX 2070 SUPER",
+      "evidence": "artifacts/renderer-compare-20261126/large-20261127/mobile/live_1x"
+    }
+  ]
+}

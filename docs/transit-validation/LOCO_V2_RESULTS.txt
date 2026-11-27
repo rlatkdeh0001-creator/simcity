@@ -1,0 +1,14 @@
+High-speed lead car v2 - final evidence
+ID: train-loco-01 (stable ID), new model train-loco-01-v2.glb.
+Original geometry: continuous rounded superelliptic loft with smooth low nose over the forward third; attached low wrapped windshield, continuous teal band, integral skirt, single low folded pantograph. No separate truck cabin, bonnet, bumper or exhaust.
+Body length: 9.0m. Overall including couplers: 10.0 x 3.0 x 3.8m. Evaluated triangles: 3940. Rail datum z=0; gauge 1.435m; coupler anchor at body ends z=1.0m; heads project 0.5m per end.
+Palette matches unchanged coach v2. Rear width/gangway/band datum are coordinated; requested 3.8m maximum lead-car height means its shell roof at 3.66m remains below the existing 4.0m coach roof. The existing coach source was not altered to conceal that difference.
+New source: assets/vehicle-fleet/train-loco-01/v2/vehicle.blend, spec.json, build.py, preview.png.
+New runtime output: cities_do/assets/vehicles/train-loco-01-v2.glb and sprites/train-loco-01-v2/000..315.png (8 images). Catalog and render manifest select v2; v1 source/model/sprites remain untouched.
+Blender 4.3.2 CPU Cycles 24 samples; transparent 430x245 PNGs; 30-degree orthographic camera, existing fleet renderer and palette helper.
+Actual Godot 4.6.3 GL Compatibility output: LOCO_V2_GRAPHICAL_PASS 12 checks; same 32m consist in side and 3/4 views.
+Per view checks: catalog selects v2, coupler head 1 contact, head 2 contact, 32m total, 3.8m height/3m width, front points along the consist's positive X direction.
+One unmodified framebuffer: docs/transit-validation/loco-v2-consist-1600.png (1600x1000); shows the lead car and two existing coach-v2 instances in true side and front three-quarter views.
+Reproduce safely: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_loco_v2.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_transit_loco_v2.gd
+Limits: visual/asset inspection only; no transport operation or full-game C# validation. User re-review pending. No main integration/push. Prior road-edge batch remains at local commit 6f41a95 without regeneration.

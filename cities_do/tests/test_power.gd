@@ -143,7 +143,8 @@ func test_ui() -> bool:
  var main=load("res://main.tscn").instantiate()
  root.add_child(main)
  current_scene=main
- main.city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
+ # Preserve the original curb edge with the current three-cell-wide local profile.
+ main.city.add_road(PackedVector2Array([Vector2(10,44.5),Vector2(90,44.5)]))
  var plant: Dictionary=main.city.add_power_plant(Vector2(20,41),300)
  verify(plant.ok,"player can place prototype generator beside road")
  main.find_children("Bottom_power","Button",true,false)[0].pressed.emit()

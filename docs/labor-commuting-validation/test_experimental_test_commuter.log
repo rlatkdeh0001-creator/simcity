@@ -1,0 +1,9 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS worker runtime source exists
+PASS prepare real roads and frontage
+PASS continuous directed boundary entry and return exit
+PASS length includes real directed lanes and frontage access
+PASS every lane seam continuous and directed
+PASS worker movement and pure snapshot API exists
+RESULT 6/6

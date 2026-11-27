@@ -1,0 +1,14 @@
+Sidewalk transit stops - final results
+Existing train station remains at commit57aea50,32x24x10.56m,14493tri; its source/capture were not changed in this batch.
+Current actual road rule: cities_do/core/road_profile.gd. Local2/3 lane width_grade=3; total12m, asphalt10.5m, per-side sidewalk0.75m. This was evaluated by the actual GDScript profile in the graphical fixture, not assumed from an art-request footprint.
+bus-stop-01 v2: sidewalk body8 x0.72 x3.28m,2942tri; v1 (8x3m) preserved. Original X extent/height/palette/shelter/benches/sign kept; depth repacked to fit minimum sidewalk. New v2 source/model/preview selected by catalog.
+taxi-stop-01: sidewalk body6 x0.72 x3.08m,1716tri; one small canopy, one bench, TAXI pole and slim information blade. Separate road decal outlines one5.2 x2.3m taxi bay.
+All source/body geometry lies within sidewalk depth0..0.72m. Road paint has negative local BlenderY and is a separately named thin mesh excluded from sidewalk occupancy bounds. Overall GLB depth therefore includes road markings; it is not the sidewalk footprint.
+Origins are the asphalt-to-sidewalk curb-contact edge centres (not the outer road/zoning edge). Blender inward+Y/front-Y; glTF inward-Z/front+Z. Future placement must anchor at asphalt_width/2, with a sidewalk-width check, rather than attach the body outside road.width/2. Metadata placement=road_edge, placement_surface=sidewalk_only, zoning_occupancy_cells=0.
+New .blend/script/spec/transparent800x680 preview for taxi-stop and bus-stop/v2; no existing original overwritten. Blender4.3.2 CPU Cycles24,30-degree source previews, existing original helpers and MIT notices reused.
+Actual Godot4.6.3 GL Compatibility: SIDEWALK_STOPS_GRAPHICAL_PASS 24 checks; sidewalk=0.75m,body=0.72m;40 actual grid cells;no stop-cell overlap.
+Two views in one raw1600x1000 framebuffer docs/transit-validation/sidewalk-stops-1600.png: ordinary2-lane road with bus/taxi plus actual RoadGeometry ribbons and RoadParcels4-deep zoning cells, and top-down curb/grid boundary verification. Blue line is road outer edge/first zoning-cell edge. Bus/taxi models are fixture-only.
+Checks per stop per view: body behind curb, body before zoning edge, body fits sidewalk,zero-occupancy metadata, no overlap against every actual parcel polygon,separate decal node. Two stops x two views.
+Generate: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_sidewalk_transit_stops.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_sidewalk_transit_stops.gd
+Limits: static registration and geometry/parcel non-overlap only; actual live road attachment, passenger walking, stopping/traffic operation and full-game C# runtime are not implemented/verified. No game logic/economic changes, main integration or push.

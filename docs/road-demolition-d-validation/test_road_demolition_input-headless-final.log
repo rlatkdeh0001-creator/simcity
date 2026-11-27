@@ -1,0 +1,26 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS native viewport bulldozer click activates actual tool
+PASS hover previews full free-end to true-junction interval, not legacy one-cell cut
+PASS actual road mouse press does not mutate before release
+PASS actual click release deletes whole preview and keeps junction's opposite arm
+PASS successful player demolition clears prior error and has no completion notice
+PASS native viewport bulldozer click activates actual tool
+PASS forward native drag begins at exact projected press and advances eight metres
+PASS native drag grows in two-world-cell ceiling increments
+PASS distant native drag red interval stops at actual cross junction
+PASS multiple real motion frames and clamped preview do not mutate road data
+PASS release deletes precisely red preview, leaving start fragment and junction onward untouched
+PASS committed preview is cleared rather than left showing a removed span
+PASS native viewport bulldozer click activates actual tool
+PASS escape cancels captured selection without later release deletion
+PASS native viewport bulldozer click activates actual tool
+PASS right cancels captured selection without later release deletion
+PASS native viewport bulldozer click activates actual tool
+PASS tab cancels captured selection without later release deletion
+PASS native viewport bulldozer click activates actual tool
+PASS hud_release cancels captured selection without later release deletion
+PASS native viewport bulldozer click activates actual tool
+PASS reverse native drag grows backwards from exact press
+PASS reverse release removes the exact quantized preview interval
+RESULT 23/23 road demolition input checks passed

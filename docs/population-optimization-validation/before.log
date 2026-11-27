@@ -1,0 +1,7 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+POPULATION_OPT before {"demand_calls":1,"demand_full_scans":1,"demand_ms":0.007,"development_ms":0.512,"match_jobs_calls":3,"match_jobs_ms":0.004,"population":0,"population_advance_ms":0.015,"population_after":0,"sync_excluding_jobs_ms":0.006,"total_tick_ms":0.543}
+POPULATION_OPT before {"demand_calls":64,"demand_full_scans":64,"demand_ms":180.697,"development_ms":180.937,"match_jobs_calls":2,"match_jobs_ms":6.152,"population":240,"population_advance_ms":9.223,"population_after":240,"sync_excluding_jobs_ms":0.216,"total_tick_ms":190.179}
+POPULATION_OPT before {"demand_calls":64,"demand_full_scans":64,"demand_ms":2964.543,"development_ms":2965.217,"match_jobs_calls":2,"match_jobs_ms":95.333,"population":1000,"population_advance_ms":143.652,"population_after":1000,"sync_excluding_jobs_ms":1.084,"total_tick_ms":3108.893}
+POPULATION_OPT before {"demand_calls":64,"demand_full_scans":64,"demand_ms":75405.949,"development_ms":75406.674,"match_jobs_calls":2,"match_jobs_ms":2648.647,"population":5000,"population_advance_ms":3825.433,"population_after":5000,"sync_excluding_jobs_ms":6.214,"total_tick_ms":79232.133}
+POPULATION_OPT_PASS before

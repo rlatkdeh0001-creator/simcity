@@ -1,0 +1,110 @@
+[
+  {
+    "name": "test_underground_rail",
+    "exit_code": 0,
+    "passed_lines": 100,
+    "errors": []
+  },
+  {
+    "name": "test_underground_rail_ui",
+    "exit_code": 0,
+    "passed_lines": 32,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_rail",
+    "exit_code": 0,
+    "passed_lines": 92,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_rail_ui",
+    "exit_code": 0,
+    "passed_lines": 25,
+    "errors": []
+  },
+  {
+    "name": "test_underground_road_ui",
+    "exit_code": 0,
+    "passed_lines": 64,
+    "errors": []
+  },
+  {
+    "name": "test_rail_catenary",
+    "exit_code": 0,
+    "passed_lines": 87,
+    "errors": []
+  },
+  {
+    "name": "test_rail_catenary_render",
+    "exit_code": 0,
+    "passed_lines": 48,
+    "errors": []
+  },
+  {
+    "name": "test_terminal_turnback",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_terminal_turnback_edit",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_terminal_turnback_catenary",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_view",
+    "exit_code": 0,
+    "passed_lines": 35,
+    "errors": []
+  },
+  {
+    "name": "test_transit_routes",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_geometry",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_render",
+    "exit_code": 0,
+    "passed_lines": 28,
+    "errors": []
+  },
+  {
+    "name": "test_transit_operations",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_transit_operation_safety",
+    "exit_code": 0,
+    "passed_lines": 0,
+    "errors": []
+  },
+  {
+    "name": "test_elevated_roads",
+    "exit_code": 0,
+    "passed_lines": 128,
+    "errors": []
+  },
+  {
+    "name": "test_underground_roads",
+    "exit_code": 0,
+    "passed_lines": 90,
+    "errors": []
+  }
+]

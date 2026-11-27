@@ -1,0 +1,515 @@
+extends RefCounted
+## Display-only metres above rail datum; world XY remains in four-metre cells.
+const Height=preload("res://core/road_height.gd")
+const POLE:=Color("6f7579")
+const BRACKET:=Color("9aa1a4")
+const WIRE:=Color("2a2e30")
+static func line(kind:String,a:Vector2,b:Vector2,ha:float,hb:float,color:Color,footprint:PackedVector2Array)->Dictionary:
+ return {"kind":kind,"a":a,"b":b,"a_height":ha,"b_height":hb,"color":color,"footprint":footprint}
+static func normal_at(points:PackedVector2Array,index:int)->Vector2:
+ var last:=points.size()-1
+ var before:Vector2=(points[index]-points[index-1]).normalized() if index>0 else (points[1]-points[0]).normalized()
+ var after:Vector2=(points[index+1]-points[index]).normalized() if index<last else before
+ if points[0].distance_to(points[-1])<.0001 and index in [0,last]:
+  before=(points[0]-points[-2]).normalized();after=(points[1]-points[0]).normalized()
+ var tangent:Vector2=(before+after).normalized()
+ return Vector2(-tangent.y,tangent.x)
+static func sample(points:PackedVector2Array,distance:float)->Dictionary:
+ var remaining:=distance
+ for i in range(1,points.size()):
+  var length:=points[i-1].distance_to(points[i])
+  if remaining<=length or i==points.size()-1:
+   var tangent:=(points[i]-points[i-1]).normalized()
+   return {"point":points[i-1]+tangent*remaining,"normal":interpolated_normal(normal_at(points,i-1),normal_at(points,i),remaining/length)}
+  remaining-=length
+ return {}
+static func interpolated_normal(first:Vector2,last:Vector2,t:float)->Vector2:
+ return first.lerp(last,clampf(t,0,1)).normalized()
+static func length_of(points:PackedVector2Array)->float:
+ var result:=0.0
+ for i in range(1,points.size()):result+=points[i-1].distance_to(points[i])
+ return result
+static func wire_anchor(at:Dictionary,side:float,portals:Array,route_id:int)->Vector2:
+ for portal:Dictionary in portals:
+  if portal.allowed and portal.centres.has(route_id) and at.point.distance_to(portal.centres[route_id])<.0001:
+   return portal.tracks[route_id][0 if side<0 else 1]
+ return at.point+at.normal*.5*side
+static func append_span(output:Array,points:PackedVector2Array,start:float,finish:float,portals:Array=[],route_id:int=-1):
+ var first:=sample(points,start);var last:=sample(points,finish)
+ # A fixed wire is a chord between supports, not a texture bent around the track.
+ for side:float in [-1.0,1.0]:
+  var a:Vector2=wire_anchor(first,side,portals,route_id)
+  var b:Vector2=wire_anchor(last,side,portals,route_id)
+  append_wire_pair(output,a,b)
+static func append_wire_pair(output:Array,a:Vector2,b:Vector2):
+ var count:=maxi(2,ceili(a.distance_to(b)/2)*2)
+ for i in range(count):
+  var t0:=float(i)/count;var t1:=float(i+1)/count
+  var p:=a.lerp(b,t0);var q:=a.lerp(b,t1)
+  var n:Vector2=(b-a).normalized().orthogonal()*.45
+  var footprint:=PackedVector2Array([p-n,q-n,q+n,p+n])
+  output.append(line("contact",p,q,3.8,3.8,WIRE,footprint))
+  output.append(line("messenger",p,q,4.8-2*t0*(1-t0),4.8-2*t1*(1-t1),WIRE,footprint))
+static func crossover_supports(x:Dictionary,city=null)->PackedVector2Array:
+ # The station-side support shares the required 1m lot setback support. The far
+ # support moves 1m inside the fixed 32m host only when its poles would break
+ # another station lot's 1m setback (ports facing at exactly 32m: 30m span).
+ var far:Vector2=x.end
+ if city!=null and far_end_at_station(x,city):far-=x.axis
+ return PackedVector2Array([(x.start+x.axis)/4.0,far/4.0])
+static func far_end_at_station(x:Dictionary,city)->bool:
+ var end:Vector2=x.end/4.0
+ var side:=Vector2(-x.axis.y,x.axis.x)
+ for lot:Dictionary in city.public_facilities.lots:
+  if lot.get("public_asset_id","")!="train-station-01" or lot.id==x.station_id:continue
+  # Same 1m lot mask and pole bases (+/-4m) as the ordinary support check.
+  var masks:Array=Geometry2D.offset_polygon(lot.polygon,.25,Geometry2D.JOIN_MITER)
+  for sign_value:float in [-1.0,1.0]:
+   if not base_allowed(end+side*sign_value,masks):return true
+ return false
+static func ground_crossover(x:Dictionary,city)->bool:
+ var axis:Vector2=x.axis
+ var origin:Vector2=x.start/4.0
+ for route:Dictionary in city.transit_routes:
+  if route.kind!="rail":continue
+  for i in range(1,route.points.size()):
+   var a:Vector2=route.points[i-1]-origin;var b:Vector2=route.points[i]-origin
+   if absf(a.cross(axis))>.0005 or absf(b.cross(axis))>.0005:continue
+   if maxf(a.dot(axis),b.dot(axis))<=.0005 or minf(a.dot(axis),b.dot(axis))>=7.9995:continue
+   if route.get("covered",false) or route.get("underground",false) or not is_zero_approx(float(route.rail_top_z_m)) or hidden_segment(route,i-1):return false
+ return true
+static func append_crossover(output:Array,x:Dictionary,city,masks:Array):
+ if not ground_crossover(x,city):return
+ var points:=crossover_supports(x,city)
+ var length:=length_of(points)
+ if not support_allowed(points,0,masks) or not support_allowed(points,length,masks):return
+ var normal:=normal_at(points,0)*.5
+ var start:=output.size()
+ for side:float in [-1.0,1.0]:append_wire_pair(output,points[0]+normal*side,points[1]-normal*side)
+ for i in range(start,output.size()):
+  output[i].crossover_key=x.key
+  output[i].route_id=-1
+static func append_poles(output:Array,points:PackedVector2Array,distance:float):
+ var at:=sample(points,distance)
+ for side:float in [-1.0,1.0]:
+  var base:Vector2=at.point+at.normal*side
+  var track:Vector2=at.point+at.normal*.5*side
+  var footprint:=PackedVector2Array([base,track])
+  output.append(line("pole",base,base,0,5.3,POLE,PackedVector2Array([base])))
+  output.append(line("cap",base-at.normal*.075,base+at.normal*.075,5.3,5.3,POLE,PackedVector2Array([base])))
+  output.append(line("horizontal",base,track,4.8,4.8,BRACKET,footprint))
+  output.append(line("diagonal",base,track,3.9,4.8,BRACKET,footprint))
+  output.append(line("pull",track,track,4.8,3.8,BRACKET,footprint))
+  for i in range(output.size()-5,output.size()):
+   output[i].support=base;output[i].centre=at.point;output[i].near=(base.x+base.y>track.x+track.y)
+static func distance_on(points:PackedVector2Array,point:Vector2)->float:
+ var travelled:=0.0
+ for i in range(1,points.size()):
+  var closest:=Geometry2D.get_closest_point_to_segment(point,points[i-1],points[i])
+  if closest.distance_to(point)<.0001:return travelled+points[i-1].distance_to(closest)
+  travelled+=points[i-1].distance_to(points[i])
+ return -INF
+static func cross_section(route:Dictionary,origin:Vector2,normal:Vector2,offset:float=0)->Dictionary:
+ var points:PackedVector2Array=route.points
+ var best:Dictionary={};var nearest:=INF
+ for i in range(1,points.size()):
+  if hidden_segment(route,i-1):continue
+  var a:=points[i-1]+normal_at(points,i-1)*offset
+  var b:=points[i]+normal_at(points,i)*offset
+  var edge:=b-a;var denominator:=edge.cross(normal)
+  if absf(denominator)<.000001:continue
+  var t:float=(origin-a).cross(normal)/denominator
+  if t<-.00001 or t>1.00001:continue
+  var hit:=a+edge*clampf(t,0,1)
+  if hit.distance_to(origin)<nearest:
+   nearest=hit.distance_to(origin);best={"point":hit,"normal":Vector2(-edge.y,edge.x).normalized()}
+ return best
+static func plan_portals(commands:Array,routes:Array,masks:Array=[])->Array:
+ var eligible:Array=routes.filter(func(r):return r.kind=="rail" and not r.get("covered",false) and not r.get("underground",false) and is_zero_approx(float(r.rail_top_z_m)))
+ # Stable longer-route priority, independent of insertion order.
+ eligible.sort_custom(func(a,b):return length_of(a.points)>length_of(b.points) if not is_equal_approx(length_of(a.points),length_of(b.points)) else a.id<b.id)
+ var portals:Array=[]
+ for command:Dictionary in commands:
+  if command.kind!="pole":continue
+  var own:Dictionary={}
+  for r:Dictionary in eligible:
+   if r.id==command.route_id:own=r;break
+  if own.is_empty():continue
+  for other:Dictionary in eligible:
+   if other.id==own.id:continue
+   var intrudes:=false
+   for i in range(1,other.points.size()):
+    if not hidden_segment(other,i-1) and Geometry2D.get_closest_point_to_segment(command.a,other.points[i-1],other.points[i]).distance_to(command.a)<.95:intrudes=true
+   if not intrudes:continue
+   var main:Dictionary=own if eligible.find(own)<eligible.find(other) else other
+   var branch:Dictionary=other if main.id==own.id else own
+   var portal:=portal_at(main,branch,command.centre,masks)
+   if portal.is_empty() or not add_portal(portals,portal):continue
+   if not portal.allowed:
+    for direction:float in [-1.0,1.0]:
+     var edge:=nearest_clear_portal(main,branch,portal,direction,masks)
+     if not edge.is_empty():add_portal(portals,edge)
+ return portals
+static func add_portal(portals:Array,portal:Dictionary)->bool:
+ for existing:Dictionary in portals:
+  if existing.main_id!=portal.main_id or existing.branch_id!=portal.branch_id:continue
+  if existing.allowed==portal.allowed and existing.centres[portal.main_id].distance_to(portal.centres[portal.main_id])<.0001:return false
+ portals.append(portal)
+ return true
+static func portal_at(main:Dictionary,branch:Dictionary,origin:Vector2,masks:Array)->Dictionary:
+ # Perpendicular to the main segment nearest the candidate support.
+ var normal:=Vector2.ZERO;var nearest:=INF
+ for i in range(1,main.points.size()):
+  var a:Vector2=main.points[i-1];var b:Vector2=main.points[i]
+  var distance:=origin.distance_squared_to(Geometry2D.get_closest_point_to_segment(origin,a,b))
+  if distance<nearest:
+   nearest=distance;normal=Vector2(-(b-a).y,(b-a).x).normalized()
+ var m:=cross_section(main,origin,normal);var b:=cross_section(branch,origin,normal)
+ if m.is_empty() or b.is_empty():return {}
+ var separation:float=(b.point-m.point).dot(normal)
+ if absf(separation)<.0001 or absf(separation)>=1.95:return {}
+ var tracks:Dictionary={}
+ for r:Dictionary in [main,branch]:
+  tracks[r.id]=[]
+  for side:float in [-.5,.5]:
+   var track:=cross_section(r,origin,normal,side)
+   if track.is_empty():return {}
+   tracks[r.id].append(track.point)
+ var low:Vector2=m.point+normal*(minf(0,separation)-1)
+ var high:Vector2=m.point+normal*(maxf(0,separation)+1)
+ return {"main_id":main.id,"branch_id":branch.id,"centres":{main.id:m.point,branch.id:b.point},"tracks":tracks,"a":low,"b":high,"allowed":base_allowed(low,masks) and base_allowed(high,masks)}
+static func nearest_clear_portal(main:Dictionary,branch:Dictionary,portal:Dictionary,direction:float,masks:Array)->Dictionary:
+ var points:PackedVector2Array=main.points
+ var start:=distance_on(points,portal.centres[main.id]);var end:=length_of(points)
+ if not is_finite(start):return {}
+ # A candidate on a mask edge can move into it when the rail's local
+ # normal is replaced by the portal's common normal. Keep that original
+ # section rejected, but restore an anchor on the clear side of the mask.
+ var blocked:=start
+ for step in range(1,33):
+  var clear:=clampf(start+direction*step*.25,0,end)
+  if clear==blocked:return {}
+  var candidate:=portal_at(main,branch,sample(points,clear).point,masks)
+  if candidate.is_empty():return {}
+  if not candidate.allowed:
+   blocked=clear;continue
+  for i in range(17):
+   var mid:=(clear+blocked)/2
+   var tested:=portal_at(main,branch,sample(points,mid).point,masks)
+   if not tested.is_empty() and tested.allowed:
+    clear=mid;candidate=tested
+   else:blocked=mid
+  return candidate
+ return {}
+static func apply_portals(commands:Array,portals:Array)->Array:
+ var result:Array=[]
+ for command:Dictionary in commands:
+  var replaced:=false
+  if command.has("centre"):
+   for portal:Dictionary in portals:
+    if portal.centres.has(command.route_id) and command.centre.distance_to(portal.centres[command.route_id])<.0001:replaced=true;break
+  if not replaced:result.append(command)
+ for portal:Dictionary in portals:
+  if not portal.allowed:continue
+  var normal:Vector2=(portal.b-portal.a).normalized()
+  var footprint:=PackedVector2Array([portal.a,portal.b])
+  var beam:=line("portal",portal.a,portal.b,5.3,5.3,POLE,footprint)
+  beam.portal_id=portal.a;beam.route_id=portal.main_id
+  beam.support=portal.a if portal.a.dot(Vector2.ONE)>portal.b.dot(Vector2.ONE) else portal.b
+  beam.near=true;result.append(beam)
+  for base:Vector2 in [portal.a,portal.b]:
+   for item:Dictionary in [line("pole",base,base,0,5.3,POLE,PackedVector2Array([base])),line("cap",base-normal*.075,base+normal*.075,5.3,5.3,POLE,PackedVector2Array([base]))]:
+    item.route_id=portal.main_id;item.support=base;item.near=base.x+base.y>(portal.a+portal.b).dot(Vector2.ONE)/2;result.append(item)
+  for id in portal.tracks:
+   for track:Vector2 in portal.tracks[id]:
+    for item:Dictionary in [line("portal_tube",track,track,5.3,4.8,BRACKET,PackedVector2Array([track])),line("pull",track,track,4.8,3.8,BRACKET,PackedVector2Array([track]))]:
+     item.route_id=id;item.portal_id=portal.a;item.support=beam.support;item.near=true;result.append(item)
+ return result
+static func combine_inner_poles(commands:Array)->Array:
+ var poles:Array=commands.filter(func(c):return c.kind=="pole" and c.has("centre"))
+ var merged:Dictionary={}
+ for i in range(poles.size()):
+  var a:Dictionary=poles[i];var key:Variant=[a.route_id,a.support]
+  if merged.has(key):continue
+  for j in range(i+1,poles.size()):
+   var b:Dictionary=poles[j];var other:Variant=[b.route_id,b.support]
+   if a.route_id==b.route_id or merged.has(other) or a.a.distance_to(b.a)>.15001:continue
+   if (b.centre-a.centre).dot(a.a-a.centre)<=0 or (a.centre-b.centre).dot(b.a-b.centre)<=0:continue
+   var common:Vector2=(a.a+b.a)/2
+   merged[key]=common;merged[other]=common;break
+ for command:Dictionary in commands:
+  if not command.has("support"):continue
+  var key:Variant=[command.route_id,command.support]
+  if not merged.has(key):continue
+  var base:Vector2=merged[key];var delta:Vector2=base-command.support
+  if command.kind in ["pole","cap"]:command.a+=delta;command.b+=delta;command.footprint=PackedVector2Array([base])
+  elif command.kind in ["horizontal","diagonal"]:command.a=base;command.footprint=PackedVector2Array([base,command.b])
+  elif command.kind=="pull":command.footprint=PackedVector2Array([base,command.b])
+  command.support=base
+ return commands
+static func spacing_m(radius_m:float)->float:
+ if radius_m>=512:return 32.0
+ return maxf(8.0,floor(sqrt(2*radius_m)/4)*4)
+static func radius_at(points:PackedVector2Array,index:int)->float:
+ if index<=0 or index>=points.size()-1:return INF
+ var a:=points[index]-points[index-1];var b:=points[index+1]-points[index]
+ var cross:=absf(a.cross(b))
+ if cross<.0000001:return INF
+ return a.length()*b.length()*(a+b).length()/cross*2.0
+static func hidden_segment(route:Dictionary,index:int)->bool:
+ # Optional display-only segment masks: zero-based edges of route.points.
+ # There is no tunnel/grade editor in this stage; never rewrite the route schema.
+ return index in route.get("covered_segments",[]) or index in route.get("underground_segments",[])
+static func forbidden_intervals(points:PackedVector2Array,masks:Array)->Array:
+ if masks.is_empty():return []
+ var intervals:Array=[];var travelled:=0.0
+ var first_normal:=normal_at(points,0)
+ for i in range(1,points.size()):
+  var a:=points[i-1];var b:=points[i];var length:=a.distance_to(b)
+  var last_normal:=normal_at(points,i)
+  var axis:=(b-a).normalized()
+  for side:float in [-1.0,1.0]:
+   # Follow the same interpolated normal as the emitted pole. Chords only
+   # locate crossings; refine each cut against the actual pole trajectory.
+   var base_at:=func(t:float)->Vector2:return a+axis*(length*t)+interpolated_normal(first_normal,last_normal,t)*side
+   var steps:=1 if first_normal.is_equal_approx(last_normal) else 4
+   var sweep:=PackedVector2Array()
+   for step in range(steps+1):sweep.append(base_at.call(float(step)/steps))
+   for mask:PackedVector2Array in masks:
+    for interval:Vector2 in mask_cuts(sweep,base_at,mask,length):
+     intervals.append([travelled+interval.x,travelled+interval.y])
+  travelled+=length
+  first_normal=last_normal
+ intervals.sort_custom(func(a,b):return a[0]<b[0])
+ var merged:Array=[]
+ for interval:Array in intervals:
+  if not merged.is_empty() and interval[0]<=merged[-1][1]+.00001:merged[-1][1]=maxf(merged[-1][1],interval[1])
+  else:merged.append(interval)
+ return merged
+static func mask_cuts(sweep:PackedVector2Array,base_at:Callable,mask:PackedVector2Array,length:float)->Array:
+ var steps:=sweep.size()-1
+ var cuts:Array[float]=[0.0]
+ for i in range(steps):
+  var p:=sweep[i];var q:=sweep[i+1]
+  for j in range(mask.size()):
+   var hit:Variant=Geometry2D.segment_intersects_segment(p,q,mask[j],mask[(j+1)%mask.size()])
+   if hit!=null:cuts.append((i+clampf(p.distance_to(hit)/p.distance_to(q),0,1))/steps)
+  cuts.append(float(i+1)/steps)
+ cuts.sort()
+ var probes:Array[float]=[0.0]
+ for i in range(1,cuts.size()):
+  if cuts[i]-cuts[i-1]>.0000001:probes.append((cuts[i-1]+cuts[i])/2)
+ probes.append(1.0)
+ var blocked:=inside_support_mask(sweep[0],mask)
+ var start:=0.0
+ var result:Array=[]
+ for i in range(1,probes.size()):
+  var next_blocked:=inside_support_mask(base_at.call(probes[i]),mask)
+  if next_blocked==blocked:continue
+  var clear:=probes[i] if blocked else probes[i-1]
+  var inside:=probes[i-1] if blocked else probes[i]
+  for k in range(24):
+   var mid:=(clear+inside)/2
+   if inside_support_mask(base_at.call(mid),mask):inside=mid
+   else:clear=mid
+  # Retain the clear side even after resampling the segment at chainage.
+  var boundary:=clampf(clear*length+(.00005 if blocked else -.00005),0,length)
+  if blocked:result.append(Vector2(start,boundary))
+  else:start=boundary
+  blocked=next_blocked
+ if blocked:result.append(Vector2(start,length))
+ return result
+static func inside_support_mask(point:Vector2,mask:PackedVector2Array)->bool:
+ # Use the actual edge coordinates, not Geometry2D's quantized polygon test:
+ # the latter can classify a base just inside a metre of setback as outside.
+ var inside:=false
+ var a:=mask[-1]
+ for b:Vector2 in mask:
+  if (a.y>point.y)!=(b.y>point.y):
+   var x:float=a.x+(b.x-a.x)*(point.y-a.y)/(b.y-a.y)
+   if point.x<x:inside=not inside
+  a=b
+ return inside
+static func support_allowed(points:PackedVector2Array,distance:float,masks:Array)->bool:
+ var at:=sample(points,distance)
+ for side:float in [-1.0,1.0]:
+  if not base_allowed(at.point+at.normal*side,masks):return false
+ return true
+static func base_allowed(point:Vector2,masks:Array)->bool:
+ for mask:PackedVector2Array in masks:
+  if not inside_support_mask(point,mask):continue
+  var edge_distance:=INF
+  for i in range(mask.size()):edge_distance=minf(edge_distance,point.distance_to(Geometry2D.get_closest_point_to_segment(point,mask[i],mask[(i+1)%mask.size()])))
+  if edge_distance>.00001:return false
+ return true
+## Only balance ordinary spans. The original clearance span, height/pitch
+## boundaries and shared supports are fixed; never borrow the crossing exception.
+static func balance_short_spans(positions:Array[float],points:PackedVector2Array,sections:Array,pins:Array[float],blocked:Array,masks:Array):
+ const EPS:=.0001
+ var i:=1
+ while i<positions.size():
+  var pitch:=0.0;var section_range:=Vector2.ZERO
+  for section:Vector3 in sections:
+   if positions[i-1]>=section.x-EPS and positions[i]<=section.y+EPS:
+    pitch=section.z;section_range=Vector2(section.x,section.y);break
+  if pitch<=0.0 or positions[i]-positions[i-1]>=pitch*.5-EPS:i+=1;continue
+  var first:=i-1;var last:=i
+  # A fixed support can bound the adjustment window, but not sit inside it.
+  while first>0 and positions[first-1]>=section_range.x-EPS and not pins.any(func(d):return absf(d-positions[first])<=EPS):first-=1
+  while last+1<positions.size() and positions[last+1]<=section_range.y+EPS and not pins.any(func(d):return absf(d-positions[last])<=EPS):last+=1
+  var changed:=false
+  for size in range(2,last-first+1):
+   for lo in range(maxi(first,i-size),mini(i-1,last-size)+1):
+    var hi:=lo+size;var a:=positions[lo];var b:=positions[hi]
+    if pins.any(func(d):return d>a+EPS and d<b-EPS):continue
+    if blocked.any(func(interval):return a<interval[1]-EPS and b>interval[0]+EPS):continue
+    # First remove a redundant support if both final spacing bounds permit it.
+    # Otherwise retain the count and distribute the old short/long gaps evenly.
+    for count in [size-1,size]:
+     var span:float=(b-a)/count
+     if span<pitch*.5-EPS or span>pitch+EPS:continue
+     var replacement:Array[float]=[]
+     for step in range(1,count):
+      var d:float=a+span*step
+      if not support_allowed(points,d,masks):break
+      replacement.append(d)
+     if replacement.size()!=count-1:continue
+     for remove in range(size-1):positions.remove_at(lo+1)
+     for step in range(replacement.size()):positions.insert(lo+1+step,replacement[step])
+     i=lo+count+1;changed=true;break
+    if changed:break
+   if changed:break
+  if not changed:i+=1
+
+static func append_run(output:Array,points:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array=[],route_id:int=-1,crossovers:Array=[],city=null,preliminary:bool=false):
+ if finish<=start:return
+ # Group equal local pitch sections, then divide each into equal legal spans.
+ var sections:Array=[];var distance:=0.0
+ for i in range(1,points.size()):
+  var next:=distance+points[i-1].distance_to(points[i])
+  var pitch:=spacing_m(minf(radius_at(points,i-1),radius_at(points,i)))/4
+  var lo:=maxf(start,distance);var hi:=minf(finish,next)
+  if hi>lo:
+   if not sections.is_empty() and is_equal_approx(sections[-1].z,pitch):sections[-1].y=hi
+   else:sections.append(Vector3(lo,hi,pitch))
+  distance=next
+ # Include extrapolated 1m station ends in the same straight span.
+ if not sections.is_empty():sections[0].x=start;sections[-1].y=finish
+ var positions:Array[float]=[]
+ var pinned:Array[float]=[start,finish]
+ for section:Vector3 in sections:
+  pinned.append(section.x);pinned.append(section.y)
+  var count:=maxi(1,ceili((section.y-section.x)/section.z))
+  for i in range(count+1):positions.append(lerpf(section.x,section.y,float(i)/count))
+ var blocked:=forbidden_intervals(points,masks)
+ for interval:Array in blocked:
+  var lo:float=interval[0];var hi:float=interval[1]
+  positions=positions.filter(func(d):return d<=lo+.00001 or d>=hi-.00001)
+  if lo>=start and lo<=finish:positions.append(lo);pinned.append(lo)
+  if hi>=start and hi<=finish:positions.append(hi);pinned.append(hi)
+ for x:Dictionary in crossovers:
+  var supports:=crossover_supports(x,city)
+  var origin:Vector2=x.start/4.0;var axis:Vector2=x.axis
+  if not support_allowed(supports,0,masks) or not support_allowed(supports,length_of(supports),masks):continue
+  positions=positions.filter(func(d):
+   var at:=sample(points,d)
+   var relative:Vector2=at.point-origin
+   var axial:=relative.dot(axis)
+   return absf(relative.cross(axis))>.0005 or axial<-.0005 or axial>8.0005)
+  for point:Vector2 in supports:
+   var distance_on_run:=distance_on(points,point)
+   if distance_on_run>=start-.0001 and distance_on_run<=finish+.0001:positions.append(distance_on_run);pinned.append(distance_on_run)
+ # Resolve the shared section after ordinary-pole exclusions. Valid outer
+ # bases replace the inner pair; rejected sections omit support, never wire.
+ var portal_positions:Dictionary={}
+ for portal:Dictionary in portals:
+  if not portal.centres.has(route_id):continue
+  var projected:=distance_on(points,portal.centres[route_id])
+  if projected<start-.00001 or projected>finish+.00001:continue
+  portal_positions[projected]=portal.allowed
+  positions.append(projected);pinned.append(projected)
+ positions.sort()
+ var unique:Array[float]=[]
+ for d:float in positions:
+  var allowed:=support_allowed(points,d,masks)
+  if portal_positions.has(d):allowed=portal_positions[d]
+  else:
+   for projected:float in portal_positions:
+    if absf(d-projected)<.0001:allowed=false;break
+  if not allowed:continue
+  if unique.is_empty() or d-unique[-1]>.0001:unique.append(d)
+ if not preliminary:balance_short_spans(unique,points,sections,pinned,blocked,masks)
+ for d:float in unique:append_poles(output,points,d)
+ if preliminary:return # These unmodified poles are only used to discover shared portals.
+ # Wires still reach a boundary/portal even when its support is prohibited.
+ var wires:Array[float]=unique.duplicate()
+ if wires.is_empty() or wires[0]>start+.0001:wires.push_front(start)
+ if wires[-1]<finish-.0001:wires.append(finish)
+ for i in range(1,wires.size()):append_span(output,points,wires[i-1],wires[i],portals,route_id)
+static func append_route(output:Array,route:Dictionary,start_cap:bool,end_cap:bool,city,masks:Array,portals:Array=[],crossovers:Array=[],preliminary:bool=false):
+ if route.kind!="rail" or route.get("covered",false) or route.get("underground",false) or not is_zero_approx(float(route.rail_top_z_m)):return
+ var generated:Array=[];var points:PackedVector2Array=route.points
+ var station:=false
+ for lot:Dictionary in city.public_facilities.lots:
+  if lot.get("public_asset_id","")=="train-station-01" and lot.get("internal_points",PackedVector2Array())==points:station=true
+ var run_start:=0
+ for i in range(points.size()):
+  if i<points.size()-1 and not hidden_segment(route,i):continue
+  if i>run_start:
+   var run:PackedVector2Array=points.slice(run_start,i+1)
+   var start:=1.0 if run_start==0 and start_cap else 0.0
+   var finish:=length_of(run)-(1.0 if i==points.size()-1 and end_cap else 0.0)
+   if station:
+    run[0]-=(run[1]-run[0]).normalized()*.25
+    run[-1]+=(run[-1]-run[-2]).normalized()*.25
+    start=0;finish=length_of(run)
+   var surface:Array=crossovers.filter(func(x):return ground_crossover(x,city))
+   append_level_runs(generated,route,run,start,finish,masks,portals,surface,city,preliminary)
+  run_start=i+1
+ for item:Dictionary in generated:
+  item.route_id=route.id
+  if route.has("heights_m"):
+   # E3a: same 3.8/4.8/5.3m layout measured from the deck/ramp rail top.
+   var ha:=Height.height_at(route,item.a);var hb:=Height.height_at(route,item.b)
+   item.a_height+=ha;item.b_height+=hb
+   if maxf(ha,hb)>Height.EPS:item.deck=true
+   # E3b: trench catenary draws inside the trench clip group (never as deck).
+   if minf(ha,hb)< -Height.EPS:item.trench=true
+ append_clipped(output,generated,city)
+## E3a: poles stand on the structure wherever the track is raised, so ground masks
+## (roads, station lots) and ground crossovers apply only to the at-grade parts.
+## E3b: in a trench the same layout follows the rail top down to the -7.0m portal and
+## ends there; the covered tunnel has no catenary (RAIL_PARK 5절 11번).
+static func append_level_runs(output:Array,route:Dictionary,run:PackedVector2Array,start:float,finish:float,masks:Array,portals:Array,crossovers:Array,city,preliminary:bool=false):
+ if not Height.raised(route) and not Height.sunken(route):
+  append_run(output,run,start,finish,masks,portals,int(route.id),crossovers,city,preliminary);return
+ var heights:=PackedFloat64Array()
+ for point:Vector2 in run:heights.append(Height.height_at(route,point))
+ var carrier:={"points":run,"heights_m":heights}
+ var sunken:=Height.sunken(route)
+ for raised_part:bool in [false,true]:
+  var parts:Array=Height.pieces_between(carrier,-.005 if sunken else -INF,.005)
+  if raised_part:parts=Height.pieces_between(carrier,Height.RAIL_PORTAL_M,-.005) if sunken else Height.pieces_between(carrier,.005,INF)
+  for piece:Dictionary in parts:
+   var offset:=distance_on(run,piece.points[0])
+   if not is_finite(offset):continue
+   var first:=maxf(0.0,start-offset);var last:=minf(length_of(piece.points),finish-offset)
+   if last<=first:continue
+   append_run(output,piece.points,first,last,[] if raised_part else masks,portals,int(route.id),[] if raised_part else crossovers,city,preliminary)
+static func append_clipped(output:Array,generated:Array,city):
+ for item:Dictionary in generated:
+  # Liang-Barsky clipping keeps XY, height and actual line endpoints consistent.
+  var a:Vector2=item.a;var delta:Vector2=item.b-a
+  var lo:=0.0;var hi:=1.0;var valid:=true
+  for axis:int in [0,1]:
+   var maximum:float=city.width if axis==0 else city.height
+   if absf(delta[axis])<.000001:
+    if a[axis]<0 or a[axis]>maximum:valid=false
+   else:
+    var t0:float=-a[axis]/delta[axis];var t1:float=(maximum-a[axis])/delta[axis]
+    lo=maxf(lo,minf(t0,t1));hi=minf(hi,maxf(t0,t1))
+  if not valid or hi<lo:continue
+  item.a=a+delta*lo;item.b=a+delta*hi
+  var ha:float=item.a_height;var hb:float=item.b_height
+  item.a_height=lerpf(ha,hb,lo);item.b_height=lerpf(ha,hb,hi)
+  output.append(item)

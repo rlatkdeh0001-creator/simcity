@@ -29,10 +29,16 @@ func run():
 				check(city.upgrade_chain(b.id).ok and city.front_direction(b)==direction,"growth preserves frontage")
 			check(sides.size()==2,"both sides support road-facing construction")
 	var city=Model.new(60,60)
-	city.add_road(PackedVector2Array([Vector2(2,20),Vector2(50,20)]))
-	var b: Dictionary=city.place_catalog_building("mansion-a-4x4-4f",10,15).building
+	# Three-cell-wide local roads: keep the original lot at y=15..19,
+	# and place each road's sidewalk edge at the corresponding lot face.
+	city.add_road(PackedVector2Array([Vector2(2,20.5),Vector2(50,20.5)]))
+	var placement:Dictionary=city.place_catalog_building("mansion-a-4x4-4f",10,15)
+	check(placement.ok,"authored frontage fixture is legal: "+str(placement.get("reason","")))
+	if not placement.ok:
+		quit(1);return
+	var b: Dictionary=placement.building
 	check(city.front_direction(b)==Vector2.DOWN and city.supports_static_sprite(b),"original front image faces southern road")
-	city.add_road(PackedVector2Array([Vector2(2,14),Vector2(50,14)]))
+	city.add_road(PackedVector2Array([Vector2(2,13.5),Vector2(50,13.5)]))
 	check(city.front_direction(b)==Vector2.DOWN and b.front_road_id==0,"corner/second road does not flip an existing frontage")
 	city.demolish("road",0)
 	check(city.front_direction(b)==Vector2.UP and b.front_road_id==1,"removed frontage rebinds to surviving local road")
@@ -42,8 +48,12 @@ func run():
 	check(b.front_road_id==-1 and city.front_direction(b)==previous,"disconnected building retains direction and lot")
 	var other=Model.new(50,50)
 	other.add_road(PackedVector2Array([Vector2(2,22),Vector2(48,22)]),"highway")
-	other.add_road(PackedVector2Array([Vector2(2,14),Vector2(48,14)]))
-	var house: Dictionary=other.place_catalog_building("mansion-a-4x4-4f",10,15).building
+	other.add_road(PackedVector2Array([Vector2(2,13.5),Vector2(48,13.5)]))
+	var other_placement:Dictionary=other.place_catalog_building("mansion-a-4x4-4f",10,15)
+	check(other_placement.ok,"highway exclusion fixture is legal: "+str(other_placement.get("reason","")))
+	if not other_placement.ok:
+		quit(1);return
+	var house: Dictionary=other_placement.building
 	check(house.front_road_id==1 and other.front_direction(house)==Vector2.UP,"highways cannot become entrance roads")
 	for asset in city.catalog.entries:
 		check(Vector2(asset.front_axis[0],asset.front_axis[1])==Vector2.DOWN and ResourceLoader.exists(asset.model),asset.id+" has a metre-based real directional model")

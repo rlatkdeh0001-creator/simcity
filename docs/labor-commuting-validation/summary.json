@@ -1,0 +1,59 @@
+{
+  "core_checks_total": 129913,
+  "core_checks": {
+    "labor_cpp": 104,
+    "model_opt_in": 4,
+    "boundary_proofs": 5,
+    "neighbor_planner": 130,
+    "neighbor_model_two_way": 6,
+    "native_transport": 47,
+    "two_seed_three_days": 129607,
+    "native_input": 7,
+    "staffing_ui": 3
+  },
+  "scenario_checkpoints": 26,
+  "scenario_ticks": 7350,
+  "scenario_levels": [
+    1,
+    4,
+    5
+  ],
+  "scenario_targets": [
+    40,
+    70,
+    80
+  ],
+  "policy_fixture": {
+    "seeds": [
+      42,
+      20261114
+    ],
+    "legacy_buildings": 8,
+    "new_buildings": 7,
+    "legacy_zones": {
+      "residential": 4,
+      "commercial": 2,
+      "industrial": 2
+    },
+    "new_zones": {
+      "residential": 4,
+      "commercial": 2,
+      "industrial": 1
+    },
+    "population": 16,
+    "reason": "approved working-age*1.05 and60/40 slot-based demand needs one industrial building, replacing residents/12 rule"
+  },
+  "movement_checkpoint": {
+    "passed": 46,
+    "production_activated": false,
+    "limits": [
+      "macro logical vs ACC physical arrival synchrony not guaranteed",
+      "parking search and finite roadside capacity absent",
+      "live road mutation/rerouting while trips active absent"
+    ],
+    "artifact": "D:/tools/validation/commuting-traffic-20261117/API_NOTES.md"
+  },
+  "review_mode": "self-review",
+  "captures": 0,
+  "performance": "No additional frame optimization/benchmark; user deferred full-frame16ms work."
+}

@@ -1,0 +1,54 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS entrance paving is a separate display-only cached geometry helper
+PASS only measured front openings are connected parking-small-2x4 turn=0
+PASS paving covers only the one-metre curb gap and entrance span parking-small-2x4 turn=0
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-small-2x4 turn=1
+PASS paving covers only the one-metre curb gap and entrance span parking-small-2x4 turn=1
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-small-2x4 turn=2
+PASS paving covers only the one-metre curb gap and entrance span parking-small-2x4 turn=2
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-small-2x4 turn=3
+PASS paving covers only the one-metre curb gap and entrance span parking-small-2x4 turn=3
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-medium-4x4 turn=0
+PASS paving covers only the one-metre curb gap and entrance span parking-medium-4x4 turn=0
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-medium-4x4 turn=1
+PASS paving covers only the one-metre curb gap and entrance span parking-medium-4x4 turn=1
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-medium-4x4 turn=2
+PASS paving covers only the one-metre curb gap and entrance span parking-medium-4x4 turn=2
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-medium-4x4 turn=3
+PASS paving covers only the one-metre curb gap and entrance span parking-medium-4x4 turn=3
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-large-4x8 turn=0
+PASS paving covers only the one-metre curb gap and entrance span parking-large-4x8 turn=0
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-large-4x8 turn=1
+PASS paving covers only the one-metre curb gap and entrance span parking-large-4x8 turn=1
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-large-4x8 turn=2
+PASS paving covers only the one-metre curb gap and entrance span parking-large-4x8 turn=2
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-large-4x8 turn=3
+PASS paving covers only the one-metre curb gap and entrance span parking-large-4x8 turn=3
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-tower-4x4-4f turn=0
+PASS paving covers only the one-metre curb gap and entrance span parking-tower-4x4-4f turn=0
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-tower-4x4-4f turn=1
+PASS paving covers only the one-metre curb gap and entrance span parking-tower-4x4-4f turn=1
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-tower-4x4-4f turn=2
+PASS paving covers only the one-metre curb gap and entrance span parking-tower-4x4-4f turn=2
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS only measured front openings are connected parking-tower-4x4-4f turn=3
+PASS paving covers only the one-metre curb gap and entrance span parking-tower-4x4-4f turn=3
+PASS paving never moves lots or changes parcel ownership, prices or funds
+PASS camera changes transform cached accessways without rebuilding them
+PASS demolishing a lot invalidates only its retained connector geometry
+RESULT 51/51 entrance accessway checks passed

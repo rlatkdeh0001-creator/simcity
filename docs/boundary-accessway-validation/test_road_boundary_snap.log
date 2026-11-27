@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS grid endpoint within one cell reaches exact map edge x_max
+PASS committed grid stroke produces actual regional arrow x_max
+PASS grid endpoint within one cell reaches exact map edge x_min
+PASS committed grid stroke produces actual regional arrow x_min
+PASS grid endpoint within one cell reaches exact map edge y_max
+PASS committed grid stroke produces actual regional arrow y_max
+PASS grid endpoint within one cell reaches exact map edge y_min
+PASS committed grid stroke produces actual regional arrow y_min
+PASS endpoints farther than one cell are not extended
+PASS a new starting endpoint may also attach to the map boundary
+PASS half-phase oversnap is clipped back to the true edge
+PASS an existing contact endpoint is never moved away from its junction
+PASS real road editor preview resolves a half-phase boundary cap
+PASS real click commits preview geometry and activates the boundary arrow
+RESULT 14/14 boundary grid checks passed

@@ -1,0 +1,12 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS root-cause fixture reproduces a projected zebra centre on grass despite fresh junction topology
+ROOT_CAUSE unbounded tangent projection, not an unrefreshed junction cache; unsupported arms=1
+PASS model derives bounded crosswalk paint from current pavement and arm lengths
+PASS short oblique arm omits unsupported crossings while valid stripes remain on real pavement
+PASS removing a junction arm clears all crossing paint when the junction disappears
+PASS normal T junction retains supported crosswalks
+PASS partial demolition rebuilds stripe support for the surviving short junction stub
+PASS no crossing stripe remains in the newly demolished four-metre gap
+PASS removing the final stub also clears derived markings after a split
+RESULT 8/8 crosswalk support checks passed

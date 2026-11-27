@@ -18,8 +18,8 @@ func _ready():
  controls_panel.hide()
  hud.hide()
  city=Model.new(100,100,42)
- city.add_road(PackedVector2Array([Vector2(10,44),Vector2(90,44)]))
- city.add_road(PackedVector2Array([Vector2(38,50),Vector2(38,80)]))
+ city.add_road(PackedVector2Array([Vector2(10,44.5),Vector2(90,44.5)]))
+ city.add_road(PackedVector2Array([Vector2(38.5,50),Vector2(38.5,80)]))
  for x in [32,42,62,76]:
   var result: Dictionary=city.add_building(x,41,"residential")
   if result.ok: result.building.water_demand_m3_day=40.0

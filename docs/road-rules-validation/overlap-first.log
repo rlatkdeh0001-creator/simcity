@@ -1,0 +1,25 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS parallel offset or one-degree overpaint is rejected specifically as surface overlap
+PASS parallel offset or one-degree overpaint is rejected specifically as surface overlap
+PASS collinear overpaint cannot replace a different lane count or road kind
+PASS collinear overpaint cannot replace a different lane count or road kind
+PASS exact same-direction overdraw has a pure green construction plan
+PASS plan measures only the genuinely new eighty metres
+PASS existing free-road policy remains unchanged rather than activating unapproved tariffs
+PASS commit retains the old record and adds only the uncovered extension
+PASS new-only extension forms one continuous rendered road
+PASS two-sided overdraw preserves the middle and constructs only both free tails
+PASS fully retained duplicate with no new construction stays red
+PASS reverse-authored overlapping direction is not a same-direction overlay
+PASS junction spacing along the new road enforces exactly four cells: 3
+PASS junction spacing along the new road enforces exactly four cells: 4
+PASS crossing continues to the requested end and creates every junction
+PASS junction spacing along the new road enforces exactly four cells: 20
+PASS crossing continues to the requested end and creates every junction
+PASS spacing also measures new versus existing junctions along an existing host road
+PASS a genuine half-degree crossing is allowed when all arms actually escape the other road
+PASS a hairpin cannot hide a long parallel self-overlap
+PASS drawing preview routes only the uncovered pieces rather than rejecting its retained duplicate
+PASS real drawing controller commits the identical new-only overlay plan
+RESULT 22/22 road overlap policy checks passed

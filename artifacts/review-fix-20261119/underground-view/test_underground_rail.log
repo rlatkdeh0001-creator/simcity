@@ -1,0 +1,103 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS a ground rail keeps the previous record shape (no heights_m)
+PASS an old saved rail record without heights still loads
+PASS a saved rail descending to -10m over 288m loads
+PASS a saved rail mixing viaduct and tunnel is refused on load
+PASS a ground-to--10m rail plan keeps per-point heights: 
+PASS the descending rail is sunken, not raised
+PASS one track never mixes viaduct and tunnel (E2 road rule): 고가와 지하는 지상에서 나눠 그립니다
+PASS metro data stays unchanged (no rail heights): 지하철 높이는 바꿀 수 없습니다
+PASS rail descent minimum: -10m -> 288m, -5m -> 144m (3.5%, 8m units)
+PASS 0 -> -10m over exactly 288m passes: 
+PASS 287.6m descent is refused: 경사로 길이가 부족합니다
+PASS 280m (3.57%) descent is too steep: 경사가 너무 급합니다
+PASS the same ramp climbing out of the tunnel passes
+PASS flat tunnel stays on 5m layers: 높이는 5m 단위입니다
+PASS rail portal rail top = -(5.5m clearance + 1.0m cover + 0.5m beam) = -7.0m
+PASS rail: -6.99m is open trench, -7.0m is covered
+PASS road portal stays at -6.0m
+PASS the rail portal sits 201.6m from the ramp start: (60.4, 40.0)
+PASS the open trench runs from ground level to the -7.0m portal
+PASS trench and tunnel use the 10.0m rail structure body
+PASS clearance road fixture
+PASS road_first: ground road edge 0.0 cell before the -10m point -> pass ()
+PASS clearance road fixture
+PASS road_first: ground road edge 0.1 cell before the -10m point -> 수직 간격 부족 (수직 간격 부족)
+PASS clearance tunnel fixture
+PASS rail_first: ground road edge 0.0 cell before the -10m point -> pass ()
+PASS clearance tunnel fixture
+PASS rail_first: ground road edge 0.1 cell before the -10m point -> 수직 간격 부족 (수직 간격 부족)
+PASS tunnel with a ground approach
+PASS a ground road may cross the 0m part at grade: 
+PASS a ground road cannot cross the open trench (no level crossing): 수직 간격 부족
+PASS a ground road crosses over the -10m tunnel (10m clearance): 
+PASS underground road at -20m across the -10m rail tunnel: 
+PASS underground road at -15m across the -10m rail tunnel: 수직 간격 부족
+PASS underground road at -10m across the -10m rail tunnel: 수직 간격 부족
+PASS same-depth road tunnel first
+PASS the rail tunnel after a same-depth road tunnel is red in the other order too: 수직 간격 부족
+PASS ground rail fixture at x=120
+PASS ground rail over the covered tunnel: 
+PASS ground rail fixture at x=40
+PASS ground rail over the open trench: 수직 간격 부족
+PASS metro first, order 0
+PASS metro first, order 0
+PASS metro first, order 0
+PASS rail trench/tunnel over, under and along metro tunnels is buildable, order 0: 
+PASS rail trench/tunnel over, under and along metro tunnels is buildable, order 1: 
+PASS metro after the rail tunnel is buildable: 
+PASS metro after the rail tunnel is buildable: 
+PASS metro after the rail tunnel is buildable: 
+PASS rail tunnel x metro gives the same records in either build order (no clearance check)
+PASS only the zoned building over the open trench needs warning B: [91]
+PASS commit without confirmation changes nothing
+PASS confirmed commit demolishes the trench building
+PASS the building above the covered tunnel stays (passes under, no demolition)
+PASS an unrelated building beside the trench is excluded
+PASS a new building may stand above the covered tunnel
+PASS no new building on the open trench
+PASS medical-clinic on the open trench -> 공공시설과 겹침
+PASS medical-clinic above the covered tunnel -> 
+PASS park-plaza-4x4 on the open trench -> 공공시설과 겹침
+PASS park-plaza-4x4 above the covered tunnel -> 
+PASS the ground part keeps the existing red building rule: 건물 또는 시설과 충돌합니다
+PASS zoning road fixture
+PASS zoning cells exist beside the road before the rail
+PASS trench and tunnel beside the road: 
+PASS zoning cells on the open trench are deleted
+PASS zoning cells above the covered tunnel stay
+PASS removing the trench restores the roadside cells
+PASS station fixture
+PASS a station port on a tunnel is red: 지하 구간에는 역을 둘 수 없습니다
+PASS a station port in an open trench is red: 지하 구간에는 역을 둘 수 없습니다
+PASS a trench may start at ground level from the station port: 
+PASS station removal fixture
+PASS a -10m tunnel ending where the port was
+PASS placing a station onto a tunnel end is red: 지하 구간에는 역을 둘 수 없습니다
+PASS a straight ground double track still allows the X crossover
+PASS no X crossover in a covered tunnel
+PASS no X crossover in an open trench
+PASS road over the tunnel for geometry
+PASS geometry tunnel fixture
+PASS open-trench track shapes carry depths between ground and the -7.0m portal
+PASS the trench carries ballast and textured running strips
+PASS the ground rail layer stops where the trench leaves the ground
+PASS the covered tunnel is a solid 15181a underground-view band at its own depth
+PASS tunnel band: 10m structure width from the portal on (10.00m, x=60.40)
+PASS contact wire stays 3.8m above the rail top down the trench
+PASS no catenary inside the covered tunnel
+PASS the trench wire runs down to the portal
+PASS trench poles stand on the trench floor (top +5.3m)
+PASS trench catenary is marked for the trench clip group, never as deck
+PASS ground rail crossing above
+PASS tunnel under it
+PASS no switch where the ground track passes over the tunnel
+PASS ground approach
+PASS a trench continues from the end of a ground track: 
+PASS a tunnel cannot join a ground track at a different height: 높이가 다른 선로와는 이을 수 없습니다
+PASS rail depth cost is a disabled, pending reversible placeholder
+PASS placeholder factor grows non-linearly with depth: [1.0, 2.0, 5.0]
+PASS off-grid rail tunnel commit
+PASS grid OFF keeps every confirmed point and depth exactly
+E3b underground rail: 100 passed, 0 failed

@@ -114,15 +114,21 @@ func toggle():
  refresh()
 
 func refresh():
- view.power_snapshot=view.city.power_state()
+ view.city.utilities.mark_power_dirty()
  view.refresh()
  update_state(0)
  queue_redraw()
 
+var summary_generation:=-1
+var summary_city:=0
 func update_state(delta: float):
  if not visual_paused: visual_time+=delta
- if tab_open:
+ if not tab_open or summary_city!=view.city.get_instance_id():summary_generation=-1
+ summary_city=view.city.get_instance_id()
+ if tab_open and summary_generation!=view.city.utilities.power_generation:
+  summary_generation=view.city.utilities.power_generation
   var state: Dictionary=view.power_snapshot
+  var meters:Dictionary=state.get("display",{})
   var generation := 0.0
   var demand := 0.0
   var supplied := 0.0
@@ -130,7 +136,7 @@ func update_state(delta: float):
    generation+=float(group.generation_kw)
    demand+=float(group.demand_kw)
    supplied+=float(group.supplied_kw)
-  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %s" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),view.city.power.imported_kwh,view.city.power.exported_kwh,view.city.Economy.format_fraction(view.city.power.pending_doth,6,true)]
+  summary.text="연결망 발전 %.1f kW / 부하 %.1f kW\n공급 %.1f kW\n수입 %.1f kW / 수출 %.1f kW\n누적 수입 %.3f / 수출 %.3f kWh\n미정산 잔액 %s" % [generation,demand,supplied,state.get("import_kw",0),state.get("export_kw",0),meters.get("imported_kwh",view.city.power.imported_kwh),meters.get("exported_kwh",view.city.power.exported_kwh),view.city.Economy.format_fraction(meters.get("pending_doth",view.city.power.pending_doth),6,true)]
  if tab_open or not view.city.power.plants.is_empty(): queue_redraw()
 
 func finish_capture(event):
@@ -139,6 +145,8 @@ func finish_capture(event):
 
 func handle_input(event) -> bool:
  if not tab_open: return false
+ if view.city.loan_status().bankrupt:
+  drawing=false;stroke.clear();instruction.text="파산 · 게임 오버";return true
  if event is InputEventMouseMotion and drawing:
   var p: Vector2=view.world(event.position)*4.0
   if view.city.power.valid(p) and (stroke.is_empty() or stroke[-1].distance_to(p)>.8): stroke.append(p)
@@ -159,7 +167,7 @@ func handle_input(event) -> bool:
      instruction.text=""
    "power_plant":
     var result: Dictionary=view.city.add_power_plant(p,output.value)
-    instruction.text=result.reason
+    instruction.text="" if result.ok else result.reason
     if result.ok: selected_plant=result.id
     refresh()
    "power_erase_wire":
@@ -190,8 +198,10 @@ func handle_input(event) -> bool:
 func finish_wire():
  if not drawing: return
  drawing=false
+ if view.city.loan_status().bankrupt:
+  stroke.clear();instruction.text="파산 · 게임 오버";refresh();return
  var result: Dictionary=view.city.power.add_wire(stroke)
- instruction.text="지중 전력선 건설 완료" if result.ok else result.reason
+ instruction.text="" if result.ok else result.reason
  stroke.clear()
  refresh()
 
@@ -205,7 +215,7 @@ func _draw():
   draw_colored_polygon(PackedVector2Array([base[1],base[2],top[2],top[1]]),Color("69838a"))
   draw_colored_polygon(PackedVector2Array([base[2],base[3],top[3],top[2]]),Color("526970"))
   draw_colored_polygon(top,Color("b4c6c4"))
-  draw_string(ThemeDB.fallback_font,view.screen(plant.position/4)-Vector2(20,30)*view.map_zoom,"발전소",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+
  if not tab_open: return
  var grid=view.city.power
  grid.rebuild()

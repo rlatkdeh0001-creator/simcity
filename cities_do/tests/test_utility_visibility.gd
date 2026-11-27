@@ -7,9 +7,21 @@ func verify(ok: bool,description: String):
  if ok:print("PASS "+description)
  else:failed+=1;push_error("FAIL "+description)
 func hidden(game) -> bool:return not game.power_overlay.tab_open and not game.water_overlay.tab_open
+func utility_fixture():
+ # Use real current-width parcel lots, not the obsolete pre-shoulder preview town.
+ var city=preload("res://core/city_model.gd").new(100,100)
+ city.add_road(PackedVector2Array([Vector2(10,40),Vector2(90,40)]))
+ for p in [Vector2(20.5,42),Vector2(30.5,42),Vector2(50.5,42)]:assert(city.add_building_at(p).ok)
+ city.power.add_plant(Vector2(40,180),1000)
+ assert(city.power.add_wire(PackedVector2Array([Vector2(40,180),Vector2(360,180)])).ok)
+ city.water.add_facility(Vector2(40,180),"water",1000)
+ city.water.add_facility(Vector2(360,180),"sewage",2000)
+ assert(city.water.add_pipe(PackedVector2Array([Vector2(40,180),Vector2(360,180)])).ok)
+ return city
 func run():
  root.size=Vector2i(1920,1080)
- var game=load("res://bottom_ui_preview.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame;await process_frame
+ var game=load("res://main.tscn").instantiate();game.city=utility_fixture();game.paused=true;root.add_child(game);await process_frame;await process_frame
+ game.select_category("power")
  var power: Dictionary=game.city.power_state();var water: Dictionary=game.city.water_state()
  verify(water.water_supplied_m3_day>0 and not power.consumers.is_empty(),"real authored city has connected consumers for display-independent supply checks")
  game.drawer.hide()

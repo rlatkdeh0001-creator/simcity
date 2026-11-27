@@ -1,0 +1,44 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS normal road accepts approved total lane count 2
+PASS actual traffic graph has exactly 2 lanes
+PASS default major side follows drawing direction
+PASS real road renderer includes every non-median lane separator
+PASS normal road accepts approved total lane count 3
+PASS actual traffic graph has exactly 3 lanes
+PASS default major side follows drawing direction
+PASS stored major_side reverses odd allocation without a new UI
+PASS real road renderer includes every non-median lane separator
+PASS normal road accepts approved total lane count 4
+PASS actual traffic graph has exactly 4 lanes
+PASS default major side follows drawing direction
+PASS real road renderer includes every non-median lane separator
+PASS normal road accepts approved total lane count 5
+PASS actual traffic graph has exactly 5 lanes
+PASS default major side follows drawing direction
+PASS stored major_side reverses odd allocation without a new UI
+PASS real road renderer includes every non-median lane separator
+PASS normal road accepts approved total lane count 8
+PASS actual traffic graph has exactly 8 lanes
+PASS default major side follows drawing direction
+PASS real road renderer includes every non-median lane separator
+PASS highway lane policy stays unchanged
+PASS approved lane cards replace the old selector
+PASS five C-cards and no old OptionButton
+PASS grid icon defaults on
+PASS one card activation selects and arms its exact lane count
+PASS lane card uses a real rendered PNG and readable name band
+PASS one card activation selects and arms its exact lane count
+PASS lane card uses a real rendered PNG and readable name band
+PASS one card activation selects and arms its exact lane count
+PASS lane card uses a real rendered PNG and readable name band
+PASS one card activation selects and arms its exact lane count
+PASS lane card uses a real rendered PNG and readable name band
+PASS one card activation selects and arms its exact lane count
+PASS lane card uses a real rendered PNG and readable name band
+PASS grid toggle turns off without changing modes
+PASS grid choice survives category changes
+PASS lane row remains ordered and grid button is inside viewport (1920, 1080)
+PASS lane row remains ordered and grid button is inside viewport (1280, 820)
+PASS lane row remains ordered and grid button is inside viewport (960, 640)
+RESULT 41/41 road lane card checks passed

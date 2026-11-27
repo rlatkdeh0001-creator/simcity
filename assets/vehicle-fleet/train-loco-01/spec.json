@@ -1,0 +1,79 @@
+{
+  "id": "train-loco-01",
+  "name": "기관차",
+  "category": "rail_locomotive",
+  "style": "transit_compressed_20261116",
+  "body_length_m": 9.0,
+  "overall_length_m": 10.0,
+  "length_m": 10.0,
+  "width_m": 3.0,
+  "height_m": 4.2,
+  "measured_dimensions_lwh_m": [
+    10.0,
+    3.0,
+    4.2
+  ],
+  "triangles": 4472,
+  "frame_blender": {
+    "forward": "-Y",
+    "left": "+X",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "forward": "+Z",
+    "left": "+X",
+    "up": "+Y"
+  },
+  "model": "res://assets/vehicles/train-loco-01.glb",
+  "source": "assets/vehicle-fleet/train-loco-01/vehicle.blend",
+  "preview": "res://assets/vehicles/sprites/train-loco-01/045.png",
+  "render": {
+    "resolution": [
+      430,
+      245
+    ],
+    "camera_elevation_deg": 30,
+    "angles_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315
+    ]
+  },
+  "status": "inspection_only",
+  "simulation_enabled": false,
+  "reproduce": "blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_vehicles.py -- --only train-loco-01",
+  "gauge_m": 1.435,
+  "rail_top_z_m": 0,
+  "coupler_height_m": 1.0,
+  "coupler_anchors_blender": [
+    [
+      0,
+      -4.5,
+      1
+    ],
+    [
+      0,
+      4.5,
+      1
+    ]
+  ],
+  "coupler_contact_heads_blender": [
+    [
+      0,
+      -5.0,
+      1
+    ],
+    [
+      0,
+      5.0,
+      1
+    ]
+  ],
+  "coupled_body_gap_m": 1.0,
+  "length_compression": "User-approved game-length compression only; width and height preserved."
+}

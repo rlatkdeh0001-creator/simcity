@@ -1,0 +1,62 @@
+{
+  "id": "bus-stop-01",
+  "name": "버스 정류장",
+  "kind": "transit_road_edge",
+  "width": 2.0,
+  "depth": 0.75,
+  "metres": [
+    8.0,
+    3.0
+  ],
+  "storeys": 0,
+  "capacity": 1,
+  "capacity_unit": "static_vehicle_bays",
+  "capacity_status": "geometry only, not passenger capacity or transport simulation",
+  "placement": "road_edge",
+  "road_side": {
+    "blender": "-Y",
+    "gltf": "+Z",
+    "edge_coordinate_m": 0
+  },
+  "origin": "centre of road-contact edge, ground z=0",
+  "road_axis_blender": "+X",
+  "sidewalk_occupied_width_m": 3.0,
+  "inward_depth_m": 3.0,
+  "required_sidewalk_width_m": 3.0,
+  "frame_blender": {
+    "front": "-Y",
+    "up": "+Z"
+  },
+  "frame_gltf": {
+    "front": "+Z",
+    "up": "+Y"
+  },
+  "height_m": 3.28,
+  "length_m": 3.0,
+  "width_m": 8.0,
+  "triangles": 1660,
+  "model": "res://assets/facilities/bus-stop-01.glb",
+  "preview": "res://assets/facilities/bus-stop-01.png",
+  "source": "assets/facilities/bus-stop-01/facility.blend",
+  "render": {
+    "resolution": [
+      800,
+      680
+    ],
+    "pixels_per_metre": 87.04560929896837,
+    "camera_elevation_deg": 30
+  },
+  "status": "inspection_only",
+  "road_attachment_implemented": false,
+  "not_validated": [
+    "live road placement",
+    "vehicle turning swept path",
+    "passenger simulation"
+  ],
+  "separate_decal_mesh": "StopZoneYellowDecal",
+  "review_bus_blender": [
+    0,
+    -1.65,
+    0
+  ]
+}

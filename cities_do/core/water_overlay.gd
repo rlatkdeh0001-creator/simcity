@@ -13,6 +13,8 @@ var summary: Label
 var instruction: Label
 var output: SpinBox
 var selected_facility := -1
+var paint_origin:=Vector2.ZERO
+var paint_zoom:=1.0
 
 func setup(owner_view, layer: CanvasLayer):
  view=owner_view
@@ -31,7 +33,7 @@ func setup(owner_view, layer: CanvasLayer):
  title.text="상하수도 · 함께 설치"
  title.add_theme_font_size_override("font_size",20)
  box.add_child(title)
- for pair in [["취수장 배치","supply"],["하수처리장 배치","treatment"],["상하수관 함께 · 드래그","pipe"],["시설 선택","select"]]:
+ for pair in [["취수장 배치","supply"],["하수처리장 배치","treatment"],["상하수관 함께 · 드래그","pipe"]]:
   var button := Button.new()
   button.name="Water_"+pair[1]
   button.text=pair[0]
@@ -98,18 +100,24 @@ func toggle():
  refresh()
 
 func refresh():
- view.water_snapshot=view.city.water_state()
+ view.city.utilities.mark_water_dirty()
  view.refresh()
  update_state(0)
  queue_redraw()
 
+var summary_generation:=-1
+var summary_city:=0
 func update_state(delta: float):
  if not visual_paused: visual_time+=delta
- if tab_open:
+ if not tab_open or summary_city!=view.city.get_instance_id():summary_generation=-1
+ summary_city=view.city.get_instance_id()
+ if tab_open and summary_generation!=view.city.utilities.water_generation:
+  summary_generation=view.city.utilities.water_generation
   var state: Dictionary=view.water_snapshot
-  summary.text="상수 수요 %.1f / 공급 %.1f m³/일\n상수 수입 %.1f / 잉여 수출 %.1f\n하수 발생 %.1f / 내부 처리 %.1f\n하수 외부 위탁 %.1f / 미처리 %.1f\n누적 급수 %.4f / 내부 처리 %.4f m³" % [state.get("demand_m3_day",0),state.get("water_supplied_m3_day",0),state.get("water_import_m3_day",0),state.get("water_export_m3_day",0),state.get("sewage_generated_m3_day",0),state.get("sewage_treated_m3_day",0),state.get("sewage_export_m3_day",0),state.get("unhandled_sewage_m3_day",0),view.city.water.supplied_m3,view.city.water.treated_m3]
-  summary.text+="\n외부 요금 %s/일\n수출 수익 %s/일\n수도 미정산 잔액 %s" % [view.city.Economy.format_fraction(state.get("expense_doth_day",0),4),view.city.Economy.format_fraction(state.get("revenue_doth_day",0),4),view.city.Economy.format_fraction(view.city.water.pending_doth,6,true)]
- if tab_open or not view.city.water.facilities.is_empty(): queue_redraw()
+  var meters:Dictionary=state.get("display",{})
+  summary.text="상수 수요 %.1f / 공급 %.1f m³/일\n상수 수입 %.1f / 잉여 수출 %.1f\n하수 발생 %.1f / 내부 처리 %.1f\n하수 외부 위탁 %.1f / 미처리 %.1f\n누적 급수 %.4f / 내부 처리 %.4f m³" % [state.get("demand_m3_day",0),state.get("water_supplied_m3_day",0),state.get("water_import_m3_day",0),state.get("water_export_m3_day",0),state.get("sewage_generated_m3_day",0),state.get("sewage_treated_m3_day",0),state.get("sewage_export_m3_day",0),state.get("unhandled_sewage_m3_day",0),meters.get("supplied_m3",view.city.water.supplied_m3),meters.get("treated_m3",view.city.water.treated_m3)]
+  summary.text+="\n외부 요금 %s/일\n수출 수익 %s/일\n수도 미정산 잔액 %s" % [view.city.Economy.format_fraction(state.get("expense_doth_day",0),4),view.city.Economy.format_fraction(state.get("revenue_doth_day",0),4),view.city.Economy.format_fraction(meters.get("pending_doth",view.city.water.pending_doth),6,true)]
+ if tab_open: queue_redraw()
 
 func finish_capture(event):
  if drawing and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
@@ -117,6 +125,8 @@ func finish_capture(event):
 
 func handle_input(event) -> bool:
  if not tab_open: return false
+ if view.city.loan_status().bankrupt:
+  drawing=false;stroke.clear();instruction.text="파산 · 게임 오버";return true
  if event is InputEventMouseMotion and drawing:
   var p: Vector2=view.world(event.position)*4.0
   if view.city.water.geometry.valid(p) and (stroke.is_empty() or stroke[-1].distance_to(p)>.8): stroke.append(p)
@@ -138,7 +148,7 @@ func handle_input(event) -> bool:
    "water_supply","water_treatment":
     var kind := "water" if view.mode=="water_supply" else "sewage"
     var result: Dictionary=view.city.add_water_facility(p,kind,output.value)
-    instruction.text=result.reason
+    instruction.text="" if result.ok else result.reason
     if result.ok: selected_facility=result.id
     refresh()
    "water_erase_pipe":
@@ -169,8 +179,10 @@ func handle_input(event) -> bool:
 func finish_pipe():
  if not drawing: return
  drawing=false
+ if view.city.loan_status().bankrupt:
+  stroke.clear();instruction.text="파산 · 게임 오버";refresh();return
  var result: Dictionary=view.city.water.add_pipe(stroke)
- instruction.text="상수관·하수관 함께 건설 완료" if result.ok else result.reason
+ instruction.text="" if result.ok else result.reason
  stroke.clear()
  refresh()
 
@@ -179,8 +191,14 @@ func projected(points: PackedVector2Array, offset: Vector2) -> PackedVector2Arra
  for point in points: path.append(view.screen(point/4.0)+offset)
  return path
 
+func _process(_delta:float):
+ if view==null or tab_open:return
+ # Keep above-ground facilities while closed; camera changes only transform the cached canvas.
+ var factor:float=view.map_zoom/paint_zoom
+ scale=Vector2.ONE*factor;position=view.origin-paint_origin*factor
 func _draw():
  if view==null: return
+ position=Vector2.ZERO;scale=Vector2.ONE;paint_origin=view.origin;paint_zoom=view.map_zoom
  var water_color := Color("35b8ff")
  var sewage_color := Color("aa6737")
  var grid=view.city.water.geometry
@@ -193,8 +211,7 @@ func _draw():
   draw_colored_polygon(PackedVector2Array([base[1],base[2],top[2],top[1]]),color.darkened(.4))
   draw_colored_polygon(PackedVector2Array([base[2],base[3],top[3],top[2]]),color.darkened(.55))
   draw_colored_polygon(top,color.lightened(.2))
-  var label := "취수장" if facility.kind=="water" else "하수처리장"
-  draw_string(ThemeDB.fallback_font,view.screen(facility.position/4)-Vector2(20,30)*view.map_zoom,label,HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+
  if not tab_open: return
  grid.rebuild()
  if show_ranges:

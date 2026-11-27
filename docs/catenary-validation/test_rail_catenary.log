@@ -1,0 +1,90 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS build_geometry emits catenary into actual retained geometry contract
+PASS 100m boundary-to-blocked-end line: 96m electrified in three equal spans, paired poles
+PASS contact lines exist
+PASS pole height 5.3m, lateral 4m, exact galvanized colour
+PASS contact height 3.8m and exact wire colour
+PASS display geometry never mutates routes
+PASS curvature spacing policy exists
+PASS radius 34 uses 8m pitch
+PASS radius 71 uses 8m pitch
+PASS radius 72 uses 12m pitch
+PASS radius 127 uses 12m pitch
+PASS radius 128 uses 16m pitch
+PASS radius 199 uses 16m pitch
+PASS radius 200 uses 20m pitch
+PASS radius 287 uses 20m pitch
+PASS radius 288 uses 24m pitch
+PASS radius 391 uses 24m pitch
+PASS radius 392 uses 28m pitch
+PASS radius 511 uses 28m pitch
+PASS radius 512 uses 32m pitch
+PASS radius inf uses 32m pitch
+PASS covered route has no overhead geometry
+PASS underground route has no overhead geometry
+PASS metro has no catenary
+PASS negative rail datum has no ground-stage catenary
+PASS covered_segments stops exactly at portal
+PASS last portal pole within 4m on open side
+PASS underground_segments stops exactly at portal
+PASS last portal pole within 4m on open side
+PASS horizontal bracket exact 2m height and colour
+PASS diagonal 3.9 to 4.8m
+PASS pull 4.8 to 3.8m
+PASS messenger parabola midspan sag exactly 0.5m
+PASS 34m curve uses no greater than 8m spans
+PASS no poles on full sidewalk-inclusive road plus 1m
+PASS contact continues above 40m crossing at 3.8m
+PASS station paired poles exactly 1m beyond lot ends, 34m span
+PASS station wires span the empty trackway
+PASS connected station approach has no support on platform-edge endpoint
+PASS pole bracket and wire geometry clipped at map edge
+PASS connected route seam shares supports rather than double-drawing poles
+PASS branch/merge portal poles stay outside both ballast ribbons
+PASS shallow merge uses portal beams instead of relocating supports
+PASS portal perpendicular to longer main: outer 4m poles, 5.3m beam, length 8m plus separation
+PASS each of four tracks has vertical 5.3-to-4.8 tube and 4.8-to-3.8 pull
+PASS branch/merge retains standard <=32m straight spacing, no 48m exception (longest 31.500m)
+PASS portal tubes actually terminate messenger spans at 4.8m on every track
+PASS portal tracks have no movable horizontal or diagonal brackets
+PASS portal geometry independent of route insertion order
+PASS portal planning leaves route bytes unchanged
+PASS inner poles merge only within inclusive 0.6m: gap 0.400m
+PASS combined inner pole carries both track brackets
+PASS inner poles merge only within inclusive 0.6m: gap 0.600m
+PASS combined inner pole carries both track brackets
+PASS inner poles merge only within inclusive 0.6m: gap 0.604m
+PASS portal perpendicular for rotated/mirrored/boundary fixture 0
+PASS portal geometry clipped at map boundary fixture 0
+PASS portal perpendicular for rotated/mirrored/boundary fixture 1
+PASS portal geometry clipped at map boundary fixture 1
+PASS portal perpendicular for rotated/mirrored/boundary fixture 2
+PASS portal geometry clipped at map boundary fixture 2
+PASS road opposite portal base mirror=false exercises actual portal branch
+PASS road opposite portal base mirror=false BOTH final bases outside existing 1m exclusions
+PASS road opposite portal base mirror=false every hanger matches retained wire anchor
+PASS road opposite portal base mirror=false every wire span endpoint retains physical support
+PASS road opposite portal base mirror=false bounded exclusion span <=48m (31.500m)
+PASS road opposite portal base mirror=false both full branch/main wire tracks retained
+PASS road opposite portal base mirror=true exercises actual portal branch
+PASS road opposite portal base mirror=true BOTH final bases outside existing 1m exclusions
+PASS road opposite portal base mirror=true every hanger matches retained wire anchor
+PASS road opposite portal base mirror=true every wire span endpoint retains physical support
+PASS road opposite portal base mirror=true bounded exclusion span <=48m (31.500m)
+PASS road opposite portal base mirror=true both full branch/main wire tracks retained
+PASS station opposite portal base mirror=false exercises actual portal branch
+PASS station opposite portal base mirror=false BOTH final bases outside existing 1m exclusions
+PASS station opposite portal base mirror=false every hanger matches retained wire anchor
+PASS station opposite portal base mirror=false every wire span endpoint retains physical support
+PASS station opposite portal base mirror=false bounded exclusion span <=48m (31.500m)
+PASS station opposite portal base mirror=false both full branch/main wire tracks retained
+PASS station opposite portal base mirror=true exercises actual portal branch
+PASS station opposite portal base mirror=true BOTH final bases outside existing 1m exclusions
+PASS station opposite portal base mirror=true every hanger matches retained wire anchor
+PASS station opposite portal base mirror=true every wire span endpoint retains physical support
+PASS station opposite portal base mirror=true bounded exclusion span <=48m (31.500m)
+PASS station opposite portal base mirror=true both full branch/main wire tracks retained
+PASS closed route seam has no duplicate supports
+PASS retained overhead pieces never exceed 4 metres
+CATENARY_GEOMETRY checks=87 failed=0

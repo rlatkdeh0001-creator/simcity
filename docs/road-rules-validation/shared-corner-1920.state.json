@@ -1,0 +1,29 @@
+{
+  "all_cell_corners_on_shared_board": true,
+  "case": "corner",
+  "cells": 444,
+  "grid": true,
+  "roads": [
+    {
+      "kind": "local",
+      "lanes": 3,
+      "major_side": 1,
+      "parcel_id": 0,
+      "points": "[(20.0, 35.0), (50.0, 35.0)]",
+      "width": 3.0
+    },
+    {
+      "kind": "local",
+      "lanes": 3,
+      "major_side": 1,
+      "parcel_id": 1,
+      "points": "[(50.0, 35.0), (50.0, 65.0)]",
+      "width": 3.0
+    }
+  ],
+  "shared_basis": {
+    "along": "(1.0, 0.0)",
+    "origin": "(20.0, 36.5)",
+    "outward": "(0.0, 1.0)"
+  }
+}

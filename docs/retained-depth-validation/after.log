@@ -1,0 +1,6 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+NATIVE_DEPTH after {"front_fraction":1.0,"front_hits":15,"kind":"industrial","painter_ids":[2,1],"rear_hits":0,"samples":15}
+NATIVE_DEPTH after {"front_fraction":1.0,"front_hits":4,"kind":"parking","painter_ids":[2,1],"rear_hits":0,"samples":4}
+NATIVE_DEPTH_PASS after

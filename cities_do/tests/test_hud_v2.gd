@@ -30,7 +30,7 @@ func run():
 
 func check_status(game):
  verify(game.city.city_name=="CITIESDO" and game.city_name_button.text=="CITIESDO","default city identity matches A2")
- verify(game.happiness_label.text=="—" and game.balance_label.text=="—","unimplemented happiness and cash flow stay unknown")
+ verify(game.happiness_label.text=="—" and game.balance_label.text=="—","empty-city happiness and unavailable cash flow stay unknown")
  verify(game.money.text=="50,000 \uFFFC" and game.population_label.text=="0","real initial funds and population, no made-up mockup values")
  verify(game.demand_bars.size()==3 and game.demand_bars[0].value>0 and game.demand_bars[1].value==0 and game.demand_bars[2].value==0,"RCI reflects existing empty-city residential-only demand")
  game.city_name_button.pressed.emit()
@@ -69,12 +69,14 @@ func check_status(game):
  game.game_month_closed.connect(func(index):closed.append(index))
  game.city.clock.advance_real(3600)
  verify(closed==[0] and game.balance_label.text=="—","one game day closes one game month, no fake cash flow")
+ game.city._tax_production=false # Explicit presentation-only samples, not production tax data.
  game.set_monthly_balance(1200)
  verify(game.balance_label.text=="+1,200 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("5fd38a"),"future positive monthly value includes sign, unit and green")
  game.set_monthly_balance(-350)
  verify(game.balance_label.text=="−350 \uFFFC/월" and game.balance_label.get_theme_color("font_color")==Color("ff6b6b"),"future negative monthly value includes minus and red")
  game.set_monthly_balance(null)
  verify(game.balance_label.text=="—","unknown monthly data restores dash")
+ game.city._tax_production=true
  game.speed_button.pressed.emit()
  verify(game.simulation_speed==3 and game.speed_button.text=="3×","speed button changes real multiplier and caption")
  game.speed_button.pressed.emit()
@@ -86,7 +88,9 @@ func check_status(game):
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(50,30)]))
  var frame: Dictionary=game.city.zoning_grid.frames.values()[0]
  game.city.paint_zones(game.city.Parcels.polygon(frame,0,0,2),"residential")
- game.city.advance_society(4)
+ for i in range(2):
+  game.city.advance_society(2)
+  game.city.simulation.validation_publish();game.city.simulation.resume()
  var live: Dictionary=game.city.population.demand(game.city.buildings)
  verify(game.population_label.text=="2" and game.demand_bars[1].value==live.commercial and game.demand_bars[2].value==live.industrial and live.commercial>0,"real immigration event updates population and both job demand bars")
  for size_value in [Vector2i(1920,1080),Vector2i(1280,820),Vector2i(960,640)]:

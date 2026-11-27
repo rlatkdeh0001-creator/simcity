@@ -11,7 +11,8 @@ func verify(value: bool, name_value: String):
   push_error("FAIL "+name_value)
 func fixture() -> RefCounted:
  var city := City.new(100,100)
- city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]))
+ # Width-three roads have a half-cell centreline phase for integer frontage lots.
+ city.add_road(PackedVector2Array([Vector2(10,30.5),Vector2(90,30.5)]))
  city.add_building(24,27)
  city.add_power_plant(Vector2(16,27),300)
  city.add_water_facility(Vector2(40,27),"water",1000)
@@ -68,7 +69,7 @@ func test_roads() -> bool:
  city.add_road(PackedVector2Array([Vector2(60,20),Vector2(90,20)]))
  verify(city.roads[-1].parcel_id==3,"road IDs are not reused after demolition")
  var single := City.new(100,100)
- single.add_road(PackedVector2Array([Vector2(10,20),Vector2(40,20)]))
+ single.add_road(PackedVector2Array([Vector2(10,20.5),Vector2(40,20.5)]))
  single.add_building(20,17)
  single.demolish("road",0)
  verify(single.zoning_grid.count()==0 and single.buildings.size()==1,"last road removal clears revealed tiles without deleting other buildings")
@@ -81,7 +82,13 @@ func press(scene, cell: Vector2):
  scene._unhandled_input(click)
 func test_ui() -> bool:
  root.size=Vector2i(1280,820)
- var scene=load("res://bottom_ui_preview.tscn").instantiate()
+ # Exercise the real game HUD with current-width authored fixtures, not the old showcase town.
+ var scene=load("res://main.tscn").instantiate()
+ scene.city=fixture()
+ scene.city.add_road(PackedVector2Array([Vector2(10,60.5),Vector2(90,60.5)]))
+ scene.city.add_water_facility(Vector2(40,57),"water",1000)
+ scene.city.water.add_pipe(PackedVector2Array([Vector2(164,232),Vector2(164,244),Vector2(284,244)]))
+ scene.paused=true
  root.add_child(scene)
  current_scene=scene
  await process_frame
@@ -101,12 +108,13 @@ func test_ui() -> bool:
  scene.bulldozer.pressed.emit()
  verify(scene.mode=="demolish" and not scene.drawer.visible and scene.visible_zoning_parcels().is_empty(),"bulldozer activates shared tool and hides tiles and drawer")
  var before: int=scene.city.buildings.size()
- press(scene,Vector2(26,26))
+ press(scene,Vector2(25,28))
  verify(scene.city.buildings.size()==before-1 and scene.mode=="demolish","one map click demolishes one actual building and keeps tool active")
  var blank: Dictionary=scene.demolition_target(scene.screen(Vector2(2,2)))
  verify(blank.is_empty(),"empty map space is not a demolition target")
  scene.select_category("water")
  verify(not scene.drawer_box.get_children().any(func(child):return child is Button and "erase" in child.name),"water tab has no separate demolition tool")
+
  verify(scene.demolition_target(scene.screen(Vector2(50,61))).get("kind","")=="water_pipe","visible paired pipe is targetable over overlapping road while water tab stays open")
  scene.bulldozer.pressed.emit()
  var pipe_count: int=scene.city.water.geometry.wires.size()

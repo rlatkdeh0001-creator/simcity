@@ -1,0 +1,58 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+:root{--d:#142b37;--m:#38515e;--l:#edf4f5;--a:#36b7ff}
+body{margin:0;padding:6px 0}
+.o{margin-bottom:18px}.t{font-size:18px;font-weight:700;margin:0 0 6px}.t span{font-weight:400;font-size:15px;color:var(--muted-foreground,#666)}
+.scene{position:relative;width:760px;height:190px;border-radius:10px;background:#86b07f;overflow:hidden}
+.bar{position:absolute;left:0;right:0;bottom:0;height:96px;background:var(--d);display:flex;align-items:center;gap:8px;padding:0 10px}
+.pill{position:absolute;left:10px;bottom:104px;display:flex;gap:6px;background:var(--d);padding:6px;border-radius:10px}
+.tb{width:44px;height:44px;border-radius:8px;background:var(--m);display:flex;align-items:center;justify-content:center}
+.tb.on{background:var(--a)}.tb svg{width:28px;height:28px;stroke:var(--l);stroke-width:3;fill:none;stroke-linecap:round}.tb.on svg{stroke:var(--d)}
+.chip{height:52px;min-width:62px;border-radius:8px;background:var(--m);color:var(--l);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 8px}
+.chip.on{background:var(--a);color:var(--d)}
+.card{width:76px;height:80px;border-radius:6px;background:#5d6266;position:relative;overflow:hidden}
+.card.on{outline:3px solid var(--a)}
+.card .ln{position:absolute;top:10px;bottom:28px;width:2px;background:#e8e8e8}
+.card .nm{position:absolute;left:0;right:0;bottom:0;background:rgba(20,43,55,.9);color:var(--l);font-size:18px;text-align:center;line-height:26px}
+.sp{flex:1}
+.grid{width:60px;height:60px;border-radius:8px;background:var(--a);display:flex;align-items:center;justify-content:center}
+.grid svg{width:36px;height:36px;stroke:var(--d);stroke-width:2.5;fill:none}
+.lbl{color:#a9c3cc;font-size:18px;margin-right:2px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="gr" viewBox="0 0 36 36"><path d="M6 6h24v24H6zM14 6v24M22 6v24M6 14h24M6 22h24"/></symbol>
+<symbol id="st" viewBox="0 0 32 32"><line x1="5" y1="27" x2="27" y2="5"/></symbol>
+<symbol id="cv" viewBox="0 0 32 32"><path d="M5 27 Q5 5 27 5"/></symbol>
+<symbol id="fr" viewBox="0 0 32 32"><path d="M4 24 C10 4 16 30 28 8"/></symbol>
+</defs></svg>
+
+<div class="o"><p class="t">A <span>차로 수 숫자 버튼 5개 + 오른쪽 끝 격자 버튼</span></p>
+<div class="scene">
+ <div class="pill"><div class="tb on"><svg><use href="#st"/></svg></div><div class="tb"><svg><use href="#cv"/></svg></div><div class="tb"><svg><use href="#fr"/></svg></div></div>
+ <div class="bar">
+  <div class="chip on">2차선</div><div class="chip">3차선</div><div class="chip">4차선</div><div class="chip">5차선</div><div class="chip">8차선</div>
+  <div class="sp"></div><div class="grid"><svg><use href="#gr"/></svg></div>
+ </div></div></div>
+
+<div class="o"><p class="t">B <span>차로 단면 그림 카드(C형) 5장 + 오른쪽 끝 격자 버튼</span></p>
+<div class="scene">
+ <div class="pill"><div class="tb on"><svg><use href="#st"/></svg></div><div class="tb"><svg><use href="#cv"/></svg></div><div class="tb"><svg><use href="#fr"/></svg></div></div>
+ <div class="bar">
+  <div class="card on"><div class="ln" style="left:37px;background:#f2c14e"></div><div class="nm">2차선</div></div>
+  <div class="card"><div class="ln" style="left:25px"></div><div class="ln" style="left:50px;background:#f2c14e"></div><div class="nm">3차선</div></div>
+  <div class="card"><div class="ln" style="left:19px"></div><div class="ln" style="left:37px;background:#f2c14e"></div><div class="ln" style="left:56px"></div><div class="nm">4차선</div></div>
+  <div class="card"><div class="ln" style="left:15px"></div><div class="ln" style="left:30px"></div><div class="ln" style="left:45px;background:#f2c14e"></div><div class="ln" style="left:60px"></div><div class="nm">5차선</div></div>
+  <div class="card"><div class="ln" style="left:9px"></div><div class="ln" style="left:18px"></div><div class="ln" style="left:27px"></div><div class="ln" style="left:37px;background:#f2c14e"></div><div class="ln" style="left:47px"></div><div class="ln" style="left:56px"></div><div class="ln" style="left:65px"></div><div class="nm">8차선</div></div>
+  <div class="sp"></div><div class="grid"><svg><use href="#gr"/></svg></div>
+ </div></div></div>
+
+<div class="o"><p class="t">C <span>B + 고속도로 줄을 따로 (일반 2·3·4·5·8 / 고속 2·3·4·5)</span></p>
+<div class="scene" style="height:230px">
+ <div class="pill" style="bottom:144px"><div class="tb on"><svg><use href="#st"/></svg></div><div class="tb"><svg><use href="#cv"/></svg></div><div class="tb"><svg><use href="#fr"/></svg></div></div>
+ <div class="bar" style="height:136px;flex-wrap:wrap;align-content:center;row-gap:6px">
+  <span class="lbl">일반</span><div class="chip on">2</div><div class="chip">3</div><div class="chip">4</div><div class="chip">5</div><div class="chip">8</div>
+  <div class="sp"></div><div class="grid"><svg><use href="#gr"/></svg></div>
+  <div style="flex-basis:100%;height:0"></div>
+  <span class="lbl">고속</span><div class="chip">2</div><div class="chip">3</div><div class="chip">4</div><div class="chip">5</div>
+ </div></div></div>
+<p style="font-size:15px;color:var(--muted-foreground,#666);margin:0">격자 버튼: 켜짐 = 파랑(기본), 꺼짐 = 회색. 도로 방식 버튼 묶음(직선·곡선·자유 곡선)은 기존 그대로.</p>
+</body></html>

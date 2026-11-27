@@ -154,3 +154,38 @@ Before reporting a requested feature or asset as absent, compare the local commi
 with origin/main (fetch when available) and read the latest handoff. A stale checkout
 is not evidence that work is missing. Preserve completed models and distinguish
 asset registration/inspection from city placement and operational simulation.
+
+## 작업 원칙 (전역 지침 요약, 사용자 승인 2026-11-13)
+
+- 권위 순서: 사용자 현재 지시 > 확정 기획 문서 > 저장소 규칙 > 실제 코드·실행 > 테스트·fixture. 하위가 상위를 바꾸지 않는다.
+- 에이전트 제안·추정은 사용자가 승인하기 전까지 임시다.
+- 낡은 기대값으로 새 규칙을 막는 테스트는 TEST DRIFT — 규칙을 되돌리지 말고 테스트를 고친다.
+- 완료 = 실제 게임 화면에서 의도한 조작 흐름으로 동작이 확인됨. 테스트·대체 경로만 통과했으면 완료라 하지 않는다.
+- 필요한 범위를 빠짐없이, 그 이상은 하지 않는다. 관계없는 발견은 따로 보고한다.
+- 이미 승인된 작업은 다시 묻지 않는다. 막힌 부분만 멈추고 나머지는 진행한다.
+- 실제로 한 일과 증거만 보고한다. 확인 못 한 것은 그대로 말한다.
+- 결론부터, 결론에 영향 없는 단서·뻔한 예외는 쓰지 않는다.
+
+## 검수 수준 (사용량 절약, 사용자 승인 2026-11-13)
+
+- 작업 브랜치 검증은 "제대로 작동하는지"만 본다: 바뀐 기능의 관련 테스트 + 요청한 캡처만.
+- 애셋 등록·교체: 게임에서 로드되고 크기·정면이 맞는지 1회 확인 + 캡처 1장. 원본 해시 전수 대조·삼각형/재질 상세 감사·이미지 검증 JSON은 하지 않는다.
+- 전체 회귀 테스트·원본 보호 파일 대조는 main 병합 직전 1회만.
+- 보고는 5줄 이내: 브랜치·SHA·통과 수·캡처 경로·막힌 점. README·검증 폴더 긴 문서는 main 병합 때만.
+- 같은 테스트를 이유 없이 반복 실행하지 않는다. 다시 돌리는 건 코드가 바뀌었거나 실패했을 때만.
+- RED 로그·중간 결과 파일은 남기지 않는다(최종 결과만).
+
+## cities-claude 직접 코딩 (사용자 승인 2026-11-15)
+
+- 기본 분담은 그대로: cities-claude = 기획·UI/UX·검수·중계, cities-gpt = 코딩·구현·커밋.
+- cities-claude는 **사용자가 "지피티가 사용량이 없으니 니가 해"처럼 cities-claude에게 직접 명령했을 때만** 코딩한다. 지피티 사용량이 없다는 사실만으로 스스로 시작하지 않는다.
+- 범위: 작은 수정·급한 버그·미커밋 작업 마무리·측정/테스트 실행. 큰 구현은 지피티를 기다린다.
+- 커밋: `git -c user.name=rlatkdeh0001-creator -c user.email=304212562+rlatkdeh0001-creator@users.noreply.github.com commit`, 메시지 끝에 `(by cities-claude)`. push·main 반영은 기존처럼 사용자 승인 후.
+- 끝나면 바뀐 브랜치·SHA·내용을 cities-gpt에게 알려 이어받게 한다.
+
+## 애셋 제작 분담 (사용자 승인 2026-11-15)
+
+- 애셋 원본 제작·렌더·등록은 **cities-asset**(시티즈 애셋) 봇이 맡는다: Blender 파이썬 스크립트로 직접 만든 지오메트리만, 외부 모델·외부 텍스처·생성형 이미지·가짜 PNG 금지, 스크립트와 `.blend`를 함께 남긴다.
+- 흐름: 사용자 요청 → cities-claude가 `docs/design/ASSET_REQUEST_*_KO.md` 제작 요청서 작성 → 사용자가 제작을 요청하면 cities-claude가 cities-asset에 전달 → cities-asset이 `assets/<이름>-<날짜>` 브랜치에서 작업, 메시지 끝 `(by cities-asset)`.
+- cities-gpt는 애셋을 만들지 않는다(게임 코드 전담). cities-asset은 게임 코드를 고치지 않고 등록용 카탈로그·메타데이터만 바꾼다.
+- 기존 애셋 원본(.blend, metadata, GLB, spec.json, sprites, npz)은 수정하지 않고 새 버전 파일로 만든다. push·main 반영은 사용자 승인 후. 설치는 D: 드라이브.

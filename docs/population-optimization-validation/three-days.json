@@ -1,0 +1,28 @@
+[
+  {
+    "buildings": 8,
+    "exact_state_equal": true,
+    "game_days": 3,
+    "seed": 42,
+    "stats": {
+      "employed": 16,
+      "households": 8,
+      "population": 17,
+      "unemployed": 0
+    },
+    "ticks": 5400
+  },
+  {
+    "buildings": 8,
+    "exact_state_equal": true,
+    "game_days": 3,
+    "seed": 20261114,
+    "stats": {
+      "employed": 16,
+      "households": 8,
+      "population": 16,
+      "unemployed": 0
+    },
+    "ticks": 5400
+  }
+]

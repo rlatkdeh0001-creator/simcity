@@ -1,0 +1,15 @@
+Road-edge transit facilities - final batch evidence
+bus-stop-01: 8 x 3m, height 3.28m, 1660 triangles.
+bus-station-01: 32 x 12m, height 4.09m, 2918 triangles.
+taxi-stand-01: 24 x 8m, height 3.38m, 2368 triangles.
+All three: placement=road_edge; origin is the centre of the road-contact edge at ground level. Blender road side -Y (edge y=0), long axis X, inward +Y; glTF road side +Z (edge z=0), inward -Z.
+Sidewalk occupied width: bus-stop 3.0m (requires a >=3.0m sidewalk); bus station and taxi station 0m on the sidewalk, with 12m / 8m inland apron depth. Actual game attachment validation remains unimplemented.
+Original assets/facilities/<id>/facility.blend, spec.json, build.py and transparent 800x680 preview.png delivered; GLBs/PNGs appended to the existing facilities inspection catalog.
+Separate named StopZoneYellowDecal mesh and end markings retained. Canopy glass is alpha .32; benches include legs and explicit back uprights. Signs use converted system-font mesh geometry, not textures.
+Blender 4.3.2, CPU Cycles 24 samples, 30-degree orthographic camera. Existing vehicle palette/common helper reused; existing MIT LICENSE/NOTICE retained. No installation or external art.
+Final Godot GL Compatibility fixture: ROADSIDE_GRAPHICAL_PASS 20 checks; 3 facility GLBs; 4 buses / 4 taxis in fixture.
+Checks: each catalog ID unique, road_edge metadata, width bounds, inward-depth/edge bounds, origin; separate stop decal; 3 bus bay envelope fits; 4 taxi bay envelope fits.
+Capture docs/transit-validation/roadside-1600.png is one unmodified 1600x1000 framebuffer with three panels, existing bus-city-01 and taxi-sedan-01 parked, plus 1.75m scale mannequins.
+Generate safely: blender -b --factory-startup -t 2 --python-exit-code 1 -P tools/build_transit_roadside.py -- --output-root <new-empty-workspace>
+Inspect: godot --path cities_do --rendering-method gl_compatibility --audio-driver Dummy --resolution 1600x1000 --script ../tools/capture_transit_roadside.gd
+Scope limits: inspection only. Static bays are not proof of bus turning clearance, live road attachment, boarding, passenger capacity, routes or full game operation. No economics or game logic changed; no push/main integration. Standard non-.NET editor import still reports existing C# main dependencies, as recorded for the vehicle batch; independent asset fixture ran without errors.

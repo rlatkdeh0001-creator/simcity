@@ -10,10 +10,13 @@ var water_overlay
 var water_snapshot := {}
 var traffic
 var traffic_button: Button
+var world_renderer
 var map_settings: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://maps/example_100.json"))
 const Model = preload("res://core/city_model.gd")
 var city = Model.new(int(map_settings.width_cells), int(map_settings.height_cells), int(map_settings.seed))
 var road_lanes := 2
+var road_major_side := 1
+var road_grid_enabled := true
 var map_zoom := 0.65
 var panning := false
 var keyboard_camera
@@ -26,8 +29,28 @@ var painter_order=preload("res://core/isometric_order.gd").new()
 var building_views
 var public_controller
 var road_drawer
-var mode := "select"
+var transit_view
+const Operations = preload("res://core/transit_operations.gd")
+var route_warning
+var transit_line_tool
+var _demolition_preference := ""
+var _rail_height_control: WeakRef
+var mode := "select":
+	set(value):
+		if value=="demolish" and mode!="demolish":
+			_demolition_preference=mode if mode in ["road","rail"] else ""
+			if mode=="select" and _rail_height_control!=null:
+				var control: Control=_rail_height_control.get_ref()
+				if control!=null and control.is_visible_in_tree():_demolition_preference="rail"
+		elif value!="demolish":_demolition_preference=""
+		_rail_height_control=null
+		mode=value
 var demolition_hover := {}
+const DEMOLITION_TINT := Color(1,.35,.20,.65)
+var metro_station_hover_layer: Node2D
+var demolition_press := {}
+var demolition_press_screen := Vector2.ZERO
+var demolition_dragged := false
 var zone := "residential"
 var selected := -1
 var stroke := PackedVector2Array()
@@ -62,8 +85,11 @@ func _ready():
 		map_zoom = session.map_zoom
 		origin = session.origin
 		get_tree().remove_meta("construction_session")
+	if not city._tax_production:city.enable_taxation()
+	city.enable_simulation_worker()
+	city.simulation.edit_completed.connect(_simulation_edit_completed)
 	# Rebuild only obsolete cached tiles; keep existing building records/footprints.
-	if city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
+	if city.roads.any(func(r):return r.kind=="local" and not is_equal_approx(r.width,Model.RoadProfile.width_for(r.kind,r.lanes,city.config.road_width))) or city.zoning_grid.parcels.values().any(func(p):return p.v>=Model.Config.MAX_ZONING_DEPTH):city._update_zoning_for_road({})
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for asset in city.catalog.entries:
 		var texture: Texture2D = load(asset.texture)
@@ -78,6 +104,9 @@ func _ready():
 	public_controller.view=self
 	add_child(public_controller)
 	road_drawer=preload("res://core/road_drawing.gd").new(self)
+	transit_view=preload("res://core/transit_view.gd").new()
+	add_child(transit_view);transit_view.setup(self)
+	transit_line_tool=preload("res://core/transit_line_tool.gd").new(self)
 	keyboard_camera=preload("res://core/keyboard_camera.gd").new(self)
 	add_child(keyboard_camera)
 
@@ -86,11 +115,12 @@ func _ready():
 	traffic = Traffic.new()
 	add_child(traffic)
 	_build_controls(layer)
-	power_snapshot = city.power_state()
+	city.utilities.start()
+	power_snapshot = city.utilities.power_snapshot
 	power_overlay = PowerOverlay.new()
 	add_child(power_overlay)
 	power_overlay.setup(self,layer)
-	water_snapshot = city.water_state()
+	water_snapshot = city.utilities.water_snapshot
 	water_overlay = WaterOverlay.new()
 	add_child(water_overlay)
 	water_overlay.setup(self,layer)
@@ -101,6 +131,35 @@ func _ready():
 	labor_rings=preload("res://labor_rings.gd").new()
 	labor_panel.add_child(labor_rings)
 	refresh()
+	world_renderer=preload("res://core/cached_world_renderer.gd").new()
+	add_child(world_renderer)
+	world_renderer.setup(self)
+	# The metro layer shares main's effective z, and otherwise covers main's station hover tint.
+	metro_station_hover_layer=Node2D.new()
+	metro_station_hover_layer.name="MetroStationHover"
+	metro_station_hover_layer.z_index=1
+	metro_station_hover_layer.hide()
+	add_child(metro_station_hover_layer)
+	metro_station_hover_layer.draw.connect(draw_metro_station_hover)
+	_bind_demolition_toggle.call_deferred()
+
+func remember_rail_height_control(control: Control) -> void:
+	# The rail height buttons can be used from the train tray without arming track drawing.
+	if mode=="select" and control.is_visible_in_tree():_rail_height_control=weakref(control)
+
+func _bind_demolition_toggle() -> void:
+	# The bottom HUD is built after super._ready(). Keep its existing toggle and view behavior.
+	var button := get("bulldozer") as Button
+	var toggle := Callable(self,"toggle_demolition")
+	if button==null or not button.pressed.is_connected(toggle):return
+	button.pressed.disconnect(toggle)
+	button.pressed.connect(_toggle_demolition_from_hud.bind(toggle))
+
+func _toggle_demolition_from_hud(toggle: Callable) -> void:
+	# The HUD cancels placement (clearing the station tool) before assigning demolition mode.
+	var was_train_station: bool=mode=="public_placement" and public_controller.asset_id=="train-station-01"
+	toggle.call()
+	if was_train_station and mode=="demolish":_demolition_preference="rail"
 
 func _build_controls(layer: CanvasLayer):
 	var panel := PanelContainer.new()
@@ -146,7 +205,7 @@ func _build_controls(layer: CanvasLayer):
 	upgrade.text = "선택 건물 업그레이드"
 	upgrade.pressed.connect(func():
 		var result: Dictionary = city.upgrade_chain(selected)
-		message = "성장 %d개 · 연쇄 %d개" % [result.events.size(), max(0, result.events.size() - 1)] if result.ok else result.reason
+		message = "" if result.ok else result.reason
 		refresh())
 	box.add_child(upgrade)
 	info = Label.new()
@@ -249,12 +308,20 @@ func _build_controls(layer: CanvasLayer):
 func toggle_traffic():
 	if traffic.running:
 		stop_traffic()
-		message = "도로 주행을 종료했습니다"
+		message = ""
 	else:
 		if traffic.rebuild(city.roads):
 			traffic.seed_traffic()
 			if traffic_button != null: traffic_button.text = "도로 주행 종료"
 		message = traffic.status
+	refresh()
+
+func _exit_tree():
+	if city!=null and city.simulation!=null:city.simulation.shutdown()
+	elif city!=null and city.happiness!=null:city.happiness.suspend_background()
+
+func _simulation_edit_completed(result:Variant):
+	if result is Dictionary and not result.get("ok",true):message=str(result.get("reason","편집을 적용하지 못했습니다"))
 	refresh()
 
 func stop_traffic():
@@ -267,8 +334,9 @@ func _process(delta: float):
 	if labor_panel!=null:labor_panel.position.x=maxf(8,get_viewport_rect().size.x-490)
 	if city.buildings.size()!=before_buildings or (labor_panel!=null and labor_panel.visible): refresh()
 	# Simulation/billing runs regardless of the power tab or visual pause.
-	power_snapshot = city.advance_power(delta*city.Clock.SCALE/3600.0)
-	water_snapshot = city.advance_water(delta*city.Clock.SCALE/86400.0)
+	var utility_state:Dictionary=city.advance_utilities(delta)
+	power_snapshot = utility_state.power
+	water_snapshot = utility_state.water
 	if water_overlay != null: water_overlay.update_state(delta)
 	if treasury_label != null: treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
 	if power_overlay != null: power_overlay.update_state(delta)
@@ -276,19 +344,6 @@ func _process(delta: float):
 		traffic.update(delta)
 		queue_redraw()
 
-func draw_traffic():
-	if traffic == null or not traffic.running: return
-	var ordered: Array = traffic.simulation.vehicles.duplicate()
-	ordered.sort_custom(func(a,b):
-		var pa: Vector2 = traffic.simulation.position(a)
-		var pb: Vector2 = traffic.simulation.position(b)
-		return pa.x+pa.y < pb.x+pb.y)
-	for vehicle in ordered:
-		var position_m: Vector2 = traffic.simulation.position(vehicle)
-		var heading: Vector2 = traffic.simulation.heading(vehicle)
-		var texture: Texture2D = traffic.texture_for(vehicle.asset_id, heading)
-		var rect: Rect2 = traffic.sprite_rect(vehicle.asset_id, screen(position_m/4.0), tile.x/4.0*sqrt(2.0)*map_zoom)
-		draw_texture_rect(texture, rect, false)
 
 func building_visual(b: Dictionary) -> Dictionary:
 	var asset: Dictionary=city.catalog.get_asset(b.get("asset_id",""))
@@ -331,10 +386,13 @@ func pick_rendered_building(position: Vector2) -> Dictionary:
 	return city.building_at(world(position))
 
 func refresh():
+	if transit_view!=null and mode not in ["rail","metro"]:transit_view.cancel()
+	if mode!="demolish":cancel_demolition_drag()
 	if road_drawer!=null and mode!="road":road_drawer.cancel()
 	if labor_panel!=null:
-		labor_panel.visible=city.population.workplaces.has(selected)
-		labor_rings.work=city.population.workplaces.get(selected,{})
+		var workplace:Dictionary=city.population.workplace_info(selected) if city.population.has_method("workplace_info") else city.population.workplaces.get(selected,{})
+		labor_panel.visible=not workplace.is_empty()
+		labor_rings.work=workplace
 		labor_rings.queue_redraw()
 	if treasury_label != null:
 		treasury_label.text = "자금: %s" % city.Economy.format_amount(city.funds)
@@ -345,9 +403,11 @@ func refresh():
 		if not asset.is_empty():
 			info.text += "\n%s · %s · 지상 %d층" % [asset.category_name, asset.name, asset.storeys]
 	hud.text = message
+	if world_renderer!=null:world_renderer.synchronize()
 	queue_redraw()
 
 func cancel_zoning_drag() -> void:
+	cancel_demolition_drag()
 	zoning_drag=false
 	zoning_anchor.clear()
 	queue_redraw()
@@ -374,9 +434,121 @@ func finish_zoning(position: Vector2,over_hud: bool=false) -> void:
 	refresh()
 
 func _unhandled_key_input(event):
-	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_zoning_drag()
+	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+		cancel_zoning_drag()
+		if mode=="demolish":mode="select";refresh()
+
+func cancel_demolition_drag() -> void:
+	demolition_press.clear()
+	demolition_hover.clear()
+	demolition_dragged=false
+	queue_redraw()
+
+## Review fix 1: bulldozer view switch (PgDn underground, PgUp ground). A press picked in the other
+## view is dropped and the hover is picked again in the new view.
+func set_demolition_view(below: bool) -> void:
+	if transit_view==null or mode!="demolish":return
+	cancel_demolition_drag()
+	if transit_view.underground!=below:
+		transit_view.underground=below
+		transit_view.sync_visibility()
+		refresh()
+	demolition_hover=demolition_target(get_viewport().get_mouse_position())
+	queue_redraw()
+
+func update_demolition_drag(position: Vector2) -> void:
+	if demolition_press.is_empty():return
+	if demolition_press.get("kind","")=="transit_route":
+		demolition_hover=demolition_press.duplicate(true);return
+	if position.distance_to(demolition_press_screen)>3.0:demolition_dragged=true
+	var selection: Dictionary=city.road_demolition_selection(demolition_press.id,demolition_press.world_point,world(position) if demolition_dragged else null)
+	demolition_hover={"kind":"road","id":demolition_press.id,"selection":selection}
+	queue_redraw()
+
+func finish_demolition_drag(position: Vector2,over_hud: bool=false) -> void:
+	if demolition_press.is_empty():return
+	if mode!="demolish" or over_hud:cancel_demolition_drag();return
+	update_demolition_drag(position)
+	var transit:bool=demolition_press.get("kind","")=="transit_route"
+	if transit:
+		var id:int=demolition_press.id
+		cancel_demolition_drag()
+		guard_route_edit(route_removal_draft(id),apply_route_removal.bind(id))
+		refresh()
+		return
+	var result: Dictionary=city.demolish_road_selection(demolition_hover.selection)
+	message="" if result.ok else result.reason
+	if result.ok:stop_traffic()
+	cancel_demolition_drag()
+	refresh()
+
+## Edit warning (user rule 2026-11-19, ASSET_REQUEST_RAIL_PARK_KO.md 5절 12번): an edit that changes the
+## route of a rail, metro or freight line with a consist is applied only after 확인; 취소 changes nothing.
+## `after` is the city as the edit would leave it (Operations.draft, null when nothing re-plans); the
+## lines are judged by Operations.reset_lines, the same route_changed rule advance() moves consists by.
+## One warning per edit however many lines it touches. Returns true while the warning waits.
+func guard_route_edit(after:Variant,apply:Callable,cancelled:Callable=Callable())->bool:
+	if after==null or Operations.reset_lines(city,after).is_empty():
+		apply.call()
+		return false
+	show_route_confirmation(apply,cancelled)
+	return true
+
+func show_route_confirmation(apply:Callable,cancelled:Callable=Callable(),caption:String=""):
+	if route_warning==null:
+		var layer:=CanvasLayer.new();layer.name="RouteWarningLayer";layer.layer=100;add_child(layer)
+		route_warning=preload("res://core/route_reset_warning.gd").new();layer.add_child(route_warning)
+	if keyboard_camera!=null:keyboard_camera.clear()
+	route_warning.open(apply,cancelled,caption)
+
+func route_warning_open()->bool:
+	return route_warning!=null and route_warning.visible
+
+## Stop edit of a line (노선 수정 tool). Schedule-only, bus and rejected edits never warn.
+func edit_transit_line(id:int,stops:Array,options:Dictionary={})->bool:
+	return guard_route_edit(Operations.line_edit_draft(city,id,stops),apply_line_edit.bind(id,stops.duplicate(),options.duplicate(true)))
+
+func apply_line_edit(id:int,stops:Array,options:Dictionary)->void:
+	var result:Dictionary=city.update_transit_line(id,stops,options)
+	message="" if result.get("ok",false) or result.get("queued",false) else str(result.get("reason",""))
+	refresh()
+
+func route_removal_draft(id:int)->Variant:
+	var route:Dictionary=city.get_transit_route(id)
+	if route.is_empty() or route.has("station_id"):return null
+	var after:Dictionary=Operations.draft(city)
+	after.transit_routes=after.transit_routes.filter(func(r):return int(r.id)!=id)
+	return after
+
+func apply_route_removal(id:int)->void:
+	var result:Dictionary=city.remove_transit_route(id)
+	message="" if result.ok else result.reason
+	refresh()
+
+## A demolished station takes its own track with it (public_facilities.remove).
+func station_removal_draft(kind:String,id:int)->Variant:
+	if kind!="public_facility":return null
+	var owned:=false
+	for lot:Dictionary in city.public_facilities.lots:
+		if lot.id==id and lot.has("internal_route_id"):owned=true
+	if not owned:return null
+	var after:Dictionary=Operations.draft(city)
+	after.public_facilities.lots=after.public_facilities.lots.filter(func(lot):return lot.id!=id)
+	after.transit_routes=after.transit_routes.filter(func(r):return int(r.get("station_id",-1))!=id)
+	return after
+
+func apply_demolition(kind:String,id:int)->void:
+	var result: Dictionary=city.demolish(kind,id)
+	message="" if result.ok else result.reason
+	if result.ok:
+		if kind=="building" and selected==id: selected=-1
+		demolition_hover.clear()
+	refresh()
 
 func _unhandled_input(event):
+	if transit_view!=null and transit_view.handle_input(event):
+		get_viewport().set_input_as_handled()
+		return
 	if road_drawer!=null and road_drawer.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -384,26 +556,35 @@ func _unhandled_input(event):
 		cancel_zoning_drag()
 		return
 	if mode=="demolish":
+		# Review fix 1: the bulldozer has no height steps, so PgDn shows the underground view and
+		# PgUp returns to the ground view; each view picks only its own objects.
+		if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
+			set_demolition_view(event.keycode==KEY_PAGEDOWN)
+			get_viewport().set_input_as_handled()
+			return
 		if event is InputEventMouseMotion:
-			demolition_hover=demolition_target(event.position)
+			if not demolition_press.is_empty():update_demolition_drag(event.position)
+			else:demolition_hover=demolition_target(event.position)
 			queue_redraw()
 		elif event is InputEventMouseButton:
 			if event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
 				mode="select"
-				demolition_hover.clear()
+				cancel_demolition_drag()
 				refresh()
 				return
 			if event.button_index==MOUSE_BUTTON_LEFT:
 				if event.pressed:
 					var target := demolition_target(event.position)
 					if not target.is_empty():
-						var result: Dictionary=city.demolish_road_unit(target.id,target.world_point) if target.kind=="road" else city.demolish(target.kind,target.id)
-						message=result.reason
-						if result.ok:
-							if target.kind=="road": stop_traffic()
-							if target.kind=="building" and selected==target.id: selected=-1
-							demolition_hover.clear()
+						if target.kind in ["road","transit_route"]:
+							demolition_press=target.duplicate(true)
+							demolition_press_screen=event.position
+							demolition_dragged=false
+							update_demolition_drag(event.position)
+							return
+						guard_route_edit(station_removal_draft(target.kind,target.id),apply_demolition.bind(target.kind,target.id))
 						refresh()
+				else:finish_demolition_drag(event.position)
 				return
 	if water_overlay != null and water_overlay.handle_input(event): return
 	if power_overlay != null and power_overlay.handle_input(event): return
@@ -452,6 +633,16 @@ func _unhandled_input(event):
 			finish_road()
 
 func _input(event):
+	if not demolition_press.is_empty():
+		if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:cancel_demolition_drag()
+		elif event is InputEventMouseMotion:
+			update_demolition_drag(event.position)
+			get_viewport().set_input_as_handled()
+			return
+		elif event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+			finish_demolition_drag(event.position,get_viewport().gui_get_hovered_control()!=null)
+			get_viewport().set_input_as_handled()
+			return
 	if keyboard_camera!=null and keyboard_camera.handle_input(event):
 		get_viewport().set_input_as_handled()
 		return
@@ -477,7 +668,7 @@ func finish_road():
 	drawing = false
 	var result: Dictionary = city.add_road(stroke, "local", true, road_lanes, true)
 	if result.ok: stop_traffic()
-	message = "자유 도로 건설 완료" if result.ok else result.reason
+	message = "" if result.ok else result.reason
 	stroke.clear()
 	refresh()
 
@@ -540,6 +731,27 @@ func visible_zoning_parcels() -> Array[Dictionary]:
 	return empty
 
 func demolition_target(position: Vector2) -> Dictionary:
+	# Review fix 1 (user rule 2026-11-19): the ground view (the bulldozer default) picks only ground
+	# objects and the underground view (PgDn) only underground ones. Trenches and portals are picked
+	# in both.
+	# Pick covered routes at their drawn depth, then station silhouettes, then trenches and portals.
+	# A station silhouette wins over an independent metro ribbon at the same click.
+	if transit_view!=null and transit_view.underground:
+		var buried:Dictionary=transit_view.pick_drawn(position,["covered"],_demolition_preference)
+		# A metro station's own platform track is part of the station, as a ground station's track is
+		# on the ground: it picks the station.
+		if buried.get("kind","")=="transit_route" and world_renderer!=null:
+			var route:Dictionary=city.get_transit_route(buried.id)
+			var owner_id:int=int(route.get("station_id",-1))
+			if world_renderer.metro_stations.has(owner_id):
+				return {"kind":"public_facility","id":owner_id,"polygon":metro_station_outline(world_renderer.metro_stations[owner_id].record)}
+			if owner_id==-1 and route.get("kind","")=="metro":
+				var silhouette:=pick_metro_station(position)
+				if not silhouette.is_empty():return silhouette
+		if not buried.is_empty():return buried
+		var station:Dictionary=pick_metro_station(position)
+		if not station.is_empty():return station
+		return transit_view.pick_drawn(position,["open"],_demolition_preference)
 	var public_record: Dictionary=public_controller.target(position)
 	if not public_record.is_empty():return {"kind":"public_facility","id":public_record.id,"polygon":projected_footprint(public_record)}
 	# Visible utility layer wins over an overlapping road; hidden pipes are never hit.
@@ -571,13 +783,34 @@ func demolition_target(position: Vector2) -> Dictionary:
 		if not result.is_empty(): return result
 	var building: Dictionary=pick_rendered_building(position)
 	if not building.is_empty(): return {"kind":"building","id":building.id,"polygon":projected_footprint(building)}
-	var point := world(position)
-	for i in range(city.roads.size()):
-		var road: Dictionary=city.roads[i]
-		for j in range(road.points.size()-1):
-			if point.distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[j],road.points[j+1]))<=road.width/2:
-				var selected: Dictionary=city.RoadUnits.cut_target(road,point)
-				return {"kind":"road","id":int(road.get("parcel_id",i)),"road":selected.road,"world_point":point}
+	# Review fix 1: roads and rails alike at the height they are drawn (decks raised, trenches at
+	# their opening); the top-most drawn hit wins.
+	if transit_view!=null:return transit_view.pick_drawn(position,["surface","open"],_demolition_preference)
+	return {}
+
+## Footprint of a metro station silhouette record projected to the depth it is drawn at.
+func metro_station_outline(record: Dictionary) -> PackedVector2Array:
+	var outline:=PackedVector2Array()
+	for point: Vector2 in record.polygon:outline.append(origin+transit_view.project_point(point,float(record.get("render_depth_m",0.0)))*map_zoom)
+	return outline
+
+## Underground view: a metro station is picked on its platform silhouette where the underground
+## layer draws it (the world renderer's silhouette record, at its depth), or on its footprint
+## projected to that depth. The later drawn silhouette wins.
+func pick_metro_station(position: Vector2) -> Dictionary:
+	if world_renderer==null:return {}
+	var nodes: Array=world_renderer.metro_stations.values()
+	nodes.reverse()
+	for node in nodes:
+		var record: Dictionary=node.record
+		var outline:=metro_station_outline(record)
+		var hit: bool=Geometry2D.is_point_in_polygon(position,outline)
+		var rendered: Dictionary={} if hit else public_controller.visual(record)
+		if not rendered.is_empty() and rendered.rect.has_point(position):
+			var image: Image=rendered.image
+			var pixel:=Vector2i((position-rendered.rect.position)/rendered.rect.size*Vector2(image.get_size()))
+			hit=image.get_pixelv(pixel.clamp(Vector2i.ZERO,image.get_size()-Vector2i.ONE)).a>.1
+		if hit:return {"kind":"public_facility","id":int(record.id),"polygon":outline}
 	return {}
 
 func draw_front_door(b: Dictionary):
@@ -595,84 +828,17 @@ func draw_front_door(b: Dictionary):
 	if screen(middle).y<screen(center).y-.001:return
 	draw_colored_polygon(PackedVector2Array([left,right,right-lift,left-lift]),Color("293c46"))
 
+func draw_metro_station_hover() -> void:
+	if demolition_hover.has("polygon"):
+		metro_station_hover_layer.draw_colored_polygon(demolition_hover.polygon,DEMOLITION_TINT)
+
 func _draw():
-	# One terrain polygon, no full-map cell array or always-on grid.
-	var terrain := PackedVector2Array([screen(Vector2.ZERO),screen(Vector2(city.width,0)),screen(Vector2(city.width,city.height)),screen(Vector2(0,city.height))])
-	draw_colored_polygon(terrain,Color("7e9275"))
-	for parcel in visible_zoning_parcels():
-		var outline := PackedVector2Array()
-		for point in parcel.polygon:outline.append(screen(point))
-		var designated: String=city.zone_designations.get(parcel.id,"")
-		var tint: Color=ZONE_COLORS.get(designated,Color(0.82,0.89,0.72))
-		tint.a=.50 if not designated.is_empty() else .22
-		draw_colored_polygon(outline,tint)
-		outline.append(outline[0])
-		draw_polyline(outline,Color(0.87,0.94,0.8,0.5),0.7,true)
-	# Paint all sidewalks before any asphalt: a later stroke's round end cap
-	# must not cut a pale curb across the already-connected carriageway.
-	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width,Color("c8cbc3"),road.get("flat_start",false),road.get("flat_end",false))
-	for road in city.road_visuals:
-		draw_ribbon(road.points,road.width*(0.75 if road.lanes == 2 else 0.8125),Color("4c5659"),road.get("flat_start",false),road.get("flat_end",false))
-	for road in city.road_visuals:
-		var points := PackedVector2Array()
-		for p in road.points: points.append(screen(p))
-		draw_polyline(points,Color("e4bd5f"),maxf(0.6,map_zoom),true)
-		for dash in RoadGeometry.lane_marks(road):
-			var clipped: PackedVector2Array=RoadGeometry.clipped_segment(dash[0],dash[1],Vector2(city.width,city.height))
-			if clipped.size()==2:draw_line(screen(clipped[0]),screen(clipped[1]),Color("e8e7dc"),maxf(0.6,map_zoom),true)
-	for junction in city.junctions:
-		for asphalt in [false,true]:
-			var outline := PackedVector2Array()
-			for point in city.RoadJunctions.patch(junction,asphalt): outline.append(screen(point))
-			if outline.size()>=3: draw_colored_polygon(outline,Color("4c5659") if asphalt else Color("c8cbc3"))
-		# Gentle endpoint/lane transitions connect traffic without new zebra crossings.
-		if junction.get("transition",false):continue
-		for arm in junction.arms:
-			var direction: Vector2=arm.direction
-			var normal := Vector2(-direction.y,direction.x)
-			var half: float=arm.width*(.75 if arm.lanes==2 else .8125)/2
-			var centre: Vector2=junction.position+direction*city.RoadJunctions.crosswalk_distance(junction,arm)
-			var stripe_half: float=city.RoadJunctions.CROSSWALK_HALF_LENGTH
-			var offset := -half+.12
-			while offset<half-.12:
-				var p: Vector2=centre+normal*offset
-				var corners := PackedVector2Array([p-direction*stripe_half,p+direction*stripe_half,p+direction*stripe_half+normal*.14,p-direction*stripe_half+normal*.14])
-				var projected := PackedVector2Array()
-				for corner in corners:projected.append(screen(corner))
-				draw_colored_polygon(projected,Color("e8e7dc"))
-				offset+=.28
-	BoundaryLinks.draw_links(self,self,BoundaryLinks.road_links(city))
-	draw_traffic()
-	var sorted: Array = building_draw_order()
-	for b in sorted:
-		if b.has("public_asset_id"):
-			var public_visual: Dictionary=public_controller.visual(b)
-			if not public_visual.is_empty():draw_texture_rect(public_visual.texture,public_visual.rect,false)
-			continue
-		var visual:=building_visual(b)
-		if not visual.is_empty():
-			draw_texture_rect(visual.texture,visual.rect,false)
-			if b.id==selected:
-				var outline:=projected_footprint(b)
-				outline.append(outline[0])
-				draw_polyline(outline,Color.WHITE,2)
-			continue
-		var color: Color = {"residential": Color("65a87b"), "commercial": Color("629dce"), "industrial": Color("d8ac60")}[b.zone]
-		var base := projected_footprint(b)
-		var top := lifted_footprint(b,visual_lift(b))
-		var faces: Array[Dictionary]=[]
-		for edge in range(4):
-			var next: int=(edge+1)%4
-			faces.append({"depth":(base[edge].y+base[next].y)/2,"points":PackedVector2Array([base[edge],base[next],top[next],top[edge]]),"shade":0.15 if edge%2 else 0.35})
-		faces.sort_custom(func(a,c):return a.depth<c.depth)
-		for face in faces:draw_colored_polygon(face.points,color.darkened(face.shade))
-		draw_colored_polygon(top, color)
-		draw_front_door(b)
-		if b.id == selected:
-			var outline := top.duplicate()
-			outline.append(top[0])
-			draw_polyline(outline, Color.WHITE, 2)
+	# Only active interaction feedback is screen-space; static layers and actors are retained.
+	if transit_view==null or not transit_view.underground:
+		var b:Dictionary=city.find_building(selected)
+		if not b.is_empty():
+			var outline:=projected_footprint(b) if not building_visual(b).is_empty() else lifted_footprint(b,visual_lift(b))
+			outline.append(outline[0]);draw_polyline(outline,Color.WHITE,2)
 	if zoning_drag:
 		var selection := zoning_selection()
 		if selection.size()>=3:
@@ -685,15 +851,28 @@ func _draw():
 		var snapped: PackedVector2Array=city.RoadJunctions.snap_path(stroke,city.roads)
 		var points := PackedVector2Array()
 		for p in snapped: points.append(screen(p))
-		var valid: bool = city.add_road(snapped, "local", false, road_lanes).ok
-		draw_ribbon(snapped, road_lanes, Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
+		var valid: bool = road_drawer.legacy_preview(snapped)
+		draw_ribbon(snapped, city.RoadProfile.width_for("local",road_lanes,city.config.road_width), Color(0.3,0.9,0.5,0.7) if valid else Color(0.95,0.3,0.25,0.7))
 
 	if road_drawer!=null:road_drawer.draw_preview()
+	if transit_view!=null:transit_view.draw_preview()
+	if metro_station_hover_layer!=null:
+		var station_hover:bool=mode=="demolish" and transit_view.underground and demolition_hover.get("kind","")=="public_facility"
+		metro_station_hover_layer.visible=station_hover
+		if station_hover:
+			metro_station_hover_layer.queue_redraw()
+			return
 	if mode=="demolish" and not demolition_hover.is_empty():
-		var tint := Color(1,.35,.20,.65)
-		if demolition_hover.has("polygon"):
+		var tint := DEMOLITION_TINT
+		if demolition_hover.has("polygons"):
+			for shape:PackedVector2Array in demolition_hover.polygons:draw_colored_polygon(shape,tint)
+		elif demolition_hover.has("polygon"):
 			draw_colored_polygon(demolition_hover.polygon,tint)
 		elif demolition_hover.has("line"):
 			draw_polyline(demolition_hover.line,tint,10,true)
-		elif demolition_hover.has("road"):
-			draw_ribbon(demolition_hover.road.points,demolition_hover.road.width,tint,true,true)
+		elif demolition_hover.has("selection"):
+			for cut: Dictionary in demolition_hover.selection.get("cuts",[]):
+				for road: Dictionary in city.roads:
+					if int(road.parcel_id)==int(cut.id):
+						draw_ribbon(cut.points,road.width,tint,true,true)
+						break

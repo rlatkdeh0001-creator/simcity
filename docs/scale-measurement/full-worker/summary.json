@@ -1,0 +1,239 @@
+{
+  "complete": false,
+  "frame_acceptance_16ms_met": false,
+  "checks": {
+    "backend_parity": 54006,
+    "main_model_two_seeds_three_days": 140407,
+    "facade": 41,
+    "coordinator_lifecycle": 10,
+    "happiness_hud": 13,
+    "hud_v2": 72,
+    "native_game_input": 7
+  },
+  "checks_total": 194556,
+  "scenario_checkpoints": 26,
+  "scenario_ticks": 7350,
+  "growth_levels": [
+    1,
+    4,
+    5
+  ],
+  "targets": [
+    40,
+    70,
+    80
+  ],
+  "main_max_ms": {
+    "10000": 0.135,
+    "50000": 0.156,
+    "300000": 35.776
+  },
+  "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+  "runs": [
+    {
+      "frame_start_gap": {
+        "max_ms": 30.627,
+        "median_ms": 6.9,
+        "samples": 1139
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.108,
+        "median_ms": 0.006,
+        "samples": 1140
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 29.499,
+        "median_ms": 6.901,
+        "samples": 1140
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.117,
+        "median_ms": 0.006,
+        "samples": 1141
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 9,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 32.795,
+        "median_ms": 6.9,
+        "samples": 1139
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.135,
+        "median_ms": 0.007,
+        "samples": 1140
+      },
+      "mode": "full-worker",
+      "population": 10000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 13,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 21.509,
+        "median_ms": 6.9,
+        "samples": 1141
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.109,
+        "median_ms": 0.005,
+        "samples": 1142
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 15.414,
+        "median_ms": 6.901,
+        "samples": 1143
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.145,
+        "median_ms": 0.014,
+        "samples": 1144
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 9,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 24.822,
+        "median_ms": 6.901,
+        "samples": 1138
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.156,
+        "median_ms": 0.013,
+        "samples": 1139
+      },
+      "mode": "full-worker",
+      "population": 50000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 13,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 39.768,
+        "median_ms": 6.9,
+        "samples": 1132
+      },
+      "frozen_cycles": 0,
+      "main_callback": {
+        "max_ms": 0.166,
+        "median_ms": 0.022,
+        "samples": 1133
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 1,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 29.971,
+        "median_ms": 6.9,
+        "samples": 1134
+      },
+      "frozen_cycles": 4,
+      "main_callback": {
+        "max_ms": 35.776,
+        "median_ms": 0.006,
+        "samples": 1135
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 2,
+      "status": {
+        "fault": "",
+        "published": 5,
+        "worker_thread": 5
+      }
+    },
+    {
+      "frame_start_gap": {
+        "max_ms": 32.187,
+        "median_ms": 6.9,
+        "samples": 1131
+      },
+      "frozen_cycles": 6,
+      "main_callback": {
+        "max_ms": 0.106,
+        "median_ms": 0.004,
+        "samples": 1132
+      },
+      "mode": "full-worker",
+      "population": 300000,
+      "scope": "real headless SceneTree main-thread advance_society callback; population/development/happiness production path; no renderer, utilities or HUD; initial loading and first job excluded",
+      "speed": 3,
+      "status": {
+        "fault": "",
+        "published": 7,
+        "worker_thread": 5
+      }
+    }
+  ],
+  "review_mode": "self-review",
+  "note": "Remaining isolated 35.776ms callback in 300k 2x run; all other callbacks <=0.166ms. Managed-entry stall suspected, not proven GC. Before removing non-boundary managed polling, maxima were 36.294/21.558/39.404ms at 10k/50k/300k. Native mailbox follow-up active. Frame-start gaps remain above16ms; do not claim whole-game frame acceptance.",
+  "runtime": {
+    "godot": "D:/tools/godot-dotnet/Godot_v4.6.3-stable_mono_win64/Godot_v4.6.3-stable_mono_win64_console.exe",
+    "dotnet": "D:/tools/dotnet/dotnet.exe",
+    "wrapper": "D:/project/simcity/tools/run_dotnet.py"
+  }
+}

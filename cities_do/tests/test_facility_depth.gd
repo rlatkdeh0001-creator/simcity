@@ -16,6 +16,8 @@ func run():
  if game.has_method("building_draw_order"):
   var ordered: Array=game.building_draw_order()
   verify(ordered[0].public_asset_id=="power-solar" and ordered[1].public_asset_id=="park-garden-2x2","rear solar drawn before actual foreground garden independent of tied old depth")
+  game.world_renderer.synchronize()
+  verify(game.world_renderer.actors.y_sort_enabled and game.world_renderer.buildings[ordered[0].id].position.y<game.world_renderer.buildings[ordered[1].id].position.y,"retained Sprite2D sort anchors preserve real footprint occlusion")
   public.lots.reverse();verify(game.building_draw_order().map(func(n):return n.public_asset_id)==["power-solar","park-garden-2x2"],"creation order cannot flip front and rear")
   for id in ["power-wind","parking-large-4x8","park-play-4x4"]:
    public.lots.clear()

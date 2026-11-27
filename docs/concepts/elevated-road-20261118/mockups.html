@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>도로 시안 — 1 철거 경고 / 2 높이 조절 (2026-11-18)</title>
+<!--
+  쿼리: ?s=1|2&v=A|B|C  (기본 s=1, v=A)
+  시안 1 — 구획 건물 위로 그을 때 노랑 미리보기 + 철거 경고
+    A 화면 가운데 작은 확인창 · 건물 노랑 테두리 · 창 안 '3채'
+    B 도로 끝(커서) 옆 말풍선 · 건물 노랑 색 입힘 · 말풍선 모서리 배지 '3'
+    C 하단 바 위 확인 띠 · 건물 위 철거 표식 · 띠 안 '3채'
+  시안 2 — 고가(+10 m) 도로를 그리는 중
+    A 하단 바 도로 카드 옆 높이 버튼(▼ 값 ▲)
+    B 커서 옆 높이 표시 + PgUp/PgDn·Ctrl+휠
+    C 지하/지상/고가 3단 토글 + 세부 −/+ 5 m
+  배경: mock/src-close.png (실제 게임 캡처). 집 그림 mock/house-a.png, house-b.png 는 같은 캡처에서 잘라 낸 것.
+  지도 좌표(m) → 화면: x = 623 + 10.5(X−Y), y = 147.5 + 5.25(X+Y) − 12.86·Z
+-->
+<style>
+:root{--bg:#142b37;--panel:#38515e;--ink:#edf4f5;--accent:#36b7ff;--warn:#ffcf33;--ok:#4cd07d;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000}
+body{font-family:"Malgun Gothic","맑은 고딕","Noto Sans KR",sans-serif;color:var(--ink);font-size:18px}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+#bg{position:absolute;left:0;top:0;width:1920px;height:1080px}
+svg.layer{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:visible}
+.house{position:absolute;display:block}
+.hl-outline{filter:url(#fOutline)}
+.hl-tint{filter:url(#fTint)}
+.ui{position:absolute}
+.tag{left:16px;top:14px;padding:6px 12px;border:1px dashed rgba(237,244,245,.6);border-radius:6px;background:rgba(20,43,55,.82);font-size:18px;line-height:24px}
+.tag b{color:var(--accent);margin-right:8px}
+.measure{padding:2px 9px;border-radius:6px;background:rgba(20,43,55,.9);font-size:18px;line-height:24px;font-weight:700;white-space:nowrap;transform:translate(-50%,-50%)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;min-width:104px;padding:0 18px;border-radius:7px;border:1px solid var(--panel);background:var(--panel);color:var(--ink);font-weight:700;font-size:20px;line-height:1;font-family:inherit}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.focus{outline:2px solid var(--ink);outline-offset:2px}
+.warnline{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:700;line-height:30px;white-space:nowrap}
+.count{display:inline-flex;align-items:center;gap:8px;font-size:22px;font-weight:700;color:var(--warn);white-space:nowrap}
+/* 1-A 가운데 확인창 */
+.dlgA{width:440px;padding:22px 24px 20px;border-radius:10px;background:var(--bg);border:1px solid var(--panel);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.dlgA .warnline{margin-bottom:10px}
+.dlgA .count{margin-left:44px}
+.dlgA .row{display:flex;justify-content:flex-end;gap:12px;margin-top:18px}
+/* 1-B 말풍선 */
+.bubble{width:384px;padding:16px 18px 16px;border-radius:10px;background:var(--bg);border:2px solid var(--warn);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.bubble .row{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+.bbadge{position:absolute;right:-16px;top:-22px;height:40px;padding:0 12px 0 9px;border-radius:20px;background:var(--warn);color:var(--bg);display:flex;align-items:center;gap:6px;font-size:22px;font-weight:800}
+/* 1-C 하단 바 위 띠 */
+.strip{left:262px;top:682px;width:1397px;height:60px;border-radius:9px;background:var(--bg);border:1px solid var(--panel);border-top:3px solid var(--warn);display:flex;align-items:center;padding:0 10px 0 18px;gap:22px}
+.strip .sp{flex:1}
+.strip .row{display:flex;gap:10px}
+.strip .btn{height:42px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:20px;border:2px solid var(--warn);color:var(--warn);font-size:22px;font-weight:800}
+/* 2 높이 라벨/컨트롤 */
+.hval{font-weight:800;font-size:24px;line-height:1.2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sep{left:1076px;top:766px;width:1px;height:72px;background:var(--panel)}
+.ctlA{left:1092px;top:760px;width:260px;height:84px}
+.ctlA .lbl{font-size:18px;line-height:24px;color:var(--ink);opacity:.85;margin:0 0 8px 2px}
+.ctlA .row{display:flex;align-items:center;gap:8px}
+.ibtn{width:56px;height:52px;border-radius:7px;background:var(--panel);border:1px solid var(--panel);display:flex;align-items:center;justify-content:center}
+.ctlA .valbox{width:116px;height:52px;border-radius:7px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.ctlC{left:1092px;top:760px;width:276px;height:84px}
+.seg{display:flex;height:40px;border-radius:7px;overflow:hidden;border:1px solid var(--panel)}
+.seg div{flex:1;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:400;background:#1b3542;border-right:1px solid var(--panel)}
+.seg div:last-child{border-right:0}
+.seg div.on{background:var(--accent);color:var(--bg);font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.ctlC .row{display:flex;align-items:center;gap:8px;margin-top:2px;height:42px}
+.ctlC .sbtn{width:52px;height:42px;border-radius:7px;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;line-height:1}
+.ctlC .valbox{flex:1;height:42px;display:flex;align-items:center;justify-content:center}
+.cur{position:absolute;width:26px;height:34px}
+.hlabelB{padding:6px 12px 6px 10px;border-radius:8px;background:rgba(20,43,55,.94);border:2px solid var(--accent);display:flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <img id="bg" src="mock/src-close.png" alt="">
+  <svg id="ground" class="layer" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="fOutline" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d2"/>
+        <feFlood flood-color="#10202a" flood-opacity=".85"/>
+        <feComposite in2="d2" operator="in" result="dark"/>
+        <feMorphology in="SourceAlpha" operator="dilate" radius="3.5" result="d1"/>
+        <feFlood flood-color="#ffcf33"/>
+        <feComposite in2="d1" operator="in" result="yel"/>
+        <feMerge><feMergeNode in="dark"/><feMergeNode in="yel"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="fTint" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="0.45 0 0 0 0.55  0 0.45 0 0 0.45  0 0 0.45 0 0.06  0 0 0 1 0"/>
+      </filter>
+    </defs>
+  </svg>
+  <div id="houses"></div>
+  <svg id="over" class="layer" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="ui"></div>
+</div>
+<script>
+const P = new URLSearchParams(location.search);
+const SCN = P.get('s') === '2' ? 2 : 1;
+const VAR = ['A','B','C'].includes((P.get('v')||'A').toUpperCase()) ? (P.get('v')||'A').toUpperCase() : 'A';
+document.title = `시안 ${SCN}-${VAR}`;
+
+const O = [623, 147.5], KX = 10.5, KY = 5.25, KZ = 12.86;
+function S(X, Y, Z = 0){ return [O[0] + KX*(X - Y), O[1] + KY*(X + Y) - KZ*Z]; }
+const ISO = `matrix(${KX} ${KY} ${-KX} ${KY} ${O[0]} ${O[1]})`;
+const NS = 'http://www.w3.org/2000/svg';
+const ground = document.getElementById('ground');
+const over = document.getElementById('over');
+const ui = document.getElementById('ui');
+const housesEl = document.getElementById('houses');
+
+function svg(parent, tag, attrs, text){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  parent.appendChild(e); return e;
+}
+function div(cls, x, y, html, style = ''){
+  const e = document.createElement('div');
+  e.className = 'ui ' + cls;
+  if (x != null) e.style.left = x + 'px';
+  if (y != null) e.style.top = y + 'px';
+  if (style) e.style.cssText += style;
+  e.innerHTML = html; ui.appendChild(e); return e;
+}
+/* 도로 미리보기 띠: 지도 좌표(m)에서 폭 w 의 선 + 둥근 끝 → 아이소 변환 */
+function band(parent, a, b, w, color, z = 0, extra = {}){
+  const g = svg(parent, 'g', {transform: `translate(0 ${-KZ*z}) ${ISO}`});
+  svg(g, 'line', Object.assign({x1:a[0], y1:a[1], x2:b[0], y2:b[1], stroke: color, 'stroke-width': w, 'stroke-linecap':'round'}, extra));
+  return g;
+}
+/* 아이콘 (SVG 직접 그림) */
+const ICON = {
+  warn: (s=30)=>`<svg width="${s}" height="${s}" viewBox="0 0 30 30"><path d="M15 2.5 L28.5 26.5 H1.5 Z" fill="#ffcf33" stroke="#ffcf33" stroke-width="2" stroke-linejoin="round"/><rect x="13.4" y="10" width="3.2" height="9.5" rx="1.4" fill="#142b37"/><circle cx="15" cy="22.6" r="1.9" fill="#142b37"/></svg>`,
+  house: (s=26, c='#ffcf33')=>`<svg width="${s}" height="${s}" viewBox="0 0 26 26"><path d="M3 12.5 L13 4 L23 12.5" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 11.5 V22 H19.5 V11.5" fill="none" stroke="${c}" stroke-width="3" stroke-linejoin="round"/><rect x="11" y="15" width="4" height="7" fill="${c}"/></svg>`,
+  up: (c='#edf4f5')=>`<svg width="22" height="16" viewBox="0 0 22 16"><path d="M11 2 L20 14 H2 Z" fill="${c}"/></svg>`,
+  down: (c='#edf4f5')=>`<svg width="22" height="16" viewBox="0 0 22 16"><path d="M11 14 L20 2 H2 Z" fill="${c}"/></svg>`,
+  updown: (c='#36b7ff')=>`<svg width="16" height="28" viewBox="0 0 16 28"><path d="M8 1 L15 10 H1 Z" fill="${c}"/><path d="M8 27 L15 18 H1 Z" fill="${c}"/></svg>`,
+};
+function cursor(x, y){
+  const e = document.createElement('div'); e.className = 'cur';
+  e.style.left = (x - 1) + 'px'; e.style.top = (y - 1) + 'px';
+  e.innerHTML = '<svg width="26" height="34" viewBox="0 0 26 34"><path d="M1.5 1.5 L1.5 26 L8 20 L12.3 30.5 L16.6 28.7 L12.4 18.6 L21 18.6 Z" fill="#ffffff" stroke="#111" stroke-width="2" stroke-linejoin="round"/></svg>';
+  document.getElementById('stage').appendChild(e);
+}
+function measure(x, y, text){ return div('measure', x, y, text); }
+div('tag', null, null, `<b>${SCN}-${VAR}</b>예시 값`);
+
+/* ───────── 시안 1: 구획 건물 위로 그을 때 ───────── */
+if (SCN === 1){
+  const HT = { a:{src:'mock/house-a.png', dx:-83, dy:-72, w:168, h:157},
+               b:{src:'mock/house-b.png', dx:-83, dy:-29, w:168, h:114} };
+  // 8m×8m 필지 (X0, Y0) · 종류 · 철거 대상 여부
+  const lots = [
+    [16,-14,'b'],[24,-14,'a'],[40,-14,'a',1],[48,-14,'b'],[64,-14,'a'],
+    [16,6,'a'],[24,6,'b'],[32,6,'a',1],[40,6,'b',1],[48,6,'a'],[64,6,'b'],
+  ].sort((p,q)=>(p[0]+p[1])-(q[0]+q[1]) || p[0]-q[0]);
+  // 새 도로: X=40 직선, 남쪽(Y=36)에서 북쪽(Y=-30)으로 그리는 중, 폭 12 m(2차선)
+  const A = [40, 36], B = [40, -30];
+  band(ground, A, B, 12, 'rgba(255,207,51,.58)');
+  const hit = [];
+  for (const [X0, Y0, t, d] of lots){
+    const h = HT[t], [sx, sy] = S(X0, Y0);
+    const img = document.createElement('img');
+    img.src = h.src; img.className = 'house'; img.alt = '';
+    img.style.left = (sx + h.dx) + 'px'; img.style.top = (sy + h.dy) + 'px';
+    if (d && VAR === 'A') img.classList.add('hl-outline');
+    if (d && VAR === 'B') img.classList.add('hl-tint');
+    housesEl.appendChild(img);
+    if (d) hit.push({x: sx, top: sy + h.dy});
+  }
+  // 길이 라벨: 띠 가운데 근처, 집과 겹치지 않는 큰길 위
+  const mid = S(40, -4); measure(mid[0], mid[1], '66 m');
+  const end = S(...B);
+  if (VAR === 'C'){
+    // 건물 위 철거 표식 (노랑 원 + ×)
+    for (const p of hit){
+      const cx = p.x, cy = p.top - 22;
+      svg(over, 'line', {x1:cx, y1:cy+16, x2:cx, y2:p.top+6, stroke:'#ffcf33', 'stroke-width':3});
+      svg(over, 'circle', {cx, cy, r:19, fill:'#ffcf33', stroke:'#10202a', 'stroke-width':2});
+      svg(over, 'path', {d:`M${cx-7} ${cy-7} L${cx+7} ${cy+7} M${cx+7} ${cy-7} L${cx-7} ${cy+7}`, stroke:'#142b37', 'stroke-width':4, 'stroke-linecap':'round'});
+    }
+  }
+  cursor(end[0], end[1]);
+  const warnText = '이미 지어진 건물이 파괴됩니다';
+  if (VAR === 'A'){
+    div('dlgA', 750, 498, `
+      <div class="warnline">${ICON.warn(32)}<span>${warnText}</span></div>
+      <div class="count">${ICON.house(26)}<span>3채</span></div>
+      <div class="row"><span class="btn primary">짓기</span><span class="btn">취소</span></div>`);
+  } else if (VAR === 'B'){
+    // 도로 끝(커서) 오른쪽에 붙는 말풍선
+    const bx = end[0] + 44, by = end[1] - 34;
+    svg(over, 'path', {d:`M${end[0]+14} ${end[1]+6} L${bx+2} ${by+30} L${bx+2} ${by+62} Z`, fill:'#142b37', stroke:'#ffcf33', 'stroke-width':2, 'stroke-linejoin':'round'});
+    const b = div('bubble', bx, by, `
+      <div class="warnline">${ICON.warn(30)}<span>${warnText}</span></div>
+      <div class="row"><span class="btn primary">짓기</span><span class="btn">취소</span></div>
+      <div class="bbadge">${ICON.house(24,'#142b37')}<span>3</span></div>`);
+    b.style.zIndex = 2;
+  } else {
+    div('strip', null, null, `
+      ${ICON.warn(32)}
+      <span class="warnline" style="font-size:22px">${warnText}</span>
+      <span class="chip">${ICON.house(24)}<span>3채</span></span>
+      <span class="sp"></span>
+      <span class="row"><span class="btn primary">짓기</span><span class="btn">취소</span></span>`);
+  }
+}
+
+/* ───────── 시안 2: 고가 +10 m 를 그리는 중 ───────── */
+if (SCN === 2){
+  const Z = 10, A = [56, -40], B = [56, 34];
+  // 땅 위 그림자 띠 (실제 지나갈 자리)
+  band(ground, A, B, 12, 'rgba(6,18,26,.30)');
+  // 기둥 자리 · 끝 수직 안내선
+  for (const y of [-22, 18]){
+    const g = S(56, y), t = S(56, y, Z);
+    svg(over, 'line', {x1:g[0], y1:g[1], x2:t[0], y2:t[1]+4, stroke:'rgba(76,208,125,.55)', 'stroke-width':5});
+  }
+  for (const p of [A, B]){
+    const g = S(p[0], p[1]), t = S(p[0], p[1], Z);
+    svg(over, 'line', {x1:g[0], y1:g[1], x2:t[0], y2:t[1], stroke:'rgba(255,255,255,.9)', 'stroke-width':2, 'stroke-dasharray':'7 5'});
+    svg(over, 'ellipse', {cx:g[0], cy:g[1], rx:11, ry:5.5, fill:'none', stroke:'rgba(255,255,255,.9)', 'stroke-width':2});
+  }
+  // 높이만큼 떠 있는 초록 미리보기
+  band(over, A, B, 12, 'rgba(76,208,125,.62)', Z);
+  const mid = S(56, -3, Z); measure(mid[0], mid[1], '74 m');
+  const end = S(B[0], B[1], Z), endG = S(B[0], B[1]);
+  if (VAR === 'B'){
+    // 높이 눈금 (5 m 마다) + 커서 옆 값
+    for (const z of [0, 5, 10]){
+      const t = S(B[0], B[1], z);
+      svg(over, 'line', {x1:t[0]-13, y1:t[1], x2:t[0]+13, y2:t[1], stroke:'#10202a', 'stroke-width':6, 'stroke-linecap':'round'});
+      svg(over, 'line', {x1:t[0]-12, y1:t[1], x2:t[0]+12, y2:t[1], stroke:'#ffffff', 'stroke-width':3, 'stroke-linecap':'round'});
+    }
+    div('hlabelB', end[0] + 30, end[1] - 6, `${ICON.updown()}<span class="hval">+10 m</span>`);
+  }
+  cursor(end[0], end[1]);
+  if (VAR === 'A'){
+    div('sep', null, null, '');
+    div('ctlA', null, null, `
+      <div class="lbl">높이</div>
+      <div class="row">
+        <div class="ibtn">${ICON.down()}</div>
+        <div class="valbox"><span class="hval">+10 m</span></div>
+        <div class="ibtn">${ICON.up()}</div>
+      </div>`);
+  } else if (VAR === 'C'){
+    div('sep', null, null, '');
+    div('ctlC', null, null, `
+      <div class="seg"><div>지하</div><div>지상</div><div class="on">고가</div></div>
+      <div class="row">
+        <div class="sbtn">−</div>
+        <div class="valbox"><span class="hval">+10 m</span></div>
+        <div class="sbtn">+</div>
+      </div>`);
+  }
+}
+</script>
+</body>
+</html>

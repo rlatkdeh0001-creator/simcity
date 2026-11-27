@@ -1,0 +1,10 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS root-cause fixture reproduces a projected zebra centre on grass despite fresh junction topology
+ROOT_CAUSE unbounded tangent projection, not an unrefreshed junction cache; unsupported arms=1
+ERROR: FAIL model derives bounded crosswalk paint from current pavement and arm lengths
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] verify (res://tests/test_crosswalk_support.gd:12)
+       [1] run (res://tests/test_crosswalk_support.gd:39)
+RESULT 1/2 crosswalk support checks passed

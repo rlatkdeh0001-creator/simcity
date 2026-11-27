@@ -1,0 +1,39 @@
+{
+  "height_cost": {
+    "enabled": false,
+    "approval_status": "pending_user_approval",
+    "construction_formula": null,
+    "upkeep_formula": null,
+    "fallback": "Preserve existing road charging until a formula is approved; null is not an approved zero price."
+  },
+  "depth_cost": {
+    "enabled": false,
+    "approval_status": "pending_user_approval",
+    "status": "reversible_placeholder",
+    "relative_factor": "length-weighted 1 + (depth_m / reference_depth_m) ^ exponent; preview metadata only, never charged",
+    "reference_depth_m": 10.0,
+    "exponent": 2.0,
+    "fallback": "Preserve existing road charging until a price is approved; the factor is not a price."
+  },
+  "rail_height_cost": {
+    "enabled": false,
+    "approval_status": "pending_user_approval",
+    "status": "reversible_placeholder",
+    "relative_factor": "length-weighted 1 + (height_m / reference_height_m) ^ exponent; preview metadata only, never charged",
+    "reference_height_m": 10.0,
+    "exponent": 2.0,
+    "fallback": "Rail routes stay uncharged until a price is approved; the factor is not a price."
+  },
+  "rail_depth_cost": {
+    "enabled": false,
+    "approval_status": "pending_user_approval",
+    "status": "reversible_placeholder",
+    "relative_factor": "length-weighted 1 + (depth_m / reference_depth_m) ^ exponent; preview metadata only, never charged",
+    "reference_depth_m": 10.0,
+    "exponent": 2.0,
+    "fallback": "Rail routes stay uncharged until a price is approved; the factor is not a price."
+  },
+  "support_search_step_m": 1.0,
+  "support_search_step_status": "reversible_implementation_default",
+  "scope": "E1 elevated roads, E2 underground roads, E3a elevated rail and E3b rail trenches/tunnels; E4 central lanes are disabled"
+}

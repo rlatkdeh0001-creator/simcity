@@ -16,6 +16,10 @@ func _initialize():
 	call_deferred("run")
 func run():
 	var city = Showcase.create_city()
+	if city == null:
+		check(false,"standalone residential fixture must build a city with valid frontage")
+		quit(1)
+		return
 	check(city.buildings.size() == 10,"showcase has ten residential buildings")
 	check(city.roads.size() == 3 and city.roads[0].lanes == 4,"shared four-lane road plus two genuine opposite-frontage roads")
 	check(city.buildings.filter(func(b):return b.size==8).all(func(b):return city.zoning_grid.has_opposing_lot(city.footprint(b))),"both original 8x8 lots satisfy the production two-road 4+4 rule")
@@ -41,6 +45,11 @@ func run():
 	var scene = load("res://residential_showcase.tscn").instantiate()
 	root.add_child(scene)
 	await process_frame
+	if scene.city == null:
+		check(false,"actual residential showcase must initialize its own valid city")
+		scene.queue_free();await process_frame
+		quit(1)
+		return
 	check(scene.city.buildings.size()==10 and scene.city.buildings.all(func(b):return ids.has(b.asset_id)) and ids.keys().all(func(id):return scene.building_textures.has(id)),"actual showcase retains all ten original residential textures and buildings")
 	check(scene.building_textures.size()==scene.city.catalog.entries.size(),"texture cache includes the complete expanded catalogue without placing the new inspection assets")
 	check(has_meta("construction_session") and get_meta("construction_session").city==saved_city and scene.city!=saved_city,"opening showcase preserves the original construction session")

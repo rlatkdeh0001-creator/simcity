@@ -87,6 +87,7 @@ func run() -> void:
  var scene=load("res://bottom_ui_preview.tscn").instantiate()
  root.add_child(scene)
  await process_frame
+ if scene.city.simulation!=null:scene.city.simulation.shutdown()
  scene.city=town()
  scene.select_category("build")
  var zone_tools: Array=scene.drawer_box.get_children().filter(func(n):return n.name in ["Tool_build","Tool_build_commercial","Tool_build_industrial","Tool_build_erase"])

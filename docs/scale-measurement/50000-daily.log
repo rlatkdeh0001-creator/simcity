@@ -1,0 +1,5 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+SCALE_CREATED population=50000 buildings=18750 generation_ms=1702.653
+SCALE_DAILY_BEGIN population=50000
+SCALE_DAILY_RESULT {"daily":{"assignment_ms":41.1822999995202,"average_ms":0.870100000873208,"bucket_ms":191.172100000083,"daily_ms":360.368599999696,"groups_ms":8.64849999919534,"total_tick_ms":562.796},"population":50000}

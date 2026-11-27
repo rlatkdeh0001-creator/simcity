@@ -14,17 +14,23 @@ func click(scene, cell: Vector2):
 	event.pressed = true
 	scene._unhandled_input(event)
 func run():
+	root.size = Vector2i(1280,820)
 	var scene = load("res://main.tscn").instantiate()
+	scene.paused = true
 	root.add_child(scene)
 	await process_frame
 	verify(scene.city.difficulty == "normal" and scene.city.funds == 50000, "normal difficulty starts with 50000 doth")
 	verify(scene.money.text == "50,000 \uFFFC", "bottom treasury displays confirmed currency and starting amount")
 	verify(scene.city.width == 100 and scene.city.height == 100 and scene.city.buildings.is_empty() and scene.city.roads.is_empty() and scene.city.zoning_grid.count() == 0, "100x100 scene starts empty with no zoning grid")
 	scene.map_zoom = 1.0
-	scene.city.add_road(PackedVector2Array([Vector2(1,20),Vector2(39,20)]))
-	scene.city.add_building(10,17,"residential",120)
-	scene.city.add_building(12,17,"commercial",10)
-	scene.city.add_building(14,17,"industrial",5)
+	scene.city.simulation.worker.Suspend() # Wait for boot before placing fixture lots.
+	# The three-cell-wide local road must meet the existing y=19 lot edges.
+	var road: Dictionary = scene.city.add_road(PackedVector2Array([Vector2(1,20.5),Vector2(39,20.5)]))
+	verify(road.ok, "fixture road is built at the lot fronts")
+	var house: Dictionary = scene.city.add_building(10,17,"residential",120)
+	var shop: Dictionary = scene.city.add_building(12,17,"commercial",10)
+	var factory: Dictionary = scene.city.add_building(14,17,"industrial",5)
+	verify(house.ok and shop.ok and factory.ok, "fixture lots are actually placed: %s / %s / %s" % [house.get("reason",""),shop.get("reason",""),factory.get("reason","")])
 	scene.refresh()
 	verify(scene.pick_rendered_building(scene.screen(Vector2(11,18)) - Vector2(0,12)).get("id",-1) == 1, "elevated roof can be selected")
 	scene.mode = "select"
@@ -33,15 +39,16 @@ func run():
 	scene.select_category("build")
 	verify(scene.drawer_box.find_children("Tool_upgrade","Button",true,false).is_empty(),"manual upgrade button absent")
 	scene.activate_tool("upgrade") # Retained internal helper exercises growth, not player UI.
-	verify(scene.city.find_building(1).level == 2, "internal upgrade path still calls simulation")
+	verify(scene.city.find_building(1).get("level",0) == 2, "internal upgrade path still calls simulation")
 	# This fixture tests pointer geometry after growing a large authored home.
 	scene.city.population_enabled = false
 	scene.mode = "build"
 	var before: int = scene.city.buildings.size()
-	click(scene, Vector2(27,18))
+	# Span both rows of a complete road-local 2x2 lot, not just one row along the curb.
+	click(scene, Vector2(27.5,18.5))
 	verify(scene.city.buildings.size() == before and scene.zoning_drag, "press begins zoning without instant construction")
-	scene.finish_zoning(scene.screen(Vector2(31,18)))
-	verify(not scene.city.zone_designations.is_empty(), "drag release designates road-local cells")
+	scene.finish_zoning(scene.screen(Vector2(28.5,17.5)))
+	verify(scene.city.zone_designations.size() == 4, "drag release designates a complete 2x2 of road-local cells")
 	scene.city.advance_development(2)
 	verify(scene.city.buildings.size() == before + 1, "painted lot develops on simulation tick")
 
@@ -58,6 +65,7 @@ func run():
 	scene.refresh()
 	verify(scene.money.text == "12,345 \uFFFC", "bottom treasury reflects current city balance")
 	verify(scene.drawer_box.find_children("Tool_reset","Button",true,false).is_empty(),"reset button absent")
+	scene.city.simulation.shutdown() # Reset replaces the model; scene exit only joins the current model.
 	scene.activate_tool("reset") # Retained initialization helper, not player UI.
 	verify(scene.city.funds == 50000 and scene.money.text == "50,000 \uFFFC", "city reset restores normal starting funds")
 	await process_frame

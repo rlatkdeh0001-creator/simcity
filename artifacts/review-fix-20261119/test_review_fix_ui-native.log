@@ -1,0 +1,31 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--rendering-method", "gl_compatibility", "--rendering-driver", "opengl3", "--resolution", "1920x1080", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_review_fix_ui.gd", "--", "--review-capture=D:/project/simcity/artifacts/review-fix-20261119/review-fix-shallow-tunnel-crossing-1920.png"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS fixture: road over a -10m tunnel, road under a +10m viaduct, ground road under an E1 deck: ["", "", "", "", "", ""]
+PASS bulldozer in the ground view
+PASS 1 ground view: the road over the covered tunnel picks the road: road#0
+PASS 2 ground view: empty ground over the covered tunnel picks nothing: none
+PASS 3 the viaduct deck where it is drawn (+10m) picks the viaduct: transit_route#2
+PASS 4 the road under the viaduct, outside the drawn deck, picks the road: road#1
+PASS 4b where the drawn deck covers the road below, the deck wins: transit_route#2
+PASS 7 E1: the elevated road deck where it is drawn picks the elevated road: road#3
+PASS 7b E1: the ground road under the deck, outside the drawn deck, picks the ground road: road#2
+PASS 7c E1: where the drawn deck covers the ground road, the deck wins: road#3
+PASS 5 underground view: the covered tunnel is picked where it is drawn (-10m): transit_route#1
+PASS 5b underground view: the ground point above the tunnel is not the tunnel: none
+PASS 6 clicking the road over the tunnel keeps both rail routes: [1, 2] -> [1, 2]
+PASS lift scene station at x=30
+PASS lift scene station at x=190
+PASS lift scene: ground line over a 15 degree covered tunnel:  
+PASS lift scene: operating line on the ground track: 
+PASS an operating train reaches the crossing over the tunnel: fault=
+PASS cars within 100m of the crossing carry the ground route they run on: 3/3 [["1:0", 3, 0.0, &"WorldActors"], ["1:1", 3, 0.0, &"WorldActors"], ["1:2", 3, 0.0, &"WorldActors"]]
+PASS every car within 100m of the crossing is drawn on the ground, none in the tunnel: 3/3
+PASS native capture is 1920x1080
+PASS shallow-angle tunnel crossing capture saved
+REVIEW_CAPTURE D:/project/simcity/artifacts/review-fix-20261119/review-fix-shallow-tunnel-crossing-1920.png display=Windows
+REVIEW_FIX_UI checks=22 failed=0
+
+STDERR

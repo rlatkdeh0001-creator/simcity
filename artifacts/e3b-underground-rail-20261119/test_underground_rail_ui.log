@@ -1,0 +1,39 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_underground_rail_ui.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS rail tool shows the approved C height controls
+PASS the rail underground button is enabled (E3b)
+PASS 지하 selects -10 m for the rail tool
+PASS an underground rail target turns the underground view on
+PASS + raises by 5m
+PASS + stays on the underground layer (-5m)
+PASS PgDn lowers the rail target by 5m
+PASS PgUp returns to ground
+PASS a ground target turns the underground view off
+PASS PgDn from ground goes to -5m and shows the underground view
+PASS 지상 returns to 0 m
+PASS the rail height never changes the road tool height
+PASS preview descends from the ground start to the -10m target: 
+PASS the committed rail keeps exactly the confirmed preview points and depths
+PASS the descent vertex sits at the 288m minimum
+PASS warning B lists only the zoned building on the open trench
+PASS nothing is built or demolished before confirmation
+PASS confirm demolishes the trench building; the one above the tunnel stays
+PASS capture station
+PASS capture station
+PASS capture station join
+PASS capture road over the tunnel
+PASS capture loop with a 288m trench, a 96m tunnel under the road and a 288m trench back up: 
+PASS capture operating line through the tunnel: 
+PASS an operating train runs down the trench toward the portal: fault=
+PASS two rail trench clip groups (down and back up): 2
+PASS each rail trench ends in a tunnel portal
+PASS train cars in the trench draw inside its clip group: 3 [[169.0, 61.0, -2.08, (1109.0, 483.0), (137.0, 78.0), (1178.0, 534.0), 148, 151, 0, 1.0], [166.4, 61.0, -2.45, (1046.0, 454.0), (145.0, 83.0), (1119.0, 507.0), 149, 151, 0, 1.0], [163.6, 61.0, -2.83, (985.0, 425.0), (145.0, 83.0), (1057.0, 479.0), 150, 151, 0, 1.0]]
+PASS tunnel trains are hidden in the ground view (0 in the underground layer)
+PASS trench catenary draws inside the trench clip groups: 292
+PASS the underground view shows the rail tunnel band: 136 shapes
+PASS a train in the covered tunnel draws on the underground layer like a metro train: 3
+E3B_UI checks=32 failed=0
+
+STDERR

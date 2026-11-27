@@ -1,0 +1,65 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "240", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_review_fix_regen.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS fixture: three real stations joined in a row
+PASS line A-B-C operates: 
+PASS a consist is running before the edits: stops=[1, 2, 3, 2] distance=328.8 drawn=3
+PASS dwell-only edit accepted
+PASS a dwell-only edit keeps the same consist running on its route: stops=[1, 2, 3, 2] distance=480.7 drawn=3
+PASS stop B removed while the consist runs
+PASS the running consist is moved to the first stop A of the new route: stops=[1, 3] distance=0.0 drawn=3 was stops=[1, 2, 3, 2] distance=480.7 drawn=3
+PASS it is the same consist, passengers 37 and cargo 12.5 kept
+PASS the moved consist waits at the first stop, the line is not blocked: dwelling
+PASS it leaves A and runs the route without B within 150s: 23
+PASS after a save round trip the same consist runs the new route: stops=[1, 3] distance=8.1 drawn=3
+PASS stop B added back while the consist runs
+PASS adding B back moves the same consist to the start of the A-B-C route: stops=[1, 2, 3, 2] distance=0.0 drawn=3
+PASS it runs the route with B again within 150s: 19
+PASS track B-C demolished: 
+PASS a cut path stops the same consist where it is, still drawn: blocked stops=[1, 2, 3, 2] distance=8.1 drawn=3
+PASS track B-C rebuilt
+PASS once rejoined the same consist is moved to the first stop: stops=[1, 2, 3, 2] distance=0.0 drawn=3
+PASS after the track is rejoined it runs again within 150s: 13
+PASS a blocked plan holds the consist where it is
+PASS when the same path runs again the consist still restarts from the first stop: stops=[1, 2, 3, 2] distance=0.0 drawn=3
+PASS branch fixture: three real stations joined in a row
+PASS branch: line A-B-C operates: 
+PASS branch: a consist is running before the branch: stops=[1, 2, 3, 2] distance=328.8 drawn=3
+PASS a branch is laid on the line's track between A and B: 
+PASS the branch splits the line's track (plan points 73 -> 74) but keeps its path and stops: no route change
+PASS the consist is not moved to the start: it keeps running where it is on the new pieces: stops=[1, 2, 3, 2] distance=333.4 drawn=3 was stops=[1, 2, 3, 2] distance=328.8 drawn=3
+PASS after the branch the same consist keeps running with its load: stops=[1, 2, 3, 2] distance=480.7 drawn=3
+PASS a plan turning blocked or running again is a route change
+PASS metro loop line A-B operates: 
+PASS metro consist is running before the edit: stops=[1, 2] distance=320.3 drawn=4
+PASS metro consist draws its cargo containers: 0
+PASS metro stop order changed to B-A
+PASS metro consist is moved to the new first stop B: stops=[2, 1] distance=0.0 drawn=4
+PASS metro same consist with its load, cars and cargo containers
+PASS metro moved consist runs the B-A route within 150s
+PASS freight loop line A-B operates: 
+PASS freight consist is running before the edit: stops=[1, 2] distance=230.2 drawn=4
+PASS freight consist draws its cargo containers: 1
+PASS freight stop order changed to B-A
+PASS freight consist is moved to the new first stop B: stops=[2, 1] distance=0.0 drawn=4
+PASS freight same consist with its load, cars and cargo containers
+PASS freight moved consist runs the B-A route within 150s
+PASS bus line operates: 
+PASS a bus is running before the edit
+PASS bus stop order changed: 
+PASS the bus is not moved to the line start: same bus on its route, 9.9m in 1s
+PASS shared-start fixture
+PASS two lines A-B-C share the first stop A
+PASS both consists run before the edit
+PASS line 1: stop B removed
+PASS line 2: stop B removed
+PASS one consist is placed at the shared start, the other waits undrawn: placed=[1] waiting=[2]
+PASS both stay the same consists with their load
+PASS consists sent to one start are never drawn overlapping
+PASS the waiting consist is placed at the start once it is clear
+PASS they leave the start one after another: { 1: 40.0000000000003, 2: 60.0333333333325 }
+PASS both run the new route as the same consists
+REVIEW_FIX_REGEN checks=58 failed=0
+
+STDERR

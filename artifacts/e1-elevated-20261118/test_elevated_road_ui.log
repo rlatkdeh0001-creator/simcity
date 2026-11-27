@@ -1,0 +1,67 @@
+COMMAND ["C:\\Users\\wlgml\\AppData\\Local\\hermes\\installs\\0518f0d0c97a4c6a\\environments\\112b464feb1a41f6b437da0091a29064\\venv\\Scripts\\python.exe", "tools/run_dotnet.py", "--timeout", "120", "godot", "--headless", "--max-fps", "30", "--path", "cities_do", "--script", "tests/test_elevated_road_ui.gd"]
+STDOUT
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS approved C height controls exist in native road drawer
+PASS actual elevated button selects +10m
+PASS PgUp changes selected height by 5m
+PASS PgDn changes selected height by 5m
+PASS E1 exposes but does not enable deferred underground mode
+PASS native preview resolves per-point heights
+PASS native endpoint commits ramp and raised deck
+PASS production WorldActors owns elevated deck pieces
+PASS approved B warning appears beside clicked endpoint
+PASS warning does not destroy before confirmation
+PASS actual warning confirmation removes private building
+PASS same-height elevated intersection commits
+PASS production renderer owns raised junction asphalt and continuous side surfaces
+PASS stacked road ground fixture
+PASS raised cursor does not snap to ground-layer endpoint
+PASS raised free-curve does not inherit ground tangent
+PASS same-profile different-height overlap reaches height-aware admission, not already-road rejection
+PASS height-layer stacked preview accepts genuine XY overlap grid=false
+PASS actual mouse commits stacked +10 road grid=false
+PASS stacked road ground fixture
+PASS height-layer stacked preview accepts genuine XY overlap grid=true
+PASS actual mouse commits stacked +10 road grid=true
+PASS off-phase ground anchor host
+PASS different-layer nearest continuation lattice
+PASS native grid accepts and captures off-phase ground anchor
+PASS PgUp preserves accepted ramp start and lattice at +5; start=(30.25, 40.25)
+PASS PgUp preserves accepted ramp start and lattice at +10; start=(30.25, 40.25)
+PASS height transition cannot re-phase the accepted anchor on a perpendicular lattice axis: (30.25, 40.25)
+PASS native ramp commit stores exact anchor and explicit lattice; 
+PASS auto-continuation selects the endpoint layer, not the closer ground road
+PASS fixed ground contact host
+PASS fixed elevated contact host
+PASS viewport accepted the exact fixed ground contact
+PASS grid-off mixed-height preview keeps both contacts; aligned=false points=[(20.0, 40.0), (52.0, 40.0), (61.25, 40.0)] reason=기존 도로 연결은 4m 단위로 건설해야 합니다
+PASS misaligned fixed ramp rejects atomically without moving the accepted anchor
+PASS fixed ground contact host
+PASS fixed elevated contact host
+PASS viewport accepted the exact fixed ground contact
+PASS grid-off mixed-height preview keeps both contacts; aligned=true points=[(20.0, 40.0), (52.0, 40.0), (61.0, 40.0)] reason=
+PASS 4m-aligned ramp commits exact preview endpoints and heights
+PASS production ramp car road fixture
+PASS production traffic builds ramp lanes
+PASS real traffic simulation spawns ramp sedan
+PASS production retained car survives raised culling
+PASS actual production car artwork lifts by interpolated ramp/deck height
+PASS production multi-piece car sorts between furthest overlapping rear and front
+PASS production retained car survives raised culling
+PASS actual production car artwork lifts by interpolated ramp/deck height
+PASS production multi-piece car sorts between furthest overlapping rear and front
+PASS production stacked car crossing fixture: 
+PASS stacked decks produce real lanes
+PASS real upper deck sedan spawned
+PASS stacked car and all affected lower/upper piece pairs remain ordered
+PASS stacked crossing leaves strict upper rear/car/front slots: [672.0, 672.099975585938, 672.109985351563, 672.119995117188, (49.5625, 39.0)]
+PASS production park render fixture placement
+PASS deck added above retained park
+PASS actual cached park precedes every footprint-overlapping deck piece
+PASS park depth dependency preserves cached visual bounds
+PASS capture fixture commits ground, retaining ramp, +10m deck and +20m crossing
+PASS single native capture includes live approved B confirmation and C height controls
+E1_UI checks=60 failed=0
+
+STDERR

@@ -1,0 +1,24 @@
+[
+  {
+    "front_fraction": 0.0,
+    "front_hits": 0,
+    "kind": "industrial",
+    "painter_ids": [
+      2,
+      1
+    ],
+    "rear_hits": 15,
+    "samples": 15
+  },
+  {
+    "front_fraction": 0.0,
+    "front_hits": 0,
+    "kind": "parking",
+    "painter_ids": [
+      2,
+      1
+    ],
+    "rear_hits": 4,
+    "samples": 4
+  }
+]

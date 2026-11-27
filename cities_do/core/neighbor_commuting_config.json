@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "status": "provisional_not_approved_balance",
+  "daily_growth_fraction": 0.02,
+  "labor_fraction": 0.6,
+  "unemployment_fraction": 0.08,
+  "education_distribution": [1, 1, 1, 1, 1],
+  "wages_by_stage": [30, 40, 55, 75, 100],
+  "jobs_per_labor": 1.02,
+  "levels": {
+    "highly_developed": {"population_multiplier": 1.5, "population_base": 1000, "minimum_population": 1000},
+    "developed": {"population_multiplier": 1.0, "population_base": 0, "minimum_population": 500},
+    "peer": {"population_multiplier": 0.5, "population_base": 0, "minimum_population": 250}
+  },
+  "utilities": {
+    "power": {"unit": "kWh/game_day", "consumed_per_person": 4.0, "production_to_consumption": 1.15},
+    "water": {"unit": "m3/game_day", "consumed_per_person": 0.15, "production_to_consumption": 1.1},
+    "waste": {"unit": "tonnes/game_day", "consumed_per_person": 0.001, "production_to_consumption": 1.1}
+  }
+}

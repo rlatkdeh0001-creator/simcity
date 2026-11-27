@@ -20,7 +20,7 @@ func run():
   var match: Dictionary=catalog.matching({"zone":"commercial","size":2,"level":3})
   verify(not match.candidates.is_empty() and match.resolved_density=="medium","commercial 2x2 stage3 selects actual medium appearances")
  var city=preload("res://core/city_model.gd").new(100,100,42)
- city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
+ city.add_road(PackedVector2Array([Vector2(2,40.5),Vector2(90,40.5)]),"local",true,4)
  var created: Dictionary=city.add_building(8,36,"commercial",100)
  verify(created.ok and not created.building.asset_id.is_empty(),"existing initial placement assigns the real small commercial facade")
  check_matrix(catalog)
@@ -62,7 +62,7 @@ func check_city_growth():
  for zone in ["residential","commercial","industrial"]:
   var city=preload("res://core/city_model.gd").new(100,100,81)
   city.population_enabled=false
-  city.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
+  city.add_road(PackedVector2Array([Vector2(2,40.5),Vector2(90,40.5)]),"local",true,4)
   var funds: int=city.funds
   var painted: Dictionary=city.paint_zones(PackedVector2Array([Vector2(4,36),Vector2(6,36),Vector2(6,38),Vector2(4,38)]),zone)
   var spawned: Array=city.advance_development(city.config.development_interval_seconds)
@@ -79,12 +79,16 @@ func check_city_growth():
   verify(city.funds==funds,zone+" private zoning, construction and appearance growth remain free")
   var baseline=preload("res://core/city_model.gd").new(100,100,81)
   baseline.catalog.entries=[]
-  baseline.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
-  baseline.add_building(8,36,zone,100)
+  baseline.add_road(PackedVector2Array([Vector2(2,40.5),Vector2(90,40.5)]),"local",true,4)
+  var baseline_lot:Dictionary=baseline.add_building(8,36,zone,100)
   var visual=preload("res://core/city_model.gd").new(100,100,81)
-  visual.add_road(PackedVector2Array([Vector2(2,40),Vector2(90,40)]),"local",true,4)
-  visual.add_building(8,36,zone,100)
-  baseline.upgrade_chain(1);visual.upgrade_chain(1)
+  visual.add_road(PackedVector2Array([Vector2(2,40.5),Vector2(90,40.5)]),"local",true,4)
+  var visual_lot:Dictionary=visual.add_building(8,36,zone,100)
+  verify(baseline_lot.ok and visual_lot.ok,zone+" parity fixture builds both lots")
+  if not baseline_lot.ok or not visual_lot.ok:continue
+  var baseline_growth:Dictionary=baseline.upgrade_chain(baseline_lot.building.id)
+  var visual_growth:Dictionary=visual.upgrade_chain(visual_lot.building.id)
+  verify(baseline_growth.ok and visual_growth.ok,zone+" parity fixture grows both lots")
   verify(baseline.rng.state==visual.rng.state and baseline.buildings[0].size==visual.buildings[0].size and baseline.buildings[0].level==visual.buildings[0].level,zone+" appearance selection never changes growth RNG, size or stage rules")
  var catalog=preload("res://core/building_catalog.gd").new()
  var rng:=RandomNumberGenerator.new();rng.seed=42

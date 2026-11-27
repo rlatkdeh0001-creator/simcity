@@ -1,0 +1,4 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+FAIL actual original station parts loaded around running train
+TRANSIT_OPERATIONS_VIEW checks=54 failed=1

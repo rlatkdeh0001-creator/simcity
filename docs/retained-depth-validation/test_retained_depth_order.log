@@ -1,0 +1,35 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+PASS retained engine order equals painter after late rear creation sizes=[2, 4] direction=0
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 4] direction=1
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 4] direction=2
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 4] direction=3
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 8] direction=0
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 8] direction=1
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 8] direction=2
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[2, 8] direction=3
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[4, 8] direction=0
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[4, 8] direction=1
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[4, 8] direction=2
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS retained engine order equals painter after late rear creation sizes=[4, 8] direction=3
+PASS cached painter ranks determine the sibling order used for approximate-Y ties
+PASS flat public parking and warehouse follow painter order direction=0
+PASS ordering preserves public/warehouse placement records direction=0
+PASS flat public parking and warehouse follow painter order direction=1
+PASS ordering preserves public/warehouse placement records direction=1
+PASS flat public parking and warehouse follow painter order direction=2
+PASS ordering preserves public/warehouse placement records direction=2
+PASS flat public parking and warehouse follow painter order direction=3
+PASS ordering preserves public/warehouse placement records direction=3
+RESULT 32/32 retained depth checks passed

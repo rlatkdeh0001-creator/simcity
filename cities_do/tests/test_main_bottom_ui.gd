@@ -1,4 +1,7 @@
 extends SceneTree
+const PLAYBACK_EXPOSURE_SECONDS := 4.125
+const PLAYBACK_MAX_FRAME_SECONDS := 0.125
+const GAME_SECONDS_PER_TICK := 48.0 # 2 simulation seconds × 24 game seconds/second.
 var checks := 0
 var failed := 0
 func _initialize(): run.call_deferred()
@@ -8,8 +11,60 @@ func verify(value: bool, description: String):
  else:
   failed+=1
   push_error("FAIL "+description)
+func measure_playback(game,speed:float,expected_ticks:int)->float:
+ var sim=game.city.simulation
+ var start_tick:int=sim.get_published_tick()
+ var start_clock:float=game.city.clock.game_seconds
+ var exposure:=0.0
+ var deadline:=Time.get_ticks_msec()+20000 # Watchdog only; not part of exposure.
+ game.simulation_speed=speed
+ while exposure<PLAYBACK_EXPOSURE_SECONDS and Time.get_ticks_msec()<deadline and sim.get_fault().is_empty():
+  await process_frame # Before the engine calls the game's own _process.
+  var delta:float=game.get_process_delta_time()
+  # Exclude worker waits so scheduler variance cannot consume a fixed step as busy.
+  game.paused=delta<=0.0 or delta>PLAYBACK_MAX_FRAME_SECONDS or (sim.has_pending() and not sim.worker.IsComplete())
+  if not game.paused:exposure+=delta
+ await process_frame # Let the final counted frame run before reading publication.
+ game.paused=true
+ var published:int=sim.get_published_tick()-start_tick
+ var advanced:float=game.city.clock.game_seconds-start_clock
+ verify(exposure>=PLAYBACK_EXPOSURE_SECONDS and sim.get_fault().is_empty(),"%dx completed the active frame window without a worker fault: %s"%[speed,sim.get_fault()])
+ verify(published==expected_ticks and advanced==expected_ticks*GAME_SECONDS_PER_TICK,"%dx normal frames published %d ticks and %d game seconds (expected %d ticks)"%[speed,published,advanced,expected_ticks])
+ var unpublished:float=exposure*speed*24.0-advanced
+ verify(unpublished>=0 and unpublished<GAME_SECONDS_PER_TICK,"%dx clock matches the absolute rate to within one fixed tick"%speed)
+ print("PLAYBACK speed=%dx active_seconds=%.6f published_ticks=%d game_seconds=%.0f"%[speed,exposure,published,advanced])
+ return advanced
+func verify_playback(game):
+ var sim=game.city.simulation
+ var deadline:=Time.get_ticks_msec()+10000
+ while not sim.is_ready() and sim.get_fault().is_empty() and Time.get_ticks_msec()<deadline:await process_frame
+ verify(sim.is_ready(),"main worker is ready for playback: "+sim.get_fault())
+ if not sim.is_ready():return
+ var before:float=game.city.clock.game_seconds
+ var tick_before:int=sim.get_published_tick()
+ game._process(2.0)
+ verify(game.city.clock.game_seconds==before and sim.get_published_tick()==tick_before and not sim.has_pending(),"main pause freezes the unified clock and submits no tick")
+ game.paused=false
+ game.simulation_speed=2.0
+ sim.worker.SetValidationGate(true)
+ game._process(0.75)
+ verify(not sim.has_pending(),"2x does not submit before one real second")
+ game._process(0.25)
+ verify(sim.has_pending() and not sim.worker.IsComplete() and sim.get_published_tick()==tick_before and game.city.clock.game_seconds==before,"2x submits one held tick without advancing unpublished time")
+ game.paused=true
+ sim.worker.SetValidationGate(false)
+ var old_max_fps:=Engine.max_fps
+ Engine.max_fps=64
+ # Both windows end in [4.125, 4.25] active seconds. Starting with one queued
+ # tick, they cross exactly 4 and 6 publication boundaries; even the combined
+ # simulated overshoot (2*0.25 + 3*0.25) is less than the 2-second tick.
+ var at_2x:float=await measure_playback(game,2.0,4)
+ var at_3x:float=await measure_playback(game,3.0,6)
+ Engine.max_fps=old_max_fps
+ verify(at_2x>0 and at_3x*2.0==at_2x*3.0,"3x publishes exactly 1.5x the 2x game time over the same active-frame window")
 func run():
  var game=load("res://main.tscn").instantiate()
+ game.paused=true # Frame advances must come from the explicit playback fixture below.
  root.add_child(game)
  current_scene=game
  await process_frame
@@ -41,7 +96,8 @@ func run():
    verify(before==after,"asset browsing preserves city, funds and clock")
    verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
-  verify(game.drawer_box.find_children("RoadLanes","OptionButton",true,false).size()==1,"bottom road tools expose existing lane width choice")
+  var lane_counts:Array=game.road_lane_cards.map(func(card):return card.get_meta("lanes"))
+  verify(lane_counts==[2,3,4,5,6,7,8] and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools expose the approved 2–8 lane cards and grid toggle instead of the old selector")
   var zoom_before: float=game.map_zoom
   var origin_before: Vector2=game.origin
   game.select_category("fire")
@@ -98,13 +154,7 @@ func run():
   escape.pressed=true
   game._unhandled_key_input(escape)
   verify(not game.drawer.visible,"main Escape collapses drawer")
-  var clock_before: float=game.city.clock.game_seconds
-  game._process(1)
-  verify(game.city.clock.game_seconds==clock_before,"main pause freezes unified clock")
-  game.paused=false
-  game.simulation_speed=3
-  game._process(1)
-  verify(is_equal_approx(game.city.clock.game_seconds-clock_before,72),"main 3x uses existing clock conversion")
+  await verify_playback(game)
   verify(game.population_label.text==str(game.city.population.stats().population) and "년" in game.date_label.text,"main status exposes actual population and date")
  game.queue_free()
  await process_frame

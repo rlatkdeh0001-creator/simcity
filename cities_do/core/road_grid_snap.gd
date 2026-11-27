@@ -1,0 +1,180 @@
+extends RefCounted
+## Boundary lattice is inherited from real road parcels, never a screen-space grid.
+const Parcels=preload("res://core/road_parcels.gd")
+const Paths=preload("res://core/road_junctions.gd")
+const Units=preload("res://core/road_length_units.gd")
+const Angles=preload("res://core/road_angle_snap.gd")
+const EPS:=.0005
+static func frame_near(city,point: Vector2) -> Dictionary:
+ var best:=INF;var selected: Dictionary={};var selected_index: int=-1
+ for i in range(city.roads.size()-1,-1,-1):
+  var road: Dictionary=city.roads[i]
+  var distance: float=Units.projection(road.points,point).distance
+  if distance>=best:continue
+  best=distance;selected=road;selected_index=i
+ if selected.is_empty():return {"origin":Vector2.ZERO,"along":Vector2.RIGHT,"outward":Vector2.DOWN}
+ var frames:=Parcels.blocks(selected.get("zoning_source_points",selected.points),selected.width/2,0)
+ var result: Dictionary={};var closest: Dictionary={};best=INF
+ for frame in frames:
+  if frame.side!=1:continue
+  var distance: float=Units.projection(frame.centerline,point).distance
+  if distance<best:best=distance;closest=frame;result={"origin":frame.origin,"along":frame.along,"outward":frame.outward}
+ var shared: Dictionary=city.zoning_lattices[selected_index] if city.zoning_lattices.size()==city.roads.size() else selected.get("grid_frame",{})
+ if not shared.is_empty() and not closest.is_empty() and straight(closest):
+  var inherited: Dictionary=shared
+  if maxf(absf(closest.along.dot(inherited.along)),absf(closest.along.dot(inherited.outward)))>.99999:return inherited.duplicate(true)
+ if result.is_empty():
+  var along: Vector2=(selected.points[-1]-selected.points[0]).normalized()
+  var outward:=Vector2(-along.y,along.x)
+  return {"origin":selected.points[0]+outward*selected.width/2,"along":along,"outward":outward}
+ return result
+static func coordinates(point: Vector2,frame: Dictionary) -> Vector2:
+ var delta: Vector2=point-frame.origin
+ return Vector2(delta.dot(frame.along),delta.dot(frame.outward))
+static func world(point: Vector2,frame: Dictionary) -> Vector2:return frame.origin+frame.along*point.x+frame.outward*point.y
+static func tick(value: float,phase: float=0.0) -> float:return roundf(value-phase)+phase
+static func contact(city,point: Vector2,frame: Dictionary,width: float,ignore: Vector2=Vector2.INF) -> Dictionary:
+ var near:=Paths.snap_point(point,city.roads)
+ if near.distance_to(ignore)<EPS and point.distance_to(ignore)>=.5:return {}
+ var host:=Angles.connection(near,city.roads)
+ if host.is_empty():return {}
+ if host.endpoint:return {"point":near}
+ var axis: Vector2=frame.along if absf(frame.along.dot(host.tangent))>=absf(frame.outward.dot(host.tangent)) else frame.outward
+ var target:=tick((near-Vector2(frame.origin)).dot(axis),width/2)
+ var best:=INF;var result:=near
+ for road in city.roads:
+  if float(Units.projection(road.points,near).distance)>EPS:continue
+  for i in range(1,road.points.size()):
+   var a: Vector2=road.points[i-1];var b: Vector2=road.points[i]
+   var first: float=(a-Vector2(frame.origin)).dot(axis);var span: float=(b-a).dot(axis)
+   if absf(span)<EPS:continue
+   var t: float=(target-first)/span
+   if t<0 or t>1:continue
+   var q:=a.lerp(b,t);var gap:=q.distance_to(near)
+   if gap<best:best=gap;result=q
+ return {"point":result}
+static func start(city,point: Vector2,width: float,frame: Dictionary) -> Vector2:
+ var hit:=contact(city,point,frame,width)
+ if not hit.is_empty():return hit.point
+ var local:=coordinates(point,frame)
+ return world(Vector2(tick(local.x),tick(local.y,width/2)),frame)
+static func ends(city,first: Vector2,last: Vector2,width: float,frame: Dictionary,lock_start:bool=false) -> PackedVector2Array:
+ var a:=coordinates(first,frame);var b:=coordinates(last,frame)
+ var parallel:=absf(b.x-a.x)>=absf(b.y-a.y)
+ var cross_axis:=1 if parallel else 0;var along_axis:=1-cross_axis
+ var start_hit:Dictionary={} if lock_start else contact(city,first,frame,width)
+ var end_hit:=contact(city,last,frame,width,first)
+ if not lock_start:
+  if start_hit.is_empty():
+   a[cross_axis]=tick(a[cross_axis],width/2);a[along_axis]=tick(a[along_axis])
+  else:a=coordinates(start_hit.point,frame)
+ if end_hit.is_empty():
+  b[cross_axis]=tick(b[cross_axis],a[cross_axis])
+  var phase:float=width/2 if not start_hit.is_empty() else 0.0
+  if not start_hit.is_empty():
+   var host:=Angles.connection(start_hit.point,city.roads)
+   if host.get("endpoint",false) and absf((last-first).normalized().dot(host.tangent))>.99999:phase=a[along_axis]
+  b[along_axis]=tick(b[along_axis],phase)
+ else:
+  b=coordinates(end_hit.point,frame)
+  if not lock_start and start_hit.is_empty():a[cross_axis]=tick(a[cross_axis],b[cross_axis])
+ var first_world:=world(a,frame);var last_world:=world(b,frame)
+ return PackedVector2Array([first if lock_start else (boundary_endpoint(city,first_world,last_world) if start_hit.is_empty() else first_world),boundary_endpoint(city,last_world,first_world) if end_hit.is_empty() else last_world])
+static func boundary_endpoint(city,point:Vector2,inside:Vector2)->Vector2:
+ # Extend only the terminal cap along its original axis; the shared lattice stays put.
+ var direction:Vector2=(point-inside).normalized();var bounds:=Vector2(city.width,city.height)
+ var best:=INF;var result:=point
+ for axis in range(2):
+  if absf(direction[axis])<EPS:continue
+  for edge in [0.0,bounds[axis]]:
+   var distance:float=(float(edge)-point[axis])/direction[axis]
+   if absf(distance)>1.0+EPS or absf(distance)>=best:continue
+   var hit:Vector2=point+direction*distance;hit[axis]=float(edge)
+   var other:int=1-axis
+   if hit[other]<-EPS or hit[other]>bounds[other]+EPS or (hit-inside).dot(direction)<=EPS:continue
+   best=absf(distance);result=hit.clamp(Vector2.ZERO,bounds)
+ return result
+static func straight(frame: Dictionary) -> bool:
+ for p in frame.centerline:
+  if absf((p-Vector2(frame.centerline[0])).cross(frame.along))>EPS:return false
+ return true
+static func column_supported(a:Vector2,b:Vector2,roads:Array,width:float)->bool:
+ # Real collinear centreline coverage may span several authored construction IDs.
+ var axis:Vector2=(b-a).normalized();var length:float=a.distance_to(b);var intervals:Array[Vector2]=[]
+ for road in roads:
+  if road.kind!="local" or absf(float(road.width)-width)>EPS:continue
+  for i in range(1,road.points.size()):
+   var p:Vector2=road.points[i-1];var q:Vector2=road.points[i]
+   if absf((p-a).cross(axis))>EPS or absf((q-a).cross(axis))>EPS:continue
+   var first:float=(p-a).dot(axis);var last:float=(q-a).dot(axis)
+   var low:=maxf(0,minf(first,last));var high:=minf(length,maxf(first,last))
+   if high>low+EPS:intervals.append(Vector2(low,high))
+ intervals.sort_custom(func(x,y):return x.x<y.x)
+ var cursor:=0.0
+ for interval in intervals:
+  if interval.x>cursor+EPS:return false
+  cursor=maxf(cursor,interval.y)
+ return cursor>=length-EPS
+static func aligned_blocks(frames: Array[Dictionary],grid: Dictionary,support_roads:Array=[],width:float=0.0) -> Array[Dictionary]:
+ if grid.is_empty():return frames
+ for i in range(frames.size()):
+  var frame: Dictionary=frames[i]
+  if maxf(absf(frame.along.dot(grid.along)),absf(frame.along.dot(grid.outward)))<.99999:continue
+  if not straight(frame):continue
+  # Whole cells share both boundary phases; sacrifice a partial curb cell rather than drawing a second board.
+  var row_phase: float=(frame.origin-Vector2(grid.origin)).dot(frame.outward)
+  var row_shift:=ceilf(row_phase-EPS)-row_phase
+  if absf(row_shift)>EPS:frame.origin+=frame.outward*row_shift
+  var phase: float=(frame.origin-Vector2(grid.origin)).dot(frame.along)
+  var shift:=ceilf(phase-EPS)-phase
+  var length: float=frame.centerline[0].distance_to(frame.centerline[-1])
+  var continues: bool=i+2<frames.size() and frame.along.dot(frames[i+2].along)>.99999 and frame.centerline[-1].distance_to(frames[i+2].centerline[0])<EPS
+  var columns:=floori(length-shift+EPS);var full_columns:=ceili(length-shift-EPS)
+  if not support_roads.is_empty() and full_columns>columns:
+   var end:Vector2=frame.centerline[0]+frame.along*(shift+full_columns)
+   continues=column_supported(end-frame.along,end,support_roads,width)
+  frame.origin+=frame.along*shift
+  frame.columns=full_columns if continues else columns
+  var extension: float=shift+frame.columns-length
+  if extension>EPS:frame.centerline.append(frame.centerline[-1]+frame.along*extension)
+ return frames
+static func orthogonal(road: Dictionary,basis: Dictionary) -> bool:
+ for i in range(1,road.points.size()):
+  var tangent: Vector2=(road.points[i]-road.points[i-1]).normalized()
+  if tangent!=Vector2.ZERO and maxf(absf(tangent.dot(basis.along)),absf(tangent.dot(basis.outward)))<.99999:return false
+ return true
+static func basis_for(road: Dictionary) -> Dictionary:
+ var inherited: Dictionary=road.get("grid_frame",{})
+ if not inherited.is_empty() and orthogonal(road,inherited):return inherited.duplicate(true)
+ var frames:=Parcels.blocks(road.get("zoning_source_points",road.points),road.width/2,0)
+ if frames.size()<2:return {}
+ return {"origin":frames[1].origin,"along":frames[1].along,"outward":frames[1].outward}
+static func shared_grids(roads: Array,topology: Dictionary) -> Array[Dictionary]:
+ var result: Array[Dictionary]=[];var neighbors: Array[Dictionary]=[];var visited: Dictionary={}
+ for road in roads:result.append(road.get("grid_frame",{}).duplicate(true));neighbors.append({})
+ for node in topology.nodes.values():
+  for a in node.road_ids:
+   for b in node.road_ids:
+    if a!=b:neighbors[a][b]=true
+ for root in range(roads.size()):
+  if visited.has(root) or roads[root].kind!="local":continue
+  var basis:=basis_for(roads[root])
+  if basis.is_empty() or not orthogonal(roads[root],basis):continue
+  var pending: Array[int]=[root];visited[root]=true
+  while not pending.is_empty():
+   var index: int=pending.pop_back();result[index]=basis
+   for other in neighbors[index]:
+    if visited.has(other) or roads[other].kind!="local" or not orthogonal(roads[other],basis):continue
+    visited[other]=true;pending.append(other)
+ return result
+static func valid_length(points: PackedVector2Array,roads: Array) -> bool:
+ if points.size()<2:return false
+ var minimum:=Units.build_step(points,roads)
+ var length:=Paths.length_of(points)
+ return length>=minimum-EPS and (points.size()==2 or Units.is_build_length(length,1))
+static func fit(points: PackedVector2Array,roads: Array) -> Dictionary:
+ # Straight lattice connections retain exact endpoints, including approved width-phase exceptions.
+ if points.size()==2:return {"ok":valid_length(points,roads),"points":points,"reason":"도로가 너무 짧습니다"}
+ var result:=Units.fit(points,roads,1,true)
+ result.ok=result.ok and valid_length(result.points,roads)
+ return result
