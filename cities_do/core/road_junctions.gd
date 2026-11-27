@@ -215,29 +215,42 @@ static func marker_slot_clear(junction: Dictionary,arm: Dictionary,polygon: Pack
    if not Geometry2D.intersect_polygons(polygon,strip).is_empty():return false
  return true
 
-static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+static func crosswalk_shapes(arm: Dictionary,distance: float) -> Array[PackedVector2Array]:
+ var result: Array[PackedVector2Array]=[]
+ if not arm.has("points") or distance+CROSSWALK_HALF_LENGTH>arm.length+EPS:return result
+ var centre:=sample(arm.points,distance)
+ var direction:=paint_tangent(arm,distance)
+ var normal:=Vector2(-direction.y,direction.x)
+ var edges:=Profile.asphalt_edges(arm);var offset:=edges.x+.12
+ while offset<edges.y-.12:
+  var p:=centre+normal*offset
+  result.append(PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14]))
+  offset+=.28
+ return result
+
+static func paint_tangent(arm: Dictionary,distance:float) -> Vector2:
+ return (sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
+
+static func crosswalk_band(shapes: Array[PackedVector2Array]) -> PackedVector2Array:
+ return PackedVector2Array([shapes[0][0],shapes[-1][3],shapes[-1][2],shapes[0][1]]) if not shapes.is_empty() else PackedVector2Array()
+
+static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array],omitted: Array=[]) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false):return result
  for arm in junction.arms:
-  var distance:=crosswalk_distance(junction,arm)
-  if not arm.has("points") or distance+CROSSWALK_HALF_LENGTH>arm.length+EPS:continue
-  var centre:=sample(arm.points,distance)
-  var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
-  var normal:=Vector2(-direction.y,direction.x)
-  var edges:=Profile.asphalt_edges(arm);var offset:=edges.x+.12
-  var last:=offset
-  while last+.28<edges.y-.12:last+=.28
-  var a:=centre+normal*offset;var b:=centre+normal*(last+.14)
-  var band:=PackedVector2Array([a-direction*CROSSWALK_HALF_LENGTH,b-direction*CROSSWALK_HALF_LENGTH,b+direction*CROSSWALK_HALF_LENGTH,a+direction*CROSSWALK_HALF_LENGTH])
-  if not marker_slot_clear(junction,arm,band):continue
-  while offset<edges.y-.12:
-   var p:=centre+normal*offset
-   var corners:=PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14])
-   for surface in surfaces:
-    for clipped in Geometry2D.intersect_polygons(corners,surface):
-     if clipped.size()>=3:result.append(clipped)
-   offset+=.28
+  if arm in omitted:continue
+  var shapes:=crosswalk_shapes(arm,crosswalk_distance(junction,arm))
+  if shapes.is_empty() or not marker_slot_clear(junction,arm,crosswalk_band(shapes)):continue
+  for shape in shapes:result.append_array(clip_paint(shape,surfaces))
  return result
+
+static func clip_paint(shape:PackedVector2Array,surfaces:Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=[]
+ for surface in surfaces:
+  for clipped in Geometry2D.intersect_polygons(shape,surface):
+   if clipped.size()>=3:result.append(clipped)
+ return result
+
 static func stop_line_distance(junction: Dictionary,arm: Dictionary) -> float:
  return crosswalk_distance(junction,arm)+CROSSWALK_HALF_LENGTH+.18
 
@@ -252,24 +265,23 @@ static func lane_mark_regions(junction: Dictionary) -> Array[PackedVector2Array]
   if points.size()>=2:result.append_array(Geometry2D.offset_polyline(points,arm.width/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
  return result
 
-static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+static func stop_line_shape(arm: Dictionary,distance:float) -> PackedVector2Array:
+ if Profile.direction_count(arm,-1)==0 or distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:return PackedVector2Array()
+ var centre:=sample(arm.points,distance)
+ var direction:=paint_tangent(arm,distance)
+ var normal:=Vector2(-direction.y,direction.x)
+ var edges:=Profile.asphalt_edges(arm)
+ var a:=centre+normal*(edges.x+.08)
+ var b:=centre+normal*(edges.y-.08 if not Profile.has_median(arm) else Profile.median_offset(arm)-.04)
+ return PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
+
+static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array],omitted:Array=[]) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false) or not junction.has("box"):return result
  for arm in junction.arms:
-  if Profile.direction_count(arm,-1)==0:continue
-  var distance:=stop_line_distance(junction,arm)
-  if distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:continue
-  var centre:=sample(arm.points,distance)
-  var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
-  var normal:=Vector2(-direction.y,direction.x)
-  var edges:=Profile.asphalt_edges(arm)
-  var a:=centre+normal*(edges.x+.08)
-  var b:=centre+normal*(edges.y-.08 if not Profile.has_median(arm) else Profile.median_offset(arm)-.04)
-  var corners:=PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
-  if not marker_slot_clear(junction,arm,corners):continue
-  for surface in surfaces:
-   for clipped in Geometry2D.intersect_polygons(corners,surface):
-    if clipped.size()>=3:result.append(clipped)
+  if arm in omitted:continue
+  var shape:=stop_line_shape(arm,stop_line_distance(junction,arm))
+  if not shape.is_empty() and marker_slot_clear(junction,arm,shape):result.append_array(clip_paint(shape,surfaces))
  return result
 
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:

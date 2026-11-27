@@ -207,10 +207,12 @@ func shared_junction_spacing() -> void:
 		var side := line(Vector2(40, 50), Vector2(40, 70))
 		var legacy := city.add_road(trunk)
 		check(legacy.ok and not city.roads[0].has("travel_dir") and city.roads[0].width == 3.0 and city.add_road(side).ok, "omitted direction retains the legacy record and width")
-		for metres in [15.99, 16.0]:
+		var before := var_to_bytes(city.roads)
+		# ROAD_DRAWING_KO: 14m remains common to both ground construction APIs.
+		for metres in [13.99, 14.0, 15.99, 16.0]:
 			var start := Vector2(40 + metres / 4.0, 50)
 			var result := build_ground(city, line(start, start + Vector2.UP * 20), player, false, 1, 1)
-			check(result.ok == (metres == 16.0) and (result.ok or result.reason == "교차로 사이 간격은 4칸 이상이어야 합니다"), "common junction spacing %sm player=%s: %s" % [metres, player, result.reason])
+			check(result.ok == (metres >= 14.0) and (result.ok or result.reason == "교차로 사이 간격은 14m 이상이어야 합니다") and var_to_bytes(city.roads) == before, "common junction spacing %sm player=%s: %s" % [metres, player, result.reason])
 
 func player_frontage_restoration() -> void:
 	for reverse in [false, true]:

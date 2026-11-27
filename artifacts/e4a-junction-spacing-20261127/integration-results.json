@@ -1,0 +1,60 @@
+{
+  "base": "2fb2074f643a1ccd6131c2773ecf014fdcf49bf4",
+  "inherited_results_sha256": "3188f228ca1e892736a7732004bc11e447e91f129e133e7e4f973eacac63f5e1",
+  "headless_suites": 12,
+  "assertions": 1986,
+  "added_parent_runs": [
+    {
+      "name": "test_one_way_ground_edits",
+      "mode": "headless",
+      "exit": 0,
+      "assertions": [
+        135,
+        135
+      ],
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_one_way_ground_edits.gd"
+      ],
+      "source_sha256": "3b7a28d8826c6ef89e402698db1f034ce7f0bbcc4689eacdff44cf17aa6c7e0c",
+      "log": "test_one_way_ground_edits.log",
+      "log_sha256": "68e1b8f37a40bde562e9e4e758aa7fe0231e3af1692955da6e57cfc6556775cb"
+    },
+    {
+      "name": "test_road_junction_spacing_input",
+      "mode": "headless",
+      "exit": 0,
+      "assertions": [
+        79,
+        79
+      ],
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--audio-driver",
+        "Dummy",
+        "--path",
+        "cities_do",
+        "--script",
+        "res://tests/test_road_junction_spacing_input.gd"
+      ],
+      "source_sha256": "915fbfb96207315c1ac8a05ab29655ba20b14d8f4058331c1aa529e57410ad45",
+      "log": "spacing-input-headless.log",
+      "log_sha256": "9a207a4877e3062bc7c9e36585d213d7dd29266a9ae1d48a11e78a648d799367"
+    }
+  ]
+}

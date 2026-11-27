@@ -30,11 +30,12 @@ func run():
  verify(both.ok and city.roads.size()==3 and both.get("new_length_m",-1)==120,"two-sided overdraw preserves the middle and constructs only both free tails")
  city=base();verify(not propose(city,PackedVector2Array([Vector2(20,40),Vector2(40,40)])).ok,"fully retained duplicate with no new construction stays red")
  verify(not propose(city,PackedVector2Array([Vector2(60,40),Vector2(20,40)])).ok,"reverse-authored overlapping direction is not a same-direction overlay")
- for gap in [3,4,20]:
+ # Approved 14m chainage boundary: docs/design/ROAD_DRAWING_KO.md:39,48.
+ for gap in [3,13.99/4,3.5,4,20]:
   city=City.new(100,100)
   for y in [30,30+gap]:city.add_road(PackedVector2Array([Vector2(10,y),Vector2(90,y)]))
   var result:=propose(city,PackedVector2Array([Vector2(50,10),Vector2(50,80)]),true)
-  verify(result.ok==(gap>=4),"junction spacing along the new road enforces exactly four cells: "+str(gap))
+  verify(result.ok==(gap>=3.5),"junction spacing along the new road enforces 14m: %.2fm"%(gap*4))
   if result.ok:verify(city.junctions.size()==2 and city.roads[-1].points[-1]==Vector2(50,80),"crossing continues to the requested end and creates every junction")
  city=City.new(100,100);city.add_road(PackedVector2Array([Vector2(10,30),Vector2(90,30)]));city.add_road(PackedVector2Array([Vector2(40,10),Vector2(40,70)]))
  verify(not propose(city,PackedVector2Array([Vector2(43,10),Vector2(43,70)])).ok,"spacing also measures new versus existing junctions along an existing host road")
@@ -57,8 +58,8 @@ func run():
    committed=propose(city,PackedVector2Array([start,finish]),true,lanes)
    verify(committed.ok and var_to_str(city.roads.slice(0,2))==before and city.junctions.size()==old_count,"extension keeps authored originals and creates no extra junction")
    if committed.ok:
-    var close:=propose(city,PackedVector2Array([Vector2(53.5,50),Vector2(53.5,80)]),false,lanes)
-    verify(not close.ok and "4칸" in close.get("reason",""),"real new T beside retained junction still enforces spacing")
+    var close:=propose(city,PackedVector2Array([Vector2(53.49,50),Vector2(53.49,80)]),false,lanes)
+    verify(not close.ok and "14m" in close.get("reason",""),"real new T beside retained junction still enforces spacing")
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.city=base();game.paused=true;root.add_child(game);await process_frame;game.road_grid_enabled=false;game.activate_tool("road");game.road_drawer.set_kind("straight");game.road_drawer.click(Vector2(20,40));game.pointer=Vector2(60,40)
  var result: Dictionary=game.road_drawer.preview()

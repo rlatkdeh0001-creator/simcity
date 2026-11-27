@@ -1229,6 +1229,15 @@ func _update_zoning_for_road(_road: Dictionary):
 	var line_regions: Array[PackedVector2Array]=[]
 	var controlled_regions: Array[PackedVector2Array]=[]
 	var transition_paint:Array[Dictionary]=[]
+	const JunctionPaint=preload("res://core/road_junction_paint.gd")
+	var close_approaches:=JunctionPaint.close_approaches(topology,roads)
+	var absorbed_arms:={}
+	for pair in close_approaches:
+		line_regions.append_array(pair.regions)
+		controlled_regions.append_array(pair.regions)
+		for side in ["a","b"]:
+			if not absorbed_arms.has(pair[side]):absorbed_arms[pair[side]]=[]
+			absorbed_arms[pair[side]].append(pair["arm_"+side])
 	for junction in junctions+road_joins:
 		if absf(float(junction.get("height_m",0)))>.0001:continue # Raised and underground patches draw elsewhere.
 		var paint:=preload("res://core/road_transitions.gd").paint(junction)
@@ -1267,8 +1276,12 @@ func _update_zoning_for_road(_road: Dictionary):
 	road_lane_marks=RoadGeometry.trim_direction_arrow_marks(road_lane_marks,road_direction_arrows)
 	for junction in junctions:
 		if absf(float(junction.get("height_m",0)))>.0001:continue # Raised and underground patches draw elsewhere.
-		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,paint_surfaces))
-		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,paint_surfaces))
+		var omitted:Array=absorbed_arms.get(junction.key,[])
+		road_crosswalks.append_array(RoadJunctions.crosswalk_polygons(junction,paint_surfaces,omitted))
+		road_stop_lines.append_array(RoadJunctions.stop_line_polygons(junction,paint_surfaces,omitted))
+	for pair in close_approaches:
+		road_crosswalks.append_array(JunctionPaint.clip_shared_paint(pair.zebra,paint_surfaces))
+		road_stop_lines.append_array(JunctionPaint.clip_shared_paint(pair.stops,paint_surfaces))
 	zoning_lattices=preload("res://core/road_grid_snap.gd").shared_grids(roads,topology)
 	# Rebuild occupied roadside strips only; earlier roads own overlap, deterministically.
 	zoning_grid.clear()

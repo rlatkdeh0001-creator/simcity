@@ -7,7 +7,7 @@ const Parcels=preload("res://core/road_parcels.gd")
 const Profile=preload("res://core/road_profile.gd")
 const Height=preload("res://core/road_height.gd")
 const EPS:=.00001
-const MIN_JUNCTION_DISTANCE:=4.0
+const MIN_JUNCTION_DISTANCE:=3.5 # 14m of centreline chainage.
 static func segments(points: PackedVector2Array) -> Array[Dictionary]:
  var result: Array[Dictionary]=[];var travelled:=0.0
  for i in range(1,points.size()):
@@ -274,7 +274,7 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   var a:=Profile.travel_direction(node.arms[0]);var b:=Profile.travel_direction(node.arms[1])
   # Both arm profiles point AWAY from the node; matching signs mean no through movement.
   if a!=0 and a==b:return {"ok":false,"reason":"통행 방향이 맞지 않습니다"}
- if not spacing_ok(topology,roads.size(),roads.size()+additions.size()):return {"ok":false,"reason":"교차로 사이 간격은 4칸 이상이어야 합니다"}
+ if not spacing_ok(topology,roads.size(),roads.size()+additions.size()):return {"ok":false,"reason":"교차로 사이 간격은 14m 이상이어야 합니다"}
  var existing:=Paths.analyze(roads)
  for i in range(additions.size()):
   var candidate: Dictionary=additions[i]

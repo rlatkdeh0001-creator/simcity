@@ -1,0 +1,141 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS lane allocation ignores major_side for one-way 1
+PASS exact footprint width 1
+PASS 3.5m lanes 1
+PASS signed asphalt edges 1
+PASS left/right sidewalk widths 1
+PASS left/right shoulder widths 1
+PASS no median, only between-lane markings 1
+PASS shoulder marking offsets 1
+PASS signed lane centres 1
+PASS outward arm reverses profile in point-order coordinates 1
+PASS lane allocation ignores major_side for one-way 2
+PASS exact footprint width 2
+PASS 3.5m lanes 2
+PASS signed asphalt edges 2
+PASS left/right sidewalk widths 2
+PASS left/right shoulder widths 2
+PASS no median, only between-lane markings 2
+PASS shoulder marking offsets 2
+PASS signed lane centres 2
+PASS outward arm reverses profile in point-order coordinates 2
+PASS lane allocation ignores major_side for one-way 3
+PASS exact footprint width 3
+PASS 3.5m lanes 3
+PASS signed asphalt edges 3
+PASS left/right sidewalk widths 3
+PASS left/right shoulder widths 3
+PASS no median, only between-lane markings 3
+PASS shoulder marking offsets 3
+PASS signed lane centres 3
+PASS outward arm reverses profile in point-order coordinates 3
+PASS lane allocation ignores major_side for one-way 4
+PASS exact footprint width 4
+PASS 3.5m lanes 4
+PASS signed asphalt edges 4
+PASS left/right sidewalk widths 4
+PASS left/right shoulder widths 4
+PASS no median, only between-lane markings 4
+PASS shoulder marking offsets 4
+PASS signed lane centres 4
+PASS outward arm reverses profile in point-order coordinates 4
+PASS legacy odd distribution with absent or zero travel_dir
+PASS same-flow exact overpaint retains old road and adds only uncovered tail
+PASS opposite-flow or different-profile overpaint rejected
+PASS equal pavement width and lanes cannot overpaint a different traffic profile
+PASS direction mismatch rejected at two-arm join [0, 1]
+PASS direction mismatch rejected at two-arm join [1, 0]
+PASS direction mismatch rejected at two-arm join [0, 1]
+PASS direction mismatch rejected at two-arm join [1, 0]
+PASS direction mismatch rejected at two-arm join [0, 1]
+PASS direction mismatch rejected at two-arm join [1, 0]
+PASS 6m straight extension width grades [2, 1, true]
+PASS 6m straight extension width grades [3, 1, true]
+PASS 6m straight extension width grades [4, 1, false]
+PASS 6m straight extension width grades [2, 0, true]
+PASS 6m straight extension width grades [4, 0, false]
+PASS 12m accepts 20m but rejects skipping to 28m
+PASS inbound pair remains legal at a true T
+PASS approved 14m junction spacing applies equally to one-way hosts: 13.99
+PASS approved 14m junction spacing applies equally to one-way hosts: 14.0
+PASS approved 14m junction spacing applies equally to one-way hosts: 15.0
+PASS approved 14m junction spacing applies equally to one-way hosts: 16.0
+PASS ground preview supplies direction without mutating the city
+PASS 0m player height transaction preserves exact authored endpoints and width
+PASS one-way records do not store a two-way lane split
+PASS nonzero heights reject E4a direction
+PASS new roads cannot author a reversed direction or a one-way highway
+PASS checkpoint binary round trip preserves road record, exact width and ID watermark
+PASS model drag demolition keeps width and direction on both survivors
+PASS drag removes 16m only, preserves authored point order and survivor IDs
+PASS legacy construction does not materialize the optional direction field
+PASS legacy 0m player construction retains the chosen two-way split
+PASS legacy API 0 preserves the serialized String major_side key, value and absent travel_dir
+PASS legacy API 1 preserves the serialized String major_side key, value and absent travel_dir
+PASS real outstanding worker queues directed ground API
+PASS real outstanding worker queues directed 0m height API
+PASS deferred road edits do not publish prematurely
+PASS both bound API calls replay in FIFO order with direction
+PASS directed edits replay with no worker fault
+PASS no reverse edges for one-way 1
+PASS actual lane offset 1/0 metres
+PASS no reverse edges for one-way 2
+PASS actual lane offset 2/0 metres
+PASS actual lane offset 2/1 metres
+PASS no reverse edges for one-way 3
+PASS actual lane offset 3/0 metres
+PASS actual lane offset 3/1 metres
+PASS actual lane offset 3/2 metres
+PASS no reverse edges for one-way 4
+PASS actual lane offset 4/0 metres
+PASS actual lane offset 4/1 metres
+PASS actual lane offset 4/2 metres
+PASS actual lane offset 4/3 metres
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [0, 1]
+PASS cannot route back through seam or wrong-way exit [0, 1]
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [1, 0]
+PASS cannot route back through seam or wrong-way exit [1, 0]
+PASS head-to-tail routes via uncontrolled seam (59.0, 44.0) [0, 1]
+PASS cannot route back through seam or wrong-way exit [0, 1]
+PASS head-to-tail routes via uncontrolled seam (59.0, 44.0) [1, 0]
+PASS cannot route back through seam or wrong-way exit [1, 0]
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [0, 1]
+PASS cannot route back through seam or wrong-way exit [0, 1]
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [1, 0]
+PASS cannot route back through seam or wrong-way exit [1, 0]
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [0, 1]
+PASS cannot route back through seam or wrong-way exit [0, 1]
+PASS head-to-tail routes via uncontrolled seam (60.0, 40.0) [1, 0]
+PASS cannot route back through seam or wrong-way exit [1, 0]
+PASS equal-width mixed-flow seam connects an offset lane instead of dropping it
+PASS true crossing construction and graph in either order [0, 1]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS true crossing construction and graph in either order [1, 0]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS turn count independent of insertion order
+PASS true crossing construction and graph in either order [0, 1]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS true crossing construction and graph in either order [1, 0]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS turn count independent of insertion order
+PASS true crossing construction and graph in either order [0, 1]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS true crossing construction and graph in either order [1, 0]
+PASS crossing splits one-way into directed through sections
+PASS only supported through/turn movements; no U-turn
+PASS turn count independent of insertion order
+PASS width-change derived as an uncontrolled join
+PASS taper asphalt meets the narrow signed asphalt edges
+PASS one-way transition never paints a centreline
+PASS single shoulder connects to the same physical side on the wider road
+PASS legacy median never crosses the authored seam into the one-way side
+PASS legacy median never crosses the authored seam into the one-way side
+PASS one-way X has an incoming stop line and none on the outgoing arm
+PASS incoming stop line spans the full asymmetric asphalt
+RESULT 138/138 one-way road checks passed

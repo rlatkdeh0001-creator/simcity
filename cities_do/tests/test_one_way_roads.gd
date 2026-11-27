@@ -96,9 +96,9 @@ func construction() -> void:
 	verify(true_t.junctions.size() == 1 and Construction.plan([first, record(b, Vector2(40, 60))], record(c, b)).ok, "inbound pair remains legal at a true T")
 	var freeway := record(Vector2(20, 50), Vector2(80, 50), 1)
 	var branch := record(Vector2(40, 50), Vector2(40, 70), 2, 0)
-	for metres in [15.99, 16.0]:
+	for metres in [13.99, 14.0, 15.0, 16.0]:
 		var second := record(Vector2(40 + metres / 4, 50), Vector2(40 + metres / 4, 30), 2, 0)
-		verify(Construction.plan([freeway, branch], second).ok == (metres == 16.0), "common 16m junction spacing unchanged: %s" % metres)
+		verify(Construction.plan([freeway, branch], second).ok == (metres >= 14.0), "approved 14m junction spacing applies equally to one-way hosts: %s" % metres)
 
 func record_lifecycle() -> void:
 	var city: Variant = City.new(100, 100)

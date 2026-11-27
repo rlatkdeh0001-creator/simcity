@@ -1,0 +1,138 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS layer fixture: player=false tunnel_first=false
+PASS separated collinear preview keeps the complete stroke: player=false tunnel_first=false 
+PASS preview leaves existing road and revision intact: player=false tunnel_first=false
+PASS separated collinear commit adds exactly one record: player=false tunnel_first=false 
+PASS both layers retain exact geometry, direction and widths: player=false tunnel_first=false
+PASS stacked roads have no common topology: player=false tunnel_first=false
+PASS layer fixture: player=false tunnel_first=true
+PASS separated collinear preview keeps the complete stroke: player=false tunnel_first=true 
+PASS preview leaves existing road and revision intact: player=false tunnel_first=true
+PASS separated collinear commit adds exactly one record: player=false tunnel_first=true 
+PASS both layers retain exact geometry, direction and widths: player=false tunnel_first=true
+PASS stacked roads have no common topology: player=false tunnel_first=true
+PASS layer fixture: player=true tunnel_first=false
+PASS separated collinear preview keeps the complete stroke: player=true tunnel_first=false 
+PASS preview leaves existing road and revision intact: player=true tunnel_first=false
+PASS separated collinear commit adds exactly one record: player=true tunnel_first=false 
+PASS both layers retain exact geometry, direction and widths: player=true tunnel_first=false
+PASS stacked roads have no common topology: player=true tunnel_first=false
+PASS layer fixture: player=true tunnel_first=true
+PASS separated collinear preview keeps the complete stroke: player=true tunnel_first=true 
+PASS preview leaves existing road and revision intact: player=true tunnel_first=true
+PASS separated collinear commit adds exactly one record: player=true tunnel_first=true 
+PASS both layers retain exact geometry, direction and widths: player=true tunnel_first=true
+PASS stacked roads have no common topology: player=true tunnel_first=true
+PASS clearance fixture: player=false ramp_first=false
+PASS the crossing still needs 10m clearance: player=false ramp_first=false 수직 간격 부족
+PASS clearance fixture: player=false ramp_first=true
+PASS the crossing still needs 10m clearance: player=false ramp_first=true 수직 간격 부족
+PASS clearance fixture: player=true ramp_first=false
+PASS the crossing still needs 10m clearance: player=true ramp_first=false 수직 간격 부족
+PASS clearance fixture: player=true ramp_first=true
+PASS the crossing still needs 10m clearance: player=true ramp_first=true 수직 간격 부족
+PASS length tunnel fixture
+PASS tunnel projection cannot grant ground connection units: grid=false commit=false
+PASS failed length check has no side effects
+PASS length tunnel fixture
+PASS tunnel projection cannot grant ground connection units: grid=true commit=false
+PASS failed length check has no side effects
+PASS length tunnel fixture
+PASS tunnel projection cannot grant ground connection units: grid=false commit=true
+PASS failed length check has no side effects
+PASS length tunnel fixture
+PASS tunnel projection cannot grant ground connection units: grid=true commit=true
+PASS failed length check has no side effects
+PASS snap tunnel fixture
+PASS ground stroke never snaps to a tunnel endpoint or centerline: player=false commit=false
+PASS endpoint edit preserves tunnel ID and revision contract
+PASS ground stroke never snaps to a tunnel endpoint or centerline: player=false commit=true
+PASS endpoint edit preserves tunnel ID and revision contract
+PASS real ground endpoint still permits a 4m extension: player=false
+PASS actual ground endpoint still wins when snapping
+PASS snap tunnel fixture
+PASS ground stroke never snaps to a tunnel endpoint or centerline: player=true commit=false
+PASS endpoint edit preserves tunnel ID and revision contract
+PASS ground stroke never snaps to a tunnel endpoint or centerline: player=true commit=true
+PASS endpoint edit preserves tunnel ID and revision contract
+PASS real ground endpoint still permits a 4m extension: player=true
+PASS bare ramp endpoint fixture
+PASS bare 0m ramp endpoint grants a 4m connection: player=false 
+PASS bare 0m ramp endpoint still snaps and joins: player=false 
+PASS bare ramp endpoint fixture
+PASS bare 0m ramp endpoint grants a 4m connection: player=true 
+PASS bare 0m ramp endpoint still snaps and joins: player=true 
+PASS mixed record fixture: 
+PASS the same mixed record still rejects incompatible 0m overpaint: 다른 종류·차로·방향의 도로와 겹칩니다
+PASS matching 0m overpaint retains the host and adds only the uncovered tail: 
+PASS full width must clear 10m, even where the centerline is over the flat tunnel: 수직 간격 부족
+PASS exactly 10m under the whole ground ribbon remains legal: 
+PASS covered pavement overlap does not count as a ground side contact: 
+PASS one real ground contact does not expose the record's covered overlap player=false commit=false: 
+PASS mixed record keeps exact stored points, heights and ID player=false commit=false: 
+PASS one real ground contact does not expose the record's covered overlap player=false commit=true: 
+PASS mixed record keeps exact stored points, heights and ID player=false commit=true: 
+PASS only the real ground contact yields a junction: player=false
+PASS mixed record fixture: 
+PASS the same mixed record still rejects incompatible 0m overpaint: 다른 종류·차로·방향의 도로와 겹칩니다
+PASS matching 0m overpaint retains the host and adds only the uncovered tail: 
+PASS full width must clear 10m, even where the centerline is over the flat tunnel: 수직 간격 부족
+PASS exactly 10m under the whole ground ribbon remains legal: 
+PASS covered pavement overlap does not count as a ground side contact: 
+PASS one real ground contact does not expose the record's covered overlap player=true commit=false: 
+PASS mixed record keeps exact stored points, heights and ID player=true commit=false: 
+PASS one real ground contact does not expose the record's covered overlap player=true commit=true: 
+PASS mixed record keeps exact stored points, heights and ID player=true commit=true: 
+PASS only the real ground contact yields a junction: player=true
+PASS covered junction and surface frontage fixture
+PASS legal surface lot really overlaps covered junction patch: 
+PASS unrelated ground edit ignores unchanged covered junction under a lot player=false commit=false: 
+PASS covered junction and surface lot records survive player=false commit=false: 
+PASS unrelated ground edit ignores unchanged covered junction under a lot player=false commit=true: 
+PASS covered junction and surface lot records survive player=false commit=true: 
+PASS covered junction and surface frontage fixture
+PASS legal surface lot really overlaps covered junction patch: 
+PASS unrelated ground edit ignores unchanged covered junction under a lot player=true commit=false: 
+PASS covered junction and surface lot records survive player=true commit=false: 
+PASS unrelated ground edit ignores unchanged covered junction under a lot player=true commit=true: 
+PASS covered junction and surface lot records survive player=true commit=true: 
+PASS at-grade fixture preserves explicit zero/one-way shape: player=false two_way_first=false
+PASS mixed-profile overpaint still rejected at grade: player=false two_way_first=false commit=false
+PASS mixed-profile overpaint still rejected at grade: player=false two_way_first=false commit=true
+PASS at-grade fixture preserves explicit zero/one-way shape: player=false two_way_first=true
+PASS mixed-profile overpaint still rejected at grade: player=false two_way_first=true commit=false
+PASS mixed-profile overpaint still rejected at grade: player=false two_way_first=true commit=true
+PASS at-grade fixture preserves explicit zero/one-way shape: player=true two_way_first=false
+PASS mixed-profile overpaint still rejected at grade: player=true two_way_first=false commit=false
+PASS mixed-profile overpaint still rejected at grade: player=true two_way_first=false commit=true
+PASS at-grade fixture preserves explicit zero/one-way shape: player=true two_way_first=true
+PASS mixed-profile overpaint still rejected at grade: player=true two_way_first=true commit=false
+PASS mixed-profile overpaint still rejected at grade: player=true two_way_first=true commit=true
+PASS omitted direction retains the legacy record and width
+PASS common junction spacing 13.99m player=false: 교차로 사이 간격은 14m 이상이어야 합니다
+PASS common junction spacing 14.0m player=false: 
+PASS common junction spacing 15.99m player=false: 
+PASS common junction spacing 16.0m player=false: 
+PASS omitted direction retains the legacy record and width
+PASS common junction spacing 13.99m player=true: 교차로 사이 간격은 14m 이상이어야 합니다
+PASS common junction spacing 14.0m player=true: 
+PASS common junction spacing 15.99m player=true: 
+PASS common junction spacing 16.0m player=true: 
+PASS frontage fixture roads: reversed=false
+PASS two legitimate existing buildings: reversed=false
+PASS demolition orphans both buildings without moving them: reversed=false
+PASS 0m player preview leaves both orphans untouched: reversed=false
+PASS 0m player commit gives the replacement a stable ID and one revision: reversed=false
+PASS 0m player commit immediately restores the valid sidewalk frontage without ticking: reversed=false
+PASS the equally near sidewalkless side stays unbound: reversed=false
+PASS both building IDs and footprints survive: reversed=false
+PASS frontage fixture roads: reversed=true
+PASS two legitimate existing buildings: reversed=true
+PASS demolition orphans both buildings without moving them: reversed=true
+PASS 0m player preview leaves both orphans untouched: reversed=true
+PASS 0m player commit gives the replacement a stable ID and one revision: reversed=true
+PASS 0m player commit immediately restores the valid sidewalk frontage without ticking: reversed=true
+PASS the equally near sidewalkless side stays unbound: reversed=true
+PASS both building IDs and footprints survive: reversed=true
+RESULT 135/135 one-way ground edit checks passed

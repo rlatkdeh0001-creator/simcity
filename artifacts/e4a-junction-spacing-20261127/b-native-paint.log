@@ -1,0 +1,91 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 596.36 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 2070 SUPER
+
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS split-record T 13.99m actual preview uses the 14m policy without mutation
+PASS split-record T 13.99m production preview chooses green/red
+PASS split-record T 13.99m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS split-record T 16m actual preview uses the 14m policy without mutation
+PASS split-record T 16m production preview chooses green/red
+PASS split-record T 16m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS T endpoint attachment 14m actual preview uses the 14m policy without mutation
+PASS T endpoint attachment 14m production preview chooses green/red
+PASS T endpoint attachment 14m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS corner T 13.99m actual preview uses the 14m policy without mutation
+PASS corner T 13.99m production preview chooses green/red
+PASS corner T 13.99m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS grid corner 16m actual preview uses the 14m policy without mutation
+PASS grid corner 16m production preview chooses green/red
+PASS grid corner 16m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS grid corner 12m actual preview uses the 14m policy without mutation
+PASS grid corner 12m production preview chooses green/red
+PASS grid corner 12m actual confirmation agrees and preserves original roads
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS same-side shared-host T 14m actual preview uses the 14m policy without mutation
+PASS same-side shared-host T 14m production preview chooses green/red
+PASS same-side shared-host T 14m actual confirmation agrees and preserves original roads
+PASS two distinct two-lane T junctions at exactly 14.00m
+PASS fixture uses a 1920x1080 viewport
+PASS 14.00m actual retained stripe commands match the final asphalt-clipped paint
+PASS 14.00m retained median/lane mesh exists
+PASS 14.00m decoded opaque and AA quads from the actual mesh at the fixture zoom
+PASS 14.00m opaque median/shoulder strokes have zero positive-area overlap with stop bars
+PASS 14.00m no duplicate zebra paint or median/lane paint (including AA) on zebra
+PASS 14.00m merged markings do not overlap stop bars
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m retained facing stripe is full depth at the exact midpoint
+PASS 14.00m exactly one complete crossing
+MARKING_GEOMETRY {"gap_m":14.0,"lane_stop_aa":4,"lane_stop_opaque":0,"lane_zebra_aa":0,"median_stop_aa":2,"median_stop_opaque":0,"median_zebra_aa":0,"stop_stop":0,"zebra_stop":0,"zebra_zebra":0}
+PASS saved actual 1920x1080 framebuffer without overwriting
+NATIVE_SPACING_CAPTURE D:/project/simcity/artifacts/e4a-junction-spacing-20261127/b-junction-14m-1920.png
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS same-side shared-host T 15m actual preview uses the 14m policy without mutation
+PASS same-side shared-host T 15m production preview chooses green/red
+PASS same-side shared-host T 15m actual confirmation agrees and preserves original roads
+PASS two distinct two-lane T junctions at exactly 15.00m
+PASS fixture uses a 1920x1080 viewport
+PASS 15.00m actual retained stripe commands match the final asphalt-clipped paint
+PASS 15.00m retained median/lane mesh exists
+PASS 15.00m decoded opaque and AA quads from the actual mesh at the fixture zoom
+PASS 15.00m opaque median/shoulder strokes have zero positive-area overlap with stop bars
+PASS 15.00m no duplicate zebra paint or median/lane paint (including AA) on zebra
+PASS 15.00m merged markings do not overlap stop bars
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m retained facing stripe is full depth at the exact midpoint
+PASS 15.00m exactly one complete crossing
+MARKING_GEOMETRY {"gap_m":15.0,"lane_stop_aa":4,"lane_stop_opaque":0,"lane_zebra_aa":0,"median_stop_aa":2,"median_stop_opaque":0,"median_zebra_aa":0,"stop_stop":0,"zebra_stop":0,"zebra_zebra":0}
+PASS saved actual 1920x1080 framebuffer without overwriting
+NATIVE_SPACING_CAPTURE D:/project/simcity/artifacts/e4a-junction-spacing-20261127/b-junction-15m-1920.png
+PASS actual lane card selects 2 lanes and drawing mode before world input
+PASS same-side shared-host T 16m actual preview uses the 14m policy without mutation
+PASS same-side shared-host T 16m production preview chooses green/red
+PASS same-side shared-host T 16m actual confirmation agrees and preserves original roads
+PASS two distinct two-lane T junctions at exactly 16.00m
+PASS fixture uses a 1920x1080 viewport
+PASS 16.00m actual retained stripe commands match the final asphalt-clipped paint
+PASS 16.00m retained median/lane mesh exists
+PASS 16.00m decoded opaque and AA quads from the actual mesh at the fixture zoom
+PASS 16.00m opaque median/shoulder strokes have zero positive-area overlap with stop bars
+PASS 16.00m no duplicate zebra paint or median/lane paint (including AA) on zebra
+MARKING_GEOMETRY {"gap_m":16.0,"lane_stop_aa":4,"lane_stop_opaque":0,"lane_zebra_aa":0,"median_sha256":"2f261c129835672591abe989cf8e004f44613fdb56adfd9fbb06c4129ab54dcb","median_stop_aa":2,"median_stop_opaque":0,"median_zebra_aa":0,"stop_sha256":"dd7e5b145af77de894d1467f5b4b8dbb61b771b473cb8122eae5e9a1ceab8700","stop_stop":0,"white_sha256":"5f0ceb3f97e047b4ac0bceb73303fad5364623d06725effcc78cdc210d01ba35","zebra_sha256":"6bfe9a39a38dae96010b498d823abd9de7b50baa70f0b026829df657258dfabe","zebra_stop":10,"zebra_zebra":0}
+MARKING_FIXTURE renderer=gl_compatibility driver=opengl3 viewport=(1920, 1080)
+RESULT 81/81 native junction spacing and paint checks passed
