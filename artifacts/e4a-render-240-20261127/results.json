@@ -1,0 +1,43 @@
+{
+  "base": "8efb6747fb230a2655f617a6b2f08d910ec703fd",
+  "mode": "headless",
+  "seconds": 48.516,
+  "timeout_seconds": 240,
+  "assertions": [
+    74,
+    74
+  ],
+  "exit": 0,
+  "diagnostics": [],
+  "source_sha256": "a64a6b929f43db88855367cee2e0db8c1b26ebb808cbc75afafdf5317be179a6",
+  "log": "integrated-b.log",
+  "log_sha256": "eaa00eeefff341be2b81040414f042c5093d156f7102b6664f47791d92d6c296",
+  "command": [
+    "python",
+    "tools/run_dotnet.py",
+    "--timeout",
+    "240",
+    "godot",
+    "--headless",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    "cities_do",
+    "--script",
+    "res://tests/test_one_way_render.gd"
+  ],
+  "diagnostic_pinned_c": {
+    "baseline_exit": 0,
+    "baseline_profile_wall_seconds": 121.92744310000853,
+    "fixed_wall_seconds": 50.990885499995784,
+    "baseline_2x_dirty_city_seconds": 29.66,
+    "fixed_2x_dirty_city_seconds": 5.89
+  },
+  "historical_timeout": {
+    "assertions_completed": 71,
+    "errors": [
+      "Owned toolchain process exceeded its 240.0-second limit"
+    ],
+    "log_sha256": "daa31fc3c07df6ab465bb8797d78e05f059be6ce302b2674cfa2cf8e932dcfd7"
+  }
+}

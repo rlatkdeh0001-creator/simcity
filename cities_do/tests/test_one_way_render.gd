@@ -116,6 +116,9 @@ func shared_arrows() -> void:
 func fleet_fixture(multiplier: int) -> Dictionary:
 	var game = load("res://main.tscn").instantiate()
 	var city := City.new(265,265)
+	# Keep real roadside cells, but don't generate four rows of parcels along
+	# every fleet lane's road: this fixture checks retained road/structure work.
+	city.config.zoning_depth = 1.0
 	game.city=city;game.paused=true
 	var ok := true
 	# Real off-ground structure records, separate from the vehicle lanes, also double.
