@@ -42,8 +42,7 @@ func synchronize():
  minus.self_modulate=dim if center else Color.WHITE;plus.self_modulate=minus.self_modulate
  for key in mode_buttons:
   var active:bool=(key==0 and height==0) or (key==10 and height>0) or (key<0 and height<0)
-  var button:Button=mode_buttons[key];button.disabled=(ground_only and key!=0) or (center and key<0);button.set_pressed_no_signal(active)
-  button.self_modulate=dim if center and key<0 else Color.WHITE
+  var button:Button=mode_buttons[key];button.disabled=ground_only and key!=0;button.set_pressed_no_signal(active)
   var box:=StyleBoxFlat.new();box.bg_color=Color("36b7ff") if active else Color("142b37");box.set_corner_radius_all(4)
   box.border_width_bottom=3 if active else 0;box.border_color=Color("edf4f5")
   button.add_theme_stylebox_override("normal",box);button.add_theme_stylebox_override("pressed",box)

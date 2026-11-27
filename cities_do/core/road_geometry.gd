@@ -130,12 +130,17 @@ static func center_median_hatching(roads:Array,bounds:Vector2,pavement:Array[Pac
 		branches[family][role-1].append(inner)
 	var phases:=_median_phases(roads)
 	for deck:Dictionary in roads:
-		if not Profile.is_center_deck(deck) or not deck.has("center_ribbon") or not branches.has(deck.get("center_family")):continue
+		if not Profile.is_center_structure(deck) or not deck.has("center_ribbon") or not branches.has(deck.get("center_family")):continue
 		var sides:Array=branches[deck.center_family]
 		if sides[0].is_empty() or sides[1].is_empty():continue
 		var points:PackedVector2Array=deck.points
 		var heights:PackedFloat64Array=deck.get("heights_m",PackedFloat64Array())
 		if heights.size()!=points.size():continue
+		var elevated:=Profile.is_center_deck(deck)
+		var sign_value:=1.0 if elevated else -1.0
+		# E1 leaves the ground open from +5m; E2 opens the ground to paint
+		# only above the cover, not along the open trench.
+		var threshold:=5.0 if elevated else -Height.portal_for(deck)
 		var axis:PackedVector2Array=deck.center_ribbon.axis
 		var phase:Vector2=phases.get(deck.parcel_id,Vector2(0,1))
 		var width:float=deck.width
@@ -153,11 +158,10 @@ static func center_median_hatching(roads:Array,bounds:Vector2,pavement:Array[Pac
 		var start:float=deck.get("source_start",0.0)
 		for i in range(1,points.size()):
 			var end:=start+points[i-1].distance_to(points[i])
-			var a:=heights[i-1];var b:=heights[i]
-			# E1 uses fill/retaining walls below +5m; only open ground gets paint.
-			if maxf(a,b)>=5.0 and end-start>.0001:
-				var low:=start if a>=5.0 else lerpf(start,end,(5.0-a)/(b-a))
-				var high:=end if b>=5.0 else lerpf(start,end,(5.0-a)/(b-a))
+			var a:=heights[i-1]*sign_value;var b:=heights[i]*sign_value
+			if maxf(a,b)>=threshold and end-start>.0001:
+				var low:=start if a>=threshold else lerpf(start,end,(threshold-a)/(b-a))
+				var high:=end if b>=threshold else lerpf(start,end,(threshold-a)/(b-a))
 				for first:Vector2 in sides[0]:
 					for second:Vector2 in sides[1]:
 						var lo:=maxf(low,maxf(first.x,second.x));var hi:=minf(high,minf(first.y,second.y))
@@ -180,23 +184,24 @@ static func _median_phases(roads:Array)->Dictionary:
 	var ends:Dictionary={}
 	var buckets:Dictionary={}
 	for deck:Dictionary in roads:
-		if not Profile.is_center_deck(deck) or not deck.has("center_ribbon"):continue
+		if not Profile.is_center_structure(deck) or not deck.has("center_ribbon"):continue
 		var id:int=deck.parcel_id
 		var axis:PackedVector2Array=deck.center_ribbon.axis
 		var points:PackedVector2Array=deck.points
 		if axis.size()<2 or points.size()<2:continue
 		var first:float=deck.get("source_start",0.0)
 		var last:=first+Height.length_cells(points)
+		var level:=10.0 if Profile.is_center_deck(deck) else -10.0
 		fragments[id]={"points":points,"span":Vector2(first,last),"source_length":Height.length_cells(axis)}
 		for end in [0,1]:
 			var at:=0 if end==0 else -1
 			var p:Vector2=points[at]
-			if absf(Height.height_at(deck,p)-10.0)>Junctions.EPS:continue
+			if absf(Height.height_at(deck,p)-level)>Junctions.EPS:continue
 			var station:=first if end==0 else last
 			if Junctions.sample(axis,station).distance_to(p)>Junctions.EPS:continue
 			var handle:=Vector2i(id,end)
 			var inward:Vector2=(points[1 if end==0 else -2]-p).normalized()
-			ends[handle]={"point":p,"inward":inward,"lanes":deck.center_lanes}
+			ends[handle]={"point":p,"inward":inward,"lanes":deck.center_lanes,"level":level}
 			var bucket:Array=buckets.get_or_add(Junctions.key(p),[])
 			bucket.append(handle)
 	var seeks:Dictionary={}
@@ -209,7 +214,7 @@ static func _median_phases(roads:Array)->Dictionary:
 				for peer:Vector2i in buckets.get(cell+Vector2i(x,y),[]):
 					if peer.x==end.x:continue
 					var b:Dictionary=ends[peer]
-					if a.lanes==b.lanes and a.point.distance_to(b.point)<=Junctions.EPS and a.inward.dot(b.inward)<-.99999 and absf(a.inward.cross(b.inward))<=Junctions.EPS:
+					if a.level==b.level and a.lanes==b.lanes and a.point.distance_to(b.point)<=Junctions.EPS and a.inward.dot(b.inward)<-.99999 and absf(a.inward.cross(b.inward))<=Junctions.EPS:
 						compatible.append(peer)
 		if compatible.size()==1:seeks[end]=compatible[0]
 	var links:Dictionary={}
@@ -310,7 +315,7 @@ static func clipped_segment(a: Vector2,b: Vector2,bounds: Vector2) -> PackedVect
 		if last<first:return PackedVector2Array()
 	return PackedVector2Array([a.lerp(b,first).clamp(Vector2.ZERO,bounds),a.lerp(b,last).clamp(Vector2.ZERO,bounds)])
 
-static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
+static func continuous_roads(roads: Array, topology: Dictionary={}, blocked:Dictionary={}, joins:Variant=null) -> Array:
 	# Derived render-only chains. Construction IDs, zoning and authored points stay intact.
 	if topology.is_empty():topology=preload("res://core/road_junctions.gd").analyze(roads)
 	var links := {}
@@ -335,6 +340,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		var source_ids:Array=[int(roads[i].get("parcel_id",-1))]
 		var supports:Array=roads[i].get("piers",[]).duplicate(true)
 		var seams: Array[Vector2]=[]
+		var join_keys:Array[String]=[]
 		var branch_seed:bool=roads[i].has("road_variant") and not Profile.branch_profile(roads[i]).is_empty()
 		var first_is_branch:=branch_seed
 		var branch_boundaries:Dictionary={}
@@ -343,7 +349,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 			if side==1:chain.reverse();heights.reverse()
 			while true:
 				var key: String=preload("res://core/road_junctions.gd").merged_key(chain[-1],topology.nodes,heights[-1])
-				if topology.nodes[key].arms.size()!=2 or links[key].size()!=2:break
+				if blocked.has(key) or topology.nodes[key].arms.size()!=2 or links[key].size()!=2:break
 				var next: Dictionary={}
 				for entry in links[key]:
 					if not used.has(entry.road):next=entry
@@ -364,6 +370,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 				var extension: PackedVector2Array=road.points.duplicate()
 				if next.end==1:extension.reverse()
 				seams.append(chain[-1]);used[next.road]=true
+				if joins!=null:join_keys.append(key)
 				source_ids.append(int(road.get("parcel_id",-1)));supports.append_array(road.get("piers",[]))
 				for j in range(1,extension.size()):chain.append(extension[j]);heights.append(Height.height_at(road,extension[j]))
 		chain.reverse();heights.reverse()
@@ -402,6 +409,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 		var last_node: Dictionary=topology.nodes[preload("res://core/road_junctions.gd").merged_key(smooth[-1],topology.nodes,heights[-1])]
 		visual.flat_start=first_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[0])<.0005)
 		visual.flat_end=last_node.arms.size()==1 or flat_points.any(func(p):return p.distance_to(smooth[-1])<.0005)
+		if joins!=null and Height.raised(visual) and not join_keys.is_empty():joins[result.size()]=join_keys
 		result.append(visual)
 	return result
 

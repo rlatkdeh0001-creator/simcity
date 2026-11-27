@@ -158,12 +158,14 @@ func check_cards_and_controls() -> void:
  if not await pick_road(center_name(6)): return
  check(height_is(0) and game.road_drawer.start_height_m == 0 and game.road_drawer.kind == "curve" and not game.road_grid_enabled, "central card clears raised stroke while keeping curve and grid preferences")
  await key(KEY_PAGEDOWN)
- check(height_is(0) and not game.transit_view.underground, "central PgDn cannot enter underground from ground")
+ check(height_is(-10) and game.transit_view.underground, "D14 E4d: central PgDn enters -10m and opens the underground view")
+ await key(KEY_PAGEUP)
+ check(height_is(0) and not game.transit_view.underground, "central PgUp returns from -10m to ground")
  await key(KEY_PAGEUP)
  check(height_is(10), "central PgUp jumps from ground to +10m")
  await key(KEY_PAGEUP)
  check(height_is(10), "central PgUp is capped at +10m")
- for name in ["Underground", "HeightMinus", "HeightPlus"]:
+ for name in ["HeightMinus", "HeightPlus"]:
   var button := node_named(name) as Button
   if not check(button != null and button.disabled and button.self_modulate != Color.WHITE, name + " is disabled and dimmed in central mode"): return
   # A disabled Godot button should ignore real input and forced signals alike.
@@ -173,6 +175,8 @@ func check_cards_and_controls() -> void:
   check(height_is(10), name + " forced signal cannot modify the central height")
  await key(KEY_PAGEDOWN)
  check(height_is(0), "central PgDn returns directly to ground")
+ if not await press(node_named("Underground"), "central underground button"): return
+ check(height_is(-10) and game.transit_view.underground, "D14 E4d: central underground button selects -10m")
  if not await press(node_named("Elevated"), "central elevated button"): return
  check(height_is(10), "central elevated button selects +10m")
  if not await press(node_named("Ground"), "central ground button"): return

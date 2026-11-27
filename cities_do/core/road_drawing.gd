@@ -30,7 +30,7 @@ func confirm_pending():
  commit_path(approved,true)
 func set_height(value:float):
  if center_tool:
-  if value not in [0.0,10.0]:return
+  if value not in [-10.0,0.0,10.0]:return
   target_height_m=value
  else:target_height_m=0.0 if travel_dir!=0 else roundf(value/5)*5
  if target_height_m<0:target_height_m=minf(target_height_m,Height.SHALLOWEST_ROAD_TUNNEL_M)
@@ -321,7 +321,8 @@ func handle_input(event: InputEvent) -> bool:
  if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
   if travel_dir!=0:return true
   if center_tool:
-   set_height(10.0 if event.keycode==KEY_PAGEUP else 0.0);return true
+   var layer_step:=10.0 if event.keycode==KEY_PAGEUP else -10.0
+   set_height(clampf(target_height_m+layer_step,-10.0,10.0));return true
   var step:=5 if event.keycode==KEY_PAGEUP else -5
   var height:=target_height_m+step
   if height<0 and height>Height.SHALLOWEST_ROAD_TUNNEL_M:height+=step

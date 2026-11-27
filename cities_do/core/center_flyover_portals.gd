@@ -35,7 +35,7 @@ static func active(road:Dictionary)->Array[Dictionary]:
  var role:Variant=road.get("center_role")
  var count:Variant=road.get("center_lanes")
  if not role is int or role not in [0,1,2] or not count is int or not Profile.CENTER_SECTIONS.has(count):return result
- if (role==0 and not Profile.is_center_deck(road)) or (role!=0 and Profile.branch_profile(road).is_empty()):return result
+ if (role==0 and not Profile.is_center_structure(road)) or (role!=0 and Profile.branch_profile(road).is_empty()):return result
  var start:float=road.get("source_start",0.0)
  var end_distance:=start+Height.length_cells(road.points)
  for value in portals:
@@ -75,8 +75,8 @@ static func trunk_end(road:Dictionary,p:Dictionary)->int:
  return -1
 
 static func matching_center_contact(a:Dictionary,b:Dictionary)->bool:
- if not Profile.is_center_deck(a):
-  if not Profile.is_center_deck(b):return false
+ if not Profile.is_center_structure(a):
+  if not Profile.is_center_structure(b):return false
   return matching_center_contact(b,a)
  return matching_trunk(a,b)
 

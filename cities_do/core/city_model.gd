@@ -705,6 +705,8 @@ func add_road(points: PackedVector2Array, kind: String = "local", commit: bool =
 			if _polygon_road_distance(power_plant_footprint(plant),candidate)<-0.0005:return {"ok":false,"reason":"발전소와 충돌합니다"}
 		for facility in water.facilities:
 			if _polygon_road_distance(power_plant_footprint(facility),candidate)<-0.0005:return {"ok":false,"reason":"상하수도 시설과 충돌합니다"}
+	var visual_error:=_visual_retaining_error(new_roads)
+	if not visual_error.is_empty():return {"ok":false,"reason":visual_error}
 	var occupied := []
 	for building in buildings: occupied.append(footprint(building))
 	for record: Dictionary in public_facilities.lots:occupied.append(record.polygon)
@@ -734,9 +736,9 @@ func _road_layer_context(road: Dictionary) -> Dictionary:
 			continue
 		var error: String=height_rule.overlap_error(road,existing)
 		if error!="":return {"ok":false,"reason":error}
-		if RoadProfile.is_center_deck(existing) or RoadProfile.is_center_deck(road):
+		if RoadProfile.is_center_structure(existing) or RoadProfile.is_center_structure(road):
 			const Center=preload("res://core/center_flyover.gd")
-			error=Center.ground_error(existing,road) if RoadProfile.is_center_deck(existing) else Center.ground_error(road,existing)
+			error=Center.ground_error(existing,road) if RoadProfile.is_center_structure(existing) else Center.ground_error(road,existing)
 			if error!="":return {"ok":false,"reason":error}
 		if height_rule.same_level_contact(road,existing):coplanar.append(existing)
 	return {"ok":true,"roads":coplanar}
@@ -821,6 +823,8 @@ func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array,
 
 func _finish_height_roads(result:Dictionary,commit:bool,confirmed:bool,approved_demolition:Variant,reorient:bool)->Dictionary:
 	var additions:Array=result.new_roads
+	var visual_error:=_visual_retaining_error(additions)
+	if not visual_error.is_empty():return {"ok":false,"reason":visual_error}
 	var final_patches:Array=[]
 	if not buildings.is_empty() or not public_facilities.lots.is_empty() or not power.plants.is_empty() or not water.facilities.is_empty():
 		final_patches=_changed_surface_road_patches(additions)
@@ -857,6 +861,27 @@ func _finish_height_roads(result:Dictionary,commit:bool,confirmed:bool,approved_
 		if reorient:
 			for building in buildings:orient_building(building)
 	return result
+
+func _visual_retaining_error(additions:Array)->String:
+	const Height=preload("res://core/road_height.gd")
+	const Center=preload("res://core/center_flyover.gd")
+	if additions.is_empty():return ""
+	var proposed:=roads+additions
+	var has_cover:=false
+	var has_raised:=false
+	for road:Dictionary in proposed:
+		has_cover=has_cover or (RoadProfile.is_center_structure(road) and Height.sunken(road))
+		has_raised=has_raised or (Height.raised(road) and not RoadProfile.is_center_deck(road))
+		if has_cover and has_raised:break
+	if not has_cover or not has_raised:return ""
+	# Use the same authored order and full topology as the retained renderer,
+	# not the coplanar subset passed to the placement planner.
+	var after:=RoadGeometry.continuous_roads(proposed)
+	var error:=Center.visual_retaining_error(road_visuals,after,roads,additions)
+	if error.is_empty():return ""
+	# A prior D21 suppression is not new construction. Compare nominal geometry
+	# only after a candidate finds solid contact in the reserved median.
+	return Center.visual_retaining_error(RoadGeometry.continuous_roads(roads),after,roads,additions)
 
 func _changed_surface_road_patches(additions: Array) -> Array:
 	var before:=RoadJunctions.analyze(roads)
@@ -1265,7 +1290,7 @@ func _update_zoning_for_road(_road: Dictionary):
 	var topology: Dictionary=RoadJunctions.analyze(roads)
 	junctions=topology.junctions
 	road_joins=topology.joins
-	road_visuals=RoadGeometry.continuous_roads(roads,topology)
+	road_visuals=preload("res://core/center_flyover.gd").protected_road_visuals(roads,topology)
 	var directed_marks:=RoadGeometry.directed_marking_layout(road_visuals,topology)
 	# Pavement owns its render box; approach lines use the actual stop-line boundaries.
 	for cache in [road_crosswalks,road_stop_lines,intersection_regions,road_pavement,road_asphalt,road_medians,road_lane_marks,junction_pavement,junction_asphalt]:cache.clear()

@@ -168,20 +168,10 @@ func build_road(road:Dictionary):
  for junction:Dictionary in ([] if rail else renderer.view.city.junctions+renderer.view.city.road_joins):
   if not junction.has("box") or absf(float(junction.get("height_m",0))-Height.height_at(road,junction.position))>.0001:continue
   regions.append(junction.box);mark_regions.append_array(renderer.view.city.RoadJunctions.lane_mark_regions(junction))
- var length:=Height.length_cells(road.points);var cuts:Array[float]=[0.0]
- for i in range(1,ceili(length)):cuts.append(float(i))
- var travelled:=0.0
- for i in range(1,road.points.size()):
-  var span:float=road.points[i-1].distance_to(road.points[i])
-  var first:=Height.height_at(road,road.points[i-1]);var last:=Height.height_at(road,road.points[i])
-  if (first<5 and last>5) or (first>5 and last<5):cuts.append(travelled+span*(5-first)/(last-first))
-  travelled+=span;cuts.append(travelled)
- cuts.sort()
- var distances:Array[float]=[];var points:=PackedVector2Array()
- for distance in cuts:
-  if not distances.is_empty() and absf(distances[-1]-distance)<.0001:continue
-  distances.append(distance);points.append(Height.point_at(road.points,distance))
- var left:=Profile.offset_path(points,float(road.width)/2);var right:=Profile.offset_path(points,-float(road.width)/2)
+ var sections:=Height.elevated_sections(road)
+ var distances:Array[float]=sections.distances;var points:PackedVector2Array=sections.points
+ var heights:PackedFloat64Array=sections.heights
+ var left:PackedVector2Array=sections.left;var right:PackedVector2Array=sections.right
  var asphalt_left:=Profile.offset_path(points,(.0 if rail else Profile.asphalt_width(road))/2);var asphalt_right:=Profile.offset_path(points,-(.0 if rail else Profile.asphalt_width(road))/2)
  var inner_left:=Profile.offset_path(points,float(road.width)/2-.1);var inner_right:=Profile.offset_path(points,-float(road.width)/2+.1)
  var markings:Array=[] if rail else Geometry.lane_marks(road)
@@ -189,7 +179,7 @@ func build_road(road:Dictionary):
  var median:=PackedVector2Array() if rail else Profile.offset_path(road.points,Profile.median_offset(road))
  var tracks:Dictionary=rail_commands(road,distances,points.size()) if rail else {}
  for i in range(1,points.size()):
-  var footprint:=PackedVector2Array([left[i-1],left[i],right[i],right[i-1]])
+  var footprint:=Height.elevated_section_footprint(sections,i)
   var depth:float=-INF
   for point in footprint:depth=maxf(depth,renderer.iso(point).y)
   var rear:=make_piece("ElevatedDeckRear",road,footprint,depth-.02)
@@ -205,7 +195,7 @@ func build_road(road:Dictionary):
     for visible in Geometry.visible_lines(clipped,bounds,mark_regions):rear.commands.append({"line":projected(visible,road),"color":Color("e8e7dc"),"width":.65})
   for clipped in ([] if rail else Geometry2D.intersect_polyline_with_polygon(median,footprint)):
    for visible in Geometry.visible_lines(clipped,bounds,mark_regions):rear.commands.append({"line":projected(visible,road),"color":Color("e8be57"),"width":.8})
-  var ha:=Height.height_at(road,points[i-1]);var hb:=Height.height_at(road,points[i]);var retaining:=minf(ha,hb)<5-.0001
+  var ha:=heights[i-1];var hb:=heights[i];var retaining:=Height.retaining_section(ha,hb)
   for pair in [[left,inner_left,1.0],[right,inner_right,-1.0]]:
    var edge:PackedVector2Array=pair[0];var inner:PackedVector2Array=pair[1]
    var a:Vector2=edge[i-1];var b:Vector2=edge[i]

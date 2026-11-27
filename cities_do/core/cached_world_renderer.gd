@@ -504,6 +504,7 @@ func vehicle_road(lanes:Array,lane_id:int)->Dictionary:
 func _process(_delta:float):
  vehicle_road_lookups=0
  if elevated!=null:elevated.vehicle_piece_visits=0
+ if underground!=null:underground.reset_vehicle_work()
  if view==null:return
  if city_reference!=view.city:synchronize()
  view.transit_view.sync_visibility()

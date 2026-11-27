@@ -78,30 +78,31 @@ static func covered_at(height:float,portal:float=PORTAL_M)->bool:return height<=
 ## Rail structures (E3b) open into a 5.5m portal; roads keep the 4.5m one.
 static func portal_for(road:Dictionary)->float:return RAIL_PORTAL_M if road.has("rail_route_id") or road.get("kind","")=="rail" else PORTAL_M
 ## Sub-paths whose interpolated height lies in [low, high], cut exactly where a
-## ramp crosses a bound. Each piece keeps per-point heights.
-static func pieces_between(road:Dictionary,low:float,high:float)->Array:
+## ramp crosses a bound. A strict clip rejects flat spans outside the exact bounds.
+static func pieces_between(road:Dictionary,low:float,high:float,exact_bounds:bool=false)->Array:
  var points:PackedVector2Array=road.points
  var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
  if heights.size()!=points.size():
   heights=PackedFloat64Array();heights.resize(points.size());heights.fill(0.0)
  var result:Array=[]
  var current:={"points":PackedVector2Array(),"heights_m":PackedFloat64Array()}
+ var boundary_slack:=0.0 if exact_bounds else EPS
  for i in range(1,points.size()):
   var a:=heights[i-1];var b:=heights[i]
   var t0:=0.0;var t1:=1.0
   if absf(b-a)<=EPS:
-   if a<low-EPS or a>high+EPS:t0=1.0;t1=0.0
+   if a<low-boundary_slack or a>high+boundary_slack:t0=1.0;t1=0.0
   else:
    var tl:=(low-a)/(b-a);var th:=(high-a)/(b-a)
    t0=maxf(0.0,minf(tl,th));t1=minf(1.0,maxf(tl,th))
   var span:=points[i-1].distance_to(points[i])
   if (t1-t0)*span<=EPS:
    _close_piece(result,current);continue
-  if t0>EPS or current.points.is_empty():
+  if t0>boundary_slack or current.points.is_empty():
    _close_piece(result,current)
    current.points.append(points[i-1].lerp(points[i],t0));current.heights_m.append(lerpf(a,b,t0))
   current.points.append(points[i-1].lerp(points[i],t1));current.heights_m.append(lerpf(a,b,t1))
-  if t1<1.0-EPS:_close_piece(result,current)
+  if t1<1.0-boundary_slack:_close_piece(result,current)
  _close_piece(result,current)
  return result
 static func _close_piece(result:Array,current:Dictionary):
@@ -111,11 +112,12 @@ static func covered_pieces(road:Dictionary,portal:float=NAN)->Array:return piece
 static func open_pieces(road:Dictionary)->Array:
  if not sunken(road):return [{"points":road.points,"heights_m":road.get("heights_m",PackedFloat64Array())}]
  return pieces_between(road,portal_for(road),INF)
-## Ground-rule footprint: the whole ribbon, except covered underground parts.
+## Covered ordinary tunnels stay out of the ground footprint. The central
+## structure reserves its median even above the cover (D20).
 static func surface_ribbons(road:Dictionary)->Array[PackedVector2Array]:
  var geometry=preload("res://core/road_geometry.gd")
  var half:=float(road.width)/2
- if not sunken(road):
+ if Profile.is_center_structure(road) or not sunken(road):
   var center:Array[PackedVector2Array]=geometry.center_ribbons(road,Vector2(-half,half))
   if not center.is_empty():return center
  var result:Array[PackedVector2Array]=[]
@@ -145,27 +147,42 @@ static func usable_under_deck(road:Dictionary,polygon:PackedVector2Array)->bool:
   for ribbon in surface_ribbons(road):
    if parcels.overlap(ribbon,polygon):return false
   return true
- var profile=preload("res://core/road_profile.gd")
- var left:PackedVector2Array=profile.offset_path(points,float(road.width)/2)
- var right:PackedVector2Array=profile.offset_path(points,-float(road.width)/2)
- # Clip each deck cross-section at the exact interpolated threshold before intersecting.
- # Checking only vertices of the full-ribbon intersection misses interior height minima.
- for i in range(1,points.size()):
-  var a:=heights[i-1];var b:=heights[i]
-  if minf(a,b)>=5:continue
-  var first:=0.0 if a<5 else (5-a)/(b-a)
-  var last:=1.0 if b<5 else (5-a)/(b-a)
-  var l0:=left[i-1];var l1:=left[i];var r0:=right[i-1];var r1:=right[i]
-  # A threshold inside a segment uses the segment's perpendicular cross-section.
-  var normal:Vector2=(points[i]-points[i-1]).normalized().orthogonal()*float(road.width)/2
-  if a>5:
-   var boundary:=points[i-1].lerp(points[i],first)
-   l0=boundary+normal;r0=boundary-normal
-  if b>5:
-   var boundary:=points[i-1].lerp(points[i],last)
-   l1=boundary+normal;r1=boundary-normal
-  if parcels.overlap(PackedVector2Array([l0,l1,r1,r0]),polygon):return false
+ var has_fill:=false
+ for height:float in heights:
+  if retaining_section(height,height):has_fill=true;break
+ if not has_fill:return true
+ var sections:=elevated_sections(road)
+ for i in range(1,sections.points.size()):
+  if retaining_section(sections.heights[i-1],sections.heights[i]) and parcels.overlap(elevated_section_footprint(sections,i),polygon):return false
  return true
+
+## Use the same 4m sections for ground occupancy and retained deck artwork.
+## Offset after inserting stations: a corner miter must not stretch to the next authored point.
+static func elevated_sections(road:Dictionary)->Dictionary:
+ var length:=length_cells(road.points);var cuts:Array[float]=[0.0]
+ for i in range(1,ceili(length)):cuts.append(float(i))
+ var travelled:=0.0
+ for i in range(1,road.points.size()):
+  var span:float=road.points[i-1].distance_to(road.points[i])
+  var first:=height_at(road,road.points[i-1]);var last:=height_at(road,road.points[i])
+  if (first<5 and last>5) or (first>5 and last<5):cuts.append(travelled+span*(5-first)/(last-first))
+  travelled+=span;cuts.append(travelled)
+ cuts.sort()
+ var distances:Array[float]=[];var points:=PackedVector2Array();var heights:=PackedFloat64Array()
+ for distance in cuts:
+  if not distances.is_empty() and absf(distances[-1]-distance)<EPS:continue
+  var point:=point_at(road.points,distance)
+  distances.append(distance);points.append(point);heights.append(height_at(road,point))
+ var half:=float(road.width)/2
+ return {"distances":distances,"points":points,"heights":heights,"left":Profile.offset_path(points,half),"right":Profile.offset_path(points,-half)}
+
+static func elevated_section_footprint(sections:Dictionary,i:int)->PackedVector2Array:
+ var left:PackedVector2Array=sections.left;var right:PackedVector2Array=sections.right
+ return PackedVector2Array([left[i-1],left[i],right[i],right[i-1]])
+
+static func retaining_section(first:float,last:float)->bool:
+ return minf(first,last)<5.0-EPS
+
 ## E3a: rail ramps use the approved 3.5% limit (10m -> 288m, 5m -> 144m).
 static func grade_for(kind:String)->float:return 0.05 if kind=="highway" else (0.035 if kind=="rail" else 0.08)
 static func minimum_ramp_m(rise:float,kind:String)->float:
@@ -206,7 +223,7 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
  return false
 static func validate(road:Dictionary,bounds:Vector2)->String:
  if not Profile.valid_selection(road.kind,road.lanes,int(road.get("major_side",1)),int(road.get("travel_dir",0))):return "도로 경로가 필요합니다"
- if road.has("road_variant") and Profile.branch_profile(road).is_empty() and not Profile.is_center_deck(road):return "지원하지 않는 분기 도로입니다"
+ if road.has("road_variant") and Profile.branch_profile(road).is_empty() and not Profile.is_center_structure(road):return "지원하지 않는 분기 도로입니다"
  if Profile.travel_direction(road)!=0 and off_ground(road):return "일방통행 도로는 지상에만 건설할 수 있습니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
  var heights:PackedFloat64Array=road.heights_m
