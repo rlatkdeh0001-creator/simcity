@@ -3,6 +3,7 @@ extends RefCounted
 const EPS := .0001
 const Height=preload("res://core/road_height.gd")
 const Profile=preload("res://core/road_profile.gd")
+const CenterPortals=preload("res://core/center_flyover_portals.gd")
 const CROSSWALK_HALF_LENGTH := .22
 const CROSSWALK_EDGE_GAP := .03
 const STOP_LINE_HALF_LENGTH := .04
@@ -109,7 +110,7 @@ static func analyze(roads: Array) -> Dictionary:
    if points.size()<2:continue
    var start:Variant = merged_key(points[0],nodes,Height.height_at(roads[road_id],points[0]))
    var end:Variant = merged_key(points[-1],nodes,Height.height_at(roads[road_id],points[-1]))
-   var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end}
+   var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end,"first":unique[i-1],"last":unique[i]}
    sections.append(section)
    for pair in [[start,points[0],(points[1]-points[0]).normalized(),false],[end,points[-1],(points[-2]-points[-1]).normalized(),true]]:
     if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"height_m":Height.height_at(roads[road_id],pair[1]),"arms":[],"road_ids":[],"junction":-1}
@@ -130,12 +131,14 @@ static func analyze(roads: Array) -> Dictionary:
      else:arm.major_side=int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1)
      if roads[road_id].has("road_variant"):arm["road_variant"]=roads[road_id]["road_variant"]
      node.arms.append(arm)
+ var split_data:=_center_splits(roads,nodes,sections)
  var junctions := []
  var joins := []
  for node in nodes.values():
   node.join=-1
   if node.arms.size()<2:continue
   var transition: bool=node.arms.size()==2
+  if transition and node.get("center_split",false):continue
   # A single closed stroke already has continuous offset lanes at its seam.
   if transition and node.road_ids.size()==1:continue
   # Arm point orders face away from the join; opposite signs agree along the route.
@@ -160,7 +163,45 @@ static func analyze(roads: Array) -> Dictionary:
   junction.asphalt=patch(junction,true)
   if transition:joins.append(junction)
   else:junctions.append(junction)
- return {"nodes":nodes,"sections":sections,"junctions":junctions,"joins":joins,"errors":errors}
+ return {"nodes":nodes,"sections":sections,"junctions":junctions,"joins":joins,"errors":errors,"splits":split_data.values()}
+
+static func _center_splits(roads:Array,nodes:Dictionary,sections:Array)->Dictionary:
+ var splits:Dictionary={}
+ var endpoints:Dictionary={}
+ var members:Dictionary={}
+ for index in range(roads.size()):
+  var portals:=CenterPortals.active(roads[index])
+  if not portals.is_empty():members[index]=portals
+ if members.is_empty():return splits
+ for section in sections:
+  if not endpoints.has(section.road):endpoints[section.road]=[section,section]
+  else:endpoints[section.road][1]=section
+ for index:int in members:
+  if not endpoints.has(index):continue
+  var road:Dictionary=roads[index]
+  for portal in members[index]:
+   var member:Dictionary=endpoints[index][portal.end]
+   var member_node:String=member.start_node if portal.end==0 else member.end_node
+   nodes[member_node].center_anchor=true
+   var split_key:="%d/%s"%[road.center_family,merged_key(portal.anchor,nodes)]
+   if not splits.has(split_key):splits[split_key]={"key":split_key,"position":portal.anchor,"links":[]}
+   var matches:Array[Vector2i]=[]
+   var trunk_key:=merged_key(portal.anchor,nodes)
+   if nodes.has(trunk_key):
+    for other_id:int in nodes[trunk_key].road_ids:
+     if not endpoints.has(other_id):continue
+     var end:=CenterPortals.trunk_end(roads[other_id],portal)
+     if end>=0:matches.append(Vector2i(other_id,end))
+   if matches.size()!=1:continue
+   var match_end:Vector2i=matches[0]
+   var trunk:Dictionary=endpoints[match_end.x][match_end.y]
+   nodes[trunk_key].center_anchor=true
+   if member_node==trunk_key:nodes[trunk_key].center_split=true
+   if nodes[member_node].arms.size()>(2 if member_node==trunk_key else 1) or nodes[trunk_key].arms.size()>2:continue
+   for link in portal.links:
+    var arrives:bool=link.direction==(1 if portal.end==1 else -1)
+    splits[split_key].links.append({"member_section":member.id,"member_direction":link.direction,"member_index":link.index,"trunk_section":trunk.id,"trunk_direction":(1 if match_end.y==0 else -1)*(1 if arrives else -1),"trunk_index":link.trunk_index,"from_member":arrives})
+ return splits
 
 static func connection(node: Dictionary, topology: Dictionary) -> Dictionary:
  if node.junction>=0:return topology.junctions[node.junction]

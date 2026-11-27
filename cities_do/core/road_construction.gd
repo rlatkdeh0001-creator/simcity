@@ -6,6 +6,7 @@ const Geometry=preload("res://core/road_geometry.gd")
 const Parcels=preload("res://core/road_parcels.gd")
 const Profile=preload("res://core/road_profile.gd")
 const Height=preload("res://core/road_height.gd")
+const CenterPortals=preload("res://core/center_flyover_portals.gd")
 const EPS:=.00001
 const MIN_JUNCTION_DISTANCE:=3.5 # 14m of centreline chainage.
 static func segments(points: PackedVector2Array) -> Array[Dictionary]:
@@ -67,7 +68,10 @@ static func fit_overlay(points: PackedVector2Array,roads: Array,profile: Diction
   if piece[0].distance_to(points[0])<EPS:result[0]=fitted.points[0]
   if piece[-1].distance_to(points[-1])<EPS:result[-1]=fitted.points[-1]
  return {"ok":true,"points":result,"reason":""}
-static func outlines(road: Dictionary) -> Array[PackedVector2Array]:return Geometry.ribbons(road.points,road.width,true,true)
+static func outlines(road: Dictionary) -> Array[PackedVector2Array]:
+ var half:=float(road.width)/2
+ var center:=Geometry.center_ribbons(road,Vector2(-half,half))
+ return Geometry.ribbons(road.points,road.width,true,true) if center.is_empty() else center
 static func intersections(a: Dictionary,b: Dictionary) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  for first in outlines(a):
@@ -225,10 +229,11 @@ static func spacing_ok(topology: Dictionary,old_count: int,_total: int) -> bool:
   adjacent[node.key]=[]
   # Uncontrolled bends are spacing boundaries too; straight joins/width changes are not.
   var bent: bool=node.arms.size()==2 and (node.arms[0].direction.dot(node.arms[1].direction)>=0 or absf(node.arms[0].direction.cross(node.arms[1].direction))>=.000001)
-  if node.junction<0 and not bent:continue
+  if node.junction<0 and not bent and not node.get("center_anchor",false):continue
   var changed:=false
   for id in node.road_ids:
    if id>=old_count:changed=true
+  if node.junction>=0 and node.get("center_anchor",false) and changed:return false
   anchors[node.key]=changed
  for section in topology.sections:
   var distance:=Paths.length_of(section.points)
@@ -281,8 +286,11 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   var prior:=roads+additions.slice(0,i)
   for old_id in range(prior.size()):
    var old:Dictionary=prior[old_id]
-   if collinear_contact(candidate,old,ground and Height.off_ground(old)) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,prior,ground):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
+   if collinear_contact(candidate,old,ground and Height.off_ground(old)) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not CenterPortals.matching_center_contact(candidate,old) and not CenterPortals.is_deck_extension(candidate,old) and not joins_crossing(candidate,old,prior,ground):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
    for surface:Dictionary in surfaces[old_id]:
+    # An offset member's butt edge meets the trunk transversely without a
+    # shared centreline. Permit only the proven portal and zero-area contact.
+    if (CenterPortals.matching_trunk(candidate,old) or CenterPortals.matching_trunk(old,candidate)) and intersections(candidate,surface).is_empty():continue
     if not overlap_allowed(candidate,surface) and not continuation_overlap_allowed(candidate,old_id,surface,roads,surfaces,existing,ground):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
   for junction in existing.junctions+existing.joins:
    if ground and absf(junction.height_m)>Height.EPS:continue

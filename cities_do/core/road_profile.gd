@@ -11,6 +11,13 @@ const BRANCH_PROFILES:={
  "branch-one-way-6m":{"lanes":1,"width":1.5,"grade":1.5,"walk":.75,"shoulder":1.75},
  "branch-one-way-8m":{"lanes":2,"width":2.0,"grade":3.0,"walk":1.0,"shoulder":0.0},
 }
+const CENTER_SECTIONS:={
+ 4:{"deck_lanes":2,"deck_width":2.0,"branch_variant":"branch-one-way-6m","offset":1.75},
+ 6:{"deck_lanes":4,"deck_width":4.0,"branch_variant":"branch-one-way-6m","offset":2.75},
+ 8:{"deck_lanes":4,"deck_width":4.0,"branch_variant":"branch-one-way-8m","offset":3.0},
+}
+static func is_center_deck(road:Dictionary)->bool:
+ return road.get("road_variant")=="center-flyover-deck" and road.get("kind")=="local" and road.get("lanes") in [2,4] and travel_direction(road)==0
 static func branch_profile(road: Dictionary) -> Dictionary:
  var key:Variant=road.get("road_variant")
  if not key is String or road.get("kind")!="local" or travel_direction(road)==0:return {}
@@ -24,6 +31,7 @@ static func width_for(kind: String,lanes: int,base_width: float=2.0,travel_dir: 
  if kind=="local" and travel_dir!=0 and lanes>=1 and lanes<=ONE_WAY_WIDTHS.size():return ONE_WAY_WIDTHS[lanes-1]
  return base_width*(width_grade(lanes) if kind=="local" else lanes)/2.0
 static func width_for_record(road: Dictionary,base_width: float=2.0) -> float:
+ if is_center_deck(road):return 2.0 if road.lanes==2 else 4.0
  var branch:=branch_profile(road)
  if not branch.is_empty():return branch.width
  return width_for(road.kind,road.lanes,base_width,travel_direction(road))
@@ -40,12 +48,14 @@ static func direction_count(road: Dictionary,direction: int) -> int:
  if travel!=0:return int(road.lanes) if direction==travel else 0
  return ceili(float(road.lanes)/2) if direction==int(road.get("major_side",1)) else floori(float(road.lanes)/2)
 static func sidewalk_width(road: Dictionary,side: int) -> float:
+ if is_center_deck(road):return 0.0
  var travel:=travel_direction(road)
  if travel==0:return (float(road.width)-asphalt_width(road))/2
  var branch:=branch_profile(road)
  if not branch.is_empty():return branch.walk/4.0 if side==travel else 0.0
  return ONE_WAY_SIDEWALK_RIGHT[road.lanes-1]/4.0 if side==travel or road.lanes>1 else 0.0
 static func shoulder_width(road: Dictionary,side: int) -> float:
+ if is_center_deck(road):return 0.0
  var travel:=travel_direction(road)
  if travel==0:
   return (asphalt_width(road)-travel_width(road))/2 if road.get("kind","local")=="local" and road.lanes in [2,4,6] else 0.0
@@ -60,6 +70,7 @@ static func asphalt_edges(road: Dictionary) -> Vector2:
  var half:=float(road.width)/2
  return Vector2(-half+sidewalk_width(road,-1),half-sidewalk_width(road,1))
 static func asphalt_width(road: Dictionary) -> float:
+ if is_center_deck(road):return float(road.width)
  if travel_direction(road)!=0:
   var edges:=asphalt_edges(road)
   return edges.y-edges.x
@@ -70,6 +81,7 @@ static func lane_width_metres(road: Dictionary) -> float:
 static func travel_width(road: Dictionary) -> float:return lane_width_metres(road)*road.lanes/4.0
 ## Lane index increases left-to-right relative to travel; distances are signed in that frame.
 static func lane_center_metres(road: Dictionary,direction: int,index: int) -> float:
+ if is_center_deck(road):return (index+.5)*3.5+(0.5 if road.lanes==4 else 0.0)
  if travel_direction(road)!=0:
   return (-float(road.width)/2+sidewalk_width(road,-direction)+shoulder_width(road,-direction))*4+(index+.5)*lane_width_metres(road)
  return (index+.5)*lane_width_metres(road)+median_offset(road)*4*direction
@@ -89,6 +101,9 @@ static func median_offset(road: Dictionary) -> float:
  return -int(road.get("major_side",1))*lane_width_metres(road)/8 if int(road.lanes)%2 else 0.0
 static func separators(road: Dictionary) -> Array[float]:
  var result: Array[float]=[]
+ if is_center_deck(road):
+  if road.lanes==4:result.assign([-1.0,1.0])
+  return result
  var travel:=travel_direction(road)
  if travel!=0:
   var left:=asphalt_edges(road).x+shoulder_width(road,-1)

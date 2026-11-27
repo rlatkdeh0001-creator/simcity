@@ -734,6 +734,10 @@ func _road_layer_context(road: Dictionary) -> Dictionary:
 			continue
 		var error: String=height_rule.overlap_error(road,existing)
 		if error!="":return {"ok":false,"reason":error}
+		if RoadProfile.is_center_deck(existing) or RoadProfile.is_center_deck(road):
+			const Center=preload("res://core/center_flyover.gd")
+			error=Center.ground_error(existing,road) if RoadProfile.is_center_deck(existing) else Center.ground_error(road,existing)
+			if error!="":return {"ok":false,"reason":error}
 		if height_rule.same_level_contact(road,existing):coplanar.append(existing)
 	return {"ok":true,"roads":coplanar}
 
@@ -754,6 +758,14 @@ func add_branch_one_way(points: PackedVector2Array, variant: RoadProfile.BranchV
 	var heights:=PackedFloat64Array()
 	heights.resize(points.size())
 	return _add_height_road(points,heights,"local",commit,RoadProfile.BRANCH_PROFILES[key].lanes,confirmed,1,{},approved_demolition,1,key)
+
+func add_center_flyover(points:PackedVector2Array,heights_m:PackedFloat64Array,commit:bool=true,lanes:int=4,confirmed:bool=false,major_side:int=1,grid_frame:Dictionary={},approved_demolition:Variant=null)->Dictionary:
+	if commit and _defer_simulation_edit(add_center_flyover.bind(points.duplicate(),heights_m.duplicate(),true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null)):return _queued_simulation_edit()
+	if RoadProfile.CENTER_SECTIONS.has(lanes) and heights_m.size()==points.size() and Array(heights_m).all(func(h):return h==0.0):
+		return add_elevated_road(points,heights_m,"local",commit,lanes,confirmed,major_side,grid_frame,approved_demolition)
+	var result:Dictionary=preload("res://core/center_flyover.gd").plan(self,points,heights_m,lanes,major_side,grid_frame)
+	if not result.ok:return result
+	return _finish_height_roads(result,commit,confirmed,approved_demolition,false)
 
 func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array, kind: String, commit: bool, lanes: int, confirmed: bool, major_side: int, grid_frame: Dictionary, approved_demolition: Variant, travel_dir: int, road_variant: String) -> Dictionary:
 	if commit and _defer_simulation_edit(_add_height_road.bind(points.duplicate(),heights_m.duplicate(),kind,true,lanes,confirmed,major_side,grid_frame.duplicate(true),approved_demolition.duplicate() if approved_demolition is Array else null,travel_dir,road_variant)):return _queued_simulation_edit()
@@ -798,6 +810,17 @@ func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array,
 		for patch:Dictionary in layered.junctions+layered.joins:
 			var level:float=float(patch.get("height_m",0))
 			if level< -.0001 and level>=preload("res://core/road_height.gd").PORTAL_M-.0001 and (patch in layered.junctions or patch.has("box")):return {"ok":false,"reason":"트렌치 안에는 교차로를 만들 수 없습니다"}
+	var support_plan:Dictionary=preload("res://core/road_height.gd").supports(self,road)
+	if not support_plan.ok:return support_plan
+	for addition:Dictionary in additions:
+		var supports:Dictionary=preload("res://core/road_height.gd").supports(self,addition)
+		if not supports.ok:return supports
+		addition.piers=supports.piers
+	var result:Dictionary={"ok":true,"reason":"","new_roads":additions,"piers":support_plan.piers,"height_cost_pending":true,"depth_cost_factor":preload("res://core/road_height.gd").depth_cost_factor(road)}
+	return _finish_height_roads(result,commit,confirmed,approved_demolition,not raised and not sunken)
+
+func _finish_height_roads(result:Dictionary,commit:bool,confirmed:bool,approved_demolition:Variant,reorient:bool)->Dictionary:
+	var additions:Array=result.new_roads
 	var final_patches:Array=[]
 	if not buildings.is_empty() or not public_facilities.lots.is_empty() or not power.plants.is_empty() or not water.facilities.is_empty():
 		final_patches=_changed_surface_road_patches(additions)
@@ -817,14 +840,9 @@ func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array,
 	for facility:Dictionary in power.plants+water.facilities:
 		var shape:PackedVector2Array=power_plant_footprint(facility)
 		if _road_ribbon_overlap(shape,final_ribbons) or final_patches.any(func(j):return Parcels.overlap(shape,RoadJunctions.patch(j))):return {"ok":false,"reason":"공공시설과 겹침"}
-	var support_plan:Dictionary=preload("res://core/road_height.gd").supports(self,road)
-	if not support_plan.ok:return support_plan
-	road.piers=support_plan.piers
-	for addition:Dictionary in additions:
-		var supports:Dictionary=preload("res://core/road_height.gd").supports(self,addition)
-		if not supports.ok:return supports
-		addition.piers=supports.piers
-	var result:Dictionary={"ok":true,"reason":"","new_roads":additions,"demolish_ids":demolition,"piers":support_plan.piers,"warning":not demolition.is_empty(),"height_cost_pending":true,"depth_cost_factor":preload("res://core/road_height.gd").depth_cost_factor(road)}
+	demolition.sort()
+	result.demolish_ids=demolition
+	result.warning=not demolition.is_empty()
 	if commit and not demolition.is_empty() and not confirmed:result.ok=false;result.reason="이미 지어진 건물이 파괴됩니다";return result
 	if commit and confirmed and approved_demolition!=null and demolition!=approved_demolition:result.ok=false;result.reason="철거 대상을 다시 확인하세요";return result
 	if commit:
@@ -835,8 +853,8 @@ func _add_height_road(points: PackedVector2Array, heights_m: PackedFloat64Array,
 			next_road_id+=1
 			roads.append(addition)
 		road_topology_revision+=1
-		_update_zoning_for_road(road)
-		if not raised and not sunken:
+		_update_zoning_for_road({})
+		if reorient:
 			for building in buildings:orient_building(building)
 	return result
 
@@ -858,7 +876,19 @@ func _changed_surface_road_patches(additions: Array) -> Array:
 	return changed
 
 func road_demolition_selection(id: int,point: Vector2,drag_to: Variant=null) -> Dictionary:
-	var selection: Dictionary=preload("res://core/road_demolition.gd").selection(roads,id,point,drag_to)
+	const Demolition=preload("res://core/road_demolition.gd")
+	var selection: Dictionary=Demolition.selection(roads,id,point,drag_to)
+	if selection.get("ok",false) and selection.cuts.size()>1:
+		var touched:Dictionary={}
+		for cut in selection.cuts:touched[cut.id]=true
+		var selected_center:=false;var touches_center:=false
+		for road in roads:
+			if road.has("center_family") and touched.has(road.parcel_id):
+				touches_center=true
+				if road.parcel_id==id:selected_center=true
+		if selected_center:selection.cuts=selection.cuts.filter(func(cut):return cut.id==id)
+		elif touches_center:
+			selection=Demolition.selection(roads.filter(func(road):return not road.has("center_family")),id,point,drag_to)
 	# A held preview belongs to this exact geometry, not to a later replacement.
 	selection.snapshot=var_to_bytes(roads)
 	return selection

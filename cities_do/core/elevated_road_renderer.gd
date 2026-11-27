@@ -30,6 +30,15 @@ var renderer:
  get:return owner_reference.get_ref()
 var nodes:Array=[]
 var decks:Array=[]
+const BODY_CELL:=4.0 # City cells (16m).
+const VIEW_CELL:=128.0 # Unscaled projected pixels.
+var front_buckets_by_owner:Dictionary={}
+var view_buckets:Dictionary={}
+var structure_bounds:Rect2
+var visible_nodes:Dictionary={}
+var visibility_key:Array=[]
+var vehicle_piece_visits:=0
+var visibility_piece_checks:=0
 var textures:Dictionary={}
 var manifest:Dictionary={}
 func _init(owner):owner_reference=weakref(owner)
@@ -65,6 +74,7 @@ func side(node:Piece,a:Vector2,b:Vector2,ha:float,hb:float,ba:float,bb:float,u:f
 func rebuild():
  for node in nodes:node.hide();node.queue_free()
  nodes.clear();decks.clear()
+ front_buckets_by_owner.clear();view_buckets.clear();visible_nodes.clear();visibility_key.clear()
  for road:Dictionary in renderer.view.city.road_visuals:
   if not Height.raised(road):continue
   build_road(road)
@@ -88,6 +98,14 @@ func rebuild():
   for low:Piece in decks:
    if low.height_m>=high.height_m-.001:continue
    if not Geometry2D.intersect_polygons(low.footprint,high.footprint).is_empty():high.position.y=maxf(high.position.y,low.position.y+(.12 if high.front_face else .1))
+  if high.front_face:
+   var bounds:=Rect2(high.footprint[0],Vector2.ZERO)
+   for point:Vector2 in high.footprint:bounds=bounds.expand(point)
+   # Merged ribbons and junctions can belong to several authored records.
+   # Road parcel IDs are integers; rail structures use the existing rail:<id> key.
+   for id:Variant in high.road.get("source_ids",[high.road.get("parcel_id")]):
+    if id!=null:index_piece(front_buckets_by_owner.get_or_add(id,{}),bounds,BODY_CELL,high)
+ structure_bounds=Rect2()
  for node:Piece in nodes:
   var first:=true
   for command:Dictionary in node.commands:
@@ -97,7 +115,20 @@ func rebuild():
     for point:Vector2 in command.get("polygon",command.get("line",PackedVector2Array())):
      if first:node.world_bounds=Rect2(point,Vector2.ZERO);first=false
      else:node.world_bounds=node.world_bounds.expand(point)
-  node.world_bounds=node.world_bounds.grow(2);node.queue_redraw()
+  node.world_bounds=node.world_bounds.grow(2)
+  structure_bounds=node.world_bounds if view_buckets.is_empty() else structure_bounds.merge(node.world_bounds)
+  index_piece(view_buckets,node.world_bounds,VIEW_CELL,node)
+  node.hide();node.queue_redraw()
+static func cell_span(bounds:Rect2,size:float)->Rect2i:
+ var first:=Vector2i((bounds.position/size).floor())
+ var last:=Vector2i((bounds.end/size).floor())
+ return Rect2i(first,last-first+Vector2i.ONE)
+static func index_piece(buckets:Dictionary,bounds:Rect2,size:float,piece:Piece):
+ var cells:=cell_span(bounds,size)
+ for x in range(cells.position.x,cells.end.x):
+  for y in range(cells.position.y,cells.end.y):
+   var bucket:Array=buckets.get_or_add(Vector2i(x,y),[])
+   bucket.append(piece)
 static func near_path(points:PackedVector2Array,point:Vector2,limit:float)->bool:
  for i in range(1,points.size()):
   if Geometry2D.get_closest_point_to_segment(point,points[i-1],points[i]).distance_to(point)<=limit:return true
@@ -206,6 +237,10 @@ func build_junction(junction:Dictionary):
  var depth:float=-INF
  for point in shape:depth=maxf(depth,renderer.iso(point).y)
  var node:=make_piece("ElevatedJunction",road,shape,depth-.02);decks.append(node)
+ # The arms may cover every edge. Retain the vehicle sort slot even without
+ # any exposed front-wall artwork, so the junction surface stays behind its cars.
+ var front:=make_piece("ElevatedJunctionSide",road,shape,depth)
+ front.front_face=true;decks.append(front)
  polygon(node,projected(shape,road),Color("c8cbc3"));polygon(node,projected(junction.asphalt,road),Color("4c5659"))
  var bounds:=Vector2(renderer.view.city.width,renderer.view.city.height)
  for i in range(shape.size()):
@@ -214,8 +249,6 @@ func build_junction(junction:Dictionary):
   if Geometry2D.is_point_in_polygon((a+b)/2+normal*.01,shape):normal=-normal
   var near:=normal.x+normal.y>=0
   for edge in Geometry.visible_lines(PackedVector2Array([a,b]),bounds,masks):
-   var front:=make_piece("ElevatedJunctionSide",road,shape,depth);decks.append(front)
-   front.front_face=true
    if near:side(front,edge[0],edge[-1],height+1.1,height+1.1,height-2,height-2,0,"viaduct-side-01/deck_side.png",3.1,.85)
    else:side(node,edge[0]-normal*.1,edge[-1]-normal*.1,height+1.1,height+1.1,height,height,0,"viaduct-side-01/barrier_inner.png",1.1,.85)
    polygon(front if near else node,projected(PackedVector2Array([edge[0],edge[-1],edge[-1]-normal*.1,edge[0]-normal*.1]),road,1.1),Color("ced0c7"))
@@ -235,16 +268,46 @@ func build_pier(road:Dictionary,point:Vector2,height_m:float):
    rect.size.y=(height_m-4.3)*32*scale+2*underlap
   node.commands.append({"texture":image,"rect":rect})
 func sync_visibility():
- var view=renderer.view;var viewport:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
- for node:Piece in nodes:node.visible=not view.transit_view.underground and viewport.intersects(Rect2(view.origin+node.world_bounds.position*view.map_zoom,node.world_bounds.size*view.map_zoom))
-func lift_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2,body:PackedVector2Array):
- var height:=Height.height_at(road,point)
- if height<=0:return
+ visibility_piece_checks=0
+ var view=renderer.view
+ var origin:Vector2=view.origin;var zoom:float=view.map_zoom
+ var viewport:=Rect2(Vector2.ZERO,view.get_viewport_rect().size)
+ var key:Array=[origin,zoom,viewport.size,view.transit_view.underground]
+ if key==visibility_key:return
+ visibility_key=key
+ var current:Dictionary={}
+ if not view.transit_view.underground and not view_buckets.is_empty():
+  var query:=Rect2(-origin/zoom,viewport.size/zoom).grow(.01).intersection(structure_bounds)
+  if query.has_area():
+   var cells:=cell_span(query,VIEW_CELL)
+   var seen:Dictionary={}
+   for x in range(cells.position.x,cells.end.x):
+    for y in range(cells.position.y,cells.end.y):
+     for node:Piece in view_buckets.get(Vector2i(x,y),[]):
+      if seen.has(node):continue
+      seen[node]=true
+      visibility_piece_checks+=1
+      if viewport.intersects(Rect2(origin+node.world_bounds.position*zoom,node.world_bounds.size*zoom)):current[node]=true
+ for node:Piece in visible_nodes:
+  if not current.has(node):node.hide()
+ for node:Piece in current:
+  if not visible_nodes.has(node):node.show()
+ visible_nodes=current
+func lift_vehicle(sprite:Sprite2D,road:Dictionary,point:Vector2,body:PackedVector2Array,height:float):
+ var buckets:Dictionary=front_buckets_by_owner.get(road.get("parcel_id"),{})
  var front_depth:float=-INF
- for node:Piece in decks:
-  if not node.front_face:continue
-  if not node.road.get("source_ids",[node.road.get("parcel_id",-1)]).has(road.get("parcel_id",-2)):continue
-  if not Geometry2D.intersect_polygons(node.footprint,body).is_empty():front_depth=maxf(front_depth,node.position.y)
+ if not buckets.is_empty():
+  var bounds:=Rect2(body[0],Vector2.ZERO)
+  for corner:Vector2 in body:bounds=bounds.expand(corner)
+  var cells:=cell_span(bounds,BODY_CELL)
+  var seen:Dictionary={}
+  for x in range(cells.position.x,cells.end.x):
+   for y in range(cells.position.y,cells.end.y):
+    for node:Piece in buckets.get(Vector2i(x,y),[]):
+     vehicle_piece_visits+=1
+     if seen.has(node):continue
+     seen[node]=true
+     if not Geometry2D.intersect_polygons(node.footprint,body).is_empty():front_depth=maxf(front_depth,node.position.y)
  var depth:float=front_depth-.01 if is_finite(front_depth) else renderer.iso(point).y
  sprite.offset.y-=(height*renderer.view.tile.x/4*sqrt(1.5)+depth-sprite.position.y)/sprite.scale.y
  sprite.position.y=depth

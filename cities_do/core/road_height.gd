@@ -114,6 +114,10 @@ static func open_pieces(road:Dictionary)->Array:
 ## Ground-rule footprint: the whole ribbon, except covered underground parts.
 static func surface_ribbons(road:Dictionary)->Array[PackedVector2Array]:
  var geometry=preload("res://core/road_geometry.gd")
+ var half:=float(road.width)/2
+ if not sunken(road):
+  var center:Array[PackedVector2Array]=geometry.center_ribbons(road,Vector2(-half,half))
+  if not center.is_empty():return center
  var result:Array[PackedVector2Array]=[]
  for piece:Dictionary in open_pieces(road):
   for ribbon:PackedVector2Array in geometry.ribbons(piece.points,float(road.width),true,true):result.append(ribbon)
@@ -136,7 +140,7 @@ static func usable_under_deck(road:Dictionary,polygon:PackedVector2Array)->bool:
  var points:PackedVector2Array=road.points
  var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
  var parcels=preload("res://core/road_parcels.gd")
- if heights.size()!=points.size() or not raised(road):
+ if Profile.is_center_deck(road) or heights.size()!=points.size() or not raised(road):
   # Covered underground parts never block parks; open trench parts do.
   for ribbon in surface_ribbons(road):
    if parcels.overlap(ribbon,polygon):return false
@@ -202,7 +206,7 @@ static func same_level_contact(a:Dictionary,b:Dictionary)->bool:
  return false
 static func validate(road:Dictionary,bounds:Vector2)->String:
  if not Profile.valid_selection(road.kind,road.lanes,int(road.get("major_side",1)),int(road.get("travel_dir",0))):return "도로 경로가 필요합니다"
- if road.has("road_variant") and Profile.branch_profile(road).is_empty():return "지원하지 않는 분기 도로입니다"
+ if road.has("road_variant") and Profile.branch_profile(road).is_empty() and not Profile.is_center_deck(road):return "지원하지 않는 분기 도로입니다"
  if Profile.travel_direction(road)!=0 and off_ground(road):return "일방통행 도로는 지상에만 건설할 수 있습니다"
  if raised(road) and sunken(road):return "고가와 지하는 지상에서 나눠 그립니다"
  var heights:PackedFloat64Array=road.heights_m
@@ -326,7 +330,7 @@ static func support_clear(city,road:Dictionary,distance:float,candidates:Diction
    for i in range(1,route.points.size()):
     if point.distance_to(Geometry2D.get_closest_point_to_segment(point,route.points[i-1],route.points[i]))<1.75:return false
  return true
-static func supports(city,road:Dictionary)->Dictionary:
+static func supports(city,road:Dictionary,neighbors:Vector2=Vector2(INF,INF))->Dictionary:
  var travelled:=0.0
  var heights:PackedFloat64Array=road.get("heights_m",PackedFloat64Array())
  if heights.size()!=road.points.size():return {"ok":true,"piers":[],"reason":""}
@@ -341,13 +345,15 @@ static func supports(city,road:Dictionary)->Dictionary:
    if b<5 or i==heights.size()-1:
     var last_boundary:=travelled+span if b>=5 else travelled+span*(5-a)/(b-a)
     if candidates.is_empty():candidates=support_candidates(city,road)
-    var stations:=support_run(city,road,first_boundary,last_boundary,candidates)
+    var previous:=neighbors.x if first_boundary<=EPS else INF
+    var next:=neighbors.y if i==heights.size()-1 and b>=5 else INF
+    var stations:=support_run(city,road,first_boundary,last_boundary,candidates,previous,next)
     if stations.is_empty():return {"ok":false,"piers":[],"reason":"교각을 세울 자리가 없습니다"}
     for d in stations:piers.append({"distance":d,"height_m":height_at(road,point_at(road.points,d)),"positions":support_positions(road,d)})
     first_boundary=INF
   travelled+=span
  return {"ok":true,"piers":piers,"reason":""}
-static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:float,obstacles:Dictionary={})->Array[float]:
+static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:float,obstacles:Dictionary={},previous:float=INF,next:float=INF)->Array[float]:
  var stations:Array[float]=[];var candidates:Array[float]=[]
  # Quarter-cell search resolution is a reversible geometric placement default.
  var step:float=maxf(.01,float(config.support_search_step_m)/4)
@@ -359,10 +365,20 @@ static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:
  if candidates.is_empty():return []
  if candidates[0]-first_boundary>12+EPS or last_boundary-candidates[-1]>12+EPS:
   return []
+ # A station across an authored seam is a fixed path endpoint for spacing,
+ # not another pier to save or render. Each stroke still needs its own support.
+ var has_previous:=is_finite(previous)
+ var has_next:=is_finite(next)
+ if has_previous and previous<=EPS and candidates[0]<=first_boundary+EPS:candidates.pop_front()
+ if not candidates.is_empty() and has_next and next<=EPS and candidates[-1]>=last_boundary-EPS:candidates.pop_back()
+ if candidates.is_empty():return stations
+ if has_previous:candidates.push_front(first_boundary-previous)
+ if has_next:candidates.append(last_boundary+next)
  var can_reach:Dictionary={candidates[-1]:true};var next_station:Dictionary={}
  for i in range(candidates.size()-2,-1,-1):
   var best:=-1.0;var score:=INF
   for j in range(i+1,candidates.size()):
+   if i==0 and j==candidates.size()-1 and has_previous and has_next:continue
    var gap:=candidates[j]-candidates[i]
    if gap>12+EPS:break
    if gap<4-EPS or not can_reach.has(candidates[j]):continue
@@ -370,6 +386,7 @@ static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:
   if best>=0:can_reach[candidates[i]]=true;next_station[candidates[i]]=best
  var start:=candidates[0]
  if not can_reach.has(start):
+  if has_previous or has_next:return []
   if candidates[-1]-start>=4:return []
   # A short cluster can emit only one station. Its actual position must
   # satisfy both end spans, not borrow clearance from an unplaced candidate.
@@ -380,4 +397,6 @@ static func support_run(city,road:Dictionary,first_boundary:float,last_boundary:
  else:
   stations.append(start)
   while next_station.has(stations[-1]):stations.append(next_station[stations[-1]])
+  if has_previous:stations.pop_front()
+  if has_next:stations.pop_back()
  return stations

@@ -4,6 +4,7 @@ extends RefCounted
 const Junctions = preload("res://core/road_junctions.gd")
 const Profile = preload("res://core/road_profile.gd")
 const RoadGeometry = preload("res://core/road_geometry.gd")
+const CenterPortals = preload("res://core/center_flyover_portals.gd")
 var junctions: Array = []
 const METRES_PER_CELL := 4.0
 var lanes: Array[Dictionary] = []
@@ -29,6 +30,7 @@ func build(roads: Array) -> bool:
 	errors.assign(topology.errors)
 	if not errors.is_empty(): return false
 	junctions=topology.junctions
+	var split_lanes:Dictionary={}
 	for section in topology.sections:
 		var road_id: int=section.road
 		var road: Dictionary=roads[road_id]
@@ -52,18 +54,22 @@ func build(roads: Array) -> bool:
 			var ordered := points.duplicate()
 			if direction==-1:ordered.reverse()
 			for index in range(count):
-				var lane := _add_lane(_offset(ordered,Profile.lane_center_metres(road,direction,index),closed))
+				var offset:=Profile.lane_center_metres(road,direction,index)
+				var shifted:=CenterPortals.lane_points(road,section,float(section.first)+trim_start,float(section.last)-trim_end,direction,index,offset) if road.has("center_portals") else PackedVector2Array()
+				var lane := _add_lane(_offset(ordered,offset,closed) if shifted.is_empty() else shifted)
 				lane.merge({"road":road_id,"section":section.id,"direction":direction,"index":index,"closed":closed,"junction":-1,
 					"start":original[0 if direction==1 else -1]*METRES_PER_CELL,"end":original[-1 if direction==1 else 0]*METRES_PER_CELL,
 					"start_node":section.start_node if direction==1 else section.end_node,"end_node":section.end_node if direction==1 else section.start_node,
 					"speed_limit":(160.0 if road.kind=="highway" else 80.0)/3.6})
 				if closed:lane.next.append(lane.id)
+				if not topology.splits.is_empty():split_lanes[Vector3i(section.id,direction,index)]=lane.id
 	var base_count := lanes.size()
 	var seam_asphalt := {}
 	for i in range(base_count):
 		var a: Dictionary=lanes[i]
 		if a.closed:continue
 		var node: Dictionary=topology.nodes[a.end_node]
+		if node.get("center_split",false) and node.junction<0:continue # Explicit portal mapping only.
 		for j in range(base_count):
 			var b: Dictionary=lanes[j]
 			if i==j or b.closed or a.end_node!=b.start_node:continue
@@ -126,6 +132,14 @@ func build(roads: Array) -> bool:
 			connector.merge({"road":-1,"section":-1,"direction":0,"index":a.index,"closed":false,"junction":node.junction,"transition":node.join>=0,"from":i,"to":j,"start":start,"end":finish,"speed_limit":minf(a.speed_limit,b.speed_limit) if node.join>=0 else 30.0/3.6})
 			a.next.append(connector.id)
 			connector.next.append(j)
+	for split in topology.splits:
+		for link in split.links:
+			var member:int=split_lanes.get(Vector3i(link.member_section,link.member_direction,link.member_index),-1)
+			var trunk:int=split_lanes.get(Vector3i(link.trunk_section,link.trunk_direction,link.trunk_index),-1)
+			if member<0 or trunk<0:continue
+			var from:int=member if link.from_member else trunk
+			var to:int=trunk if link.from_member else member
+			if sample(from,lanes[from].length).distance_to(sample(to,0))<.003 and to not in lanes[from].next:lanes[from].next.append(to)
 	for lane in lanes:
 		search.add_point(lane.id,sample(lane.id,0))
 		search.lengths[lane.id]=lane.length

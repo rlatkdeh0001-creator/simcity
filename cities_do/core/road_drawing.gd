@@ -9,6 +9,7 @@ const Height=preload("res://core/road_height.gd")
 const Geometry=preload("res://core/road_geometry.gd")
 var grid_frame: Dictionary={}
 var travel_dir:=0
+var center_tool:=false
 var target_height_m:=0.0
 var start_height_m:=0.0
 var pending:Dictionary={}
@@ -23,12 +24,15 @@ func confirm_pending():
  if pending.is_empty():return
  var approved:Dictionary=pending.duplicate(true)
  if approved.city_id!=view.city.get_instance_id():cancel();return
- var plan:Dictionary=view.city.add_elevated_road(approved.points,approved.heights_m,"local",false,approved.lanes,false,approved.major_side,approved.grid_frame,null,approved.travel_dir)
+ var plan:=_submit_path(approved,false)
  if not plan.ok or plan.get("demolish_ids",[])!=approved.demolish_ids:cancel();return
  clear_warning()
  commit_path(approved,true)
 func set_height(value:float):
- target_height_m=0.0 if travel_dir!=0 else roundf(value/5)*5
+ if center_tool:
+  if value not in [0.0,10.0]:return
+  target_height_m=value
+ else:target_height_m=0.0 if travel_dir!=0 else roundf(value/5)*5
  if target_height_m<0:target_height_m=minf(target_height_m,Height.SHALLOWEST_ROAD_TUNNEL_M)
  _preview_signature=null
  var controls=view.find_child("RoadHeightControls",true,false)
@@ -64,7 +68,7 @@ func cancel():
  view.drawing=false;view.stroke.clear();view.queue_redraw()
 func set_kind(value: String):
  if value not in ["straight","curve","free","legacy"]:return
- if value=="legacy" and travel_dir!=0:return
+ if value=="legacy" and (travel_dir!=0 or center_tool):return
  if value!=kind:cancel()
  kind=value;view.mode="road"
  arm_cursor()
@@ -175,6 +179,7 @@ func resolved_path() -> Dictionary:
  # Use the existing fixed-contact fit policy, not the free-start reversal or flat overlay fit.
  if points.size()>=2 and absf(start_height_m-target_height_m)>Height.EPS and not AngleSnap.connection(points[-1],roads).is_empty():
   return LengthUnits.fit(points,roads,LengthUnits.CONNECT,true)
+ if center_tool and (start_height_m!=0 or target_height_m!=0):return LengthUnits.fit(points,roads)
  var overdraw:=Construction.fit_overlay(points,roads,selected_profile())
  if not overdraw.is_empty():return overdraw
  return LengthUnits.fit(points,roads)
@@ -203,7 +208,7 @@ func _preview_plan() -> Dictionary:
  for building in view.city.buildings:obstacles.append(view.city.footprint(building))
  for lot in view.city.public_facilities.lots:obstacles.append(lot.polygon)
  var transit_generation:int=view.transit_view.generation if view.transit_view!=null else 0
- var signature:=hash([target_height_m,start_height_m,kind,anchors,start_tangent,view.pointer,view.road_lanes,view.road_major_side,travel_dir,grid_on(),grid_frame,view.city.get_instance_id(),view.city.width,view.city.height,view.city.roads,transit_generation,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
+ var signature:=hash([target_height_m,start_height_m,kind,anchors,start_tangent,view.pointer,view.road_lanes,view.road_major_side,travel_dir,center_tool,grid_on(),grid_frame,view.city.get_instance_id(),view.city.width,view.city.height,view.city.roads,transit_generation,view.city.config.road_width,obstacles,view.city.power.plants,view.city.water.facilities])
  if signature!=_preview_signature:
   _preview_signature=signature;preview_computations+=1;_preview_cache=_compute_preview()
  return _preview_cache
@@ -224,16 +229,12 @@ func _compute_preview() -> Dictionary:
  var frame:=grid_reference(points[0]).duplicate(true) if grid_on() and points.size()>0 else {}
  var candidate:=selected_profile()
  candidate.points=points
- var result: Dictionary=view.city.add_elevated_road(points,profile.heights_m,"local",false,view.road_lanes,false,view.road_major_side,frame,null,travel_dir)
- result.points=points
- result.heights_m=profile.heights_m
- result.grid_frame=frame
- result.lanes=view.road_lanes
- result.major_side=view.road_major_side
- result.travel_dir=travel_dir
+ var intent:={"points":points,"heights_m":profile.heights_m,"grid_frame":frame,"lanes":view.road_lanes,"major_side":view.road_major_side,"travel_dir":travel_dir,"center_tool":center_tool}
+ var result:=_submit_path(intent,false)
+ result.merge(intent,true)
  result.width=candidate.width
  if not resolved.ok:result.ok=false;result.reason=resolved.reason
- if result.ok:
+ if result.ok and (not center_tool or (start_height_m==0 and target_height_m==0)):
   var network=Network.new()
   var additions: Array=result.get("new_roads",[candidate])
   if not network.build(view.city.roads+additions):result.ok=false;result.reason=network.errors[0] if not network.errors.is_empty() else "도로 경로를 확인해 주세요"
@@ -241,12 +242,20 @@ func _compute_preview() -> Dictionary:
    for i in range(additions.size()):
     if not joins_routable(network,additions[i].points,view.city.roads.size()+i):result.ok=false;result.reason="급격한 되돌림 도로는 주행할 수 없습니다";break
  if points.size()>=2:
-  result.ribbon_polygons=preview_polygons(points,result.width)
-  result.arrow_polygons=preview_arrow_polygons(result)
+  if center_tool and (start_height_m!=0 or target_height_m!=0):
+   result.center_preview=_center_preview(result.get("new_roads",result.get("preview_roads",[])))
+  if result.get("center_preview",[]).is_empty():
+   result.ribbon_polygons=preview_polygons(points,result.width)
+   result.arrow_polygons=preview_arrow_polygons(result)
  return result
 func height_profile(points:PackedVector2Array)->Dictionary:
  var result:=points.duplicate();var heights:=PackedFloat64Array()
  if points.size()<2:return {"points":result,"heights_m":heights}
+ if center_tool:
+  # This API receives level intent, not the legacy road's baked ramp samples.
+  # The model inserts the split, the ramp, and then the deck on this resolved spine.
+  heights.resize(points.size());heights.fill(start_height_m);heights[-1]=target_height_m
+  return {"points":result,"heights_m":heights}
  var length:=Height.length_cells(points)
  var ramp:=Height.minimum_ramp_m(target_height_m-start_height_m,"local")/4
  if ramp>0 and ramp<length:
@@ -290,7 +299,7 @@ func commit_path(plan:Dictionary,confirmed:bool):
  var points: PackedVector2Array=last_result.points
  var heights:PackedFloat64Array=plan.heights_m
  var committed_grid: Dictionary=plan.grid_frame
- last_result=view.city.add_elevated_road(points,heights,"local",true,plan.lanes,confirmed,plan.major_side,committed_grid,plan.demolish_ids if confirmed else null,plan.travel_dir)
+ last_result=_submit_path(plan,true,confirmed)
  if last_result.ok or last_result.get("queued",false):
   view.message=""
   cancel()
@@ -301,10 +310,18 @@ func commit_path(plan:Dictionary,confirmed:bool):
    var endpoint_layer:=layer_city(points[-1],start_height_m)
    grid_frame=committed_grid.duplicate(true) if endpoint_layer.roads.is_empty() else Grid.frame_near(endpoint_layer,points[-1]).duplicate(true)
   view.refresh()
+func _submit_path(plan:Dictionary,commit:bool,confirmed:bool=false)->Dictionary:
+ var approved:Variant=plan.demolish_ids if confirmed else null
+ if plan.get("center_tool",false):
+  if not view.city.has_method("add_center_flyover"):return {"ok":false,"reason":"중앙 도로를 놓을 수 없습니다"}
+  return view.city.add_center_flyover(plan.points,plan.heights_m,commit,plan.lanes,confirmed,plan.major_side,plan.grid_frame,approved)
+ return view.city.add_elevated_road(plan.points,plan.heights_m,"local",commit,plan.lanes,confirmed,plan.major_side,plan.grid_frame,approved,plan.travel_dir)
 func handle_input(event: InputEvent) -> bool:
  if view.mode!="road" or kind=="legacy":return false
  if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_PAGEUP,KEY_PAGEDOWN]:
   if travel_dir!=0:return true
+  if center_tool:
+   set_height(10.0 if event.keycode==KEY_PAGEUP else 0.0);return true
   var step:=5 if event.keycode==KEY_PAGEUP else -5
   var height:=target_height_m+step
   if height<0 and height>Height.SHALLOWEST_ROAD_TUNNEL_M:height+=step
@@ -400,6 +417,16 @@ func preview_arrow_polygons(result: Dictionary) -> Array[PackedVector2Array]:
  if not result.get("ok",false) or result.get("travel_dir",0)==0:return []
  return Geometry.direction_arrows({"kind":"local","points":result.points,"width":result.width,"lanes":result.lanes,"travel_dir":result.travel_dir})
 
+func _center_preview(roads:Array)->Array[Dictionary]:
+ var result:Array[Dictionary]=[]
+ var bounds:=Vector2(view.city.width,view.city.height)
+ for road:Dictionary in roads:
+  # Use the model's proposed records, not independent offset/snap plans.
+  var shapes:=Geometry.clip_to_map(Geometry.pavement_ribbons(road.merged({"flat_start":true,"flat_end":true})),bounds)
+  result.append({"road":road,"ribbon_polygons":shapes,"arrow_polygons":Geometry.direction_arrows(road) if road.get("travel_dir",0)!=0 else []})
+ result.sort_custom(func(a,b):return not Height.raised(a.road) and Height.raised(b.road))
+ return result
+
 func draw_preview():
  measurement_boxes.clear()
  if view.mode!="road" or kind=="legacy" or (view.get_viewport().gui_get_hovered_control()!=null and pending.is_empty()):return
@@ -407,19 +434,26 @@ func draw_preview():
  var result:=_preview_plan()
  if result.points.size()<2:return
  var colors:=preview_colors(result.ok,result.get("warning",false))
- for shape in result.ribbon_polygons:
-  var projected:=PackedVector2Array()
-  var ground:=PackedVector2Array()
-  for point in shape:
-   ground.append(view.screen(point))
-   projected.append(view.screen(point)-Vector2(0,Height.height_at(result,point)*view.tile.x/4*sqrt(1.5)*view.map_zoom))
-  if not is_zero_approx(target_height_m) or not is_zero_approx(start_height_m):view.draw_colored_polygon(ground,Color(0,0,0,.18))
-  view.draw_colored_polygon(projected,colors.fill)
-  projected.append(projected[0]);view.draw_polyline(projected,colors.outline,2,true)
- for shape in result.arrow_polygons:
-  var projected:=PackedVector2Array()
-  for point in shape:projected.append(view.screen(point))
-  view.draw_colored_polygon(projected,Color("e8e7dc"))
+ var members:Array=result.get("center_preview",[])
+ var compound:=not members.is_empty()
+ if not compound:members=[{"road":result,"ribbon_polygons":result.ribbon_polygons,"arrow_polygons":result.arrow_polygons}]
+ for member:Dictionary in members:
+  var road:Dictionary=member.road
+  var shadow:=Height.off_ground(road) if compound else not is_zero_approx(target_height_m) or not is_zero_approx(start_height_m)
+  for shape in member.ribbon_polygons:
+   var projected:=PackedVector2Array()
+   var ground:=PackedVector2Array()
+   for point in shape:
+    var p:Vector2=view.screen(point)
+    ground.append(p)
+    projected.append(p-Vector2(0,Height.height_at(road,point)*view.tile.x/4*sqrt(1.5)*view.map_zoom))
+   if shadow:view.draw_colored_polygon(ground,Color(0,0,0,.18))
+   view.draw_colored_polygon(projected,colors.fill)
+   projected.append(projected[0]);view.draw_polyline(projected,colors.outline,2,true)
+  for shape in member.arrow_polygons:
+   var projected:=PackedVector2Array()
+   for point in shape:projected.append(view.screen(point))
+   view.draw_colored_polygon(projected,Color("e8e7dc"))
  for index in [0,result.points.size()-1]:
   var point:Vector2=result.points[index];var height:float=Height.height_at(result,point)
   if not is_finite(height) or absf(height)<=Height.EPS:continue

@@ -266,6 +266,7 @@ func check_drawer_copy() -> void:
  var allowed := ["도로", "지하", "지상", "고가", "−", "+", "0 m", "⌄", "⌃", "▾", "▴", "˅", "∨", "닫기"]
  for n in range(2,9): allowed.append("%d차선" % n)
  for n in range(1,5): allowed.append("편도 %d차로" % n)
+ for n in [4,6,8]: allowed.append("중앙 %d차선" % n)
  var extras: Array[String] = []
  for c in game.drawer_box.find_children("*", "Control", true, false):
   if not c.is_visible_in_tree() or not (c is Label or c is Button) or c.text.is_empty(): continue

@@ -768,6 +768,7 @@ func add_road_drawer_controls():
  var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
  for count in RoadProfile.LOCAL_LANES:add_road_card(palette.content,group,count,0)
  for count in range(1,RoadProfile.ONE_WAY_WIDTHS.size()+1):add_road_card(palette.content,group,count,1)
+ for count in [4,6,8]:add_road_card(palette.content,group,count,0,true)
  road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
  var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
  road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
@@ -775,20 +776,20 @@ func add_road_drawer_controls():
  road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
  update_road_lane_cards();update_road_grid_button()
 
-func add_road_card(row:HBoxContainer,group:ButtonGroup,count:int,travel_dir:int):
+func add_road_card(row:HBoxContainer,group:ButtonGroup,count:int,travel_dir:int,center:bool=false):
  var one_way:=travel_dir==1
- var title:=("편도 %d차로" if one_way else "%d차선")%count
- var id:=("one-way-%d" if one_way else "local-%d")%count
+ var title:=("중앙 %d차선" if center else ("편도 %d차로" if one_way else "%d차선"))%count
+ var id:=("center-%d" if center else ("one-way-%d" if one_way else "local-%d"))%count
  var path:="res://assets/ui/roads/%s.png"%id
  var card:Button=ThumbnailButton.new()
  row.add_child(card)
- if not one_way or FileAccess.file_exists(path) or ResourceLoader.exists(path):
+ if (not one_way and not center) or FileAccess.file_exists(path) or ResourceLoader.exists(path):
   card.set_asset({"id":"road-"+id,"name":title,"preview":path},path)
  else:
   # Until the studio PNG is rendered, keep the tool usable without borrowed or generated art.
   card.text=title
   card.set_meta("source_preview",path)
- if one_way:
+ if one_way or center:
   for state in ["normal","hover","pressed","disabled"]:
    card.add_theme_stylebox_override(state,style(Color("142b37"),Color("38515e")))
   for key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
@@ -801,13 +802,14 @@ func add_road_card(row:HBoxContainer,group:ButtonGroup,count:int,travel_dir:int)
    band.add_theme_stylebox_override("panel",shade)
    card.caption.add_theme_color_override("font_color",Color("edf4f5"))
  var caption_width:=96.0
- if one_way:
+ if one_way or center:
   caption_width=maxf(caption_width,ceilf(card.get_theme_font("font").get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x)+14)
  card.custom_minimum_size=Vector2(caption_width,84)
- card.name=("RoadOneWay_%d" if one_way else "RoadLane_%d")%count
+ card.name=("RoadCenter_%d" if center else ("RoadOneWay_%d" if one_way else "RoadLane_%d"))%count
  card.set_meta("thumbnail_asset_id","road-"+id)
  card.set_meta("lanes",count);card.set_meta("travel_dir",travel_dir);card.tooltip_text=title
- card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count,travel_dir))
+ card.set_meta("center_tool",center)
+ card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count,travel_dir,center))
  road_lane_cards.append(card)
 
 func finish_drawer(key:String,heading:VBoxContainer):
@@ -1220,11 +1222,12 @@ func layout_bottom_hud():
  position_money_toast.call_deferred()
  queue_redraw()
 
-func select_road_lanes(count: int,travel_dir:int=0):
+func select_road_lanes(count: int,travel_dir:int=0,center:bool=false):
+ if center and (count not in [4,6,8] or travel_dir!=0):return
  if not RoadProfile.valid_selection("local",count,road_major_side,travel_dir):return
- road_lanes=count;road_drawer.travel_dir=travel_dir
+ road_lanes=count;road_drawer.travel_dir=travel_dir;road_drawer.center_tool=center
  activate_tool("road")
- if travel_dir!=0:
+ if travel_dir!=0 or center:
   if road_drawer.kind=="legacy":road_drawer.set_kind("straight")
   road_drawer.start_height_m=0.0
   road_drawer.set_height(0.0)
@@ -1234,7 +1237,7 @@ func select_road_lanes(count: int,travel_dir:int=0):
  update_road_lane_cards();queue_redraw()
 func update_road_lane_cards():
  for card in road_lane_cards:
-  var active: bool=int(card.get_meta("lanes"))==road_lanes and int(card.get_meta("travel_dir"))==road_drawer.travel_dir
+  var active: bool=int(card.get_meta("lanes"))==road_lanes and int(card.get_meta("travel_dir"))==road_drawer.travel_dir and card.get_meta("center_tool")==road_drawer.center_tool
   card.set_pressed_no_signal(active)
   for state in ["normal","hover","pressed"]:
    var outline: StyleBoxFlat=card.get_theme_stylebox(state).duplicate()

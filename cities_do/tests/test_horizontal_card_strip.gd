@@ -19,8 +19,10 @@ func run():
  verify(strip!=null,"road cards use reusable horizontally scrollable strip")
  if strip!=null:
   var bar:HScrollBar=strip.get_h_scroll_bar()
-  var ordinary: Array=game.road_lane_cards.filter(func(c):return c.get_meta("travel_dir",0)==0)
-  verify(ordinary.size()==7 and game.road_lane_cards.size()==11 and bar.visible and bar.max_value>bar.page,"seven original plus four directed cards overflow into an automatic horizontal bar at 880")
+  var ordinary: Array=game.road_lane_cards.filter(func(c):return c.get_meta("travel_dir",0)==0 and not c.get_meta("center_tool",false))
+  var directed: Array=game.road_lane_cards.filter(func(c):return c.get_meta("travel_dir",0)==1)
+  var center: Array=game.road_lane_cards.filter(func(c):return c.get_meta("center_tool",false))
+  verify(ordinary.size()==7 and directed.size()==4 and center.map(func(c):return int(c.get_meta("lanes")))==[4,6,8] and game.road_lane_cards.size()==14 and bar.visible and bar.max_value>bar.page,"seven original, four directed and three central cards overflow into an automatic horizontal bar at 880")
   verify(strip.get_global_rect().end.x<=880 and game.road_grid_button.get_global_rect().end.x<=880,"card strip and fixed grid toggle stay inside small viewport")
   verify(bar.get_theme_stylebox("scroll").bg_color==Color("38515e") and bar.get_theme_stylebox("grabber").bg_color==Color("36b7ff"),"approved palette track and handle")
   var zoom:float=game.map_zoom;var point:Vector2=strip.get_global_rect().get_center()
@@ -32,7 +34,8 @@ func run():
   verify(strip.scroll_horizontal>0 and game.map_zoom==zoom and game.city.roads.is_empty(),"real handle drag scrolls cards without world construction or zoom")
   await wheel(Vector2(800,240),MOUSE_BUTTON_WHEEL_UP);verify(game.map_zoom!=zoom,"wheel over map retains existing zoom")
   game.road_lane_cards[-1].grab_focus();await settle();verify(strip.scroll_horizontal>0,"focus can reveal the rightmost lane card")
-  root.size=Vector2i(1920,1080);await settle();verify(not bar.visible,"horizontal bar hides when all eleven cards fit")
+  root.size=Vector2i(1920,1080);await settle();verify(strip.get_global_rect().end.x<=1920 and game.road_grid_button.get_global_rect().end.x<=1920 and bar.visible==(bar.max_value>bar.page),"1920 keeps controls inside viewport and scrolls the full 14-card row only when it overflows")
+  root.size=Vector2i(2560,1440);await settle();verify(not bar.visible,"2560 hides the horizontal bar when all fourteen cards fit")
   root.size=Vector2i(1280,820);await settle();verify(strip.get_global_rect().end.x<=1280 and game.road_grid_button.get_global_rect().end.x<=1280,"1280 keeps fixed controls and strip inside viewport")
   root.size=Vector2i(960,640);await settle();verify(strip.get_global_rect().end.x<=960 and game.road_grid_button.get_global_rect().end.x<=960 and bar.visible==(bar.max_value>bar.page),"960 keeps controls inside viewport and shows bar only on actual overflow")
   for card in game.road_lane_cards:

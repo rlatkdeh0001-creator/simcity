@@ -251,7 +251,7 @@ func sync_transit_cars():
    var lift:float=preload("res://core/road_height.gd").height_at(deck,point) if not deck.is_empty() else 0.0
    if lift>0:
     var along:Vector2=pose.heading*float(pose.get("length_m",10))/8;var across:Vector2=pose.heading.orthogonal()*float(pose.get("width_m",3))/8
-    elevated.lift_vehicle(sprite,deck,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
+    elevated.lift_vehicle(sprite,deck,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]),lift)
     if pose.get("cargo",false):sprite.position.y+=.001
     sprite.set_meta("rail_height_m",lift)
    elif lift< -preload("res://core/road_height.gd").EPS and underground!=null:
@@ -325,7 +325,10 @@ func synchronize():
  if changed or rs!=road_signature:
   road_signature=rs;road_generation+=1;road_shapes.clear();stripes.clear();arrows.clear()
   sync_transit_structures()
-  for polygon in view.city.road_pavement+view.city.junction_pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
+  var pavement: Array[PackedVector2Array]=view.city.road_pavement+view.city.junction_pavement
+  for polygon in preload("res://core/road_geometry.gd").center_median_hatching(view.city.roads,Vector2(view.city.width,view.city.height),pavement):
+   road_shapes.append([project(polygon),Color("e8e7dc")])
+  for polygon in pavement:road_shapes.append([project(polygon),Color("c8cbc3")])
   for polygon in view.city.road_asphalt+view.city.junction_asphalt:road_shapes.append([project(polygon),Color("4c5659")])
   for polygon in view.city.road_branch_edge_marks:road_shapes.append([project(polygon),Color("e4bd5f")])
   for polygon in view.city.road_crosswalks+view.city.road_stop_lines:stripes.append(project(polygon))
@@ -500,6 +503,7 @@ func vehicle_road(lanes:Array,lane_id:int)->Dictionary:
  return view.city.roads[owner]
 func _process(_delta:float):
  vehicle_road_lookups=0
+ if elevated!=null:elevated.vehicle_piece_visits=0
  if view==null:return
  if city_reference!=view.city:synchronize()
  view.transit_view.sync_visibility()
@@ -536,9 +540,10 @@ func _process(_delta:float):
    sprite.visible=true;sprite.position=p;sprite.texture=view.traffic.texture_for(vehicle.asset_id,direction)
    sprite.set_meta("road_height_m",height)
    sprite.scale=rect.size/Vector2(sprite.texture.get_size());sprite.offset=rect.position/sprite.scale
-   var along:Vector2=direction*float(vehicle.length)/8
-   var across:Vector2=direction.orthogonal()*float(car_widths[vehicle.asset_id])/8
-   elevated.lift_vehicle(sprite,road,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]))
+   if height>0:
+    var along:Vector2=direction*float(vehicle.length)/8
+    var across:Vector2=direction.orthogonal()*float(car_widths[vehicle.asset_id])/8
+    elevated.lift_vehicle(sprite,road,point,PackedVector2Array([point-along-across,point+along-across,point+along+across,point-along+across]),height)
    underground.place_vehicle(sprite,road,point)
  for id in cars:
   if not active.has(id):cars[id].visible=false

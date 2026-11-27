@@ -60,11 +60,15 @@ static func _closed_branch_surface(points:PackedVector2Array,edges:Vector2)->Arr
 			result.append(PackedVector2Array([points[i],points[i+1],incoming[(i+1)%count],outgoing[i]]))
 	return result
 static func pavement_ribbons(road:Dictionary)->Array[PackedVector2Array]:
-	if not _closed_branch(road):return ribbons(road.points,road.width,road.flat_start,road.flat_end)
 	var half:=float(road.width)/2
+	var center:=center_ribbons(road,Vector2(-half,half))
+	if not center.is_empty():return center
+	if not _closed_branch(road):return ribbons(road.points,road.width,road.flat_start,road.flat_end)
 	return _closed_branch_surface(road.points,Vector2(-half,half))
 static func asphalt_ribbons(road: Dictionary) -> Array[PackedVector2Array]:
 	var edges:=Profile.asphalt_edges(road)
+	var center:=center_ribbons(road,edges)
+	if not center.is_empty():return center
 	if _closed_branch(road):return _closed_branch_surface(road.points,edges)
 	var flat_start:bool=road.get("flat_start",true);var flat_end:bool=road.get("flat_end",true)
 	var points:PackedVector2Array=road.points
@@ -78,6 +82,205 @@ static func asphalt_ribbons(road: Dictionary) -> Array[PackedVector2Array]:
 		for i in range(asphalt.size()):asphalt[i]=inset_pavement_vertex(asphalt[i],points,edges/half)
 		result.append_array(Geometry2D.intersect_polygons(asphalt,pavement))
 	return result
+## Adjacent E4c members share an authored cross-section instead of offsetting
+## their offset centrelines a second time. Cuts interpolate the same end frame.
+static func center_ribbons(road:Dictionary,edges:Vector2)->Array[PackedVector2Array]:
+	var result:Array[PackedVector2Array]=[]
+	var frame:Variant=road.get("center_ribbon")
+	if not frame is Dictionary or not frame.get("axis") is PackedVector2Array or not frame.get("basis") is PackedVector2Array or not frame.get("offset") is float:return result
+	var axis:PackedVector2Array=frame.axis
+	var points:PackedVector2Array=road.points
+	if axis.size()<2 or axis.size()!=frame.basis.size() or points.size()<2:return result
+	var left:=Profile.offset_path(frame.basis,frame.offset+edges.x)
+	var right:=Profile.offset_path(frame.basis,frame.offset+edges.y)
+	var start:float=road.get("source_start",0.0)
+	if points!=axis:
+		var end:=start+Junctions.length_of(points)
+		if Junctions.sample(axis,start).distance_to(points[0])>.0001 or Junctions.sample(axis,end).distance_to(points[-1])>.0001:return result
+		var first:=_ribbon_cut(axis,left,right,start)
+		var last:=_ribbon_cut(axis,left,right,end)
+		var trimmed_left:=PackedVector2Array([first[0]])
+		var trimmed_right:=PackedVector2Array([first[1]])
+		var distance:=0.0
+		for i in range(1,axis.size()):
+			distance+=axis[i-1].distance_to(axis[i])
+			if distance>start+.0001 and distance<end-.0001:
+				trimmed_left.append(left[i]);trimmed_right.append(right[i])
+		trimmed_left.append(last[0]);trimmed_right.append(last[1])
+		left=trimmed_left;right=trimmed_right
+	left.reverse();right.append_array(left);result.append(right)
+	return result
+
+static func center_median_hatching(roads:Array,bounds:Vector2,pavement:Array[PackedVector2Array])->Array[PackedVector2Array]:
+	var result:Array[PackedVector2Array]=[]
+	var branches:Dictionary={}
+	for road:Dictionary in roads:
+		var role:int=road.get("center_role",0)
+		if role not in [1,2] or not road.get("center_family") is int or not road.has("center_ribbon"):continue
+		if Profile.branch_profile(road).is_empty() or Height.off_ground(road):continue
+		var family:int=road.center_family
+		if not branches.has(family):branches[family]=[[],[]]
+		var start:float=road.get("source_start",0.0)
+		var end:float=road.get("source_end",start+Height.length_cells(road.points))
+		var frame:Dictionary=road.center_ribbon
+		var inner:=Vector2(_center_chainage(frame,start),_center_chainage(frame,end))
+		if role==2:
+			var length:=Height.length_cells(frame.basis)
+			inner=Vector2(length-inner.y,length-inner.x)
+		branches[family][role-1].append(inner)
+	var phases:=_median_phases(roads)
+	for deck:Dictionary in roads:
+		if not Profile.is_center_deck(deck) or not deck.has("center_ribbon") or not branches.has(deck.get("center_family")):continue
+		var sides:Array=branches[deck.center_family]
+		if sides[0].is_empty() or sides[1].is_empty():continue
+		var points:PackedVector2Array=deck.points
+		var heights:PackedFloat64Array=deck.get("heights_m",PackedFloat64Array())
+		if heights.size()!=points.size():continue
+		var axis:PackedVector2Array=deck.center_ribbon.axis
+		var phase:Vector2=phases.get(deck.parcel_id,Vector2(0,1))
+		var width:float=deck.width
+		var left:=Profile.offset_path(axis,-width/2)
+		var right:=Profile.offset_path(axis,width/2)
+		var region:=Rect2(axis[0],Vector2.ZERO)
+		for point:Vector2 in axis:region=region.expand(point)
+		region=region.grow(width)
+		var masks:Array[PackedVector2Array]=[]
+		for polygon:PackedVector2Array in pavement:
+			var box:=Rect2(polygon[0],Vector2.ZERO)
+			for point:Vector2 in polygon:box=box.expand(point)
+			if box.intersects(region):masks.append(polygon)
+		var stripes:Array[PackedVector2Array]=[]
+		var start:float=deck.get("source_start",0.0)
+		for i in range(1,points.size()):
+			var end:=start+points[i-1].distance_to(points[i])
+			var a:=heights[i-1];var b:=heights[i]
+			# E1 uses fill/retaining walls below +5m; only open ground gets paint.
+			if maxf(a,b)>=5.0 and end-start>.0001:
+				var low:=start if a>=5.0 else lerpf(start,end,(5.0-a)/(b-a))
+				var high:=end if b>=5.0 else lerpf(start,end,(5.0-a)/(b-a))
+				for first:Vector2 in sides[0]:
+					for second:Vector2 in sides[1]:
+						var lo:=maxf(low,maxf(first.x,second.x));var hi:=minf(high,minf(first.y,second.y))
+						if hi-lo<=.0001:continue
+						var begin_edges:=_ribbon_cut(axis,left,right,lo)
+						var end_edges:=_ribbon_cut(axis,left,right,hi)
+						if phase.y>0:
+							stripes.append_array(_median_stripes(phase.x+lo,phase.x+hi,width,begin_edges,end_edges))
+						else:
+							begin_edges.reverse();end_edges.reverse()
+							stripes.append_array(_median_stripes(phase.x-hi,phase.x-lo,width,end_edges,begin_edges))
+			start=end
+		result.append_array(outside_regions(clip_to_map(stripes,bounds),masks))
+	return result
+
+## Join live deck fragments by endpoint, without bridging removed spans.
+## Evaluate paint in the saved ribbon's chainage, even at a newly cut endpoint.
+static func _median_phases(roads:Array)->Dictionary:
+	var fragments:Dictionary={}
+	var ends:Dictionary={}
+	var buckets:Dictionary={}
+	for deck:Dictionary in roads:
+		if not Profile.is_center_deck(deck) or not deck.has("center_ribbon"):continue
+		var id:int=deck.parcel_id
+		var axis:PackedVector2Array=deck.center_ribbon.axis
+		var points:PackedVector2Array=deck.points
+		if axis.size()<2 or points.size()<2:continue
+		var first:float=deck.get("source_start",0.0)
+		var last:=first+Height.length_cells(points)
+		fragments[id]={"points":points,"span":Vector2(first,last),"source_length":Height.length_cells(axis)}
+		for end in [0,1]:
+			var at:=0 if end==0 else -1
+			var p:Vector2=points[at]
+			if absf(Height.height_at(deck,p)-10.0)>Junctions.EPS:continue
+			var station:=first if end==0 else last
+			if Junctions.sample(axis,station).distance_to(p)>Junctions.EPS:continue
+			var handle:=Vector2i(id,end)
+			var inward:Vector2=(points[1 if end==0 else -2]-p).normalized()
+			ends[handle]={"point":p,"inward":inward,"lanes":deck.center_lanes}
+			var bucket:Array=buckets.get_or_add(Junctions.key(p),[])
+			bucket.append(handle)
+	var seeks:Dictionary={}
+	for end:Vector2i in ends:
+		var a:Dictionary=ends[end]
+		var cell:=Junctions.key(a.point)
+		var compatible:Array[Vector2i]=[]
+		for x in range(-1,2):
+			for y in range(-1,2):
+				for peer:Vector2i in buckets.get(cell+Vector2i(x,y),[]):
+					if peer.x==end.x:continue
+					var b:Dictionary=ends[peer]
+					if a.lanes==b.lanes and a.point.distance_to(b.point)<=Junctions.EPS and a.inward.dot(b.inward)<-.99999 and absf(a.inward.cross(b.inward))<=Junctions.EPS:
+						compatible.append(peer)
+		if compatible.size()==1:seeks[end]=compatible[0]
+	var links:Dictionary={}
+	var linked:Dictionary={}
+	for end:Vector2i in seeks:
+		var peer:Vector2i=seeks[end]
+		if seeks.get(peer,Vector2i(-1,-1))!=end:continue
+		links[end]=peer
+		linked[end.x]=true
+	var order:Array[Vector2i]=[]
+	for id:int in linked:
+		order.append(Vector2i(id,0));order.append(Vector2i(id,1))
+	order.sort_custom(func(a:Vector2i,b:Vector2i)->bool:
+		if links.has(a)!=links.has(b):return not links.has(a)
+		var p:Vector2=fragments[a.x].points[0 if a.y==0 else -1]
+		var q:Vector2=fragments[b.x].points[0 if b.y==0 else -1]
+		return p.x<q.x if p.x!=q.x else p.y<q.y if p.y!=q.y else a.x<b.x if a.x!=b.x else a.y<b.y)
+	var phases:Dictionary={}
+	for start:Vector2i in order:
+		if phases.has(start.x):continue
+		var cursor:=start
+		var entry:Dictionary=fragments[start.x]
+		# Preserve the root's authored origin when only part of it survives.
+		var distance:float=entry.span.x if start.y==0 else entry.source_length-entry.span.y
+		while not phases.has(cursor.x):
+			var span:Vector2=fragments[cursor.x].span
+			phases[cursor.x]=Vector2(distance-span.x,1) if cursor.y==0 else Vector2(distance+span.y,-1)
+			distance+=span.y-span.x
+			var far:=Vector2i(cursor.x,1-cursor.y)
+			if not links.has(far):break
+			cursor=links[far]
+	return phases
+
+## A branch runs along its offset axis, not the spine. Convert at the shared
+## cross-sections so a cut on the inside or outside of a bend clips the right span.
+static func _center_chainage(frame:Dictionary,distance:float)->float:
+	var station:=0.0
+	for i in range(1,frame.axis.size()):
+		var used:float=frame.axis[i-1].distance_to(frame.axis[i])
+		var span:float=frame.basis[i-1].distance_to(frame.basis[i])
+		if used>0 and distance<=used:return station+span*clampf(distance/used,0,1)
+		station+=span;distance-=used
+	return station
+
+## Generate 45-degree strips in chainage/lateral space before bending them into
+## the authored ribbon. Phase is measured from the full spine even after edits.
+static func _median_stripes(start:float,end:float,width:float,first:PackedVector2Array,last:PackedVector2Array)->Array[PackedVector2Array]:
+	const PITCH:=1.5 # 6m
+	const THICKNESS:=.12 # 48cm along the road (about 34cm normal to the stripe)
+	var stripes:Array[PackedVector2Array]=[]
+	var length:=end-start
+	var section:=PackedVector2Array([Vector2.ZERO,Vector2(length,0),Vector2(length,width),Vector2(0,width)])
+	for station in range(floori((start-width-THICKNESS)/PITCH),ceili(end/PITCH)):
+		var d:=station*PITCH-start
+		var strip:=PackedVector2Array([Vector2(d,0),Vector2(d+THICKNESS,0),Vector2(d+width+THICKNESS,width),Vector2(d+width,width)])
+		for clipped:PackedVector2Array in Geometry2D.intersect_polygons(section,strip):
+			var shape:=PackedVector2Array()
+			for p:Vector2 in clipped:
+				var across:=clampf(p.y/width,0,1)
+				shape.append(first[0].lerp(first[1],across).lerp(last[0].lerp(last[1],across),clampf(p.x/length,0,1)))
+			stripes.append(shape)
+	return stripes
+
+static func _ribbon_cut(axis:PackedVector2Array,left:PackedVector2Array,right:PackedVector2Array,distance:float)->PackedVector2Array:
+	for i in range(1,axis.size()):
+		var span:=axis[i-1].distance_to(axis[i])
+		if distance<=span and span>0:
+			return PackedVector2Array([left[i-1].lerp(left[i],distance/span),right[i-1].lerp(right[i],distance/span)])
+		distance-=span
+	return PackedVector2Array([left[-1],right[-1]])
+
 static func inset_pavement_vertex(point: Vector2,points: PackedVector2Array,ratios: Vector2) -> Vector2:
 	var best:=INF;var anchor:=point;var ratio:=1.0;var best_edge:=-1
 	for i in range(1,points.size()):
@@ -146,6 +349,7 @@ static func continuous_roads(roads: Array, topology: Dictionary={}) -> Array:
 					if not used.has(entry.road):next=entry
 				if next.is_empty():break
 				var road: Dictionary=roads[next.road]
+				if roads[i].has("center_ribbon") or road.has("center_ribbon"):break
 				if Height.level(road)!=Height.level(roads[i]):break
 				if road.kind!=roads[i].kind or road.lanes!=roads[i].lanes or not is_equal_approx(road.width,roads[i].width):break
 				var next_order:=1 if next.end==0 else -1
