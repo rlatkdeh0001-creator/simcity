@@ -9,6 +9,7 @@ var drawer_box: HBoxContainer
 var transport_tabs: HBoxContainer
 var transport_tab := 0
 var route_overlay
+var has_selected_building := false
 const TRANSPORT_ASSETS := [["bus-stop-01","bus-station-01"],["subway-entrance-01"],["train-station-01"]]
 var transport_content_minimum:=Vector2.ZERO
 var categories: Array[Button] = []
@@ -54,6 +55,7 @@ const NAMES := {"build":"구획","road":"도로","power":"전력","water":"수�
 const INK := Color("e4eef1")
 const BLUE := Color("39b7ff")
 const ThumbnailButton=preload("res://core/asset_thumbnail_button.gd")
+const RoadProfile=preload("res://core/road_profile.gd")
 var thumbnail_manifest: Dictionary={}
 const SERVICE_TOOLS := {"clinic":"medical-clinic","hospital":"medical-hospital","large_hospital":"medical-large-hospital","elementary":"elementary-school","high_school":"high-school","college":"technical-college","university":"university","crematorium":"crematorium-4x4"}
 
@@ -216,12 +218,15 @@ func build_bottom_hud():
  hud.mouse_filter=Control.MOUSE_FILTER_IGNORE
  info.reparent(root)
  info.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
- info.offset_left=-450
- info.offset_right=-16
- info.offset_top=-310
- info.offset_bottom=-195
+ info.grow_vertical=Control.GROW_DIRECTION_BEGIN
  info.mouse_filter=Control.MOUSE_FILTER_IGNORE
  info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+ info.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+ info.add_theme_font_size_override("font_size",18)
+ info.add_theme_color_override("font_color",Color("edf4f5"))
+ var info_plate:=style(Color("142b37"))
+ info_plate.set_content_margin_all(10)
+ info.add_theme_stylebox_override("normal",info_plate)
  info.hide()
  dock=PanelContainer.new()
  dock.name="BottomDock"
@@ -707,7 +712,7 @@ func select_category(key: String):
   "build": choices=[["주거","build"],["상업","build_commercial"],["공업","build_industrial"],["구획 해제","build_erase"]]
   "health": choices=[["병원","hospital"],["진료소","clinic"],["대형병원","large_hospital"],["화장터","crematorium"]]
   "education": choices=[["초등학교","elementary"],["고등학교","high_school"],["전문대학","college"],["대학교","university"]]
-  "road": choices=[] # The seven lane cards are the drawing actions.
+  "road": choices=[] # The lane cards are the drawing actions.
 
 
   _:
@@ -759,21 +764,53 @@ func add_drawer_tool(box:HBoxContainer,key:String,choice:Array):
   box.add_child(button)
 
 func add_road_drawer_controls():
-  var group:=ButtonGroup.new()
-  var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
-  for count in preload("res://core/road_profile.gd").LOCAL_LANES:
-   var path: String="res://assets/ui/roads/local-%d.png"%count
-   var card:=ThumbnailButton.new();card.name="RoadLane_%d"%count
-   card.set_asset({"id":"road-local-%d"%count,"name":"%d차선"%count,"preview":path},path)
-   card.custom_minimum_size=Vector2(96,84);card.set_meta("lanes",count);card.tooltip_text="%d차선"%count
-   card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count))
-   palette.content.add_child(card);road_lane_cards.append(card)
-  road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
-  var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
-  road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
-  road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
-  road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
-  update_road_lane_cards();update_road_grid_button()
+ var group:=ButtonGroup.new()
+ var palette:=preload("res://core/horizontal_card_strip.gd").new();palette.name="RoadCardStrip";drawer_box.add_child(palette)
+ for count in RoadProfile.LOCAL_LANES:add_road_card(palette.content,group,count,0)
+ for count in range(1,RoadProfile.ONE_WAY_WIDTHS.size()+1):add_road_card(palette.content,group,count,1)
+ for count in [4,6,8]:add_road_card(palette.content,group,count,0,true)
+ road_grid_button=Button.new();road_grid_button.name="RoadGridToggle";road_grid_button.toggle_mode=true
+ var heights:=preload("res://core/road_height_controls.gd").new();drawer_box.add_child(heights);heights.setup(self)
+ road_grid_button.custom_minimum_size=Vector2(60,60);road_grid_button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER;road_grid_button.expand_icon=true
+ road_grid_button.add_theme_constant_override("icon_max_width",36);road_grid_button.tooltip_text="격자"
+ road_grid_button.pressed.connect(toggle_road_grid);drawer_box.add_child(road_grid_button)
+ update_road_lane_cards();update_road_grid_button()
+
+func add_road_card(row:HBoxContainer,group:ButtonGroup,count:int,travel_dir:int,center:bool=false):
+ var one_way:=travel_dir==1
+ var title:=("중앙 %d차선" if center else ("편도 %d차로" if one_way else "%d차선"))%count
+ var id:=("center-%d" if center else ("one-way-%d" if one_way else "local-%d"))%count
+ var path:="res://assets/ui/roads/%s.png"%id
+ var card:Button=ThumbnailButton.new()
+ row.add_child(card)
+ if (not one_way and not center) or FileAccess.file_exists(path) or ResourceLoader.exists(path):
+  card.set_asset({"id":"road-"+id,"name":title,"preview":path},path)
+ else:
+  # Until the studio PNG is rendered, keep the tool usable without borrowed or generated art.
+  card.text=title
+  card.set_meta("source_preview",path)
+ if one_way or center:
+  for state in ["normal","hover","pressed","disabled"]:
+   card.add_theme_stylebox_override(state,style(Color("142b37"),Color("38515e")))
+  for key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
+   card.add_theme_color_override(key,Color("edf4f5"))
+  card.add_theme_font_size_override("font_size",18)
+  var band:=card.get_node_or_null("NameBand") as Panel
+  if band!=null:
+   var shade:StyleBoxFlat=band.get_theme_stylebox("panel").duplicate()
+   shade.bg_color=Color("142b37")
+   band.add_theme_stylebox_override("panel",shade)
+   card.caption.add_theme_color_override("font_color",Color("edf4f5"))
+ var caption_width:=96.0
+ if one_way or center:
+  caption_width=maxf(caption_width,ceilf(card.get_theme_font("font").get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x)+14)
+ card.custom_minimum_size=Vector2(caption_width,84)
+ card.name=("RoadCenter_%d" if center else ("RoadOneWay_%d" if one_way else "RoadLane_%d"))%count
+ card.set_meta("thumbnail_asset_id","road-"+id)
+ card.set_meta("lanes",count);card.set_meta("travel_dir",travel_dir);card.tooltip_text=title
+ card.set_meta("center_tool",center)
+ card.toggle_mode=true;card.button_group=group;card.pressed.connect(select_road_lanes.bind(count,travel_dir,center))
+ road_lane_cards.append(card)
 
 func finish_drawer(key:String,heading:VBoxContainer):
  for entry: Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/registered_30.json")).assets:
@@ -813,8 +850,9 @@ func finish_drawer(key:String,heading:VBoxContainer):
     face.corner_radius_bottom_left=0;face.corner_radius_bottom_right=0;face.border_width_bottom=0
     face.content_margin_top=2;face.content_margin_bottom=2
     tab.add_theme_stylebox_override(state,face)
-    tab.add_theme_color_override("font_"+state+"_color",Color("142b37") if active else Color("edf4f5"))
-   tab.add_theme_color_override("font_color",Color("142b37") if active else Color("edf4f5"))
+   var ink:=Color("142b37") if active else Color("edf4f5")
+   for color_key in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"]:
+    tab.add_theme_color_override(color_key,ink)
  for slot in service_slots():
   if slot.category!=key:continue
   var entry:=slot_asset(slot)
@@ -925,11 +963,20 @@ func _process(delta: float):
  var simulated_delta := 0.0 if paused else delta*simulation_speed
  super._process(simulated_delta)
  hud.visible=not message.is_empty()
- info.visible=selected>=0 and not drawer.visible
+ info.visible=building_info_fits()
  elapsed+=delta
  if capture_path!="" and elapsed>3 and not capture_pending:
   capture_pending=true
   capture.call_deferred()
+
+func building_info_fits()->bool:
+ if selected<0 or not has_selected_building or drawer.visible or route_warning_open() or budget_window.visible or utility_popup.visible:
+  return false
+ var bounds:=info.get_global_rect()
+ if not get_viewport_rect().encloses(bounds):return false
+ for panel:Control in [dock,transport_tabs,route_overlay.panel,road_modes,labor_panel,hud,asset_info,money_toast]:
+  if panel!=null and panel.is_visible_in_tree() and panel.get_global_rect().intersects(bounds):return false
+ return true
 
 func capture():
  await RenderingServer.frame_post_draw
@@ -1137,6 +1184,10 @@ func open_service_slot(id: String) -> bool:
 
 func layout_bottom_hud():
  if dock==null: return
+ info.offset_left=-minf(450,get_viewport_rect().size.x-16)
+ info.offset_right=-16
+ info.offset_bottom=dock.offset_top-12
+ info.offset_top=info.offset_bottom-115
  var narrow:=get_viewport_rect().size.x<1280
  money.add_theme_font_size_override("font_size",26 if narrow else 34)
  date_label.add_theme_font_size_override("font_size",18 if narrow else 24)
@@ -1171,12 +1222,22 @@ func layout_bottom_hud():
  position_money_toast.call_deferred()
  queue_redraw()
 
-func select_road_lanes(count: int):
- if count not in preload("res://core/road_profile.gd").LOCAL_LANES:return
- road_lanes=count;activate_tool("road");update_road_lane_cards();queue_redraw()
+func select_road_lanes(count: int,travel_dir:int=0,center:bool=false):
+ if center and (count not in [4,6,8] or travel_dir!=0):return
+ if not RoadProfile.valid_selection("local",count,road_major_side,travel_dir):return
+ road_lanes=count;road_drawer.travel_dir=travel_dir;road_drawer.center_tool=center
+ activate_tool("road")
+ if travel_dir!=0 or center:
+  if road_drawer.kind=="legacy":road_drawer.set_kind("straight")
+  road_drawer.start_height_m=0.0
+  road_drawer.set_height(0.0)
+ else:
+  var heights:=find_child("RoadHeightControls",true,false)
+  if heights!=null:heights.synchronize()
+ update_road_lane_cards();queue_redraw()
 func update_road_lane_cards():
  for card in road_lane_cards:
-  var active: bool=int(card.get_meta("lanes"))==road_lanes
+  var active: bool=int(card.get_meta("lanes"))==road_lanes and int(card.get_meta("travel_dir"))==road_drawer.travel_dir and card.get_meta("center_tool")==road_drawer.center_tool
   card.set_pressed_no_signal(active)
   for state in ["normal","hover","pressed"]:
    var outline: StyleBoxFlat=card.get_theme_stylebox(state).duplicate()
@@ -1225,6 +1286,7 @@ func activate_tool(tool: String):
 
 func refresh():
  super.refresh()
+ has_selected_building=selected>=0 and not city.find_building(selected).is_empty()
  if route_overlay!=null and route_overlay.visible:route_overlay.synchronize()
  if money==null: return
  bind_status_events()

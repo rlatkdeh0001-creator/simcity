@@ -1,0 +1,368 @@
+{
+  "branch": "feature/e4-one-way-roads",
+  "base": "2fb2074f643a1ccd6131c2773ecf014fdcf49bf4",
+  "pinned_main": "84825b41ce92367817807e3d3b9ef4b2c836222f",
+  "source_sha256": {
+    "cities_do/core/city_model.gd": "ce6d33b0e96b3955b2f57fa11af5ad29fcf10469ed1aaa05492b584493505160",
+    "cities_do/core/road_construction.gd": "0b0c6f9a5f939cc1f61ccb107f5087fc9f72b033ae33ad4372d50ff6ae93099e",
+    "cities_do/core/road_junctions.gd": "806291802625bb38a5217a0d19e407a1782fd22853211de34949598e57c809fb",
+    "cities_do/core/road_junction_paint.gd": "74be3a5c3e2b6e5ed24b098c994e233a85c4d834a59d3a4481defbbcb380923f",
+    "cities_do/tests/test_road_junction_spacing_input.gd": "915fbfb96207315c1ac8a05ab29655ba20b14d8f4058331c1aa529e57410ad45",
+    "cities_do/tests/test_road_junction_spacing.gd": "e96c86a366c16609ddb52703b708e0f447fe4f94a59f62eb027b4713a2875370",
+    "cities_do/tests/test_road_overlap_policy.gd": "b4f4b9747c11146ea1328551afe055666a7e692ca1b7c55ba18faab9f2371d8a",
+    "cities_do/tests/test_road_close_crosswalks.gd": "adcd9721983dd9485d5e7a2dd647448da0dd27b5efcae35d1d82a6d342818a09",
+    "cities_do/tests/test_one_way_roads.gd": "0e545b09f189c1eb072f7b543888054abfeb9fa7115aa2c0e17207c87924d637"
+  },
+  "suites": {
+    "road_close_crosswalks": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_close_crosswalks.gd"
+      ],
+      "checks": 484,
+      "exit": 0,
+      "log": "test_road_close_crosswalks.log",
+      "log_sha256": "27796c5f6aba9dcf1a3935619ef41b8f8062e75b96f6f25eeb36faabc6de5563",
+      "geometry": []
+    },
+    "road_junction_spacing": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_junction_spacing.gd"
+      ],
+      "checks": 43,
+      "exit": 0,
+      "log": "test_road_junction_spacing.log",
+      "log_sha256": "7dcbb75dd743016c6c390bfb2029c24b9ee81ae6e85a41614807e2529fc6e39e",
+      "geometry": []
+    },
+    "road_overlap_policy": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_overlap_policy.gd"
+      ],
+      "checks": 70,
+      "exit": 0,
+      "log": "test_road_overlap_policy.log",
+      "log_sha256": "a25bf28d63f2a5f4e8c4531c0c541929b3eed92fd31348b7028139aac43fccdb",
+      "geometry": []
+    },
+    "road_approach_markings": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_approach_markings.gd"
+      ],
+      "checks": 65,
+      "exit": 0,
+      "log": "test_road_approach_markings.log",
+      "log_sha256": "3dacb57d4ec81772044ab54b9d02b332a353fdaf25dcaa49ea93fbdb51918171",
+      "geometry": []
+    },
+    "road_junction_boxes": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_junction_boxes.gd"
+      ],
+      "checks": 67,
+      "exit": 0,
+      "log": "test_road_junction_boxes.log",
+      "log_sha256": "41c0689c2f8e5bd7b903b32ea0dfd0f4a5b2902f423d87efbe7a3b2f34f0dd85",
+      "geometry": []
+    },
+    "junctions": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_junctions.gd"
+      ],
+      "checks": 56,
+      "exit": 0,
+      "log": "test_junctions.log",
+      "log_sha256": "bf16c9585e726bfe1a7062a824e41b31fc1d4cedd95d970155214509a0ed802c",
+      "geometry": []
+    },
+    "road_continue": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_continue.gd"
+      ],
+      "checks": 20,
+      "exit": 0,
+      "log": "test_road_continue.log",
+      "log_sha256": "2be6d58c1acc92e1e240266e6bcfcc2aff099a0bd6a7ff38bd39a349884cef8a",
+      "geometry": []
+    },
+    "one_way_arrow_marks": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_one_way_arrow_marks.gd"
+      ],
+      "checks": 35,
+      "exit": 0,
+      "log": "test_one_way_arrow_marks.log",
+      "log_sha256": "77ba8c490d62c496bac367625ba1b25673e5744be16e0f3720789408c792db60",
+      "geometry": []
+    },
+    "one_way_roads": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_one_way_roads.gd"
+      ],
+      "checks": 138,
+      "exit": 0,
+      "log": "test_one_way_roads.log",
+      "log_sha256": "17b6155011dafe4409d57a3ddf21854a97dda2b03ecef14782ff2c3912b1ae83",
+      "geometry": [],
+      "suite_source_sha256": "0e545b09f189c1eb072f7b543888054abfeb9fa7115aa2c0e17207c87924d637"
+    },
+    "one_way_connector_containment": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--headless",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_one_way_connector_containment.gd"
+      ],
+      "checks": 794,
+      "exit": 0,
+      "log": "test_one_way_connector_containment.log",
+      "log_sha256": "4e79f152470ac40df8f03103968cec1bf8e85bc3645c79a35a16cff79877c578",
+      "geometry": []
+    },
+    "native": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1920x1080",
+        "--fullscreen",
+        "--path",
+        "D:\\project\\simcity\\cities_do",
+        "--script",
+        "res://tests/test_road_junction_spacing_input.gd",
+        "--",
+        "--evidence-dir=D:/project/simcity/artifacts/e4a-junction-spacing-20261127"
+      ],
+      "checks": 81,
+      "exit": 0,
+      "log": "b-native-paint.log",
+      "log_sha256": "27cfb2bfd7fcd69366f1e9199da99f3742d41ac48a93c7c6867b2da49429c794",
+      "geometry": [
+        {
+          "gap_m": 14.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_stop": 0,
+          "zebra_stop": 0,
+          "zebra_zebra": 0
+        },
+        {
+          "gap_m": 15.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_stop": 0,
+          "zebra_stop": 0,
+          "zebra_zebra": 0
+        },
+        {
+          "gap_m": 16.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_sha256": "2f261c129835672591abe989cf8e004f44613fdb56adfd9fbb06c4129ab54dcb",
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_sha256": "dd7e5b145af77de894d1467f5b4b8dbb61b771b473cb8122eae5e9a1ceab8700",
+          "stop_stop": 0,
+          "white_sha256": "5f0ceb3f97e047b4ac0bceb73303fad5364623d06725effcc78cdc210d01ba35",
+          "zebra_sha256": "6bfe9a39a38dae96010b498d823abd9de7b50baa70f0b026829df657258dfabe",
+          "zebra_stop": 10,
+          "zebra_zebra": 0
+        }
+      ]
+    },
+    "pinned_main": {
+      "command": [
+        "python",
+        "tools/run_dotnet.py",
+        "--timeout",
+        "90",
+        "godot",
+        "--audio-driver",
+        "Dummy",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "1920x1080",
+        "--fullscreen",
+        "--path",
+        "C:\\Users\\wlgml\\AppData\\Local\\hermes\\profiles\\cities-gpt\\cache\\scratch\\bmain-84825b4\\cities_do",
+        "--script",
+        "res://tests/test_road_junction_spacing_input.gd",
+        "--",
+        "--paint-baseline"
+      ],
+      "checks": 22,
+      "exit": 0,
+      "log": "main-native-paint.log",
+      "log_sha256": "6d473d13e2e37ee41324e7bb138d5c543131ce7f7cdf97b886615d21214b025b",
+      "inherited_warnings": [
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_end.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+        "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/rail/rail-track-01/strip_rails.png'. Instead, import the image file as an Image resource and load it normally as a resource."
+      ],
+      "geometry": [
+        {
+          "gap_m": 14.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_stop": 0,
+          "zebra_stop": 0,
+          "zebra_zebra": 9
+        },
+        {
+          "gap_m": 15.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_stop": 0,
+          "zebra_stop": 10,
+          "zebra_zebra": 9
+        },
+        {
+          "gap_m": 16.0,
+          "lane_stop_aa": 4,
+          "lane_stop_opaque": 0,
+          "lane_zebra_aa": 0,
+          "median_sha256": "2f261c129835672591abe989cf8e004f44613fdb56adfd9fbb06c4129ab54dcb",
+          "median_stop_aa": 2,
+          "median_stop_opaque": 0,
+          "median_zebra_aa": 0,
+          "stop_sha256": "dd7e5b145af77de894d1467f5b4b8dbb61b771b473cb8122eae5e9a1ceab8700",
+          "stop_stop": 0,
+          "white_sha256": "5f0ceb3f97e047b4ac0bceb73303fad5364623d06725effcc78cdc210d01ba35",
+          "zebra_sha256": "6bfe9a39a38dae96010b498d823abd9de7b50baa70f0b026829df657258dfabe",
+          "zebra_stop": 10,
+          "zebra_zebra": 0
+        }
+      ]
+    }
+  },
+  "captures": {
+    "b-junction-14m-1920.png": {
+      "sha256": "7a2abb2ddb3800ebfa840463dddaff7b3785fadf8d35f5eb753021527d71ab1a",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    "b-junction-15m-1920.png": {
+      "sha256": "2d37c6e8b317ec00c4af9b4222c2c64b6ce0f92a2778cabb85ce86949cae211d",
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  },
+  "index_empty": true,
+  "feature_assertions": 1853
+}

@@ -9,6 +9,8 @@ var bridge
 var catalog: Array = []
 var status := ""
 var running := false
+var resume_on_road_edit := false
+var _paused_while_waiting := false
 var textures := {}
 var render_entries := {}
 
@@ -33,6 +35,19 @@ func rebuild(roads: Array) -> bool:
 	running = true
 	status = "" # Successful driving needs no explanatory HUD text.
 	return true
+
+## Call after committed road edits, not on preview or on unacknowledged worker intents.
+func refresh_roads(roads: Array):
+	if not running and not resume_on_road_edit: return
+	# Synthetic traffic has no persistent trips. Drop old lane IDs and seed the new graph.
+	var paused: bool = simulation.paused if simulation != null else _paused_while_waiting
+	if rebuild(roads):
+		simulation.paused = paused
+		seed_traffic()
+	else:
+		# Demolishing the last road should not cancel the active traffic session.
+		resume_on_road_edit = true
+		_paused_while_waiting = paused
 
 func seed_traffic():
 	var civilian_assets := catalog.filter(func(asset): return asset.category=="civilian")
@@ -62,6 +77,8 @@ func update(delta: float):
 
 func stop():
 	running = false
+	resume_on_road_edit = false
+	_paused_while_waiting = false
 	if is_instance_valid(bridge):
 		remove_child(bridge)
 		bridge.free()

@@ -1,0 +1,38 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS construct isolated one-way 1-lane road
+PASS 1-lane emitted dash/shoulder polygons never cover an arrow (area 0.000000 px²)
+PASS 1-lane end and 64m arrows are unchanged and shared by preview
+PASS 1-lane nonconflicting dashes retain their exact position and phase
+PASS construct isolated one-way 2-lane road
+PASS 2-lane emitted dash/shoulder polygons never cover an arrow (area 0.000000 px²)
+PASS 2-lane end and 64m arrows are unchanged and shared by preview
+PASS 2-lane nonconflicting dashes retain their exact position and phase
+PASS the conflicting dash keeps its clear fragment rather than disappearing
+PASS construct isolated one-way 3-lane road
+PASS 3-lane emitted dash/shoulder polygons never cover an arrow (area 0.000000 px²)
+PASS 3-lane end and 64m arrows are unchanged and shared by preview
+PASS 3-lane nonconflicting dashes retain their exact position and phase
+PASS construct isolated one-way 4-lane road
+PASS 4-lane emitted dash/shoulder polygons never cover an arrow (area 0.000000 px²)
+PASS 4-lane end and 64m arrows are unchanged and shared by preview
+PASS 4-lane nonconflicting dashes retain their exact position and phase
+PASS the conflicting dash keeps its clear fragment rather than disappearing
+PASS construct one-way taper arm
+PASS construct one-way taper arm
+PASS taper and ordinary marking pieces both clear the retained arrows (area 0.000000 px²)
+PASS a taper keeps the original 64m arrow on its seam approach
+PASS construct one-way taper arm
+PASS construct one-way taper arm
+PASS taper and ordinary marking pieces both clear the retained arrows (area 0.000000 px²)
+PASS a taper keeps the original 64m arrow on its seam approach
+PASS construct legacy two-way road
+PASS a two-way road retains its existing dashes, shoulders and median
+PASS first drawn directed preview builds one ribbon and one arrow set
+PASS three camera-only redraws keep the real admission cache hot
+PASS steady redraw performs zero ribbon/arrow geometry work (observed (1, 1))
+PASS changed plan rebuilds each world-space polygon set exactly once
+PASS cached preview arrows match the shared glyphs on the resolved path
+PASS a caller cannot mutate the draw cache through the public preview copy
+PASS changing the selected travel direction invalidates cached polygons even at a fixed pointer
+RESULT 35/35 one-way arrow marking and preview redraw checks passed

@@ -29,7 +29,10 @@ func run():
  game.city.add_road(PackedVector2Array([Vector2(10,30),Vector2(40,30)]));game.activate_tool("traffic")
  verify(game.traffic.running and game.message.is_empty() and not game.hud.visible,"road simulation starts without mechanics explanation text")
  game.select_category("road")
- verify(game.road_mode_buttons.size()==3 and game.road_lane_cards.size()==7 and game.bulldozer!=null,"three road modes, seven lane cards and bulldozer preserved")
+ var ordinary: Array=game.road_lane_cards.filter(func(c):return c.get_meta("travel_dir",0)==0 and not c.get_meta("center_tool",false))
+ var directed: Array=game.road_lane_cards.filter(func(c):return c.get_meta("travel_dir",0)==1 and not c.get_meta("center_tool",false))
+ var center: Array=game.road_lane_cards.filter(func(c):return c.get_meta("center_tool",false) and c.get_meta("travel_dir",0)==0)
+ verify(game.road_mode_buttons.size()==3 and ordinary.size()==7 and directed.size()==4 and center.size()==3 and game.road_lane_cards.size()==14 and game.bulldozer!=null,"three road modes and bulldozer with seven original, four one-way and three central cards")
  print("PLAY_TOOL_INVENTORY "+JSON.stringify(inventory))
  game.queue_free();await process_frame
  print("RESULT %d/%d play tool checks passed"%[checks-failed,checks]);quit(1 if failed else 0)

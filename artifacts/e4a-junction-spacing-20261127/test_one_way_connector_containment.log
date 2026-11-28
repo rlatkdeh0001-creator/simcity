@@ -1,0 +1,797 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS 150-degree seam 4-to-4, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-4, inbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree junction 4-to-4, inbound inserted first: real road construction and intended topology
+PASS 150-degree junction 4-to-4, inbound inserted first: builds directed graph
+PASS 150-degree junction 4-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree junction 4-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-2, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-2, inbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-3, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-3, inbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-4, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-4, inbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-1, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-1, inbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-3, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-3, inbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-4, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-4, inbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-1, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-1, inbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-2, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-2, inbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-4, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-4, inbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-4, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-4, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-1, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-1, inbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-1, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-1, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-2, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-2, inbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-2, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-2, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-3, inbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-3, inbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-3, inbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-3, inbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-4, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-4, outbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree junction 4-to-4, outbound inserted first: real road construction and intended topology
+PASS 150-degree junction 4-to-4, outbound inserted first: builds directed graph
+PASS 150-degree junction 4-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree junction 4-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS -150-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS -150-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS -150-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -150-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS -150-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS -150-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -150-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS -90-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS -90-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS -90-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -90-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS -90-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS -90-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -90-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS -45-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS -45-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS -45-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -45-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS -45-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS -45-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -45-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS -22-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS -22-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS -22-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS -22-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS -22-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS -22-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS -22-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS 22-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS 22-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS 22-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 22-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS 22-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS 22-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 22-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS 45-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS 45-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS 45-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 45-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS 45-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS 45-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 45-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS 90-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS 90-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS 90-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 90-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS 90-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS 90-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 90-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-2, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-2, outbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-3, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-3, outbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 1-to-4, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 1-to-4, outbound inserted first: builds directed graph
+PASS 150-degree seam 1-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 1-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-1, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-1, outbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-3, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-3, outbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 2-to-4, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 2-to-4, outbound inserted first: builds directed graph
+PASS 150-degree seam 2-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 2-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-1, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-1, outbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-2, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-2, outbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 3-to-4, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 3-to-4, outbound inserted first: builds directed graph
+PASS 150-degree seam 3-to-4, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 3-to-4, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-1, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-1, outbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-1, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-1, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-2, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-2, outbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-2, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-2, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS 150-degree seam 4-to-3, outbound inserted first: real road construction and intended topology
+PASS 150-degree seam 4-to-3, outbound inserted first: builds directed graph
+PASS 150-degree seam 4-to-3, outbound inserted first: all legal lane-index pairs stay connected with exact joins and no reverse route
+PASS 150-degree seam 4-to-3, outbound inserted first: traversed connectors stay on rendered asphalt (0 outside samples, farthest 0.00m from seam)
+PASS eastbound 2-to-3 taper, reverse insertion=false: constructs an uncontrolled one-way taper without a median
+PASS eastbound 2-to-3 taper, reverse insertion=false: the existing separator tracks the left lane and the added separator stays on the downstream right (matched 4, added 2, wrong side 0)
+PASS eastbound 2-to-3 taper, reverse insertion=true: constructs an uncontrolled one-way taper without a median
+PASS eastbound 2-to-3 taper, reverse insertion=true: the existing separator tracks the left lane and the added separator stays on the downstream right (matched 4, added 2, wrong side 0)
+PASS eastbound 2-to-3 taper: identical emitted dash polygons in both insertion orders
+PASS westbound 2-to-3 taper, reverse insertion=false: constructs an uncontrolled one-way taper without a median
+PASS westbound 2-to-3 taper, reverse insertion=false: the existing separator tracks the left lane and the added separator stays on the downstream right (matched 4, added 2, wrong side 0)
+PASS westbound 2-to-3 taper, reverse insertion=true: constructs an uncontrolled one-way taper without a median
+PASS westbound 2-to-3 taper, reverse insertion=true: the existing separator tracks the left lane and the added separator stays on the downstream right (matched 4, added 2, wrong side 0)
+PASS westbound 2-to-3 taper: identical emitted dash polygons in both insertion orders
+RESULT 794/794 one-way connector and taper checks passed

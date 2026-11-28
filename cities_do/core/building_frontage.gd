@@ -1,6 +1,9 @@
 extends RefCounted
 ## Front direction in world X/Y; original Blender front -Y exports to Godot +Z.
 ## Require lot-side frontage in the access band, not just a nearby corner.
+const Profile=preload("res://core/road_profile.gd")
+const EPS:=.0005
+
 static func candidates(polygon: PackedVector2Array, roads: Array, access_distance: float) -> Array[Dictionary]:
 	var result: Array[Dictionary]=[]
 	var center:=Vector2.ZERO
@@ -9,17 +12,34 @@ static func candidates(polygon: PackedVector2Array, roads: Array, access_distanc
 	for road in roads:
 		if preload("res://core/road_height.gd").off_ground(road):continue
 		if road.kind!="local":continue
+		var one_way:=Profile.travel_direction(road)!=0
+		var left_walk:=not one_way or Profile.sidewalk_width(road,-1)>0
+		var right_walk:=not one_way or Profile.sidewalk_width(road,1)>0
+		var check_side:=not (left_walk and right_walk)
 		for edge in range(polygon.size()):
 			var a:=polygon[edge]
 			var b:=polygon[(edge+1)%polygon.size()]
 			var gap: float=-INF
 			# Include endpoints and midpoint: a corner or short nearby road is insufficient.
-			for point in [a,(a+b)/2,b]:
+			for point: Vector2 in [a,(a+b)/2,b]:
 				var distance:=INF
+				var signed_side:=0.0
 				for i in range(road.points.size()-1):
-					distance=minf(distance,Vector2(point).distance_to(Geometry2D.get_closest_point_to_segment(point,road.points[i],road.points[i+1])))
+					var start: Vector2=road.points[i]
+					var finish: Vector2=road.points[i+1]
+					if check_side and start==finish:continue
+					var near:=Geometry2D.get_closest_point_to_segment(point,start,finish)
+					var delta:=point-near
+					var segment_distance:=delta.length()
+					if segment_distance>=distance:continue
+					distance=segment_distance
+					# Positive cross is right of this authored segment, not the road's end-to-end chord.
+					if check_side:signed_side=(finish-start).normalized().cross(delta)
+				if check_side and not ((right_walk and signed_side>EPS) or (left_walk and signed_side< -EPS)):
+					gap=INF
+					break
 				gap=maxf(gap,distance-float(road.width)/2)
-			if gap<=access_distance+.0005:
+			if gap<=access_distance+EPS:
 				result.append({"road":int(road.get("parcel_id",-1)),"gap":gap,"front":((a+b)/2-center).normalized()})
 	return result
 

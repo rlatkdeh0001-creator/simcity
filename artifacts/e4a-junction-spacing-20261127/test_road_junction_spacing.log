@@ -1,0 +1,46 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS T preview rejects 13.99m across a straight authored seam without mutation
+PASS 13.99m confirmation agrees with preview and preserves every original road
+PASS T below 14m beside a bent two-arm corner is rejected by the same spacing rule
+PASS T start/end preview at 4.00m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 4.00m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 4.00m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 4.00m reverse=true matches preview and preserves existing roads
+PASS T start/end preview at 12.00m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 12.00m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 12.00m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 12.00m reverse=true matches preview and preserves existing roads
+PASS T start/end preview at 13.99m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 13.99m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 13.99m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 13.99m reverse=true matches preview and preserves existing roads
+PASS T start/end preview at 14.00m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 14.00m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 14.00m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 14.00m reverse=true matches preview and preserves existing roads
+PASS T start/end preview at 16.00m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 16.00m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 16.00m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 16.00m reverse=true matches preview and preserves existing roads
+PASS T start/end preview at 20.00m reverse=false is pure and follows the 14m boundary
+PASS T start/end confirmation at 20.00m reverse=false matches preview and preserves existing roads
+PASS T start/end preview at 20.00m reverse=true is pure and follows the 14m boundary
+PASS T start/end confirmation at 20.00m reverse=true matches preview and preserves existing roads
+PASS through crossing across an authored seam follows spacing at 3.0
+PASS angled road-end connection follows spacing at 3.0
+PASS bent two-arm corner boundary follows spacing at 3.0
+PASS through crossing across an authored seam follows spacing at 3.4975
+PASS angled road-end connection follows spacing at 3.4975
+PASS bent two-arm corner boundary follows spacing at 3.4975
+PASS through crossing across an authored seam follows spacing at 3.5
+PASS angled road-end connection follows spacing at 3.5
+PASS bent two-arm corner boundary follows spacing at 3.5
+PASS through crossing across an authored seam follows spacing at 4.0
+PASS angled road-end connection follows spacing at 4.0
+PASS bent two-arm corner boundary follows spacing at 4.0
+PASS removing a T arm leaves the authored two-arm corner
+PASS post-demolition corner retains the same 14m guard
+PASS eleven-cell centreline gap remains allowed despite three-cell Euclidean distance
+PASS unrelated construction preserves legacy short-gap records
+RESULT 43/43 junction spacing checks passed

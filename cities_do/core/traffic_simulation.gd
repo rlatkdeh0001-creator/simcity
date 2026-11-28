@@ -81,12 +81,20 @@ func _tick(delta: float):
 			speed = distance/delta
 			safety_clamps += 1
 		moves.append({"distance":distance,"speed":speed,"target":target})
+	_commit_moves(moves)
+
+func _commit_moves(moves: Array):
 	for i in range(vehicles.size()):
-		var vehicle: Dictionary = vehicles[i]
-		vehicle.speed = moves[i].speed
-		vehicle.distance += moves[i].distance
-		_advance(vehicle, moves[i].distance)
-		vehicle.state = "arrived" if vehicle.arrived else ("stopped" if vehicle.speed < 0.05 else ("braking" if moves[i].target < vehicle.speed else "driving"))
+		_apply_move(vehicles[i], moves[i])
+
+func _apply_move(vehicle: Dictionary, move: Dictionary):
+	vehicle.speed = move.speed
+	vehicle.distance += move.distance
+	_advance(vehicle, move.distance)
+	vehicle.state = "arrived" if vehicle.arrived else ("stopped" if vehicle.speed < 0.05 else ("braking" if move.target < vehicle.speed else "driving"))
+
+func _on_junction_entry(vehicle: Dictionary, junction: int):
+	waiting.erase(str(vehicle.id) + ":" + str(junction))
 
 func _next_connector(vehicle: Dictionary) -> Dictionary:
 	var next_index: int=vehicle.route_index+1
@@ -103,20 +111,100 @@ func _receiving_clear(vehicle: Dictionary, connector: Dictionary, occupancy: Dic
 		if other.id!=vehicle.id:room=minf(room,other.progress-other.length/2)
 	return room>=vehicle.length+vehicle.min_gap*2
 
+func _short_pair_second(vehicle: Dictionary, first: Dictionary) -> Dictionary:
+	if first.is_empty():
+		return {}
+	var middle: Dictionary = network.lanes[first.to]
+	# Use the ordinary empty-receiver limit, not transient congestion or node spacing.
+	if middle.length - vehicle.min_gap >= vehicle.length + 2.0 * vehicle.min_gap:
+		return {}
+	var route: Array = vehicle.route
+	var start: int = vehicle.route_index
+	if route.size() < 4 or (not vehicle.loop and start + 4 >= route.size()):
+		return {}
+	var second: Dictionary = network.lanes[route[(start + 3) % route.size()]]
+	var exit_id: int = route[(start + 4) % route.size()]
+	if route[(start + 2) % route.size()] != middle.id or middle.get("junction", -1) >= 0 \
+		or second.get("junction", -1) < 0 or second.junction == first.junction \
+		or second.from != middle.id or second.to != exit_id \
+		or network.lanes[exit_id].get("junction", -1) >= 0:
+		return {}
+	return second
+
+func _short_pair_clear(vehicle: Dictionary, first: Dictionary, second: Dictionary, occupancy: Dictionary) -> bool:
+	if not occupancy.get(first.to, []).is_empty():
+		return false
+	# This is a two-junction policy, not a recursive grant through a short chain.
+	# Require final storage even for subclasses that allow a short terminal sink.
+	var exit: Dictionary = network.lanes[second.to]
+	var room_needed: float = vehicle.length + 2.0 * vehicle.min_gap
+	if exit.length - vehicle.min_gap < room_needed or not _receiving_clear(vehicle, second, occupancy):
+		return false
+	for lane_id in [first.id, first.to, second.id]:
+		if signals.get(lane_id, {}).get("red", false):
+			return false
+	var exit_signal: Dictionary = signals.get(second.to, {})
+	if exit_signal.get("red", false) and exit_signal.progress < room_needed:
+		return false
+	if vehicle.has("stop_distance"):
+		var to_first: float = network.lanes[vehicle.lane].length - vehicle.progress
+		var to_rear_clear: float = to_first + first.length + network.lanes[first.to].length + second.length \
+			+ vehicle.length * 0.5 + vehicle.min_gap
+		var to_stop: float = vehicle.stop_distance - vehicle.distance
+		if to_stop >= to_first - vehicle.length * 0.5 and to_stop < to_rear_clear:
+			return false
+	return true
+
+func _short_pair_step(vehicle: Dictionary, pair: Dictionary) -> int:
+	# A four-lane loop can wrap directly back onto the approach as its exit.
+	if vehicle.clearing.has(pair.second):
+		return 4
+	return posmod(int(vehicle.route_index) - int(pair.approach), vehicle.route.size())
+
+func _rear_clearing(vehicle: Dictionary, junction: int) -> bool:
+	return vehicle.clearing.has(junction) and vehicle.distance - float(vehicle.clearing[junction]) < vehicle.length / 2.0 + vehicle.min_gap
+
+func _refresh_short_pair(vehicle: Dictionary, occupancy: Dictionary):
+	if not vehicle.has("short_pair"):
+		return
+	var pair: Dictionary = vehicle.short_pair
+	var step := _short_pair_step(vehicle, pair)
+	if step >= 4 and not _rear_clearing(vehicle, pair.second):
+		# Keep the receiving-lane claim until the accepted rear clears the second.
+		vehicle.erase("short_pair")
+	elif step == 0 and vehicle.progress + vehicle.length * 0.5 < network.lanes[vehicle.lane].length:
+		var first := _next_connector(vehicle)
+		var second := _short_pair_second(vehicle, first)
+		if vehicle.arrived or _red_ahead(vehicle) or reservations.get(pair.first) != vehicle.id \
+			or reservations.get(pair.second) != vehicle.id or first.get("junction") != pair.first \
+			or second.get("junction") != pair.second or not _short_pair_clear(vehicle, first, second, occupancy):
+			# Still outside: a new blockage cancels both grants together.
+			for junction in [pair.first, pair.second]:
+				if reservations.get(junction) == vehicle.id:
+					reservations.erase(junction)
+			vehicle.erase("short_pair")
+
 func _red_ahead(vehicle: Dictionary) -> bool:
 	if not signals.has(vehicle.lane) or not signals[vehicle.lane].red:return false
 	return signals[vehicle.lane].progress>=vehicle.progress+vehicle.length/2-.0001
 
 func _reserve_junctions(occupancy: Dictionary):
 	var by_id := {}
-	for vehicle in vehicles:by_id[vehicle.id]=vehicle
+	for vehicle in vehicles:
+		by_id[vehicle.id]=vehicle
+		_refresh_short_pair(vehicle, occupancy)
 	for junction in reservations.keys():
 		var owner: Dictionary=by_id.get(reservations[junction],{})
 		if owner.is_empty():
 			reservations.erase(junction)
 			continue
+		var pair: Dictionary = owner.get("short_pair", {})
+		if not pair.is_empty() and _short_pair_step(owner, pair) < 3 \
+			and (junction == pair.second or (junction == pair.first and owner.route_index == pair.approach)):
+			# Protect the downstream connector even before it is the immediate next lane.
+			continue
 		var inside: bool=network.lanes[owner.lane].get("junction",-1)==junction
-		var clearing: bool=owner.clearing.has(junction) and owner.distance-float(owner.clearing[junction])<owner.length/2+owner.min_gap
+		var clearing := _rear_clearing(owner, junction)
 		var next := _next_connector(owner)
 		var approaching: bool=not next.is_empty() and next.junction==junction and not owner.arrived and not _red_ahead(owner)
 		if not inside and not clearing and not approaching:reservations.erase(junction)
@@ -124,6 +212,7 @@ func _reserve_junctions(occupancy: Dictionary):
 	for vehicle in vehicles:
 		for junction in vehicle.clearing.keys():
 			if vehicle.distance-float(vehicle.clearing[junction])>=vehicle.length/2+vehicle.min_gap:vehicle.clearing.erase(junction)
+		if vehicle.has("short_pair") and _short_pair_step(vehicle, vehicle.short_pair) < 3:continue
 		var connector := _next_connector(vehicle)
 		if connector.is_empty() or vehicle.arrived or _red_ahead(vehicle):continue
 		var queue: Array=occupancy.get(vehicle.lane,[])
@@ -135,9 +224,21 @@ func _reserve_junctions(occupancy: Dictionary):
 		candidates.append({"vehicle":vehicle,"connector":connector,"since":waiting[key]})
 	candidates.sort_custom(func(a,b):return a.vehicle.id<b.vehicle.id if is_equal_approx(a.since,b.since) else a.since<b.since)
 	for candidate in candidates:
-		var junction: int=candidate.connector.junction
+		var vehicle: Dictionary = candidate.vehicle
+		var first: Dictionary = candidate.connector
+		var junction: int = first.junction
 		if reservations.has(junction):continue
-		if _receiving_clear(candidate.vehicle,candidate.connector,occupancy):reservations[junction]=candidate.vehicle.id
+		if _receiving_clear(vehicle, first, occupancy):
+			reservations[junction] = vehicle.id
+			continue
+		# Do not overwrite the previous pair's live receiving-space claim.
+		if vehicle.has("short_pair"):continue
+		var second := _short_pair_second(vehicle, first)
+		if second.is_empty() or reservations.has(second.junction) or not _short_pair_clear(vehicle, first, second, occupancy):
+			continue
+		reservations[junction] = vehicle.id
+		reservations[second.junction] = vehicle.id
+		vehicle.short_pair = {"approach": vehicle.route_index, "first": junction, "second": second.junction}
 
 func _constraint(vehicle: Dictionary, occupancy: Dictionary) -> Dictionary:
 	var best := {"gap":INF,"speed":0.0}
@@ -190,7 +291,7 @@ func _advance(vehicle: Dictionary, distance: float):
 		if vehicle.route_index >= vehicle.route.size(): vehicle.route_index = 0
 		vehicle.lane = int(vehicle.route[vehicle.route_index])
 		var entered: int=network.lanes[vehicle.lane].get("junction",-1)
-		if entered>=0:waiting.erase(str(vehicle.id)+":"+str(entered))
+		if entered>=0:_on_junction_entry(vehicle,entered)
 	if not vehicle.loop and vehicle.route_index == vehicle.route.size()-1:
 		var remaining: float = network.lanes[vehicle.lane].length-vehicle.progress-vehicle.length/2-vehicle.min_gap
 		if remaining < 0.02 and vehicle.speed < 0.05:

@@ -1,18 +1,37 @@
 extends "res://tests/test_road_midpoint_connections.gd"
 func settle():
  for i in range(8):await process_frame
+func aim_profile(point:Vector2):
+ var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point;root.push_input(motion,true)
+func click(point:Vector2):
+ aim_profile(point)
+ for down in [true,false]:
+  var event:=InputEventMouseButton.new();event.position=point;event.global_position=point;event.button_index=MOUSE_BUTTON_LEFT;event.button_mask=MOUSE_BUTTON_MASK_LEFT if down else 0;event.pressed=down
+  root.push_input(event,true)
+ await process_frame
 func select_lanes(count: int):
- await road_tool()
- if count!=2:
-  for card in game.road_lane_cards:
-   if int(card.get_meta("lanes"))!=count:continue
-   var strip:ScrollContainer=game.find_child("RoadCardStrip",true,false)
-   await settle()
-   if strip!=null:strip.ensure_control_visible(card)
-   await settle()
-   await click(card.get_global_rect().get_center());break
+ for down in [true,false]:
+  var escape:=InputEventKey.new();escape.keycode=KEY_ESCAPE;escape.physical_keycode=KEY_ESCAPE;escape.pressed=down;root.push_input(escape,true)
  await settle()
- verify(game.mode=="road" and game.road_lanes==count,"actual lane card selects "+str(count)+" lanes and drawing mode before world input")
+ await click(game.categories[1].get_global_rect().get_center());await settle()
+ var strip:=game.find_child("RoadCardStrip",true,false) as ScrollContainer
+ var card:=strip.find_child("RoadLane_%d"%count,true,false) as Button if strip!=null else null
+ var aimed:=false
+ if card!=null:
+  strip.ensure_control_visible(card);await settle()
+  var point:=card.get_global_rect().get_center();aim_profile(point)
+  var hover:=root.gui_get_hovered_control()
+  aimed=strip.get_global_rect().has_point(point) and (hover==card or (hover!=null and card.is_ancestor_of(hover)))
+  if aimed:await click(point)
+ await settle()
+ verify(aimed and game.mode=="road" and game.road_lanes==count and game.road_drawer.travel_dir==0 and not game.road_drawer.center_tool,"actual ordinary lane card selects "+str(count)+" lanes and drawing mode before world input")
+func profile_preview(end:Vector2)->Dictionary:
+ aim_profile(game.screen(end))
+ # Sample the production preview in the same input turn, before unrelated OS motion.
+ var aimed:bool=root.gui_get_hovered_control()==null and game.pointer.distance_to(end)<.005
+ var result:Dictionary=game.road_drawer.preview()
+ result.fixture_aimed=aimed
+ return result
 func run():
  root.size=Vector2i(1280,820);game=load("res://main.tscn").instantiate();game.city=City.new(100,100);game.paused=true;root.add_child(game);current_scene=game;await settle()
  var cases:=[
@@ -32,13 +51,12 @@ func run():
   if game.city.simulation!=null:game.city.simulation.shutdown()
   game.city=City.new(100,100);game.road_grid_enabled=true;game.map_zoom=1;game.origin=Vector2.ZERO;game.origin=Vector2(640,260)-game.screen(Vector2(28,40))
   await select_lanes(spec[1]);await click(game.screen(Vector2(20,40)));await click(game.screen(Vector2(36,40)));await settle()
-  verify(game.city.roads.size()==1,spec[0]+" builds its host through the actual lane card")
+  verify(game.city.roads.size()==1 and game.city.roads[0].lanes==spec[1],spec[0]+" builds its exact host width through the actual lane card")
   if game.city.roads.is_empty():continue
   var before:=var_to_str(game.city.roads);var count: int=game.city.roads.size()
-  await select_lanes(spec[2]);await click(game.screen(spec[3]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[4]);root.push_input(motion,true);await process_frame
-  var result: Dictionary=game.road_drawer.preview()
+  await select_lanes(spec[2]);await click(game.screen(spec[3]));var result:Dictionary=profile_preview(spec[4])
 
-  verify(result.ok==spec[5],spec[0]+" preview follows the same-profile extension / mixed-width crossing rule")
+  verify(result.fixture_aimed and result.ok==spec[5],spec[0]+" preview follows the same-profile extension / mixed-width crossing rule for the actual pointer: "+str(result.get("reason","")))
   await click(game.screen(spec[4]));await settle()
   if spec[5]:
    verify(game.city.roads.size()==count+1,spec[0]+" final mouse click constructs the permitted road")

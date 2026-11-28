@@ -1,5 +1,5 @@
 extends "res://core/traffic_network.gd"
-## Curb branches share the ordinary lane graph; odd/8-lane stops occupy their outer running lane.
+## Curb branches share the ordinary lane graph; unshouldered stops occupy their outer running lane.
 var stops:Dictionary={}
 func build_city(city)->bool:
  stops.clear()
@@ -12,7 +12,9 @@ func build_city(city)->bool:
   if road_index<0:continue
   var road:Dictionary=city.roads[road_index];var direction:int=lot.get("road_direction",0)
   if direction not in [-1,1]:continue
-  var outer:int=Profile.direction_count(road,direction)-1
+  var count:=Profile.direction_count(road,direction)
+  if count==0:continue
+  var outer:=count-1
   var choice:Dictionary={};var best:=INF;var progress:=0.0
   for lane:Dictionary in lanes:
    if lane.get("road",-1)!=road_index or lane.get("direction",0)!=direction or lane.get("index",-1)!=outer or lane.get("bus_pocket",false):continue
@@ -23,7 +25,7 @@ func build_city(city)->bool:
   if choice.is_empty():continue
   if progress<20 or progress>float(choice.length)-20:continue # No berth/merge inside a junction.
   var stop:Dictionary={"id":lot.id,"lane":choice.id,"progress":progress}
-  if road.lanes in [2,4,6]:
+  if Profile.shoulder_width(road,direction)>0:
    stop=add_pocket(choice,progress,lot.position*4+lot.front_direction*1.25,lot.id)
   stops[lot.id]=stop
  search.clear();search.lengths.clear()

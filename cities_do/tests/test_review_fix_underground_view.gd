@@ -145,6 +145,12 @@ func capture_arg(name:String)->String:
 func framebuffer()->Image:
  await RenderingServer.frame_post_draw
  return root.get_texture().get_image()
+func unhovered_outline_frame()->Image:
+ # PgUp deliberately re-picks the real mouse position. Keep hover paint out of
+ # this comparison of the selection contour, without modifying renderer state.
+ var motion:=InputEventMouseMotion.new();motion.position=Vector2(1830,140);motion.global_position=motion.position
+ root.push_input(motion,true);game.queue_redraw()
+ return await framebuffer()
 func move_pointer(position:Vector2):
  var event:=InputEventMouseMotion.new();event.position=position;root.push_input(event,true)
  await settle()
@@ -176,7 +182,8 @@ func selected_outline(c):
  await viewport_click(game.bulldozer.get_global_rect().get_center())
  await move_pointer(Vector2(1830,140))
  check(game.mode=="demolish" and game.selected==901,"bulldozer preserves the selected building above ground")
- var selected_ground:Image=await framebuffer()
+ var selected_ground:Image=await unhovered_outline_frame()
+ var baseline_unhovered:bool=game.demolition_hover.is_empty()
  var outline_pixels:=white_added(baseline,selected_ground,area)
  check(outline_pixels>20,"selected building shows a white contour above ground (%d pixels)"%outline_pixels)
  await key(KEY_PAGEDOWN)
@@ -188,8 +195,8 @@ func selected_outline(c):
  check(selected_below.get_region(area).get_data()==unselected_below.get_region(area).get_data(),"the selected building leaves no contour pixels underground")
  game.selected=901;game.queue_redraw();await settle()
  await key(KEY_PAGEUP)
- var restored_ground:Image=await framebuffer()
- check(game.selected==901 and restored_ground.get_region(area).get_data()==selected_ground.get_region(area).get_data(),"PgUp restores the identical selected-building contour")
+ var restored_ground:Image=await unhovered_outline_frame()
+ check(baseline_unhovered and game.demolition_hover.is_empty() and not game.transit_view.underground and game.selected==901 and restored_ground.get_region(area).get_data()==selected_ground.get_region(area).get_data(),"PgUp restores the identical selected-building contour with the pointer clear in both frames")
  await save_capture(capture_arg("outline-ground-capture"),"selected building: restored ground view",restored_ground)
  game.map_zoom=old_zoom;game.origin=old_origin
  game.selected=-1;game.refresh();await settle()

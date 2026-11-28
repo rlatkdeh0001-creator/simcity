@@ -9,6 +9,18 @@ func verify(ok: bool,label: String):
 func click(point: Vector2):
  for down in [true,false]:
   var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down;e.position=point;root.push_input(e,true);await process_frame
+func click_lane_card(card:Button,strip:ScrollContainer)->bool:
+ strip.ensure_control_visible(card)
+ await process_frame;await process_frame
+ var point:=card.get_global_rect().get_center()
+ var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point;root.push_input(motion,true)
+ var hover:=root.gui_get_hovered_control()
+ if not strip.get_global_rect().has_point(point) or not (hover==card or (hover!=null and card.is_ancestor_of(hover))):return false
+ for down in [true,false]:
+  var e:=InputEventMouseButton.new();e.position=point;e.global_position=point;e.button_index=MOUSE_BUTTON_LEFT;e.pressed=down;e.button_mask=MOUSE_BUTTON_MASK_LEFT if down else 0
+  root.push_input(e,true)
+ await process_frame
+ return true
 func run():
  root.size=Vector2i(1920,1080)
  var game=load("res://main.tscn").instantiate();game.paused=true;root.add_child(game);await process_frame;await process_frame
@@ -27,21 +39,23 @@ func run():
  game.select_category("road");await process_frame;await process_frame
  game.road_drawer.set_kind("curve")
  await click(game.road_grid_button.get_global_rect().get_center());verify(not game.road_grid_enabled,"fixture uses the player's real grid OFF click")
- for card in game.road_lane_cards:
+ var strip:=game.find_child("RoadCardStrip",true,false) as ScrollContainer
+ for card:Button in game.road_lane_cards:
   game.activate_tool("select")
-  await click(card.get_global_rect().get_center())
-  verify(game.mode=="road" and game.road_lanes==int(card.get_meta("lanes")) and game.road_drawer.cursor_armed,"real card click starts its exact road width from selection mode")
+  var clicked:=await click_lane_card(card,strip)
+  verify(clicked and game.mode=="road" and game.road_lanes==int(card.get_meta("lanes")) and game.road_drawer.travel_dir==int(card.get_meta("travel_dir")) and game.road_drawer.center_tool==bool(card.get_meta("center_tool")) and game.road_drawer.cursor_armed,"real card click starts its exact tool from selection mode: "+str(card.name))
   verify(game.road_drawer.kind=="curve" and not game.road_grid_enabled,"card activation retains selected drawing method and grid setting")
  game.road_drawer.click(Vector2(20,20));verify(game.road_drawer.anchors.size()==1,"pending curve exists before width-card restart")
- await click(game.road_lane_cards[1].get_global_rect().get_center())
- verify(game.road_drawer.anchors.is_empty() and game.road_drawer.cursor_armed and game.road_lanes==3,"width card starts a fresh stroke instead of changing an unfinished stroke's width")
+ var restarted:=await click_lane_card(game.road_lane_cards[1],strip)
+ verify(restarted and game.road_drawer.anchors.is_empty() and game.road_drawer.cursor_armed and game.road_lanes==3,"width card starts a fresh stroke instead of changing an unfinished stroke's width")
  game.road_drawer.click(Vector2(20,20))
  for down in [true,false]:
   var e:=InputEventKey.new();e.keycode=KEY_ESCAPE;e.pressed=down;root.push_input(e,true);await process_frame
  verify(game.mode=="select" and game.road_drawer.anchors.is_empty() and not game.road_drawer.cursor_armed,"real Escape exits drawing mode and clears its preview")
  game.select_category("road");await process_frame;await process_frame
- await click(game.road_lane_cards[1].get_global_rect().get_center())
- verify(game.mode=="road" and game.road_drawer.cursor_armed and game.road_drawer.kind=="curve" and not game.road_grid_enabled,"clicking the already selected lane card re-arms drawing after Escape")
+ strip=game.find_child("RoadCardStrip",true,false) as ScrollContainer
+ var rearmed:=await click_lane_card(game.road_lane_cards[1],strip)
+ verify(rearmed and game.mode=="road" and game.road_drawer.cursor_armed and game.road_drawer.kind=="curve" and not game.road_grid_enabled,"clicking the already selected lane card re-arms drawing after Escape")
  game.road_drawer.click(Vector2(20,20));game.map_zoom=.75;game.origin=Vector2(850,20)
  for down in [true,false]:
   var e:=InputEventMouseButton.new();e.button_index=MOUSE_BUTTON_RIGHT;e.pressed=down;e.position=game.screen(Vector2(50,50));root.push_input(e,true);await process_frame

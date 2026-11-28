@@ -3,6 +3,7 @@ extends RefCounted
 const EPS := .0001
 const Height=preload("res://core/road_height.gd")
 const Profile=preload("res://core/road_profile.gd")
+const CenterPortals=preload("res://core/center_flyover_portals.gd")
 const CROSSWALK_HALF_LENGTH := .22
 const CROSSWALK_EDGE_GAP := .03
 const STOP_LINE_HALF_LENGTH := .04
@@ -109,7 +110,7 @@ static func analyze(roads: Array) -> Dictionary:
    if points.size()<2:continue
    var start:Variant = merged_key(points[0],nodes,Height.height_at(roads[road_id],points[0]))
    var end:Variant = merged_key(points[-1],nodes,Height.height_at(roads[road_id],points[-1]))
-   var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end}
+   var section := {"id":sections.size(),"road":road_id,"points":points,"start_node":start,"end_node":end,"first":unique[i-1],"last":unique[i]}
    sections.append(section)
    for pair in [[start,points[0],(points[1]-points[0]).normalized(),false],[end,points[-1],(points[-2]-points[-1]).normalized(),true]]:
     if not nodes.has(pair[0]):nodes[pair[0]]={"key":pair[0],"position":pair[1],"height_m":Height.height_at(roads[road_id],pair[1]),"arms":[],"road_ids":[],"junction":-1}
@@ -123,16 +124,26 @@ static func analyze(roads: Array) -> Dictionary:
      if arm.direction.dot(pair[2])>0 and absf(arm.direction.cross(pair[2]))<.000001:
       duplicate=true
       if available>arm.length:arm.length=available;arm.points=outgoing
-    if not duplicate:node.arms.append({"direction":pair[2],"width":float(roads[road_id].width),"kind":str(roads[road_id].get("kind","local")),"lanes":int(roads[road_id].lanes),"major_side":int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1),"length":available,"points":outgoing})
+    if not duplicate:
+     var arm:={"direction":pair[2],"width":float(roads[road_id].width),"kind":str(roads[road_id].get("kind","local")),"lanes":int(roads[road_id].lanes),"length":available,"points":outgoing}
+     var travel:=Profile.travel_direction(roads[road_id])
+     if travel!=0:arm.travel_dir=-travel if pair[3] else travel
+     else:arm.major_side=int(roads[road_id].get("major_side",1))*(-1 if pair[3] else 1)
+     if roads[road_id].has("road_variant"):arm["road_variant"]=roads[road_id]["road_variant"]
+     node.arms.append(arm)
+ var split_data:=_center_splits(roads,nodes,sections)
  var junctions := []
  var joins := []
  for node in nodes.values():
   node.join=-1
   if node.arms.size()<2:continue
   var transition: bool=node.arms.size()==2
+  if transition and node.get("center_split",false):continue
   # A single closed stroke already has continuous offset lanes at its seam.
   if transition and node.road_ids.size()==1:continue
-  if transition and node.arms[0].direction.dot(node.arms[1].direction)<-.99999 and node.arms[0].lanes==node.arms[1].lanes and is_equal_approx(node.arms[0].width,node.arms[1].width):continue
+  # Arm point orders face away from the join; opposite signs agree along the route.
+  var flow_change:=transition and Profile.travel_direction(node.arms[0])!=-Profile.travel_direction(node.arms[1])
+  if transition and not flow_change and node.arms[0].direction.dot(node.arms[1].direction)<-.99999 and node.arms[0].lanes==node.arms[1].lanes and is_equal_approx(node.arms[0].width,node.arms[1].width):continue
   if transition:node.join=joins.size()
   else:node.junction=junctions.size()
   var radius := 0.0
@@ -140,7 +151,7 @@ static func analyze(roads: Array) -> Dictionary:
   var junction := {"id":node.junction,"key":node.key,"position":node.position,"arms":node.arms,"radius":radius}
   junction.height_m=node.height_m
   junction.transition=transition
-  if (not transition or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
+  if (not transition or flow_change or not is_equal_approx(node.arms[0].width,node.arms[1].width)) and not preload("res://core/road_transitions.gd").setup(junction):
    var widest: Dictionary=node.arms[0]
    for arm in node.arms:
     if arm.width>widest.width:widest=arm
@@ -152,7 +163,45 @@ static func analyze(roads: Array) -> Dictionary:
   junction.asphalt=patch(junction,true)
   if transition:joins.append(junction)
   else:junctions.append(junction)
- return {"nodes":nodes,"sections":sections,"junctions":junctions,"joins":joins,"errors":errors}
+ return {"nodes":nodes,"sections":sections,"junctions":junctions,"joins":joins,"errors":errors,"splits":split_data.values()}
+
+static func _center_splits(roads:Array,nodes:Dictionary,sections:Array)->Dictionary:
+ var splits:Dictionary={}
+ var endpoints:Dictionary={}
+ var members:Dictionary={}
+ for index in range(roads.size()):
+  var portals:=CenterPortals.active(roads[index])
+  if not portals.is_empty():members[index]=portals
+ if members.is_empty():return splits
+ for section in sections:
+  if not endpoints.has(section.road):endpoints[section.road]=[section,section]
+  else:endpoints[section.road][1]=section
+ for index:int in members:
+  if not endpoints.has(index):continue
+  var road:Dictionary=roads[index]
+  for portal in members[index]:
+   var member:Dictionary=endpoints[index][portal.end]
+   var member_node:String=member.start_node if portal.end==0 else member.end_node
+   nodes[member_node].center_anchor=true
+   var split_key:="%d/%s"%[road.center_family,merged_key(portal.anchor,nodes)]
+   if not splits.has(split_key):splits[split_key]={"key":split_key,"position":portal.anchor,"links":[]}
+   var matches:Array[Vector2i]=[]
+   var trunk_key:=merged_key(portal.anchor,nodes)
+   if nodes.has(trunk_key):
+    for other_id:int in nodes[trunk_key].road_ids:
+     if not endpoints.has(other_id):continue
+     var end:=CenterPortals.trunk_end(roads[other_id],portal)
+     if end>=0:matches.append(Vector2i(other_id,end))
+   if matches.size()!=1:continue
+   var match_end:Vector2i=matches[0]
+   var trunk:Dictionary=endpoints[match_end.x][match_end.y]
+   nodes[trunk_key].center_anchor=true
+   if member_node==trunk_key:nodes[trunk_key].center_split=true
+   if nodes[member_node].arms.size()>(2 if member_node==trunk_key else 1) or nodes[trunk_key].arms.size()>2:continue
+   for link in portal.links:
+    var arrives:bool=link.direction==(1 if portal.end==1 else -1)
+    splits[split_key].links.append({"member_section":member.id,"member_direction":link.direction,"member_index":link.index,"trunk_section":trunk.id,"trunk_direction":(1 if match_end.y==0 else -1)*(1 if arrives else -1),"trunk_index":link.trunk_index,"from_member":arrives})
+ return splits
 
 static func connection(node: Dictionary, topology: Dictionary) -> Dictionary:
  if node.junction>=0:return topology.junctions[node.junction]
@@ -185,48 +234,65 @@ static func boundary_distance(junction: Dictionary,points: PackedVector2Array) -
 static func crosswalk_distance(junction: Dictionary, arm: Dictionary) -> float:
  # Paint follows the actual crossed road, independently of the render exclusion box.
  var direction: Vector2=arm.direction
- var half: float=Profile.asphalt_width(arm)/2
+ var edges:=Profile.asphalt_edges(arm)
  var edge := 0.0
  for other in junction.arms:
   var crossing: float=absf(direction.cross(other.direction))
   if crossing<.001:continue
   # Project the whole zebra width beyond the intersecting strip at oblique angles.
-  var skew: float=absf(direction.dot(other.direction))
-  edge=maxf(edge,(other.width/2+half*skew)/crossing)
+  var skew: float=signf(direction.cross(other.direction))*direction.dot(other.direction)
+  edge=maxf(edge,(other.width/2+maxf(edges.x*skew,edges.y*skew))/crossing)
  return edge+CROSSWALK_HALF_LENGTH+CROSSWALK_EDGE_GAP
+
+static func arm_asphalt(arm: Dictionary) -> Array[PackedVector2Array]:
+ var edges:=Profile.asphalt_edges(arm)
+ return Geometry2D.offset_polyline(Profile.offset_path(arm.points,(edges.x+edges.y)/2),(edges.y-edges.x)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT)
 
 static func marker_slot_clear(junction: Dictionary,arm: Dictionary,polygon: PackedVector2Array) -> bool:
  # A supported stripe can still be on the wrong arm at a shallow-angle approach.
  # Omit the ambiguous boundary slot rather than leaving clipped fragments mid-road.
  for other in junction.arms:
   if other==arm:continue
-  for strip in Geometry2D.offset_polyline(other.points,Profile.asphalt_width(other)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT):
+  for strip in arm_asphalt(other):
    if not Geometry2D.intersect_polygons(polygon,strip).is_empty():return false
  return true
 
-static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+static func crosswalk_shapes(arm: Dictionary,distance: float) -> Array[PackedVector2Array]:
+ var result: Array[PackedVector2Array]=[]
+ if not arm.has("points") or distance+CROSSWALK_HALF_LENGTH>arm.length+EPS:return result
+ var centre:=sample(arm.points,distance)
+ var direction:=paint_tangent(arm,distance)
+ var normal:=Vector2(-direction.y,direction.x)
+ var edges:=Profile.asphalt_edges(arm);var offset:=edges.x+.12
+ while offset<edges.y-.12:
+  var p:=centre+normal*offset
+  result.append(PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14]))
+  offset+=.28
+ return result
+
+static func paint_tangent(arm: Dictionary,distance:float) -> Vector2:
+ return (sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
+
+static func crosswalk_band(shapes: Array[PackedVector2Array]) -> PackedVector2Array:
+ return PackedVector2Array([shapes[0][0],shapes[-1][3],shapes[-1][2],shapes[0][1]]) if not shapes.is_empty() else PackedVector2Array()
+
+static func crosswalk_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array],omitted: Array=[]) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false):return result
  for arm in junction.arms:
-  var distance:=crosswalk_distance(junction,arm)
-  if not arm.has("points") or distance+CROSSWALK_HALF_LENGTH>arm.length+EPS:continue
-  var centre:=sample(arm.points,distance)
-  var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
-  var normal:=Vector2(-direction.y,direction.x)
-  var half:=Profile.asphalt_width(arm)/2;var offset:=-half+.12
-  var last:=offset
-  while last+.28<half-.12:last+=.28
-  var a:=centre+normal*offset;var b:=centre+normal*(last+.14)
-  var band:=PackedVector2Array([a-direction*CROSSWALK_HALF_LENGTH,b-direction*CROSSWALK_HALF_LENGTH,b+direction*CROSSWALK_HALF_LENGTH,a+direction*CROSSWALK_HALF_LENGTH])
-  if not marker_slot_clear(junction,arm,band):continue
-  while offset<half-.12:
-   var p:=centre+normal*offset
-   var corners:=PackedVector2Array([p-direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH,p+direction*CROSSWALK_HALF_LENGTH+normal*.14,p-direction*CROSSWALK_HALF_LENGTH+normal*.14])
-   for surface in surfaces:
-    for clipped in Geometry2D.intersect_polygons(corners,surface):
-     if clipped.size()>=3:result.append(clipped)
-   offset+=.28
+  if arm in omitted:continue
+  var shapes:=crosswalk_shapes(arm,crosswalk_distance(junction,arm))
+  if shapes.is_empty() or not marker_slot_clear(junction,arm,crosswalk_band(shapes)):continue
+  for shape in shapes:result.append_array(clip_paint(shape,surfaces))
  return result
+
+static func clip_paint(shape:PackedVector2Array,surfaces:Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+ var result:Array[PackedVector2Array]=[]
+ for surface in surfaces:
+  for clipped in Geometry2D.intersect_polygons(shape,surface):
+   if clipped.size()>=3:result.append(clipped)
+ return result
+
 static func stop_line_distance(junction: Dictionary,arm: Dictionary) -> float:
  return crosswalk_distance(junction,arm)+CROSSWALK_HALF_LENGTH+.18
 
@@ -241,22 +307,23 @@ static func lane_mark_regions(junction: Dictionary) -> Array[PackedVector2Array]
   if points.size()>=2:result.append_array(Geometry2D.offset_polyline(points,arm.width/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT))
  return result
 
-static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+static func stop_line_shape(arm: Dictionary,distance:float) -> PackedVector2Array:
+ if Profile.direction_count(arm,-1)==0 or distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:return PackedVector2Array()
+ var centre:=sample(arm.points,distance)
+ var direction:=paint_tangent(arm,distance)
+ var normal:=Vector2(-direction.y,direction.x)
+ var edges:=Profile.asphalt_edges(arm)
+ var a:=centre+normal*(edges.x+.08)
+ var b:=centre+normal*(edges.y-.08 if not Profile.has_median(arm) else Profile.median_offset(arm)-.04)
+ return PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
+
+static func stop_line_polygons(junction: Dictionary,surfaces: Array[PackedVector2Array],omitted:Array=[]) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  if junction.get("transition",false) or not junction.has("box"):return result
  for arm in junction.arms:
-  var distance:=stop_line_distance(junction,arm)
-  if distance+STOP_LINE_HALF_LENGTH>arm.length+EPS:continue
-  var centre:=sample(arm.points,distance)
-  var direction: Vector2=(sample(arm.points,minf(arm.length,distance+.01))-sample(arm.points,maxf(0,distance-.01))).normalized()
-  var normal:=Vector2(-direction.y,direction.x)
-  var a:=centre-normal*(Profile.asphalt_width(arm)/2-.08)
-  var b:=centre+normal*(Profile.median_offset(arm)-.04)
-  var corners:=PackedVector2Array([a-direction*STOP_LINE_HALF_LENGTH,b-direction*STOP_LINE_HALF_LENGTH,b+direction*STOP_LINE_HALF_LENGTH,a+direction*STOP_LINE_HALF_LENGTH])
-  if not marker_slot_clear(junction,arm,corners):continue
-  for surface in surfaces:
-   for clipped in Geometry2D.intersect_polygons(corners,surface):
-    if clipped.size()>=3:result.append(clipped)
+  if arm in omitted:continue
+  var shape:=stop_line_shape(arm,stop_line_distance(junction,arm))
+  if not shape.is_empty() and marker_slot_clear(junction,arm,shape):result.append_array(clip_paint(shape,surfaces))
  return result
 
 static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2Array:
@@ -267,7 +334,7 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
   if not asphalt:return junction.box
   var result:=rounded_box(junction,junction.box_width/2-junction.box_border,.10)
   for arm in junction.arms:
-   for strip in Geometry2D.offset_polyline(arm.points,Profile.asphalt_width(arm)/2,Geometry2D.JOIN_ROUND,Geometry2D.END_BUTT):
+   for strip in arm_asphalt(arm):
     for gate in Geometry2D.intersect_polygons(strip,junction.box):
      var merged:=Geometry2D.merge_polygons(result,gate)
      if not merged.is_empty():result=merged[0]
@@ -290,12 +357,12 @@ static func patch(junction: Dictionary, asphalt: bool = false) -> PackedVector2A
  for arm in junction.arms:
   var direction: Vector2=arm.direction
   var normal := Vector2(-direction.y,direction.x)
-  var factor: float=Profile.asphalt_width(arm)/arm.width if asphalt else 1.0
+  var half:=float(arm.width)/2
+  var edges:=Profile.asphalt_edges(arm) if asphalt else Vector2(-half,half)
   var distance: float=minf(junction.radius+(.02 if asphalt else 0),arm.get("length",INF))
-  var side: Vector2=normal*arm.width/2*factor
   var start: Vector2=junction.position-direction*EPS*2
   var finish: Vector2=junction.position+direction*distance
-  var strip := PackedVector2Array([start-side,finish-side,finish+side,start+side])
+  var strip := PackedVector2Array([start+normal*edges.x,finish+normal*edges.x,finish+normal*edges.y,start+normal*edges.y])
   if result.is_empty():result=strip
   else:
    var merged := Geometry2D.merge_polygons(result,strip)

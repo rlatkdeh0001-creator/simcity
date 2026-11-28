@@ -166,6 +166,7 @@ func run_step(delta:Dictionary,seconds:float,tick:int)->Dictionary:
  if delta.has("growth_config"):_restore_object(city.config,delta.growth_config)
  if delta.has("population_config"):city.population.config=delta.population_config.duplicate(true)
  var world:Dictionary=delta.get("world",{})
+ transit_operations.prepare_bus_provenance(city,world)
  if world.has("transit_lines"):
   city.transit_lines.assign(world.transit_lines.duplicate(true))
   for line:Dictionary in city.transit_lines:city.next_transit_line_id=maxi(city.next_transit_line_id,int(line.id)+1)

@@ -1,0 +1,77 @@
+Godot Engine v4.6.3.stable.mono.official.7d41c59c4 - https://godotengine.org
+
+PASS construct directed profile 1
+PASS rendered signed asphalt edges 1
+PASS rendered full footprint 1
+PASS white shoulder/lane paint, no median 1
+PASS construct directed profile 2
+PASS rendered signed asphalt edges 2
+PASS rendered full footprint 2
+PASS white shoulder/lane paint, no median 2
+PASS construct directed profile 3
+PASS rendered signed asphalt edges 3
+PASS rendered full footprint 3
+PASS white shoulder/lane paint, no median 3
+PASS construct directed profile 4
+PASS rendered signed asphalt edges 4
+PASS rendered full footprint 4
+PASS white shoulder/lane paint, no median 4
+PASS reversing one-lane stroke mirrors sidewalk edge
+PASS construct one-lane curve with uncurbed outside edge
+PASS curved no-sidewalk asphalt shares the outer pavement edge without spilling (0.000000 cells² outside)
+PASS construct directed taper arm
+PASS construct directed taper arm
+PASS directed taper has no median or zebra
+PASS signed asphalt meets the narrow taper mouth
+PASS one 64m phase crosses the taper without extra seam-end arrows
+PASS construct same-width mixed-flow seam
+PASS construct same-width mixed-flow seam
+PASS mixed-flow median stops at the authored seam
+PASS construct directed taper arm
+PASS construct directed taper arm
+PASS directed taper has no median or zebra
+PASS signed asphalt meets the narrow taper mouth
+PASS one 64m phase crosses the taper without extra seam-end arrows
+PASS construct same-width mixed-flow seam
+PASS construct same-width mixed-flow seam
+PASS mixed-flow median stops at the authored seam
+PASS construct long directed arrow fixture
+PASS preview and fixed arrow polygons are identical on an isolated stroke
+PASS all arrow vertices lie on the asymmetric asphalt
+PASS two approaches plus 64m chainage, with the 80-cell endpoint deduplicated
+PASS arrow contours are drawable polygons
+PASS reversing the visual points and travel sign preserves exact glyph placement and heading
+PASS construct split directed arrow fixture
+PASS construct split directed arrow fixture
+PASS split seam and build order do not restart arrow placement
+PASS construct split directed arrow fixture
+PASS construct split directed arrow fixture
+PASS split seam and build order do not restart arrow placement
+PASS construct bent directed arrow fixture
+PASS construct bent directed arrow fixture
+PASS bent one-lane seam uses one arrow chain inside the actual asphalt
+PASS construct bent directed arrow fixture
+PASS construct bent directed arrow fixture
+PASS bent one-lane seam uses one arrow chain inside the actual asphalt
+PASS bent seam has order-independent chainage and direction
+PASS construct controlled one-way crossing
+PASS no flow arrows over controlled junction approaches, zebra or stop paint
+PASS controlled crossing gets a glyph on each unobstructed approach
+PASS perf: real 1x directed lane network, decks and tunnels
+PASS perf: 1x fixture spawns exactly 4,800 real vehicles and a lane connector
+PASS perf: fixed draw layer projects the shared cached polygons exactly
+PASS perf: 1x all 4,800 sprites, one actual owner lookup apiece including connector (4800 visible, 4800 lookups)
+PASS perf: 1x steady sync performs zero fixed/structure rebuilds
+PASS perf: 1x 60 moving vehicle-only frames reuse fixed draw commands with zero fixed/structure rebuilds
+PASS perf: 1x positive road-dirty edit succeeds
+PASS perf: 1x road edit triggers one real fixed and structure rebuild
+PASS perf: real 2x directed lane network, decks and tunnels
+PASS perf: 2x fixture spawns exactly 4,800 real vehicles and a lane connector
+PASS perf: fixed draw layer projects the shared cached polygons exactly
+PASS perf: 2x all 4,800 sprites, one actual owner lookup apiece including connector (4800 visible, 4800 lookups)
+PASS perf: 2x steady sync performs zero fixed/structure rebuilds
+PASS perf: 2x 60 moving vehicle-only frames reuse fixed draw commands with zero fixed/structure rebuilds
+PASS perf: 2x positive road-dirty edit succeeds
+PASS perf: 2x road edit triggers one real fixed and structure rebuild
+PASS perf: doubled roads and retained deck pieces leave owner lookup work unchanged: [[4800, 15, 48], [4800, 30, 96]]
+RESULT 74/74 one-way retained render checks passed

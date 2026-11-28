@@ -6,11 +6,15 @@ func check(ok:bool,label:String):
  checks+=1
  if not ok:failures+=1;printerr("FAIL "+label)
 func _initialize():run.call_deferred()
-func click(p:Vector2):
- var motion:=InputEventMouseMotion.new();motion.position=p;root.push_input(motion,true);await process_frame
+func click(p:Vector2,target:Control=null)->bool:
+ var motion:=InputEventMouseMotion.new();motion.position=p;motion.global_position=p;root.push_input(motion,true)
+ var hover:=root.gui_get_hovered_control()
+ if target!=null and not (hover==target or (hover!=null and target.is_ancestor_of(hover))):return false
  for down in [true,false]:
-  var event:=InputEventMouseButton.new();event.position=p;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=down
-  root.push_input(event,true);await process_frame
+  var event:=InputEventMouseButton.new();event.position=p;event.global_position=p;event.button_index=MOUSE_BUTTON_LEFT;event.button_mask=MOUSE_BUTTON_MASK_LEFT if down else 0;event.pressed=down
+  root.push_input(event,true)
+ await process_frame
+ return true
 func expose(game,item):
  for i in range(3):await process_frame
  var strip=game.drawer_scroll
@@ -33,8 +37,8 @@ func run():
  check(card!=null,"station in existing transport chooser")
  if card!=null:
   await expose(game,card)
-  await click(card.get_global_rect().get_center())
-  check(game.mode=="public_placement","real card press selects station")
+  var selected:=await click(card.get_global_rect().get_center(),card)
+  check(selected and game.mode=="public_placement" and game.public_controller.asset_id=="train-station-01","real card press selects station")
   await click(game.screen(Vector2(30,33)))
   check(game.city.public_facilities.lots.size()==1,"viewport press places station")
   for i in range(100):
@@ -80,9 +84,9 @@ func run():
     var wheel:=InputEventMouseButton.new();wheel.button_index=MOUSE_BUTTON_WHEEL_RIGHT;wheel.pressed=true;wheel.position=strip.get_global_rect().get_center();root.push_input(wheel,true);wheel=wheel.duplicate();wheel.pressed=false;root.push_input(wheel,true);await process_frame
    check(strip.get_global_rect().has_point(item.get_global_rect().get_center()),"native wheel exposes large park at 1280px")
 
-  await click(item.get_global_rect().get_center())
+  var selected:=await click(item.get_global_rect().get_center(),item)
 
-  check(game.mode=="public_placement" and game.public_controller.asset_id==id,"native card selects "+id)
+  check(selected and game.mode=="public_placement" and game.public_controller.asset_id==id,"native card selects "+id)
   var depth:float=game.city.public_facilities.entries[id].depth
   var point:=Vector2(50,37.5-depth/2)
   if id=="bus-stop-01":point=Vector2(50,37.8125)

@@ -4,8 +4,11 @@ const Paths=preload("res://core/road_junctions.gd")
 const Units=preload("res://core/road_length_units.gd")
 const Geometry=preload("res://core/road_geometry.gd")
 const Parcels=preload("res://core/road_parcels.gd")
+const Profile=preload("res://core/road_profile.gd")
+const Height=preload("res://core/road_height.gd")
+const CenterPortals=preload("res://core/center_flyover_portals.gd")
 const EPS:=.00001
-const MIN_JUNCTION_DISTANCE:=4.0
+const MIN_JUNCTION_DISTANCE:=3.5 # 14m of centreline chainage.
 static func segments(points: PackedVector2Array) -> Array[Dictionary]:
  var result: Array[Dictionary]=[];var travelled:=0.0
  for i in range(1,points.size()):
@@ -16,15 +19,16 @@ static func segments(points: PackedVector2Array) -> Array[Dictionary]:
 static func same_line(a: Dictionary,b: Dictionary) -> bool:
  return absf(a.direction.cross(b.direction))<.000001 and absf((b.a-Vector2(a.a)).cross(a.direction))<EPS and absf((b.b-Vector2(a.a)).cross(a.direction))<EPS
 static func same_profile(a: Dictionary,b: Dictionary) -> bool:
- return a.kind==b.kind and a.lanes==b.lanes and is_equal_approx(a.width,b.width) and int(a.get("major_side",1))==int(b.get("major_side",1))
-static func collinear_contact(a: Dictionary,b: Dictionary) -> bool:
+ var travel:=Profile.travel_direction(a)
+ return a.kind==b.kind and a.lanes==b.lanes and a.get("road_variant")==b.get("road_variant") and is_equal_approx(a.width,b.width) and travel==Profile.travel_direction(b) and (travel!=0 or int(a.get("major_side",1))==int(b.get("major_side",1)))
+static func collinear_contact(a: Dictionary,b: Dictionary,ground:bool=false) -> bool:
  for first in segments(a.points):
   for second in segments(b.points):
    if absf(first.direction.cross(second.direction))>=.000001:continue
    for point in [first.a,first.b]:
-    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,second.a,second.b))<=Paths.EPS:return true
+    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,second.a,second.b))<=Paths.EPS and (not ground or absf(Height.height_at(b,point))<=Height.EPS):return true
    for point in [second.a,second.b]:
-    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,first.a,first.b))<=Paths.EPS:return true
+    if point.distance_to(Geometry2D.get_closest_point_to_segment(point,first.a,first.b))<=Paths.EPS and (not ground or absf(Height.height_at(b,point))<=Height.EPS):return true
  return false
 static func coverage(roads: Array,road: Dictionary) -> Dictionary:
  var intervals: Array[Vector2]=[]
@@ -64,7 +68,10 @@ static func fit_overlay(points: PackedVector2Array,roads: Array,profile: Diction
   if piece[0].distance_to(points[0])<EPS:result[0]=fitted.points[0]
   if piece[-1].distance_to(points[-1])<EPS:result[-1]=fitted.points[-1]
  return {"ok":true,"points":result,"reason":""}
-static func outlines(road: Dictionary) -> Array[PackedVector2Array]:return Geometry.ribbons(road.points,road.width,true,true)
+static func outlines(road: Dictionary) -> Array[PackedVector2Array]:
+ var half:=float(road.width)/2
+ var center:=Geometry.center_ribbons(road,Vector2(-half,half))
+ return Geometry.ribbons(road.points,road.width,true,true) if center.is_empty() else center
 static func intersections(a: Dictionary,b: Dictionary) -> Array[PackedVector2Array]:
  var result: Array[PackedVector2Array]=[]
  for first in outlines(a):
@@ -112,16 +119,17 @@ static func centre_contact_in_patch(road: Dictionary,junction: Dictionary) -> bo
      if point.distance_to(Geometry2D.get_closest_point_to_segment(point,junction.footprint[i],junction.footprint[(i+1)%junction.footprint.size()]))<=Paths.EPS:return true
  return false
 
-static func joins_crossing(candidate:Dictionary,old:Dictionary,roads:Array)->bool:
+static func joins_crossing(candidate:Dictionary,old:Dictionary,roads:Array,ground:bool)->bool:
  var found:=false
  for first in segments(candidate.points):
   for second in segments(old.points):
    if absf(first.direction.cross(second.direction))>=.000001:continue
    var point=Paths.intersection(first.a,first.b,second.a,second.b)
-   if point==null:continue
+   if point==null or (ground and absf(Height.height_at(old,point))>Height.EPS):continue
    found=true
    var crossing:=false
    for other in roads:
+    if ground and absf(Height.height_at(other,point))>Height.EPS:continue
     for hit in contact_hits(candidate,other):
      if Paths.sample(candidate.points,hit.a).distance_to(point)<=Paths.EPS:crossing=true
    if not crossing:return false
@@ -169,30 +177,30 @@ static func overlap_allowed(a: Dictionary,b: Dictionary) -> bool:
    remaining=next
   if remaining.is_empty():return true
  return false
-static func continuation_overlap_allowed(candidate:Dictionary,other:Dictionary,roads:Array,topology:Dictionary)->bool:
+static func continuation_overlap_allowed(candidate:Dictionary,other_id:int,surface:Dictionary,roads:Array,surfaces:Array,topology:Dictionary,ground:bool)->bool:
  # An uncovered tail may start inside an EXISTING junction's footprint. Validate its
  # unchanged entry arm plus the tail, without storing that combined road or bypassing spacing.
- var other_id:=roads.find(other)
- if other_id<0:return false
+ if other_id>=roads.size():return false
  var parts:=segments(candidate.points)
  if parts.is_empty():return false
  for host_id in range(roads.size()):
-  var host:Dictionary=roads[host_id]
-  if host_id==other_id or not same_profile(candidate,host):continue
+  if host_id==other_id or not same_profile(candidate,roads[host_id]):continue
   var existing_contact:=false
   for node in topology.nodes.values():
+   if ground and absf(node.height_m)>Height.EPS:continue
    if (node.junction>=0 or node.join>=0) and host_id in node.road_ids and other_id in node.road_ids:existing_contact=true;break
   if not existing_contact:continue
-  var host_parts:=segments(host.points)
-  if host_parts.is_empty():continue
-  var points:=PackedVector2Array()
-  if candidate.points[0].distance_to(host.points[-1])<EPS and same_line(host_parts[-1],parts[0]) and host_parts[-1].direction.dot(parts[0].direction)>0:
-   points=host.points.duplicate();points.append_array(candidate.points.slice(1))
-  elif candidate.points[-1].distance_to(host.points[0])<EPS and same_line(parts[-1],host_parts[0]) and parts[-1].direction.dot(host_parts[0].direction)>0:
-   points=candidate.points.duplicate();points.append_array(host.points.slice(1))
-  if points.is_empty():continue
-  var joined:=candidate.duplicate();joined.points=points
-  if overlap_allowed(joined,other):return true
+  for host:Dictionary in surfaces[host_id]:
+   var host_parts:=segments(host.points)
+   if host_parts.is_empty():continue
+   var points:=PackedVector2Array()
+   if candidate.points[0].distance_to(host.points[-1])<EPS and same_line(host_parts[-1],parts[0]) and host_parts[-1].direction.dot(parts[0].direction)>0:
+    points=host.points.duplicate();points.append_array(candidate.points.slice(1))
+   elif candidate.points[-1].distance_to(host.points[0])<EPS and same_line(parts[-1],host_parts[0]) and parts[-1].direction.dot(host_parts[0].direction)>0:
+    points=candidate.points.duplicate();points.append_array(host.points.slice(1))
+   if points.is_empty():continue
+   var joined:=candidate.duplicate();joined.points=points
+   if overlap_allowed(joined,surface):return true
  return false
 static func self_clear(road: Dictionary) -> bool:
  var parts:=segments(road.points);var hits: Array[Dictionary]=[];var hits_ready:=false
@@ -221,10 +229,11 @@ static func spacing_ok(topology: Dictionary,old_count: int,_total: int) -> bool:
   adjacent[node.key]=[]
   # Uncontrolled bends are spacing boundaries too; straight joins/width changes are not.
   var bent: bool=node.arms.size()==2 and (node.arms[0].direction.dot(node.arms[1].direction)>=0 or absf(node.arms[0].direction.cross(node.arms[1].direction))>=.000001)
-  if node.junction<0 and not bent:continue
+  if node.junction<0 and not bent and not node.get("center_anchor",false):continue
   var changed:=false
   for id in node.road_ids:
    if id>=old_count:changed=true
+  if node.junction>=0 and node.get("center_anchor",false) and changed:return false
   anchors[node.key]=changed
  for section in topology.sections:
   var distance:=Paths.length_of(section.points)
@@ -247,7 +256,14 @@ static func spacing_ok(topology: Dictionary,old_count: int,_total: int) -> bool:
     frontier.append({"key":edge.key,"distance":distance,"changed":changed})
  return true
 static func plan(roads: Array,road: Dictionary) -> Dictionary:
- var retained:=coverage(roads,road)
+ var ground:=not Height.off_ground(road)
+ var surfaces:Array=[];var coverage_roads:Array=[]
+ # A real 0m contact does not put the whole mixed-height record on the plane.
+ # Keep original records/indices for topology, spacing, and ramp endpoint joins.
+ for old:Dictionary in roads:
+  var spans:Array=Height.ground_spans(old) if ground else [old]
+  surfaces.append(spans);coverage_roads.append_array(spans)
+ var retained:=coverage(coverage_roads,road)
  if not retained.ok:return retained
  var pieces:=uncovered(road.points,retained.intervals)
  if pieces.is_empty():return {"ok":false,"reason":"이미 있는 도로입니다"}
@@ -258,13 +274,26 @@ static func plan(roads: Array,road: Dictionary) -> Dictionary:
   additions.append(candidate);length+=Paths.length_of(points)
  var topology:=Paths.analyze(roads+additions)
  if not topology.errors.is_empty():return {"ok":false,"reason":topology.errors[0]}
- if not spacing_ok(topology,roads.size(),roads.size()+additions.size()):return {"ok":false,"reason":"교차로 사이 간격은 4칸 이상이어야 합니다"}
+ for node in topology.nodes.values():
+  if node.arms.size()!=2 or not node.road_ids.any(func(id):return id>=roads.size()):continue
+  var a:=Profile.travel_direction(node.arms[0]);var b:=Profile.travel_direction(node.arms[1])
+  # Both arm profiles point AWAY from the node; matching signs mean no through movement.
+  if a!=0 and a==b:return {"ok":false,"reason":"통행 방향이 맞지 않습니다"}
+ if not spacing_ok(topology,roads.size(),roads.size()+additions.size()):return {"ok":false,"reason":"교차로 사이 간격은 14m 이상이어야 합니다"}
  var existing:=Paths.analyze(roads)
  for i in range(additions.size()):
   var candidate: Dictionary=additions[i]
-  for old in roads+additions.slice(0,i):
-   if collinear_contact(candidate,old) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not joins_crossing(candidate,old,roads+additions.slice(0,i)):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
-   if not overlap_allowed(candidate,old) and not continuation_overlap_allowed(candidate,old,roads,existing):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
+  var prior:=roads+additions.slice(0,i)
+  for old_id in range(prior.size()):
+   var old:Dictionary=prior[old_id]
+   if collinear_contact(candidate,old,ground and Height.off_ground(old)) and not preload("res://core/road_transitions.gd").allowed(candidate,old) and not CenterPortals.matching_center_contact(candidate,old) and not CenterPortals.is_deck_extension(candidate,old) and not joins_crossing(candidate,old,prior,ground):return {"ok":false,"reason":"직선 연장은 같은 폭 또는 바로 옆 폭 등급만 가능합니다"}
+   for surface:Dictionary in surfaces[old_id]:
+    # An offset member's butt edge meets the trunk transversely without a
+    # shared centreline. Permit only the proven portal and zero-area contact.
+    if (CenterPortals.matching_trunk(candidate,old) or CenterPortals.matching_trunk(old,candidate)) and intersections(candidate,surface).is_empty():continue
+    if not overlap_allowed(candidate,surface) and not continuation_overlap_allowed(candidate,old_id,surface,roads,surfaces,existing,ground):return {"ok":false,"reason":"기존 도로와 겹칩니다"}
   for junction in existing.junctions+existing.joins:
+   if ground and absf(junction.height_m)>Height.EPS:continue
    if junction.has("box") and surface_contact(outlines(candidate),junction.footprint) and not centre_contact_in_patch(candidate,junction):return {"ok":false,"reason":"도로 측면에만 닿는 연결은 허용되지 않습니다"}
+  surfaces.append([candidate])
  return {"ok":true,"new_roads":additions,"new_length_m":length*4,"retained_length_m":(Paths.length_of(road.points)-length)*4,"construction_cost":0,"reason":""}
