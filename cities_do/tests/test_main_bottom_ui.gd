@@ -96,8 +96,12 @@ func run():
    verify(before==after,"asset browsing preserves city, funds and clock")
    verify(game.slot_asset({"status":"pending_asset","asset":slots[0].asset}).is_empty(),"pending status remains fail-closed even with a populated path")
   game.select_category("road")
-  var cards:Array=game.road_lane_cards.map(func(card):return [card.get_meta("lanes"),card.get_meta("travel_dir",0)])
-  verify(cards==[[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[1,1],[2,1],[3,1],[4,1]] and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"bottom road tools preserve the original 2–8 lane cards, then append four one-way cards")
+  var cards:Array=game.road_lane_cards.map(func(card):return [card.get_meta("lanes"),card.get_meta("travel_dir",0),card.get_meta("center_tool",false)])
+  var expected_cards:=[
+   [2,0,false],[3,0,false],[4,0,false],[5,0,false],[6,0,false],[7,0,false],[8,0,false],
+   [1,1,false],[2,1,false],[3,1,false],[4,1,false],[4,0,true],[6,0,true],[8,0,true],
+  ]
+  verify(cards==expected_cards and game.drawer_box.find_children("RoadLanes","OptionButton",true,false).is_empty() and game.road_grid_button!=null,"road drawer shows seven original, four one-way and three central cards in order, with the grid toggle and no old selector")
   var zoom_before: float=game.map_zoom
   var origin_before: Vector2=game.origin
   game.select_category("fire")

@@ -145,9 +145,12 @@ func run():
  else:
   var cases:=[
    ["split-record T 13.99m",false,Vector2(40+13.99/4,40),Vector2(40+13.99/4,60),false,false,0],
+   ["split-record T 14m",false,Vector2(43.5,40),Vector2(43.5,60),true,false,0],
    ["split-record T 16m",false,Vector2(44,40),Vector2(44,60),true,false,0],
+   ["T endpoint attachment 13.99m",false,Vector2(40+13.99/4,60),Vector2(40+13.99/4,40),false,false,0],
    ["T endpoint attachment 14m",false,Vector2(43.5,60),Vector2(43.5,40),true,false,0],
    ["corner T 13.99m",true,Vector2(40,40+13.99/4),Vector2(60,40+13.99/4),false,false,0],
+   ["corner T 14m",true,Vector2(40,43.5),Vector2(60,43.5),true,false,0],
    ["grid corner 16m",true,Vector2(40,44),Vector2(60,44),true,true,0],
    ["grid corner 12m",true,Vector2(40,43),Vector2(60,43),false,true,0]
   ]
@@ -166,6 +169,8 @@ func run():
    verify(result.ok==spec[4] and (spec[4] or "14m" in result.get("reason","")) and var_to_bytes(game.city.roads)==before,spec[0]+" actual preview uses the 14m policy without mutation")
    var colors:Dictionary=game.road_drawer.preview_colors(result.ok)
    verify(colors.outline==Color("3ddc84" if spec[4] else "ef5350"),spec[0]+" production preview chooses green/red")
+   if not spec[4]:
+    verify(root.size==VIEWPORT_SIZE and result.points.size()>=2 and result.points[0].distance_to(spec[2])<.005 and result.points[-1].distance_to(spec[3])<.005,spec[0]+" rejected preview still resolves the actual stroke in the expected viewport")
    await click(game.screen(spec[3]));await settle()
    verify((game.city.roads.size()==count+1 and var_to_bytes(game.city.roads.slice(0,count))==before) if spec[4] else (var_to_bytes(game.city.roads)==before and not game.road_drawer.last_result.ok),spec[0]+" actual confirmation agrees and preserves original roads")
    if spec[6]>0:
