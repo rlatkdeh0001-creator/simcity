@@ -176,10 +176,13 @@ func check_card_inventory() -> bool:
   expected.append("RoadLane_%d" % count)
  for count in range(1, 5):
   expected.append("RoadOneWay_%d" % count)
+ var central_lanes := [4, 6, 8]
+ for count in central_lanes:
+  expected.append("RoadCenter_%d" % count)
  var got: Array[String] = []
  for child in strip.get_node("Cards").get_children():
   got.append(str(child.name))
- if not check(got == expected and game.road_lane_cards.size() == 11, "exactly 7 ordinary + 4 one-way cards; no hidden branch cards: " + str(got)):
+ if not check(got == expected and game.road_lane_cards.size() == 14, "exactly 7 ordinary + 4 one-way + 3 central cards; no hidden branch cards: " + str(got)):
   return false
  var cards_ok := true
  for i in range(got.size()):
@@ -187,12 +190,14 @@ func check_card_inventory() -> bool:
   if card == null:
    cards_ok = false
    break
-  var lanes := i + 2 if i < 7 else i - 6
-  var id := "local-%d" % lanes if i < 7 else "one-way-%d" % lanes
-  cards_ok = cards_ok and card.get_meta("lanes", -1) == lanes and card.get_meta("travel_dir", -1) == (0 if i < 7 else 1)
+  var center := i >= 11
+  var directed := i >= 7 and not center
+  var lanes: int = central_lanes[i - 11] if center else (i - 6 if directed else i + 2)
+  var id := ("center-%d" if center else ("one-way-%d" if directed else "local-%d")) % lanes
+  cards_ok = cards_ok and card.get_meta("lanes", -1) == lanes and card.get_meta("travel_dir", -1) == int(directed) and card.get_meta("center_tool", false) == center
   cards_ok = cards_ok and card.get_meta("thumbnail_asset_id", "") == "road-" + id and card.get_meta("source_preview", "") == "res://assets/ui/roads/" + id + ".png"
   cards_ok = cards_ok and not card.has_meta("road_variant") and not card.has_meta("branch_variant")
- return check(cards_ok, "all eleven actual menu records retain ordinary IDs and have no branch selection metadata")
+ return check(cards_ok, "actual menu records retain approved family IDs and no branch selection metadata")
 
 func choose_one_way(lanes: int) -> bool:
  var strip := road_strip()

@@ -123,11 +123,39 @@ func finish_fixture(second:Vector2,baseline:bool,output:String):
   verify(image!=null and image.get_size()==VIEWPORT_SIZE and not FileAccess.file_exists(output) and image.save_png(output)==OK,"saved actual 1920x1080 framebuffer without overwriting")
   if failures==0:print("NATIVE_SPACING_CAPTURE "+output)
 
+func aim_pointer(point:Vector2):
+ var motion:=InputEventMouseMotion.new();motion.position=point;motion.global_position=point;root.push_input(motion,true)
+
+func red_outline_samples(frame:Image,ribbons:Array)->int:
+ if frame==null or frame.get_size()!=VIEWPORT_SIZE:return -1
+ var count:=0
+ for shape:PackedVector2Array in ribbons:
+  for i in range(shape.size()):
+   var a:Vector2=game.screen(shape[i]);var b:Vector2=game.screen(shape[(i+1)%shape.size()])
+   # Ignore little cap segments and sample three interior stations of each long edge.
+   if a.distance_to(b)<30.0:continue
+   for t in [.25,.5,.75]:
+    var center:=Vector2i(a.lerp(b,t));var found:=false
+    for dy in range(-2,3):
+     for dx in range(-2,3):
+      var p:=center+Vector2i(dx,dy)
+      if p.x<0 or p.y<0 or p.x>=VIEWPORT_SIZE.x or p.y>=VIEWPORT_SIZE.y:continue
+      var ink:=frame.get_pixelv(p)
+      if ink.r>=.78 and ink.r>ink.g+.32 and ink.r>ink.b+.32 and absf(ink.g-ink.b)<.12:found=true
+    if found:count+=1
+ return count
+
 func run():
  var output:=""
+ var rejection_png:=""
  var baseline:="--paint-baseline" in OS.get_cmdline_user_args()
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--evidence-dir="):output=arg.trim_prefix("--evidence-dir=")
+  if arg.begins_with("--evidence="):rejection_png=arg.trim_prefix("--evidence=")
+ var rejection_state:=rejection_png.trim_suffix(".png")+".state.json"
+ if not rejection_png.is_empty():
+  if baseline or DisplayServer.get_name()=="headless" or not rejection_png.ends_with(".png") or FileAccess.file_exists(rejection_png) or FileAccess.file_exists(rejection_state):
+   push_error("Red preview evidence requires a native viewport and fresh PNG and state destinations");quit(1);return
  if not output.is_empty():
   for gap in [14,15]:
    if FileAccess.file_exists(output.path_join("b-junction-%dm-1920.png"%gap)):
@@ -164,7 +192,15 @@ func run():
    await select_lanes(2)
    var before:=var_to_bytes(game.city.roads);var count:int=game.city.roads.size()
    await click(game.screen(spec[2]))
-   var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);motion.global_position=motion.position;root.push_input(motion,true);await settle()
+   var evidence_case:bool=spec[0]=="grid corner 12m" and not rejection_png.is_empty() and failures==0
+   var hidden_frame:Image
+   if evidence_case:
+    # Negative control: the live stroke is still active but actually hidden by HUD hover.
+    aim_pointer(game.categories[1].get_global_rect().get_center())
+    game.queue_redraw();await settle();await RenderingServer.frame_post_draw
+    verify(root.gui_get_hovered_control()!=null and not game.road_drawer.anchors.is_empty(),"HUD hover masks the still-active road stroke")
+    hidden_frame=root.get_texture().get_image()
+   aim_pointer(game.screen(spec[3]));await settle()
    var result:Dictionary=game.road_drawer.preview()
    verify(result.ok==spec[4] and (spec[4] or "14m" in result.get("reason","")) and var_to_bytes(game.city.roads)==before,spec[0]+" actual preview uses the 14m policy without mutation")
    var colors:Dictionary=game.road_drawer.preview_colors(result.ok)
@@ -177,8 +213,31 @@ func run():
     if spec[5] and line.size()>=2:
      end_ok=absf(line[-1].y-spec[3].y)<.005 and absf(line[-1].x-spec[3].x)<=.505
     verify(root.size==VIEWPORT_SIZE and line.size()>=2 and line[0].distance_to(spec[2])<.005 and end_ok,spec[0]+" rejected preview retains the resolved T contact and expected viewport: "+str(line))
+   var red_frame:Image
+   var red_edges:=0;var hidden_edges:=0
+   if evidence_case and failures==0:
+    # Capture the actual preview before the click clears or changes it.
+    aim_pointer(game.screen(spec[3]))
+    game.queue_redraw();await settle();await RenderingServer.frame_post_draw
+    red_frame=root.get_texture().get_image()
+    verify(root.gui_get_hovered_control()==null and red_frame!=null and red_frame.get_size()==VIEWPORT_SIZE,"captured the actual unobstructed 1920x1080 rejected preview")
+    var ribbons:Array=result.get("ribbon_polygons",[])
+    red_edges=red_outline_samples(red_frame,ribbons);hidden_edges=red_outline_samples(hidden_frame,ribbons)
+    verify(red_edges>=4 and hidden_edges==0,"actual rejected ribbon has red edge stations; same pixels with HUD hover do not: %d/%d"%[red_edges,hidden_edges])
    await click(game.screen(spec[3]));await settle()
    verify((game.city.roads.size()==count+1 and var_to_bytes(game.city.roads.slice(0,count))==before) if spec[4] else (var_to_bytes(game.city.roads)==before and not game.road_drawer.last_result.ok),spec[0]+" actual confirmation agrees and preserves original roads")
+   if red_frame!=null and failures==0:
+    var state:={"input":"actual lane-card and viewport mouse press/release","grid_enabled":game.road_grid_enabled,"fixture":"bent two-arm corner and existing T eight cells away","gap_cells":3,"minimum_cells":3.5,"gap_m":12,"minimum_m":14,"preview_ok":result.ok,"reason":result.reason,"outline":colors.outline.to_html(),"red_edge_stations":red_edges,"hud_hover_edge_stations":hidden_edges,"rejected_commit_preserved_roads":var_to_bytes(game.city.roads)==before,"preview_points":result.points,"viewport":str(red_frame.get_size())}
+    verify(not FileAccess.file_exists(rejection_png) and not FileAccess.file_exists(rejection_state) and red_frame.save_png(rejection_png)==OK,"saved raw red preview without overwriting")
+    if failures==0:
+     var file:=FileAccess.open(rejection_state,FileAccess.WRITE)
+     verify(file!=null,"opened rejection state sidecar")
+     if file!=null:
+      var serialized:=JSON.stringify(state,"  ")+"\n"
+      file.store_string(serialized)
+      file.close()
+      verify(FileAccess.get_file_as_string(rejection_state)==serialized,"saved rejection reason, paint and actual click outcome")
+      if failures==0:print("NATIVE_SPACING_CAPTURE_PASS red preview; 12m below 14m; click rejected; original roads preserved")
    if spec[6]>0:
     var capture:=output.path_join("b-junction-%dm-1920.png"%spec[6]) if not output.is_empty() and spec[6]<16 else ""
     await finish_fixture(spec[2],false,capture)
