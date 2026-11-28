@@ -26,17 +26,24 @@ func run():
    verify(var_to_str(game.city.roads)==var_to_str(saved),spec[0]+" rebuilds legacy records without deleting or moving them")
   else:
    await select_lanes(8);await click(game.screen(Vector2(30,40)));await click(game.screen(Vector2(46,40)));await settle()
-   verify(game.city.roads.size()==1,spec[0]+" builds its eight-lane host through real mouse input")
+   verify(game.city.roads.size()==1 and game.city.roads[0].lanes==8,spec[0]+" builds its eight-lane host through real mouse input")
   var before:=var_to_str(game.city.roads);var count: int=game.city.roads.size()
   await select_lanes(spec[6] if spec.size()>6 else 2)
   # New odd-width lattice can leave a half-cell gap here; pin the literal curb contact.
   if spec[0]=="legacy widened box boundary":game.road_grid_enabled=false
-  await click(game.screen(spec[2]));var motion:=InputEventMouseMotion.new();motion.position=game.screen(spec[3]);root.push_input(motion,true);await process_frame
-  var result: Dictionary=game.road_drawer.preview()
-  verify(result.ok==spec[4],spec[0]+" preview rejects surface-only contact but permits actual crossings")
+  await click(game.screen(spec[2]));var result:Dictionary=profile_preview(spec[3])
+  if spec[0]=="perpendicular curb-only end":
+   var literal:=PackedVector2Array([spec[2],spec[3]])
+   # The existing width lattice moves the requested stroke without moving the curb contact off y=36.
+   var snapped:=PackedVector2Array([Vector2(38.5,21),Vector2(37.5,36)])
+   var literal_plan:Dictionary=game.city.add_elevated_road(literal,PackedFloat64Array([0.0,0.0]),"local",false,2)
+   var snapped_plan:Dictionary=game.city.add_elevated_road(result.points,result.heights_m,"local",false,2,false,result.major_side,result.grid_frame)
+   verify(result.points==snapped and not literal_plan.ok and not snapped_plan.ok and var_to_str(game.city.roads)==before,"model rejects both literal and resolved 0m curb-only strokes without writing roads: %s"%[str(result.points)])
+  verify(result.fixture_aimed and result.ok==spec[4],spec[0]+" preview rejects surface-only contact but permits actual crossings: "+str(result.get("reason","")))
+  game.road_drawer.last_result={}
   await click(game.screen(spec[3]));await settle()
   if spec[4]:
    verify(game.city.roads.size()==count+1 and game.city.junctions.size()==1 and game.city.junctions[0].arms.size()==spec[5],spec[0]+" actual final click creates its real junction")
-  else:verify(var_to_str(game.city.roads)==before,spec[0]+" rejected final click leaves every existing road intact")
+  else:verify(not game.road_drawer.last_result.is_empty() and not game.road_drawer.last_result.ok and var_to_str(game.city.roads)==before,spec[0]+" actual rejection leaves every existing road intact")
  game.queue_free();await process_frame
  print("RESULT %d/%d road side-contact checks passed"%[checks-failures,checks]);quit(1 if failures else 0)
