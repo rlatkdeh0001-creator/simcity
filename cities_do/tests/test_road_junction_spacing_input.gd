@@ -170,7 +170,13 @@ func run():
    var colors:Dictionary=game.road_drawer.preview_colors(result.ok)
    verify(colors.outline==Color("3ddc84" if spec[4] else "ef5350"),spec[0]+" production preview chooses green/red")
    if not spec[4]:
-    verify(root.size==VIEWPORT_SIZE and result.points.size()>=2 and result.points[0].distance_to(spec[2])<.005 and result.points[-1].distance_to(spec[3])<.005,spec[0]+" rejected preview still resolves the actual stroke in the expected viewport")
+    var line:PackedVector2Array=result.points
+    # Grid ON may shift the free cap to the next width-aligned station; the real T
+    # contact and its chainage on the host must nevertheless be exact.
+    var end_ok:bool=line.size()>=2 and line[-1].distance_to(spec[3])<.005
+    if spec[5] and line.size()>=2:
+     end_ok=absf(line[-1].y-spec[3].y)<.005 and absf(line[-1].x-spec[3].x)<=.505
+    verify(root.size==VIEWPORT_SIZE and line.size()>=2 and line[0].distance_to(spec[2])<.005 and end_ok,spec[0]+" rejected preview retains the resolved T contact and expected viewport: "+str(line))
    await click(game.screen(spec[3]));await settle()
    verify((game.city.roads.size()==count+1 and var_to_bytes(game.city.roads.slice(0,count))==before) if spec[4] else (var_to_bytes(game.city.roads)==before and not game.road_drawer.last_result.ok),spec[0]+" actual confirmation agrees and preserves original roads")
    if spec[6]>0:
